@@ -1,0 +1,1 @@
+export { default as bookshelf1 } from './bookshelf_1.webp';

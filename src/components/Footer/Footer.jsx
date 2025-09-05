@@ -21,8 +21,8 @@ const Footer = () => {
           
           <div className="footer-section">
             <h4>{t('footer.contact')}</h4>
-            <p>📞 +995 32 2 XX XX XX</p>
-            <p>✉️ info@gps.ge</p>
+            <p>📞 +995 32 230 81 77</p>
+            <p>✉️ info@geopolser.ge</p>
             <p>📍 {t('contacts.tbilisi_georgia')}</p>
           </div>
           

@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useLanguage } from "../../hooks/useLanguage";
+import { MdKeyboardArrowRight, MdKeyboardArrowLeft } from "react-icons/md";
+
 import './Hero.css';
 
 const Hero = () => {
@@ -81,10 +83,10 @@ const Hero = () => {
       {/* Navigation Controls */}
       <div className="hero-controls">
         <button className="hero-nav prev" onClick={prevSlide} aria-label="Previous slide">
-          ‹
+          <MdKeyboardArrowLeft />
         </button>
         <button className="hero-nav next" onClick={nextSlide} aria-label="Next slide">
-          ›
+          <MdKeyboardArrowRight />
         </button>
       </div>
 
