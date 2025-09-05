@@ -1,0 +1,115 @@
+{
+  "navigation": {
+    "home": "Home",
+    "about": "About",
+    "catalog": "Catalog",
+    "services": "Services",
+    "news": "News",
+    "contacts": "Contacts"
+  },
+  "hero": {
+    "office": {
+      "title": "Office Solutions",
+      "subtitle": "Perfect multifunction devices for modern offices"
+    },
+    "professional": {
+      "title": "Professional Solutions",
+      "subtitle": "High-quality printing and copying for business"
+    },
+    "industrial": {
+      "title": "Industrial Solutions",
+      "subtitle": "Powerful systems for high-volume operations"
+    },
+    "cta": "Learn More"
+  },
+  "categories": {
+    "office": "Office Equipment",
+    "professional": "Professional",
+    "industrial": "Industrial",
+    "title": "Our Categories",
+    "office_description": "Multifunction devices for office use",
+    "professional_description": "Professional printing solutions",
+    "industrial_description": "Industrial-grade equipment"
+  },
+  "catalog": {
+    "title": "Catalog",
+    "full_catalog": "Full Catalog",
+    "subtitle": "Discover our wide range of Konica Minolta products",
+    "filters": "Filters",
+    "type": "Type",
+    "speed": "Speed (ppm)",
+    "format": "Format",
+    "all": "All",
+    "multifunction": "Multifunction",
+    "printer": "Printer",
+    "products_found": "products found",
+    "no_products": "No products found",
+    "price_on_request": "Price on request"
+  },
+  "product": {
+    "speed": "Speed:",
+    "format": "Format:",
+    "resolution": "Resolution:",
+    "key_specs": "Key Specifications",
+    "description": "Description",
+    "specifications": "Specifications",
+    "documents": "Documents",
+    "video": "Video",
+    "product_description": "Product Description",
+    "features": "Features",
+    "technical_specs": "Technical Specifications",
+    "documents_coming": "Documents coming soon",
+    "video_coming": "Video coming soon"
+  },
+  "about": {
+    "title": "About Us",
+    "subtitle": "Georgian Polygraph Service - Your trusted partner in printing technologies",
+    "our_story": "Our Story",
+    "story_text1": "Georgian Polygraph Service is a leading company in Georgia in the field of printing technologies. We have many years of experience in distribution and service of Konica Minolta products.",
+    "story_text2": "Our mission is to provide our clients with the most modern and efficient printing solutions.",
+    "experience": "Experience",
+    "experience_desc": "10+ years of experience",
+    "service": "Service",
+    "service_desc": "24/7 technical support",
+    "quality": "Quality",
+    "quality_desc": "Only original products"
+  },
+  "services": {
+    "title": "Our Services",
+    "subtitle": "Everything you need for printing technologies",
+    "technical_service": "Technical Service",
+    "technical_desc": "Professional repair and maintenance",
+    "rental": "Equipment Rental",
+    "rental_desc": "Flexible rental terms",
+    "consumables": "Consumables",
+    "consumables_desc": "Original toners and parts"
+  },
+  "news": {
+    "title": "News",
+    "coming_soon": "News coming soon"
+  },
+  "contacts": {
+    "title": "Contacts",
+    "subtitle": "Contact us anytime",
+    "phone": "Phone",
+    "email": "Email",
+    "address": "Address",
+    "contact_us": "Contact Us",
+    "name": "Name",
+    "message": "Message",
+    "send": "Send",
+    "tbilisi_georgia": "Tbilisi, Georgia"
+  },
+  "footer": {
+    "description": "Professional printing and copying solutions",
+    "contact": "Contact",
+    "quick_links": "Quick Links",
+    "all_rights": "All rights reserved"
+  },
+  "common": {
+    "more": "Learn More",
+    "request": "Request Quote",
+    "loading": "Loading...",
+    "ppm": "ppm"
+  }
+}
