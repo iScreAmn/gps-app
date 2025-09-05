@@ -1,0 +1,17 @@
+.news-page {
+  padding: 2rem 0;
+  text-align: center;
+}
+
+.news-page h1 {
+  font-size: 2.5rem;
+  font-weight: var(--font-bold);
+  color: var(--primary-red);
+  margin-bottom: 2rem;
+}
+
+@media (max-width: 768px) {
+  .news-page h1 {
+    font-size: 2rem;
+  }
+}
