@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { useTheme } from '../../contexts/ThemeContext';
 import { useLanguage } from '../../hooks/useLanguage';
+import { IoSunny, IoMoon } from "react-icons/io5";
 import './Header.css';
 
 const Header = () => {
@@ -80,7 +81,7 @@ const Header = () => {
               onClick={toggleTheme}
               aria-label="Toggle theme"
             >
-              {theme === 'light' ? '🌙' : '☀️'}
+              {theme === 'light' ? <IoMoon /> : <IoSunny />}
             </button>
 
             {/* Mobile Menu Button */}

@@ -152,6 +152,15 @@ body[data-theme="dark"] .theme-toggle {
   background-color: var(--light-border);
 }
 
+.theme-toggle svg {
+  display: block;
+  color: var(--light-text);
+}
+
+body[data-theme="dark"] .theme-toggle svg {
+  color: var(--dark-text);
+}
+
 body[data-theme="dark"] .theme-toggle:hover {
   background-color: var(--dark-border);
 }
