@@ -3,7 +3,7 @@ import { useLanguage } from "../../hooks/useLanguage";
 import './ContactsPage.css';
 
 const ContactsPage = () => {
-  const { language, t } = useLanguage();
+  const { t } = useLanguage();
 
   return (
     <div className="contacts-page">
@@ -17,11 +17,11 @@ const ContactsPage = () => {
           <div className="contact-info">
             <div className="contact-item">
               <h3>📞 {t('contacts.phone')}</h3>
-              <p>+995 32 2 XX XX XX</p>
+              <p>+995 32 230 81 77</p>
             </div>
             <div className="contact-item">
               <h3>✉️ {t('contacts.email')}</h3>
-              <p>info@gps.ge</p>
+              <p>info@geopolser.ge</p>
             </div>
             <div className="contact-item">
               <h3>📍 {t('contacts.address')}</h3>
