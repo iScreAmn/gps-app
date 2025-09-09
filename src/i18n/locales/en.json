@@ -9,18 +9,25 @@
   },
   "hero": {
     "office": {
-      "title": "Office Solutions",
-      "subtitle": "Perfect multifunction devices for modern offices"
+      "title": "Office GPS Solutions",
+      "subtitle": "Perfect navigation devices for modern offices",
+      "cta": "Explore Office Solutions"
     },
     "professional": {
-      "title": "Professional Solutions",
-      "subtitle": "High-quality printing and copying for business"
+      "title": "Professional GPS Equipment",
+      "subtitle": "High-precision tools for professional surveying",
+      "cta": "View Professional Tools"
     },
     "industrial": {
-      "title": "Industrial Solutions",
-      "subtitle": "Powerful systems for high-volume operations"
+      "title": "Industrial GPS Systems",
+      "subtitle": "Powerful solutions for large-scale operations",
+      "cta": "Discover Industrial Solutions"
     },
-    "cta": "Learn More"
+    "support": {
+      "title": "Expert GPS Support",
+      "subtitle": "Professional maintenance and technical assistance",
+      "cta": "Get Support"
+    }
   },
   "categories": {
     "office": "Office Equipment",
@@ -108,8 +115,105 @@
   },
   "common": {
     "more": "Learn More",
-    "request": "Request Quote",
+    "request": "Request Quote", 
     "loading": "Loading...",
-    "ppm": "ppm"
+    "ppm": "ppm",
+    "learnMore": "Learn More"
+  },
+  "products": {
+    "section": {
+      "title": "Our Products",
+      "subtitle": "Professional GPS and surveying equipment",
+      "viewAll": "View All Products"
+    },
+    "garmin": {
+      "title": "Garmin GPS Solutions",
+      "subtitle": "Professional navigation and positioning systems",
+      "description": "Leading GPS technology for professional use",
+      "feature1": "High-precision GNSS technology",
+      "feature2": "Weather-resistant design", 
+      "feature3": "Extended battery life",
+      "cta": "Learn More",
+      "price": "Price on request"
+    },
+    "trimble": {
+      "title": "Trimble Surveying Equipment",
+      "subtitle": "Advanced surveying and mapping solutions",
+      "description": "Industry-leading surveying equipment",
+      "feature1": "Centimeter-level accuracy",
+      "feature2": "Real-time data collection",
+      "feature3": "Cloud connectivity",
+      "cta": "View Details",
+      "price": "Price on request"
+    },
+    "leica": {
+      "title": "Leica Total Stations",
+      "subtitle": "Precision measurement instruments",
+      "description": "Premium precision measurement tools",
+      "feature1": "Superior optics technology",
+      "feature2": "Automated measurement",
+      "feature3": "Integrated data management",
+      "cta": "Explore",
+      "price": "Price on request"
+    }
+  },
+  "services": {
+    "section": {
+      "title": "Our Services",
+      "subtitle": "Complete GPS solutions and support",
+      "viewAll": "View All Services"
+    },
+    "maintenance": {
+      "title": "Equipment Maintenance",
+      "subtitle": "Professional maintenance and calibration services",
+      "description": "Keep your GPS equipment running at peak performance",
+      "feature1": "Regular calibration services",
+      "feature2": "Emergency repair support",
+      "feature3": "Preventive maintenance programs",
+      "cta": "Schedule Service"
+    },
+    "training": {
+      "title": "Technical Training",
+      "subtitle": "Comprehensive training programs for all skill levels",
+      "description": "Master your GPS equipment with expert training",
+      "feature1": "Hands-on training sessions",
+      "feature2": "Certification programs",
+      "feature3": "Online learning modules",
+      "cta": "View Courses"
+    },
+    "consultation": {
+      "title": "Technical Consultation", 
+      "subtitle": "Expert advice for your project requirements",
+      "description": "Get professional guidance for your GPS projects",
+      "feature1": "Project planning assistance",
+      "feature2": "Equipment selection advice",
+      "feature3": "Implementation support",
+      "cta": "Get Consultation"
+    }
+  },
+  "about": {
+    "section": {
+      "title": "About GPS Solutions",
+      "description": "Leading provider of professional GPS and surveying equipment in Georgia",
+      "learnMore": "Learn More About Us"
+    }
+  },
+  "categories": {
+    "section": {
+      "title": "Product Categories",
+      "subtitle": "Explore our comprehensive range of GPS solutions"
+    },
+    "office": {
+      "name": "Office GPS",
+      "description": "Compact GPS solutions for office and personal use"
+    },
+    "professional": {
+      "name": "Professional Equipment",
+      "description": "High-precision tools for professional surveying"
+    },
+    "industrial": {
+      "name": "Industrial Solutions",
+      "description": "Heavy-duty systems for large-scale operations"
+    }
   }
 }
