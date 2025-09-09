@@ -1,6 +1,7 @@
 import React from 'react';
 import Hero from '../../components/Hero/Hero';
 import CategoryCards from '../../components/CategoryCards/CategoryCards';
+import ProductGallery from '../../components/ProductGallery/ProductGallery';
 import './HomePage.css';
 
 const HomePage = () => {
@@ -8,6 +9,7 @@ const HomePage = () => {
     <div className="home-page">
       <Hero />
       <CategoryCards />
+      <ProductGallery />
     </div>
   );
 };
