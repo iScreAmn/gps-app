@@ -1,9 +1,10 @@
 import React from 'react';
 import { useLanguage } from "../../hooks/useLanguage";
+import { aboutImage } from '../../assets/images';
 import './AboutPage.css';
 
 const AboutPage = () => {
-  const { language, t } = useLanguage();
+  const { t } = useLanguage();
 
   return (
     <div className="about-page">
@@ -27,7 +28,7 @@ const AboutPage = () => {
           </div>
 
           <div className="about-image">
-            <img src="/api/placeholder/500/300" alt="Office" />
+            <img src={aboutImage} alt="Office" />
           </div>
         </div>
 
