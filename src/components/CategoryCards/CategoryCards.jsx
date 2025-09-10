@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { useLanguage } from "../../hooks/useLanguage";
+import { categoryOffice, categoryProfessional, categoryIndustrial } from '../../assets/images';
 import './CategoryCards.css';
 
 const CategoryCards = () => {
@@ -10,21 +11,21 @@ const CategoryCards = () => {
     {
       id: 'office',
       title: t('categories.office'),
-      image: '/api/placeholder/400/300',
+      image: categoryOffice,
       link: `/${language}/catalog/office`,
       description: t('categories.office_description')
     },
     {
       id: 'professional',
       title: t('categories.professional'),
-      image: '/api/placeholder/400/300',
+      image: categoryProfessional,
       link: `/${language}/catalog/professional`,
       description: t('categories.professional_description')
     },
     {
       id: 'industrial',
       title: t('categories.industrial'),
-      image: '/api/placeholder/400/300',
+      image: categoryIndustrial,
       link: `/${language}/catalog/industrial`,
       description: t('categories.industrial_description')
     }

@@ -99,7 +99,7 @@ body[data-theme="dark"] .category-card:hover {
 .category-card-title {
   font-size: 1.5rem;
   font-weight: var(--font-bold);
-  margin-bottom: 0.5rem;
+  margin-top: 0.5rem;
   line-height: 1.3;
 }
 
