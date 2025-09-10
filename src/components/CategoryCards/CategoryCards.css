@@ -88,7 +88,7 @@ body[data-theme="dark"] .category-card:hover {
 
 .category-card-content {
   color: white;
-  transform: translateY(20px);
+  transform: translateY(70px);
   transition: transform var(--transition-normal);
 }
 

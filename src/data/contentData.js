@@ -1,7 +1,8 @@
 import { 
   productGarmin, 
   productTrimble, 
-  productLeica 
+  productLeica,
+  printer4
 } from '../assets/images';
 
 /**
@@ -58,7 +59,7 @@ export const gpsContent = {
         cta: 'hero.office.cta',
         ctaLink: '/catalog/office'
       }, {
-        src: '/api/placeholder/1200/600',
+        src: productLeica,
         alt: 'Office GPS Equipment Background'
       }),
       
@@ -94,7 +95,7 @@ export const gpsContent = {
         cta: 'hero.support.cta',
         ctaLink: '/services'
       }, {
-        src: '/api/placeholder/1200/600',
+        src: printer4,
         alt: 'GPS Support Services Background'
       })
     ],
