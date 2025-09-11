@@ -111,15 +111,20 @@ export const gpsContent = {
     subtitle: 'products.section.subtitle',
     items: [
       createProductSlide('garmin-gps', {
-        title: 'products.garmin.title',
+        title: 'products.nocai.title',
         subtitle: 'products.garmin.subtitle',
         description: 'products.garmin.description',
         features: [
-          'products.garmin.feature1',
-          'products.garmin.feature2', 
-          'products.garmin.feature3'
+          'products.nocai.feature1',
+          'products.nocai.feature2', 
+          'products.nocai.feature3',
+          'products.nocai.feature4',
+          'products.nocai.feature5',
+          'products.nocai.feature6',
+          'products.nocai.feature7',
+          'products.nocai.feature8'
         ],
-        cta: 'products.garmin.cta',
+        cta: 'products.nocai.cta',
         ctaLink: '/products/garmin-gps',
         price: 'products.garmin.price'
       }, {

@@ -30,10 +30,10 @@
     }
   },
   "categories": {
+    "title": "Products",
     "office": "Office Equipment",
     "professional": "Professional",
     "industrial": "Industrial",
-    "title": "Our Categories",
     "office_description": "Multifunction devices for office use",
     "professional_description": "Professional printing solutions",
     "industrial_description": "Industrial-grade equipment"
@@ -126,13 +126,18 @@
       "subtitle": "Professional GPS and surveying equipment",
       "viewAll": "View All Products"
     },
-    "garmin": {
-      "title": "Garmin GPS Solutions",
-      "subtitle": "Professional navigation and positioning systems",
+    "nocai": {
+      "title": "Nocai UV Printing",
+      "subtitle": "NC-UV0609XIII",
       "description": "Leading GPS technology for professional use",
-      "feature1": "High-precision GNSS technology",
-      "feature2": "Weather-resistant design", 
-      "feature3": "Extended battery life",
+      "feature1": "Print dimensions: 600mm x 900mm",
+      "feature2": "Print head: XAAR1201", 
+      "feature3": "Media height: 0 – 140mm",
+      "feature4": "Resolution: 2400dpi",
+      "feature5": "Media diameter: 30 – 80mm",
+      "feature6": "Print mode: Color, white, and varnish simultaneously",
+      "feature7": "Formats: Tiff, Jpg, Eps, Png, AI, PSD",
+      "feature8": "Print colors: CMYK + White + V/CMYK + White + CMYK",
       "cta": "Learn More",
       "price": "Price on request"
     },
@@ -198,7 +203,7 @@
       "learnMore": "Learn More About Us"
     }
   },
-  "categories": {
+  "services": {
     "section": {
       "title": "Product Categories",
       "subtitle": "Explore our comprehensive range of GPS solutions"
