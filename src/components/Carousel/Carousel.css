@@ -332,8 +332,8 @@
   transform: translateY(-50%);
   background: rgba(255, 255, 255, 0.9);
   border: none;
-  width: 50px;
-  height: 50px;
+  width: 40px;
+  height: 40px;
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -341,29 +341,29 @@
   cursor: pointer;
   z-index: 10;
   transition: all var(--transition-fast, 0.3s);
-  color: var(--primary-red, #dc2626);
+  color: var(--primary-red);
   font-size: 1.2rem;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
 
 .carousel-arrow:hover {
-  background: var(--primary-red, #dc2626);
-  color: white;
+  background: var(--primary-red);
+  color: var(--primary-red);
   transform: translateY(-50%) scale(1.1);
   box-shadow: 0 6px 20px rgba(220, 38, 38, 0.4);
 }
 
 .carousel-arrow:focus {
-  outline: 2px solid var(--primary-red, #dc2626);
+  outline: 2px solid var(--primary-red);
   outline-offset: 2px;
 }
 
 .carousel-arrow-prev {
-  left: 20px;
+  left: 30px;
 }
 
 .carousel-arrow-next {
-  right: 20px;
+  right: 30px;
 }
 
 /* Navigation Dots */

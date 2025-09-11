@@ -49,6 +49,7 @@ body[data-theme="dark"] .product-gallery .carousel-slide-product {
 .product-gallery .carousel-dot {
   border-color: var(--primary-red, #dc2626);
   opacity: 0.3;
+  display: none;
 }
 
 .product-gallery .carousel-dot.active {
@@ -57,7 +58,6 @@ body[data-theme="dark"] .product-gallery .carousel-slide-product {
 
 .product-gallery .carousel-arrow {
   background: var(--surface-color, #fff);
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
 }
 
 body[data-theme="dark"] .product-gallery .carousel-arrow {
