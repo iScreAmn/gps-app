@@ -6,7 +6,7 @@ import './Carousel.css';
 
 const Carousel = ({ 
   slides = [], 
-  autoPlay = true,
+  autoPlay = false,
   autoPlayInterval = 5000,
   showDots = true,
   showArrows = true,
@@ -264,20 +264,14 @@ const Carousel = ({
               </div>
             )}
             <div className="product-content">
-              <h3 className="product-title">{t(slide.product.title)}</h3>
-              <p className="product-subtitle">{t(slide.product.subtitle)}</p>
-              {slide.product.description && (
-                <p className="product-description">{t(slide.product.description)}</p>
-              )}
+              <h3 className="product-title">{t('products.nocai.title')}</h3>
+              <p className="product-subtitle">{t('products.nocai.subtitle')}</p>
               {slide.product.features && slide.product.features.length > 0 && (
                 <ul className="product-features">
                   {slide.product.features.map((feature, idx) => (
                     <li key={idx}>{t(feature)}</li>
                   ))}
                 </ul>
-              )}
-              {slide.product.price && (
-                <p className="product-price">{t(slide.product.price)}</p>
               )}
               {slide.product.ctaLink && (
                 <Link 

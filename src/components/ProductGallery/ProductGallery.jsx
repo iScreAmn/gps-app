@@ -23,7 +23,7 @@ const ProductGallery = () => {
       <div className="container">
         <Carousel 
           slides={productItems}
-          autoPlay={true}
+          autoPlay={false}
           autoPlayInterval={6000}
           showDots={true}
           showArrows={true}
