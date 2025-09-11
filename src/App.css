@@ -93,6 +93,7 @@ a {
   border-radius: 8px;
   font-weight: var(--font-medium);
   transition: all var(--transition-fast);
+  width: fit-content;
 }
 
 .btn-secondary:hover {
