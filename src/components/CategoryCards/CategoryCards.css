@@ -3,7 +3,7 @@
 }
 
 body[data-theme="dark"] .category-cards-section {
-  background-color: var(--dark-hover-bg);
+  background-color: var(--dark-bg);
 }
 
 .category-cards-grid {

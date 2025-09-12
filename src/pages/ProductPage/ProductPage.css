@@ -3,6 +3,7 @@
 }
 
 .product-content {
+  width: 500px;
   display: flex;
   /* grid-template-columns: 1fr 1fr; */
   flex-direction: column;

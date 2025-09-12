@@ -29,16 +29,16 @@ body[data-theme="dark"] .product-gallery-empty {
 
 /* Override carousel styles for products */
 .product-gallery .carousel-slide-product {
-  background: var(--surface-color, #fff);
+  background: var(--product-bg);
   border-radius: 12px;
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+  /* box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08); */
   margin: 1rem;
   overflow: hidden;
 }
 
 body[data-theme="dark"] .product-gallery .carousel-slide-product {
   background: var(--dark-card-bg);
-  box-shadow: var(--dark-shadow);
+  /* box-shadow: var(--dark-shadow); */
 }
 
 .product-gallery .carousel-dots {
