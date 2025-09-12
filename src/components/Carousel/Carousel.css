@@ -775,7 +775,6 @@
 
   .carousel-slide-product {
     flex-direction: column;
-    /* text-align: center; */
     align-items: unset;
     gap: 20px;
     padding: 1rem;
