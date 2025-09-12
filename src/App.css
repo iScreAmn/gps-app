@@ -2,12 +2,13 @@
   /* Light theme colors */
   --primary-red: #DC2626;
   --primary-red-hover: #B91C1C;
-  --light-bg: #FFFFFF;
+  --light-bg: #fff;
   --light-text: #1F2937;
   --light-text-secondary: #6B7280;
   --light-border: #E5E7EB;
   --light-card-bg: #FFFFFF;
   --light-hover-bg: #F9FAFB;
+  --product-bg: #fff;
   
   /* Dark theme colors */
   --dark-bg: #111827;
@@ -51,12 +52,14 @@ body {
 body[data-theme="light"] {
   background-color: var(--light-bg);
   color: var(--light-text);
+  --product-bg: #FFFFFF;
 }
 
 /* Dark theme styles */
 body[data-theme="dark"] {
   background-color: var(--dark-bg);
   color: var(--dark-text);
+  --product-bg: #1F2937;
 }
 
 button {
