@@ -10,6 +10,7 @@ body[data-theme="dark"] .product-gallery {
 .product-carousel {
   max-width: 1200px;
   margin: 0 auto;
+  width: 100%;
 }
 
 .product-gallery-empty {
@@ -65,13 +66,129 @@ body[data-theme="dark"] .product-gallery .carousel-arrow {
   box-shadow: var(--dark-shadow);
 }
 
-/* Mobile adjustments */
-@media (max-width: 768px) {
+/* Responsive adjustments for product gallery */
+
+/* Ultra-wide screens (1920px+) */
+@media (min-width: 1920px) {
+  .product-gallery {
+    padding: 6rem 0;
+  }
+  
+  .product-carousel {
+    max-width: 1400px;
+  }
+  
+  .product-gallery .carousel-slide-product {
+    margin: 1.5rem;
+  }
+}
+
+/* Large desktop screens (1440px - 1919px) */
+@media (min-width: 1440px) and (max-width: 1919px) {
+  .product-gallery {
+    padding: 5rem 0;
+  }
+  
+  .product-carousel {
+    max-width: 1300px;
+  }
+  
+  .product-gallery .carousel-slide-product {
+    margin: 1.2rem;
+  }
+}
+
+/* Desktop screens (1024px - 1439px) */
+@media (min-width: 1024px) and (max-width: 1439px) {
+  .product-gallery {
+    padding: 4rem 0;
+  }
+  
+  .product-carousel {
+    max-width: 1200px;
+  }
+  
+  .product-gallery .carousel-slide-product {
+    margin: 1rem;
+  }
+}
+
+/* Tablet landscape (768px - 1023px) */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .product-gallery {
+    padding: 3rem 0;
+  }
+  
+  .product-carousel {
+    max-width: 100%;
+    padding: 0 1rem;
+  }
+  
+  .product-gallery .carousel-slide-product {
+    margin: 0.8rem;
+  }
+}
+
+/* Tablet portrait (481px - 767px) */
+@media (min-width: 481px) and (max-width: 767px) {
+  .product-gallery {
+    padding: 2.5rem 0;
+  }
+  
+  .product-carousel {
+    max-width: 100%;
+    padding: 0 0.8rem;
+  }
+  
+  .product-gallery .carousel-slide-product {
+    margin: 0.6rem;
+  }
+}
+
+/* Mobile landscape (481px - 767px) */
+@media (max-width: 767px) and (orientation: landscape) {
   .product-gallery {
     padding: 2rem 0;
   }
   
+  .product-carousel {
+    max-width: 100%;
+    padding: 0 0.5rem;
+  }
+  
   .product-gallery .carousel-slide-product {
-    margin: 0.5rem;
+    margin: 0.4rem;
+  }
+}
+
+/* Mobile portrait (320px - 480px) */
+@media (max-width: 480px) {
+  .product-gallery {
+    padding: 2rem 0;
+  }
+  
+  .product-carousel {
+    max-width: 100%;
+    padding: 0 0.5rem;
+  }
+  
+  .product-gallery .carousel-slide-product {
+    margin: 0.3rem;
+  }
+}
+
+/* Small mobile (320px - 375px) */
+@media (max-width: 375px) {
+  .product-gallery {
+    padding: 1.5rem 0;
+  }
+  
+  .product-carousel {
+    max-width: 100%;
+    padding: 0 0.3rem;
+  }
+  
+  .product-gallery .carousel-slide-product {
+    margin: 0.2rem;
   }
 }

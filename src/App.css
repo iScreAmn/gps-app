@@ -135,3 +135,9 @@ a {
     margin-bottom: 2rem;
   }
 }
+
+@media (max-width: 480px) {
+  .container {
+    margin: 0;
+  }
+}
