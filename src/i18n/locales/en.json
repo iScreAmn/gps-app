@@ -30,7 +30,7 @@
     }
   },
   "categories": {
-    "title": "Products",
+    "title": "Products Categories",
     "office": "Office Equipment",
     "professional": "Professional",
     "industrial": "Industrial",
@@ -121,6 +121,7 @@
     "learnMore": "Learn More"
   },
   "products": {
+    "title": "Product Presentation",
     "section": {
       "title": "Our Products",
       "subtitle": "Professional GPS and surveying equipment",
@@ -141,25 +142,18 @@
       "cta": "Learn More",
       "price": "Price on request"
     },
-    "trimble": {
-      "title": "Trimble Surveying Equipment",
-      "subtitle": "Advanced surveying and mapping solutions",
-      "description": "Industry-leading surveying equipment",
-      "feature1": "Centimeter-level accuracy",
-      "feature2": "Real-time data collection",
-      "feature3": "Cloud connectivity",
-      "cta": "View Details",
-      "price": "Price on request"
-    },
-    "leica": {
-      "title": "Leica Total Stations",
-      "subtitle": "Precision measurement instruments",
-      "description": "Premium precision measurement tools",
-      "feature1": "Superior optics technology",
-      "feature2": "Automated measurement",
-      "feature3": "Integrated data management",
-      "cta": "Explore",
-      "price": "Price on request"
+    "iecho": {
+      "title": "Iecho Cutting System",
+      "subtitle": "PK0604 Plus",
+      "feature1": "Cutting Area: 600mm x 400mm",
+      "feature2": "Cutting Tool: Universal Cutting Tool",
+      "feature3": "Cutting Material: Plastic Sheet",
+      "feature4": "Cutting Thickness: 6mm",
+      "feature5": "Max Cutting Speed: 1000mm/s",
+      "feature6": "Cutting Accuracy: 0.1mm",
+      "feature7": "Data Format: PLT, DXF, HP/GL",
+      "feature8": "Power: 4kw",
+      "cta": "Learn More"
     }
   },
   "services": {

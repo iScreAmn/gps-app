@@ -1,9 +1,11 @@
 import React from 'react';
 import Carousel from '../Carousel/Carousel';
 import { getProductItems } from '../../data/contentData';
+import { useLanguage } from '../../hooks/useLanguage';
 import './ProductGallery.css';
 
 const ProductGallery = () => {
+  const { t } = useLanguage();
   const productItems = getProductItems();
 
   if (!productItems.length) {
@@ -21,6 +23,7 @@ const ProductGallery = () => {
   return (
     <section className="product-gallery">
       <div className="container">
+        <h2 className='section-title'>{t('products.title')}</h2>
         <Carousel 
           slides={productItems}
           autoPlay={false}

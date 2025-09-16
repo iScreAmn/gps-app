@@ -112,7 +112,7 @@ export const gpsContent = {
     items: [
       createProductSlide('garmin-gps', {
         title: 'products.nocai.title',
-        subtitle: 'products.garmin.subtitle',
+        subtitle: 'products.nocai.subtitle',
         description: 'products.garmin.description',
         features: [
           'products.nocai.feature1',
@@ -133,37 +133,25 @@ export const gpsContent = {
       }),
       
       createProductSlide('trimble-surveying', {
-        title: 'products.trimble.title',
-        subtitle: 'products.trimble.subtitle',
-        description: 'products.trimble.description',
+        title: 'products.iecho.title',
+        subtitle: 'products.iecho.subtitle',
+        description: 'products.iecho.description',
         features: [
-          'products.trimble.feature1',
-          'products.trimble.feature2',
-          'products.trimble.feature3'
+          'products.iecho.feature1',
+          'products.iecho.feature2',
+          'products.iecho.feature3',
+          'products.iecho.feature4',
+          'products.iecho.feature5',
+          'products.iecho.feature6',
+          'products.iecho.feature7',
+          'products.iecho.feature8'
         ],
-        cta: 'products.trimble.cta',
+        cta: 'products.iecho.cta',
         ctaLink: '/products/trimble-surveying',
         price: 'products.trimble.price'
       }, {
         src: productTrimble,
         alt: 'Trimble Surveying Equipment'
-      }),
-      
-      createProductSlide('leica-total-station', {
-        title: 'products.leica.title',
-        subtitle: 'products.leica.subtitle',
-        description: 'products.leica.description',
-        features: [
-          'products.leica.feature1',
-          'products.leica.feature2',
-          'products.leica.feature3'
-        ],
-        cta: 'products.leica.cta',
-        ctaLink: '/products/leica-total-station',
-        price: 'products.leica.price'
-      }, {
-        src: productLeica,
-        alt: 'Leica Total Station'
       })
     ],
     cta: {
