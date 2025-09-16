@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useTheme } from '../../contexts/ThemeContext';
 import { useLanguage } from '../../hooks/useLanguage';
 import { IoSunny, IoMoon } from "react-icons/io5";
@@ -9,6 +9,7 @@ const Header = () => {
   const { theme, toggleTheme } = useTheme();
   const { language, changeLanguage, t } = useLanguage();
   const location = useLocation();
+  const navigate = useNavigate();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   const navigation = [
@@ -30,6 +31,11 @@ const Header = () => {
   const handleLanguageChange = (newLang) => {
     changeLanguage(newLang);
   };
+
+  // Close mobile menu on route change
+  useEffect(() => {
+    setIsMobileMenuOpen(false);
+  }, [location.pathname]);
 
   return (
     <header className="header">
@@ -98,18 +104,20 @@ const Header = () => {
         </div>
 
         {/* Mobile Navigation */}
-        <nav className={`nav-mobile ${isMobileMenuOpen ? 'open' : ''}`}>
-          {navigation.map((item) => (
-            <Link
-              key={item.key}
-              to={item.path}
-              className={`nav-link-mobile ${isActiveLink(item.path) ? 'active' : ''}`}
-              onClick={() => setIsMobileMenuOpen(false)}
-            >
-              {t(item.key)}
-            </Link>
-          ))}
-        </nav>
+        {isMobileMenuOpen && (
+          <div className="mobile-menu-dropdown">
+            {navigation.map((item) => (
+              <Link
+                key={item.key}
+                to={item.path}
+                className={`mobile-menu-item ${isActiveLink(item.path) ? 'active' : ''}`}
+                onClick={() => setIsMobileMenuOpen(false)}
+              >
+                {t(item.key)}
+              </Link>
+            ))}
+          </div>
+        )}
       </div>
     </header>
   );

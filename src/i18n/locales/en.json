@@ -30,10 +30,10 @@
     }
   },
   "categories": {
+    "title": "Products Categories",
     "office": "Office Equipment",
     "professional": "Professional",
     "industrial": "Industrial",
-    "title": "Our Categories",
     "office_description": "Multifunction devices for office use",
     "professional_description": "Professional printing solutions",
     "industrial_description": "Industrial-grade equipment"
@@ -121,40 +121,39 @@
     "learnMore": "Learn More"
   },
   "products": {
+    "title": "Product Presentation",
     "section": {
       "title": "Our Products",
       "subtitle": "Professional GPS and surveying equipment",
       "viewAll": "View All Products"
     },
-    "garmin": {
-      "title": "Garmin GPS Solutions",
-      "subtitle": "Professional navigation and positioning systems",
+    "nocai": {
+      "title": "Nocai UV Printing",
+      "subtitle": "NC-UV0609XIII",
       "description": "Leading GPS technology for professional use",
-      "feature1": "High-precision GNSS technology",
-      "feature2": "Weather-resistant design", 
-      "feature3": "Extended battery life",
+      "feature1": "Print dimensions: 600mm x 900mm",
+      "feature2": "Print head: XAAR1201", 
+      "feature3": "Media height: 0 – 140mm",
+      "feature4": "Resolution: 2400dpi",
+      "feature5": "Media diameter: 30 – 80mm",
+      "feature6": "Print mode: Color, white, and varnish simultaneously",
+      "feature7": "Formats: Tiff, Jpg, Eps, Png, AI, PSD",
+      "feature8": "Print colors: CMYK + White + V/CMYK + White + CMYK",
       "cta": "Learn More",
       "price": "Price on request"
     },
-    "trimble": {
-      "title": "Trimble Surveying Equipment",
-      "subtitle": "Advanced surveying and mapping solutions",
-      "description": "Industry-leading surveying equipment",
-      "feature1": "Centimeter-level accuracy",
-      "feature2": "Real-time data collection",
-      "feature3": "Cloud connectivity",
-      "cta": "View Details",
-      "price": "Price on request"
-    },
-    "leica": {
-      "title": "Leica Total Stations",
-      "subtitle": "Precision measurement instruments",
-      "description": "Premium precision measurement tools",
-      "feature1": "Superior optics technology",
-      "feature2": "Automated measurement",
-      "feature3": "Integrated data management",
-      "cta": "Explore",
-      "price": "Price on request"
+    "iecho": {
+      "title": "Iecho Cutting System",
+      "subtitle": "PK0604 Plus",
+      "feature1": "Cutting Area: 600mm x 400mm",
+      "feature2": "Cutting Tool: Universal Cutting Tool",
+      "feature3": "Cutting Material: Plastic Sheet",
+      "feature4": "Cutting Thickness: 6mm",
+      "feature5": "Max Cutting Speed: 1000mm/s",
+      "feature6": "Cutting Accuracy: 0.1mm",
+      "feature7": "Data Format: PLT, DXF, HP/GL",
+      "feature8": "Power: 4kw",
+      "cta": "Learn More"
     }
   },
   "services": {
@@ -198,7 +197,7 @@
       "learnMore": "Learn More About Us"
     }
   },
-  "categories": {
+  "services": {
     "section": {
       "title": "Product Categories",
       "subtitle": "Explore our comprehensive range of GPS solutions"

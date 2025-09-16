@@ -111,15 +111,20 @@ export const gpsContent = {
     subtitle: 'products.section.subtitle',
     items: [
       createProductSlide('garmin-gps', {
-        title: 'products.garmin.title',
-        subtitle: 'products.garmin.subtitle',
+        title: 'products.nocai.title',
+        subtitle: 'products.nocai.subtitle',
         description: 'products.garmin.description',
         features: [
-          'products.garmin.feature1',
-          'products.garmin.feature2', 
-          'products.garmin.feature3'
+          'products.nocai.feature1',
+          'products.nocai.feature2', 
+          'products.nocai.feature3',
+          'products.nocai.feature4',
+          'products.nocai.feature5',
+          'products.nocai.feature6',
+          'products.nocai.feature7',
+          'products.nocai.feature8'
         ],
-        cta: 'products.garmin.cta',
+        cta: 'products.nocai.cta',
         ctaLink: '/products/garmin-gps',
         price: 'products.garmin.price'
       }, {
@@ -128,37 +133,25 @@ export const gpsContent = {
       }),
       
       createProductSlide('trimble-surveying', {
-        title: 'products.trimble.title',
-        subtitle: 'products.trimble.subtitle',
-        description: 'products.trimble.description',
+        title: 'products.iecho.title',
+        subtitle: 'products.iecho.subtitle',
+        description: 'products.iecho.description',
         features: [
-          'products.trimble.feature1',
-          'products.trimble.feature2',
-          'products.trimble.feature3'
+          'products.iecho.feature1',
+          'products.iecho.feature2',
+          'products.iecho.feature3',
+          'products.iecho.feature4',
+          'products.iecho.feature5',
+          'products.iecho.feature6',
+          'products.iecho.feature7',
+          'products.iecho.feature8'
         ],
-        cta: 'products.trimble.cta',
+        cta: 'products.iecho.cta',
         ctaLink: '/products/trimble-surveying',
         price: 'products.trimble.price'
       }, {
         src: productTrimble,
         alt: 'Trimble Surveying Equipment'
-      }),
-      
-      createProductSlide('leica-total-station', {
-        title: 'products.leica.title',
-        subtitle: 'products.leica.subtitle',
-        description: 'products.leica.description',
-        features: [
-          'products.leica.feature1',
-          'products.leica.feature2',
-          'products.leica.feature3'
-        ],
-        cta: 'products.leica.cta',
-        ctaLink: '/products/leica-total-station',
-        price: 'products.leica.price'
-      }, {
-        src: productLeica,
-        alt: 'Leica Total Station'
       })
     ],
     cta: {

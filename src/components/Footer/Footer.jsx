@@ -4,6 +4,7 @@ import './Footer.css';
 
 const Footer = () => {
   const { language, t } = useLanguage();
+  const currentYear = new Date().getFullYear();
 
   return (
     <footer className="footer">
@@ -43,7 +44,7 @@ const Footer = () => {
         </div>
         
         <div className="footer-bottom">
-          <p>&copy; 2024 Georgian Polygraph Service. {t('footer.all_rights')}.</p>
+          <p>&copy; {currentYear} Georgian Polygraph Services. {t('footer.all_rights')}.</p>
         </div>
       </div>
     </footer>

@@ -9,6 +9,10 @@
   transition: all var(--transition-normal);
 }
 
+.header .container {
+  position: relative;
+}
+
 body[data-theme="dark"] .header {
   background-color: var(--dark-bg);
   border-bottom-color: var(--dark-border);
@@ -186,55 +190,60 @@ body[data-theme="dark"] .mobile-menu-btn span {
   background-color: var(--dark-text);
 }
 
-/* Mobile Navigation */
-.nav-mobile {
-  display: none;
-  flex-direction: column;
-  background-color: var(--light-bg);
-  border-top: 1px solid var(--light-border);
-  padding: 1rem 0;
+/* Mobile Navigation Dropdown */
+.mobile-menu-dropdown {
   position: absolute;
   top: 100%;
-  left: 0;
   right: 0;
-  transform: translateY(-100%);
-  opacity: 0;
-  transition: all var(--transition-normal);
+  background-color: var(--light-bg);
+  border: 1px solid var(--light-border);
+  border-radius: 8px;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  z-index: 1001;
+  min-width: 200px;
+  overflow: hidden;
 }
 
-body[data-theme="dark"] .nav-mobile {
+body[data-theme="dark"] .mobile-menu-dropdown {
   background-color: var(--dark-bg);
-  border-top-color: var(--dark-border);
+  border-color: var(--dark-border);
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3), 0 2px 4px -1px rgba(0, 0, 0, 0.2);
 }
 
-.nav-mobile.open {
-  transform: translateY(0);
-  opacity: 1;
-}
-
-.nav-link-mobile {
+.mobile-menu-item {
+  display: block;
   padding: 1rem 1.5rem;
   font-weight: var(--font-medium);
   transition: all var(--transition-fast);
-  border-left: 3px solid transparent;
+  text-decoration: none;
+  color: var(--light-text);
+  border-bottom: 1px solid var(--light-border);
 }
 
-.nav-link-mobile:hover {
+body[data-theme="dark"] .mobile-menu-item {
+  color: var(--dark-text);
+  border-bottom-color: var(--dark-border);
+}
+
+.mobile-menu-item:last-child {
+  border-bottom: none;
+}
+
+.mobile-menu-item:hover {
   background-color: var(--light-hover-bg);
   color: var(--primary-red);
 }
 
-body[data-theme="dark"] .nav-link-mobile:hover {
+body[data-theme="dark"] .mobile-menu-item:hover {
   background-color: var(--dark-hover-bg);
 }
 
-.nav-link-mobile.active {
+.mobile-menu-item.active {
   color: var(--primary-red);
-  border-left-color: var(--primary-red);
   background-color: var(--light-hover-bg);
 }
 
-body[data-theme="dark"] .nav-link-mobile.active {
+body[data-theme="dark"] .mobile-menu-item.active {
   background-color: var(--dark-hover-bg);
 }
 
@@ -245,10 +254,6 @@ body[data-theme="dark"] .nav-link-mobile.active {
   }
 
   .mobile-menu-btn {
-    display: flex;
-  }
-
-  .nav-mobile {
     display: flex;
   }
 

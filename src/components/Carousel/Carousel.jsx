@@ -1,12 +1,13 @@
 import { useState, useEffect, useRef, useCallback } from 'react';
 import { Link } from 'react-router-dom';
 import { FaChevronLeft, FaChevronRight } from 'react-icons/fa';
+import { MdOutlineDone } from "react-icons/md";
 import { useLanguage } from '../../hooks/useLanguage';
 import './Carousel.css';
 
 const Carousel = ({ 
   slides = [], 
-  autoPlay = true,
+  autoPlay = false,
   autoPlayInterval = 5000,
   showDots = true,
   showArrows = true,
@@ -266,18 +267,15 @@ const Carousel = ({
             <div className="product-content">
               <h3 className="product-title">{t(slide.product.title)}</h3>
               <p className="product-subtitle">{t(slide.product.subtitle)}</p>
-              {slide.product.description && (
-                <p className="product-description">{t(slide.product.description)}</p>
-              )}
               {slide.product.features && slide.product.features.length > 0 && (
                 <ul className="product-features">
                   {slide.product.features.map((feature, idx) => (
-                    <li key={idx}>{t(feature)}</li>
+                    <li key={idx}>
+                      <MdOutlineDone className="feature-icon" />
+                      {t(feature)}
+                    </li>
                   ))}
                 </ul>
-              )}
-              {slide.product.price && (
-                <p className="product-price">{t(slide.product.price)}</p>
               )}
               {slide.product.ctaLink && (
                 <Link 
