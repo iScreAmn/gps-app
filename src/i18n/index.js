@@ -48,12 +48,19 @@ export const getCurrentLanguageFromPath = (pathname) => {
 };
 
 export const buildPathWithLanguage = (currentPath, newLang) => {
+  // Handle root path
+  if (currentPath === '/') {
+    return `/${newLang}`;
+  }
+  
+  // Handle paths that start with language prefix
   if (currentPath.startsWith('/en')) {
     return currentPath.replace('/en', `/${newLang}`);
   } else if (currentPath.startsWith('/ka')) {
     return currentPath.replace('/ka', `/${newLang}`);
   } else {
-    return `/${newLang}`;
+    // If no language prefix, add it
+    return `/${newLang}${currentPath}`;
   }
 };
 

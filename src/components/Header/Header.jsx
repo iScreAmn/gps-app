@@ -12,21 +12,22 @@ const Header = () => {
   const navigate = useNavigate();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
-  const navigation = [
+  // Create navigation array that updates when language changes
+  const navigation = React.useMemo(() => [
     { key: 'navigation.home', path: `/${language}` },
     { key: 'navigation.about', path: `/${language}/about` },
     { key: 'navigation.catalog', path: `/${language}/catalog` },
     { key: 'navigation.services', path: `/${language}/services` },
     { key: 'navigation.news', path: `/${language}/news` },
     { key: 'navigation.contacts', path: `/${language}/contacts` },
-  ];
+  ], [language]);
 
-  const isActiveLink = (path) => {
+  const isActiveLink = React.useCallback((path) => {
     if (path === `/${language}`) {
       return location.pathname === path;
     }
     return location.pathname.startsWith(path);
-  };
+  }, [language, location.pathname]);
 
   const handleLanguageChange = (newLang) => {
     changeLanguage(newLang);
@@ -53,7 +54,7 @@ const Header = () => {
           <nav className="nav-desktop">
             {navigation.map((item) => (
               <Link
-                key={item.key}
+                key={`${language}-${item.key}`}
                 to={item.path}
                 className={`nav-link ${isActiveLink(item.path) ? 'active' : ''}`}
               >
@@ -108,7 +109,7 @@ const Header = () => {
           <div className="mobile-menu-dropdown">
             {navigation.map((item) => (
               <Link
-                key={item.key}
+                key={`${language}-${item.key}`}
                 to={item.path}
                 className={`mobile-menu-item ${isActiveLink(item.path) ? 'active' : ''}`}
                 onClick={() => setIsMobileMenuOpen(false)}
