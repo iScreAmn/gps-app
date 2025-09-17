@@ -4,6 +4,19 @@ export { default as printer2 } from './printers/pr_02.png';
 export { default as printer3 } from './printers/pr_03.png';
 export { default as printer4 } from './printers/pr_04.png';
 export { default as printer5 } from './printers/pr_05.png';
+export { default as konikaAbout } from './about/konikaDisplay.jpg';
+
+
+//Logos
+export { default as duplo } from './partners/duplo.png';
+export { default as fujifilm } from './partners/fujifilm.png';
+export { default as knb } from './partners/knb.png';
+export { default as konika } from './partners/konika.png';
+export { default as rapid } from './partners/rapid.png';
+export { default as renz } from './partners/renz.png';
+export { default as unifol } from './partners/unifol.png';
+export { default as vivid } from './partners/vivid.png';
+
 
 // Hero backgrounds - placeholder images for now
 export const heroOffice = '/api/placeholder/1200/600';
