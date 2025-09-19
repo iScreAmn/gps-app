@@ -8,7 +8,7 @@ import {
   counterVariants,
   counterContainerVariants
 } from '../../utils/animation';
-import { konikaAbout, konikaAbout2, aboutOrder } from "../../assets/images";
+import { konikaAbout, konikaAbout2 } from "../../assets/images";
 import PartnersCarousel from "../../components/PartnersCarousel/PartnersCarousel";
 import TextType from "../../components/widgets/TextType/TextType";
 import "./AboutPage.css";
@@ -143,14 +143,6 @@ const AboutPage = () => {
             </div>
           </div>
           
-          <div className="about__order">
-            <img className="order__img" src={aboutOrder} alt="" />
-            <div className="order__content">
-              <h2 className="order__content-title">{t("about.order.title")}</h2>
-              <p className="order__content-subtitle">{t("about.order.description")}</p>
-              <button className="order__content-btn">{t("about.order.cta")}</button>
-            </div>
-          </div>
         </div>
       </div>
     </div>
