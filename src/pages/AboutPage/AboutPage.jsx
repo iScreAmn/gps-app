@@ -11,6 +11,7 @@ import {
 import { konikaAbout, konikaAbout2 } from "../../assets/images";
 import PartnersCarousel from "../../components/PartnersCarousel/PartnersCarousel";
 import TextType from "../../components/widgets/TextType/TextType";
+import { global, service3, demo } from "../../assets/images";
 import "./AboutPage.css";
 
 
@@ -100,7 +101,6 @@ const AboutPage = () => {
               <div className="counter__label">{t("about.counter.satisfaction")}</div>
             </motion.div>
           </motion.div>
-
         </div>
         
         <div className="about__partners">
@@ -119,9 +119,7 @@ const AboutPage = () => {
           </div>
         </div>
         
-        <div className="container">
-
-          <div className="about__info-wrapper">
+        <div className="about__info-wrapper">
             <div className="about__info">
               <div className="about__description">
                 <h2>Georgian Polygraph Services</h2>
@@ -141,8 +139,28 @@ const AboutPage = () => {
                 <p>{t("about.description.text3")}</p>
               </div>
             </div>
+        </div>
+
+        <div className="about__option">
+          <h2 className="option__title">რატომ ვართ საუკეთესო არჩევანი?</h2>
+          <p className="option__description">დღესდღეობით Georgian Polygraph Services მომსახურებას უწევს 300-ზე მეტ ორგანიზაციას და ფიზიკურ პირს. მომხმარებელთა სიაში შედის არა მხოლოდ მცირე და საშუალო სარეკლამო კომპანიები, არამედ სტამბები, ოფისები, უნივერსიტეტები და სამთავრობო სტრუქტურები.</p>
+          <div className="option__wrapper">
+            <div className="option__item">
+              <img className="option__img" src={global} alt="Global Brand Trust" />
+              <h2 className="option__item-title">Global Brand Trust</h2>
+              <p className="option__item-description">Over 13 years of experience and partnerships with world-leading brands ensure reliability and long-term success.</p>
+            </div>
+            <div className="option__item">
+              <img className="option__img" src={service3} alt="Expert Service & Support" />
+              <h2 className="option__item-title">Expert Service & Support</h2>
+              <p className="option__item-description">Certified specialists provide full-cycle service — from consultation to maintenance — keeping your business running smoothly.</p>
+            </div>
+            <div className="option__item">
+              <img className="option__img" src={demo} alt="Solutions for Every Business" />
+              <h2 className="option__item-title">Solutions for Every Business</h2>
+              <p className="option__item-description">From small agencies to government institutions, we deliver tailored solutions to fit every scale and need.</p>
+            </div>
           </div>
-          
         </div>
       </div>
     </div>

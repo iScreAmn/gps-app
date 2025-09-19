@@ -17,6 +17,14 @@ export { default as renz } from './partners/renz.png';
 export { default as unifol } from './partners/unifol.png';
 export { default as vivid } from './partners/vivid.png';
 
+//Icons
+export { default as global } from './icons/global.webp';
+export { default as service } from './icons/service.webp';
+export { default as service2 } from './icons/service2.webp';
+export { default as service3 } from './icons/service3.png';
+export { default as solutions } from './icons/solutions.webp';
+export { default as demo } from './icons/demo.png';
+
 
 // Hero backgrounds - placeholder images for now
 export const heroOffice = '/api/placeholder/1200/600';
