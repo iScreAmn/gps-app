@@ -4,7 +4,7 @@ export { default as printer2 } from './printers/pr_02.png';
 export { default as printer3 } from './printers/pr_03.png';
 export { default as printer4 } from './printers/pr_04.png';
 export { default as printer5 } from './printers/pr_05.png';
-export { default as konikaAbout } from './about/konikaDisplay.jpg';
+
 
 
 //Logos
@@ -25,6 +25,9 @@ export const heroIndustrial = '/api/placeholder/1200/600';
 
 // About section
 export { default as aboutImage } from './about/about.webp';
+export { default as konikaAbout } from './about/konikaDisplay.jpg';
+export { default as konikaAbout2 } from './about/konicaDevelop.png';
+export { default as aboutOrder } from './about/ineo4065.png';
 
 // Product images - using actual printer images
 export { default as productGarmin } from './printers/pr_01.png';
