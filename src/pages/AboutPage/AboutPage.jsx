@@ -3,7 +3,7 @@ import { useLanguage } from "../../hooks/useLanguage";
 import { aboutImage } from "../../assets/images";
 // eslint-disable-next-line no-unused-vars
 import { motion } from "motion/react";
-import AnimatedNumber from "../../components/widgets/AnimatedNumber";
+import AnimatedNumber from "../../components/widgets/AnimatedNumber/AnimatedNumber";
 import { 
   counterVariants,
   counterContainerVariants
