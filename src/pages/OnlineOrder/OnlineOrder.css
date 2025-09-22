@@ -29,3 +29,21 @@
   cursor: pointer;
   transition: .2s ease-in-out;
 }
+
+@media (max-width: 480px) {
+  .online__order {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .order__img {
+    width: 100%;
+  }
+
+  .order__content {
+    text-align: center;
+  }
+  
+  
+}
