@@ -1,5 +1,5 @@
 .about-page {
-  padding: 2rem 0;
+  /* padding: 2rem 0; */
 }
 
 .about-header {
@@ -36,6 +36,7 @@ body[data-theme="dark"] .about-subtitle .text-type__content {
   height: 400px;
   border-radius: 15px;
   overflow: hidden;
+  position: relative;
 }
 
 .about__cover {
@@ -47,6 +48,59 @@ body[data-theme="dark"] .about-subtitle .text-type__content {
 }
 
 .about__cover-container:hover .about__cover {
+  transform: scale(1.05);
+}
+
+.about__cover-gradient {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, 
+    rgba(174, 142, 142, 0.8) 0%, 
+    rgba(196, 118, 118, 0.7) 25%, 
+    rgba(149, 111, 111, 0.6) 50%, 
+    rgba(125, 27, 27, 0.7) 75%, 
+    rgba(199, 113, 113, 0.8) 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2;
+  border-radius: 15px;
+}
+
+.about__cover-logo {
+  max-width: 350px;
+  max-height: 350px;
+  width: auto;
+  height: auto;
+  opacity: 0.9;
+  filter: drop-shadow(0 4px 8px rgba(255, 255, 255, 0.3));
+  transition: transform 0.5s ease-in-out;
+}
+
+.about__cover-container:hover .about__cover-logo {
+  opacity: 1;
+  transform: scale(1.05);
+  filter: drop-shadow(0 6px 12px rgba(0, 0, 0, 0.863)ease-in-out);
+}
+
+.about__img-container {
+  width: 50%;
+  border-radius: 15px;
+  overflow: hidden;
+}
+
+.about__img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 15px;
+  transition: transform 0.5s ease-in-out;
+}
+
+.about__img-container:hover .about__img {
   transform: scale(1.05);
 }
 
@@ -97,23 +151,7 @@ body[data-theme="dark"] .about-subtitle .text-type__content {
   width: 100%;
 }
 
-.about__img-container {
-  width: 50%;
-  border-radius: 15px;
-  overflow: hidden;
-}
 
-.about__img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  border-radius: 15px;
-  transition: transform 0.5s ease-in-out;
-}
-
-.about__img-container:hover .about__img {
-  transform: scale(1.05);
-}
 
 .about__partners {
   background: linear-gradient(135deg, 
@@ -437,14 +475,58 @@ body[data-theme="dark"] .cta__gradient-circle {
   animation: lineGlow 2s ease-in-out infinite;
 }
 
-
-
-
+.about__title {
+  margin: 40px 0;
+}
 
 .about__demo {
   margin: 40px 0;
-  background: var(--dark-card-bg);
-  height: 100vh;
+  background: linear-gradient(135deg, 
+    var(--light-card-bg) 0%, 
+    var(--light-hover-bg) 50%, 
+    var(--light-card-bg) 100%);
+  padding: 2rem 0;
+  border-radius: 20px;
+  position: relative;
+  overflow: hidden;
+}
+
+body[data-theme="dark"] .about__demo {
+  background: linear-gradient(135deg, 
+    var(--dark-card-bg) 0%, 
+    var(--dark-hover-bg) 50%, 
+    var(--dark-card-bg) 100%);
+}
+
+.about__demo::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -50%;
+  width: 200%;
+  height: 100%;
+  background: linear-gradient(45deg, 
+    transparent 0%, 
+    rgba(220, 38, 38, 0.05) 25%, 
+    transparent 50%, 
+    rgba(220, 38, 38, 0.05) 75%, 
+    transparent 100%);
+  animation: shimmer 8s ease-in-out infinite;
+  z-index: 0;
+}
+
+body[data-theme="dark"] .about__demo::before {
+  background: linear-gradient(45deg, 
+    transparent 0%, 
+    rgba(220, 38, 38, 0.1) 25%, 
+    transparent 50%, 
+    rgba(220, 38, 38, 0.1) 75%, 
+    transparent 100%);
+}
+
+.about__demo > * {
+  position: relative;
+  z-index: 1;
 }
 
 @media (max-width: 768px) {

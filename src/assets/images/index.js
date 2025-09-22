@@ -5,9 +5,8 @@ export { default as printer3 } from './printers/pr_03.png';
 export { default as printer4 } from './printers/pr_04.png';
 export { default as printer5 } from './printers/pr_05.png';
 
-
-
 //Logos
+export { default as mainLogo } from './gps_logo.png';
 export { default as duplo } from './partners/duplo.png';
 export { default as fujifilm } from './partners/fujifilm.png';
 export { default as knb } from './partners/knb.png';

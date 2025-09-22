@@ -1,6 +1,6 @@
 import React from "react";
 import { useLanguage } from "../../hooks/useLanguage";
-import { aboutImage } from "../../assets/images";
+import { aboutImage, mainLogo } from "../../assets/images";
 // eslint-disable-next-line no-unused-vars
 import { motion } from "motion/react";
 import AnimatedNumber from "../../components/widgets/AnimatedNumber/AnimatedNumber";
@@ -12,6 +12,7 @@ import { konikaAbout, konikaAbout2 } from "../../assets/images";
 import PartnersCarousel from "../../components/PartnersCarousel/PartnersCarousel";
 import TextType from "../../components/widgets/TextType/TextType";
 import { global, service3, demo } from "../../assets/images";
+import ParallaxText from "../../components/widgets/ParallaxText/ParallaxText";
 import "./AboutPage.css";
 
 
@@ -22,7 +23,7 @@ const AboutPage = () => {
     <div className="about-page">
       <div className="container">
         <div className="about-header">
-          <TextType 
+          {/* <TextType 
             text={[
               "Georgian Polygraph Services..."
             ]}
@@ -31,12 +32,20 @@ const AboutPage = () => {
             showCursor={true}
             cursorCharacter="|"
             className="about-subtitle"
-          />
+          /> */}
+          
         </div>
 
         <div className="about__content">
           <div className="about__cover-container">
-            <img src={aboutImage} alt="" className="about__cover" />
+            <div className="about__cover-gradient">
+              <img src={mainLogo} alt="GPS Logo" className="about__cover-logo" />
+            </div>
+            <img src={aboutImage} alt="cover" className="about__cover" />
+          </div>
+          <div className="about__title">
+            <ParallaxText baseVelocity={-3} colorClass="parallax__text--blue">Georgian Polygraph Services</ParallaxText>
+            <ParallaxText baseVelocity={3} colorClass="parallax__text--green">Professional Excellence</ParallaxText>
           </div>
           <motion.div 
             className="about__counter"
@@ -223,9 +232,6 @@ const AboutPage = () => {
           </div>
         </motion.div>
 
-        <div className="about__demo">
-          
-        </div>
       </div>
     </div>
   );
