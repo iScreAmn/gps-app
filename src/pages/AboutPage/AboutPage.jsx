@@ -22,20 +22,6 @@ const AboutPage = () => {
   return (
     <div className="about-page">
       <div className="container">
-        <div className="about-header">
-          {/* <TextType 
-            text={[
-              "Georgian Polygraph Services..."
-            ]}
-            typingSpeed={95}
-            pauseDuration={1500}
-            showCursor={true}
-            cursorCharacter="|"
-            className="about-subtitle"
-          /> */}
-          
-        </div>
-
         <div className="about__content">
           <div className="about__cover-container">
             <div className="about__cover-gradient">
