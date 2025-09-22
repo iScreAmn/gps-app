@@ -7,14 +7,23 @@ export { default as printer5 } from './printers/pr_05.png';
 
 //Logos
 export { default as mainLogo } from './gps_logo.png';
-export { default as duplo } from './partners/duplo.png';
-export { default as fujifilm } from './partners/fujifilm.png';
+//Partners logos
+export { default as duplo } from './partners/Duplo.png';
 export { default as knb } from './partners/knb.png';
 export { default as konika } from './partners/konika.png';
-export { default as rapid } from './partners/rapid.png';
-export { default as renz } from './partners/renz.png';
 export { default as unifol } from './partners/unifol.png';
 export { default as vivid } from './partners/vivid.png';
+export { default as audley } from './partners/audley.png'
+export { default as colorking } from './partners/colorking.png'
+export { default as fedrigoni } from './partners/fedrigoni.png'
+export { default as iecho } from './partners/iecho.png'
+export { default as mondi } from './partners/mondi.png'
+export { default as nocai } from './partners/nocai.webp'
+export { default as reinauer } from './partners/reinauer.png'
+export { default as Rightint } from './partners/Rightint.png'
+export { default as teneth } from './partners/teneth.png'
+export { default as tmt } from './partners/tmt.png'
+
 
 //Icons
 export { default as global } from './icons/global.webp';

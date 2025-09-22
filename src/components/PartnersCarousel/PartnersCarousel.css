@@ -4,9 +4,12 @@
   position: relative;
   background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
   border-radius: 15px;
-  padding: 2rem 0;
+  padding: 1.5rem 0;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
   margin: 2rem 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
 }
 
 body[data-theme="dark"] .partners-carousel {
@@ -18,9 +21,19 @@ body[data-theme="dark"] .partners-carousel {
 .partners-carousel__track {
   display: flex;
   align-items: center;
-  animation: scroll 30s linear infinite;
   gap: 3rem;
   will-change: transform;
+  width: fit-content;
+}
+
+/* Основная карусель - движение влево */
+.partners-carousel__track--primary {
+  animation: scrollLeft 50s linear infinite;
+}
+
+/* Дополнительная карусель - движение вправо */
+.partners-carousel__track--secondary {
+  animation: scrollRight 50s linear infinite;
 }
 
 .partners-carousel__item {
@@ -85,7 +98,8 @@ body[data-theme="dark"] .partners-carousel__item:hover {
   transform: scale(1.1);
 }
 
-@keyframes scroll {
+/* Анимация движения влево для основной карусели */
+@keyframes scrollLeft {
   0% {
     transform: translateX(0);
   }
@@ -94,13 +108,40 @@ body[data-theme="dark"] .partners-carousel__item:hover {
   }
 }
 
+/* Анимация движения вправо для дополнительной карусели */
+@keyframes scrollRight {
+  0% {
+    transform: translateX(-50%);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
 /* Пауза анимации при наведении */
-.partners-carousel:hover .partners-carousel__track {
+.partners-carousel:hover .partners-carousel__track--primary,
+.partners-carousel:hover .partners-carousel__track--secondary {
   animation-play-state: paused;
+}
+
+/* Стили для элементов дополнительной карусели */
+.partners-carousel__item--secondary {
+  opacity: 0.8;
+  transform: scale(0.95);
+}
+
+.partners-carousel__item--secondary:hover {
+  opacity: 1;
+  transform: translateY(-3px) scale(1.02);
 }
 
 /* Адаптивность для планшетов */
 @media (max-width: 1024px) {
+  .partners-carousel {
+    padding: 1.2rem 0;
+    gap: 0.8rem;
+  }
+  
   .partners-carousel__track {
     gap: 2.5rem;
   }
@@ -111,7 +152,11 @@ body[data-theme="dark"] .partners-carousel__item:hover {
     padding: 0.8rem;
   }
   
-  .partners-carousel__track {
+  .partners-carousel__track--primary {
+    animation-duration: 25s;
+  }
+  
+  .partners-carousel__track--secondary {
     animation-duration: 25s;
   }
 }
@@ -119,12 +164,20 @@ body[data-theme="dark"] .partners-carousel__item:hover {
 /* Адаптивность для мобильных устройств */
 @media (max-width: 768px) {
   .partners-carousel {
-    padding: 1.5rem 0;
+    padding: 1rem 0;
     margin: 1.5rem 0;
+    gap: 0.6rem;
   }
   
   .partners-carousel__track {
     gap: 2rem;
+  }
+  
+  .partners-carousel__track--primary {
+    animation-duration: 20s;
+  }
+  
+  .partners-carousel__track--secondary {
     animation-duration: 20s;
   }
   
@@ -137,16 +190,28 @@ body[data-theme="dark"] .partners-carousel__item:hover {
   .partners-carousel__item:hover {
     transform: translateY(-3px) scale(1.03);
   }
+  
+  .partners-carousel__item--secondary:hover {
+    transform: translateY(-2px) scale(1.01);
+  }
 }
 
 @media (max-width: 480px) {
   .partners-carousel {
-    padding: 1rem 0;
+    padding: 0.8rem 0;
     margin: 1rem 0;
+    gap: 0.4rem;
   }
   
   .partners-carousel__track {
     gap: 1.5rem;
+  }
+  
+  .partners-carousel__track--primary {
+    animation-duration: 18s;
+  }
+  
+  .partners-carousel__track--secondary {
     animation-duration: 18s;
   }
   
@@ -170,7 +235,8 @@ body[data-theme="dark"] .partners-carousel__item:hover {
 
 /* Улучшение доступности */
 @media (prefers-reduced-motion: reduce) {
-  .partners-carousel__track {
+  .partners-carousel__track--primary,
+  .partners-carousel__track--secondary {
     animation: none;
   }
   
@@ -179,6 +245,11 @@ body[data-theme="dark"] .partners-carousel__item:hover {
   }
   
   .partners-carousel__item:hover {
+    transform: none;
+  }
+  
+  .partners-carousel__item--secondary {
+    opacity: 1;
     transform: none;
   }
 }
