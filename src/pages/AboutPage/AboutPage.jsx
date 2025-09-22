@@ -162,6 +162,70 @@ const AboutPage = () => {
             </div>
           </div>
         </div>
+
+        {/* CTA Section */}
+        <motion.div 
+          className="about__cta-section"
+          initial={{ opacity: 0, y: 50 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.3 }}
+          transition={{ duration: 0.8, delay: 0.2 }}
+        >
+          <div className="cta__container">
+            <motion.div 
+              className="cta__content"
+              initial={{ opacity: 0, scale: 0.9 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true, amount: 0.3 }}
+              transition={{ duration: 0.6, delay: 0.4 }}
+            >
+              <div className="cta__text">
+                <h2 className="cta__title">{t("about.cta.title")}</h2>
+                <p className="cta__description">{t("about.cta.description")}</p>
+              </div>
+              
+              <motion.div 
+                className="cta__buttons"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.3 }}
+                transition={{ duration: 0.6, delay: 0.6 }}
+              >
+                <motion.button 
+                  className="cta__button cta__button--primary"
+                  whileHover={{ scale: 1.05, y: -2 }}
+                  whileTap={{ scale: 0.95 }}
+                  transition={{ type: "spring", stiffness: 300, damping: 20 }}
+                >
+                  {t("about.cta.contact")}
+                </motion.button>
+                <motion.button 
+                  className="cta__button cta__button--secondary"
+                  whileHover={{ scale: 1.05, y: -2 }}
+                  whileTap={{ scale: 0.95 }}
+                  transition={{ type: "spring", stiffness: 300, damping: 20 }}
+                >
+                  {t("about.cta.learnMore")}
+                </motion.button>
+              </motion.div>
+            </motion.div>
+            
+            <motion.div 
+              className="cta__visual"
+              initial={{ opacity: 0, x: 50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true, amount: 0.3 }}
+              transition={{ duration: 0.8, delay: 0.3 }}
+            >
+              <div className="cta__gradient-circle"></div>
+              <div className="cta__animated-line"></div>
+            </motion.div>
+          </div>
+        </motion.div>
+
+        <div className="about__demo">
+          
+        </div>
       </div>
     </div>
   );
