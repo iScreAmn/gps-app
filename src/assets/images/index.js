@@ -50,6 +50,20 @@ export { default as productGarmin } from './printers/pr_01.png';
 export { default as productTrimble } from './printers/pr_02.png';
 export { default as productLeica } from './printers/pr_03.png';
 
+// Nocai UV Printing
+export { default as nocai1 } from './products/nocai-UV0609XIII/nocai1.png';
+export { default as nocai2 } from './products/nocai-UV0609XIII/nocai2.png';
+export { default as nocai3 } from './products/nocai-UV0609XIII/nocai3.png';
+export { default as nocai4 } from './products/nocai-UV0609XIII/nocai4.png';
+// Iecho Cutting System
+export { default as iecho1 } from './products/iecho-PK0604/iecho1.webp';
+export { default as iecho2 } from './products/iecho-PK0604/iecho2.webp';
+export { default as iecho3 } from './products/iecho-PK0604/iecho3.webp';
+export { default as iecho4 } from './products/iecho-PK0604/iecho4.webp';
+export { default as iecho5 } from './products/iecho-PK0604/iecho5.webp';
+export { default as iecho6 } from './products/iecho-PK0604/iecho6.webp';
+export { default as iecho7 } from './products/iecho-PK0604/iecho7.webp';
+
 // Service backgrounds
 export const serviceMaintenance = '/api/placeholder/600/400';
 export const serviceTraining = '/api/placeholder/600/400';
