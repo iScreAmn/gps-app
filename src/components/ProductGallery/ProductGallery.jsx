@@ -228,15 +228,11 @@ const ProductGallery = () => {
             </div>
             
             <div className="product__info">
-              <div className="product__badge">
-                <span className="product__discount">{t(productData?.discount, 'თქვენი დაზოგვა 15%')}</span>
-              </div>
               
               <div className="product__header">
                 <h1 className="product__title">{t(productData?.title)}</h1>
                 <div className="product__brand">
                   <span className="brand-name">{t(productData?.subtitle)}</span>
-                  <span className="product__code">{t(productData?.code, 'კოდი')}: {productData?.subtitle}</span>
                 </div>
               </div>
 
