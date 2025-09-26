@@ -38,6 +38,32 @@
     "professional_description": "Professional printing solutions",
     "industrial_description": "Industrial-grade equipment"
   },
+  "about": {
+    "counter": {
+      "years": "Years Experience",
+      "clients": "Successful Cases",
+      "projects": "Projects Completed",
+      "satisfaction": "Happy Clients"
+    },
+    "description": {
+      "text1": "LLC Georgian Polygraph Service is a continuously growing company in the market of distribution of printing equipment and materials in Georgia. With 13 years of experience and a team of professionals, we are able to provide you with cutting-edge printing technologies and high-quality service. By partnering with us, you receive not only equipment but also a full range of services.",
+      "text2": "However, Georgian Polygraph Service considers its most significant achievement to be the exclusive rights obtained between 2016 and 2019 to be the sole official representative of Konica Minolta in Georgia. Since 2019, it has become an official dealer and gold partner of Konica Minolta's Develop brand."
+    },
+    "partners": {
+      "title": "Georgian Polygraph Services successfully collaborates with world-renowned companies."
+    },
+    "order": {
+      "title": "Let us help you find the ideal equipment",
+      "description":"Our certified staff will provide you with highly qualified consultations regarding equipment and services of interest to you, which in itself will ensure the success of your business.",
+      "cta": "Order a call"
+    },
+    "cta": {
+      "title": "Ready to Transform?",
+      "description": "Join hundreds of satisfied clients who trust Georgian Polygraph Services for their printing technology needs. Let's discuss how we can help your business grow.",
+      "contact": "Contact Us",
+      "learnMore": "Learn More"
+    }
+  },
   "catalog": {
     "title": "Catalog",
     "full_catalog": "Full Catalog",
@@ -68,19 +94,7 @@
     "documents_coming": "Documents coming soon",
     "video_coming": "Video coming soon"
   },
-  "about": {
-    "title": "About Us",
-    "subtitle": "Georgian Polygraph Service - Your trusted partner in printing technologies",
-    "our_story": "Our Story",
-    "story_text1": "Georgian Polygraph Service is a leading company in Georgia in the field of printing technologies. We have many years of experience in distribution and service of Konica Minolta products.",
-    "story_text2": "Our mission is to provide our clients with the most modern and efficient printing solutions.",
-    "experience": "Experience",
-    "experience_desc": "10+ years of experience",
-    "service": "Service",
-    "service_desc": "24/7 technical support",
-    "quality": "Quality",
-    "quality_desc": "Only original products"
-  },
+  
   "services": {
     "title": "Our Services",
     "subtitle": "Everything you need for printing technologies",
@@ -190,13 +204,7 @@
       "cta": "Get Consultation"
     }
   },
-  "about": {
-    "section": {
-      "title": "About GPS Solutions",
-      "description": "Leading provider of professional GPS and surveying equipment in Georgia",
-      "learnMore": "Learn More About Us"
-    }
-  },
+  
   "services": {
     "section": {
       "title": "Product Categories",

@@ -4,18 +4,34 @@ export { default as printer2 } from './printers/pr_02.png';
 export { default as printer3 } from './printers/pr_03.png';
 export { default as printer4 } from './printers/pr_04.png';
 export { default as printer5 } from './printers/pr_05.png';
-export { default as konikaAbout } from './about/konikaDisplay.jpg';
-
 
 //Logos
-export { default as duplo } from './partners/duplo.png';
-export { default as fujifilm } from './partners/fujifilm.png';
+export { default as mainLogo } from './gps_logo.png';
+//Partners logos
+export { default as duplo } from './partners/Duplo.png';
 export { default as knb } from './partners/knb.png';
 export { default as konika } from './partners/konika.png';
-export { default as rapid } from './partners/rapid.png';
-export { default as renz } from './partners/renz.png';
 export { default as unifol } from './partners/unifol.png';
 export { default as vivid } from './partners/vivid.png';
+export { default as audley } from './partners/audley.png'
+export { default as colorking } from './partners/colorking.png'
+export { default as fedrigoni } from './partners/fedrigoni.png'
+export { default as iecho } from './partners/iecho.png'
+export { default as mondi } from './partners/mondi.png'
+export { default as nocai } from './partners/nocai.webp'
+export { default as reinauer } from './partners/reinauer.png'
+export { default as Rightint } from './partners/Rightint.png'
+export { default as teneth } from './partners/teneth.png'
+export { default as tmt } from './partners/tmt.png'
+
+
+//Icons
+export { default as global } from './icons/global.webp';
+export { default as service } from './icons/service.webp';
+export { default as service2 } from './icons/service2.webp';
+export { default as service3 } from './icons/service3.png';
+export { default as solutions } from './icons/solutions.webp';
+export { default as demo } from './icons/demo.png';
 
 
 // Hero backgrounds - placeholder images for now
@@ -25,6 +41,9 @@ export const heroIndustrial = '/api/placeholder/1200/600';
 
 // About section
 export { default as aboutImage } from './about/about.webp';
+export { default as konikaAbout } from './about/konikaDisplay.jpg';
+export { default as konikaAbout2 } from './about/konicaDevelop.png';
+export { default as aboutOrder } from './about/ineo4065.png';
 
 // Product images - using actual printer images
 export { default as productGarmin } from './printers/pr_01.png';

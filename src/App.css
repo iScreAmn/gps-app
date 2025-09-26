@@ -9,6 +9,8 @@
   --light-card-bg: #FFFFFF;
   --light-hover-bg: #F9FAFB;
   --product-bg: #fff;
+  --animated-number: #fff;
+  --light-button-bg: #fff;
   
   /* Dark theme colors */
   --dark-bg: #111827;
@@ -52,7 +54,8 @@ body {
 body[data-theme="light"] {
   background-color: var(--light-bg);
   color: var(--light-text);
-  --product-bg: #FFFFFF;
+  --product-bg: #fff;
+  --text-color: #000;
 }
 
 /* Dark theme styles */
@@ -60,6 +63,7 @@ body[data-theme="dark"] {
   background-color: var(--dark-bg);
   color: var(--dark-text);
   --product-bg: #1F2937;
+  --text-color: #fff;
 }
 
 button {
@@ -73,6 +77,10 @@ a {
   text-decoration: none;
   color: inherit;
   transition: color var(--transition-fast);
+}
+
+.none {
+  display: none;
 }
 
 .btn-primary {
