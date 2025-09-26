@@ -71,11 +71,13 @@ const ProductGallery = () => {
     const xPercent = (boundedX / imageRect.width) * 100;
     const yPercent = (boundedY / imageRect.height) * 100;
     
-    // For zoom overlay, position the background image so the area under cursor appears in center
-    // Since we're zooming 2x, we need to offset by half the zoom area to center it
+    // For zoom overlay, we need to show a 2x zoomed portion of the image
+    // The zoom overlay is 400x400px, so we need to show a 200x200px area from the original image
+    // Position the background so the area under cursor appears in the center of the zoom overlay
+    // Since we're using transform, we need to offset by half the zoom area to center it
     setZoomPosition({
-      x: xPercent - 25, // Center the zoomed area (50% / 2 = 25%)
-      y: yPercent - 25
+      x: -xPercent + 25, // Offset by 25% to center the 50% zoom area
+      y: -yPercent + 25
     });
 
     // Update mouse position for zoom indicator (relative to image container)
@@ -187,7 +189,7 @@ const ProductGallery = () => {
                         className="zoomed-image"
                         style={{
                           backgroundImage: `url(${images[activeImageIndex].src})`,
-                          backgroundPosition: `${zoomPosition.x}% ${zoomPosition.y}%`,
+                          transform: `translate(${zoomPosition.x}%, ${zoomPosition.y}%)`,
                         }}
                       />
                     </div>
