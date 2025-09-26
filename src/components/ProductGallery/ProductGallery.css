@@ -419,7 +419,6 @@ body[data-theme="dark"] .feature-text {
 
 .learn-more-btn {
   background: #dc2626;
-  color: white;
   border: none;
   padding: 1rem 2rem;
   border-radius: 8px;
@@ -432,10 +431,16 @@ body[data-theme="dark"] .feature-text {
   min-width: 200px;
 }
 
-.learn-more-btn:hover {
-  background: #b91c1c;
-  transform: translateY(-1px);
-  box-shadow: 0 4px 12px rgba(220, 38, 38, 0.3);
+.learn-more-btn-primary {
+  background: linear-gradient(135deg, var(--primary-red), #d32f2f);
+  color: #fff;
+
+  box-shadow: 0 4px 15px rgba(220, 38, 38, 0.3);
+}
+
+.learn-more-btn-primary:hover {
+  background: linear-gradient(135deg, #d32f2f, var(--primary-red));
+  box-shadow: 0 8px 25px rgba(220, 38, 38, 0.4);
 }
 
 /* Product Navigation */

@@ -3,6 +3,8 @@ import Carousel from '../Carousel/Carousel';
 import { getProductItems, getProductGalleryFeatures } from '../../data/contentData';
 import { useLanguage } from '../../hooks/useLanguage';
 import './ProductGallery.css';
+// eslint-disable-next-line no-unused-vars
+import { motion } from "motion/react";
 import { productGarmin, aboutOrder } from '../../assets/images';
 
 const ProductGallery = () => {
@@ -254,9 +256,13 @@ const ProductGallery = () => {
                 </div>
 
                 <div className="product__cta">
-                  <button className="learn-more-btn">
+                  <motion.button className="learn-more-btn learn-more-btn-primary"
+                    whileHover={{ scale: 1.05, y: -2 }}
+                    whileTap={{ scale: 0.95 }}
+                    transition={{ type: "spring", stiffness: 300, damping: 20 }}
+                  >
                     {t(productData?.cta, 'Learn More')}
-                  </button>
+                  </motion.button>
                 </div>
 
                 {/* Product Navigation */}
