@@ -39,9 +39,9 @@ function App() {
               <Route path="/en/news" element={<NewsPage />} />
               <Route path="/en/contacts" element={<ContactsPage />} />
               
-              {/* Default redirect to Georgian */}
-              <Route path="/" element={<Navigate to="/ka" replace />} />
-              <Route path="*" element={<Navigate to="/ka" replace />} />
+              {/* Default route - show Georgian homepage */}
+              <Route path="/" element={<HomePage />} />
+              <Route path="*" element={<Navigate to="/" replace />} />
             </Routes>
           </Layout>
         </LanguageProvider>
