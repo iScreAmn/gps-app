@@ -8,7 +8,7 @@ export { default as printer5 } from './printers/pr_05.png';
 //Logos
 export { default as mainLogo } from './gps_logo.png';
 //Partners logos
-export { default as duplo } from './partners/Duplo.png';
+export { default as duplo } from './partners/duplo.webp';
 export { default as knb } from './partners/knb.png';
 export { default as konika } from './partners/konika.png';
 export { default as unifol } from './partners/unifol.png';
