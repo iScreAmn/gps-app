@@ -2,27 +2,16 @@ import {
   productGarmin, 
   productTrimble, 
   productLeica,
-  printer4
+  printer4,
+  nocai1,
+  nocai2,
+  nocai3,
+  nocai4
 } from '../assets/images';
 
-/**
- * СИСТЕМА УПРАВЛЕНИЯ КОНТЕНТОМ ДЛЯ GPS-APP
- * 
- * Вспомогательные функции для создания элементов контента:
- * 
- * createSlide(id, type, data) - создает слайд любого типа
- * createContentSlide(id, content, backgroundImage) - создает контентный слайд с текстом
- * createImageSlide(id, image, content) - создает слайд с изображением и контентом
- * createProductSlide(id, product, image) - создает слайд продукта
- * createServiceSlide(id, service, backgroundImage) - создает слайд услуги
- * createCategory(id, category) - создает категорию
- * 
- * Все элементы контента поддерживают:
- * - title/subtitle - заголовки (ключи для переводов)
- * - cta/ctaLink - кнопки призыва к действию
- * - изображения (импортированные или пути)
- * - дополнительные свойства (features, description, etc.)
- */
+// Debug: log imported images
+console.log('Imported images:', { nocai1, nocai2, nocai3, nocai4 });
+
 
 // Вспомогательные функции для работы с контентом
 export const createSlide = (id, type, data) => ({
@@ -270,6 +259,120 @@ export const gpsContent = {
         }
       })
     ]
+  },
+
+  // Галерея продуктов с детальными характеристиками
+  productGalleryFeatures: {
+    title: 'product.gallery.title',
+    subtitle: 'product.gallery.subtitle',
+    items: [
+      {
+        id: 'garmin-gps-featured',
+        product: {
+          title: 'products.nocai.title',
+          subtitle: 'products.nocai.subtitle',
+          description: 'products.garmin.description',
+          features: [
+            'products.nocai.feature1',
+            'products.nocai.feature2', 
+            'products.nocai.feature3',
+            'products.nocai.feature4',
+            'products.nocai.feature5',
+            'products.nocai.feature6',
+            'products.nocai.feature7',
+            'products.nocai.feature8'
+          ],
+          cta: 'products.nocai.cta',
+          ctaLink: '/products/garmin-gps',
+          price: 'products.garmin.price',
+          discount: 'products.discount',
+          code: 'products.code'
+        },
+        images: [
+          {
+            src: nocai1,
+            alt: 'Nocai UV Printing'
+          },
+          {
+            src: nocai2,
+            alt: 'Nocai UV Printing'
+          },
+          {
+            src: nocai3,
+            alt: 'Nocai UV Printing'
+          },
+          {
+            src: nocai4,
+            alt: 'Nocai UV Printing'
+          }
+        ],
+        specifications: {
+          dimensions: 'product.specs.dimensions',
+          weight: 'product.specs.weight',
+          battery: 'product.specs.battery',
+          connectivity: 'product.specs.connectivity',
+          accuracy: 'product.specs.accuracy',
+          warranty: 'product.specs.warranty'
+        }
+      },
+      {
+        id: 'trimble-surveying-featured',
+        product: {
+          title: 'products.iecho.title',
+          subtitle: 'products.iecho.subtitle',
+          description: 'products.iecho.description',
+          features: [
+            'products.iecho.feature1',
+            'products.iecho.feature2',
+            'products.iecho.feature3',
+            'products.iecho.feature4',
+            'products.iecho.feature5',
+            'products.iecho.feature6',
+            'products.iecho.feature7',
+            'products.iecho.feature8'
+          ],
+          cta: 'products.iecho.cta',
+          ctaLink: '/products/trimble-surveying',
+          price: 'products.trimble.price',
+          discount: 'products.discount',
+          code: 'products.code'
+        },
+        images: [
+          {
+            src: productTrimble,
+            alt: 'Trimble Surveying Equipment - Main View'
+          },
+          {
+            src: productTrimble,
+            alt: 'Trimble Surveying Equipment - Side View'
+          },
+          {
+            src: productTrimble,
+            alt: 'Trimble Surveying Equipment - Back View'
+          },
+          {
+            src: productTrimble,
+            alt: 'Trimble Surveying Equipment - Detail View'
+          },
+          {
+            src: productTrimble,
+            alt: 'Trimble Surveying Equipment - Interface'
+          },
+          {
+            src: productTrimble,
+            alt: 'Trimble Surveying Equipment - Accessories'
+          }
+        ],
+        specifications: {
+          dimensions: 'product.specs.dimensions',
+          weight: 'product.specs.weight',
+          battery: 'product.specs.battery',
+          connectivity: 'product.specs.connectivity',
+          accuracy: 'product.specs.accuracy',
+          warranty: 'product.specs.warranty'
+        }
+      }
+    ]
   }
 };
 
@@ -293,6 +396,15 @@ export const getCategoryItems = () => {
   return gpsContent.categories.items;
 };
 
+export const getProductGalleryFeatures = () => {
+  console.log('getProductGalleryFeatures - Items:', gpsContent.productGalleryFeatures.items);
+  return gpsContent.productGalleryFeatures.items;
+};
+
+export const getProductGalleryFeatureById = (id) => {
+  return gpsContent.productGalleryFeatures.items.find(item => item.id === id);
+};
+
 export const getSectionContent = (sectionName) => {
   return gpsContent[sectionName] || {};
 };
@@ -312,6 +424,10 @@ export const addServiceItem = (service) => {
 
 export const addCategoryItem = (category) => {
   gpsContent.categories.items.push(category);
+};
+
+export const addProductGalleryFeature = (feature) => {
+  gpsContent.productGalleryFeatures.items.push(feature);
 };
 
 // Функции для удаления контента
@@ -339,3 +455,41 @@ export const updateContentById = (sectionName, itemId, updates) => {
     }
   }
 };
+
+// Специальные функции для управления productGalleryFeatures
+export const removeProductGalleryFeature = (itemId) => {
+  gpsContent.productGalleryFeatures.items = gpsContent.productGalleryFeatures.items.filter(item => item.id !== itemId);
+};
+
+export const updateProductGalleryFeature = (itemId, updates) => {
+  const itemIndex = gpsContent.productGalleryFeatures.items.findIndex(item => item.id === itemId);
+  if (itemIndex !== -1) {
+    gpsContent.productGalleryFeatures.items[itemIndex] = { 
+      ...gpsContent.productGalleryFeatures.items[itemIndex], 
+      ...updates 
+    };
+  }
+};
+
+export const createProductGalleryFeature = (id, product, images, specifications = {}) => ({
+  id,
+  product,
+  images,
+  specifications
+});
+
+// Функция для создания изображения продукта
+export const createProductImage = (src, alt) => ({
+  src,
+  alt
+});
+
+// Функция для создания спецификаций продукта
+export const createProductSpecifications = (specs) => ({
+  dimensions: specs.dimensions || 'product.specs.dimensions',
+  weight: specs.weight || 'product.specs.weight',
+  battery: specs.battery || 'product.specs.battery',
+  connectivity: specs.connectivity || 'product.specs.connectivity',
+  accuracy: specs.accuracy || 'product.specs.accuracy',
+  warranty: specs.warranty || 'product.specs.warranty'
+});

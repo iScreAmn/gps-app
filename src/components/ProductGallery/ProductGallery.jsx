@@ -1,6 +1,6 @@
 import React, { useState, useRef, useCallback, useEffect } from 'react';
 import Carousel from '../Carousel/Carousel';
-import { getProductItems } from '../../data/contentData';
+import { getProductItems, getProductGalleryFeatures } from '../../data/contentData';
 import { useLanguage } from '../../hooks/useLanguage';
 import './ProductGallery.css';
 import { productGarmin, aboutOrder } from '../../assets/images';
@@ -8,6 +8,7 @@ import { productGarmin, aboutOrder } from '../../assets/images';
 const ProductGallery = () => {
   const { t } = useLanguage();
   const productItems = getProductItems();
+  const galleryFeatures = getProductGalleryFeatures();
 
   // State for image gallery - must be at top level
   const [activeImageIndex, setActiveImageIndex] = useState(0);
@@ -99,7 +100,35 @@ const ProductGallery = () => {
     return () => window.removeEventListener('resize', handleResize);
   }, [isMobile, isZooming]);
 
-  if (!productItems.length) {
+  // Get the first featured product for detailed view
+  const featuredProduct = galleryFeatures[0];
+  const productData = featuredProduct?.product;
+  const images = featuredProduct?.images || [];
+  
+  // Debug: log the images to console
+  console.log('ProductGallery - Images:', images);
+  console.log('ProductGallery - Featured Product:', featuredProduct);
+  
+  // Fallback images if no images are provided
+  const fallbackImages = [
+    { src: aboutOrder?.src || aboutOrder, alt: aboutOrder?.alt || 'Product image' },
+    { src: productGarmin, alt: 'Product image 2' },
+    { src: productGarmin, alt: 'Product image 3' },
+    { src: productGarmin, alt: 'Product image 4' },
+    { src: productGarmin, alt: 'Product image 5' },
+    { src: productGarmin, alt: 'Product image 6' }
+  ];
+  
+  const displayImages = images.length > 0 ? images : fallbackImages;
+  
+  // Reset active image index if it's out of bounds
+  useEffect(() => {
+    if (activeImageIndex >= displayImages.length) {
+      setActiveImageIndex(0);
+    }
+  }, [displayImages.length, activeImageIndex]);
+
+  if (!productItems.length || !galleryFeatures.length) {
     return (
       <section className="product-gallery">
         <div className="container">
@@ -110,21 +139,6 @@ const ProductGallery = () => {
       </section>
     );
   }
-
-  // Get the first product for detailed view
-  const featuredProduct = productItems[0];
-  const productData = featuredProduct?.product;
-  const productImage = featuredProduct?.image;
-
-  // Create array of images (using same image for demo, but structure for multiple)
-  const images = [
-    { src: aboutOrder?.src || aboutOrder, alt: aboutOrder?.alt || 'Product image' },
-    { src: productImage?.src || productGarmin, alt: 'Product image 2' },
-    { src: productImage?.src || productGarmin, alt: 'Product image 3' },
-    { src: productImage?.src || productGarmin, alt: 'Product image 4' },
-    { src: productImage?.src || productGarmin, alt: 'Product image 5' },
-    { src: productImage?.src || productGarmin, alt: 'Product image 6' }
-  ];
 
   return (
     <section className="product-gallery">
@@ -143,7 +157,7 @@ const ProductGallery = () => {
           <div className="product__wrapper">
             <div className="product__image-section">
               <div className="product__thumbnails">
-                {images.map((image, index) => (
+                {displayImages.map((image, index) => (
                   <div 
                     key={index} 
                     className={`product__thumbnail ${index === activeImageIndex ? 'active' : ''}`}
@@ -151,7 +165,7 @@ const ProductGallery = () => {
                   >
                     <img 
                       src={image.src} 
-                      alt={image.alt} 
+                      alt={image.alt || `Product image ${index + 1}`} 
                     />
                   </div>
                 ))}
@@ -165,8 +179,8 @@ const ProductGallery = () => {
                 >
                   <img 
                     ref={imageRef}
-                    src={images[activeImageIndex].src} 
-                    alt={images[activeImageIndex].alt} 
+                    src={displayImages[activeImageIndex]?.src} 
+                    alt={displayImages[activeImageIndex]?.alt || `Product image ${activeImageIndex + 1}`} 
                     className={`main-product-image ${isChangingImage ? 'changing' : ''}`}
                   />
                   
@@ -188,7 +202,7 @@ const ProductGallery = () => {
                         ref={zoomRef}
                         className="zoomed-image"
                         style={{
-                          backgroundImage: `url(${images[activeImageIndex].src})`,
+                          backgroundImage: `url(${displayImages[activeImageIndex]?.src})`,
                           transform: `translate(${zoomPosition.x}%, ${zoomPosition.y}%)`,
                         }}
                       />
@@ -200,14 +214,14 @@ const ProductGallery = () => {
             
             <div className="product__info">
               <div className="product__badge">
-                <span className="product__discount">{t('products.discount', 'თქვენი დაზოგვა 15%')}</span>
+                <span className="product__discount">{t(productData?.discount, 'თქვენი დაზოგვა 15%')}</span>
               </div>
               
               <div className="product__header">
                 <h1 className="product__title">{t(productData?.title)}</h1>
                 <div className="product__brand">
                   <span className="brand-name">{t(productData?.subtitle)}</span>
-                  <span className="product__code">{t('products.code', 'კოდი')}: {productData?.subtitle}</span>
+                  <span className="product__code">{t(productData?.code, 'კოდი')}: {productData?.subtitle}</span>
                 </div>
               </div>
 

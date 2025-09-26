@@ -50,6 +50,12 @@ export { default as productGarmin } from './printers/pr_01.png';
 export { default as productTrimble } from './printers/pr_02.png';
 export { default as productLeica } from './printers/pr_03.png';
 
+export { default as nocai1 } from './products/nocai-UV0609XIII/nocai1.png';
+export { default as nocai2 } from './products/nocai-UV0609XIII/nocai2.png';
+export { default as nocai3 } from './products/nocai-UV0609XIII/nocai3.png';
+export { default as nocai4 } from './products/nocai-UV0609XIII/nocai4.png';
+
+
 // Service backgrounds
 export const serviceMaintenance = '/api/placeholder/600/400';
 export const serviceTraining = '/api/placeholder/600/400';
