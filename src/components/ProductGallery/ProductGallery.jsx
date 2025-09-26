@@ -16,6 +16,7 @@ const ProductGallery = () => {
   const [zoomPosition, setZoomPosition] = useState({ x: 0, y: 0 });
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const [isChangingImage, setIsChangingImage] = useState(false);
+  const [currentProductIndex, setCurrentProductIndex] = useState(0);
   const imageRef = useRef(null);
   const zoomRef = useRef(null);
 
@@ -37,6 +38,23 @@ const ProductGallery = () => {
       setIsChangingImage(false);
     }, 150);
   }, [activeImageIndex]);
+
+  // Handle product navigation
+  const handleNextProduct = useCallback(() => {
+    if (currentProductIndex < galleryFeatures.length - 1) {
+      setCurrentProductIndex(prev => prev + 1);
+      setActiveImageIndex(0); // Reset to first image
+      setIsZooming(false);
+    }
+  }, [currentProductIndex, galleryFeatures.length]);
+
+  const handlePrevProduct = useCallback(() => {
+    if (currentProductIndex > 0) {
+      setCurrentProductIndex(prev => prev - 1);
+      setActiveImageIndex(0); // Reset to first image
+      setIsZooming(false);
+    }
+  }, [currentProductIndex]);
 
   // Handle mouse enter on main image
   const handleMouseEnter = useCallback(() => {
@@ -100,14 +118,11 @@ const ProductGallery = () => {
     return () => window.removeEventListener('resize', handleResize);
   }, [isMobile, isZooming]);
 
-  // Get the first featured product for detailed view
-  const featuredProduct = galleryFeatures[0];
+  // Get the current featured product for detailed view
+  const featuredProduct = galleryFeatures[currentProductIndex];
   const productData = featuredProduct?.product;
   const images = featuredProduct?.images || [];
   
-  // Debug: log the images to console
-  console.log('ProductGallery - Images:', images);
-  console.log('ProductGallery - Featured Product:', featuredProduct);
   
   // Fallback images if no images are provided
   const fallbackImages = [
@@ -150,7 +165,7 @@ const ProductGallery = () => {
           autoPlayInterval={6000}
           showDots={true}
           showArrows={true}
-          className="product-carousel"
+          className="product-carousel none"
         />
 
         <div className="product__gallery-features">
@@ -247,6 +262,31 @@ const ProductGallery = () => {
                     {t(productData?.cta, 'Learn More')}
                   </button>
                 </div>
+
+                {/* Product Navigation */}
+                {galleryFeatures.length > 1 && (
+                  <div className="product__navigation">
+                    <button 
+                      className="nav-btn prev-btn"
+                      onClick={handlePrevProduct}
+                      disabled={currentProductIndex === 0}
+                    >
+                      ← {t('product.navigation.previous', 'Previous')}
+                    </button>
+                    
+                    <span className="product__counter">
+                      {currentProductIndex + 1} / {galleryFeatures.length}
+                    </span>
+                    
+                    <button 
+                      className="nav-btn next-btn"
+                      onClick={handleNextProduct}
+                      disabled={currentProductIndex === galleryFeatures.length - 1}
+                    >
+                      {t('product.navigation.next', 'Next')} →
+                    </button>
+                  </div>
+                )}
               </div>
             </div>
           </div>

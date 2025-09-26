@@ -6,11 +6,16 @@ import {
   nocai1,
   nocai2,
   nocai3,
-  nocai4
+  nocai4,
+  iecho1,
+  iecho2,
+  iecho3,
+  iecho4,
+  iecho5,
+  iecho6,
+  iecho7
 } from '../assets/images';
 
-// Debug: log imported images
-console.log('Imported images:', { nocai1, nocai2, nocai3, nocai4 });
 
 
 // Вспомогательные функции для работы с контентом
@@ -339,28 +344,32 @@ export const gpsContent = {
         },
         images: [
           {
-            src: productTrimble,
-            alt: 'Trimble Surveying Equipment - Main View'
+            src: iecho1,
+            alt: 'iecho PK0604 Plus'
           },
           {
-            src: productTrimble,
-            alt: 'Trimble Surveying Equipment - Side View'
+            src: iecho2,
+            alt: 'iecho PK0604 Plus'
           },
           {
-            src: productTrimble,
-            alt: 'Trimble Surveying Equipment - Back View'
+            src: iecho3,
+            alt: 'iecho PK0604 Plus'
           },
           {
-            src: productTrimble,
-            alt: 'Trimble Surveying Equipment - Detail View'
+            src: iecho4,
+            alt: 'iecho PK0604 Plus'
           },
           {
-            src: productTrimble,
-            alt: 'Trimble Surveying Equipment - Interface'
+            src: iecho5,
+            alt: 'iecho PK0604 Plus'
           },
           {
-            src: productTrimble,
-            alt: 'Trimble Surveying Equipment - Accessories'
+            src: iecho6,
+            alt: 'iecho PK0604 Plus'
+          },
+          {
+            src: iecho7,
+            alt: 'iecho PK0604 Plus'
           }
         ],
         specifications: {
@@ -376,10 +385,8 @@ export const gpsContent = {
   }
 };
 
-// Экспорт по умолчанию
 export default gpsContent;
 
-// Утилитарные функции для работы с контентом в стиле law-firm
 export const getCarouselSlides = () => {
   return gpsContent.carousel.slides;
 };
@@ -397,7 +404,6 @@ export const getCategoryItems = () => {
 };
 
 export const getProductGalleryFeatures = () => {
-  console.log('getProductGalleryFeatures - Items:', gpsContent.productGalleryFeatures.items);
   return gpsContent.productGalleryFeatures.items;
 };
 
@@ -409,7 +415,6 @@ export const getSectionContent = (sectionName) => {
   return gpsContent[sectionName] || {};
 };
 
-// Функции для добавления нового контента
 export const addCarouselSlide = (slide) => {
   gpsContent.carousel.slides.push(slide);
 };
@@ -430,7 +435,6 @@ export const addProductGalleryFeature = (feature) => {
   gpsContent.productGalleryFeatures.items.push(feature);
 };
 
-// Функции для удаления контента
 export const removeContentById = (sectionName, itemId) => {
   const section = gpsContent[sectionName];
   if (section) {
@@ -442,7 +446,6 @@ export const removeContentById = (sectionName, itemId) => {
   }
 };
 
-// Функция для обновления контента
 export const updateContentById = (sectionName, itemId, updates) => {
   const section = gpsContent[sectionName];
   if (section) {
@@ -456,7 +459,6 @@ export const updateContentById = (sectionName, itemId, updates) => {
   }
 };
 
-// Специальные функции для управления productGalleryFeatures
 export const removeProductGalleryFeature = (itemId) => {
   gpsContent.productGalleryFeatures.items = gpsContent.productGalleryFeatures.items.filter(item => item.id !== itemId);
 };
@@ -478,13 +480,11 @@ export const createProductGalleryFeature = (id, product, images, specifications 
   specifications
 });
 
-// Функция для создания изображения продукта
 export const createProductImage = (src, alt) => ({
   src,
   alt
 });
 
-// Функция для создания спецификаций продукта
 export const createProductSpecifications = (specs) => ({
   dimensions: specs.dimensions || 'product.specs.dimensions',
   weight: specs.weight || 'product.specs.weight',
