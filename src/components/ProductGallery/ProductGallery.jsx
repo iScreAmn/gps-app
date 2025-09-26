@@ -3,7 +3,7 @@ import Carousel from '../Carousel/Carousel';
 import { getProductItems } from '../../data/contentData';
 import { useLanguage } from '../../hooks/useLanguage';
 import './ProductGallery.css';
-import { productGarmin } from '../../assets/images';
+import { productGarmin, aboutOrder } from '../../assets/images';
 
 const ProductGallery = () => {
   const { t } = useLanguage();
@@ -118,7 +118,7 @@ const ProductGallery = () => {
 
   // Create array of images (using same image for demo, but structure for multiple)
   const images = [
-    { src: productImage?.src || productGarmin, alt: productImage?.alt || 'Product image' },
+    { src: aboutOrder?.src || aboutOrder, alt: aboutOrder?.alt || 'Product image' },
     { src: productImage?.src || productGarmin, alt: 'Product image 2' },
     { src: productImage?.src || productGarmin, alt: 'Product image 3' },
     { src: productImage?.src || productGarmin, alt: 'Product image 4' },
@@ -213,30 +213,26 @@ const ProductGallery = () => {
 
               
 
-              <div className="product__pricing">
-                <div className="price-section">
-                  <span className="current-price">18,500.00 ₾</span>
-                  <span className="original-price">21,679.00 ₾</span>
-                </div>
-              </div>
+              <div className="product__description">
+                
 
-              <div className="product__actions">
-                <div className="quantity-section">
-                  <label htmlFor="quantity">{t('products.quantity', 'რაოდენობა')}:</label>
-                  <div className="quantity-controls">
-                    <button className="quantity-btn minus" type="button">−</button>
-                    <input 
-                      type="number" 
-                      id="quantity" 
-                      className="quantity-input" 
-                      defaultValue="1" 
-                      min="1"
-                    />
-                    <button className="quantity-btn plus" type="button">+</button>
-                  </div>
+                <div className="product__features">
+                  <h4 className="features-title">{t('product.features', 'Key Features')}</h4>
+                  <ul className="features-list">
+                    {productData?.features?.slice(0, 6).map((feature, index) => (
+                      <li key={index} className="feature-item">
+                        <span className="feature-icon">✓</span>
+                        <span className="feature-text">{t(feature)}</span>
+                      </li>
+                    ))}
+                  </ul>
                 </div>
 
-                <button className="add-to-cart-btn">{t('products.addToCart', 'კალათაში')}</button>
+                <div className="product__cta">
+                  <button className="learn-more-btn">
+                    {t(productData?.cta, 'Learn More')}
+                  </button>
+                </div>
               </div>
             </div>
           </div>
