@@ -2,6 +2,7 @@ import React, { useEffect, useRef } from 'react';
 import { useLocation } from 'react-router-dom';
 import Header from '../../components/Header/Header';
 import Footer from '../../components/Footer/Footer';
+import ScrollToTop from '../../components/widgets/ScrollToTop/ScrollToTop';
 import { getCurrentLanguageFromPath } from '../../i18n';
 import './Layout.css';
 
@@ -38,6 +39,7 @@ const Layout = ({ children }) => {
         {children}
       </main>
       <Footer />
+      <ScrollToTop />
     </div>
   );
 };
