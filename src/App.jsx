@@ -15,7 +15,7 @@ import './App.css';
 function App() {
   return (
     <ThemeProvider>
-      <Router>
+      <Router basename={import.meta.env.BASE_URL}>
         <LanguageProvider>
           <Layout>
             <Routes>
