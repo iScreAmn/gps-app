@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { useLanguage } from "../../hooks/useLanguage";
 import './Footer.css';
 
@@ -30,15 +31,15 @@ const Footer = () => {
           <div className="footer-section">
             <h4>{t('footer.quick_links')}</h4>
             <div className="footer-links">
-              <a href={`/${language}/catalog`}>
+              <Link to={`/${language}/catalog`}>
                 {t('navigation.catalog')}
-              </a>
-              <a href={`/${language}/services`}>
+              </Link>
+              <Link to={`/${language}/services`}>
                 {t('navigation.services')}
-              </a>
-              <a href={`/${language}/contacts`}>
+              </Link>
+              <Link to={`/${language}/contacts`}>
                 {t('navigation.contacts')}
-              </a>
+              </Link>
             </div>
           </div>
         </div>
