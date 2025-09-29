@@ -141,6 +141,7 @@
       "bestselling": "Best Selling",
       "discounts": "Discounts"
     },
+    "noProductsInCategory": "No products available in this category",
     "section": {
       "title": "Our Products",
       "subtitle": "Professional GPS and surveying equipment",
@@ -172,6 +173,17 @@
       "feature6": "Cutting Accuracy: 0.1mm",
       "feature7": "Data Format: PLT, DXF, HP/GL",
       "feature8": "Power: 4kw",
+      "cta": "Learn More"
+    },
+    "leica": {
+      "title": "Leica Professional GPS",
+      "subtitle": "GS18 T",
+      "feature1": "RTK Accuracy: ±8mm + 1ppm",
+      "feature2": "GNSS Technology: GPS, GLONASS, BeiDou, Galileo",
+      "feature3": "Internal Antenna: 2.4GHz",
+      "feature4": "Battery Life: 8 hours",
+      "feature5": "Waterproof: IP67",
+      "feature6": "Weight: 1.2 kg",
       "cta": "Learn More"
     }
   },

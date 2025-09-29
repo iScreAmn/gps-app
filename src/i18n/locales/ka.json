@@ -142,6 +142,7 @@
       "bestselling": "ყველაზე გაყიდვადი",
       "discounts": "ფასდაკლება"
     },
+    "noProductsInCategory": "ამ კატეგორიაში პროდუქტები არ არის",
     "nocai": {
       "title": "Nocai UV Printing",
       "subtitle": "NC-UV0609XIII",
@@ -166,6 +167,17 @@
       "feature6": "ჭრის სიზუსტე: 0.1მმ",
       "feature7": "მონაცემთა ფორმატი: PLT, DXF, HP/GL",
       "feature8": "ძაბვა: 4კვტ",
+      "cta": "დაწვრილებით"
+    },
+    "leica": {
+      "title": "Leica Professional GPS",
+      "subtitle": "GS18 T",
+      "feature1": "RTK სიზუსტე: ±8მმ + 1ppm",
+      "feature2": "GNSS ტექნოლოგია: GPS, GLONASS, BeiDou, Galileo",
+      "feature3": "შიდა ანტენა: 2.4GHz",
+      "feature4": "ბატარეის ხანგრძლივობა: 8 საათი",
+      "feature5": "წყალგაუმტარი: IP67",
+      "feature6": "წონა: 1.2 კგ",
       "cta": "დაწვრილებით"
     }
   },

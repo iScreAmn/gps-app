@@ -318,7 +318,8 @@ export const gpsContent = {
           connectivity: 'product.specs.connectivity',
           accuracy: 'product.specs.accuracy',
           warranty: 'product.specs.warranty'
-        }
+        },
+        category: 'new'
       },
       {
         id: 'trimble-surveying-featured',
@@ -379,7 +380,140 @@ export const gpsContent = {
           connectivity: 'product.specs.connectivity',
           accuracy: 'product.specs.accuracy',
           warranty: 'product.specs.warranty'
-        }
+        },
+        category: 'new'
+      },
+      {
+        id: 'leica-professional-featured',
+        product: {
+          title: 'products.leica.title',
+          subtitle: 'products.leica.subtitle',
+          description: 'products.leica.description',
+          features: [
+            'products.leica.feature1',
+            'products.leica.feature2',
+            'products.leica.feature3',
+            'products.leica.feature4',
+            'products.leica.feature5',
+            'products.leica.feature6'
+          ],
+          cta: 'products.leica.cta',
+          ctaLink: '/products/leica-professional',
+          price: 'products.leica.price',
+          discount: 'products.discount',
+          code: 'products.code'
+        },
+        images: [
+          {
+            src: productLeica,
+            alt: 'Leica Professional GPS'
+          },
+          {
+            src: productGarmin,
+            alt: 'Leica Professional GPS'
+          },
+          {
+            src: productTrimble,
+            alt: 'Leica Professional GPS'
+          }
+        ],
+        specifications: {
+          dimensions: 'product.specs.dimensions',
+          weight: 'product.specs.weight',
+          battery: 'product.specs.battery',
+          connectivity: 'product.specs.connectivity',
+          accuracy: 'product.specs.accuracy',
+          warranty: 'product.specs.warranty'
+        },
+        category: 'bestselling'
+      },
+      {
+        id: 'konika-minolt-extra-demo',
+        product: {
+          title: 'products.leica.title',
+          subtitle: 'products.leica.subtitle',
+          description: 'products.leica.description',
+          features: [
+            'products.leica.feature1',
+            'products.leica.feature2',
+            'products.leica.feature3',
+            'products.leica.feature4',
+            'products.leica.feature5',
+            'products.leica.feature6'
+          ],
+          cta: 'products.leica.cta',
+          ctaLink: '/products/leica-professional',
+          price: 'products.leica.price',
+          discount: 'products.discount',
+          code: 'products.code'
+        },
+        images: [
+          {
+            src: productLeica,
+            alt: 'Leica Professional GPS'
+          },
+          {
+            src: productGarmin,
+            alt: 'Leica Professional GPS'
+          },
+          {
+            src: productTrimble,
+            alt: 'Leica Professional GPS'
+          }
+        ],
+        specifications: {
+          dimensions: 'product.specs.dimensions',
+          weight: 'product.specs.weight',
+          battery: 'product.specs.battery',
+          connectivity: 'product.specs.connectivity',
+          accuracy: 'product.specs.accuracy',
+          warranty: 'product.specs.warranty'
+        },
+        category: 'discounts'
+      },
+      {
+        id: 'konika-minolt-extra-demo',
+        product: {
+          title: 'products.leica.title',
+          subtitle: 'products.leica.subtitle',
+          description: 'products.leica.description',
+          features: [
+            'products.leica.feature1',
+            'products.leica.feature2',
+            'products.leica.feature3',
+            'products.leica.feature4',
+            'products.leica.feature5',
+            'products.leica.feature6'
+          ],
+          cta: 'products.leica.cta',
+          ctaLink: '/products/leica-professional',
+          price: 'products.leica.price',
+          discount: 'products.discount',
+          code: 'products.code'
+        },
+        images: [
+          {
+            src: productLeica,
+            alt: 'Leica Professional GPS'
+          },
+          {
+            src: productGarmin,
+            alt: 'Leica Professional GPS'
+          },
+          {
+            src: productTrimble,
+            alt: 'Leica Professional GPS'
+          }
+        ],
+        specifications: {
+          dimensions: 'product.specs.dimensions',
+          weight: 'product.specs.weight',
+          battery: 'product.specs.battery',
+          connectivity: 'product.specs.connectivity',
+          accuracy: 'product.specs.accuracy',
+          warranty: 'product.specs.warranty'
+        },
+        category: 'new'
       }
     ]
   }
@@ -473,11 +607,12 @@ export const updateProductGalleryFeature = (itemId, updates) => {
   }
 };
 
-export const createProductGalleryFeature = (id, product, images, specifications = {}) => ({
+export const createProductGalleryFeature = (id, product, images, specifications = {}, category = 'new') => ({
   id,
   product,
   images,
-  specifications
+  specifications,
+  category
 });
 
 export const createProductImage = (src, alt) => ({
@@ -493,3 +628,40 @@ export const createProductSpecifications = (specs) => ({
   accuracy: specs.accuracy || 'product.specs.accuracy',
   warranty: specs.warranty || 'product.specs.warranty'
 });
+
+// Category management functions
+export const getProductsByCategory = (category) => {
+  return gpsContent.productGalleryFeatures.items.filter(item => item.category === category);
+};
+
+export const getAllCategories = () => {
+  const categories = new Set(gpsContent.productGalleryFeatures.items.map(item => item.category));
+  return Array.from(categories);
+};
+
+export const getCategoryCount = (category) => {
+  return gpsContent.productGalleryFeatures.items.filter(item => item.category === category).length;
+};
+
+export const addProductToCategory = (product, category) => {
+  const newProduct = { ...product, category };
+  gpsContent.productGalleryFeatures.items.push(newProduct);
+  return newProduct;
+};
+
+export const updateProductCategory = (productId, newCategory) => {
+  const productIndex = gpsContent.productGalleryFeatures.items.findIndex(item => item.id === productId);
+  if (productIndex !== -1) {
+    gpsContent.productGalleryFeatures.items[productIndex].category = newCategory;
+    return gpsContent.productGalleryFeatures.items[productIndex];
+  }
+  return null;
+};
+
+export const removeProductFromCategory = (productId) => {
+  const productIndex = gpsContent.productGalleryFeatures.items.findIndex(item => item.id === productId);
+  if (productIndex !== -1) {
+    return gpsContent.productGalleryFeatures.items.splice(productIndex, 1)[0];
+  }
+  return null;
+};

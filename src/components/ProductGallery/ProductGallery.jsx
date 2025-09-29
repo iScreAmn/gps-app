@@ -1,6 +1,6 @@
 import React, { useState, useRef, useCallback, useEffect } from 'react';
 import Carousel from '../Carousel/Carousel';
-import { getProductItems, getProductGalleryFeatures } from '../../data/contentData';
+import { getProductItems, getProductsByCategory } from '../../data/contentData';
 import { useLanguage } from '../../hooks/useLanguage';
 import './ProductGallery.css';
 // eslint-disable-next-line no-unused-vars
@@ -10,7 +10,6 @@ import { productGarmin, aboutOrder } from '../../assets/images';
 const ProductGallery = () => {
   const { t } = useLanguage();
   const productItems = getProductItems();
-  const galleryFeatures = getProductGalleryFeatures();
 
   // State for image gallery - must be at top level
   const [activeImageIndex, setActiveImageIndex] = useState(0);
@@ -34,10 +33,8 @@ const ProductGallery = () => {
 
   // Filter products based on active category
   const getFilteredProducts = useCallback(() => {
-    // For now, we'll use the same products for all categories
-    // In a real app, you would filter based on product properties
-    return galleryFeatures;
-  }, [galleryFeatures]);
+    return getProductsByCategory(activeCategory);
+  }, [activeCategory]);
 
   // Handle category change
   const handleCategoryChange = useCallback((categoryId) => {
@@ -172,12 +169,51 @@ const ProductGallery = () => {
     }
   }, [displayImages.length, activeImageIndex]);
 
-  if (!productItems.length || !filteredProducts.length) {
+  if (!productItems.length) {
     return (
       <section className="product-gallery">
         <div className="container">
           <div className="product-gallery-empty">
             <p>No products available</p>
+          </div>
+        </div>
+      </section>
+    );
+  }
+
+  // Show message if no products in selected category
+  if (!filteredProducts.length) {
+    return (
+      <section className="product-gallery">
+        <div className="container">
+          <h2 className='section-title'>{t('products.title')}</h2>
+          <Carousel 
+            slides={productItems}
+            autoPlay={false}
+            autoPlayInterval={6000}
+            showDots={true}
+            showArrows={true}
+            className="product-carousel none"
+          />
+
+          {/* Category Filter Buttons */}
+          <div className="product__category-filters">
+            {categories.map((category) => (
+              <motion.button
+                key={category.id}
+                className={`category-filter-btn ${activeCategory === category.id ? 'active' : ''}`}
+                onClick={() => handleCategoryChange(category.id)}
+                whileHover={{ scale: 1.05, y: -2 }}
+                whileTap={{ scale: 0.95 }}
+                transition={{ type: "spring", stiffness: 300, damping: 20 }}
+              >
+                {t(category.key)}
+              </motion.button>
+            ))}
+          </div>
+
+          <div className="product-gallery-empty">
+            <p>{t('products.noProductsInCategory', 'No products available in this category')}</p>
           </div>
         </div>
       </section>
