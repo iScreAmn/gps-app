@@ -136,6 +136,11 @@
   },
   "products": {
     "title": "Product Presentation",
+    "categories": {
+      "new": "New Products",
+      "bestselling": "Best Selling",
+      "discounts": "Discounts"
+    },
     "section": {
       "title": "Our Products",
       "subtitle": "Professional GPS and surveying equipment",

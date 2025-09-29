@@ -137,6 +137,11 @@
   },
   "products": {
     "title": "პროდუქციის პრეზენტაცია",
+    "categories": {
+      "new": "უახლესი პროდუქტები",
+      "bestselling": "ყველაზე გაყიდვადი",
+      "discounts": "ფასდაკლება"
+    },
     "nocai": {
       "title": "Nocai UV Printing",
       "subtitle": "NC-UV0609XIII",

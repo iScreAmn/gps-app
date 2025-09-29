@@ -19,8 +19,35 @@ const ProductGallery = () => {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const [isChangingImage, setIsChangingImage] = useState(false);
   const [currentProductIndex, setCurrentProductIndex] = useState(0);
+  
+  // State for category filtering
+  const [activeCategory, setActiveCategory] = useState('new');
   const imageRef = useRef(null);
   const zoomRef = useRef(null);
+
+  // Category definitions
+  const categories = [
+    { id: 'new', key: 'products.categories.new' },
+    { id: 'bestselling', key: 'products.categories.bestselling' },
+    { id: 'discounts', key: 'products.categories.discounts' }
+  ];
+
+  // Filter products based on active category
+  const getFilteredProducts = useCallback(() => {
+    // For now, we'll use the same products for all categories
+    // In a real app, you would filter based on product properties
+    return galleryFeatures;
+  }, [galleryFeatures]);
+
+  // Handle category change
+  const handleCategoryChange = useCallback((categoryId) => {
+    setActiveCategory(categoryId);
+    setCurrentProductIndex(0); // Reset to first product
+    setActiveImageIndex(0); // Reset to first image
+    setIsZooming(false); // Disable zoom
+  }, []);
+
+  const filteredProducts = getFilteredProducts();
 
   // Check if device is mobile
   const isMobile = useCallback(() => {
@@ -43,12 +70,12 @@ const ProductGallery = () => {
 
   // Handle product navigation
   const handleNextProduct = useCallback(() => {
-    if (currentProductIndex < galleryFeatures.length - 1) {
+    if (currentProductIndex < filteredProducts.length - 1) {
       setCurrentProductIndex(prev => prev + 1);
       setActiveImageIndex(0); // Reset to first image
       setIsZooming(false);
     }
-  }, [currentProductIndex, galleryFeatures.length]);
+  }, [currentProductIndex, filteredProducts.length]);
 
   const handlePrevProduct = useCallback(() => {
     if (currentProductIndex > 0) {
@@ -121,7 +148,7 @@ const ProductGallery = () => {
   }, [isMobile, isZooming]);
 
   // Get the current featured product for detailed view
-  const featuredProduct = galleryFeatures[currentProductIndex];
+  const featuredProduct = filteredProducts[currentProductIndex];
   const productData = featuredProduct?.product;
   const images = featuredProduct?.images || [];
   
@@ -145,7 +172,7 @@ const ProductGallery = () => {
     }
   }, [displayImages.length, activeImageIndex]);
 
-  if (!productItems.length || !galleryFeatures.length) {
+  if (!productItems.length || !filteredProducts.length) {
     return (
       <section className="product-gallery">
         <div className="container">
@@ -170,7 +197,30 @@ const ProductGallery = () => {
           className="product-carousel none"
         />
 
-        <div className="product__gallery-features">
+        {/* Category Filter Buttons */}
+        <div className="product__category-filters">
+          {categories.map((category) => (
+            <motion.button
+              key={category.id}
+              className={`category-filter-btn ${activeCategory === category.id ? 'active' : ''}`}
+              onClick={() => handleCategoryChange(category.id)}
+              whileHover={{ scale: 1.05, y: -2 }}
+              whileTap={{ scale: 0.95 }}
+              transition={{ type: "spring", stiffness: 300, damping: 20 }}
+            >
+              {t(category.key)}
+            </motion.button>
+          ))}
+        </div>
+
+        <motion.div 
+          className="product__gallery-features"
+          key={activeCategory}
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: -20 }}
+          transition={{ duration: 0.3, ease: "easeInOut" }}
+        >
           <div className="product__wrapper">
             <div className="product__image-section">
               <div className="product__thumbnails">
@@ -194,11 +244,15 @@ const ProductGallery = () => {
                   onMouseLeave={handleMouseLeave}
                   onMouseMove={handleMouseMove}
                 >
-                  <img 
+                  <motion.img 
                     ref={imageRef}
                     src={displayImages[activeImageIndex]?.src} 
                     alt={displayImages[activeImageIndex]?.alt || `Product image ${activeImageIndex + 1}`} 
                     className={`main-product-image ${isChangingImage ? 'changing' : ''}`}
+                    key={`${activeCategory}-${activeImageIndex}`}
+                    initial={{ opacity: 0, scale: 0.95 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    transition={{ duration: 0.4, ease: "easeInOut" }}
                   />
                   
                   {/* Zoom indicator square */}
@@ -229,7 +283,13 @@ const ProductGallery = () => {
               </div>
             </div>
             
-            <div className="product__info">
+            <motion.div 
+              className="product__info"
+              key={`${activeCategory}-info`}
+              initial={{ opacity: 0, x: 20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.4, delay: 0.1, ease: "easeInOut" }}
+            >
               
               <div className="product__header">
                 <h1 className="product__title">{t(productData?.title)}</h1>
@@ -238,11 +298,7 @@ const ProductGallery = () => {
                 </div>
               </div>
 
-              
-
               <div className="product__description">
-                
-
                 <div className="product__features">
                   <h4 className="features-title">{t('product.features', 'Key Features')}</h4>
                   <ul className="features-list">
@@ -266,7 +322,7 @@ const ProductGallery = () => {
                 </div>
 
                 {/* Product Navigation */}
-                {galleryFeatures.length > 1 && (
+                {filteredProducts.length > 1 && (
                   <div className="product__navigation">
                     <button 
                       className="nav-btn prev-btn"
@@ -277,22 +333,22 @@ const ProductGallery = () => {
                     </button>
                     
                     <span className="product__counter">
-                      {currentProductIndex + 1} / {galleryFeatures.length}
+                      {currentProductIndex + 1} / {filteredProducts.length}
                     </span>
                     
                     <button 
                       className="nav-btn next-btn"
                       onClick={handleNextProduct}
-                      disabled={currentProductIndex === galleryFeatures.length - 1}
+                      disabled={currentProductIndex === filteredProducts.length - 1}
                     >
                       {t('product.navigation.next', 'Next')} →
                     </button>
                   </div>
                 )}
               </div>
-            </div>
+            </motion.div>
           </div>
-        </div>
+        </motion.div>
       </div>
 
     </section>
