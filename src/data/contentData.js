@@ -516,6 +516,213 @@ export const gpsContent = {
         category: 'new'
       }
     ]
+  },
+
+  // Секция специальных предложений
+  specialOffers: {
+    title: 'specialOffers.section.title',
+    subtitle: 'specialOffers.section.subtitle',
+    items: [
+      // Акции
+      {
+        id: 'spring-gps-sale',
+        type: 'promotion',
+        category: 'promotions',
+        title: 'specialOffers.promotions.springSale.title',
+        subtitle: 'specialOffers.promotions.springSale.subtitle',
+        description: 'specialOffers.promotions.springSale.description',
+        discount: '25%',
+        badge: 'specialOffers.promotions.springSale.badge',
+        validUntil: '2024-05-31',
+        image: {
+          src: productGarmin,
+          alt: 'Spring GPS Sale'
+        },
+        features: [
+          'specialOffers.promotions.springSale.feature1',
+          'specialOffers.promotions.springSale.feature2',
+          'specialOffers.promotions.springSale.feature3'
+        ],
+        cta: 'specialOffers.promotions.springSale.cta',
+        ctaLink: '/catalog?sale=spring-gps'
+      },
+      {
+        id: 'surveying-equipment-promo',
+        type: 'promotion',
+        category: 'promotions',
+        title: 'specialOffers.promotions.surveyingPromo.title',
+        subtitle: 'specialOffers.promotions.surveyingPromo.subtitle',
+        description: 'specialOffers.promotions.surveyingPromo.description',
+        discount: '30%',
+        badge: 'specialOffers.promotions.surveyingPromo.badge',
+        validUntil: '2024-06-15',
+        image: {
+          src: productTrimble,
+          alt: 'Surveying Equipment Promotion'
+        },
+        features: [
+          'specialOffers.promotions.surveyingPromo.feature1',
+          'specialOffers.promotions.surveyingPromo.feature2',
+          'specialOffers.promotions.surveyingPromo.feature3'
+        ],
+        cta: 'specialOffers.promotions.surveyingPromo.cta',
+        ctaLink: '/catalog?sale=surveying-promo'
+      },
+
+      // Скидки
+      {
+        id: 'bulk-discount-gps',
+        type: 'discount',
+        category: 'discounts',
+        title: 'specialOffers.discounts.bulkDiscount.title',
+        subtitle: 'specialOffers.discounts.bulkDiscount.subtitle',
+        description: 'specialOffers.discounts.bulkDiscount.description',
+        discount: '15%',
+        badge: 'specialOffers.discounts.bulkDiscount.badge',
+        minQuantity: 5,
+        image: {
+          src: productLeica,
+          alt: 'Bulk Discount GPS Equipment'
+        },
+        features: [
+          'specialOffers.discounts.bulkDiscount.feature1',
+          'specialOffers.discounts.bulkDiscount.feature2',
+          'specialOffers.discounts.bulkDiscount.feature3'
+        ],
+        cta: 'specialOffers.discounts.bulkDiscount.cta',
+        ctaLink: '/contact?type=bulk-order'
+      },
+      {
+        id: 'student-educator-discount',
+        type: 'discount',
+        category: 'discounts',
+        title: 'specialOffers.discounts.studentDiscount.title',
+        subtitle: 'specialOffers.discounts.studentDiscount.subtitle',
+        description: 'specialOffers.discounts.studentDiscount.description',
+        discount: '20%',
+        badge: 'specialOffers.discounts.studentDiscount.badge',
+        requirements: 'Educational institution verification required',
+        image: {
+          src: productGarmin,
+          alt: 'Student and Educator Discount'
+        },
+        features: [
+          'specialOffers.discounts.studentDiscount.feature1',
+          'specialOffers.discounts.studentDiscount.feature2',
+          'specialOffers.discounts.studentDiscount.feature3'
+        ],
+        cta: 'specialOffers.discounts.studentDiscount.cta',
+        ctaLink: '/contact?type=educational-discount'
+      },
+
+      // Сезонные предложения
+      {
+        id: 'summer-field-kit',
+        type: 'seasonal',
+        category: 'seasonal',
+        title: 'specialOffers.seasonal.summerKit.title',
+        subtitle: 'specialOffers.seasonal.summerKit.subtitle',
+        description: 'specialOffers.seasonal.summerKit.description',
+        badge: 'specialOffers.seasonal.summerKit.badge',
+        season: 'summer',
+        validUntil: '2024-08-31',
+        image: {
+          src: productTrimble,
+          alt: 'Summer Field Survey Kit'
+        },
+        features: [
+          'specialOffers.seasonal.summerKit.feature1',
+          'specialOffers.seasonal.summerKit.feature2',
+          'specialOffers.seasonal.summerKit.feature3',
+          'specialOffers.seasonal.summerKit.feature4'
+        ],
+        cta: 'specialOffers.seasonal.summerKit.cta',
+        ctaLink: '/catalog?package=summer-field-kit'
+      },
+      {
+        id: 'winter-indoor-solutions',
+        type: 'seasonal',
+        category: 'seasonal',
+        title: 'specialOffers.seasonal.winterSolutions.title',
+        subtitle: 'specialOffers.seasonal.winterSolutions.subtitle',
+        description: 'specialOffers.seasonal.winterSolutions.description',
+        badge: 'specialOffers.seasonal.winterSolutions.badge',
+        season: 'winter',
+        validUntil: '2024-12-31',
+        image: {
+          src: productLeica,
+          alt: 'Winter Indoor GPS Solutions'
+        },
+        features: [
+          'specialOffers.seasonal.winterSolutions.feature1',
+          'specialOffers.seasonal.winterSolutions.feature2',
+          'specialOffers.seasonal.winterSolutions.feature3'
+        ],
+        cta: 'specialOffers.seasonal.winterSolutions.cta',
+        ctaLink: '/catalog?package=winter-indoor'
+      },
+
+      // Комплексные решения
+      {
+        id: 'complete-surveying-solution',
+        type: 'bundle',
+        category: 'bundles',
+        title: 'specialOffers.bundles.completeSurveying.title',
+        subtitle: 'specialOffers.bundles.completeSurveying.subtitle',
+        description: 'specialOffers.bundles.completeSurveying.description',
+        badge: 'specialOffers.bundles.completeSurveying.badge',
+        savings: '€2,500',
+        originalPrice: '€15,000',
+        bundlePrice: '€12,500',
+        image: {
+          src: productGarmin,
+          alt: 'Complete Surveying Solution Bundle'
+        },
+        includes: [
+          'specialOffers.bundles.completeSurveying.include1',
+          'specialOffers.bundles.completeSurveying.include2',
+          'specialOffers.bundles.completeSurveying.include3',
+          'specialOffers.bundles.completeSurveying.include4',
+          'specialOffers.bundles.completeSurveying.include5'
+        ],
+        features: [
+          'specialOffers.bundles.completeSurveying.feature1',
+          'specialOffers.bundles.completeSurveying.feature2',
+          'specialOffers.bundles.completeSurveying.feature3'
+        ],
+        cta: 'specialOffers.bundles.completeSurveying.cta',
+        ctaLink: '/contact?type=complete-bundle'
+      },
+      {
+        id: 'starter-gps-package',
+        type: 'bundle',
+        category: 'bundles',
+        title: 'specialOffers.bundles.starterPackage.title',
+        subtitle: 'specialOffers.bundles.starterPackage.subtitle',
+        description: 'specialOffers.bundles.starterPackage.description',
+        badge: 'specialOffers.bundles.starterPackage.badge',
+        savings: '€800',
+        originalPrice: '€3,500',
+        bundlePrice: '€2,700',
+        image: {
+          src: productTrimble,
+          alt: 'Starter GPS Package'
+        },
+        includes: [
+          'specialOffers.bundles.starterPackage.include1',
+          'specialOffers.bundles.starterPackage.include2',
+          'specialOffers.bundles.starterPackage.include3',
+          'specialOffers.bundles.starterPackage.include4'
+        ],
+        features: [
+          'specialOffers.bundles.starterPackage.feature1',
+          'specialOffers.bundles.starterPackage.feature2',
+          'specialOffers.bundles.starterPackage.feature3'
+        ],
+        cta: 'specialOffers.bundles.starterPackage.cta',
+        ctaLink: '/contact?type=starter-bundle'
+      }
+    ]
   }
 };
 
@@ -665,3 +872,75 @@ export const removeProductFromCategory = (productId) => {
   }
   return null;
 };
+
+// Special Offers management functions
+export const getSpecialOffers = () => {
+  return gpsContent.specialOffers.items;
+};
+
+export const getSpecialOffersByCategory = (category) => {
+  return gpsContent.specialOffers.items.filter(item => item.category === category);
+};
+
+export const getSpecialOfferById = (id) => {
+  return gpsContent.specialOffers.items.find(item => item.id === id);
+};
+
+export const getSpecialOffersCategories = () => {
+  const categories = new Set(gpsContent.specialOffers.items.map(item => item.category));
+  return Array.from(categories);
+};
+
+export const addSpecialOffer = (offer) => {
+  gpsContent.specialOffers.items.push(offer);
+};
+
+export const updateSpecialOffer = (offerId, updates) => {
+  const offerIndex = gpsContent.specialOffers.items.findIndex(item => item.id === offerId);
+  if (offerIndex !== -1) {
+    gpsContent.specialOffers.items[offerIndex] = { 
+      ...gpsContent.specialOffers.items[offerIndex], 
+      ...updates 
+    };
+    return gpsContent.specialOffers.items[offerIndex];
+  }
+  return null;
+};
+
+export const removeSpecialOffer = (offerId) => {
+  const offerIndex = gpsContent.specialOffers.items.findIndex(item => item.id === offerId);
+  if (offerIndex !== -1) {
+    return gpsContent.specialOffers.items.splice(offerIndex, 1)[0];
+  }
+  return null;
+};
+
+export const createSpecialOffer = (id, type, category, title, subtitle, description, image, features = [], cta = '', ctaLink = '', additionalData = {}) => ({
+  id,
+  type,
+  category,
+  title,
+  subtitle,
+  description,
+  image,
+  features,
+  cta,
+  ctaLink,
+  ...additionalData
+});
+
+export const getActiveSpecialOffers = () => {
+  const now = new Date();
+  return gpsContent.specialOffers.items.filter(item => {
+    if (item.validUntil) {
+      const validUntil = new Date(item.validUntil);
+      return validUntil > now;
+    }
+    return true; // Items without expiration are always active
+  });
+};
+
+export const getPromotions = () => getSpecialOffersByCategory('promotions');
+export const getDiscounts = () => getSpecialOffersByCategory('discounts');
+export const getSeasonalOffers = () => getSpecialOffersByCategory('seasonal');
+export const getBundles = () => getSpecialOffersByCategory('bundles');

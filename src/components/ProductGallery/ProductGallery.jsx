@@ -223,7 +223,7 @@ const ProductGallery = () => {
   return (
     <section className="product-gallery">
       <div className="container">
-        <h2 className='section-title'>{t('products.title')}</h2>
+        {/* <h2 className='section-title'>{t('products.title')}</h2> */}
         <Carousel 
           slides={productItems}
           autoPlay={false}

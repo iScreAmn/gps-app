@@ -239,5 +239,115 @@
       "name": "Industrial Solutions",
       "description": "Heavy-duty systems for large-scale operations"
     }
+  },
+  "specialOffers": {
+    "section": {
+      "title": "Special Offers",
+      "subtitle": "Exclusive deals and comprehensive solutions for your needs"
+    },
+    "categories": {
+      "promotions": "Current Promotions",
+      "discounts": "Special Discounts",
+      "seasonal": "Seasonal Offers",
+      "bundles": "Complete Solutions"
+    },
+    "promotions": {
+      "springSale": {
+        "title": "Spring GPS Equipment Sale",
+        "subtitle": "Limited Time Offer",
+        "description": "Get the latest GPS technology at unbeatable prices. Perfect for spring surveying projects and outdoor activities.",
+        "badge": "25% OFF",
+        "feature1": "High-precision positioning accuracy",
+        "feature2": "Extended battery life for field work",
+        "feature3": "Weather-resistant design",
+        "cta": "Shop Spring Sale"
+      },
+      "surveyingPromo": {
+        "title": "Professional Surveying Equipment",
+        "subtitle": "Professional Grade Discount",
+        "description": "Upgrade your surveying capabilities with professional-grade equipment at significantly reduced prices.",
+        "badge": "30% OFF",
+        "feature1": "Sub-centimeter accuracy",
+        "feature2": "Real-time kinematic positioning",
+        "feature3": "Multi-constellation support",
+        "cta": "View Professional Equipment"
+      }
+    },
+    "discounts": {
+      "bulkDiscount": {
+        "title": "Volume Purchase Discount",
+        "subtitle": "Bulk Orders Welcome",
+        "description": "Special pricing for bulk purchases. Perfect for organizations, educational institutions, and large projects.",
+        "badge": "Up to 15% OFF",
+        "feature1": "Minimum order quantity: 5 units",
+        "feature2": "Flexible payment terms available",
+        "feature3": "Free installation and setup",
+        "cta": "Request Bulk Quote"
+      },
+      "studentDiscount": {
+        "title": "Educational Discount Program",
+        "subtitle": "Students & Educators",
+        "description": "Special pricing for students, teachers, and educational institutions. Verification required.",
+        "badge": "20% OFF",
+        "feature1": "Valid student/educator ID required",
+        "feature2": "Applies to all GPS equipment",
+        "feature3": "Extended warranty included",
+        "cta": "Apply for Educational Discount"
+      }
+    },
+    "seasonal": {
+      "summerKit": {
+        "title": "Summer Field Survey Kit",
+        "subtitle": "Complete Summer Package",
+        "description": "Everything you need for summer field work. Includes GPS equipment, accessories, and weather protection.",
+        "badge": "Summer Special",
+        "feature1": "GPS receiver with extended range",
+        "feature2": "All-weather protective case",
+        "feature3": "Solar charging capability",
+        "feature4": "Free field training session",
+        "cta": "Get Summer Kit"
+      },
+      "winterSolutions": {
+        "title": "Winter Indoor GPS Solutions",
+        "subtitle": "Cold Weather Package",
+        "description": "Specialized GPS solutions designed for cold weather operations and indoor positioning requirements.",
+        "badge": "Winter Special",
+        "feature1": "Cold-resistant battery technology",
+        "feature2": "Indoor positioning capability",
+        "feature3": "Enhanced signal processing",
+        "cta": "Explore Winter Solutions"
+      }
+    },
+    "bundles": {
+      "completeSurveying": {
+        "title": "Complete Surveying Solution",
+        "subtitle": "Professional Bundle",
+        "description": "Everything you need for professional surveying work. Includes equipment, software, training, and support.",
+        "badge": "Complete Package",
+        "include1": "High-precision GPS receiver",
+        "include2": "Professional surveying software",
+        "include3": "Field accessories and tripod",
+        "include4": "2-day training course",
+        "include5": "1-year premium support",
+        "feature1": "Save €2,500 compared to individual purchases",
+        "feature2": "Ready-to-use solution",
+        "feature3": "Comprehensive training included",
+        "cta": "Get Complete Solution"
+      },
+      "starterPackage": {
+        "title": "GPS Starter Package",
+        "subtitle": "Entry-Level Bundle",
+        "description": "Perfect for those getting started with GPS technology. Includes essential equipment and basic training.",
+        "badge": "Starter Deal",
+        "include1": "Entry-level GPS receiver",
+        "include2": "Basic surveying software",
+        "include3": "Essential accessories",
+        "include4": "Online training course",
+        "feature1": "Save €800 on bundled items",
+        "feature2": "Perfect for beginners",
+        "feature3": "Upgrade path available",
+        "cta": "Start Your Journey"
+      }
+    }
   }
 }
