@@ -176,7 +176,6 @@ body[data-theme="dark"] .product__gallery-features {
   display: flex;
   gap: 1rem;
   flex: 1;
-  max-width: 500px;
 }
 
 .product__thumbnails {
@@ -723,10 +722,6 @@ body[data-theme="dark"] .product__counter {
     gap: 4rem;
   }
   
-  .product__image-section {
-    max-width: 600px;
-  }
-  
   .product__info {
     min-width: 400px;
   }
@@ -763,10 +758,6 @@ body[data-theme="dark"] .product__counter {
   
   .product__wrapper {
     gap: 2rem;
-  }
-  
-  .product__image-section {
-    max-width: 400px;
   }
   
   .product__main-image {
