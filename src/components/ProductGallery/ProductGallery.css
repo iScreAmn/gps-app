@@ -220,7 +220,6 @@ body[data-theme="dark"] .product__gallery-features {
 .product__thumbnail img {
   width: 100%;
   height: 100%;
-  /* object-fit: cover; */
   display: block;
   transition: all 0.3s ease;
 }
@@ -232,7 +231,6 @@ body[data-theme="dark"] .product__gallery-features {
   justify-content: center;
   background: #f8f9fa;
   border-radius: 8px;
-  /* padding: 2rem; */
   min-height: 400px;
   position: relative;
   overflow: visible;

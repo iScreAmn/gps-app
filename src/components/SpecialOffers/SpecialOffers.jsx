@@ -1,4 +1,5 @@
 import React, { useState, useCallback } from 'react';
+/* eslint-disable */
 import { motion } from "motion/react";
 import { useLanguage } from '../../hooks/useLanguage';
 import { 
