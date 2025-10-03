@@ -137,23 +137,23 @@ const AboutPage = () => {
         </div>
 
         <div className="about__option">
-          <h2 className="option__title">რატომ ვართ საუკეთესო არჩევანი?</h2>
-          <p className="option__description">დღესდღეობით Georgian Polygraph Services მომსახურებას უწევს 300-ზე მეტ ორგანიზაციას და ფიზიკურ პირს. მომხმარებელთა სიაში შედის არა მხოლოდ მცირე და საშუალო სარეკლამო კომპანიები, არამედ სტამბები, ოფისები, უნივერსიტეტები და სამთავრობო სტრუქტურები.</p>
+          <h2 className="option__title">{t("about.option.title")}</h2>
+          <p className="option__description">{t("about.option.description")}</p>
           <div className="option__wrapper">
             <div className="option__item">
               <img className="option__img" src={global} alt="Global Brand Trust" />
-              <h2 className="option__item-title">Global Brand Trust</h2>
-              <p className="option__item-description">Over 13 years of experience and partnerships with world-leading brands ensure reliability and long-term success.</p>
+              <h2 className="option__item-title">{t("about.option.feature1.title")}</h2>
+              <p className="option__item-description">{t("about.option.feature1.description")}</p>
             </div>
             <div className="option__item">
               <img className="option__img" src={service3} alt="Expert Service & Support" />
-              <h2 className="option__item-title">Expert Service & Support</h2>
-              <p className="option__item-description">Certified specialists provide full-cycle service — from consultation to maintenance — keeping your business running smoothly.</p>
+              <h2 className="option__item-title">{t("about.option.feature2.title")}</h2>
+              <p className="option__item-description">{t("about.option.feature2.description")}</p>
             </div>
             <div className="option__item">
               <img className="option__img" src={demo} alt="Solutions for Every Business" />
-              <h2 className="option__item-title">Solutions for Every Business</h2>
-              <p className="option__item-description">From small agencies to government institutions, we deliver tailored solutions to fit every scale and need.</p>
+              <h2 className="option__item-title">{t("about.option.feature3.title")}</h2>
+              <p className="option__item-description">{t("about.option.feature3.description")}</p>
             </div>
           </div>
         </div>
