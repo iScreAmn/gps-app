@@ -263,7 +263,10 @@ body[data-theme="dark"] .about__partners-text {
 
 .option__item {
   width: 400px;
-  background: var(--light-card-bg);
+  background: linear-gradient(135deg, 
+    var(--light-card-bg) 0%, 
+    var(--light-hover-bg) 50%, 
+    var(--light-card-bg) 100%);
   padding: 20px;
   border-radius: 15px;
   display: flex;
@@ -275,6 +278,35 @@ body[data-theme="dark"] .about__partners-text {
   box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
   transition: all var(--transition-normal);
   border: 1px solid rgba(0, 0, 0, 0.05);
+  position: relative;
+  overflow: hidden;
+}
+
+.option__item::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -50%;
+  width: 200%;
+  height: 100%;
+  background: linear-gradient(45deg, 
+    transparent 0%, 
+    rgba(220, 38, 38, 0.02) 15%, 
+    rgba(220, 38, 38, 0.05) 25%, 
+    rgba(220, 38, 38, 0.05) 35%, 
+    transparent 50%, 
+    rgba(220, 38, 38, 0.05) 65%, 
+    rgba(220, 38, 38, 0.05) 75%, 
+    rgba(220, 38, 38, 0.02) 85%, 
+    transparent 100%);
+  opacity: 0;
+  transition: opacity 0.1s ease;
+  z-index: 0;
+}
+
+.option__item > * {
+  position: relative;
+  z-index: 1;
 }
 
 .option__img {
@@ -283,14 +315,35 @@ body[data-theme="dark"] .about__partners-text {
 }
 
 body[data-theme="dark"] .option__item {
-  background: var(--dark-card-bg);
+  background: linear-gradient(135deg, 
+    var(--dark-card-bg) 0%, 
+    var(--dark-hover-bg) 50%, 
+    var(--dark-card-bg) 100%);
   box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3), 0 2px 4px -1px rgba(0, 0, 0, 0.2);
   border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+body[data-theme="dark"] .option__item::before {
+  background: linear-gradient(45deg, 
+    transparent 0%, 
+    rgba(220, 38, 38, 0.04) 15%, 
+    rgba(220, 38, 38, 0.1) 25%, 
+    rgba(220, 38, 38, 0.1) 35%, 
+    transparent 50%, 
+    rgba(220, 38, 38, 0.1) 65%, 
+    rgba(220, 38, 38, 0.1) 75%, 
+    rgba(220, 38, 38, 0.04) 85%, 
+    transparent 100%);
 }
 
 .option__item:hover {
   transform: translateY(-6px);
   box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+}
+
+.option__item:hover::before {
+  opacity: 1;
+  animation: shimmer 3s ease-in-out infinite;
 }
 
 body[data-theme="dark"] .option__item:hover {
