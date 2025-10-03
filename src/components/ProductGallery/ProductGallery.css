@@ -173,9 +173,20 @@ body[data-theme="dark"] .product__gallery-features {
 
 /* Image Section */
 .product__image-section {
+  height: 600px;
   display: flex;
   gap: 1rem;
   flex: 1;
+}
+
+/* Thumbnails Container */
+.product__thumbnails-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  flex-shrink: 0;
+  position: relative;
 }
 
 .product__thumbnails {
@@ -183,6 +194,9 @@ body[data-theme="dark"] .product__gallery-features {
   flex-direction: column;
   gap: 0.5rem;
   flex-shrink: 0;
+  height: 500px;
+  /* overflow: hidden; */
+  position: relative;
 }
 
 .product__thumbnail {
@@ -346,6 +360,62 @@ body[data-theme="dark"] .zoom-overlay {
 
 .product__thumbnail.active::after {
   background: rgba(220, 38, 38, 0.1);
+}
+
+/* Thumbnails Navigation Buttons */
+.thumbnails-nav-btn {
+  background: #dc2626;
+  color: white;
+  border: none;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 16px;
+  font-weight: bold;
+  box-shadow: 0 2px 8px rgba(220, 38, 38, 0.3);
+  z-index: 10;
+  position: relative;
+}
+
+.thumbnails-nav-btn:hover:not(:disabled) {
+  background: #b91c1c;
+  transform: scale(1.1);
+  box-shadow: 0 4px 12px rgba(220, 38, 38, 0.4);
+}
+
+.thumbnails-nav-btn:disabled {
+  background: #9ca3af;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+  opacity: 0.5;
+}
+
+.thumbnails-prev-btn {
+  margin-bottom: 0.5rem;
+}
+
+.thumbnails-next-btn {
+  margin-top: 0.5rem;
+}
+
+body[data-theme="dark"] .thumbnails-nav-btn {
+  background: #dc2626;
+  box-shadow: 0 2px 8px rgba(220, 38, 38, 0.4);
+}
+
+body[data-theme="dark"] .thumbnails-nav-btn:hover:not(:disabled) {
+  background: #b91c1c;
+  box-shadow: 0 4px 12px rgba(220, 38, 38, 0.5);
+}
+
+body[data-theme="dark"] .thumbnails-nav-btn:disabled {
+  background: #6b7280;
 }
 
 /* Product Info Section */
@@ -760,6 +830,20 @@ body[data-theme="dark"] .product__counter {
     gap: 2rem;
   }
   
+  .product__thumbnails-container {
+    gap: 0.5rem;
+  }
+  
+  .product__thumbnails {
+    height: 400px;
+  }
+  
+  .thumbnails-nav-btn {
+    width: 30px;
+    height: 30px;
+    font-size: 15px;
+  }
+  
   .product__main-image {
     min-height: 300px;
     padding: 1.5rem;
@@ -868,17 +952,41 @@ body[data-theme="dark"] .product__counter {
     
   }
   
+  .product__thumbnails-container {
+    flex-direction: row;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  
   .product__thumbnails {
     flex-direction: row;
     gap: 0.5rem;
     overflow-x: auto;
     padding-bottom: 0.5rem;
+    height: auto;
+    max-height: 80px;
   }
   
   .product__thumbnail {
     flex-shrink: 0;
     width: 70px;
     height: 70px;
+  }
+  
+  .thumbnails-nav-btn {
+    width: 28px;
+    height: 28px;
+    font-size: 14px;
+  }
+  
+  .thumbnails-prev-btn {
+    margin-bottom: 0;
+    margin-right: 0.5rem;
+  }
+  
+  .thumbnails-next-btn {
+    margin-top: 0;
+    margin-left: 0.5rem;
   }
   
   .product__main-image {
@@ -1021,17 +1129,41 @@ body[data-theme="dark"] .product__counter {
     flex-direction: column;
   }
   
+  .product__thumbnails-container {
+    flex-direction: row;
+    align-items: center;
+    gap: 0.375rem;
+  }
+  
   .product__thumbnails {
     flex-direction: row;
     gap: 0.375rem;
     overflow-x: auto;
     padding-bottom: 0.375rem;
+    height: auto;
+    max-height: 70px;
   }
   
   .product__thumbnail {
     width: 60px;
     height: 60px;
     border-radius: 6px;
+  }
+  
+  .thumbnails-nav-btn {
+    width: 24px;
+    height: 24px;
+    font-size: 12px;
+  }
+  
+  .thumbnails-prev-btn {
+    margin-bottom: 0;
+    margin-right: 0.375rem;
+  }
+  
+  .thumbnails-next-btn {
+    margin-top: 0;
+    margin-left: 0.375rem;
   }
   
   .product__main-image {
@@ -1236,6 +1368,29 @@ body[data-theme="dark"] .product__counter {
   
   .product__wrapper {
     gap: 1rem;
+  }
+  
+  .product__thumbnails-container {
+    gap: 0.25rem;
+  }
+  
+  .product__thumbnails {
+    gap: 0.25rem;
+    max-height: 60px;
+  }
+  
+  .thumbnails-nav-btn {
+    width: 20px;
+    height: 20px;
+    font-size: 10px;
+  }
+  
+  .thumbnails-prev-btn {
+    margin-right: 0.25rem;
+  }
+  
+  .thumbnails-next-btn {
+    margin-left: 0.25rem;
   }
   
   .product__main-image {

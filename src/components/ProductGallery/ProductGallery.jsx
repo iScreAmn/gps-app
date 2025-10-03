@@ -19,10 +19,17 @@ const ProductGallery = () => {
   const [isChangingImage, setIsChangingImage] = useState(false);
   const [currentProductIndex, setCurrentProductIndex] = useState(0);
   
+  // State for thumbnails slider
+  const [thumbnailsStartIndex, setThumbnailsStartIndex] = useState(0);
+  const [isThumbnailsDragging, setIsThumbnailsDragging] = useState(false);
+  const [thumbnailsDragStart, setThumbnailsDragStart] = useState(0);
+  const [thumbnailsDragOffset, setThumbnailsDragOffset] = useState(0);
+  
   // State for category filtering
   const [activeCategory, setActiveCategory] = useState('new');
   const imageRef = useRef(null);
   const zoomRef = useRef(null);
+  const thumbnailsRef = useRef(null);
 
   // Category definitions
   const categories = [
@@ -42,6 +49,7 @@ const ProductGallery = () => {
     setCurrentProductIndex(0); // Reset to first product
     setActiveImageIndex(0); // Reset to first image
     setIsZooming(false); // Disable zoom
+    setThumbnailsStartIndex(0); // Reset thumbnails slider
   }, []);
 
   const filteredProducts = getFilteredProducts();
@@ -65,12 +73,14 @@ const ProductGallery = () => {
     }, 150);
   }, [activeImageIndex]);
 
+
   // Handle product navigation
   const handleNextProduct = useCallback(() => {
     if (currentProductIndex < filteredProducts.length - 1) {
       setCurrentProductIndex(prev => prev + 1);
       setActiveImageIndex(0); // Reset to first image
       setIsZooming(false);
+      setThumbnailsStartIndex(0); // Reset thumbnails slider
     }
   }, [currentProductIndex, filteredProducts.length]);
 
@@ -79,6 +89,7 @@ const ProductGallery = () => {
       setCurrentProductIndex(prev => prev - 1);
       setActiveImageIndex(0); // Reset to first image
       setIsZooming(false);
+      setThumbnailsStartIndex(0); // Reset thumbnails slider
     }
   }, [currentProductIndex]);
 
@@ -161,6 +172,53 @@ const ProductGallery = () => {
   ];
   
   const displayImages = images.length > 0 ? images : fallbackImages;
+  
+  // Thumbnails slider functions
+  const maxVisibleThumbnails = 5;
+  const showThumbnailsSlider = displayImages.length > maxVisibleThumbnails;
+  const maxThumbnailsStartIndex = Math.max(0, displayImages.length - maxVisibleThumbnails);
+
+  const handleThumbnailsPrev = useCallback(() => {
+    setThumbnailsStartIndex(prev => Math.max(0, prev - 1));
+  }, []);
+
+  const handleThumbnailsNext = useCallback(() => {
+    setThumbnailsStartIndex(prev => Math.min(maxThumbnailsStartIndex, prev + 1));
+  }, [maxThumbnailsStartIndex]);
+
+  // Touch/swipe handlers for mobile
+  const handleThumbnailsTouchStart = useCallback((e) => {
+    if (!isMobile()) return;
+    setIsThumbnailsDragging(true);
+    setThumbnailsDragStart(e.touches[0].clientX);
+    setThumbnailsDragOffset(0);
+  }, [isMobile]);
+
+  const handleThumbnailsTouchMove = useCallback((e) => {
+    if (!isThumbnailsDragging || !isMobile()) return;
+    e.preventDefault();
+    const currentX = e.touches[0].clientX;
+    const diff = thumbnailsDragStart - currentX;
+    setThumbnailsDragOffset(diff);
+  }, [isThumbnailsDragging, isMobile, thumbnailsDragStart]);
+
+  const handleThumbnailsTouchEnd = useCallback(() => {
+    if (!isThumbnailsDragging || !isMobile()) return;
+    
+    const threshold = 50; // Minimum swipe distance
+    if (Math.abs(thumbnailsDragOffset) > threshold) {
+      if (thumbnailsDragOffset > 0) {
+        // Swipe left - show next thumbnails
+        handleThumbnailsNext();
+      } else {
+        // Swipe right - show previous thumbnails
+        handleThumbnailsPrev();
+      }
+    }
+    
+    setIsThumbnailsDragging(false);
+    setThumbnailsDragOffset(0);
+  }, [isThumbnailsDragging, isMobile, thumbnailsDragOffset, handleThumbnailsNext, handleThumbnailsPrev]);
   
   // Reset active image index if it's out of bounds
   useEffect(() => {
@@ -259,19 +317,58 @@ const ProductGallery = () => {
         >
           <div className="product__wrapper">
             <div className="product__image-section">
-              <div className="product__thumbnails">
-                {displayImages.map((image, index) => (
-                  <div 
-                    key={index} 
-                    className={`product__thumbnail ${index === activeImageIndex ? 'active' : ''}`}
-                    onClick={() => handleThumbnailClick(index)}
+              <div className="product__thumbnails-container">
+                {showThumbnailsSlider && (
+                  <button 
+                    className="thumbnails-nav-btn thumbnails-prev-btn"
+                    onClick={handleThumbnailsPrev}
+                    disabled={thumbnailsStartIndex === 0}
+                    aria-label="Previous thumbnails"
                   >
-                    <img 
-                      src={image.src} 
-                      alt={image.alt || `Product image ${index + 1}`} 
-                    />
-                  </div>
-                ))}
+                    ↑
+                  </button>
+                )}
+                
+                <div 
+                  className="product__thumbnails"
+                  ref={thumbnailsRef}
+                  onTouchStart={handleThumbnailsTouchStart}
+                  onTouchMove={handleThumbnailsTouchMove}
+                  onTouchEnd={handleThumbnailsTouchEnd}
+                  style={{
+                    transform: isThumbnailsDragging ? `translateY(${thumbnailsDragOffset * 0.1}px)` : 'none',
+                    transition: isThumbnailsDragging ? 'none' : 'transform 0.3s ease'
+                  }}
+                >
+                  {displayImages
+                    .slice(thumbnailsStartIndex, thumbnailsStartIndex + maxVisibleThumbnails)
+                    .map((image, index) => {
+                      const actualIndex = thumbnailsStartIndex + index;
+                      return (
+                        <div 
+                          key={actualIndex} 
+                          className={`product__thumbnail ${actualIndex === activeImageIndex ? 'active' : ''}`}
+                          onClick={() => handleThumbnailClick(actualIndex)}
+                        >
+                          <img 
+                            src={image.src} 
+                            alt={image.alt || `Product image ${actualIndex + 1}`} 
+                          />
+                        </div>
+                      );
+                    })}
+                </div>
+                
+                {showThumbnailsSlider && (
+                  <button 
+                    className="thumbnails-nav-btn thumbnails-next-btn"
+                    onClick={handleThumbnailsNext}
+                    disabled={thumbnailsStartIndex >= maxThumbnailsStartIndex}
+                    aria-label="Next thumbnails"
+                  >
+                    ↓
+                  </button>
+                )}
               </div>
               <div className="product__main-image">
                 <div 
