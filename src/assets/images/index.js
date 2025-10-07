@@ -7,6 +7,7 @@ export { default as printer5 } from './printers/pr_05.png';
 
 //Logos
 export { default as mainLogo } from './gps_logo.png';
+export { default as mainLogoWhite } from './gps_logo-white.webp';
 //Partners logos
 export { default as duplo } from './partners/duplo.webp';
 export { default as knb } from './partners/knb.png';

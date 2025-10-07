@@ -1,21 +1,30 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { useLanguage } from "../../hooks/useLanguage";
+import { useTheme } from '../../contexts/ThemeContext';
+import { mainLogo, mainLogoWhite } from '../../assets/images';
 import './Footer.css';
 
 const Footer = () => {
   const { language, t } = useLanguage();
+  const { theme } = useTheme();
   const currentYear = new Date().getFullYear();
+  
+  // Determine logo based on theme
+  const currentLogo = theme === 'dark' ? mainLogoWhite : mainLogo;
 
   return (
     <footer className="footer">
       <div className="container">
         <div className="footer-content">
           <div className="footer-section">
-            <div className="logo-footer">
-              <span className="logo-main">Georgian Polygraph</span>
-              <span className="logo-sub">Service</span>
-            </div>
+            <Link to={`/${language}`} className="logo-footer">
+              <img 
+                src={currentLogo} 
+                alt="Georgian GPS Logo" 
+                className="footer-logo-image"
+              />
+            </Link>
             <p className="footer-description">
               {t('footer.description')}
             </p>
