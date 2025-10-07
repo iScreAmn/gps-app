@@ -11,7 +11,7 @@ const Hero = () => {
 
   return (
     <section className="hero">
-      <div className="hero-container">
+      <div className="container">
         <div className="hero-layout">
           {/* Left Sidebar - Category List */}
           <div className="hero-sidebar hero-sidebar-left">
