@@ -8,6 +8,17 @@
   overflow: hidden;
 }
 
+body[data-theme="dark"] .best-deals {
+  background: var(--dark-card-bg);
+    box-shadow: var(--dark-shadow);
+    border-color: var(--dark-border);
+}
+
+body[data-theme="dark"] .deals-title , body[data-theme="dark"] .deals-subtitle {
+  color: #fff;
+}
+
+
 .best-deals::before {
   content: '';
   position: absolute;
@@ -15,7 +26,7 @@
   right: 0;
   width: 60px;
   height: 60px;
-  background: linear-gradient(45deg, var(--primary-red, #dc2626), #b91c1c);
+  background: linear-gradient(45deg, var(--dark-bg, #fff), #fff);
   border-radius: 0 12px 0 50px;
   opacity: 0.1;
 }

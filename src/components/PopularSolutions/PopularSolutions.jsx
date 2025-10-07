@@ -1,72 +1,70 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { useLanguage } from '../../hooks/useLanguage';
-import { 
-  MdLocationOn, 
-  MdEngineering, 
-  MdPrecisionManufacturing,
-  MdSpeed,
-  MdSecurity,
-  MdSupport
-} from 'react-icons/md';
-import './PopularSolutions.css';
+import { FaDotCircle } from 'react-icons/fa';
+import './SidebarCategory.css';
 
-const PopularSolutions = () => {
+const SidebarCategory = () => {
   const { t } = useLanguage();
 
-  const solutions = [
+  const categories = [
     {
-      id: 'office-gps',
-      icon: MdLocationOn,
-      title: 'solutions.office.title',
-      description: 'solutions.office.description',
+      id: 'office-equipment',
+      title: 'categories.office_equipment',
       link: '/catalog/office'
     },
     {
-      id: 'professional-equipment',
-      icon: MdEngineering,
-      title: 'solutions.professional.title',
-      description: 'solutions.professional.description',
-      link: '/catalog/professional'
+      id: 'production-printers',
+      title: 'categories.production_printers',
+      link: '/catalog/production'
     },
     {
-      id: 'industrial-solutions',
-      icon: MdPrecisionManufacturing,
-      title: 'solutions.industrial.title',
-      description: 'solutions.industrial.description',
-      link: '/catalog/industrial'
+      id: 'wide-format-printers',
+      title: 'categories.wide_format_printers',
+      link: '/catalog/wide-format'
+    },
+    {
+      id: 'guillotine-cutter',
+      title: 'categories.guillotine_cutter',
+      link: '/catalog/guillotine'
+    },
+    {
+      id: 'shredder',
+      title: 'categories.shredder',
+      link: '/catalog/shredder'
+    },
+    {
+      id: 'laminator',
+      title: 'categories.laminator',
+      link: '/catalog/laminator'
+    },
+    {
+      id: 'accessories',
+      title: 'categories.accessories',
+      link: '/catalog/accessories'
     },
   ];
 
   return (
-    <div className="popular-solutions">
-      <div className="solutions-header">
-        <h3 className="solutions-title">{t('solutions.title')}</h3>
-        <p className="solutions-subtitle">{t('solutions.subtitle')}</p>
+    <div className="sidebar-category">
+      <div className="category-header">
+        <h3 className="category-title">{t('categories.title')}</h3>
       </div>
       
-      <div className="solutions-list">
-        {solutions.map((solution) => {
-          const IconComponent = solution.icon;
-          return (
-            <Link 
-              key={solution.id}
-              to={solution.link}
-              className="solution-item"
-            >
-              <div className="solution-icon">
-                <IconComponent />
-              </div>
-              <div className="solution-content">
-                <h4 className="solution-title">{t(solution.title)}</h4>
-                <p className="solution-description">{t(solution.description)}</p>
-              </div>
-            </Link>
-          );
-        })}
+      <div className="category-list">
+        {categories.map((category) => (
+          <Link 
+            key={category.id}
+            to={category.link}
+            className="category-item"
+          >
+            <FaDotCircle className="category-icon" />
+            <span className="category-text">{t(category.title)}</span>
+          </Link>
+        ))}
       </div>
     </div>
   );
 };
 
-export default PopularSolutions;
+export default SidebarCategory;
