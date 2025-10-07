@@ -35,10 +35,6 @@ const TopHeader = () => {
             />
           </Link>
 
-          {/* Location and Hours */}
-          <div className="hours">{t('header.hours')}</div>
-
-
           {/* Search */}
           <form className="search-form" onSubmit={handleSearch}>
             <input
@@ -57,31 +53,33 @@ const TopHeader = () => {
           <div className="contact-info">
             <div className="phone-numbers">
               <div className="phone">{t('header.phone1')}</div>
-              <div className="phone">{t('header.phone2')}</div>
             </div>
             <div className="email">{t('header.email')}</div>
           </div>
 
           {/* Social Media */}
-          <div className="social-media">
-            <a 
-              href={t('header.telegramLink')} 
-              className="social-link telegram"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="Telegram"
-            >
-              <FaTelegram />
-            </a>
-            <a 
-              href={t('header.whatsappLink')} 
-              className="social-link whatsapp"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="WhatsApp"
-            >
-              <FaWhatsapp />
-            </a>
+          <div className="social-section">
+            <div className="social-media">
+              <a 
+                href={t('header.telegramLink')} 
+                className="social-link telegram"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Telegram"
+              >
+                <FaTelegram />
+              </a>
+              <a 
+                href={t('header.whatsappLink')} 
+                className="social-link whatsapp"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="WhatsApp"
+              >
+                <FaWhatsapp />
+              </a>
+            </div>
+            <div className="hours">{t('header.hours')}</div>
           </div>
         </div>
       </div>

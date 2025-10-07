@@ -2,12 +2,12 @@
   width: 100%;
   padding: 60px 0;
   background: #f8fafc;
-  border-top: 1px solid #e2e8f0;
+  /* border-top: 1px solid #e2e8f0; */
 }
 
 body[data-theme="dark"] .partners-section {
   background: var(--dark-bg);
-  border-top: 1px solid #374151;
+  /* border-top: 1px solid #374151; */
 }
 
 .partners-container {
