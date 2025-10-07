@@ -34,10 +34,6 @@ const CategoryCards = () => {
   return (
     <section className="category-cards-section section">
       <div className="container">
-        <h2 className="section-title">
-          {t('categories.title')}
-        </h2>
-        
         <div className="category-cards-grid">
           {categories.map((category) => (
             <Link

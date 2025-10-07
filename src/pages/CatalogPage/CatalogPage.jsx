@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { useLanguage } from "../../hooks/useLanguage";
 import ProductCard from '../../components/ProductCard/ProductCard';
+import CategoryCards from '../../components/CategoryCards/CategoryCards';
 import './CatalogPage.css';
 
 const CatalogPage = () => {
@@ -71,6 +72,9 @@ const CatalogPage = () => {
 
   return (
     <div className="catalog-page">
+      {/* Category Cards Section */}
+      {!category && <CategoryCards />}
+      
       <div className="container">
         <div className="catalog-header">
           <h1 className="catalog-title">{getCategoryTitle()}</h1>
