@@ -7,6 +7,18 @@
     "news": "News",
     "contacts": "Contacts"
   },
+  "header": {
+    "system": "System",
+    "tagline": "Fast. Reliable. Profitable.",
+    "location": "Tbilisi",
+    "hours": "Mon-Sut 10:00 - 18:00",
+    "searchPlaceholder": "Search 5,000 products",
+    "phone1": "+995 32 230 81 77",
+    "phone2": "+995 577 77 88 99",
+    "email": "info@geopolser.ge",
+    "telegramLink": "https://t.me/georgiangps",
+    "whatsappLink": "https://wa.me/995322557799"
+  },
   "hero": {
     "office": {
       "title": "Office GPS Solutions",

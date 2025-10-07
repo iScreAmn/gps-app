@@ -7,6 +7,18 @@
     "news": "სიახლეები",
     "contacts": "კონტაქტები"
   },
+  "header": {
+    "system": "სისტემი",
+    "tagline": "სწრაფად. საიმედოდ. მომგებიანად.",
+    "location": "თბილისი",
+    "hours": "ორშ-შაბ 10:00 - 18:00",
+    "searchPlaceholder": "ძიება 5 000 პროდუქტში",
+    "phone1": "+995 32 230 81 77",
+    "phone2": "+995 577 77 88 99",
+    "email": "info@geopolser.ge",
+    "telegramLink": "https://t.me/georgiangps",
+    "whatsappLink": "https://wa.me/995322557799"
+  },
   "hero": {
     "office": {
       "title": "ოფისის გადაწყვეტილებები",

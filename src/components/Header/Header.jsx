@@ -42,14 +42,6 @@ const Header = () => {
     <header className="header">
       <div className="container">
         <div className="header-content">
-          {/* Logo */}
-          <Link to={`/${language}`} className="logo">
-            <div className="logo-text">
-              <span className="logo-main">Georgian Polygraph</span>
-              <span className="logo-sub">Service</span>
-            </div>
-          </Link>
-
           {/* Desktop Navigation */}
           <nav className="nav-desktop">
             {navigation.map((item) => (
