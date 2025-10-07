@@ -1,6 +1,6 @@
 import React from 'react';
 import Carousel from '../Carousel/Carousel';
-import PopularSolutions from '../PopularSolutions/PopularSolutions';
+import SidebarCategory from '../SidebarCategory/SidebarCategory';
 import BestDeals from '../BestDeals/BestDeals';
 import ServiceSupport from '../ServiceSupport/ServiceSupport';
 import { getCarouselSlides } from '../../data/contentData';
@@ -13,9 +13,9 @@ const Hero = () => {
     <section className="hero">
       <div className="hero-container">
         <div className="hero-layout">
-          {/* Left Sidebar - Popular Solutions */}
+          {/* Left Sidebar - Category List */}
           <div className="hero-sidebar hero-sidebar-left">
-            <PopularSolutions />
+            <SidebarCategory />
           </div>
           
           {/* Center - Original Carousel */}

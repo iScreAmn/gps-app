@@ -4,6 +4,11 @@
   background: #f8fafc;
 }
 
+body[data-theme="dark"] .hero {
+  background: var(--dark-bg);
+  box-shadow: var(--dark-shadow);
+}
+
 .hero-container {
   max-width: 1400px;
   margin: 0 auto;
@@ -52,18 +57,25 @@
 
 /* Ensure carousel slides fit well in the new layout */
 .hero .carousel-slide-hero {
-  height: 400px;
-  min-height: 400px;
+  height: 580px;
+  min-height: 580px;
 }
 
 .hero .carousel-slide-product {
-  height: 400px;
-  min-height: 400px;
+  height: 580px;
+  min-height: 580px;
 }
 
 .hero .carousel-slide-content {
-  height: 400px;
-  min-height: 400px;
+  height: 580px;
+  min-height: 580px;
+}
+
+/* Ensure background images fill the entire container */
+.hero .hero-background,
+.hero .content-background {
+  background-size: 100% 100% !important;
+  background-position: center !important;
 }
 
 /* Responsive Design */
