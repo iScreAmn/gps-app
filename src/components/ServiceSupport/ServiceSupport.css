@@ -1,0 +1,297 @@
+.service-support {
+  background: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%);
+  border-radius: 12px;
+  padding: 24px;
+  box-shadow: 0 4px 20px rgba(220, 38, 38, 0.2);
+  width: 300px;
+  height: 300px;
+  position: relative;
+  overflow: hidden;
+}
+
+.service-support::before {
+  content: '';
+  position: absolute;
+  top: -20px;
+  right: -20px;
+  width: 80px;
+  height: 80px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 50%;
+}
+
+.service-support::after {
+  content: '';
+  position: absolute;
+  bottom: -30px;
+  left: -30px;
+  width: 100px;
+  height: 100px;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 50%;
+}
+
+.support-header {
+  margin-bottom: 20px;
+  position: relative;
+  z-index: 2;
+}
+
+.support-title {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: white;
+  margin: 0 0 8px 0;
+  line-height: 1.3;
+}
+
+.support-subtitle {
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.9);
+  margin: 0;
+  line-height: 1.4;
+}
+
+.support-visual {
+  margin-bottom: 20px;
+  position: relative;
+  z-index: 2;
+}
+
+.support-devices {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 16px;
+  padding: 0 10px;
+}
+
+.device {
+  width: 50px;
+  height: 35px;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 6px;
+  position: relative;
+  animation: pulse 2s ease-in-out infinite;
+}
+
+.device-2 {
+  animation-delay: 1s;
+}
+
+@keyframes pulse {
+  0%, 100% { 
+    opacity: 0.7;
+    transform: scale(1);
+  }
+  50% { 
+    opacity: 1;
+    transform: scale(1.05);
+  }
+}
+
+.device-screen {
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  right: 2px;
+  bottom: 2px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.screen-content {
+  position: absolute;
+  top: 4px;
+  left: 4px;
+  right: 4px;
+  bottom: 4px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 2px;
+}
+
+.support-services {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  padding: 0 10px;
+}
+
+.service-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 12px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 6px;
+  font-size: 0.85rem;
+  color: white;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  transition: all 0.3s ease;
+  backdrop-filter: blur(10px);
+}
+
+.service-item:hover {
+  background: rgba(255, 255, 255, 0.2);
+  border-color: rgba(255, 255, 255, 0.3);
+  transform: translateY(-1px);
+}
+
+.service-icon {
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 1rem;
+  flex-shrink: 0;
+}
+
+.support-cta {
+  text-align: center;
+  position: relative;
+  z-index: 2;
+}
+
+.support-button {
+  display: inline-block;
+  background: rgba(255, 255, 255, 0.9);
+  color: var(--primary-red, #dc2626);
+  text-decoration: none;
+  padding: 12px 24px;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 0.95rem;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.support-button:hover {
+  background: white;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+  color: var(--primary-red, #dc2626);
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .service-support {
+    padding: 20px;
+    min-height: 250px;
+  }
+  
+  .support-title {
+    font-size: 1.3rem;
+  }
+  
+  .device {
+    width: 45px;
+    height: 32px;
+  }
+  
+  .support-services {
+    gap: 6px;
+  }
+  
+  .service-item {
+    padding: 6px 10px;
+    font-size: 0.8rem;
+  }
+  
+  .support-button {
+    padding: 10px 20px;
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .service-support {
+    padding: 16px;
+    min-height: 220px;
+  }
+  
+  .support-header {
+    margin-bottom: 16px;
+  }
+  
+  .support-title {
+    font-size: 1.2rem;
+  }
+  
+  .support-subtitle {
+    font-size: 0.85rem;
+  }
+  
+  .support-devices {
+    margin-bottom: 12px;
+    padding: 0 5px;
+  }
+  
+  .device {
+    width: 40px;
+    height: 28px;
+  }
+  
+  .support-services {
+    padding: 0 5px;
+    gap: 5px;
+  }
+  
+  .service-item {
+    padding: 5px 8px;
+    font-size: 0.75rem;
+    gap: 6px;
+  }
+  
+  .service-icon {
+    font-size: 0.9rem;
+  }
+  
+  .support-button {
+    padding: 8px 16px;
+    font-size: 0.85rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .service-support {
+    padding: 12px;
+    min-height: 200px;
+  }
+  
+  .support-header {
+    margin-bottom: 12px;
+  }
+  
+  .support-title {
+    font-size: 1.1rem;
+  }
+  
+  .support-subtitle {
+    font-size: 0.8rem;
+  }
+  
+  .support-devices {
+    margin-bottom: 10px;
+  }
+  
+  .device {
+    width: 35px;
+    height: 25px;
+  }
+  
+  .support-services {
+    gap: 4px;
+  }
+  
+  .service-item {
+    padding: 4px 6px;
+    font-size: 0.7rem;
+    gap: 4px;
+  }
+  
+  .service-icon {
+    font-size: 0.8rem;
+  }
+  
+  .support-button {
+    padding: 6px 12px;
+    font-size: 0.8rem;
+  }
+}
