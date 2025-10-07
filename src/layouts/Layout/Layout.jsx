@@ -1,5 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 import { useLocation } from 'react-router-dom';
+import TopHeader from '../../components/Header/TopHeader';
 import Header from '../../components/Header/Header';
 import Footer from '../../components/Footer/Footer';
 import ScrollToTop from '../../components/widgets/ScrollToTop/ScrollToTop';
@@ -34,6 +35,7 @@ const Layout = ({ children }) => {
 
   return (
     <div className="layout">
+      <TopHeader />
       <Header />
       <main className="main-content">
         {children}
