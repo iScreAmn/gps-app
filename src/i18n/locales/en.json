@@ -268,6 +268,52 @@
       "description": "Heavy-duty systems for large-scale operations"
     }
   },
+  "solutions": {
+    "title": "Popular Solutions",
+    "subtitle": "Explore our most requested GPS solutions",
+    "office": {
+      "title": "Office GPS",
+      "description": "Compact solutions for office use"
+    },
+    "professional": {
+      "title": "Professional Equipment",
+      "description": "High-precision surveying tools"
+    },
+    "industrial": {
+      "title": "Industrial Solutions",
+      "description": "Heavy-duty systems for large operations"
+    },
+    "precision": {
+      "title": "High Precision",
+      "description": "Sub-centimeter accuracy systems"
+    },
+    "security": {
+      "title": "Security Systems",
+      "description": "Protected GPS solutions"
+    },
+    "support": {
+      "title": "Technical Support",
+      "description": "Expert maintenance and service"
+    }
+  },
+  "deals": {
+    "title": "Best Deals on Supplies",
+    "subtitle": "Quality materials at competitive prices",
+    "security": "Security",
+    "support": "Support",
+    "maintenance": "Maintenance",
+    "configuration": "Configuration",
+    "cta": "View All Supplies"
+  },
+  "support": {
+    "title": "Service & Support",
+    "subtitle": "Professional maintenance and technical assistance",
+    "technical": "Technical Service",
+    "maintenance": "Maintenance",
+    "configuration": "Configuration",
+    "consultation": "Consultation",
+    "cta": "Learn More"
+  },
   "specialOffers": {
     "section": {
       "title": "Special Offers",
