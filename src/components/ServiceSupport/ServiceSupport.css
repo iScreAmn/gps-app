@@ -31,12 +31,13 @@
 }
 
 .support-header {
-  margin-bottom: 20px;
+  margin-bottom: 40px;
   position: relative;
   z-index: 2;
 }
 
 .support-title {
+  width: 180px;
   font-size: 1.4rem;
   font-weight: 700;
   color: white;
@@ -55,6 +56,18 @@
   margin-bottom: 20px;
   position: relative;
   z-index: 2;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 120px;
+}
+
+.support-image {
+  margin: 10px 0 0 140px;
+  max-width: 220px;
+  height: auto;
+  object-fit: contain;
+  filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.3));
 }
 
 .support-devices {
@@ -179,6 +192,14 @@
     font-size: 1.3rem;
   }
   
+  .support-visual {
+    min-height: 100px;
+  }
+  
+  .support-image {
+    max-width: 160px;
+  }
+  
   .device {
     width: 45px;
     height: 32px;
@@ -215,6 +236,15 @@
   
   .support-subtitle {
     font-size: 0.85rem;
+  }
+  
+  .support-visual {
+    min-height: 90px;
+    margin-bottom: 16px;
+  }
+  
+  .support-image {
+    max-width: 140px;
   }
   
   .support-devices {
@@ -264,6 +294,15 @@
   
   .support-subtitle {
     font-size: 0.8rem;
+  }
+  
+  .support-visual {
+    min-height: 80px;
+    margin-bottom: 12px;
+  }
+  
+  .support-image {
+    max-width: 120px;
   }
   
   .support-devices {

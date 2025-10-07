@@ -32,12 +32,13 @@ body[data-theme="dark"] .deals-title , body[data-theme="dark"] .deals-subtitle {
 }
 
 .deals-header {
-  margin-bottom: 20px;
+  margin-bottom: 40px;
   position: relative;
   z-index: 2;
 }
 
 .deals-title {
+  width: 220px;
   font-size: 1.4rem;
   font-weight: 700;
   color: var(--text-primary, #1a1a1a);
@@ -56,6 +57,22 @@ body[data-theme="dark"] .deals-title , body[data-theme="dark"] .deals-subtitle {
   margin-bottom: 20px;
   position: relative;
   z-index: 2;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 120px;
+}
+
+.deals-image {
+  margin: 0 0 0 70px;
+  max-width: 220px;
+  height: auto;
+  object-fit: contain;
+  filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.1));
+}
+
+body[data-theme="dark"] .deals-image {
+  filter: drop-shadow(0 4px 12px rgba(255, 255, 255, 0.1));
 }
 
 .deals-icons {
@@ -157,6 +174,14 @@ body[data-theme="dark"] .deals-title , body[data-theme="dark"] .deals-subtitle {
     font-size: 1.3rem;
   }
   
+  .deals-visual {
+    min-height: 100px;
+  }
+  
+  .deals-image {
+    max-width: 160px;
+  }
+  
   .deal-icon {
     width: 36px;
     height: 36px;
@@ -194,6 +219,15 @@ body[data-theme="dark"] .deals-title , body[data-theme="dark"] .deals-subtitle {
   
   .deals-subtitle {
     font-size: 0.85rem;
+  }
+  
+  .deals-visual {
+    min-height: 90px;
+    margin-bottom: 16px;
+  }
+  
+  .deals-image {
+    max-width: 140px;
   }
   
   .deals-icons {
@@ -244,6 +278,15 @@ body[data-theme="dark"] .deals-title , body[data-theme="dark"] .deals-subtitle {
   
   .deals-subtitle {
     font-size: 0.8rem;
+  }
+  
+  .deals-visual {
+    min-height: 80px;
+    margin-bottom: 12px;
+  }
+  
+  .deals-image {
+    max-width: 120px;
   }
   
   .deals-icons {

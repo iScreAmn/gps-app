@@ -1,14 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { useLanguage } from '../../hooks/useLanguage';
-import { 
-  MdSupport, 
-  MdBuild, 
-  MdSettings,
-  MdSpeed,
-  MdSecurity,
-  MdPhone
-} from 'react-icons/md';
+import serviceIcon from '../../assets/images/icons/service-icon.webp';
 import './ServiceSupport.css';
 
 const ServiceSupport = () => {
@@ -18,10 +11,11 @@ const ServiceSupport = () => {
     <div className="service-support">
       <div className="support-header">
         <h3 className="support-title">{t('support.title')}</h3>
-        <p className="support-subtitle">{t('support.subtitle')}</p>
+        <p className="support-subtitle none">{t('support.subtitle')}</p>
       </div>
       
       <div className="support-visual">
+        <img src={serviceIcon} alt="Service support" className="support-image" />
       </div>
       
       <div className="support-cta none">

@@ -1,14 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { useLanguage } from '../../hooks/useLanguage';
-import { 
-  MdLocalShipping, 
-  MdBuild, 
-  MdSettings,
-  MdSpeed,
-  MdSecurity,
-  MdSupport
-} from 'react-icons/md';
+import tonnerBg from '../../assets/images/icons/tonner-bg.webp';
 import './BestDeals.css';
 
 const BestDeals = () => {
@@ -18,10 +11,11 @@ const BestDeals = () => {
     <div className="best-deals">
       <div className="deals-header">
         <h3 className="deals-title">{t('deals.title')}</h3>
-        <p className="deals-subtitle">{t('deals.subtitle')}</p>
+        <p className="deals-subtitle none">{t('deals.subtitle')}</p>
       </div>
       
       <div className="deals-visual">
+        <img src={tonnerBg} alt="Toner cartridge" className="deals-image" />
       </div>
       
       <div className="deals-cta none">
