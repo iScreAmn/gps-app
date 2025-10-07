@@ -48,7 +48,14 @@
     "industrial": "Industrial",
     "office_description": "Multifunction devices for office use",
     "professional_description": "Professional printing solutions",
-    "industrial_description": "Industrial-grade equipment"
+    "industrial_description": "Industrial-grade equipment",
+    "office_equipment": "Office Equipment",
+    "production_printers": "Production Printers",
+    "wide_format_printers": "Wide-Format Printers",
+    "guillotine_cutter": "Guillotine Cutter",
+    "shredder": "Shredder",
+    "laminator": "Laminator",
+    "accessories": "Accessories"
   },
   "about": {
     "counter": {

@@ -48,7 +48,14 @@
     "industrial": "ინდუსტრიული",
     "office_description": "მრავალფუნქციური მოწყობილობები ოფისისთვის",
     "professional_description": "პროფესიონალური ბეჭდვის გადაწყვეტილებები",
-    "industrial_description": "ინდუსტრიული დონის მოწყობილობები"
+    "industrial_description": "ინდუსტრიული დონის მოწყობილობები",
+    "office_equipment": "საოფისე მოსყობილობები",
+    "production_printers": "წარმოებითი პრინტერები",
+    "wide_format_printers": "ფართოფორმატიანი პრინტერები",
+    "guillotine_cutter": "გილიოტინა",
+    "shredder": "შრედერი",
+    "laminator": "ლამინატორი",
+    "accessories": "აქსესუარები"
   },
   "about": {
     "counter": {
