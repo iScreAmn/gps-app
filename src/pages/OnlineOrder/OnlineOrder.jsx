@@ -6,7 +6,7 @@ import "./OnlineOrder.css";
 const OnlineOrder = () => {
   const { t } = useLanguage();
   return (
-    <div className="container">
+    <div className="container-mini">
       <div className="online__order">
         <img className="order__img" src={aboutOrder} alt="" />
         <div className="order__content">
