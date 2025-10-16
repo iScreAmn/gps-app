@@ -1,5 +1,5 @@
 import React from 'react';
-import { konika, duplo, knb, unifol, vivid, audley, colorking, fedrigoni, iecho, mondi, nocai, reinauer, Rightint, teneth, tmt } from '../../assets/images';
+import { konika, duplo, knb, unifol, vivid, audley, colorking, fedrigoni, iecho, mondi, nocai, reinauer, Rightint, teneth, tmt, goldensign } from '../../assets/images';
 import './PartnersCarousel.css';
 
 const PartnersCarousel = () => {
@@ -17,8 +17,9 @@ const PartnersCarousel = () => {
     { logo: reinauer, name: 'reinauer', url: 'https://www.vivid.com/ge/en/index.html' },
     { logo: Rightint, name: 'Rightint', url: 'https://www.vivid.com/ge/en/index.html' },
     { logo: teneth, name: 'teneth', url: 'https://www.vivid.com/ge/en/index.html' },
-    { logo: tmt, name: 'tmt', url: 'https://www.vivid.com/ge/en/index.html' },
-    { logo: vivid, name: 'vivid', url: 'https://www.vivid.com/ge/en/index.html' },
+    { logo: tmt, name: 'tmt', url: 'https://www.vivid.com/' },
+    { logo: vivid, name: 'vivid', url: '#!' },
+    { logo: goldensign, name: 'goldensign', url: 'https://www.goldensign.net/' },
   ];
 
   // Дублируем массив для бесшовной анимации

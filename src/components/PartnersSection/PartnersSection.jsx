@@ -6,7 +6,7 @@ import {
   unifol,
   vivid,
   audley,
-  colorking,
+  tmt,
   fedrigoni,
   iecho,
   mondi,
@@ -19,14 +19,14 @@ const PartnersSection = () => {
   // Show exactly 12 partners in 2x6 grid as per screenshot
   const partners = [
     { id: 1, logo: konika, name: 'Konika' },
-    { id: 2, logo: knb, name: 'KNB' },
+    { id: 2, logo: iecho, name: 'Iecho' },
     { id: 3, logo: nocai, name: 'Nocai' },
     { id: 4, logo: unifol, name: 'Unifol' },
     { id: 5, logo: vivid, name: 'Vivid' },
     { id: 6, logo: audley, name: 'Audley' },
-    { id: 7, logo: colorking, name: 'ColorKing' },
+    { id: 7, logo: tmt, name: 'tmt' },
     { id: 8, logo: fedrigoni, name: 'Fedrigoni' },
-    { id: 9, logo: iecho, name: 'Iecho' },
+    { id: 9, logo: knb, name: 'KNB' },
     { id: 10, logo: mondi, name: 'Mondi' },
     { id: 11, logo: duplo, name: 'Duplo' },
     { id: 12, logo: reinauer, name: 'Reinauer' }
