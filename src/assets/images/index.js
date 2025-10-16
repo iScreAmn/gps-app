@@ -11,19 +11,20 @@ export { default as mainLogoWhite } from './gps_logo-white.webp';
 //Partners logos
 export { default as duplo } from './partners/duplo.webp';
 export { default as knb } from './partners/knb.png';
-export { default as konika } from './partners/konika.png';
+export { default as konika } from './partners/konica.webp';
 export { default as unifol } from './partners/unifol.png';
-export { default as vivid } from './partners/vivid.png';
-export { default as audley } from './partners/audley.png'
-export { default as colorking } from './partners/colorking.png'
+export { default as vivid } from './partners/vivid.webp';
+export { default as audley } from './partners/audley.webp'
+export { default as colorking } from './partners/colorking.webp'
 export { default as fedrigoni } from './partners/fedrigoni.png'
-export { default as iecho } from './partners/iecho.png'
+export { default as iecho } from './partners/iecho.webp'
 export { default as mondi } from './partners/mondi.png'
 export { default as nocai } from './partners/nocai.webp'
 export { default as reinauer } from './partners/reinauer.png'
-export { default as Rightint } from './partners/Rightint.png'
+export { default as Rightint } from './partners/rightint.webp'
 export { default as teneth } from './partners/teneth.png'
 export { default as tmt } from './partners/tmt.png'
+export { default as goldensign } from './partners/goldensign.webp'
 
 
 //Icons
