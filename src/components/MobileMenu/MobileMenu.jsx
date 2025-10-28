@@ -3,13 +3,15 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useLanguage } from '../../hooks/useLanguage';
 import { useTheme } from '../../contexts/ThemeContext';
 import { IoSunny, IoMoon } from "react-icons/io5";
+// eslint-disable-next-line no-unused-vars
 import * as motion from 'motion/react-client';
 import './MobileMenu.css';
 
 const MobileMenu = ({ isOpen, setIsOpen }) => {
   const containerRef = useRef(null);
+  const prevPathRef = useRef('');
   const { height } = useDimensions(containerRef);
-  const { language, changeLanguage, t } = useLanguage();
+  const { language, t } = useLanguage();
   const location = useLocation();
 
   const navigationItems = [
@@ -21,7 +23,6 @@ const MobileMenu = ({ isOpen, setIsOpen }) => {
     { path: '/contacts', key: 'navigation.contacts' }
   ];
 
-  // Block body scroll when menu is open
   useEffect(() => {
     if (isOpen) {
       document.body.style.overflow = 'hidden';
@@ -34,9 +35,17 @@ const MobileMenu = ({ isOpen, setIsOpen }) => {
     };
   }, [isOpen]);
 
-  // Close menu on route change
   useEffect(() => {
-    setIsOpen(false);
+    const pathSegments = location.pathname.split('/').filter(segment => segment);
+    const pathWithoutLang = ['ka', 'en'].includes(pathSegments[0]) 
+      ? pathSegments.slice(1).join('/') 
+      : pathSegments.join('/');
+    
+    if (prevPathRef.current && prevPathRef.current !== pathWithoutLang) {
+      setIsOpen(false);
+    }
+    
+    prevPathRef.current = pathWithoutLang;
   }, [location.pathname, setIsOpen]);
 
   const getLocalizedPath = (path) => {
@@ -111,7 +120,7 @@ const Navigation = ({
       className="mobile-controls-container"
       variants={itemVariants}
     >
-      <MobileLanguageSwitcher onLanguageChange={onLinkClick} />
+      <MobileLanguageSwitcher />
       <MobileThemeToggle />
     </motion.div>
   </motion.div>
@@ -213,7 +222,7 @@ const MenuToggle = ({ toggle }) => (
 );
 
 // Language switcher for mobile menu
-const MobileLanguageSwitcher = ({ onLanguageChange }) => {
+const MobileLanguageSwitcher = () => {
   const { language, changeLanguage } = useLanguage();
   const navigate = useNavigate();
   const location = useLocation();
@@ -232,9 +241,6 @@ const MobileLanguageSwitcher = ({ onLanguageChange }) => {
     const newPath = `/${newLang}${pathSegments.length > 0 ? '/' + pathSegments.join('/') : ''}`;
     changeLanguage(newLang);
     navigate(newPath);
-    
-    // Close mobile menu
-    onLanguageChange();
   };
 
   return (
