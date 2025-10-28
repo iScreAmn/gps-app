@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { useTheme } from '../../contexts/ThemeContext';
 import { useLanguage } from '../../hooks/useLanguage';
 import { IoSunny, IoMoon } from "react-icons/io5";
@@ -9,7 +9,6 @@ const Header = () => {
   const { theme, toggleTheme } = useTheme();
   const { language, changeLanguage, t } = useLanguage();
   const location = useLocation();
-  const navigate = useNavigate();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   // Create navigation array that updates when language changes
