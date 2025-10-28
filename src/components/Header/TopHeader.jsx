@@ -11,13 +11,11 @@ const TopHeader = () => {
   const { theme } = useTheme();
   const [searchQuery, setSearchQuery] = useState('');
   
-  // Determine logo based on theme
   const currentLogo = theme === 'dark' ? mainLogoWhite : mainLogo;
 
   const handleSearch = (e) => {
     e.preventDefault();
     if (searchQuery.trim()) {
-      // Navigate to search results
       console.log('Searching for:', searchQuery);
     }
   };

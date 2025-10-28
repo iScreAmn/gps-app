@@ -28,7 +28,7 @@
 }
 
 body[data-theme="dark"] .mobile-menu-background {
-  background: linear-gradient(135deg, var(--dark-bg) 0%, #1a1a1a 100%);
+  background: linear-gradient(135deg, var(--dark-bg) 0%, #4a0000 100%);
 }
 
 .mobile-menu-content {
@@ -161,7 +161,6 @@ body[data-theme="dark"] .mobile-lang-separator {
 /* Mobile Theme Toggle */
 .mobile-theme-toggle {
   background: none;
-  border: 2px solid var(--light-border);
   font-size: 1.5rem;
   padding: 0.75rem;
   border-radius: 50%;

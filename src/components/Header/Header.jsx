@@ -12,7 +12,6 @@ const Header = () => {
   const location = useLocation();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
-  // Create navigation array that updates when language changes
   const navigation = React.useMemo(() => [
     { key: 'navigation.home', path: `/${language}` },
     { key: 'navigation.about', path: `/${language}/about` },
