@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { useTheme } from '../../contexts/ThemeContext';
 import { useLanguage } from '../../hooks/useLanguage';
@@ -9,7 +9,6 @@ const Header = () => {
   const { theme, toggleTheme } = useTheme();
   const { language, changeLanguage, t } = useLanguage();
   const location = useLocation();
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   // Create navigation array that updates when language changes
   const navigation = React.useMemo(() => [
@@ -31,11 +30,6 @@ const Header = () => {
   const handleLanguageChange = (newLang) => {
     changeLanguage(newLang);
   };
-
-  // Close mobile menu on route change
-  useEffect(() => {
-    setIsMobileMenuOpen(false);
-  }, [location.pathname]);
 
   return (
     <header className="header">
@@ -81,35 +75,8 @@ const Header = () => {
             >
               {theme === 'light' ? <IoMoon /> : <IoSunny />}
             </button>
-
-            {/* Mobile Menu Button */}
-            <button
-              className="mobile-menu-btn"
-              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              aria-label="Toggle menu"
-            >
-              <span></span>
-              <span></span>
-              <span></span>
-            </button>
           </div>
         </div>
-
-        {/* Mobile Navigation */}
-        {isMobileMenuOpen && (
-          <div className="mobile-menu-dropdown">
-            {navigation.map((item) => (
-              <Link
-                key={`${language}-${item.key}`}
-                to={item.path}
-                className={`mobile-menu-item ${isActiveLink(item.path) ? 'active' : ''}`}
-                onClick={() => setIsMobileMenuOpen(false)}
-              >
-                {t(item.key)}
-              </Link>
-            ))}
-          </div>
-        )}
       </div>
     </header>
   );
