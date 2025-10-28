@@ -166,11 +166,11 @@ body[data-theme="dark"] .theme-toggle:hover {
     display: none;
   }
 
-  .mobile-menu-btn {
-    display: flex;
+  .header-controls {
+    display: none;
   }
 
-  .header-controls {
-    gap: 1rem;
+  .mobile-menu-btn {
+    display: flex;
   }
 }

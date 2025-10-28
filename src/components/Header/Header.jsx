@@ -1,14 +1,16 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { useTheme } from '../../contexts/ThemeContext';
 import { useLanguage } from '../../hooks/useLanguage';
 import { IoSunny, IoMoon } from "react-icons/io5";
+import MobileMenu from '../MobileMenu/MobileMenu';
 import './Header.css';
 
 const Header = () => {
   const { theme, toggleTheme } = useTheme();
   const { language, changeLanguage, t } = useLanguage();
   const location = useLocation();
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   // Create navigation array that updates when language changes
   const navigation = React.useMemo(() => [
@@ -32,53 +34,58 @@ const Header = () => {
   };
 
   return (
-    <header className="header">
-      <div className="container">
-        <div className="header-content">
-          {/* Desktop Navigation */}
-          <nav className="nav-desktop">
-            {navigation.map((item) => (
-              <Link
-                key={`${language}-${item.key}`}
-                to={item.path}
-                className={`nav-link ${isActiveLink(item.path) ? 'active' : ''}`}
-              >
-                {t(item.key)}
-              </Link>
-            ))}
-          </nav>
+    <>
+      <header className="header">
+        <div className="container">
+          <div className="header-content">
+            {/* Desktop Navigation */}
+            <nav className="nav-desktop">
+              {navigation.map((item) => (
+                <Link
+                  key={`${language}-${item.key}`}
+                  to={item.path}
+                  className={`nav-link ${isActiveLink(item.path) ? 'active' : ''}`}
+                >
+                  {t(item.key)}
+                </Link>
+              ))}
+            </nav>
 
-          {/* Controls */}
-          <div className="header-controls">
-            {/* Language Switcher */}
-            <div className="language-switcher">
+            {/* Desktop Controls */}
+            <div className="header-controls">
+              {/* Language Switcher */}
+              <div className="language-switcher">
+                <button
+                  className={`lang-btn ${language === 'ka' ? 'active' : ''}`}
+                  onClick={() => handleLanguageChange('ka')}
+                >
+                  GE
+                </button>
+                <span className="lang-separator">|</span>
+                <button
+                  className={`lang-btn ${language === 'en' ? 'active' : ''}`}
+                  onClick={() => handleLanguageChange('en')}
+                >
+                  EN
+                </button>
+              </div>
+
+              {/* Theme Toggle */}
               <button
-                className={`lang-btn ${language === 'ka' ? 'active' : ''}`}
-                onClick={() => handleLanguageChange('ka')}
+                className="theme-toggle"
+                onClick={toggleTheme}
+                aria-label="Toggle theme"
               >
-                GE
-              </button>
-              <span className="lang-separator">|</span>
-              <button
-                className={`lang-btn ${language === 'en' ? 'active' : ''}`}
-                onClick={() => handleLanguageChange('en')}
-              >
-                EN
+                {theme === 'light' ? <IoMoon /> : <IoSunny />}
               </button>
             </div>
-
-            {/* Theme Toggle */}
-            <button
-              className="theme-toggle"
-              onClick={toggleTheme}
-              aria-label="Toggle theme"
-            >
-              {theme === 'light' ? <IoMoon /> : <IoSunny />}
-            </button>
           </div>
         </div>
-      </div>
-    </header>
+      </header>
+      
+      {/* Mobile Menu */}
+      <MobileMenu isOpen={isMobileMenuOpen} setIsOpen={setIsMobileMenuOpen} />
+    </>
   );
 };
 
