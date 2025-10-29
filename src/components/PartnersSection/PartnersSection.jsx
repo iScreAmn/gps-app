@@ -11,7 +11,7 @@ import {
   iecho,
   mondi,
   nocai,
-  reinauer,
+  develop,
 } from '../../assets/images';
 import './PartnersSection.css';
 
@@ -19,17 +19,17 @@ const PartnersSection = () => {
   // Show exactly 12 partners in 2x6 grid as per screenshot
   const partners = [
     { id: 1, logo: konika, name: 'Konika' },
-    { id: 2, logo: iecho, name: 'Iecho' },
-    { id: 3, logo: nocai, name: 'Nocai' },
-    { id: 4, logo: unifol, name: 'Unifol' },
-    { id: 5, logo: vivid, name: 'Vivid' },
-    { id: 6, logo: audley, name: 'Audley' },
-    { id: 7, logo: tmt, name: 'tmt' },
-    { id: 8, logo: fedrigoni, name: 'Fedrigoni' },
-    { id: 9, logo: knb, name: 'KNB' },
-    { id: 10, logo: mondi, name: 'Mondi' },
-    { id: 11, logo: duplo, name: 'Duplo' },
-    { id: 12, logo: reinauer, name: 'Reinauer' }
+    { id: 2, logo: develop, name: 'develop' },
+    { id: 3, logo: iecho, name: 'Iecho' },
+    { id: 4, logo: nocai, name: 'Nocai' },
+    { id: 5, logo: unifol, name: 'Unifol' },
+    { id: 6, logo: vivid, name: 'Vivid' },
+    { id: 7, logo: audley, name: 'Audley' },
+    { id: 8, logo: tmt, name: 'tmt' },
+    { id: 9, logo: fedrigoni, name: 'Fedrigoni' },
+    { id: 10, logo: knb, name: 'KNB' },
+    { id: 11, logo: mondi, name: 'Mondi' },
+    { id: 12, logo: duplo, name: 'Duplo' },
   ];
 
   return (

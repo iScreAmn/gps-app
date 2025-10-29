@@ -25,6 +25,7 @@ export { default as Rightint } from './partners/rightint.webp'
 export { default as teneth } from './partners/teneth.png'
 export { default as tmt } from './partners/tmt.png'
 export { default as goldensign } from './partners/goldensign.webp'
+export { default as develop } from './partners/develop.webp'
 
 
 //Icons
