@@ -3,7 +3,7 @@
     "home": "Home",
     "about": "About",
     "catalog": "Catalog",
-    "services": "Services",
+    "services": "Service",
     "news": "News",
     "contacts": "Contacts"
   },
@@ -320,6 +320,60 @@
     "configuration": "Configuration",
     "consultation": "Consultation",
     "cta": "Learn More"
+  },
+  "calculator": {
+    "title": "Equipment Selection Calculator",
+    "subtitle": "Answer a few questions and we will help you choose the perfect equipment",
+    "step1": {
+      "question": "What kind of printer do you need?",
+      "options": {
+        "office": "Office",
+        "pro": "PRO",
+        "wideFormats": "Wide Formats"
+      }
+    },
+    "step2": {
+      "question": "Choose brand",
+      "options": {
+        "konicaMinolta": "Konica Minolta",
+        "develop": "Develop",
+        "nokaiUltra": "Nokai Ultra"
+      }
+    },
+    "step3": {
+      "question": "What kind of job do you have?",
+      "options": {
+        "printing": "Printing",
+        "service": "Service"
+      }
+    },
+    "contact": {
+      "title": "How should we contact you?",
+      "methods": {
+        "whatsapp": "WhatsApp",
+        "telegram": "Telegram",
+        "email": "E-mail"
+      },
+      "phoneLabel": "Phone number",
+      "phonePlaceholder": "+995 XXX XXX XXX",
+      "emailLabel": "Email address",
+      "emailPlaceholder": "your@email.com"
+    },
+    "consent": "I agree to the processing of personal data",
+    "submit": "Submit",
+    "submitting": "Sending...",
+    "success": "Thank you! We will contact you soon.",
+    "error": "Error sending. Please try again.",
+    "validation": {
+      "required": "This field is required",
+      "invalidPhone": "Invalid phone number format",
+      "invalidEmail": "Invalid email address"
+    },
+    "progress": "Step {{current}} of {{total}}",
+    "buttons": {
+      "next": "Next",
+      "back": "Back"
+    }
   },
   "specialOffers": {
     "section": {

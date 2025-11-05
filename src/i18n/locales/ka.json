@@ -3,7 +3,7 @@
     "home": "მთავარი",
     "about": "ჩვენ შესახებ",
     "catalog": "პროდუქცია",
-    "services": "სერვისები",
+    "services": "სერვისი",
     "news": "სიახლეები",
     "contacts": "კონტაქტები"
   },
@@ -292,6 +292,60 @@
     "configuration": "კონფიგურაცია",
     "consultation": "კონსულტაცია",
     "cta": "დაწვრილებით"
+  },
+  "calculator": {
+    "title": "აღჭურვის შერჩევის კალკულატორი",
+    "subtitle": "უპასუხეთ რამდენიმე კითხვას და ჩვენ დაგეხმარებით შეარჩიოთ სრულყოფილი აღჭურვილობა",
+    "step1": {
+      "question": "რა სახის პრინტერი გჭირდებათ?",
+      "options": {
+        "office": "ოფისის",
+        "pro": "პროფესიონალური",
+        "wideFormats": "ფართოფორმატიანი"
+      }
+    },
+    "step2": {
+      "question": "აირჩიეთ ბრენდი",
+      "options": {
+        "konicaMinolta": "Konica Minolta",
+        "develop": "Develop",
+        "nokaiUltra": "Nokai Ultra"
+      }
+    },
+    "step3": {
+      "question": "რა სახის სამუშაო გაქვთ?",
+      "options": {
+        "printing": "ბეჭდვა",
+        "service": "სერვისი"
+      }
+    },
+    "contact": {
+      "title": "როგორ დაგიკავშირდეთ?",
+      "methods": {
+        "whatsapp": "WhatsApp",
+        "telegram": "Telegram",
+        "email": "ელ. ფოსტა"
+      },
+      "phoneLabel": "ტელეფონის ნომერი",
+      "phonePlaceholder": "+995 XXX XXX XXX",
+      "emailLabel": "ელ. ფოსტის მისამართი",
+      "emailPlaceholder": "თქვენი@ელფოსტა.com"
+    },
+    "consent": "ვეთანხმები პერსონალური მონაცემების დამუშავებას",
+    "submit": "გაგზავნა",
+    "submitting": "იგზავნება...",
+    "success": "მადლობა! მალე დაგიკავშირდებით.",
+    "error": "გაგზავნის შეცდომა. გთხოვთ სცადოთ ხელახლა.",
+    "validation": {
+      "required": "ეს ველი სავალდებულოა",
+      "invalidPhone": "ტელეფონის არასწორი ფორმატი",
+      "invalidEmail": "არასწორი ელ. ფოსტის მისამართი"
+    },
+    "progress": "ნაბიჯი {{current}} {{total}}-დან",
+    "buttons": {
+      "next": "შემდეგი",
+      "back": "უკან"
+    }
   },
   "specialOffers": {
     "section": {

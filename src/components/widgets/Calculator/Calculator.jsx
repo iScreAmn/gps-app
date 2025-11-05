@@ -1,0 +1,405 @@
+import React, { useState, useEffect } from 'react';
+import { useLanguage } from '../../../hooks/useLanguage';
+import './Calculator.css';
+
+// API Configuration
+const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:3001';
+
+const Calculator = () => {
+  const { t, language } = useLanguage();
+  const totalSteps = 4; // 3 questions + 1 contact form
+
+  // State management
+  const [currentStep, setCurrentStep] = useState(1);
+  const [answers, setAnswers] = useState({
+    printerType: '',
+    brand: '',
+    jobType: ''
+  });
+  const [contactMethod, setContactMethod] = useState('whatsapp');
+  const [contactValue, setContactValue] = useState('');
+  const [consent, setConsent] = useState(false);
+  const [errors, setErrors] = useState({});
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState(null);
+
+  // Calculate progress percentage
+  const progressPercentage = (currentStep / totalSteps) * 100;
+
+  // Reset errors when moving between steps
+  useEffect(() => {
+    setErrors({});
+  }, [currentStep]);
+
+  // Handle option selection for questions
+  const handleOptionSelect = (field, value) => {
+    setAnswers(prev => ({ ...prev, [field]: value }));
+  };
+
+  // Validate current step
+  const validateStep = () => {
+    const newErrors = {};
+
+    if (currentStep === 1 && !answers.printerType) {
+      newErrors.printerType = t('calculator.validation.required');
+    }
+    if (currentStep === 2 && !answers.brand) {
+      newErrors.brand = t('calculator.validation.required');
+    }
+    if (currentStep === 3 && !answers.jobType) {
+      newErrors.jobType = t('calculator.validation.required');
+    }
+    if (currentStep === 4) {
+      if (!contactValue.trim()) {
+        newErrors.contact = t('calculator.validation.required');
+      } else if (contactMethod === 'email') {
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(contactValue)) {
+          newErrors.contact = t('calculator.validation.invalidEmail');
+        }
+      } else {
+        // Phone validation for WhatsApp and Telegram
+        const phoneRegex = /^\+995\s?\d{3}\s?\d{3}\s?\d{3}$/;
+        const cleanPhone = contactValue.replace(/\s/g, '');
+        if (!phoneRegex.test(cleanPhone) && !/^\+995\d{9}$/.test(cleanPhone)) {
+          newErrors.contact = t('calculator.validation.invalidPhone');
+        }
+      }
+      if (!consent) {
+        newErrors.consent = t('calculator.validation.required');
+      }
+    }
+
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
+  };
+
+  // Navigate to next step
+  const handleNext = () => {
+    if (validateStep()) {
+      setCurrentStep(prev => Math.min(prev + 1, totalSteps));
+    }
+  };
+
+  // Navigate to previous step
+  const handleBack = () => {
+    setCurrentStep(prev => Math.max(prev - 1, 1));
+    setSubmitStatus(null);
+  };
+
+  // Format phone number as user types
+  const handleContactChange = (e) => {
+    let value = e.target.value;
+    
+    if (contactMethod !== 'email') {
+      // Auto-format phone number
+      value = value.replace(/[^\d+]/g, '');
+      if (!value.startsWith('+995')) {
+        if (value.startsWith('995')) {
+          value = '+' + value;
+        } else if (value.startsWith('5')) {
+          value = '+995' + value;
+        } else if (value) {
+          value = '+995' + value.replace(/^\+/, '');
+        }
+      }
+      // Format: +995 XXX XXX XXX
+      if (value.length > 4) {
+        value = value.slice(0, 4) + ' ' + value.slice(4);
+      }
+      if (value.length > 8) {
+        value = value.slice(0, 8) + ' ' + value.slice(8);
+      }
+      if (value.length > 12) {
+        value = value.slice(0, 12) + ' ' + value.slice(12, 15);
+      }
+    }
+    
+    setContactValue(value);
+    if (errors.contact) {
+      setErrors(prev => ({ ...prev, contact: '' }));
+    }
+  };
+
+  // Handle form submission
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    
+    if (!validateStep() || isSubmitting) return;
+
+    setIsSubmitting(true);
+    setSubmitStatus(null);
+
+    // Prepare data for API
+    const formData = {
+      printer_type: answers.printerType,
+      brand: answers.brand,
+      job_type: answers.jobType,
+      contact_method: contactMethod,
+      contact_value: contactValue,
+      language: language // Send current language
+    };
+
+    try {
+      // Send to backend API
+      const response = await fetch(`${API_URL}/api/calculator/submit`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(data.message || 'Error submitting form');
+      }
+
+      setSubmitStatus('success');
+      
+      // Reset form after successful submission
+      setTimeout(() => {
+        setCurrentStep(1);
+        setAnswers({ printerType: '', brand: '', jobType: '' });
+        setContactMethod('whatsapp');
+        setContactValue('');
+        setConsent(false);
+        setSubmitStatus(null);
+      }, 3000);
+
+    } catch (error) {
+      console.error('Submission error:', error);
+      setSubmitStatus('error');
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
+  // Render step content
+  const renderStepContent = () => {
+    switch (currentStep) {
+      case 1:
+        return (
+          <div className="calculator__step calculator__step--active">
+            <h3 className="calculator__question">{t('calculator.step1.question')}</h3>
+            <div className="calculator__options">
+              {['office', 'pro', 'wideFormats'].map(option => (
+                <button
+                  key={option}
+                  type="button"
+                  className={`calculator__option ${answers.printerType === option ? 'calculator__option--selected' : ''}`}
+                  onClick={() => handleOptionSelect('printerType', option)}
+                  aria-pressed={answers.printerType === option}
+                >
+                  {t(`calculator.step1.options.${option}`)}
+                </button>
+              ))}
+            </div>
+            {errors.printerType && (
+              <span className="calculator__error">{errors.printerType}</span>
+            )}
+          </div>
+        );
+
+      case 2:
+        return (
+          <div className="calculator__step calculator__step--active">
+            <h3 className="calculator__question">{t('calculator.step2.question')}</h3>
+            <div className="calculator__options">
+              {['konicaMinolta', 'develop', 'nokaiUltra'].map(option => (
+                <button
+                  key={option}
+                  type="button"
+                  className={`calculator__option ${answers.brand === option ? 'calculator__option--selected' : ''}`}
+                  onClick={() => handleOptionSelect('brand', option)}
+                  aria-pressed={answers.brand === option}
+                >
+                  {t(`calculator.step2.options.${option}`)}
+                </button>
+              ))}
+            </div>
+            {errors.brand && (
+              <span className="calculator__error">{errors.brand}</span>
+            )}
+          </div>
+        );
+
+      case 3:
+        return (
+          <div className="calculator__step calculator__step--active">
+            <h3 className="calculator__question">{t('calculator.step3.question')}</h3>
+            <div className="calculator__options">
+              {['printing', 'service'].map(option => (
+                <button
+                  key={option}
+                  type="button"
+                  className={`calculator__option ${answers.jobType === option ? 'calculator__option--selected' : ''}`}
+                  onClick={() => handleOptionSelect('jobType', option)}
+                  aria-pressed={answers.jobType === option}
+                >
+                  {t(`calculator.step3.options.${option}`)}
+                </button>
+              ))}
+            </div>
+            {errors.jobType && (
+              <span className="calculator__error">{errors.jobType}</span>
+            )}
+          </div>
+        );
+
+      case 4:
+        return (
+          <div className="calculator__step calculator__step--active">
+            <h3 className="calculator__question">{t('calculator.contact.title')}</h3>
+            
+            <div className="calculator__contact">
+              {/* Contact method selection */}
+              <div className="calculator__contact-methods">
+                {['whatsapp', 'telegram', 'email'].map(method => (
+                  <button
+                    key={method}
+                    type="button"
+                    className={`calculator__contact-method ${contactMethod === method ? 'calculator__contact-method--active' : ''}`}
+                    onClick={() => {
+                      setContactMethod(method);
+                      setContactValue('');
+                      setErrors({});
+                    }}
+                    aria-pressed={contactMethod === method}
+                  >
+                    {t(`calculator.contact.methods.${method}`)}
+                  </button>
+                ))}
+              </div>
+
+              {/* Dynamic input field */}
+              <div className="calculator__input-group">
+                <label htmlFor="contact-input" className="calculator__label">
+                  {contactMethod === 'email' 
+                    ? t('calculator.contact.emailLabel') 
+                    : t('calculator.contact.phoneLabel')}
+                </label>
+                <input
+                  id="contact-input"
+                  type={contactMethod === 'email' ? 'email' : 'tel'}
+                  className={`calculator__input ${errors.contact ? 'calculator__input--error' : ''}`}
+                  value={contactValue}
+                  onChange={handleContactChange}
+                  placeholder={contactMethod === 'email' 
+                    ? t('calculator.contact.emailPlaceholder') 
+                    : t('calculator.contact.phonePlaceholder')}
+                  aria-invalid={!!errors.contact}
+                  aria-describedby={errors.contact ? 'contact-error' : undefined}
+                />
+                {errors.contact && (
+                  <span id="contact-error" className="calculator__error" role="alert">
+                    {errors.contact}
+                  </span>
+                )}
+              </div>
+
+              {/* Consent checkbox */}
+              <div className="calculator__checkbox-group">
+                <label className="calculator__checkbox">
+                  <input
+                    type="checkbox"
+                    checked={consent}
+                    onChange={(e) => {
+                      setConsent(e.target.checked);
+                      if (errors.consent) {
+                        setErrors(prev => ({ ...prev, consent: '' }));
+                      }
+                    }}
+                    aria-invalid={!!errors.consent}
+                  />
+                  <span className="calculator__checkbox-label">
+                    {t('calculator.consent')}
+                  </span>
+                </label>
+                {errors.consent && (
+                  <span className="calculator__error" role="alert">{errors.consent}</span>
+                )}
+              </div>
+
+              {/* Submit status messages */}
+              {submitStatus === 'success' && (
+                <div className="calculator__success" role="status" aria-live="polite">
+                  {t('calculator.success')}
+                </div>
+              )}
+              {submitStatus === 'error' && (
+                <div className="calculator__error-message" role="alert" aria-live="assertive">
+                  {t('calculator.error')}
+                </div>
+              )}
+            </div>
+          </div>
+        );
+
+      default:
+        return null;
+    }
+  };
+
+  return (
+    <section className="calculator" aria-labelledby="calculator-title">
+      <div className="calculator__container">
+        <header className="calculator__header">
+          <h2 id="calculator-title" className="calculator__title">
+            {t('calculator.title')}
+          </h2>
+          <p className="calculator__subtitle">{t('calculator.subtitle')}</p>
+        </header>
+
+        {/* Progress bar */}
+        <div className="calculator__progress" role="progressbar" aria-valuenow={progressPercentage} aria-valuemin="0" aria-valuemax="100">
+          <div className="calculator__progress-bar" style={{ width: `${progressPercentage}%` }}>
+            <span className="calculator__progress-text">
+              {Math.round(progressPercentage)}%
+            </span>
+          </div>
+        </div>
+
+        {/* Form */}
+        <form className="calculator__form" onSubmit={handleSubmit}>
+          {renderStepContent()}
+
+          {/* Navigation buttons */}
+          <div className="calculator__navigation">
+            {currentStep > 1 && (
+              <button
+                type="button"
+                className="calculator__btn calculator__btn--back"
+                onClick={handleBack}
+                disabled={isSubmitting}
+              >
+                {t('calculator.buttons.back')}
+              </button>
+            )}
+            
+            {currentStep < totalSteps ? (
+              <button
+                type="button"
+                className="calculator__btn calculator__btn--next"
+                onClick={handleNext}
+              >
+                {t('calculator.buttons.next')}
+              </button>
+            ) : (
+              <button
+                type="submit"
+                className={`calculator__submit ${(!consent || isSubmitting) ? 'calculator__submit--disabled' : ''}`}
+                disabled={!consent || isSubmitting}
+              >
+                {isSubmitting ? t('calculator.submitting') : t('calculator.submit')}
+              </button>
+            )}
+          </div>
+        </form>
+      </div>
+    </section>
+  );
+};
+
+export default Calculator;
