@@ -48,6 +48,9 @@ export { default as konikaAbout } from './about/konikaDisplay.jpg';
 export { default as konikaAbout2 } from './about/konicaDevelop.png';
 export { default as aboutOrder } from './about/ineo4065.png';
 
+// Art Printers
+export { default as artPrinter1 } from './printers/art/art_1.png';
+
 // Product images - using actual printer images
 export { default as productGarmin } from './printers/pr_01.png';
 export { default as productTrimble } from './printers/pr_02.png';
