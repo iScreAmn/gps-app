@@ -17,7 +17,11 @@ const Calculator = () => {
     jobType: ''
   });
   const [contactMethod, setContactMethod] = useState('whatsapp');
-  const [contactValue, setContactValue] = useState('');
+  const [contactData, setContactData] = useState({
+    name: '',
+    phone: '',
+    email: ''
+  });
   const [consent, setConsent] = useState(false);
   const [errors, setErrors] = useState({});
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -50,21 +54,32 @@ const Calculator = () => {
       newErrors.jobType = t('calculator.validation.required');
     }
     if (currentStep === 4) {
-      if (!contactValue.trim()) {
-        newErrors.contact = t('calculator.validation.required');
-      } else if (contactMethod === 'email') {
-        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        if (!emailRegex.test(contactValue)) {
-          newErrors.contact = t('calculator.validation.invalidEmail');
-        }
+      // Validate name
+      if (!contactData.name.trim()) {
+        newErrors.name = t('calculator.validation.required');
+      }
+      
+      // Validate phone
+      if (!contactData.phone.trim()) {
+        newErrors.phone = t('calculator.validation.required');
       } else {
-        // Phone validation for WhatsApp and Telegram
         const phoneRegex = /^\+995\s?\d{3}\s?\d{3}\s?\d{3}$/;
-        const cleanPhone = contactValue.replace(/\s/g, '');
+        const cleanPhone = contactData.phone.replace(/\s/g, '');
         if (!phoneRegex.test(cleanPhone) && !/^\+995\d{9}$/.test(cleanPhone)) {
-          newErrors.contact = t('calculator.validation.invalidPhone');
+          newErrors.phone = t('calculator.validation.invalidPhone');
         }
       }
+      
+      // Validate email
+      if (!contactData.email.trim()) {
+        newErrors.email = t('calculator.validation.required');
+      } else {
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(contactData.email)) {
+          newErrors.email = t('calculator.validation.invalidEmail');
+        }
+      }
+      
       if (!consent) {
         newErrors.consent = t('calculator.validation.required');
       }
@@ -87,12 +102,10 @@ const Calculator = () => {
     setSubmitStatus(null);
   };
 
-  // Format phone number as user types
-  const handleContactChange = (e) => {
-    let value = e.target.value;
-    
-    if (contactMethod !== 'email') {
-      // Auto-format phone number
+  // Handle contact field changes
+  const handleContactFieldChange = (field, value) => {
+    // Auto-format phone number
+    if (field === 'phone') {
       value = value.replace(/[^\d+]/g, '');
       if (!value.startsWith('+995')) {
         if (value.startsWith('995')) {
@@ -115,9 +128,9 @@ const Calculator = () => {
       }
     }
     
-    setContactValue(value);
-    if (errors.contact) {
-      setErrors(prev => ({ ...prev, contact: '' }));
+    setContactData(prev => ({ ...prev, [field]: value }));
+    if (errors[field]) {
+      setErrors(prev => ({ ...prev, [field]: '' }));
     }
   };
 
@@ -136,7 +149,9 @@ const Calculator = () => {
       brand: answers.brand,
       job_type: answers.jobType,
       contact_method: contactMethod,
-      contact_value: contactValue,
+      name: contactData.name,
+      phone: contactData.phone,
+      email: contactData.email,
       language: language // Send current language
     };
 
@@ -163,7 +178,7 @@ const Calculator = () => {
         setCurrentStep(1);
         setAnswers({ printerType: '', brand: '', jobType: '' });
         setContactMethod('whatsapp');
-        setContactValue('');
+        setContactData({ name: '', phone: '', email: '' });
         setConsent(false);
         setSubmitStatus(null);
       }, 3000);
@@ -256,45 +271,103 @@ const Calculator = () => {
             <div className="calculator__contact">
               {/* Contact method selection */}
               <div className="calculator__contact-methods">
-                {['whatsapp', 'telegram', 'email'].map(method => (
-                  <button
-                    key={method}
-                    type="button"
-                    className={`calculator__contact-method ${contactMethod === method ? 'calculator__contact-method--active' : ''}`}
-                    onClick={() => {
-                      setContactMethod(method);
-                      setContactValue('');
-                      setErrors({});
-                    }}
-                    aria-pressed={contactMethod === method}
-                  >
-                    {t(`calculator.contact.methods.${method}`)}
-                  </button>
-                ))}
+                <button
+                  type="button"
+                  className={`calculator__contact-method ${contactMethod === 'whatsapp' ? 'calculator__contact-method--active' : ''}`}
+                  onClick={() => {
+                    setContactMethod('whatsapp');
+                    setErrors({});
+                  }}
+                  aria-pressed={contactMethod === 'whatsapp'}
+                >
+                  📱 {t('calculator.contact.methods.whatsapp')}
+                </button>
+                <button
+                  type="button"
+                  className={`calculator__contact-method ${contactMethod === 'telegram' ? 'calculator__contact-method--active' : ''}`}
+                  onClick={() => {
+                    setContactMethod('telegram');
+                    setErrors({});
+                  }}
+                  aria-pressed={contactMethod === 'telegram'}
+                >
+                  ✈️ {t('calculator.contact.methods.telegram')}
+                </button>
+                <button
+                  type="button"
+                  className={`calculator__contact-method ${contactMethod === 'email' ? 'calculator__contact-method--active' : ''}`}
+                  onClick={() => {
+                    setContactMethod('email');
+                    setErrors({});
+                  }}
+                  aria-pressed={contactMethod === 'email'}
+                >
+                  @ {t('calculator.contact.methods.email')}
+                </button>
               </div>
 
-              {/* Dynamic input field */}
+              {/* Phone input field */}
               <div className="calculator__input-group">
-                <label htmlFor="contact-input" className="calculator__label">
-                  {contactMethod === 'email' 
-                    ? t('calculator.contact.emailLabel') 
-                    : t('calculator.contact.phoneLabel')}
+                <label htmlFor="phone-input" className="calculator__label">
+                  {t('calculator.contact.phoneLabel')}
                 </label>
                 <input
-                  id="contact-input"
-                  type={contactMethod === 'email' ? 'email' : 'tel'}
-                  className={`calculator__input ${errors.contact ? 'calculator__input--error' : ''}`}
-                  value={contactValue}
-                  onChange={handleContactChange}
-                  placeholder={contactMethod === 'email' 
-                    ? t('calculator.contact.emailPlaceholder') 
-                    : t('calculator.contact.phonePlaceholder')}
-                  aria-invalid={!!errors.contact}
-                  aria-describedby={errors.contact ? 'contact-error' : undefined}
+                  id="phone-input"
+                  type="tel"
+                  className={`calculator__input ${errors.phone ? 'calculator__input--error' : ''}`}
+                  value={contactData.phone}
+                  onChange={(e) => handleContactFieldChange('phone', e.target.value)}
+                  placeholder={t('calculator.contact.phonePlaceholder')}
+                  aria-invalid={!!errors.phone}
+                  aria-describedby={errors.phone ? 'phone-error' : undefined}
                 />
-                {errors.contact && (
-                  <span id="contact-error" className="calculator__error" role="alert">
-                    {errors.contact}
+                {errors.phone && (
+                  <span id="phone-error" className="calculator__error" role="alert">
+                    {errors.phone}
+                  </span>
+                )}
+              </div>
+
+              {/* Email input field */}
+              <div className="calculator__input-group">
+                <label htmlFor="email-input" className="calculator__label">
+                  {t('calculator.contact.emailLabel')}
+                </label>
+                <input
+                  id="email-input"
+                  type="email"
+                  className={`calculator__input ${errors.email ? 'calculator__input--error' : ''}`}
+                  value={contactData.email}
+                  onChange={(e) => handleContactFieldChange('email', e.target.value)}
+                  placeholder={t('calculator.contact.emailPlaceholder')}
+                  aria-invalid={!!errors.email}
+                  aria-describedby={errors.email ? 'email-error' : undefined}
+                />
+                {errors.email && (
+                  <span id="email-error" className="calculator__error" role="alert">
+                    {errors.email}
+                  </span>
+                )}
+              </div>
+
+              {/* Name input field */}
+              <div className="calculator__input-group">
+                <label htmlFor="name-input" className="calculator__label">
+                  {t('calculator.contact.nameLabel') || 'Ваше имя'}
+                </label>
+                <input
+                  id="name-input"
+                  type="text"
+                  className={`calculator__input ${errors.name ? 'calculator__input--error' : ''}`}
+                  value={contactData.name}
+                  onChange={(e) => handleContactFieldChange('name', e.target.value)}
+                  placeholder={t('calculator.contact.namePlaceholder') || 'Введите ваше имя'}
+                  aria-invalid={!!errors.name}
+                  aria-describedby={errors.name ? 'name-error' : undefined}
+                />
+                {errors.name && (
+                  <span id="name-error" className="calculator__error" role="alert">
+                    {errors.name}
                   </span>
                 )}
               </div>
@@ -344,59 +417,61 @@ const Calculator = () => {
 
   return (
     <section className="calculator" aria-labelledby="calculator-title">
-      <div className="calculator__container">
-        <header className="calculator__header">
-          <h2 id="calculator-title" className="calculator__title">
-            {t('calculator.title')}
-          </h2>
-          <p className="calculator__subtitle">{t('calculator.subtitle')}</p>
-        </header>
+      <div className="container">
+        <div className="calculator__wrapper">
+          <header className="calculator__header">
+            <h2 id="calculator-title" className="calculator__title">
+              {t('calculator.title')}
+            </h2>
+            <p className="calculator__subtitle">{t('calculator.subtitle')}</p>
+          </header>
 
         {/* Progress bar */}
         <div className="calculator__progress" role="progressbar" aria-valuenow={progressPercentage} aria-valuemin="0" aria-valuemax="100">
-          <div className="calculator__progress-bar" style={{ width: `${progressPercentage}%` }}>
-            <span className="calculator__progress-text">
-              {Math.round(progressPercentage)}%
-            </span>
-          </div>
+          <div className="calculator__progress-bar" style={{ width: `${progressPercentage}%` }} />
+          <span className="calculator__progress-text">
+            {Math.round(progressPercentage)}%
+          </span>
         </div>
 
-        {/* Form */}
-        <form className="calculator__form" onSubmit={handleSubmit}>
-          {renderStepContent()}
+          {/* Form */}
+          <form className="calculator__form" onSubmit={handleSubmit}>
+            {renderStepContent()}
 
-          {/* Navigation buttons */}
-          <div className="calculator__navigation">
-            {currentStep > 1 && (
-              <button
-                type="button"
-                className="calculator__btn calculator__btn--back"
-                onClick={handleBack}
-                disabled={isSubmitting}
-              >
-                {t('calculator.buttons.back')}
-              </button>
-            )}
-            
-            {currentStep < totalSteps ? (
-              <button
-                type="button"
-                className="calculator__btn calculator__btn--next"
-                onClick={handleNext}
-              >
-                {t('calculator.buttons.next')}
-              </button>
-            ) : (
-              <button
-                type="submit"
-                className={`calculator__submit ${(!consent || isSubmitting) ? 'calculator__submit--disabled' : ''}`}
-                disabled={!consent || isSubmitting}
-              >
-                {isSubmitting ? t('calculator.submitting') : t('calculator.submit')}
-              </button>
-            )}
-          </div>
-        </form>
+            {/* Navigation buttons */}
+            <div className="calculator__navigation">
+              {currentStep > 1 && (
+                <button
+                  type="button"
+                  className="calculator__btn calculator__btn--back"
+                  onClick={handleBack}
+                  disabled={isSubmitting}
+                  aria-label={t('calculator.buttons.back')}
+                >
+                  ←
+                </button>
+              )}
+              
+              {currentStep < totalSteps ? (
+                <button
+                  type="button"
+                  className="calculator__btn calculator__btn--next"
+                  onClick={handleNext}
+                >
+                  {t('calculator.buttons.next')} →
+                </button>
+              ) : (
+                <button
+                  type="submit"
+                  className={`calculator__submit ${(!consent || isSubmitting) ? 'calculator__submit--disabled' : ''}`}
+                  disabled={!consent || isSubmitting}
+                >
+                  {isSubmitting ? t('calculator.submitting') : t('calculator.submit')}
+                </button>
+              )}
+            </div>
+          </form>
+        </div>
       </div>
     </section>
   );
