@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { useLanguage } from '../../../hooks/useLanguage';
 import { FaWhatsapp, FaPhone } from "react-icons/fa";
 import { MdOutlineEmail } from "react-icons/md";
@@ -28,9 +28,52 @@ const Calculator = () => {
   const [errors, setErrors] = useState({});
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState(null);
+  const [animatedProgress, setAnimatedProgress] = useState(0);
+  const [displayedProgress, setDisplayedProgress] = useState(0);
+  const displayedProgressRef = useRef(0);
 
-  // Calculate progress percentage
-  const progressPercentage = (currentStep / totalSteps) * 100;
+  // Фиксированные значения прогресса для каждого шага
+  const progressSteps = [0, 35, 65, 100];
+  const progressPercentage = progressSteps[currentStep - 1] || 0;
+
+  // Плавная анимация прогресс-бара и текста
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setAnimatedProgress(progressPercentage);
+    }, 50);
+
+    // Анимация счетчика процентов
+    const startValue = displayedProgressRef.current;
+    const endValue = progressPercentage;
+    const duration = 400; // длительность анимации в мс
+    const steps = 20;
+    const stepDuration = duration / steps;
+    const increment = (endValue - startValue) / steps;
+
+    let currentValue = startValue;
+    let stepCount = 0;
+
+    const counterInterval = setInterval(() => {
+      stepCount++;
+      currentValue += increment;
+      
+      if (stepCount >= steps) {
+        const finalValue = endValue;
+        setDisplayedProgress(finalValue);
+        displayedProgressRef.current = finalValue;
+        clearInterval(counterInterval);
+      } else {
+        const roundedValue = Math.round(currentValue);
+        setDisplayedProgress(roundedValue);
+        displayedProgressRef.current = roundedValue;
+      }
+    }, stepDuration);
+
+    return () => {
+      clearTimeout(timer);
+      clearInterval(counterInterval);
+    };
+  }, [currentStep, progressPercentage]);
 
   // Reset errors when moving between steps
   useEffect(() => {
@@ -420,13 +463,15 @@ const Calculator = () => {
             <p className="calculator__subtitle">{t('calculator.subtitle')}</p>
           </header>
 
-        {/* Progress bar */}
-        <div className="calculator__progress" role="progressbar" aria-valuenow={progressPercentage} aria-valuemin="0" aria-valuemax="100">
-          <div className="calculator__progress-bar" style={{ width: `${progressPercentage}%` }} />
-          <span className="calculator__progress-text">
-            {Math.round(progressPercentage)}%
-          </span>
-        </div>
+        {/* Progress bar - показывается только после первого шага */}
+        {currentStep > 1 && (
+          <div className="calculator__progress" role="progressbar" aria-valuenow={progressPercentage} aria-valuemin="0" aria-valuemax="100">
+            <div className="calculator__progress-bar" style={{ width: `${animatedProgress}%` }} />
+            <span className="calculator__progress-text">
+              {displayedProgress}%
+            </span>
+          </div>
+        )}
 
           {/* Form */}
           <form className="calculator__form" onSubmit={handleSubmit}>
