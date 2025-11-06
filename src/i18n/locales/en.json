@@ -351,13 +351,12 @@
       "title": "How should we contact you?",
       "methods": {
         "whatsapp": "WhatsApp",
-        "telegram": "Telegram",
+        "phone": "Phone",
         "email": "E-mail"
       },
-      "phoneLabel": "Phone number",
-      "phonePlaceholder": "+995 XXX XXX XXX",
-      "emailLabel": "Email address",
-      "emailPlaceholder": "your@email.com"
+      "phonePlaceholder": "Phone",
+      "emailPlaceholder": "Email",
+      "namePlaceholder": "Name"
     },
     "consent": "I agree to the processing of personal data",
     "submit": "Submit",

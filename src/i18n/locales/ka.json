@@ -294,14 +294,14 @@
     "cta": "დაწვრილებით"
   },
   "calculator": {
-    "title": "აღჭურვის შერჩევის კალკულატორი",
-    "subtitle": "უპასუხეთ რამდენიმე კითხვას და ჩვენ დაგეხმარებით შეარჩიოთ სრულყოფილი აღჭურვილობა",
+    "title": "დანადგარის შერჩევის კალკულატორი",
+    "subtitle": "უპასუხეთ რამდენიმე კითხვას და შეარჩიეთ სრულყოფილი აღჭურვილობა",
     "step1": {
-      "question": "რა სახის პრინტერი გჭირდებათ?",
+      "question": "რა სახის დანადგარი გჭირდებათ?",
       "options": {
         "office": "ოფისის",
         "pro": "პროფესიონალური",
-        "wideFormats": "ფართოფორმატიანი"
+        "wideFormats": "UV პრინტერი"
       }
     },
     "step2": {
@@ -309,27 +309,26 @@
       "options": {
         "konicaMinolta": "Konica Minolta",
         "develop": "Develop",
-        "nokaiUltra": "Nokai Ultra"
+        "nokaiUltra": "Nokai"
       }
     },
     "step3": {
       "question": "რა სახის სამუშაო გაქვთ?",
       "options": {
         "printing": "ბეჭდვა",
-        "service": "სერვისი"
+        "service": "სარეკლამო"
       }
     },
     "contact": {
       "title": "როგორ დაგიკავშირდეთ?",
       "methods": {
         "whatsapp": "WhatsApp",
-        "telegram": "Telegram",
+        "phone": "ტელეფონი",
         "email": "ელ. ფოსტა"
       },
-      "phoneLabel": "ტელეფონის ნომერი",
-      "phonePlaceholder": "+995 XXX XXX XXX",
-      "emailLabel": "ელ. ფოსტის მისამართი",
-      "emailPlaceholder": "თქვენი@ელფოსტა.com"
+      "phonePlaceholder": "ტელეფონი",
+      "emailPlaceholder": "ფოსტა",
+      "namePlaceholder": "სახელი"
     },
     "consent": "ვეთანხმები პერსონალური მონაცემების დამუშავებას",
     "submit": "გაგზავნა",

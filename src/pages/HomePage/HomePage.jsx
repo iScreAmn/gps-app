@@ -4,7 +4,7 @@ import PartnersSection from "../../components/PartnersSection/PartnersSection";
 import CategoryCards from "../../components/CategoryCards/CategoryCards";
 import ProductGallery from "../../components/ProductGallery/ProductGallery";
 import SpecialOffers from "../../components/SpecialOffers/SpecialOffers";
-import OnlineOrder from "../OnlineOrder/OnlineOrder";
+import OnlineOrder from "../../components/OnlineOrder/OnlineOrder";
 import "./HomePage.css";
 
 const HomePage = () => {
@@ -12,9 +12,9 @@ const HomePage = () => {
     <div className="home-page">
       <Hero />
       <PartnersSection />
+      <OnlineOrder />
       <ProductGallery />
       <SpecialOffers />
-      <OnlineOrder />
     </div>
   );
 };

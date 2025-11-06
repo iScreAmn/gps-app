@@ -11,7 +11,7 @@ body[data-theme="dark"] .calculator {
 
 /* Calculator Wrapper - Main Card Container */
 .calculator__wrapper {
-  max-width: 900px;
+  width: 700px;
   margin: 0 auto;
   padding: 3rem;
   background-color: var(--light-card-bg);
@@ -227,7 +227,7 @@ body[data-theme="dark"] .calculator__option {
 
 body[data-theme="dark"] .calculator__option::before {
   border-color: var(--dark-border);
-  background-color: var(--dark-bg);
+  /* background-color: var(--dark-bg); */
 }
 
 .calculator__option:hover {
@@ -305,7 +305,7 @@ body[data-theme="dark"] .calculator__contact-method {
 }
 
 .calculator__contact-method:focus {
-  outline: 2px solid var(--primary-red);
+  /* outline: 2px solid var(--primary-red); */
   outline-offset: 2px;
 }
 

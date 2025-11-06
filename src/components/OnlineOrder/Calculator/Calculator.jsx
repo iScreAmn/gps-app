@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useLanguage } from '../../../hooks/useLanguage';
+import { FaWhatsapp, FaPhone } from "react-icons/fa";
+import { MdOutlineEmail } from "react-icons/md";
 import './Calculator.css';
 
 // API Configuration
@@ -280,18 +282,18 @@ const Calculator = () => {
                   }}
                   aria-pressed={contactMethod === 'whatsapp'}
                 >
-                  📱 {t('calculator.contact.methods.whatsapp')}
+                  <FaWhatsapp /> {t('calculator.contact.methods.whatsapp')}
                 </button>
                 <button
                   type="button"
                   className={`calculator__contact-method ${contactMethod === 'telegram' ? 'calculator__contact-method--active' : ''}`}
                   onClick={() => {
-                    setContactMethod('telegram');
+                    setContactMethod('phone');
                     setErrors({});
                   }}
-                  aria-pressed={contactMethod === 'telegram'}
+                  aria-pressed={contactMethod === 'phone'}
                 >
-                  ✈️ {t('calculator.contact.methods.telegram')}
+                  <FaPhone /> {t('calculator.contact.methods.phone')}
                 </button>
                 <button
                   type="button"
@@ -302,15 +304,31 @@ const Calculator = () => {
                   }}
                   aria-pressed={contactMethod === 'email'}
                 >
-                  @ {t('calculator.contact.methods.email')}
+                  <MdOutlineEmail /> {t('calculator.contact.methods.email')}
                 </button>
+              </div>
+
+              {/* Name input field */}
+              <div className="calculator__input-group">
+                <input
+                  id="name-input"
+                  type="text"
+                  className={`calculator__input ${errors.name ? 'calculator__input--error' : ''}`}
+                  value={contactData.name}
+                  onChange={(e) => handleContactFieldChange('name', e.target.value)}
+                  placeholder={t('calculator.contact.namePlaceholder') || 'Введите ваше имя'}
+                  aria-invalid={!!errors.name}
+                  aria-describedby={errors.name ? 'name-error' : undefined}
+                />
+                {errors.name && (
+                  <span id="name-error" className="calculator__error" role="alert">
+                    {errors.name}
+                  </span>
+                )}
               </div>
 
               {/* Phone input field */}
               <div className="calculator__input-group">
-                <label htmlFor="phone-input" className="calculator__label">
-                  {t('calculator.contact.phoneLabel')}
-                </label>
                 <input
                   id="phone-input"
                   type="tel"
@@ -330,9 +348,6 @@ const Calculator = () => {
 
               {/* Email input field */}
               <div className="calculator__input-group">
-                <label htmlFor="email-input" className="calculator__label">
-                  {t('calculator.contact.emailLabel')}
-                </label>
                 <input
                   id="email-input"
                   type="email"
@@ -350,27 +365,7 @@ const Calculator = () => {
                 )}
               </div>
 
-              {/* Name input field */}
-              <div className="calculator__input-group">
-                <label htmlFor="name-input" className="calculator__label">
-                  {t('calculator.contact.nameLabel') || 'Ваше имя'}
-                </label>
-                <input
-                  id="name-input"
-                  type="text"
-                  className={`calculator__input ${errors.name ? 'calculator__input--error' : ''}`}
-                  value={contactData.name}
-                  onChange={(e) => handleContactFieldChange('name', e.target.value)}
-                  placeholder={t('calculator.contact.namePlaceholder') || 'Введите ваше имя'}
-                  aria-invalid={!!errors.name}
-                  aria-describedby={errors.name ? 'name-error' : undefined}
-                />
-                {errors.name && (
-                  <span id="name-error" className="calculator__error" role="alert">
-                    {errors.name}
-                  </span>
-                )}
-              </div>
+              
 
               {/* Consent checkbox */}
               <div className="calculator__checkbox-group">
@@ -417,7 +412,6 @@ const Calculator = () => {
 
   return (
     <section className="calculator" aria-labelledby="calculator-title">
-      <div className="container">
         <div className="calculator__wrapper">
           <header className="calculator__header">
             <h2 id="calculator-title" className="calculator__title">
@@ -472,7 +466,6 @@ const Calculator = () => {
             </div>
           </form>
         </div>
-      </div>
     </section>
   );
 };

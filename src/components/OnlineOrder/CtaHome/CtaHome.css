@@ -1,30 +1,3 @@
-.online-order-page {
-  display: flex;
-  align-items: stretch;
-  justify-content: center;
-  gap: 2rem;
-  padding: 80px 40px;
-  background-color: var(--light-bg);
-  transition: background-color var(--transition-normal);
-  max-width: 1600px;
-  margin: 0 auto;
-}
-
-body[data-theme="dark"] .online-order-page {
-  background-color: var(--dark-bg);
-}
-
-/* Calculator section - equal width */
-.online-order-page > .calculator {
-  flex: 1;
-  padding: 0;
-}
-
-.online-order-page > .calculator .calculator__wrapper {
-  height: 100%;
-  margin: 0;
-}
-
 /* Wrapper for online order section */
 .online-order-page > .container-mini {
   flex: 1;
@@ -36,8 +9,8 @@ body[data-theme="dark"] .online-order-page {
 
 /* Main Order Card - Same style as Calculator Wrapper */
 .online__order {
-  width: 100%;
-  height: 100%;
+  width: 800px;
+  height: 658px;
   margin: 0;
   padding: 3rem;
   background-color: var(--light-card-bg);
@@ -102,7 +75,7 @@ body[data-theme="dark"] .online__order::after {
 /* Image Section */
 .order__img {
   width: 100%;
-  max-width: 268px;
+  max-width: 320px;
   flex-shrink: 0;
   border-radius: 12px;
   position: relative;
@@ -190,20 +163,8 @@ body[data-theme="dark"] .order__content-btn-primary:hover {
   box-shadow: 0 8px 25px rgba(220, 38, 38, 0.3);
 }
 
-/* Desktop Large (1200px+) */
-@media (min-width: 1200px) {
-  .online-order-page {
-    gap: 3rem;
-  }
-}
-
 /* Tablet Landscape & Small Desktop (769px - 1199px) */
 @media (min-width: 769px) and (max-width: 1199px) {
-  .online-order-page {
-    padding: 60px 30px;
-    gap: 1.5rem;
-  }
-
   .online__order {
     padding: 2.5rem;
     gap: 1.5rem;
@@ -224,12 +185,6 @@ body[data-theme="dark"] .order__content-btn-primary:hover {
 
 /* Tablet Portrait & Mobile Landscape (481px - 768px) */
 @media (max-width: 768px) {
-  .online-order-page {
-    flex-direction: column;
-    padding: 50px 20px;
-    gap: 2rem;
-  }
-
   .online-order-page > .container-mini {
     width: 100%;
   }
@@ -266,11 +221,6 @@ body[data-theme="dark"] .order__content-btn-primary:hover {
 
 /* Mobile (≤ 480px) */
 @media (max-width: 480px) {
-  .online-order-page {
-    padding: 40px 16px;
-    gap: 1.5rem;
-  }
-
   .online__order {
     padding: 1.5rem;
     border-radius: 12px;
@@ -360,3 +310,4 @@ body[data-theme="dark"] .order__content-btn-primary:hover {
     display: none;
   }
 }
+
