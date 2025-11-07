@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom';
 import { useLanguage } from '../../../hooks/useLanguage';
 import { FaWhatsapp, FaPhone } from "react-icons/fa";
 import { MdOutlineEmail } from "react-icons/md";
+import { FiRefreshCw } from "react-icons/fi";
+import { artPrinter2 } from '../../../assets/images';
 import './Calculator.css';
 import {
   calculatorQuestions,
@@ -31,7 +33,7 @@ const API_URL = (() => {
 const Calculator = () => {
   const { t, language } = useLanguage();
   const currentLanguage = ['en', 'ka'].includes(language) ? language : 'en';
-  const totalSteps = 4; // 3 questions + 1 contact form
+  const totalSteps = 5; // 3 questions + 1 contact form + 1 thank you screen
 
   // State management
   const [currentStep, setCurrentStep] = useState(1);
@@ -60,7 +62,7 @@ const Calculator = () => {
   const displayedProgressRef = useRef(0);
 
   // Фиксированные значения прогресса для каждого шага
-  const progressSteps = [0, 35, 65, 100];
+  const progressSteps = [0, 35, 65, 100, 100];
   const progressPercentage = progressSteps[currentStep - 1] || 0;
 
   // Плавная анимация прогресс-бара и текста
@@ -258,15 +260,8 @@ const Calculator = () => {
 
       setSubmitStatus('success');
       
-      // Reset form after successful submission
-      setTimeout(() => {
-        setCurrentStep(1);
-        setAnswers({ deviceType: '', brand: '', jobType: '' });
-        setContactMethod('whatsapp');
-        setContactData({ name: '', phone: '', email: '' });
-        setConsent(false);
-        setSubmitStatus(null);
-      }, 3000);
+      // Navigate to thank you screen (step 5)
+      setCurrentStep(5);
 
     } catch (error) {
       console.error('Submission error:', error);
@@ -274,6 +269,17 @@ const Calculator = () => {
     } finally {
       setIsSubmitting(false);
     }
+  };
+
+  // Handle form reset
+  const handleReset = () => {
+    setCurrentStep(1);
+    setAnswers({ deviceType: '', brand: '', jobType: '' });
+    setContactMethod('whatsapp');
+    setContactData({ name: '', phone: '', email: '' });
+    setConsent(false);
+    setSubmitStatus(null);
+    setErrors({});
   };
 
   // Render step content
@@ -482,16 +488,40 @@ const Calculator = () => {
               </div>
 
               {/* Submit status messages */}
-              {submitStatus === 'success' && (
-                <div className="calculator__success" role="status" aria-live="polite">
-                  {t('calculator.success')}
-                </div>
-              )}
               {submitStatus === 'error' && (
                 <div className="calculator__error-message" role="alert" aria-live="assertive">
                   {t('calculator.error')}
                 </div>
               )}
+            </div>
+          </div>
+        );
+
+      case 5:
+        return (
+          <div className="calculator__step calculator__step--active calculator__success">
+            <div className="calculator__success-content">
+              <div className="calculator__success-image-wrapper">
+                <img 
+                  src={artPrinter2} 
+                  alt={t('calculator.thankYou.title')}
+                  className="calculator__success-image"
+                />
+              </div>
+              
+              <h2 className="calculator__success-title">
+                {t('calculator.thankYou.title')}
+              </h2>
+              
+              <button 
+                type="button"
+                className="calculator__success-reset"
+                onClick={handleReset}
+                aria-label={t('calculator.thankYou.resetButton')}
+              >
+                <FiRefreshCw className="calculator__success-reset-icon" />
+                {t('calculator.thankYou.resetButton')}
+              </button>
             </div>
           </div>
         );
@@ -511,8 +541,8 @@ const Calculator = () => {
             <p className="calculator__subtitle">{t('calculator.subtitle')}</p>
           </header>
 
-        {/* Progress bar - показывается только после первого шага */}
-        {currentStep > 1 && (
+        {/* Progress bar - показывается только после первого шага и до шага благодарности */}
+        {currentStep > 1 && currentStep < 5 && (
           <div className="calculator__progress" role="progressbar" aria-valuenow={progressPercentage} aria-valuemin="0" aria-valuemax="100">
             <div className="calculator__progress-bar" style={{ width: `${animatedProgress}%` }} />
             <span className="calculator__progress-text">
@@ -525,38 +555,40 @@ const Calculator = () => {
           <form className="calculator__form" onSubmit={handleSubmit}>
             {renderStepContent()}
 
-            {/* Navigation buttons */}
-            <div className="calculator__navigation">
-              {currentStep > 1 && (
-                <button
-                  type="button"
-                  className="calculator__btn calculator__btn--back"
-                  onClick={handleBack}
-                  disabled={isSubmitting}
-                  aria-label={t('calculator.buttons.back')}
-                >
-                  ←
-                </button>
-              )}
-              
-              {currentStep < totalSteps ? (
-                <button
-                  type="button"
-                  className="calculator__btn calculator__btn--next"
-                  onClick={handleNext}
-                >
-                  {t('calculator.buttons.next')} →
-                </button>
-              ) : (
-                <button
-                  type="submit"
-                  className={`calculator__submit ${(!consent || isSubmitting) ? 'calculator__submit--disabled' : ''}`}
-                  disabled={!consent || isSubmitting}
-                >
-                  {isSubmitting ? t('calculator.submitting') : t('calculator.submit')}
-                </button>
-              )}
-            </div>
+            {/* Navigation buttons - скрываются на шаге благодарности */}
+            {currentStep < 5 && (
+              <div className="calculator__navigation">
+                {currentStep > 1 && (
+                  <button
+                    type="button"
+                    className="calculator__btn calculator__btn--back"
+                    onClick={handleBack}
+                    disabled={isSubmitting}
+                    aria-label={t('calculator.buttons.back')}
+                  >
+                    ←
+                  </button>
+                )}
+                
+                {currentStep < 4 ? (
+                  <button
+                    type="button"
+                    className="calculator__btn calculator__btn--next"
+                    onClick={handleNext}
+                  >
+                    {t('calculator.buttons.next')} →
+                  </button>
+                ) : (
+                  <button
+                    type="submit"
+                    className={`calculator__submit ${(!consent || isSubmitting) ? 'calculator__submit--disabled' : ''}`}
+                    disabled={!consent || isSubmitting}
+                  >
+                    {isSubmitting ? t('calculator.submitting') : t('calculator.submit')}
+                  </button>
+                )}
+              </div>
+            )}
           </form>
         </div>
     </section>

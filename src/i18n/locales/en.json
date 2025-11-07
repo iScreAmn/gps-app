@@ -380,6 +380,10 @@
     "buttons": {
       "next": "Next",
       "back": "Back"
+    },
+    "thankYou": {
+      "title": "Thank you. We will contact you shortly",
+      "resetButton": "Start Over"
     }
   },
   "specialOffers": {

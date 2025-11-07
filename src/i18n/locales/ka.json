@@ -354,6 +354,10 @@
     "buttons": {
       "next": "შემდეგი",
       "back": "უკან"
+    },
+    "thankYou": {
+      "title": "მადლობა! მალე დაგიკავშირდებით",
+      "resetButton": "თავიდან"
     }
   },
   "specialOffers": {
