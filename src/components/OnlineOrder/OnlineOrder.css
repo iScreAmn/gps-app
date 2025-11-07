@@ -20,11 +20,6 @@ body[data-theme="dark"] .online-order-page {
   padding: 0;
 }
 
-.online-order-page > .calculator .calculator__wrapper {
-  height: 100%;
-  margin: 0;
-  /* width: 700px; */
-}
 
 /* Tablet Landscape & Small Desktop (769px - 1199px) */
 @media (min-width: 769px) and (max-width: 1200px) {

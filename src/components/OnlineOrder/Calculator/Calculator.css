@@ -12,7 +12,7 @@ body[data-theme="dark"] .calculator {
 /* Calculator Wrapper - Main Card Container */
 .calculator__wrapper {
   width: 700px;
-  margin: 0 auto;
+  /* margin: 0 auto; */
   padding: 3rem;
   background-color: var(--light-card-bg);
   border-radius: 16px;

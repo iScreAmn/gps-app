@@ -10,9 +10,9 @@
 /* Main Order Card - Same style as Calculator Wrapper */
 .online__order {
   width: 100%;
-  max-width: 700px;
+  width: 700px;
   margin: 0;
-  padding: 3rem;
+  padding: 1rem;
   background-color: var(--light-card-bg);
   border-radius: 16px;
   box-shadow: var(--light-shadow);
@@ -76,7 +76,7 @@ body[data-theme="dark"] .online__order::after {
 /* Image Section */
 .order__img {
   width: 100%;
-  max-width: 320px;
+  max-width: 270px;
   flex-shrink: 0;
   border-radius: 12px;
   position: relative;

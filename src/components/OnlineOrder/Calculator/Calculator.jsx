@@ -532,7 +532,6 @@ const Calculator = () => {
   };
 
   return (
-    <section className="calculator" aria-labelledby="calculator-title">
         <div className="calculator__wrapper">
           <header className="calculator__header">
             <h2 id="calculator-title" className="calculator__title">
@@ -591,7 +590,6 @@ const Calculator = () => {
             )}
           </form>
         </div>
-    </section>
   );
 };
 
