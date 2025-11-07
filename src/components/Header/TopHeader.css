@@ -170,6 +170,11 @@ body[data-theme="dark"] .search-button:hover {
   flex-direction: column;
   gap: 0.25rem;
   min-width: 180px;
+  color: #2d3748;
+}
+
+body[data-theme="dark"] .contact-info {
+  color: #e2e8f0;
 }
 
 .phone-numbers {
@@ -181,30 +186,27 @@ body[data-theme="dark"] .search-button:hover {
 .phone {
   font-size: 0.875rem;
   font-weight: 500;
-  color: #2d3748;
-}
-
-body[data-theme="dark"] .phone {
-  color: #e2e8f0;
+  color: inherit;
 }
 
 .email {
   font-size: 0.875rem;
-  color: #718096;
-}
-
-body[data-theme="dark"] .email {
-  color: #a0aec0;
+  color: inherit;
 }
 
 .contact-link {
   text-decoration: none;
   color: inherit;
-  transition: color var(--transition-fast);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  transition: color var(--transition-fast), transform var(--transition-normal);
+  transform: translateX(0);
 }
 
 .contact-link:hover {
   color: var(--primary-red);
+  transform: translateX(4px);
 }
 
 .contact-link:focus-visible {
