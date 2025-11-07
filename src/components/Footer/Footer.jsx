@@ -52,6 +52,31 @@ const Footer = () => {
               <MdLocationPin />
               <span>{t("contacts.tbilisi_georgia")}</span>
             </div>
+
+            {/* Mobile-only socials under contacts */}
+            <div className="footer-socials footer-socials--mobile">
+              <a href={contactsData.socials.whatsapp} target="_blank" rel="noopener noreferrer" className="footer-social-link">
+                <FaWhatsapp />
+              </a>
+              <a href={contactsData.socials.telegram} target="_blank" rel="noopener noreferrer" className="footer-social-link">
+                <FaTelegram />
+              </a>
+              <a href="https://facebook.com/GeorgianPolygraphServices" target="_blank" className="footer-social-link">
+                <FaFacebookSquare />
+              </a>
+              <a href="https://instagram.com/geopolygraph" target="_blank" className="footer-social-link">
+                <FaInstagram />
+              </a>
+              <a href="https://linkedin.com/company/georgian-polygraph-services" target="_blank" className="footer-social-link">
+                <FaLinkedinIn />
+              </a>
+              <a href="https://tiktok.com/@georgian.polygrap" target="_blank" className="footer-social-link">
+                <AiFillTikTok />
+              </a>
+              <a href="https://www.youtube.com/@geopolser" target="_blank" className="footer-social-link">
+                <FaYoutube />
+              </a>
+            </div>
           </div>
         </div>
 
