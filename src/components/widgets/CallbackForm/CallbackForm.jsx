@@ -57,12 +57,6 @@ const CallbackForm = ({ onSuccess }) => {
       // Симуляция отправки (замените на реальный API запрос)
       await new Promise(resolve => setTimeout(resolve, 1500));
       
-      // TODO: Реальная отправка данных
-      // const response = await fetch('/api/callback', {
-      //   method: 'POST',
-      //   headers: { 'Content-Type': 'application/json' },
-      //   body: JSON.stringify(formData)
-      // });
       
       console.log('Form submitted:', formData);
       
@@ -189,9 +183,7 @@ const CallbackForm = ({ onSuccess }) => {
           </svg>
           +995 (322) 12-34-56
         </a>
-        <p className="callback-form__phone-available">
-          {t('callback.available') || 'круглосуточно'}
-        </p>
+        
       </div>
     </form>
   );

@@ -53,7 +53,7 @@
 
 /* Dark Theme */
 [data-theme="dark"] .modal__content {
-  background: #1a1a1a;
+  background: var(--dark-card-bg);
   box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
 }
 

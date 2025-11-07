@@ -1,9 +1,8 @@
-/* ========================================
-   CALLBACK FORM COMPONENT
-   ======================================== */
 
 .callback-form {
   width: 100%;
+  position: relative;
+  overflow: hidden;
 }
 
 /* Form Group */
@@ -262,16 +261,8 @@
 /* Phone Section */
 .callback-form__phone-section {
   text-align: center;
-  padding: 1.5rem;
-  background: #f9fafb;
-  border-radius: 12px;
-  border: 2px solid #e5e7eb;
 }
 
-[data-theme="dark"] .callback-form__phone-section {
-  background: #1f2937;
-  border-color: #374151;
-}
 
 .callback-form__phone-title {
   font-size: 1.125rem;
@@ -316,6 +307,27 @@
   color: #9ca3af;
 }
 
+/* Decorative curve element - bottom right */
+.callback-form::after {
+  content: '';
+  position: absolute;
+  bottom: -50px;
+  right: -50px;
+  width: 200px;
+  height: 200px;
+  background: none;
+  border: 3px solid var(--primary-red);
+  border-radius: 50%;
+  opacity: 0.08;
+  pointer-events: none;
+  transition: border-color var(--transition-normal), opacity var(--transition-normal);
+}
+
+[data-theme="dark"] .callback-form::after {
+  border-color: #A08A6D;
+  opacity: 0.12;
+}
+
 /* ========================================
    RESPONSIVE DESIGN
    ======================================== */
@@ -339,6 +351,13 @@
   .callback-form__phone-section {
     padding: 1.25rem;
   }
+
+  .callback-form::after {
+    width: 150px;
+    height: 150px;
+    bottom: -40px;
+    right: -40px;
+  }
 }
 
 @media (max-width: 375px) {
@@ -348,6 +367,14 @@
 
   .callback-form__note {
     font-size: 0.8125rem;
+  }
+
+  .callback-form::after {
+    width: 120px;
+    height: 120px;
+    bottom: -30px;
+    right: -30px;
+    border-width: 2px;
   }
 }
 
@@ -359,7 +386,8 @@
   .callback-form__input,
   .callback-form__submit,
   .callback-form__phone-link,
-  .callback-form__checkbox-custom {
+  .callback-form__checkbox-custom,
+  .callback-form::after {
     transition: none;
   }
 }
@@ -371,6 +399,13 @@
 
   .callback-form__submit {
     border: 2px solid currentColor;
+  }
+}
+
+/* Print styles */
+@media print {
+  .callback-form::after {
+    display: none;
   }
 }
 
