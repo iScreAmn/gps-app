@@ -444,6 +444,17 @@ body[data-theme="dark"] .calculator__checkbox-label {
   color: var(--dark-text-secondary);
 }
 
+.calculator__checkbox-link {
+  color: var(--primary-red);
+  font-weight: var(--font-medium);
+  text-decoration: underline;
+  transition: color var(--transition-fast);
+}
+
+.calculator__checkbox-link:hover {
+  color: var(--primary-red-hover);
+}
+
 /* Errors and Success */
 .calculator__error {
   display: block;

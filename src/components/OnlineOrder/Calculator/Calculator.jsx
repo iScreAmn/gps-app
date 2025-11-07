@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
+import { Link } from 'react-router-dom';
 import { useLanguage } from '../../../hooks/useLanguage';
 import { FaWhatsapp, FaPhone } from "react-icons/fa";
 import { MdOutlineEmail } from "react-icons/md";
@@ -425,7 +426,13 @@ const Calculator = () => {
                     aria-invalid={!!errors.consent}
                   />
                   <span className="calculator__checkbox-label">
-                    {t('calculator.consent')}
+                    {t('calculator.consent')}{' '}
+                    <Link
+                      to={`/${language}/privacy-policy`}
+                      className="calculator__checkbox-link"
+                    >
+                      {t('footer.privacy_policy')}
+                    </Link>
                   </span>
                 </label>
                 {errors.consent && (

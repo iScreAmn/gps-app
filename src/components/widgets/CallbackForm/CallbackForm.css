@@ -170,13 +170,15 @@
   color: #9ca3af;
 }
 
-.callback-form__link {
+
+.callback-form__checkbox-link {
   color: var(--primary-red);
+  font-weight: var(--font-medium);
   text-decoration: underline;
-  transition: color 0.2s ease;
+  transition: color var(--transition-fast);
 }
 
-.callback-form__link:hover {
+.callback-form__checkbox-link:hover {
   color: var(--primary-red-hover);
 }
 

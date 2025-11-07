@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import './CallbackForm.css';
 import { useLanguage } from '../../../hooks/useLanguage';
 
 const CallbackForm = ({ onSuccess }) => {
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
   const [formData, setFormData] = useState({
     name: '',
     phone: '',
@@ -125,14 +126,12 @@ const CallbackForm = ({ onSuccess }) => {
           <span className="callback-form__checkbox-custom"></span>
           <span className="callback-form__checkbox-text">
             {t('callback.agreement') || 'Я согласен(-на), на обработку'}{' '}
-            <a 
-              href="/privacy" 
-              className="callback-form__link"
-              target="_blank"
-              rel="noopener noreferrer"
+            <Link
+              to={`/${language}/privacy-policy`}
+              className="callback-form__checkbox-link"
             >
-              {t('callback.personalData') || 'персональных данных'}
-            </a>
+              {t('footer.privacy_policy')}
+            </Link>
           </span>
         </label>
         {errors.agreed && (
