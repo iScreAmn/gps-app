@@ -4,21 +4,47 @@ import { useLanguage } from '../../../hooks/useLanguage';
 import { FaWhatsapp, FaPhone } from "react-icons/fa";
 import { MdOutlineEmail } from "react-icons/md";
 import './Calculator.css';
+import {
+  calculatorQuestions,
+  deviceTypes,
+  brandOptions,
+  jobTypes,
+  getLocalizedLabel
+} from '../../../data/calculatorData';
 
 // API Configuration
-const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:3001';
+const API_URL = (() => {
+  const envUrl = import.meta.env.VITE_API_URL && String(import.meta.env.VITE_API_URL).trim();
+  if (envUrl) return envUrl.replace(/\/$/, '');
+  if (typeof window !== 'undefined') {
+    const host = window.location.hostname;
+    if (host === 'localhost' || host === '127.0.0.1') {
+      return `http://${host}:3001`;
+    }
+    // Production fallback to Vercel server when env is not set
+    return 'https://gps-app-server.vercel.app';
+  }
+  // Non-browser safety fallback
+  return 'https://gps-app-server.vercel.app';
+})();
 
 const Calculator = () => {
   const { t, language } = useLanguage();
+  const currentLanguage = ['en', 'ka'].includes(language) ? language : 'en';
   const totalSteps = 4; // 3 questions + 1 contact form
 
   // State management
   const [currentStep, setCurrentStep] = useState(1);
   const [answers, setAnswers] = useState({
-    printerType: '',
+    deviceType: '',
     brand: '',
     jobType: ''
   });
+
+  // Dynamic brand options based on device type
+  const getAvailableBrands = () => {
+    return brandOptions[answers.deviceType] || [];
+  };
   const [contactMethod, setContactMethod] = useState('whatsapp');
   const [contactData, setContactData] = useState({
     name: '',
@@ -83,15 +109,21 @@ const Calculator = () => {
 
   // Handle option selection for questions
   const handleOptionSelect = (field, value) => {
-    setAnswers(prev => ({ ...prev, [field]: value }));
+    setAnswers(prev => {
+      // If changing device type, reset brand selection
+      if (field === 'deviceType') {
+        return { ...prev, [field]: value, brand: '' };
+      }
+      return { ...prev, [field]: value };
+    });
   };
 
   // Validate current step
   const validateStep = () => {
     const newErrors = {};
 
-    if (currentStep === 1 && !answers.printerType) {
-      newErrors.printerType = t('calculator.validation.required');
+    if (currentStep === 1 && !answers.deviceType) {
+      newErrors.deviceType = t('calculator.validation.required');
     }
     if (currentStep === 2 && !answers.brand) {
       newErrors.brand = t('calculator.validation.required');
@@ -186,12 +218,19 @@ const Calculator = () => {
     
     if (!validateStep() || isSubmitting) return;
 
+    if (!API_URL && typeof window !== 'undefined' && !(window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1')) {
+      console.error('API endpoint is not configured. Set VITE_API_URL for production.');
+      setSubmitStatus('error');
+      return;
+    }
+
     setIsSubmitting(true);
     setSubmitStatus(null);
 
     // Prepare data for API
     const formData = {
-      printer_type: answers.printerType,
+      device_type: answers.deviceType,
+      printer_type: answers.deviceType,
       brand: answers.brand,
       job_type: answers.jobType,
       contact_method: contactMethod,
@@ -222,7 +261,7 @@ const Calculator = () => {
       // Reset form after successful submission
       setTimeout(() => {
         setCurrentStep(1);
-        setAnswers({ printerType: '', brand: '', jobType: '' });
+        setAnswers({ deviceType: '', brand: '', jobType: '' });
         setContactMethod('whatsapp');
         setContactData({ name: '', phone: '', email: '' });
         setConsent(false);
@@ -243,40 +282,41 @@ const Calculator = () => {
       case 1:
         return (
           <div className="calculator__step calculator__step--active">
-            <h3 className="calculator__question">{t('calculator.step1.question')}</h3>
+            <h3 className="calculator__question">{calculatorQuestions.step1?.[currentLanguage] || calculatorQuestions.step1.en}</h3>
             <div className="calculator__options">
-              {['office', 'pro', 'wideFormats'].map(option => (
+              {deviceTypes.map(option => (
                 <button
-                  key={option}
+                  key={option.value}
                   type="button"
-                  className={`calculator__option ${answers.printerType === option ? 'calculator__option--selected' : ''}`}
-                  onClick={() => handleOptionSelect('printerType', option)}
-                  aria-pressed={answers.printerType === option}
+                  className={`calculator__option ${answers.deviceType === option.value ? 'calculator__option--selected' : ''}`}
+                  onClick={() => handleOptionSelect('deviceType', option.value)}
+                  aria-pressed={answers.deviceType === option.value}
                 >
-                  {t(`calculator.step1.options.${option}`)}
+                  {getLocalizedLabel(option.label, currentLanguage)}
                 </button>
               ))}
             </div>
-            {errors.printerType && (
-              <span className="calculator__error">{errors.printerType}</span>
+            {errors.deviceType && (
+              <span className="calculator__error">{errors.deviceType}</span>
             )}
           </div>
         );
 
-      case 2:
+      case 2: {
+        const availableBrands = getAvailableBrands();
         return (
           <div className="calculator__step calculator__step--active">
-            <h3 className="calculator__question">{t('calculator.step2.question')}</h3>
+            <h3 className="calculator__question">{calculatorQuestions.step2?.[currentLanguage] || calculatorQuestions.step2.en}</h3>
             <div className="calculator__options">
-              {['konicaMinolta', 'develop', 'nokaiUltra'].map(option => (
+              {availableBrands.map(option => (
                 <button
-                  key={option}
+                  key={option.value}
                   type="button"
-                  className={`calculator__option ${answers.brand === option ? 'calculator__option--selected' : ''}`}
-                  onClick={() => handleOptionSelect('brand', option)}
-                  aria-pressed={answers.brand === option}
+                  className={`calculator__option ${answers.brand === option.value ? 'calculator__option--selected' : ''}`}
+                  onClick={() => handleOptionSelect('brand', option.value)}
+                  aria-pressed={answers.brand === option.value}
                 >
-                  {t(`calculator.step2.options.${option}`)}
+                  {getLocalizedLabel(option.label, currentLanguage)}
                 </button>
               ))}
             </div>
@@ -285,21 +325,22 @@ const Calculator = () => {
             )}
           </div>
         );
+      }
 
       case 3:
         return (
           <div className="calculator__step calculator__step--active">
-            <h3 className="calculator__question">{t('calculator.step3.question')}</h3>
+            <h3 className="calculator__question">{calculatorQuestions.step3?.[currentLanguage] || calculatorQuestions.step3.en}</h3>
             <div className="calculator__options">
-              {['printing', 'service'].map(option => (
+              {jobTypes.map(option => (
                 <button
-                  key={option}
+                  key={option.value}
                   type="button"
-                  className={`calculator__option ${answers.jobType === option ? 'calculator__option--selected' : ''}`}
-                  onClick={() => handleOptionSelect('jobType', option)}
-                  aria-pressed={answers.jobType === option}
+                  className={`calculator__option ${answers.jobType === option.value ? 'calculator__option--selected' : ''}`}
+                  onClick={() => handleOptionSelect('jobType', option.value)}
+                  aria-pressed={answers.jobType === option.value}
                 >
-                  {t(`calculator.step3.options.${option}`)}
+                  {getLocalizedLabel(option.label, currentLanguage)}
                 </button>
               ))}
             </div>
@@ -330,7 +371,7 @@ const Calculator = () => {
                 </button>
                 <button
                   type="button"
-                  className={`calculator__contact-method ${contactMethod === 'telegram' ? 'calculator__contact-method--active' : ''}`}
+                  className={`calculator__contact-method ${contactMethod === 'phone' ? 'calculator__contact-method--active' : ''}`}
                   onClick={() => {
                     setContactMethod('phone');
                     setErrors({});

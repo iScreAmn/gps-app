@@ -297,26 +297,36 @@
     "title": "დანადგარის შერჩევის კალკულატორი",
     "subtitle": "უპასუხეთ რამდენიმე კითხვას და შეარჩიეთ სრულყოფილი აღჭურვილობა",
     "step1": {
-      "question": "რა სახის დანადგარი გჭირდებათ?",
+      "question": "რა ტიპის მოწყობილობა გჭირდებათ?",
       "options": {
-        "office": "ოფისის",
-        "pro": "პროფესიონალური",
-        "wideFormats": "UV პრინტერი"
+        "printer": "პრინტერი",
+        "cutter": "საჭრელი",
+        "binder": "ამკინძავი",
+        "laminator": "ლამინატორი"
       }
     },
     "step2": {
       "question": "აირჩიეთ ბრენდი",
       "options": {
-        "konicaMinolta": "Konica Minolta",
         "develop": "Develop",
-        "nokaiUltra": "Nokai"
+        "nocai": "Nocai",
+        "audley": "Audley",
+        "koenigBauer": "Koenig & Bauer",
+        "iecho": "IECHO",
+        "teneth": "Teneth",
+        "ideal": "Ideal",
+        "duplo": "Duplo",
+        "rapid": "Rapid",
+        "recoSystems": "Reco Systems",
+        "matrix": "Matrix"
       }
     },
     "step3": {
       "question": "რა სახის სამუშაო გაქვთ?",
       "options": {
-        "printing": "ბეჭდვა",
-        "service": "სარეკლამო"
+        "advertising": "სარეკლამო",
+        "photoStudio": "ფოტო სტუდია",
+        "typography": "სტამბა"
       }
     },
     "contact": {
@@ -334,7 +344,7 @@
     "submit": "გაგზავნა",
     "submitting": "იგზავნება...",
     "success": "მადლობა! მალე დაგიკავშირდებით.",
-    "error": "გაგზავნის შეცდომა. გთხოვთ სცადოთ ხელახლა.",
+    "error": "ups :( სცადe ხელახლა...",
     "validation": {
       "required": "ეს ველი სავალდებულოა",
       "invalidPhone": "ტელეფონის არასწორი ფორმატი",

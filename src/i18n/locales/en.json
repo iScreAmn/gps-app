@@ -325,24 +325,34 @@
     "step1": {
       "question": "What kind of printer do you need?",
       "options": {
-        "office": "Office",
-        "pro": "PRO",
-        "wideFormats": "Wide Formats"
+        "printer": "Printer",
+        "cutter": "Cutter",
+        "binder": "Binder",
+        "laminator": "Laminator"
       }
     },
     "step2": {
       "question": "Choose brand",
       "options": {
-        "konicaMinolta": "Konica Minolta",
         "develop": "Develop",
-        "nokaiUltra": "Nokai Ultra"
+        "nocai": "Nocai",
+        "audley": "Audley",
+        "koenigBauer": "Koenig & Bauer",
+        "iecho": "IECHO",
+        "teneth": "Teneth",
+        "ideal": "Ideal",
+        "duplo": "Duplo",
+        "rapid": "Rapid",
+        "recoSystems": "Reco Systems",
+        "matrix": "Matrix"
       }
     },
     "step3": {
       "question": "What kind of job do you have?",
       "options": {
-        "printing": "Printing",
-        "service": "Service"
+        "advertising": "Advertising",
+        "photoStudio": "Photo Studio",
+        "typography": "Typography"
       }
     },
     "contact": {
