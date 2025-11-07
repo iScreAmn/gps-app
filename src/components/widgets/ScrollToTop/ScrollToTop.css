@@ -1,6 +1,8 @@
 .scroll-to-top {
+  --scroll-to-top-base: 32px;
+  --scroll-to-top-offset: var(--scroll-to-top-base);
   position: fixed;
-  bottom: var(--scroll-to-top-offset, var(--scroll-to-top-base));
+  bottom: var(--scroll-to-top-offset, var(--scroll-to-top-base, 32px));
   right: 2rem;
   width: 56px;
   height: 56px;
@@ -63,6 +65,7 @@ body[data-theme="dark"] .scroll-to-top:hover {
 /* Адаптивность для мобильных устройств */
 @media (max-width: 768px) {
   .scroll-to-top {
+    --scroll-to-top-base: 24px;
     right: 1.5rem;
     width: 48px;
     height: 48px;
@@ -76,6 +79,7 @@ body[data-theme="dark"] .scroll-to-top:hover {
 
 @media (max-width: 480px) {
   .scroll-to-top {
+    --scroll-to-top-base: 16px;
     right: 1rem;
     width: 44px;
     height: 44px;
