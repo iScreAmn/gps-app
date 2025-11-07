@@ -11,7 +11,8 @@ body[data-theme="dark"] .calculator {
 
 /* Calculator Wrapper - Main Card Container */
 .calculator__wrapper {
-  width: 700px;
+  width: 100%;
+  max-width: 700px;
   margin: 0 auto;
   padding: 3rem;
   background-color: var(--light-card-bg);
@@ -703,7 +704,7 @@ body[data-theme="dark"] .calculator__submit--disabled {
 /* Mobile (≤ 480px) */
 @media (max-width: 480px) {
   .calculator {
-    padding: 40px 0;
+    padding: 0;
   }
 
   .calculator__wrapper {
@@ -773,6 +774,12 @@ body[data-theme="dark"] .calculator__submit--disabled {
     max-width: none;
     padding: 0.875rem 1.5rem;
     font-size: 0.938rem;
+  }
+
+  .calculator__btn,
+  .calculator__submit,
+  .calculator__contact-method {
+    min-height: 48px;
   }
 
   .calculator__wrapper::after {

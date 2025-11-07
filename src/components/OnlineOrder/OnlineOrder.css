@@ -36,17 +36,27 @@ body[data-theme="dark"] .online-order-page {
 /* Tablet Portrait & Mobile Landscape (481px - 768px) */
 @media (max-width: 768px) {
   .online-order-page {
-    flex-direction: column;
-    padding: 50px 20px;
-    gap: 2rem;
+    display: block;
+    padding: clamp(16px, 4vw, 24px) clamp(16px, 5vw, 24px);
+    padding-bottom: calc(clamp(16px, 5vw, 24px) + env(safe-area-inset-bottom));
+    gap: 1.25rem;
+  }
+
+  .online-order-page > * {
+    width: 100%;
+  }
+
+  .online-order-page > .calculator .calculator__wrapper {
+    max-width: 100%;
   }
 }
 
 /* Mobile (≤ 480px) */
 @media (max-width: 480px) {
   .online-order-page {
-    padding: 40px 16px;
-    gap: 1.5rem;
+    padding: clamp(16px, 5vw, 24px);
+    padding-bottom: calc(clamp(16px, 5vw, 24px) + env(safe-area-inset-bottom));
+    gap: 1rem;
   }
 }
 
