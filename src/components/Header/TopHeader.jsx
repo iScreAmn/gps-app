@@ -4,6 +4,7 @@ import { useLanguage } from '../../hooks/useLanguage';
 import { useTheme } from '../../contexts/ThemeContext';
 import { FaSearch, FaTelegram, FaWhatsapp } from 'react-icons/fa';
 import { mainLogo, mainLogoWhite } from '../../assets/images';
+import contactsData from '../../data/contactsData';
 import './TopHeader.css';
 
 const TopHeader = () => {
@@ -50,9 +51,19 @@ const TopHeader = () => {
           {/* Contact Info */}
           <div className="contact-info">
             <div className="phone-numbers">
-              <div className="phone">{t('header.phone1')}</div>
+              <a
+                href={contactsData.phone.href}
+                className="phone contact-link"
+              >
+                {contactsData.phone.label}
+              </a>
             </div>
-            <div className="email">{t('header.email')}</div>
+            <a
+              href={contactsData.email.href}
+              className="email contact-link"
+            >
+              {contactsData.email.label}
+            </a>
           </div>
 
           {/* Social Media */}

@@ -157,10 +157,10 @@
     "tbilisi_georgia": "Tbilisi, Georgia"
   },
   "footer": {
-    "description": "Professional printing and copying solutions",
+    "description": "Your trusted partner in the printing industry",
     "contact": "Contact",
-    "quick_links": "Quick Links",
-    "all_rights": "All rights reserved"
+    "all_rights": "All rights reserved",
+    "privacy_policy": "Privacy Policy"
   },
   "common": {
     "more": "Learn More",
@@ -482,6 +482,28 @@
         "feature3": "Upgrade path available",
         "cta": "Start Your Journey"
       }
+    }
+  },
+  "callback": {
+    "title": "Request a Callback",
+    "namePlaceholder": "Your name",
+    "phonePlaceholder": "Your phone number *",
+    "agreement": "I agree to the processing of",
+    "personalData": "personal data",
+    "submit": "Waiting for a call",
+    "submitting": "Sending...",
+    "note": "Applications received after 22:00 will be processed the next day after 8:00",
+    "or": "or",
+    "callTitle": "Call us",
+    "available": "24/7",
+    "successTitle": "Application sent",
+    "successMessage": "We will contact you shortly!",
+    "errors": {
+      "nameRequired": "Please enter your name",
+      "phoneRequired": "Please enter your phone number",
+      "phoneInvalid": "Invalid phone number",
+      "agreementRequired": "Please accept the agreement",
+      "submitError": "Error sending form. Please try again."
     }
   }
 }

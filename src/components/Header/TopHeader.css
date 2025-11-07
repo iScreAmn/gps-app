@@ -42,10 +42,6 @@ body[data-theme="dark"] .top-header {
   opacity: 1;
 }
 
-.logo-image:hover {
-  transform: scale(1.05);
-}
-
 /* Smooth transition for theme changes */
 .top-header-logo img {
   transition: opacity 0.3s ease-in-out, transform var(--transition-fast);
@@ -199,6 +195,21 @@ body[data-theme="dark"] .phone {
 
 body[data-theme="dark"] .email {
   color: #a0aec0;
+}
+
+.contact-link {
+  text-decoration: none;
+  color: inherit;
+  transition: color var(--transition-fast);
+}
+
+.contact-link:hover {
+  color: var(--primary-red);
+}
+
+.contact-link:focus-visible {
+  outline: 2px solid var(--primary-red);
+  outline-offset: 2px;
 }
 
 /* Social Media */
