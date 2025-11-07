@@ -10,6 +10,7 @@ import AboutPage from './pages/AboutPage/AboutPage';
 import ServicesPage from './pages/ServicesPage/ServicesPage';
 import NewsPage from './pages/NewsPage/NewsPage';
 import ContactsPage from './pages/ContactsPage/ContactsPage';
+import PrivacyPolicyPage from './pages/PrivacyPolicyPage/PrivacyPolicyPage';
 import './App.css';
 
 function App() {
@@ -28,6 +29,7 @@ function App() {
               <Route path="/ka/services" element={<ServicesPage />} />
               <Route path="/ka/news" element={<NewsPage />} />
               <Route path="/ka/contacts" element={<ContactsPage />} />
+              <Route path="/ka/privacy-policy" element={<PrivacyPolicyPage />} />
               
               {/* English routes */}
               <Route path="/en" element={<HomePage />} />
@@ -38,6 +40,9 @@ function App() {
               <Route path="/en/services" element={<ServicesPage />} />
               <Route path="/en/news" element={<NewsPage />} />
               <Route path="/en/contacts" element={<ContactsPage />} />
+              <Route path="/en/privacy-policy" element={<PrivacyPolicyPage />} />
+
+              <Route path="/privacy-policy" element={<PrivacyPolicyPage />} />
               
               {/* Default route - show Georgian homepage */}
               <Route path="/" element={<HomePage />} />
