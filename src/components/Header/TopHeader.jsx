@@ -70,16 +70,7 @@ const TopHeader = () => {
           <div className="social-section">
             <div className="social-media">
               <a 
-                href={t('header.telegramLink')} 
-                className="social-link telegram"
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="Telegram"
-              >
-                <FaTelegram />
-              </a>
-              <a 
-                href={t('header.whatsappLink')} 
+                href={contactsData.socials.whatsapp} 
                 className="social-link whatsapp"
                 target="_blank"
                 rel="noopener noreferrer"
@@ -87,8 +78,17 @@ const TopHeader = () => {
               >
                 <FaWhatsapp />
               </a>
+              <a 
+                href={contactsData.socials.telegram} 
+                className="social-link telegram"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Telegram"
+              >
+                <FaTelegram />
+              </a>
             </div>
-            <div className="hours">{t('header.hours')}</div>
+            <div className="hours none">{t('header.hours')}</div>
           </div>
         </div>
       </div>

@@ -96,7 +96,7 @@ body[data-theme="dark"] .footer-bottom {
   display: flex;
   gap: 2.5rem;
   font-size: 24px;
-  width: 330px;
+  width: 400px;
 }
 
 .copyright-social-link {

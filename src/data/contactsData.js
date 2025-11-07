@@ -7,6 +7,10 @@ const contactsData = {
     label: 'info@geopolser.ge',
     href: 'mailto:info@geopolser.ge',
   },
+  socials: {
+    whatsapp: 'https://whatsapp.com/channel/0029Vb6P79E1yT2I2KS8GG3Y',
+    telegram: 'https://t.me/geopolser',
+  },
 };
 
 export default contactsData;

@@ -4,7 +4,7 @@ import { useLanguage } from "../../hooks/useLanguage";
 import { useTheme } from "../../contexts/ThemeContext";
 import { mainLogo, mainLogoWhite } from "../../assets/images";
 import contactsData from "../../data/contactsData";
-import { FaPhoneAlt, FaFacebookSquare, FaInstagram, FaLinkedinIn, FaYoutube } from "react-icons/fa";
+import { FaPhoneAlt, FaFacebookSquare, FaInstagram, FaLinkedinIn, FaYoutube, FaTelegram, FaWhatsapp } from "react-icons/fa";
 import { MdOutlineMail, MdLocationPin } from "react-icons/md";
 import { AiFillTikTok } from "react-icons/ai";
 import "./Footer.css";
@@ -69,6 +69,12 @@ const Footer = () => {
             </Link>
           </div>
           <div className="copyright-socials">
+            <a href={contactsData.socials.whatsapp} target="_blank" rel="noopener noreferrer" className="copyright-social-link">
+              <FaWhatsapp />
+            </a>
+            <a href={contactsData.socials.telegram} target="_blank" rel="noopener noreferrer" className="copyright-social-link">
+              <FaTelegram />
+            </a>
             <a href="https://facebook.com/GeorgianPolygraphServices" target="_blank" className="copyright-social-link">
               <FaFacebookSquare />
             </a>
