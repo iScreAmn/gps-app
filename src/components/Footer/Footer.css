@@ -81,15 +81,35 @@ body[data-theme="dark"] .footer-contact-link:hover {
   padding-top: 2rem;
   border-top: 1px solid var(--light-border);
   display: flex;
-  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
   gap: 0.5rem;
-  text-align: center;
   color: var(--light-text-secondary);
 }
 
 body[data-theme="dark"] .footer-bottom {
   border-top-color: var(--dark-border);
   color: var(--dark-text-secondary);
+}
+
+.copyright-socials {
+  display: flex;
+  gap: 2.5rem;
+  font-size: 24px;
+  width: 330px;
+}
+
+.copyright-social-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: inherit;
+  transition: transform var(--transition-normal), color var(--transition-fast);
+}
+
+.copyright-social-link:hover {
+  color: var(--primary-red);
+  transform: translateY(-2px) scale(1.05);
 }
 
 .footer-bottom-link {
