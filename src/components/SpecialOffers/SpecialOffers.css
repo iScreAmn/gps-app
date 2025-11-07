@@ -697,6 +697,9 @@ body[data-theme="dark"] .no-offers-message {
     margin: 1rem 0 1.25rem 0;
     padding: 0.25rem;
     overflow-x: auto;
+    border-radius: 0;
+    background: none !important;
+    border: none;
   }
   
   .offers-category-filters .category-filter-btn {
