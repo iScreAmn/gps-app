@@ -3,6 +3,11 @@ import { Link } from 'react-router-dom';
 import { useLanguage } from "../../hooks/useLanguage";
 import { useTheme } from '../../contexts/ThemeContext';
 import { mainLogo, mainLogoWhite } from '../../assets/images';
+import contactsData from '../../data/contactsData';
+import { FaPhoneAlt } from "react-icons/fa";
+import { MdOutlineMail, MdLocationPin } from "react-icons/md";
+
+
 import './Footer.css';
 
 const Footer = () => {
@@ -15,7 +20,7 @@ const Footer = () => {
 
   return (
     <footer className="footer">
-      <div className="container">
+      <div className="container-mini">
         <div className="footer-content">
           <div className="footer-section">
             <Link to={`/${language}`} className="logo-footer">
@@ -32,29 +37,35 @@ const Footer = () => {
           
           <div className="footer-section">
             <h4>{t('footer.contact')}</h4>
-            <p>📞 +995 32 230 81 77</p>
-            <p>✉️ info@geopolser.ge</p>
-            <p>📍 {t('contacts.tbilisi_georgia')}</p>
-          </div>
-          
-          <div className="footer-section">
-            <h4>{t('footer.quick_links')}</h4>
-            <div className="footer-links">
-              <Link to={`/${language}/catalog`}>
-                {t('navigation.catalog')}
-              </Link>
-              <Link to={`/${language}/services`}>
-                {t('navigation.services')}
-              </Link>
-              <Link to={`/${language}/contacts`}>
-                {t('navigation.contacts')}
-              </Link>
+            <a
+              href={contactsData.phone.href}
+              className="footer-contact-item footer-contact-link"
+            >
+              <FaPhoneAlt />
+              <span>{contactsData.phone.label}</span>
+            </a>
+            <a
+              href={contactsData.email.href}
+              className="footer-contact-item footer-contact-link"
+            >
+              <MdOutlineMail />
+              <span>{contactsData.email.label}</span>
+            </a>
+            <div className="footer-contact-item">
+              <MdLocationPin />
+              <span>{t('contacts.tbilisi_georgia')}</span>
             </div>
           </div>
         </div>
         
         <div className="footer-bottom">
           <p>&copy; {currentYear} Georgian Polygraph Services. {t('footer.all_rights')}.</p>
+          <Link
+            to={`/${language}/privacy-policy`}
+            className="footer-bottom-link"
+          >
+            {t('footer.privacy_policy')}
+          </Link>
         </div>
       </div>
     </footer>
