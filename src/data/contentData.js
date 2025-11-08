@@ -2,7 +2,11 @@ import {
   productGarmin, 
   productTrimble, 
   productLeica,
+  iechoPrinter,
+  toners,
+  printer1,
   printer4,
+  printer3,
   nocai1,
   nocai2,
   nocai3,
@@ -48,18 +52,28 @@ export const gpsContent = {
   carousel: {
     slides: [
       createContentSlide('office-hero', {
+        title: 'hero.iecho.title',
+        subtitle: 'hero.iecho.subtitle',
+        cta: 'hero.iecho.cta',
+        ctaLink: '/catalog/office'
+      }, {
+        src: iechoPrinter,
+        alt: 'Office GPS Equipment Background'
+      }),
+
+      createContentSlide('office-hero', {
         title: 'hero.office.title',
         subtitle: 'hero.office.subtitle',
         cta: 'hero.office.cta',
         ctaLink: '/catalog/office'
       }, {
-        src: productLeica,
+        src: printer3,
         alt: 'Office GPS Equipment Background'
       }),
       
       createImageSlide('professional-equipment', 
         {
-          src: productGarmin,
+          src: printer1,
           alt: 'Professional GPS Equipment'
         },
         {
@@ -72,7 +86,7 @@ export const gpsContent = {
       
       createImageSlide('industrial-solutions',
         {
-          src: productTrimble,
+          src: toners,
           alt: 'Industrial GPS Solutions'
         },
         {

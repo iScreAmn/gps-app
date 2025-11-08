@@ -1,9 +1,11 @@
 // Printers collection
-export { default as printer1 } from './printers/pr_01.png';
+export { default as printer1 } from './printers/pr_01.jpg';
 export { default as printer2 } from './printers/pr_02.png';
-export { default as printer3 } from './printers/pr_03.png';
-export { default as printer4 } from './printers/pr_04.png';
+export { default as printer3 } from './printers/pr_03.jpg';
+export { default as printer4 } from './printers/pr_04.jpg';
 export { default as printer5 } from './printers/pr_05.png';
+export { default as iechoPrinter } from './printers/iecho.webp';
+export { default as toners } from './printers/toners.jpg';
 
 //Logos
 export { default as mainLogo } from './gps_logo.png';
