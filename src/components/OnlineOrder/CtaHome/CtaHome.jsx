@@ -4,8 +4,7 @@ import { artPrinter1 } from "../../../assets/images";
 import { useLanguage } from "../../../hooks/useLanguage";
 // eslint-disable-next-line no-unused-vars
 import { motion } from "motion/react";
-import { Modal } from "../../widgets/Modals";
-import { CallbackForm } from "../../widgets/CallbackForm";
+import { Modal, CallbackForm } from "../../widgets/Modals";
 
 const CtaHome = () => {
   const { t } = useLanguage();

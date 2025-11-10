@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import './CallbackForm.css';
-import { useLanguage } from '../../../hooks/useLanguage';
+import { useLanguage } from '../../../../hooks/useLanguage';
 
 const CallbackForm = ({ onSuccess }) => {
   const { t, language } = useLanguage();
