@@ -1,0 +1,127 @@
+.construction {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 24px;
+  padding: 4px 8px 0;
+  color: #374151;
+}
+
+.construction__media {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.construction__image-wrapper {
+  width: 100%;
+  max-width: 280px;
+  padding: 20px;
+  border-radius: 16px;
+  background: linear-gradient(145deg, #f9fafb 0%, #ffffff 70%);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.6),
+    0 6px 16px rgba(15, 23, 42, 0.08);
+}
+
+.construction__image {
+  width: 400px;
+  height: auto;
+  display: block;
+  border-radius: 12px;
+  object-fit: contain;
+}
+
+.construction__body {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  width: 100%;
+  max-width: 420px;
+  animation: constructionBodyFade 0.35s ease 0.15s forwards;
+  opacity: 0;
+}
+
+.construction__message {
+  margin: 0;
+  font-size: 1.1rem;
+  font-weight: 600;
+  line-height: 1.5;
+  color: #1f2937;
+}
+
+.construction__subtitle {
+  margin: 0;
+  font-size: 0.975rem;
+  line-height: 1.6;
+  color: #6b7280;
+}
+
+[data-theme="dark"] .construction {
+  color: #d1d5db;
+}
+
+[data-theme="dark"] .construction__image-wrapper {
+  background: linear-gradient(145deg, rgba(17, 24, 39, 0.9), rgba(31, 41, 55, 0.7));
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.04),
+    0 6px 20px rgba(15, 23, 42, 0.45);
+}
+
+[data-theme="dark"] .construction__message {
+  color: #f3f4f6;
+}
+
+[data-theme="dark"] .construction__subtitle {
+  color: #9ca3af;
+}
+
+@keyframes constructionBodyFade {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 768px) {
+  .construction__image-wrapper {
+    max-width: 240px;
+    padding: 16px;
+  }
+
+  .construction__body {
+    max-width: 360px;
+  }
+}
+
+@media (max-width: 480px) {
+  .construction {
+    gap: 20px;
+    padding: 0;
+  }
+
+  .construction__image-wrapper {
+    max-width: 220px;
+    padding: 14px;
+    border-radius: 14px;
+  }
+
+  .construction__message {
+    font-size: 1rem;
+  }
+
+  .construction__subtitle {
+    font-size: 0.9rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .construction__body {
+    animation: none;
+    opacity: 1;
+  }
+}
+

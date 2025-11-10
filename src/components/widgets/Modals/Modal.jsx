@@ -48,7 +48,8 @@ const Modal = ({
   useEffect(() => {
     if (!isOpen || !modalRef.current) return;
 
-    const focusableElements = modalRef.current.querySelectorAll(
+    const modalNode = modalRef.current;
+    const focusableElements = modalNode.querySelectorAll(
       'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
     );
     
@@ -71,12 +72,10 @@ const Modal = ({
       }
     };
 
-    modalRef.current.addEventListener('keydown', handleTab);
+    modalNode.addEventListener('keydown', handleTab);
 
     return () => {
-      if (modalRef.current) {
-        modalRef.current.removeEventListener('keydown', handleTab);
-      }
+      modalNode.removeEventListener('keydown', handleTab);
     };
   }, [isOpen]);
 
