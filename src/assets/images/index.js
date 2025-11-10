@@ -53,6 +53,7 @@ export { default as aboutOrder } from './about/ineo4065.png';
 // Art Printers
 export { default as artPrinter1 } from './printers/art/art_1.png';
 export { default as artPrinter2 } from './printers/art/thanku_art.webp';
+export { default as underConstruction } from './web-art/construction.webp';
 
 // Product images - using actual printer images
 export { default as productGarmin } from './printers/pr_01.png';

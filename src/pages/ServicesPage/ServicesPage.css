@@ -15,9 +15,16 @@
 }
 
 .services-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  display: flex;
+  align-items: center;
+  justify-content: center;
   gap: 2rem;
+}
+
+.under-construction {
+  width: 600px;
+  height: 100%;
+  object-fit: cover;
 }
 
 .service-card {
