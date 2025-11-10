@@ -4,6 +4,7 @@ import { useLanguage } from '../../hooks/useLanguage';
 import { useTheme } from '../../contexts/ThemeContext';
 import { FaSearch, FaTelegram, FaWhatsapp } from 'react-icons/fa';
 import { mainLogo, mainLogoWhite } from '../../assets/images';
+import contactsData from '../../data/contactsData';
 import './TopHeader.css';
 
 const TopHeader = () => {
@@ -50,25 +51,26 @@ const TopHeader = () => {
           {/* Contact Info */}
           <div className="contact-info">
             <div className="phone-numbers">
-              <div className="phone">{t('header.phone1')}</div>
+              <a
+                href={contactsData.phone.href}
+                className="phone contact-link"
+              >
+                {contactsData.phone.label}
+              </a>
             </div>
-            <div className="email">{t('header.email')}</div>
+            <a
+              href={contactsData.email.href}
+              className="email contact-link"
+            >
+              {contactsData.email.label}
+            </a>
           </div>
 
           {/* Social Media */}
           <div className="social-section">
             <div className="social-media">
               <a 
-                href={t('header.telegramLink')} 
-                className="social-link telegram"
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="Telegram"
-              >
-                <FaTelegram />
-              </a>
-              <a 
-                href={t('header.whatsappLink')} 
+                href={contactsData.socials.whatsapp} 
                 className="social-link whatsapp"
                 target="_blank"
                 rel="noopener noreferrer"
@@ -76,8 +78,17 @@ const TopHeader = () => {
               >
                 <FaWhatsapp />
               </a>
+              <a 
+                href={contactsData.socials.telegram} 
+                className="social-link telegram"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Telegram"
+              >
+                <FaTelegram />
+              </a>
             </div>
-            <div className="hours">{t('header.hours')}</div>
+            <div className="hours none">{t('header.hours')}</div>
           </div>
         </div>
       </div>

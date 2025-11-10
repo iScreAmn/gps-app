@@ -1,24 +1,48 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import TopHeader from '../../components/Header/TopHeader';
 import Header from '../../components/Header/Header';
 import Footer from '../../components/Footer/Footer';
 import ScrollToTop from '../../components/widgets/ScrollToTop/ScrollToTop';
-import { getCurrentLanguageFromPath } from '../../i18n';
+import { Modal } from '../../components/widgets/Modals';
+import Construction from '../../components/widgets/Modals/Popup/Construction/Construction';
+import { useLanguage } from '../../hooks/useLanguage';
 import './Layout.css';
 
 const Layout = ({ children }) => {
   const location = useLocation();
   const prevPathRef = useRef(location.pathname);
+  const constructionTimerRef = useRef(null);
+  const [isConstructionModalOpen, setIsConstructionModalOpen] = useState(false);
+  const { t } = useLanguage();
+
+  // Auto-open construction modal 8s after initial mount, regardless of the current route
+  useEffect(() => {
+    constructionTimerRef.current = setTimeout(() => {
+      setIsConstructionModalOpen(true);
+      constructionTimerRef.current = null;
+    }, 8000);
+
+    return () => {
+      if (constructionTimerRef.current) {
+        clearTimeout(constructionTimerRef.current);
+      }
+    };
+  }, []);
+
+  const handleCloseConstructionModal = () => {
+    setIsConstructionModalOpen(false);
+
+    if (constructionTimerRef.current) {
+      clearTimeout(constructionTimerRef.current);
+      constructionTimerRef.current = null;
+    }
+  };
 
   // Scroll to top when route changes, but not when only language changes
   useEffect(() => {
     const currentPath = location.pathname;
     const prevPath = prevPathRef.current;
-    
-    // Get current and previous language
-    const currentLang = getCurrentLanguageFromPath(currentPath);
-    const prevLang = getCurrentLanguageFromPath(prevPath);
     
     // Remove language prefix from paths for comparison
     const currentPathWithoutLang = currentPath.replace(/^\/[a-z]{2}/, '') || '/';
@@ -42,6 +66,14 @@ const Layout = ({ children }) => {
       </main>
       <Footer />
       <ScrollToTop />
+      <Modal
+        isOpen={isConstructionModalOpen}
+        onClose={handleCloseConstructionModal}
+        className="construction-modal"
+        title={t("construction.title")}
+      >
+        <Construction />
+      </Modal>
     </div>
   );
 };

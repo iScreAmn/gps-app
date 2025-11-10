@@ -9,10 +9,10 @@
 
 /* Main Order Card - Same style as Calculator Wrapper */
 .online__order {
-  width: 800px;
-  height: 658px;
+  width: 100%;
+  width: 700px;
   margin: 0;
-  padding: 3rem;
+  padding: 1rem;
   background-color: var(--light-card-bg);
   border-radius: 16px;
   box-shadow: var(--light-shadow);
@@ -21,6 +21,7 @@
   align-items: center;
   justify-content: center;
   gap: 2rem;
+  min-height: 600px;
   
   transition: background-color var(--transition-normal), 
               box-shadow var(--transition-normal),
@@ -75,7 +76,7 @@ body[data-theme="dark"] .online__order::after {
 /* Image Section */
 .order__img {
   width: 100%;
-  max-width: 320px;
+  max-width: 270px;
   flex-shrink: 0;
   border-radius: 12px;
   position: relative;
@@ -168,6 +169,7 @@ body[data-theme="dark"] .order__content-btn-primary:hover {
   .online__order {
     padding: 2.5rem;
     gap: 1.5rem;
+    min-height: 550px;
   }
 
   .order__content-title {
@@ -179,7 +181,7 @@ body[data-theme="dark"] .order__content-btn-primary:hover {
   }
 
   .order__img {
-    max-width: 400px;
+    max-width: 280px;
   }
 }
 
@@ -192,10 +194,11 @@ body[data-theme="dark"] .order__content-btn-primary:hover {
   .online__order {
     padding: 2rem;
     gap: 1.5rem;
+    min-height: auto;
   }
 
   .order__img {
-    max-width: 350px;
+    max-width: 280px;
   }
 
   .order__content-title {
@@ -225,6 +228,7 @@ body[data-theme="dark"] .order__content-btn-primary:hover {
     padding: 1.5rem;
     border-radius: 12px;
     gap: 1.5rem;
+    min-height: 500px;
   }
 
   .order__img {

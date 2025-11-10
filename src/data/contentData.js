@@ -2,7 +2,11 @@ import {
   productGarmin, 
   productTrimble, 
   productLeica,
+  iechoPrinter,
+  toners,
+  printer1,
   printer4,
+  printer3,
   nocai1,
   nocai2,
   nocai3,
@@ -47,19 +51,29 @@ export const gpsContent = {
   // Карусель на главной странице
   carousel: {
     slides: [
-      createContentSlide('office-hero', {
+      createContentSlide('office-hero-primary', {
+        title: 'hero.iecho.title',
+        subtitle: 'hero.iecho.subtitle',
+        cta: 'hero.iecho.cta',
+        ctaLink: '/catalog/office'
+      }, {
+        src: iechoPrinter,
+        alt: 'Office GPS Equipment Background'
+      }),
+
+      createContentSlide('office-hero-secondary', {
         title: 'hero.office.title',
         subtitle: 'hero.office.subtitle',
         cta: 'hero.office.cta',
         ctaLink: '/catalog/office'
       }, {
-        src: productLeica,
+        src: printer3,
         alt: 'Office GPS Equipment Background'
       }),
       
       createImageSlide('professional-equipment', 
         {
-          src: productGarmin,
+          src: printer1,
           alt: 'Professional GPS Equipment'
         },
         {
@@ -72,7 +86,7 @@ export const gpsContent = {
       
       createImageSlide('industrial-solutions',
         {
-          src: productTrimble,
+          src: toners,
           alt: 'Industrial GPS Solutions'
         },
         {
@@ -272,56 +286,6 @@ export const gpsContent = {
     subtitle: 'product.gallery.subtitle',
     items: [
       {
-        id: 'garmin-gps-featured',
-        product: {
-          title: 'products.nocai.title',
-          subtitle: 'products.nocai.subtitle',
-          description: 'products.garmin.description',
-          features: [
-            'products.nocai.feature1',
-            'products.nocai.feature2', 
-            'products.nocai.feature3',
-            'products.nocai.feature4',
-            'products.nocai.feature5',
-            'products.nocai.feature6',
-            'products.nocai.feature7',
-            'products.nocai.feature8'
-          ],
-          cta: 'products.nocai.cta',
-          ctaLink: '/products/garmin-gps',
-          price: 'products.garmin.price',
-          discount: 'products.discount',
-          code: 'products.code'
-        },
-        images: [
-          {
-            src: nocai1,
-            alt: 'Nocai UV Printing'
-          },
-          {
-            src: nocai2,
-            alt: 'Nocai UV Printing'
-          },
-          {
-            src: nocai3,
-            alt: 'Nocai UV Printing'
-          },
-          {
-            src: nocai4,
-            alt: 'Nocai UV Printing'
-          }
-        ],
-        specifications: {
-          dimensions: 'product.specs.dimensions',
-          weight: 'product.specs.weight',
-          battery: 'product.specs.battery',
-          connectivity: 'product.specs.connectivity',
-          accuracy: 'product.specs.accuracy',
-          warranty: 'product.specs.warranty'
-        },
-        category: 'new'
-      },
-      {
         id: 'trimble-surveying-featured',
         product: {
           title: 'products.iecho.title',
@@ -371,6 +335,56 @@ export const gpsContent = {
           {
             src: iecho7,
             alt: 'iecho PK0604 Plus'
+          }
+        ],
+        specifications: {
+          dimensions: 'product.specs.dimensions',
+          weight: 'product.specs.weight',
+          battery: 'product.specs.battery',
+          connectivity: 'product.specs.connectivity',
+          accuracy: 'product.specs.accuracy',
+          warranty: 'product.specs.warranty'
+        },
+        category: 'new'
+      },
+      {
+        id: 'garmin-gps-featured',
+        product: {
+          title: 'products.nocai.title',
+          subtitle: 'products.nocai.subtitle',
+          description: 'products.garmin.description',
+          features: [
+            'products.nocai.feature1',
+            'products.nocai.feature2', 
+            'products.nocai.feature3',
+            'products.nocai.feature4',
+            'products.nocai.feature5',
+            'products.nocai.feature6',
+            'products.nocai.feature7',
+            'products.nocai.feature8'
+          ],
+          cta: 'products.nocai.cta',
+          ctaLink: '/products/garmin-gps',
+          price: 'products.garmin.price',
+          discount: 'products.discount',
+          code: 'products.code'
+        },
+        images: [
+          {
+            src: nocai1,
+            alt: 'Nocai UV Printing'
+          },
+          {
+            src: nocai2,
+            alt: 'Nocai UV Printing'
+          },
+          {
+            src: nocai3,
+            alt: 'Nocai UV Printing'
+          },
+          {
+            src: nocai4,
+            alt: 'Nocai UV Printing'
           }
         ],
         specifications: {

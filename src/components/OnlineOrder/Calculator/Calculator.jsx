@@ -1,23 +1,52 @@
 import React, { useState, useEffect, useRef } from 'react';
+import { Link } from 'react-router-dom';
 import { useLanguage } from '../../../hooks/useLanguage';
 import { FaWhatsapp, FaPhone } from "react-icons/fa";
 import { MdOutlineEmail } from "react-icons/md";
+import { FiRefreshCw } from "react-icons/fi";
+import { artPrinter2 } from '../../../assets/images';
 import './Calculator.css';
+import {
+  calculatorQuestions,
+  deviceTypes,
+  brandOptions,
+  jobTypes,
+  getLocalizedLabel
+} from '../../../data/calculatorData';
 
 // API Configuration
-const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:3001';
+const API_URL = (() => {
+  const envUrl = import.meta.env.VITE_API_URL && String(import.meta.env.VITE_API_URL).trim();
+  if (envUrl) return envUrl.replace(/\/$/, '');
+  if (typeof window !== 'undefined') {
+    const host = window.location.hostname;
+    if (host === 'localhost' || host === '127.0.0.1') {
+      return `http://${host}:3001`;
+    }
+    // Production fallback to Vercel server when env is not set
+    return 'https://gps-app-server.vercel.app';
+  }
+  // Non-browser safety fallback
+  return 'https://gps-app-server.vercel.app';
+})();
 
 const Calculator = () => {
   const { t, language } = useLanguage();
-  const totalSteps = 4; // 3 questions + 1 contact form
+  const currentLanguage = ['en', 'ka'].includes(language) ? language : 'en';
+  const totalSteps = 5; // 3 questions + 1 contact form + 1 thank you screen
 
   // State management
   const [currentStep, setCurrentStep] = useState(1);
   const [answers, setAnswers] = useState({
-    printerType: '',
+    deviceType: '',
     brand: '',
     jobType: ''
   });
+
+  // Dynamic brand options based on device type
+  const getAvailableBrands = () => {
+    return brandOptions[answers.deviceType] || [];
+  };
   const [contactMethod, setContactMethod] = useState('whatsapp');
   const [contactData, setContactData] = useState({
     name: '',
@@ -33,7 +62,7 @@ const Calculator = () => {
   const displayedProgressRef = useRef(0);
 
   // Фиксированные значения прогресса для каждого шага
-  const progressSteps = [0, 35, 65, 100];
+  const progressSteps = [0, 35, 65, 100, 100];
   const progressPercentage = progressSteps[currentStep - 1] || 0;
 
   // Плавная анимация прогресс-бара и текста
@@ -82,15 +111,21 @@ const Calculator = () => {
 
   // Handle option selection for questions
   const handleOptionSelect = (field, value) => {
-    setAnswers(prev => ({ ...prev, [field]: value }));
+    setAnswers(prev => {
+      // If changing device type, reset brand selection
+      if (field === 'deviceType') {
+        return { ...prev, [field]: value, brand: '' };
+      }
+      return { ...prev, [field]: value };
+    });
   };
 
   // Validate current step
   const validateStep = () => {
     const newErrors = {};
 
-    if (currentStep === 1 && !answers.printerType) {
-      newErrors.printerType = t('calculator.validation.required');
+    if (currentStep === 1 && !answers.deviceType) {
+      newErrors.deviceType = t('calculator.validation.required');
     }
     if (currentStep === 2 && !answers.brand) {
       newErrors.brand = t('calculator.validation.required');
@@ -185,12 +220,19 @@ const Calculator = () => {
     
     if (!validateStep() || isSubmitting) return;
 
+    if (!API_URL && typeof window !== 'undefined' && !(window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1')) {
+      console.error('API endpoint is not configured. Set VITE_API_URL for production.');
+      setSubmitStatus('error');
+      return;
+    }
+
     setIsSubmitting(true);
     setSubmitStatus(null);
 
     // Prepare data for API
     const formData = {
-      printer_type: answers.printerType,
+      device_type: answers.deviceType,
+      printer_type: answers.deviceType,
       brand: answers.brand,
       job_type: answers.jobType,
       contact_method: contactMethod,
@@ -218,15 +260,8 @@ const Calculator = () => {
 
       setSubmitStatus('success');
       
-      // Reset form after successful submission
-      setTimeout(() => {
-        setCurrentStep(1);
-        setAnswers({ printerType: '', brand: '', jobType: '' });
-        setContactMethod('whatsapp');
-        setContactData({ name: '', phone: '', email: '' });
-        setConsent(false);
-        setSubmitStatus(null);
-      }, 3000);
+      // Navigate to thank you screen (step 5)
+      setCurrentStep(5);
 
     } catch (error) {
       console.error('Submission error:', error);
@@ -236,46 +271,58 @@ const Calculator = () => {
     }
   };
 
+  // Handle form reset
+  const handleReset = () => {
+    setCurrentStep(1);
+    setAnswers({ deviceType: '', brand: '', jobType: '' });
+    setContactMethod('whatsapp');
+    setContactData({ name: '', phone: '', email: '' });
+    setConsent(false);
+    setSubmitStatus(null);
+    setErrors({});
+  };
+
   // Render step content
   const renderStepContent = () => {
     switch (currentStep) {
       case 1:
         return (
           <div className="calculator__step calculator__step--active">
-            <h3 className="calculator__question">{t('calculator.step1.question')}</h3>
+            <h3 className="calculator__question">{calculatorQuestions.step1?.[currentLanguage] || calculatorQuestions.step1.en}</h3>
             <div className="calculator__options">
-              {['office', 'pro', 'wideFormats'].map(option => (
+              {deviceTypes.map(option => (
                 <button
-                  key={option}
+                  key={option.value}
                   type="button"
-                  className={`calculator__option ${answers.printerType === option ? 'calculator__option--selected' : ''}`}
-                  onClick={() => handleOptionSelect('printerType', option)}
-                  aria-pressed={answers.printerType === option}
+                  className={`calculator__option ${answers.deviceType === option.value ? 'calculator__option--selected' : ''}`}
+                  onClick={() => handleOptionSelect('deviceType', option.value)}
+                  aria-pressed={answers.deviceType === option.value}
                 >
-                  {t(`calculator.step1.options.${option}`)}
+                  {getLocalizedLabel(option.label, currentLanguage)}
                 </button>
               ))}
             </div>
-            {errors.printerType && (
-              <span className="calculator__error">{errors.printerType}</span>
+            {errors.deviceType && (
+              <span className="calculator__error">{errors.deviceType}</span>
             )}
           </div>
         );
 
-      case 2:
+      case 2: {
+        const availableBrands = getAvailableBrands();
         return (
           <div className="calculator__step calculator__step--active">
-            <h3 className="calculator__question">{t('calculator.step2.question')}</h3>
+            <h3 className="calculator__question">{calculatorQuestions.step2?.[currentLanguage] || calculatorQuestions.step2.en}</h3>
             <div className="calculator__options">
-              {['konicaMinolta', 'develop', 'nokaiUltra'].map(option => (
+              {availableBrands.map(option => (
                 <button
-                  key={option}
+                  key={option.value}
                   type="button"
-                  className={`calculator__option ${answers.brand === option ? 'calculator__option--selected' : ''}`}
-                  onClick={() => handleOptionSelect('brand', option)}
-                  aria-pressed={answers.brand === option}
+                  className={`calculator__option ${answers.brand === option.value ? 'calculator__option--selected' : ''}`}
+                  onClick={() => handleOptionSelect('brand', option.value)}
+                  aria-pressed={answers.brand === option.value}
                 >
-                  {t(`calculator.step2.options.${option}`)}
+                  {getLocalizedLabel(option.label, currentLanguage)}
                 </button>
               ))}
             </div>
@@ -284,21 +331,22 @@ const Calculator = () => {
             )}
           </div>
         );
+      }
 
       case 3:
         return (
           <div className="calculator__step calculator__step--active">
-            <h3 className="calculator__question">{t('calculator.step3.question')}</h3>
+            <h3 className="calculator__question">{calculatorQuestions.step3?.[currentLanguage] || calculatorQuestions.step3.en}</h3>
             <div className="calculator__options">
-              {['printing', 'service'].map(option => (
+              {jobTypes.map(option => (
                 <button
-                  key={option}
+                  key={option.value}
                   type="button"
-                  className={`calculator__option ${answers.jobType === option ? 'calculator__option--selected' : ''}`}
-                  onClick={() => handleOptionSelect('jobType', option)}
-                  aria-pressed={answers.jobType === option}
+                  className={`calculator__option ${answers.jobType === option.value ? 'calculator__option--selected' : ''}`}
+                  onClick={() => handleOptionSelect('jobType', option.value)}
+                  aria-pressed={answers.jobType === option.value}
                 >
-                  {t(`calculator.step3.options.${option}`)}
+                  {getLocalizedLabel(option.label, currentLanguage)}
                 </button>
               ))}
             </div>
@@ -329,7 +377,7 @@ const Calculator = () => {
                 </button>
                 <button
                   type="button"
-                  className={`calculator__contact-method ${contactMethod === 'telegram' ? 'calculator__contact-method--active' : ''}`}
+                  className={`calculator__contact-method ${contactMethod === 'phone' ? 'calculator__contact-method--active' : ''}`}
                   onClick={() => {
                     setContactMethod('phone');
                     setErrors({});
@@ -425,7 +473,13 @@ const Calculator = () => {
                     aria-invalid={!!errors.consent}
                   />
                   <span className="calculator__checkbox-label">
-                    {t('calculator.consent')}
+                    {t('calculator.consent')}{' '}
+                    <Link
+                      to={`/${language}/privacy-policy`}
+                      className="calculator__checkbox-link"
+                    >
+                      {t('footer.privacy_policy')}
+                    </Link>
                   </span>
                 </label>
                 {errors.consent && (
@@ -434,16 +488,40 @@ const Calculator = () => {
               </div>
 
               {/* Submit status messages */}
-              {submitStatus === 'success' && (
-                <div className="calculator__success" role="status" aria-live="polite">
-                  {t('calculator.success')}
-                </div>
-              )}
               {submitStatus === 'error' && (
                 <div className="calculator__error-message" role="alert" aria-live="assertive">
                   {t('calculator.error')}
                 </div>
               )}
+            </div>
+          </div>
+        );
+
+      case 5:
+        return (
+          <div className="calculator__step calculator__step--active calculator__success">
+            <div className="calculator__success-content">
+              <div className="calculator__success-image-wrapper">
+                <img 
+                  src={artPrinter2} 
+                  alt={t('calculator.thankYou.title')}
+                  className="calculator__success-image"
+                />
+              </div>
+              
+              <h2 className="calculator__success-title">
+                {t('calculator.thankYou.title')}
+              </h2>
+              
+              <button 
+                type="button"
+                className="calculator__success-reset"
+                onClick={handleReset}
+                aria-label={t('calculator.thankYou.resetButton')}
+              >
+                <FiRefreshCw className="calculator__success-reset-icon" />
+                {t('calculator.thankYou.resetButton')}
+              </button>
             </div>
           </div>
         );
@@ -454,7 +532,6 @@ const Calculator = () => {
   };
 
   return (
-    <section className="calculator" aria-labelledby="calculator-title">
         <div className="calculator__wrapper">
           <header className="calculator__header">
             <h2 id="calculator-title" className="calculator__title">
@@ -463,8 +540,8 @@ const Calculator = () => {
             <p className="calculator__subtitle">{t('calculator.subtitle')}</p>
           </header>
 
-        {/* Progress bar - показывается только после первого шага */}
-        {currentStep > 1 && (
+        {/* Progress bar - показывается только после первого шага и до шага благодарности */}
+        {currentStep > 1 && currentStep < 5 && (
           <div className="calculator__progress" role="progressbar" aria-valuenow={progressPercentage} aria-valuemin="0" aria-valuemax="100">
             <div className="calculator__progress-bar" style={{ width: `${animatedProgress}%` }} />
             <span className="calculator__progress-text">
@@ -477,41 +554,42 @@ const Calculator = () => {
           <form className="calculator__form" onSubmit={handleSubmit}>
             {renderStepContent()}
 
-            {/* Navigation buttons */}
-            <div className="calculator__navigation">
-              {currentStep > 1 && (
-                <button
-                  type="button"
-                  className="calculator__btn calculator__btn--back"
-                  onClick={handleBack}
-                  disabled={isSubmitting}
-                  aria-label={t('calculator.buttons.back')}
-                >
-                  ←
-                </button>
-              )}
-              
-              {currentStep < totalSteps ? (
-                <button
-                  type="button"
-                  className="calculator__btn calculator__btn--next"
-                  onClick={handleNext}
-                >
-                  {t('calculator.buttons.next')} →
-                </button>
-              ) : (
-                <button
-                  type="submit"
-                  className={`calculator__submit ${(!consent || isSubmitting) ? 'calculator__submit--disabled' : ''}`}
-                  disabled={!consent || isSubmitting}
-                >
-                  {isSubmitting ? t('calculator.submitting') : t('calculator.submit')}
-                </button>
-              )}
-            </div>
+            {/* Navigation buttons - скрываются на шаге благодарности */}
+            {currentStep < 5 && (
+              <div className="calculator__navigation">
+                {currentStep > 1 && (
+                  <button
+                    type="button"
+                    className="calculator__btn calculator__btn--back"
+                    onClick={handleBack}
+                    disabled={isSubmitting}
+                    aria-label={t('calculator.buttons.back')}
+                  >
+                    ←
+                  </button>
+                )}
+                
+                {currentStep < 4 ? (
+                  <button
+                    type="button"
+                    className="calculator__btn calculator__btn--next"
+                    onClick={handleNext}
+                  >
+                    {t('calculator.buttons.next')} →
+                  </button>
+                ) : (
+                  <button
+                    type="submit"
+                    className={`calculator__submit ${(!consent || isSubmitting) ? 'calculator__submit--disabled' : ''}`}
+                    disabled={!consent || isSubmitting}
+                  >
+                    {isSubmitting ? t('calculator.submitting') : t('calculator.submit')}
+                  </button>
+                )}
+              </div>
+            )}
           </form>
         </div>
-    </section>
   );
 };
 
