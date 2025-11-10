@@ -286,56 +286,6 @@ export const gpsContent = {
     subtitle: 'product.gallery.subtitle',
     items: [
       {
-        id: 'garmin-gps-featured',
-        product: {
-          title: 'products.nocai.title',
-          subtitle: 'products.nocai.subtitle',
-          description: 'products.garmin.description',
-          features: [
-            'products.nocai.feature1',
-            'products.nocai.feature2', 
-            'products.nocai.feature3',
-            'products.nocai.feature4',
-            'products.nocai.feature5',
-            'products.nocai.feature6',
-            'products.nocai.feature7',
-            'products.nocai.feature8'
-          ],
-          cta: 'products.nocai.cta',
-          ctaLink: '/products/garmin-gps',
-          price: 'products.garmin.price',
-          discount: 'products.discount',
-          code: 'products.code'
-        },
-        images: [
-          {
-            src: nocai1,
-            alt: 'Nocai UV Printing'
-          },
-          {
-            src: nocai2,
-            alt: 'Nocai UV Printing'
-          },
-          {
-            src: nocai3,
-            alt: 'Nocai UV Printing'
-          },
-          {
-            src: nocai4,
-            alt: 'Nocai UV Printing'
-          }
-        ],
-        specifications: {
-          dimensions: 'product.specs.dimensions',
-          weight: 'product.specs.weight',
-          battery: 'product.specs.battery',
-          connectivity: 'product.specs.connectivity',
-          accuracy: 'product.specs.accuracy',
-          warranty: 'product.specs.warranty'
-        },
-        category: 'new'
-      },
-      {
         id: 'trimble-surveying-featured',
         product: {
           title: 'products.iecho.title',
@@ -385,6 +335,56 @@ export const gpsContent = {
           {
             src: iecho7,
             alt: 'iecho PK0604 Plus'
+          }
+        ],
+        specifications: {
+          dimensions: 'product.specs.dimensions',
+          weight: 'product.specs.weight',
+          battery: 'product.specs.battery',
+          connectivity: 'product.specs.connectivity',
+          accuracy: 'product.specs.accuracy',
+          warranty: 'product.specs.warranty'
+        },
+        category: 'new'
+      },
+      {
+        id: 'garmin-gps-featured',
+        product: {
+          title: 'products.nocai.title',
+          subtitle: 'products.nocai.subtitle',
+          description: 'products.garmin.description',
+          features: [
+            'products.nocai.feature1',
+            'products.nocai.feature2', 
+            'products.nocai.feature3',
+            'products.nocai.feature4',
+            'products.nocai.feature5',
+            'products.nocai.feature6',
+            'products.nocai.feature7',
+            'products.nocai.feature8'
+          ],
+          cta: 'products.nocai.cta',
+          ctaLink: '/products/garmin-gps',
+          price: 'products.garmin.price',
+          discount: 'products.discount',
+          code: 'products.code'
+        },
+        images: [
+          {
+            src: nocai1,
+            alt: 'Nocai UV Printing'
+          },
+          {
+            src: nocai2,
+            alt: 'Nocai UV Printing'
+          },
+          {
+            src: nocai3,
+            alt: 'Nocai UV Printing'
+          },
+          {
+            src: nocai4,
+            alt: 'Nocai UV Printing'
           }
         ],
         specifications: {
