@@ -531,5 +531,10 @@
     "submitting": "Submitting...",
     "success": "Thank you for subscribing!",
     "error": "Error subscribing. Please try again."
+  },
+  "construction": {
+    "title": "Under Construction",
+    "message": "We are working hard to bring you new features!",
+    "closeButton": "Got it!"
   }
 }

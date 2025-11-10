@@ -51,7 +51,7 @@ export const gpsContent = {
   // Карусель на главной странице
   carousel: {
     slides: [
-      createContentSlide('office-hero', {
+      createContentSlide('office-hero-primary', {
         title: 'hero.iecho.title',
         subtitle: 'hero.iecho.subtitle',
         cta: 'hero.iecho.cta',
@@ -61,7 +61,7 @@ export const gpsContent = {
         alt: 'Office GPS Equipment Background'
       }),
 
-      createContentSlide('office-hero', {
+      createContentSlide('office-hero-secondary', {
         title: 'hero.office.title',
         subtitle: 'hero.office.subtitle',
         cta: 'hero.office.cta',
