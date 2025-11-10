@@ -1,5 +1,6 @@
 import React, { useEffect, useMemo, useState } from "react";
 import { FaEnvelope } from "react-icons/fa";
+import { useLanguage } from "../../hooks/useLanguage";
 import "./NewsletterCTA.css";
 
 const API_URL = (() => {
@@ -19,6 +20,7 @@ const API_URL = (() => {
 const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 const NewsletterCTA = () => {
+  const { t } = useLanguage();
   const [email, setEmail] = useState("");
   const [touched, setTouched] = useState(false);
   const [status, setStatus] = useState("idle"); // idle | loading | success | error
@@ -115,9 +117,9 @@ const NewsletterCTA = () => {
   return (
     <section className={containerClasses} aria-live="polite">
       <div className="newsletter-cta__content">
-        <h2 className="newsletter-cta__title">Subscribe to our Newsletter</h2>
+        <h2 className="newsletter-cta__title">{t('newsletter.title')}</h2>
         <p className="newsletter-cta__subtitle">
-          Get the latest updates, offers, and news straight to your inbox.
+          {t('newsletter.subtitle')}
         </p>
 
         <form className="newsletter-cta__form" onSubmit={handleSubmit} noValidate>
@@ -137,7 +139,7 @@ const NewsletterCTA = () => {
               type="email"
               name="email"
               className="newsletter-cta__input"
-              placeholder="Enter your email"
+              placeholder={t('newsletter.email')}
               value={email}
               onChange={handleChange}
               onBlur={() => setTouched(true)}
@@ -152,7 +154,7 @@ const NewsletterCTA = () => {
             className="newsletter-cta__button"
             disabled={status === "loading"}
           >
-            {status === "loading" ? "Subscribing..." : "Subscribe"}
+            {status === "loading" ? t('newsletter.submitting') : t('newsletter.subscribe')}
           </button>
         </form>
 

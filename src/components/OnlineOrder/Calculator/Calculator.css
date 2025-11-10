@@ -546,7 +546,7 @@ body[data-theme="dark"] .calculator__success-image {
   font-size: 2rem;
   font-weight: var(--font-bold);
   color: var(--light-text);
-  margin-bottom: 2.5rem;
+  margin-bottom: 1.5rem;
   line-height: 1.4;
   max-width: 450px;
   transition: color var(--transition-normal);

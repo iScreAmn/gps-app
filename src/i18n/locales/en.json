@@ -18,23 +18,28 @@
     "email": "info@geopolser.ge"
   },
   "hero": {
+    "iecho": {
+      "title": "IECHO Systems",
+      "subtitle": "Unique cutting machine",
+      "cta": "Learn More"
+    },
     "office": {
       "title": "The Perfect Office Partner",
       "subtitle": "Every great workday begins with technology you can trust",
       "cta": "Learn More"
     },
     "professional": {
-      "title": "Professional GPS Equipment",
+      "title": "Click service perfect delivery",
       "subtitle": "High-precision tools for professional surveying",
       "cta": "View Professional Tools"
     },
     "industrial": {
-      "title": "Industrial GPS Systems",
-      "subtitle": "Powerful solutions for large-scale operations",
+      "title": "Best Deals on Supplies",
+      "subtitle": "Toners from 140 GEL & More",
       "cta": "Discover Industrial Solutions"
     },
     "support": {
-      "title": "Expert GPS Support",
+      "title": "Expert Support",
       "subtitle": "Professional maintenance and technical assistance",
       "cta": "Get Support"
     }
@@ -517,5 +522,14 @@
       "agreementRequired": "Please accept the agreement",
       "submitError": "Error sending form. Please try again."
     }
+  },
+  "newsletter": {
+    "title": "Subscribe to our newsletter",
+    "subtitle": "Get the latest news and updates delivered straight to your inbox",
+    "email": "Email",
+    "subscribe": "Subscribe",
+    "submitting": "Submitting...",
+    "success": "Thank you for subscribing!",
+    "error": "Error subscribing. Please try again."
   }
 }
