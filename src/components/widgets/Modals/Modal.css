@@ -12,13 +12,13 @@
   padding: 20px;
   opacity: 0;
   visibility: hidden;
-  transition: opacity 0.3s ease, visibility 0.3s ease;
+  /* transition: opacity 0.3s ease, visibility 0.3s ease; */
 }
 
 .modal--open {
   opacity: 1;
   visibility: visible;
-  animation: modalFadeIn 0.3s ease forwards;
+  /* animation: modalFadeIn 0.3s ease forwards; */
 }
 
 /* Overlay with Blur */
@@ -31,7 +31,7 @@
   background: rgb(0 0 0 / 70%);
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
-  animation: overlayFadeIn 0.3s ease forwards;
+  /* animation: overlayFadeIn 0.3s ease forwards; */
 }
 
 /* Modal Content */
@@ -46,8 +46,7 @@
   overflow: hidden;
   display: flex;
   flex-direction: column;
-  transform: scale(0.9);
-  animation: modalScaleIn 0.3s ease forwards;
+  animation: modalSlideIn 0.6s ease;
   outline: none;
 }
 
@@ -97,7 +96,7 @@
   border-radius: 8px;
   color: #6b7280;
   cursor: pointer;
-  transition: all 0.2s ease;
+  /* transition: all 0.2s ease; */
   flex-shrink: 0;
 }
 
@@ -168,44 +167,17 @@
   background: #6b7280;
 }
 
-/* ========================================
-   ANIMATIONS
-   ======================================== */
-
-@keyframes modalFadeIn {
+/* Animations */
+@keyframes modalSlideIn {
   from {
-    opacity: 0;
-    visibility: hidden;
-  }
-  to {
-    opacity: 1;
-    visibility: visible;
-  }
-}
-
-@keyframes overlayFadeIn {
-  from {
+    transform: translateY(-100px);
     opacity: 0;
   }
   to {
+    transform: translateY(0);
     opacity: 1;
   }
 }
-
-@keyframes modalScaleIn {
-  from {
-    transform: scale(0.9) translateY(-20px);
-    opacity: 0;
-  }
-  to {
-    transform: scale(1) translateY(0);
-    opacity: 1;
-  }
-}
-
-/* ========================================
-   RESPONSIVE DESIGN
-   ======================================== */
 
 /* Mobile Devices */
 @media (max-width: 640px) {
@@ -238,7 +210,7 @@
     height: 36px;
   }
 
-  @keyframes modalScaleIn {
+  @keyframes modalSlideIn {
     from {
       transform: translateY(100%);
       opacity: 0;

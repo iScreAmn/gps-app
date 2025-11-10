@@ -19,7 +19,7 @@
   border-radius: 12px;
   background: #f9fafb;
   color: #1f2937;
-  transition: all 0.2s ease;
+  /* transition: all 0.2s ease; */
   font-family: inherit;
 }
 
@@ -123,7 +123,7 @@
   border: 2px solid #d1d5db;
   border-radius: 6px;
   background: #ffffff;
-  transition: all 0.2s ease;
+  /* transition: all 0.2s ease; */
   position: relative;
   margin-top: 2px;
 }
@@ -192,7 +192,7 @@
   border: none;
   border-radius: 12px;
   cursor: pointer;
-  transition: all 0.3s ease;
+  /* transition: all 0.3s ease; */
   box-shadow: 0 4px 15px rgba(220, 38, 38, 0.3);
   font-family: inherit;
 }
@@ -286,7 +286,7 @@
   background: var(--primary-red);
   border-radius: 10px;
   text-decoration: none;
-  transition: all 0.2s ease;
+  /* transition: all 0.2s ease; */
   box-shadow: 0 2px 8px rgba(220, 38, 38, 0.2);
 }
 
@@ -327,10 +327,6 @@
   border-color: #A08A6D;
   opacity: 0.12;
 }
-
-/* ========================================
-   RESPONSIVE DESIGN
-   ======================================== */
 
 @media (max-width: 640px) {
   .callback-form__input {
@@ -378,10 +374,7 @@
   }
 }
 
-/* ========================================
-   ACCESSIBILITY
-   ======================================== */
-
+/* Accessibility */
 @media (prefers-reduced-motion: reduce) {
   .callback-form__input,
   .callback-form__submit,

@@ -82,9 +82,9 @@ const Modal = ({
   // Don't render if not open
   if (!isOpen) return null;
 
-  // Handle overlay click
+  // Handle overlay click - close if clicked outside modal content
   const handleOverlayClick = (e) => {
-    if (e.target === e.currentTarget) {
+    if (modalRef.current && !modalRef.current.contains(e.target)) {
       onClose();
     }
   };
@@ -92,7 +92,7 @@ const Modal = ({
   return (
     <div 
       className={`modal modal--open ${className}`}
-      onClick={handleOverlayClick}
+      onMouseDown={handleOverlayClick}
     >
       <div className="modal__overlay" />
       <div 
