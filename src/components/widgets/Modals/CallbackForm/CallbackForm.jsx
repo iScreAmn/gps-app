@@ -181,7 +181,7 @@ const CallbackForm = ({ onSuccess }) => {
               strokeLinejoin="round"
             />
           </svg>
-          +995 (322) 12-34-56
+          +995 (322) 308 177
         </a>
         
       </div>
