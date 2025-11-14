@@ -66,6 +66,11 @@ body[data-theme="dark"] {
   --text-color: #fff;
 }
 
+::selection {
+  background-color: var(--primary-red);
+  color: #fff;
+}
+
 button {
   cursor: pointer;
   border: none;
