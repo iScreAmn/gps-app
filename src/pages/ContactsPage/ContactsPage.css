@@ -34,40 +34,36 @@ body[data-theme="dark"] .contacts-header p {
 
 .contacts-highlights {
   flex: 1;
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 1.5rem;
+  display: flex;
+  gap: 70px;
 }
 
 .contacts-highlight {
   display: flex;
   gap: 1rem;
   align-items: flex-start;
-  padding: 1.5rem;
   border-radius: 18px;
-  background: var(--light-card-bg);
-  box-shadow: var(--light-shadow);
   text-decoration: none;
   color: inherit;
-  transition: transform 200ms ease, box-shadow 200ms ease;
-}
-
-.contacts-highlight:hover {
-  transform: translateY(-4px);
-  box-shadow: var(--light-shadow-hover, var(--light-shadow));
 }
 
 .contacts-highlight-icon {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 48px;
-  height: 48px;
-  border-radius: 50%;
-  background: rgba(212, 78, 74, 0.12);
+  width: 55px;
+  height: 60px;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.92);
+  box-shadow: var(--light-shadow);
   color: var(--primary-red);
   font-size: 1.2rem;
   flex-shrink: 0;
+}
+
+body[data-theme="dark"] .contacts-highlight-icon {
+  background: var(--dark-card-bg);
+  color: #fff;
 }
 
 .contacts-highlight h3 {
@@ -81,15 +77,6 @@ body[data-theme="dark"] .contacts-header p {
   color: var(--light-text-secondary);
 }
 
-body[data-theme="dark"] .contacts-highlight {
-  background: var(--dark-card-bg);
-  box-shadow: var(--dark-shadow);
-}
-
-body[data-theme="dark"] .contacts-highlight:hover {
-  box-shadow: var(--dark-shadow-hover, var(--dark-shadow));
-}
-
 body[data-theme="dark"] .contacts-highlight span:last-child {
   color: var(--dark-text-secondary);
 }
@@ -98,6 +85,7 @@ body[data-theme="dark"] .contacts-highlight span:last-child {
   flex-shrink: 0;
   padding-inline: 2.5rem;
   white-space: nowrap;
+  padding: 15px 24px !important;
 }
 
 .contacts-map-section {
@@ -189,7 +177,7 @@ body[data-theme="dark"] .map-loading {
 }
 
 .overlay-socials {
-  margin-top: 5px;
+  margin-top: 25px;
   display: flex;
   gap: 0.75rem;
 }

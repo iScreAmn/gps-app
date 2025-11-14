@@ -152,15 +152,19 @@
   },
   "contacts": {
     "title": "კონტაქტები",
-    "subtitle": "დაგვიკავშირდით ნებისმიერ დროს",
+    "subtitle": "სამუშაო საათები",
     "phone": "ტელეფონი",
     "email": "ელ. ფოსტა",
     "address": "მისამართი",
-    "contact_us": "დაგვიკავშირდით",
+    "contact_us": "ზარის შეკვეთა",
     "name": "სახელი",
     "message": "შეტყობინება",
     "send": "გაგზავნა",
-    "tbilisi_georgia": "არჩილ ქურდიანის #2"
+    "tbilisi_georgia": "არჩილ ქურდიანის #2",
+    "company_name": "Georgian Polygraph Services",
+    "working_hours": "ორშ–პარ 10:00 – 18:00",
+    "working_hours_short": "შაბათი 10:00 – 14:00",
+    "plan_route": "მარშრუტის დაგეგმვა"
   },
   "footer": {
     "description": "თქვენი სანდო პარტნიორი პოლიგრაფიის სამყაროში",

@@ -3,11 +3,16 @@ import { GoogleMap, MarkerF, useLoadScript } from "@react-google-maps/api";
 import {
   FaClock,
   FaEnvelope,
+  FaFacebookSquare,
+  FaInstagram,
+  FaLinkedinIn,
   FaMapMarkerAlt,
   FaPhoneAlt,
   FaTelegramPlane,
   FaWhatsapp,
+  FaYoutube,
 } from "react-icons/fa";
+import { AiFillTikTok } from "react-icons/ai";
 import { useLanguage } from "../../hooks/useLanguage";
 import contactsData from "../../data/contactsData";
 import './ContactsPage.css';
@@ -49,19 +54,19 @@ const ContactsPage = () => {
     {
       icon: <FaPhoneAlt />,
       title: contactsData.phone.label,
-      caption: t('contacts.phone'),
+      subtitle: t('contacts.phone'),
       href: contactsData.phone.href,
     },
     {
       icon: <FaEnvelope />,
       title: contactsData.email.label,
-      caption: t('contacts.email'),
+      subtitle: t('contacts.email'),
       href: contactsData.email.href,
     },
     {
       icon: <FaClock />,
-      title: "Mon–Fri 10:00 – 19:00",
-      caption: t('contacts.subtitle'),
+      title: t('contacts.working_hours'),
+      subtitle: t('contacts.working_hours_short'),
     },
   ];
 
@@ -75,6 +80,31 @@ const ContactsPage = () => {
       icon: <FaTelegramPlane />,
       href: contactsData.socials?.telegram,
       label: "Telegram",
+    },
+    {
+      icon: <FaFacebookSquare />,
+      href: contactsData.socials?.facebook,
+      label: "Facebook",
+    },
+    {
+      icon: <FaInstagram />,
+      href: contactsData.socials?.instagram,
+      label: "Instagram",
+    },
+    {
+      icon: <FaLinkedinIn />,
+      href: contactsData.socials?.linkedin,
+      label: "LinkedIn",
+    },
+    {
+      icon: <AiFillTikTok />,
+      href: contactsData.socials?.tiktok,
+      label: "TikTok",
+    },
+    {
+      icon: <FaYoutube />,
+      href: contactsData.socials?.youtube,
+      label: "YouTube",
     },
   ].filter((item) => Boolean(item.href));
 
@@ -95,14 +125,14 @@ const ContactsPage = () => {
 
               return (
                 <Wrapper
-                  key={`${item.caption}-${item.title}`}
+                  key={`${item.subtitle}-${item.title}`}
                   className="contacts-highlight"
                   {...wrapperProps}
                 >
                   <span className="contacts-highlight-icon">{item.icon}</span>
                   <div>
                     <h3>{item.title}</h3>
-                    <span>{item.caption}</span>
+                    <span>{item.subtitle}</span>
                   </div>
                 </Wrapper>
               );
@@ -117,7 +147,7 @@ const ContactsPage = () => {
       <div className="contacts-map-section">
         <div className="contacts-map-overlay">
           <span className="overlay-label">{t('contacts.address')}</span>
-          <h3>Georgian Polygraph Services</h3>
+          <h3>{t('contacts.company_name')}</h3>
 
           <div className="overlay-details">
             <div className="overlay-detail">
@@ -132,10 +162,6 @@ const ContactsPage = () => {
               <FaEnvelope />
               <span>{contactsData.email.label}</span>
             </a>
-            <div className="overlay-detail">
-              <FaClock />
-              <span>Mon–Fri 10:00 – 19:00</span>
-            </div>
           </div>
 
           {socials.length > 0 && (
@@ -160,7 +186,7 @@ const ContactsPage = () => {
             target="_blank"
             rel="noreferrer"
           >
-            Plan route
+            {t('contacts.plan_route')}
           </a>
         </div>
         <div className="contacts-map-canvas">
