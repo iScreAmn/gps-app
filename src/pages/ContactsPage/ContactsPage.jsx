@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react';
+import React, { useMemo, useState } from 'react';
 import { GoogleMap, MarkerF, useLoadScript } from "@react-google-maps/api";
 import {
   FaClock,
@@ -16,9 +16,20 @@ import { AiFillTikTok } from "react-icons/ai";
 import { useLanguage } from "../../hooks/useLanguage";
 import contactsData from "../../data/contactsData";
 import './ContactsPage.css';
+import { Modal, CallbackForm } from "../../components/widgets/Modals";
 
 const ContactsPage = () => {
   const { t } = useLanguage();
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isSuccessModal, setIsSuccessModal] = useState(false);
+
+  const handleOpenModal = () => setIsModalOpen(true);
+  const handleCloseModal = () => setIsModalOpen(false);
+  const handleFormSuccess = () => {
+    setIsModalOpen(false);
+    setIsSuccessModal(true);
+    setTimeout(() => setIsSuccessModal(false), 3000);
+  };
   const { isLoaded } = useLoadScript({
     googleMapsApiKey: import.meta.env.VITE_GOOGLE_MAPS_API_KEY,
   });
@@ -138,9 +149,13 @@ const ContactsPage = () => {
               );
             })}
           </div>
-          <a href={contactsData.phone.href} className="btn-primary contacts-call">
+          <button
+            type="button"
+            className="btn-primary contacts-call"
+            onClick={handleOpenModal}
+          >
             {t('contacts.contact_us')}
-          </a>
+          </button>
         </div>
       </div>
 
@@ -211,6 +226,41 @@ const ContactsPage = () => {
           )}
         </div>
       </div>
+      <Modal
+        isOpen={isModalOpen}
+        onClose={handleCloseModal}
+        title={t('callback.title') || 'Заказать обратный звонок для записи'}
+      >
+        <CallbackForm onSuccess={handleFormSuccess} />
+      </Modal>
+
+      <Modal
+        isOpen={isSuccessModal}
+        onClose={() => setIsSuccessModal(false)}
+        title={t('callback.successTitle') || 'Заявка отправлена'}
+      >
+        <div className="success-message">
+          <svg
+            width="64"
+            height="64"
+            viewBox="0 0 24 24"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+            style={{ margin: '0 auto 1rem', display: 'block', color: 'var(--primary-red)' }}
+          >
+            <path
+              d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
+          </svg>
+          <p style={{ textAlign: 'center', fontSize: '1.125rem', margin: 0 }}>
+            {t('callback.successMessage') || 'Мы свяжемся с вами в ближайшее время!'}
+          </p>
+        </div>
+      </Modal>
     </section>
   );
 };
