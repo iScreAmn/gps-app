@@ -11,6 +11,7 @@ import ServicesPage from './pages/ServicesPage/ServicesPage';
 import NewsPage from './pages/NewsPage/NewsPage';
 import ContactsPage from './pages/ContactsPage/ContactsPage';
 import PrivacyPolicyPage from './pages/PrivacyPolicyPage/PrivacyPolicyPage';
+import CuttingSystemsPage from './pages/CuttingSystemsPage/CuttingSystemsPage';
 import './App.css';
 
 function App() {
@@ -24,6 +25,8 @@ function App() {
               <Route path="/ka" element={<HomePage />} />
               <Route path="/ka/catalog" element={<CatalogPage />} />
               <Route path="/ka/catalog/:category" element={<CatalogPage />} />
+              <Route path="/ka/cutting-systems" element={<CuttingSystemsPage />} />
+              <Route path="/ka/cutting-systems/:brand" element={<CatalogPage />} />
               <Route path="/ka/product/:id" element={<ProductPage />} />
               <Route path="/ka/about" element={<AboutPage />} />
               <Route path="/ka/services" element={<ServicesPage />} />
@@ -35,6 +38,8 @@ function App() {
               <Route path="/en" element={<HomePage />} />
               <Route path="/en/catalog" element={<CatalogPage />} />
               <Route path="/en/catalog/:category" element={<CatalogPage />} />
+              <Route path="/en/cutting-systems" element={<CuttingSystemsPage />} />
+              <Route path="/en/cutting-systems/:brand" element={<CatalogPage />} />
               <Route path="/en/product/:id" element={<ProductPage />} />
               <Route path="/en/about" element={<AboutPage />} />
               <Route path="/en/services" element={<ServicesPage />} />
@@ -43,6 +48,8 @@ function App() {
               <Route path="/en/privacy-policy" element={<PrivacyPolicyPage />} />
 
               <Route path="/privacy-policy" element={<PrivacyPolicyPage />} />
+              <Route path="/cutting-systems" element={<CuttingSystemsPage />} />
+              <Route path="/cutting-systems/:brand" element={<CatalogPage />} />
               
               {/* Default route - show Georgian homepage */}
               <Route path="/" element={<HomePage />} />

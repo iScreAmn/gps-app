@@ -6,6 +6,7 @@ import Footer from '../../components/Footer/Footer';
 import ScrollToTop from '../../components/widgets/ScrollToTop/ScrollToTop';
 import { Modal } from '../../components/widgets/Modals';
 import Construction from '../../components/widgets/Modals/Popup/Construction/Construction';
+import Breadcrumbs from '../../components/Breadcrumbs/Breadcrumbs';
 import { useLanguage } from '../../hooks/useLanguage';
 import './Layout.css';
 
@@ -61,6 +62,7 @@ const Layout = ({ children }) => {
     <div className="layout">
       <TopHeader />
       <Header />
+      <Breadcrumbs />
       <main className="main-content">
         {children}
       </main>
