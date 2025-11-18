@@ -12,6 +12,8 @@ import NewsPage from './pages/NewsPage/NewsPage';
 import ContactsPage from './pages/ContactsPage/ContactsPage';
 import PrivacyPolicyPage from './pages/PrivacyPolicyPage/PrivacyPolicyPage';
 import CuttingSystemsPage from './pages/CuttingSystemsPage/CuttingSystemsPage';
+import Iecho from './pages/CuttingSystemsPage/Iecho/Iecho';
+import IechoModelPage from './pages/CuttingSystemsPage/Iecho/IechoModelPage';
 import './App.css';
 
 function App() {
@@ -26,6 +28,8 @@ function App() {
               <Route path="/ka/catalog" element={<CatalogPage />} />
               <Route path="/ka/catalog/:category" element={<CatalogPage />} />
               <Route path="/ka/cutting-systems" element={<CuttingSystemsPage />} />
+              <Route path="/ka/cutting-systems/iecho" element={<Iecho />} />
+              <Route path="/ka/cutting-systems/iecho/:modelId" element={<IechoModelPage />} />
               <Route path="/ka/cutting-systems/:brand" element={<CatalogPage />} />
               <Route path="/ka/product/:id" element={<ProductPage />} />
               <Route path="/ka/about" element={<AboutPage />} />
@@ -39,6 +43,8 @@ function App() {
               <Route path="/en/catalog" element={<CatalogPage />} />
               <Route path="/en/catalog/:category" element={<CatalogPage />} />
               <Route path="/en/cutting-systems" element={<CuttingSystemsPage />} />
+              <Route path="/en/cutting-systems/iecho" element={<Iecho />} />
+              <Route path="/en/cutting-systems/iecho/:modelId" element={<IechoModelPage />} />
               <Route path="/en/cutting-systems/:brand" element={<CatalogPage />} />
               <Route path="/en/product/:id" element={<ProductPage />} />
               <Route path="/en/about" element={<AboutPage />} />
@@ -49,6 +55,8 @@ function App() {
 
               <Route path="/privacy-policy" element={<PrivacyPolicyPage />} />
               <Route path="/cutting-systems" element={<CuttingSystemsPage />} />
+              <Route path="/cutting-systems/iecho" element={<Iecho />} />
+              <Route path="/cutting-systems/iecho/:modelId" element={<IechoModelPage />} />
               <Route path="/cutting-systems/:brand" element={<CatalogPage />} />
               
               {/* Default route - show Georgian homepage */}

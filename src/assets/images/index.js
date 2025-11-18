@@ -65,6 +65,12 @@ export { default as ConstructionModal } from './web-art/constructionModal.webp';
 //Categories
 //IECHO
 export { default as iechoCategory } from './products/cutting-systems/PK1209.webp';
+export { default as PK1209 } from './products/cutting-systems/PK1209.webp';
+export { default as PK0604 } from './products/cutting-systems/PK0604.jpg';
+export { default as PK0604plus } from './products/cutting-systems/PK0604plus.jpg';
+export { default as PK0705 } from './products/cutting-systems/PK0705.jpg';
+export { default as PK0705plus } from './products/cutting-systems/PK0705plus.jpg';
+
 
 // Product images - using actual printer images
 export { default as productGarmin } from './printers/pr_01.png';

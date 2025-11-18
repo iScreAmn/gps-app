@@ -12,7 +12,7 @@ const CuttingSystemsPage = () => {
       id: 'iecho',
       name: 'IECHO',
       logo: iecho,
-      link: `/${language}/catalog/cutting/iecho`,
+      link: `/${language}/cutting-systems/iecho`,
       modifier: 'iecho'
     },
     {

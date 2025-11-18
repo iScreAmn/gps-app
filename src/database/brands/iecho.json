@@ -1,0 +1,221 @@
+{
+  "brand": "iecho",
+  "displayName": "IECHO Cutting Systems",
+  "products": [
+    {
+      "id": "pk0604",
+      "name": "IECHO PK0604",
+      "cuttingHeadType": "PK",
+      "machineType": "PK0604",
+      "cuttingArea": {
+        "lengthMm": 600,
+        "widthMm": 400
+      },
+      "flooringArea": {
+        "lengthMm": 2350,
+        "widthMm": 900,
+        "heightMm": 1150
+      },
+      "tools": [
+        "Universal Cutting Tool",
+        "Creasing Wheel",
+        "Kiss Cut Tool"
+      ],
+      "materials": [
+        "Car sticker / Sticker",
+        "Card Paper",
+        "PP Paper",
+        "Reflective material"
+      ],
+      "cuttingThicknessMm": 2,
+      "media": "Vacuum System",
+      "maxCuttingSpeedMmPerS": 1000,
+      "cuttingAccuracyMm": 0.1,
+      "dataFormats": [
+        "PLT",
+        "DXF",
+        "HP/GL"
+      ],
+      "voltage": "220v 50Hz",
+      "powerKw": 4
+    },
+    {
+      "id": "pk0604-plus",
+      "name": "IECHO PK0604 Plus",
+      "cuttingHeadType": "PK Plus",
+      "machineType": "PK0604 Plus",
+      "cuttingArea": {
+        "lengthMm": 600,
+        "widthMm": 400
+      },
+      "flooringArea": {
+        "lengthMm": 2350,
+        "widthMm": 900,
+        "heightMm": 1150
+      },
+      "tools": [
+        "Oscillating Tool",
+        "Universal Cutting Tool",
+        "Creasing Wheel",
+        "Kiss Cut Tool"
+      ],
+      "materials": [
+        "KT Board",
+        "PP Paper",
+        "Foam Board",
+        "Sticker",
+        "Reflective Material",
+        "Card Board",
+        "Plastic Sheet",
+        "Corrugated Board",
+        "Gray Board",
+        "Corrugated Plastic",
+        "ABS Board",
+        "Magnetic Sticker"
+      ],
+      "cuttingThicknessMm": 6,
+      "media": "Vacuum System",
+      "maxCuttingSpeedMmPerS": 1000,
+      "cuttingAccuracyMm": 0.1,
+      "dataFormats": [
+        "PLT",
+        "DXF",
+        "HP/GL"
+      ],
+      "voltage": "220v 50Hz",
+      "powerKw": 4
+    },
+    {
+      "id": "pk0705",
+      "name": "IECHO PK0705",
+      "cuttingHeadType": "PK",
+      "machineType": "PK0705",
+      "cuttingArea": {
+        "lengthMm": 750,
+        "widthMm": 530
+      },
+      "flooringArea": {
+        "lengthMm": 2600,
+        "widthMm": 1000,
+        "heightMm": 1500
+      },
+      "tools": [
+        "Universal Cutting Tool",
+        "Creasing Wheel",
+        "Kiss Cut Tool"
+      ],
+      "materials": [
+        "Car sticker / Sticker",
+        "Card Paper",
+        "PP Paper",
+        "Reflective material"
+      ],
+      "cuttingThicknessMm": 2,
+      "media": "Vacuum System",
+      "maxCuttingSpeedMmPerS": 1000,
+      "cuttingAccuracyMm": 0.1,
+      "dataFormats": [
+        "PLT",
+        "DXF",
+        "HP/GL"
+      ],
+      "voltage": "220v 50Hz",
+      "powerKw": 4
+    },
+    {
+      "id": "pk0705-plus",
+      "name": "IECHO PK0705 Plus",
+      "cuttingHeadType": "PK",
+      "machineType": "PK0705 Plus",
+      "cuttingArea": {
+        "lengthMm": 750,
+        "widthMm": 530
+      },
+      "flooringArea": {
+        "lengthMm": 2600,
+        "widthMm": 1000,
+        "heightMm": 1500
+      },
+      "tools": [
+        "Oscillating Tool",
+        "Universal Cutting Tool",
+        "Creasing Wheel",
+        "Kiss Cut Tool"
+      ],
+      "materials": [
+        "KT Board",
+        "PP Paper",
+        "Foam Board",
+        "Sticker",
+        "Reflective Material",
+        "Card Board",
+        "Plastic Sheet",
+        "Corrugated Board",
+        "Gray Board",
+        "Corrugated Plastic",
+        "ABS Board",
+        "Magnetic Sticker"
+      ],
+      "cuttingThicknessMm": 6,
+      "media": "Vacuum System",
+      "maxCuttingSpeedMmPerS": 1000,
+      "cuttingAccuracyMm": 0.1,
+      "dataFormats": [
+        "PLT",
+        "DXF",
+        "HP/GL"
+      ],
+      "voltage": "220v 50Hz",
+      "powerKw": 4
+    },
+    {
+      "id": "pk1209-pro-max",
+      "name": "IECHO PK1209 Pro Max",
+      "cuttingHeadType": "PK Pro Max",
+      "machineType": "PK1209 Pro Max",
+      "cuttingArea": {
+        "lengthMm": 1200,
+        "widthMm": 900
+      },
+      "flooringArea": {
+        "lengthMm": 3200,
+        "widthMm": 1500,
+        "heightMm": 1150
+      },
+      "tools": [
+        "Oscillating Tool",
+        "Universal Cutting Tool",
+        "Creasing Wheel",
+        "Kiss Cut Tool",
+        "Drag Knife"
+      ],
+      "materials": [
+        "KT Board",
+        "PP Paper",
+        "Foam Board",
+        "Sticker",
+        "Reflective Material",
+        "Card Board",
+        "Plastic Sheet",
+        "Corrugated Board",
+        "Gray Board",
+        "Corrugated Plastic",
+        "ABS Board",
+        "Magnetic Sticker"
+      ],
+      "cuttingThicknessMm": 10,
+      "media": "Vacuum System",
+      "maxCuttingSpeedMmPerS": 1500,
+      "cuttingAccuracyMm": 0.1,
+      "dataFormats": [
+        "PLT",
+        "DXF",
+        "HPGL",
+        "PDF",
+        "EPS"
+      ],
+      "voltage": "220v ±10% 50Hz",
+      "powerKw": 6.5
+    }
+  ]
+}
