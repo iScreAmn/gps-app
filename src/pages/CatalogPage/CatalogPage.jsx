@@ -65,6 +65,8 @@ const CatalogPage = () => {
         return t('categories.professional');
       case 'industrial':
         return t('categories.industrial');
+      case 'binder':
+        return t('categories.binder');
       default:
         return t('catalog.title');
     }

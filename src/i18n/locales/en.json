@@ -51,10 +51,12 @@
     "professional": "Professional",
     "industrial": "Industrial",
     "cutting": "Cutting Systems",
+    "binder": "Binder",
     "office_description": "Multifunction devices for office use",
     "professional_description": "Professional printing solutions",
     "industrial_description": "Industrial-grade equipment",
     "cutting_description": "Professional cutting systems and equipment",
+    "binder_description": "Professional binding systems and equipment",
     "office_equipment": "Office Equipment",
     "production_printers": "Production Printers",
     "wide_format_printers": "Wide-Format Printers",
@@ -218,7 +220,8 @@
       "feature6": "Cutting Accuracy: 0.1mm",
       "feature7": "Data Format: PLT, DXF, HP/GL",
       "feature8": "Power: 4kw",
-      "cta": "Learn More"
+      "cta": "Learn More",
+      "needHelp": "Need Help?"
     },
     "leica": {
       "title": "Leica Professional GPS",

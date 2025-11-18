@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { useLanguage } from "../../hooks/useLanguage";
-import { categoryOffice, categoryProfessional, categoryIndustrial, iechoCategory } from '../../assets/images';
+import { categoryOffice, categoryProfessional, categoryIndustrial, iechoCategory, duploBinder } from '../../assets/images';
 import './CategoryCards.css';
 
 const CategoryCards = () => {
@@ -39,6 +39,14 @@ const CategoryCards = () => {
       link: `/${language}/cutting-systems`,
       description: t('categories.cutting_description'),
       wide: true
+    },
+    {
+      id: 'binder',
+      title: t('categories.binder'),
+      image: duploBinder,
+      link: `/${language}/catalog/binder`,
+      description: t('categories.binder_description'),
+      wide: false
     }
   ];
 

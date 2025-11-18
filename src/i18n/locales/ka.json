@@ -53,10 +53,12 @@
     "professional": "პროფესიონალური",
     "industrial": "ინდუსტრიული",
     "cutting": "საჭრელი სისტემები",
+    "binder": "ამკინძავი",
     "office_description": "მრავალფუნქციური მოწყობილობები ოფისისთვის",
     "professional_description": "პროფესიონალური ბეჭდვის გადაწყვეტილებები",
     "industrial_description": "ინდუსტრიული დონის მოწყობილობები",
     "cutting_description": "პროფესიონალური საჭრელი სისტემები და აღჭურვილობა",
+    "binder_description": "პროფესიონალური ამკინძავი სისტემები და აღჭურვილობა",
     "office_equipment": "საოფისე მოსყობილობები",
     "production_printers": "წარმოებითი პრინტერები",
     "wide_format_printers": "ფართოფორმატიანი პრინტერები",
@@ -214,7 +216,8 @@
       "feature6": "ჭრის სიზუსტე: 0.1მმ",
       "feature7": "მონაცემთა ფორმატი: PLT, DXF, HP/GL",
       "feature8": "ძაბვა: 4კვტ",
-      "cta": "დაწვრილებით"
+      "cta": "დაწვრილებით",
+      "needHelp": "დახმარება გჭირდება?"
     },
     "leica": {
       "title": "Leica Professional GPS",

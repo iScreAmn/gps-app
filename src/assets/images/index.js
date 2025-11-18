@@ -71,6 +71,8 @@ export { default as PK0604plus } from './products/cutting-systems/PK0604plus.jpg
 export { default as PK0705 } from './products/cutting-systems/PK0705.jpg';
 export { default as PK0705plus } from './products/cutting-systems/PK0705plus.jpg';
 
+//Duplo
+export { default as duploBinder } from './products/binders/duplo/duploBinder.jpg';
 
 // Product images - using actual printer images
 export { default as productGarmin } from './printers/pr_01.png';
