@@ -17,9 +17,9 @@ body[data-theme="dark"] .partners-section {
 }
 
 .partners-grid {
-  display: grid;
-  grid-template-columns: repeat(6, 1fr);
-  grid-template-rows: repeat(2, 1fr);
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
   gap: 24px;
   align-items: center;
   justify-items: center;
