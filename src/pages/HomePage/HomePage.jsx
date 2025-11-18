@@ -5,6 +5,7 @@ import ProductGallery from "../../components/ProductGallery/ProductGallery";
 import SpecialOffers from "../../components/SpecialOffers/SpecialOffers";
 import OnlineOrder from "../../components/OnlineOrder/OnlineOrder";
 import NewsletterCTA from "../../components/NewsletterCTA/NewsletterCTA";
+import LedModules from "../../components/LedModules/LedModules";
 import "./HomePage.css";
 
 const HomePage = () => {
@@ -13,6 +14,8 @@ const HomePage = () => {
       <Hero />
       <PartnersSection />
       <OnlineOrder />
+      <LedModules />
+
       <ProductGallery />
       <SpecialOffers />
       <NewsletterCTA />

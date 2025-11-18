@@ -10,6 +10,7 @@ export { default as toners } from './printers/toners.jpg';
 //Logos
 export { default as mainLogo } from './gps_logo.png';
 export { default as mainLogoWhite } from './gps_logo-white.webp';
+export { default as tmtLogo } from './partners/logos/tmt.png';
 //Partners logos
 export { default as duplo } from './partners/duplo.webp';
 export { default as knb } from './partners/knb.png';
@@ -29,6 +30,9 @@ export { default as tmt } from './partners/tmt.png'
 export { default as goldensign } from './partners/goldensign.webp'
 export { default as develop } from './partners/develop.webp'
 
+//Led Modules
+export { default as ledModule } from './led-modules/led-module.png';
+export { default as modulesArt } from './led-modules/modules-art.png';
 
 //Icons
 export { default as global } from './icons/global.webp';
