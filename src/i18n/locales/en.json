@@ -5,7 +5,8 @@
     "catalog": "Catalog",
     "services": "Service",
     "news": "News",
-    "contacts": "Contacts"
+    "contacts": "Contacts",
+    "privacy_policy": "Privacy Policy"
   },
   "header": {
     "system": "System",
@@ -49,9 +50,11 @@
     "office": "Office Equipment",
     "professional": "Professional",
     "industrial": "Industrial",
+    "cutting": "Cutting Systems",
     "office_description": "Multifunction devices for office use",
     "professional_description": "Professional printing solutions",
     "industrial_description": "Industrial-grade equipment",
+    "cutting_description": "Professional cutting systems and equipment",
     "office_equipment": "Office Equipment",
     "production_printers": "Production Printers",
     "wide_format_printers": "Wide-Format Printers",

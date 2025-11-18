@@ -30,6 +30,9 @@ export { default as tmt } from './partners/tmt.png'
 export { default as goldensign } from './partners/goldensign.webp'
 export { default as develop } from './partners/develop.webp'
 
+//Other Partners
+export { default as ideal } from './partners/logos/ideal.png'
+
 //Led Modules
 export { default as ledModule } from './led-modules/led-module.png';
 export { default as modulesArt } from './led-modules/modules-art.png';
@@ -41,7 +44,6 @@ export { default as service2 } from './icons/service2.webp';
 export { default as service3 } from './icons/service3.png';
 export { default as solutions } from './icons/solutions.webp';
 export { default as demo } from './icons/demo.png';
-
 
 // Hero backgrounds - placeholder images for now
 export const heroOffice = '/api/placeholder/1200/600';
@@ -59,6 +61,10 @@ export { default as artPrinter1 } from './printers/art/art_1.png';
 export { default as artPrinter2 } from './printers/art/thanku_art.webp';
 export { default as underConstruction } from './web-art/construction.webp';
 export { default as ConstructionModal } from './web-art/constructionModal.webp';
+
+//Categories
+//IECHO
+export { default as iechoCategory } from './products/cutting-systems/PK1209.webp';
 
 // Product images - using actual printer images
 export { default as productGarmin } from './printers/pr_01.png';

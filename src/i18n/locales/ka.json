@@ -5,7 +5,8 @@
     "catalog": "პროდუქცია",
     "services": "სერვისი",
     "news": "სიახლეები",
-    "contacts": "კონტაქტები"
+    "contacts": "კონტაქტები",
+    "privacy_policy": "კონფიდენციალურობის პოლიტიკა"
   },
   "header": {
     "system": "სისტემი",
@@ -51,9 +52,11 @@
     "office": "ოფისის მოწყობილობები",
     "professional": "პროფესიონალური",
     "industrial": "ინდუსტრიული",
+    "cutting": "საჭრელი სისტემები",
     "office_description": "მრავალფუნქციური მოწყობილობები ოფისისთვის",
     "professional_description": "პროფესიონალური ბეჭდვის გადაწყვეტილებები",
     "industrial_description": "ინდუსტრიული დონის მოწყობილობები",
+    "cutting_description": "პროფესიონალური საჭრელი სისტემები და აღჭურვილობა",
     "office_equipment": "საოფისე მოსყობილობები",
     "production_printers": "წარმოებითი პრინტერები",
     "wide_format_printers": "ფართოფორმატიანი პრინტერები",

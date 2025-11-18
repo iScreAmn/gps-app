@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { useLanguage } from "../../hooks/useLanguage";
-import { categoryOffice, categoryProfessional, categoryIndustrial } from '../../assets/images';
+import { categoryOffice, categoryProfessional, categoryIndustrial, iechoCategory } from '../../assets/images';
 import './CategoryCards.css';
 
 const CategoryCards = () => {
@@ -13,21 +13,32 @@ const CategoryCards = () => {
       title: t('categories.office'),
       image: categoryOffice,
       link: `/${language}/catalog/office`,
-      description: t('categories.office_description')
+      description: t('categories.office_description'),
+      wide: false
     },
     {
       id: 'professional',
       title: t('categories.professional'),
       image: categoryProfessional,
       link: `/${language}/catalog/professional`,
-      description: t('categories.professional_description')
+      description: t('categories.professional_description'),
+      wide: false
     },
     {
       id: 'industrial',
       title: t('categories.industrial'),
       image: categoryIndustrial,
       link: `/${language}/catalog/industrial`,
-      description: t('categories.industrial_description')
+      description: t('categories.industrial_description'),
+      wide: false
+    },
+    {
+      id: 'cutting',
+      title: t('categories.cutting'),
+      image: iechoCategory,
+      link: `/${language}/cutting-systems`,
+      description: t('categories.cutting_description'),
+      wide: true
     }
   ];
 
@@ -39,7 +50,7 @@ const CategoryCards = () => {
             <Link
               key={category.id}
               to={category.link}
-              className="category-card"
+              className={`category-card ${category.wide ? 'category-card-wide' : ''}`}
             >
               <div className="category-card-image">
                 <img src={category.image} alt={category.title} />
