@@ -7,6 +7,11 @@ export { default as printer5 } from './printers/pr_05.png';
 export { default as iechoPrinter } from './printers/iecho.webp';
 export { default as toners } from './printers/toners.jpg';
 
+//Sections
+export { default as laminator } from './printers/sections/laminator.jpg';
+export { default as plotter } from './printers/sections/plotter.png';
+export { default as cutters } from './printers/sections/cutters.webp';
+
 //Logos
 export { default as mainLogo } from './gps_logo.png';
 export { default as mainLogoWhite } from './gps_logo-white.webp';

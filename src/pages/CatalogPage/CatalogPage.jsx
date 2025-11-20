@@ -78,14 +78,14 @@ const CatalogPage = () => {
       {!category && <CategoryCards />}
       
       <div className="container">
-        <div className="catalog-header">
+        <div className="catalog-header none">
           <h1 className="catalog-title">{getCategoryTitle()}</h1>
           <p className="catalog-subtitle">
             {t('catalog.subtitle')}
           </p>
         </div>
 
-        <div className="catalog-content">
+        <div className="catalog-content none">
           {/* Filters */}
           <aside className="catalog-filters">
             <h3>{t('catalog.filters')}</h3>

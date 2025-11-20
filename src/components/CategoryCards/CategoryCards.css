@@ -55,7 +55,7 @@ body[data-theme="dark"] .category-card:hover {
   height: 100%;
   object-fit: cover;
   transition: transform var(--transition-normal);
-  filter: grayscale(100%);
+  /* filter: grayscale(100%); */
 }
 
 .category-card:hover .category-card-image img {
@@ -69,11 +69,16 @@ body[data-theme="dark"] .category-card:hover {
   left: 0;
   right: 0;
   bottom: 0;
-  background: linear-gradient(
+  /* background: linear-gradient(
     135deg,
     rgba(0, 0, 0, 0.8) 0%,
     rgba(0, 0, 0, 0.4) 50%,
     rgba(220, 38, 38, 0.3) 100%
+  ); */
+  background: linear-gradient(
+    135deg,
+    rgba(0, 0, 0, 0.5) 0%,
+    rgba(0, 0, 0, 0.24) 100%
   );
   display: flex;
   align-items: flex-end;
@@ -84,8 +89,8 @@ body[data-theme="dark"] .category-card:hover {
 .category-card:hover .category-card-overlay {
   background: linear-gradient(
     135deg,
-    rgba(220, 38, 38, 0.9) 0%,
-    rgba(220, 38, 38, 0.7) 50%,
+    rgba(0, 0, 0, 0.412) 0%,
+    rgba(105, 6, 6, 0.7) 50%,
     rgba(220, 38, 38, 0.5) 100%
   );
 }
@@ -101,6 +106,7 @@ body[data-theme="dark"] .category-card:hover {
 }
 
 .category-card-title {
+  font-family: 'Archyedt';
   font-size: 1.5rem;
   font-weight: var(--font-bold);
   margin-top: 0.5rem;

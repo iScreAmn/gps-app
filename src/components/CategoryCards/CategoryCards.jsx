@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { useLanguage } from "../../hooks/useLanguage";
-import { categoryOffice, categoryProfessional, categoryIndustrial, iechoCategory, duploBinder } from '../../assets/images';
+import { categoryOffice, categoryProfessional, categoryIndustrial, cutters, duploBinder, laminator, plotter } from '../../assets/images';
 import './CategoryCards.css';
 
 const CategoryCards = () => {
@@ -35,7 +35,7 @@ const CategoryCards = () => {
     {
       id: 'cutting',
       title: t('categories.cutting'),
-      image: iechoCategory,
+      image: cutters,
       link: `/${language}/cutting-systems`,
       description: t('categories.cutting_description'),
       wide: true
@@ -47,6 +47,22 @@ const CategoryCards = () => {
       link: `/${language}/catalog/binder`,
       description: t('categories.binder_description'),
       wide: false
+    },
+    {
+      id: 'laminators',
+      title: t('categories.laminators'),
+      image: laminator,
+      link: `/${language}/catalog/laminators`,
+      description: t('categories.laminators_description'),
+      wide: false
+    },
+    {
+      id: 'plotters',
+      title: t('categories.plotters'),
+      image: plotter,
+      link: `/${language}/catalog/plotters`,
+      description: t('categories.plotters_description'),
+      wide: true
     }
   ];
 

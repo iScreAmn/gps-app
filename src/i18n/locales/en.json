@@ -63,6 +63,10 @@
     "guillotine_cutter": "Guillotine Cutter",
     "shredder": "Shredder",
     "laminator": "Laminator",
+    "laminators": "Laminators",
+    "laminators_description": "Professional laminating equipment",
+    "plotters": "Plotters",
+    "plotters_description": "Wide-format plotters and printers",
     "accessories": "Accessories"
   },
   "about": {
