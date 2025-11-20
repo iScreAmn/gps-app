@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom';
 import { useLanguage } from "../../hooks/useLanguage";
 import ProductCard from '../../components/ProductCard/ProductCard';
 import CategoryCards from '../../components/CategoryCards/CategoryCards';
+import { printer1, printer2, printer3 } from '../../assets/images';
 import './CatalogPage.css';
 
 const CatalogPage = () => {
@@ -23,7 +24,7 @@ const CatalogPage = () => {
       type: 'multifunction',
       speed: '30',
       format: 'A3',
-      image: '/api/placeholder/300/200',
+      image: printer1,
       price: t('catalog.price_on_request')
     },
     {
@@ -33,7 +34,7 @@ const CatalogPage = () => {
       type: 'multifunction',
       speed: '45',
       format: 'A3',
-      image: '/api/placeholder/300/200',
+      image: printer2,
       price: t('catalog.price_on_request')
     },
     {
@@ -43,7 +44,7 @@ const CatalogPage = () => {
       type: 'printer',
       speed: '80',
       format: 'A3+',
-      image: '/api/placeholder/300/200',
+      image: printer3,
       price: t('catalog.price_on_request')
     }
   ];
