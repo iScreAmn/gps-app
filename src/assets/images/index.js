@@ -11,6 +11,10 @@ export { default as toners } from './printers/toners.jpg';
 export { default as laminator } from './printers/sections/laminator.jpg';
 export { default as plotter } from './printers/sections/plotter.png';
 export { default as cutters } from './printers/sections/cutters.webp';
+export { default as categoryOffice } from './printers/sections/develop-office.jpg';
+export { default as categoryPro } from './printers/sections/developPro.jpg';
+export { default as categoryIndustrial } from './printers/sections/develoopIndustrial.jpg';
+export { default as binder } from './printers/sections/binder.jpg';
 
 //Logos
 export { default as mainLogo } from './gps_logo.png';
@@ -66,6 +70,7 @@ export { default as artPrinter1 } from './printers/art/art_1.png';
 export { default as artPrinter2 } from './printers/art/thanku_art.webp';
 export { default as underConstruction } from './web-art/construction.webp';
 export { default as ConstructionModal } from './web-art/constructionModal.webp';
+export { default as proModel } from './web-art/flat-design.webp';
 
 //Categories
 //IECHO
@@ -102,11 +107,6 @@ export { default as iecho7 } from './products/iecho-PK0604/iecho7.webp';
 export const serviceMaintenance = '/api/placeholder/600/400';
 export const serviceTraining = '/api/placeholder/600/400';
 export const serviceConsultation = '/api/placeholder/600/400';
-
-// Category images
-export { default as categoryOffice } from './printers/sections/office.webp';
-export { default as categoryProfessional } from './printers/sections/production.webp';
-export { default as categoryIndustrial } from './printers/sections/industrial.webp';
 
 // Image collections for easy management
 export const images = {
