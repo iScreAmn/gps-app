@@ -25,10 +25,12 @@ body[data-theme="dark"] .header {
   height: 60px;
 }
 
-/* Navigation moved to left side */
 
 /* Desktop Navigation */
 .nav-desktop {
+  /* font-family: 'ALK Sanet'; */
+  font-family: 'Archyedt';
+  text-transform: uppercase;
   display: flex;
   align-items: center;
   gap: 2rem;

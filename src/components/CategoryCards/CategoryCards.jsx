@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { useLanguage } from "../../hooks/useLanguage";
-import { categoryOffice, categoryProfessional, categoryIndustrial, cutters, duploBinder, laminator, plotter } from '../../assets/images';
+import { categoryOffice, categoryPro, categoryIndustrial, cutters, binder, laminator, plotter } from '../../assets/images';
 import './CategoryCards.css';
 
 const CategoryCards = () => {
@@ -19,7 +19,7 @@ const CategoryCards = () => {
     {
       id: 'professional',
       title: t('categories.professional'),
-      image: categoryProfessional,
+      image: categoryPro,
       link: `/${language}/catalog/professional`,
       description: t('categories.professional_description'),
       wide: false
@@ -43,7 +43,7 @@ const CategoryCards = () => {
     {
       id: 'binder',
       title: t('categories.binder'),
-      image: duploBinder,
+      image: binder,
       link: `/${language}/catalog/binder`,
       description: t('categories.binder_description'),
       wide: false
