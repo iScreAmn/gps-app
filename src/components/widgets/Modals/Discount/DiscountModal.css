@@ -1,0 +1,220 @@
+.discount-modal .modal__content {
+  max-width: 800px;
+  width: 90%;
+  /* padding: 3rem 2rem; */
+}
+
+.discount-modal__content {
+  text-align: center;
+}
+
+.discount-modal .modal__title {
+  font-family: 'Archyedt', sans-serif;
+}
+
+.discount-modal__description {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  margin-bottom: 2rem;
+  color: var(--light-text-secondary);
+  transition: color var(--transition-normal);
+}
+
+body[data-theme="dark"] .discount-modal__description {
+  color: var(--dark-text-secondary);
+}
+
+/* Countdown Container */
+.countdown-container {
+  display: flex;
+  justify-content: center;
+  gap: 2.5rem;
+  margin: 3rem 0;
+  user-select: none;
+}
+
+/* Circular Progress */
+.circular-progress-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+.circular-progress {
+  position: relative;
+  display: grid;
+  place-content: center;
+  aspect-ratio: 1;
+  width: 151px;
+  height: 151px;
+  border-radius: 50%;
+  transition: transform var(--transition-fast);
+}
+
+.circular-progress:hover {
+  transform: scale(1.05);
+}
+
+.circular-progress__inner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  aspect-ratio: 1;
+  width: 140px;
+  height: 140px;
+  border-radius: 50%;
+  background-color: #FFFFFF;
+  transition: background-color var(--transition-normal);
+}
+
+body[data-theme="dark"] .circular-progress__inner {
+  background-color: var(--dark-card-bg);
+}
+
+.circular-progress__timer {
+  font-size: 2.5rem;
+  font-weight: 600;
+  color: #333333;
+  font-variant-numeric: tabular-nums;
+  transition: color var(--transition-normal);
+}
+
+body[data-theme="dark"] .circular-progress__timer {
+  color: var(--dark-text);
+}
+
+.circular-progress__label {
+  font-size: 1.5rem;
+  font-weight: 500;
+  color: var(--light-text);
+  transition: color var(--transition-normal);
+}
+
+body[data-theme="dark"] .circular-progress__label {
+  color: var(--dark-text);
+}
+
+/* Phone Section */
+.discount-modal__phone-section {
+  text-align: center;
+  margin-top: 2rem;
+}
+
+.discount-modal__phone-title {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: var(--light-text);
+  margin: 0 0 1rem;
+  transition: color var(--transition-normal);
+}
+
+body[data-theme="dark"] .discount-modal__phone-title {
+  color: var(--dark-text);
+}
+
+.discount-modal__phone-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.625rem;
+  padding: 0.875rem 1.5rem;
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #ffffff;
+  background: var(--primary-red);
+  border-radius: 10px;
+  text-decoration: none;
+  transition: all var(--transition-fast);
+  box-shadow: 0 2px 8px rgba(220, 38, 38, 0.2);
+}
+
+.discount-modal__phone-link:hover {
+  background: var(--primary-red-hover);
+  box-shadow: 0 4px 12px rgba(220, 38, 38, 0.3);
+  transform: translateY(-2px);
+}
+
+.discount-modal__phone-link:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 8px rgba(220, 38, 38, 0.2);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .discount-modal .modal__content {
+    padding: 2rem 1.5rem;
+  }
+
+  .discount-modal__description {
+    font-size: 1rem;
+  }
+
+  .countdown-container {
+    gap: 1.5rem;
+    margin: 2rem 0;
+  }
+
+  .circular-progress {
+    width: 120px;
+    height: 120px;
+  }
+
+  .circular-progress__inner {
+    width: 110px;
+    height: 110px;
+  }
+
+  .circular-progress__timer {
+    font-size: 2rem;
+  }
+
+  .circular-progress__label {
+    font-size: 1.2rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .discount-modal .modal__content {
+    padding: 1.5rem 1rem;
+  }
+
+  .countdown-container {
+    gap: 1rem;
+  }
+
+  .circular-progress {
+    width: 100px;
+    height: 100px;
+  }
+
+  .circular-progress__inner {
+    width: 90px;
+    height: 90px;
+  }
+
+  .circular-progress__timer {
+    font-size: 1.5rem;
+  }
+
+  .circular-progress__label {
+    font-size: 1rem;
+  }
+
+  .discount-modal__phone-link {
+    font-size: 1.125rem;
+    padding: 0.75rem 1.25rem;
+  }
+}
+
+/* Reduce motion for users who prefer it */
+@media (prefers-reduced-motion: reduce) {
+  .circular-progress,
+  .discount-modal__phone-link {
+    transition: none !important;
+  }
+  
+  .discount-modal__phone-link:hover {
+    transform: none;
+  }
+}
+
