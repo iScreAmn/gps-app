@@ -14,6 +14,8 @@ import PrivacyPolicyPage from './pages/PrivacyPolicyPage/PrivacyPolicyPage';
 import CuttingSystemsPage from './pages/CuttingSystemsPage/CuttingSystemsPage';
 import Iecho from './pages/CuttingSystemsPage/Iecho/Iecho';
 import IechoModelPage from './pages/CuttingSystemsPage/Iecho/IechoModelPage';
+import OfficeEquipment from './pages/OfficeEquipment/OfficeEquipment';
+import DevelopModelPage from './pages/OfficeEquipment/DevelopModelPage';
 import './App.css';
 
 function App() {
@@ -31,6 +33,8 @@ function App() {
               <Route path="/ka/cutting-systems/iecho" element={<Iecho />} />
               <Route path="/ka/cutting-systems/iecho/:modelId" element={<IechoModelPage />} />
               <Route path="/ka/cutting-systems/:brand" element={<CatalogPage />} />
+              <Route path="/ka/office-equipment/develop" element={<OfficeEquipment />} />
+              <Route path="/ka/office-equipment/develop/:modelId" element={<DevelopModelPage />} />
               <Route path="/ka/product/:id" element={<ProductPage />} />
               <Route path="/ka/about" element={<AboutPage />} />
               <Route path="/ka/services" element={<ServicesPage />} />
@@ -46,6 +50,8 @@ function App() {
               <Route path="/en/cutting-systems/iecho" element={<Iecho />} />
               <Route path="/en/cutting-systems/iecho/:modelId" element={<IechoModelPage />} />
               <Route path="/en/cutting-systems/:brand" element={<CatalogPage />} />
+              <Route path="/en/office-equipment/develop" element={<OfficeEquipment />} />
+              <Route path="/en/office-equipment/develop/:modelId" element={<DevelopModelPage />} />
               <Route path="/en/product/:id" element={<ProductPage />} />
               <Route path="/en/about" element={<AboutPage />} />
               <Route path="/en/services" element={<ServicesPage />} />
@@ -58,6 +64,8 @@ function App() {
               <Route path="/cutting-systems/iecho" element={<Iecho />} />
               <Route path="/cutting-systems/iecho/:modelId" element={<IechoModelPage />} />
               <Route path="/cutting-systems/:brand" element={<CatalogPage />} />
+              <Route path="/office-equipment/develop" element={<OfficeEquipment />} />
+              <Route path="/office-equipment/develop/:modelId" element={<DevelopModelPage />} />
               
               {/* Default route - show Georgian homepage */}
               <Route path="/" element={<HomePage />} />

@@ -5,44 +5,44 @@ import { FaDotCircle } from 'react-icons/fa';
 import './SidebarCategory.css';
 
 const SidebarCategory = () => {
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
 
   const categories = [
     {
-      id: 'office-equipment',
-      title: 'categories.office_equipment',
-      link: '/catalog/office'
+      id: 'office',
+      title: 'categories.office',
+      link: `/${language}/catalog/office`
     },
     {
-      id: 'production-printers',
-      title: 'categories.production_printers',
-      link: '/catalog/production'
+      id: 'professional',
+      title: 'categories.professional',
+      link: `/${language}/catalog/professional`
     },
     {
-      id: 'wide-format-printers',
-      title: 'categories.wide_format_printers',
-      link: '/catalog/wide-format'
+      id: 'industrial',
+      title: 'categories.industrial',
+      link: `/${language}/catalog/industrial`
     },
     {
-      id: 'guillotine-cutter',
-      title: 'categories.guillotine_cutter',
-      link: '/catalog/guillotine'
+      id: 'cutting',
+      title: 'categories.cutting',
+      link: `/${language}/cutting-systems`
     },
     {
-      id: 'shredder',
-      title: 'categories.shredder',
-      link: '/catalog/shredder'
+      id: 'binder',
+      title: 'categories.binder',
+      link: `/${language}/catalog/binder`
     },
     {
-      id: 'laminator',
-      title: 'categories.laminator',
-      link: '/catalog/laminator'
+      id: 'laminators',
+      title: 'categories.laminators',
+      link: `/${language}/catalog/laminators`
     },
     {
-      id: 'accessories',
-      title: 'categories.accessories',
-      link: '/catalog/accessories'
-    },
+      id: 'plotters',
+      title: 'categories.plotters',
+      link: `/${language}/catalog/plotters`
+    }
   ];
 
   return (
