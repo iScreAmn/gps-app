@@ -2,11 +2,11 @@ import React, { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { useTheme } from '../../contexts/ThemeContext';
 import { useLanguage } from '../../hooks/useLanguage';
-import { IoSunny, IoMoon } from "react-icons/io5";
+import { IoSunny, IoMoon, IoAlertCircleOutline } from "react-icons/io5";
 import MobileMenu from '../MobileMenu/MobileMenu';
 import './Header.css';
 
-const Header = () => {
+const Header = ({ onConstructionModalOpen }) => {
   const { theme, toggleTheme } = useTheme();
   const { language, changeLanguage, t } = useLanguage();
   const location = useLocation();
@@ -32,6 +32,12 @@ const Header = () => {
     changeLanguage(newLang);
   };
 
+  const handleConstructionClick = () => {
+    if (onConstructionModalOpen) {
+      onConstructionModalOpen();
+    }
+  };
+
   return (
     <>
       <header className="header">
@@ -52,6 +58,17 @@ const Header = () => {
 
             {/* Desktop Controls */}
             <div className="header-controls">
+              {/* Old-version Button */}
+              <button
+                type="button"
+                className="header-controls__construction-btn"
+                onClick={handleConstructionClick}
+                aria-label={t("construction.title")}
+              >
+                <IoAlertCircleOutline />
+                <span>{t("construction.headerButton")}</span>
+              </button>
+
               {/* Language Switcher */}
               <div className="language-switcher">
                 <button
@@ -77,6 +94,7 @@ const Header = () => {
               >
                 {theme === 'light' ? <IoMoon /> : <IoSunny />}
               </button>
+              
             </div>
           </div>
         </div>
