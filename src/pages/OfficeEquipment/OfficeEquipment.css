@@ -70,9 +70,6 @@
 
 /* Mobile */
 @media (max-width: 768px) {
-  .office-equipment {
-    padding: 2rem 0;
-  }
 
   .office-equipment__grid {
     grid-template-columns: repeat(2, 1fr);

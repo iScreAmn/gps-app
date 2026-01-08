@@ -12,6 +12,6 @@
 /* Mobile adjustments */
 @media (max-width: 768px) {
   .main-content {
-    padding-top: 70px;
+    /* padding-top: 70px; */
   }
 }
