@@ -17,6 +17,7 @@ const Construction = () => {
       </div>
       <div className="construction__body">
         <p className="construction__message">{t("construction.message")}</p>
+        <a href="https://geopolser.ge/test" className="construction__redirect">{t("construction.redirect")}</a>
       </div>
     </div>
   );

@@ -50,6 +50,36 @@
   color: #1f2937;
 }
 
+.construction__redirect {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.75rem 1.75rem;
+  border-radius: 999px;
+  background: linear-gradient(135deg, #822121, #dc2626);
+  color: #fff;
+  font-weight: 600;
+  font-size: 0.975rem;
+  line-height: 1.2;
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+  text-decoration: none;
+  box-shadow: 0 8px 20px rgba(220, 38, 38, 0.3);
+  transition: transform 0.25s ease, box-shadow 0.25s ease, filter 0.25s ease;
+}
+
+.construction__redirect:hover,
+.construction__redirect:focus-visible {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 30px rgba(220, 38, 38, 0.45);
+  filter: brightness(1.05);
+}
+
+.construction__redirect:focus-visible {
+  outline: 2px solid rgba(255, 255, 255, 0.8);
+  outline-offset: 4px;
+}
+
 .construction__subtitle {
   margin: 0;
   font-size: 0.975rem;
