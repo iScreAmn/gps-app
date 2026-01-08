@@ -75,6 +75,7 @@ body[data-theme="dark"] .calculator__wrapper::after {
 }
 
 .calculator__title {
+  font-family: 'Archyedt';
   font-size: 25px;
   font-weight: var(--font-bold);
   color: var(--light-text);
@@ -171,7 +172,8 @@ body[data-theme="dark"] .calculator__progress-text {
 
 /* Question */
 .calculator__question {
-  font-size: 1.75rem;
+  font-family: 'Archyedt';
+  font-size: 23px;
   font-weight: var(--font-semibold);
   color: var(--light-text);
   margin-bottom: 2rem;

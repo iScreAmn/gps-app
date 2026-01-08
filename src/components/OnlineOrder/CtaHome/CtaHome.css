@@ -100,6 +100,7 @@ body[data-theme="dark"] .order__content {
 }
 
 .order__content-title {
+  font-family: 'Archyedt';
   font-size: 25px;
   font-weight: var(--font-bold);
   margin-bottom: 1.5rem;
