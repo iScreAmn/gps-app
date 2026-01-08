@@ -1,0 +1,145 @@
+{
+  "brand": "develop",
+  "displayName": "Develop Office Equipment",
+  "products": [
+    {
+      "id": "ineo-550i",
+      "name": "Develop Ineo 550i",
+      "systemSpecs": {
+        "panel": {
+          "size": "10.1\"",
+          "resolution": "1024 x 600"
+        },
+        "systemMemory": {
+          "standard": "8,192 MB",
+          "max": "8,192 MB"
+        },
+        "systemHardDrive": {
+          "standard": "256 GB SSD",
+          "optional": "1 TB SSD"
+        },
+        "interface": [
+          "10/100/1,000-Base-T Ethernet",
+          "USB 2.0",
+          "Wi-Fi 802.11 b/g/n (optional)"
+        ],
+        "networkProtocols": [
+          "TCP/IP (IPv4 / IPv6)",
+          "SMB",
+          "LPD",
+          "IPP",
+          "SNMP",
+          "HTTP(S)"
+        ],
+        "automaticDocumentFeeder": {
+          "originals": "Up to 100",
+          "sizes": "A6–A3",
+          "weight": "35–163 g/m²"
+        },
+        "paperInputCapacity": {
+          "standard": "1,150 sheets",
+          "max": "6,650 sheets"
+        },
+        "paperTrayInputStandard": [
+          "1 × 500 sheets; A6–A3; custom sizes; 52–256 g/m²",
+          "1 × 500 sheets; A5–SRA3; custom sizes; 52–256 g/m²"
+        ],
+        "paperTrayInputOptional": [
+          "1 × 500 sheets; A5–A3; 52–256 g/m²",
+          "2 × 500 sheets; A5–A3; 52–256 g/m²",
+          "1 × 2,500 sheets; A4; 52–256 g/m²",
+          "1 × 1,500 + 1 × 1,000 sheets; A5–A4; 52–256 g/m²"
+        ],
+        "largeCapacityTrayOptional": "1 × 3,000 sheets; A4; 52–256 g/m²",
+        "manualBypass": {
+          "sheets": "150",
+          "sizes": "A6–SRA3",
+          "customSizes": "Banner",
+          "weight": "60–300 g/m²"
+        },
+        "automaticDuplexing": {
+          "sizes": "A5–SRA3",
+          "weight": "52–256 g/m²"
+        },
+        "finishingModes": [
+          "Offset",
+          "Group",
+          "Sort",
+          "Staple",
+          "Staple (offline)",
+          "Punch",
+          "Half-fold",
+          "Letter-fold",
+          "Booklet"
+        ],
+        "outputCapacity": {
+          "standard": "Max. 250 sheets",
+          "optional": "Max. 3,300 sheets"
+        },
+        "stapling": "Max. 100 sheets or 98 sheets + 2 cover sheets (up to 300 g/m²)",
+        "letterFold": "Max. 3 sheets",
+        "letterFoldCapacity": "Max. 50 sheets (Unlimited without tray)",
+        "booklet": "Max. 20 sheets or 19 sheets + 1 cover sheet (up to 300 g/m²)",
+        "bookletOutputCapacity": "Max. 35 booklets (Unlimited without tray)",
+        "copyPrintVolume": {
+          "recommended": "50,000 pages/month",
+          "maximum": "200,000 pages/month",
+          "note": "If the maximum volume is reached within one year, a maintenance cycle must be performed"
+        },
+        "tonerLifetime": "Black up to 24,000 pages",
+        "imagingUnitLifetime": "Black up to 260,000 / 1,000,000 pages (drum / developer)",
+        "powerConsumption": {
+          "voltage": "220–240 V / 50–60 Hz",
+          "power": "Less than 1.58 kW"
+        },
+        "systemDimension": {
+          "width": "615 mm",
+          "depth": "688 mm",
+          "height": "961 mm",
+          "note": "without options"
+        },
+        "systemWeight": "Approx. 98.0 kg (without options)"
+      },
+      "printerSpecs": {
+        "printResolution": [
+          "1,800 (equivalent) × 600 dpi",
+          "1,200 × 1,200 dpi"
+        ],
+        "pageDescriptionLanguage": [
+          "PCL 6 (XL 3.0)",
+          "PCL 5c",
+          "PostScript 3 (CPSI 3016)",
+          "XPS"
+        ],
+        "operatingSystems": [
+          "Windows 7 (32/64)",
+          "Windows 8 / 8.1 (32/64)",
+          "Windows 10 (32/64)",
+          "Windows Server 2008 (32/64)",
+          "Windows Server 2008 R2",
+          "Windows Server 2012",
+          "Windows Server 2012 R2",
+          "Windows Server 2016",
+          "Windows Server 2019",
+          "Macintosh OS X 10.10 or later",
+          "Unix",
+          "Linux",
+          "Citrix"
+        ],
+        "printerFonts": [
+          "80 PCL Latin",
+          "137 PostScript 3 Emulation Latin"
+        ],
+        "mobilePrinting": [
+          "AirPrint (iOS)",
+          "Mopria (Android)",
+          "ineoPRINT (iOS / Android / Windows 10 Mobile)",
+          "Mobile Authentication and Pairing (iOS / Android)",
+          "Optional: Google Cloud Print",
+          "Optional: Wi-Fi Direct"
+        ]
+      }
+    }
+  ]
+}
+
