@@ -3,7 +3,7 @@ import { useParams, Link } from 'react-router-dom';
 import { useLanguage } from "../../hooks/useLanguage";
 import ProductCard from '../../components/ProductCard/ProductCard';
 import CategoryCards from '../../components/CategoryCards/CategoryCards';
-import { printer2, printer3, developPrinter1 } from '../../assets/images';
+import { printer2, printer3, developPrinter1, developPrinter3, developPrinter4, developPrinter5, developPrinter6 } from '../../assets/images';
 import developData from '../../database/brands/develop.json';
 import './CatalogPage.css';
 
@@ -57,19 +57,13 @@ const CatalogPage = () => {
 
   const products = [...baseProducts, ...developProducts];
 
-  // Debug: Check if developData is loaded
-  console.log('CatalogPage Debug:', {
-    category,
-    developDataExists: !!developData,
-    developProductsCount: developProducts.length,
-    totalProducts: products.length,
-    officeProducts: products.filter(p => p.category === 'office').map(p => p.name)
-  });
-
-
   // Map product IDs to images for brand sections
   const imageMap = {
-    'ineo-550i': developPrinter1
+    'ineo-550i': developPrinter1,
+    'ineo-450i': developPrinter3,
+    'ineo-360i': developPrinter4,
+    'ineo-759': developPrinter5,
+    'ineo-4020i': developPrinter6
   };
 
   const speedOptions = Array.from(new Set(products.map(p => p.speed).filter(Boolean)));

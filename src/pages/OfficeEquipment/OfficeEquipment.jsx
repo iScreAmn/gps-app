@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { useLanguage } from '../../hooks/useLanguage';
-import { developPrinter1 } from '../../assets/images';
+import { developPrinter1, developPrinter3, developPrinter4, developPrinter5, developPrinter6 } from '../../assets/images';
 import developData from '../../database/brands/develop.json';
 import './OfficeEquipment.css';
 
@@ -10,7 +10,11 @@ const OfficeEquipment = () => {
 
   // Map product IDs to images
   const imageMap = {
-    'ineo-550i': developPrinter1
+    'ineo-550i': developPrinter1,
+    'ineo-450i': developPrinter3,
+    'ineo-360i': developPrinter4,
+    'ineo-759': developPrinter5,
+    'ineo-4020i': developPrinter6
   };
 
   return (

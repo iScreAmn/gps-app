@@ -54,11 +54,6 @@ export { default as service3 } from './icons/service3.png';
 export { default as solutions } from './icons/solutions.webp';
 export { default as demo } from './icons/demo.png';
 
-// Hero backgrounds - placeholder images for now
-export const heroOffice = '/api/placeholder/1200/600';
-export const heroProfessional = '/api/placeholder/1200/600';
-export const heroIndustrial = '/api/placeholder/1200/600';
-
 // About section
 export { default as aboutImage } from './about/about.webp';
 export { default as konikaAbout } from './about/konikaDisplay.jpg';
@@ -95,6 +90,11 @@ export { default as productLeica } from './printers/pr_03.png';
 // Develop Printers
 export { default as developPrinter1 } from './printers/office/ineo550i/ineo_1.jpg';
 export { default as developPrinter2 } from './printers/office/ineo550i/ineo_2.jpg';
+export { default as developPrinter3 } from './printers/office/ineo450i/ineo_2.webp';
+export { default as developPrinter4 } from './printers/office/ineo360i/ineo_1.jpg';
+export { default as developPrinter5 } from './printers/office/ineo759/ineo_1.jpg';
+export { default as developPrinter6 } from './printers/office/ineo4020i/ineo_1.png';
+
 
 // Nocai UV Printing
 export { default as nocai1 } from './products/nocai-UV0609XIII/nocai1.png';
@@ -110,21 +110,4 @@ export { default as iecho5 } from './products/iecho-PK0604/iecho5.webp';
 export { default as iecho6 } from './products/iecho-PK0604/iecho6.webp';
 export { default as iecho7 } from './products/iecho-PK0604/iecho7.webp';
 
-// Service backgrounds
-export const serviceMaintenance = '/api/placeholder/600/400';
-export const serviceTraining = '/api/placeholder/600/400';
-export const serviceConsultation = '/api/placeholder/600/400';
 
-// Image collections for easy management
-export const images = {
-  hero: {
-    office: heroOffice,
-    professional: heroProfessional,
-    industrial: heroIndustrial
-  },
-  services: {
-    maintenance: serviceMaintenance,
-    training: serviceTraining,
-    consultation: serviceConsultation
-  },
-};

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { useLanguage } from '../../hooks/useLanguage';
-import { developPrinter1, developPrinter2 } from '../../assets/images';
+import { developPrinter1, developPrinter2, developPrinter3, developPrinter4, developPrinter5, developPrinter6 } from '../../assets/images';
 import developData from '../../database/brands/develop.json';
 import { Modal, CallbackForm } from '../../components/widgets/Modals';
 import './DevelopModelPage.css';
@@ -15,7 +15,11 @@ const DevelopModelPage = () => {
 
   // Map product IDs to images
   const imageMap = {
-    'ineo-550i': [developPrinter1, developPrinter2]
+    'ineo-550i': [developPrinter1, developPrinter2],
+    'ineo-450i': [developPrinter3],
+    'ineo-360i': [developPrinter4],
+    'ineo-759': [developPrinter5],
+    'ineo-4020i': [developPrinter6]
   };
 
   // Find the product

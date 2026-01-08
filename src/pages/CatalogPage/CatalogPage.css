@@ -12,6 +12,13 @@
   display: flex;
 }
 
+.catalog-page .office-equipment__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 2rem;
+  flex: 1;
+}
+
 .catalog-page .office-equipment__title {
   font-size: 2.5rem;
   font-weight: 700;
@@ -34,6 +41,9 @@
   box-shadow: var(--light-shadow);
   transition: all var(--transition-normal);
   position: relative;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
 }
 
 body[data-theme="dark"] .catalog-page .office-equipment__card {
@@ -108,9 +118,11 @@ body[data-theme="dark"] .catalog-page .office-equipment__card-image {
 }
 
 .catalog-page .office-equipment__card-content {
-  padding: 25px 15px 0 15px;
+  padding: 25px 15px 20px 15px;
   text-align: left;
-
+  display: flex;
+  flex-direction: column;
+  flex: 1;
 }
 
 .catalog-page .office-equipment__card-title {
@@ -242,11 +254,6 @@ body[data-theme="dark"] .filter-group select {
     margin-bottom: 1rem;
   }
 
-  .catalog-page .office-equipment__grid {
-    grid-template-columns: repeat(3, 1fr);
-    gap: 1.5rem;
-  }
-
   .catalog-page .office-equipment__title {
     font-size: 2rem;
   }
@@ -260,11 +267,6 @@ body[data-theme="dark"] .filter-group select {
   .catalog-filters h3 {
     font-size: 1.1rem;
     margin-bottom: 1rem;
-  }
-
-  .catalog-page .office-equipment__grid {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 1rem;
   }
 
   .catalog-page .office-equipment__title {
@@ -292,10 +294,6 @@ body[data-theme="dark"] .filter-group select {
 
   .catalog-filters {
     width: 100%;
-  }
-
-  .catalog-page .office-equipment__grid {
-    grid-template-columns: 1fr;
   }
 
   .catalog-page .office-equipment__card-image {
