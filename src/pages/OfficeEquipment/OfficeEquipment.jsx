@@ -6,7 +6,7 @@ import developData from '../../database/brands/develop.json';
 import './OfficeEquipment.css';
 
 const OfficeEquipment = () => {
-  const { language } = useLanguage();
+  const { language, t } = useLanguage();
 
   // Map product IDs to images
   const imageMap = {
@@ -17,7 +17,7 @@ const OfficeEquipment = () => {
     <div className="office-equipment">
       <div className="container">
         <div className="office-equipment__header">
-          <h1 className="office-equipment__title">{developData.displayName}</h1>
+          <h1 className="office-equipment__title">{t('products.develop.displayName')}</h1>
         </div>
         
         <div className="office-equipment__grid">

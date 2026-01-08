@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useParams, Link } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { useLanguage } from '../../hooks/useLanguage';
 import { developPrinter1, developPrinter2 } from '../../assets/images';
 import developData from '../../database/brands/develop.json';
@@ -8,7 +8,7 @@ import './DevelopModelPage.css';
 
 const DevelopModelPage = () => {
   const { modelId } = useParams();
-  const { language, t } = useLanguage();
+  const { t } = useLanguage();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isSuccessModal, setIsSuccessModal] = useState(false);
   const [activeImageIndex, setActiveImageIndex] = useState(0);
@@ -43,7 +43,6 @@ const DevelopModelPage = () => {
       <div className="develop-model">
         <div className="container">
           <p>Model not found</p>
-          <Link to={`/${language}/office-equipment/develop`}>Back to Develop</Link>
         </div>
       </div>
     );
