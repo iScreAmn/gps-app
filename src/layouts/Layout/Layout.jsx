@@ -31,6 +31,10 @@ const Layout = ({ children }) => {
     };
   }, []);
 
+  const openConstructionModal = () => {
+    setIsConstructionModalOpen(true);
+  };
+
   const handleCloseConstructionModal = () => {
     setIsConstructionModalOpen(false);
 
@@ -61,7 +65,7 @@ const Layout = ({ children }) => {
   return (
     <div className="layout">
       <TopHeader />
-      <Header />
+      <Header onConstructionModalOpen={openConstructionModal} />
       <Breadcrumbs />
       <main className="main-content">
         {children}
