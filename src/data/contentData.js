@@ -17,7 +17,9 @@ import {
   iecho4,
   iecho5,
   iecho6,
-  iecho7
+  iecho7,
+  developPrinter1,
+  developPrinter2
 } from '../assets/images';
 
 
@@ -398,37 +400,33 @@ export const gpsContent = {
         category: 'new'
       },
       {
-        id: 'leica-professional-featured',
+        id: 'develop-ineo-550i-featured',
         product: {
-          title: 'products.leica.title',
-          subtitle: 'products.leica.subtitle',
-          description: 'products.leica.description',
+          title: 'products.develop.title',
+          subtitle: 'products.develop.subtitle',
+          description: 'products.develop.description',
           features: [
-            'products.leica.feature1',
-            'products.leica.feature2',
-            'products.leica.feature3',
-            'products.leica.feature4',
-            'products.leica.feature5',
-            'products.leica.feature6'
+            'products.develop.feature1',
+            'products.develop.feature2',
+            'products.develop.feature3',
+            'products.develop.feature4',
+            'products.develop.feature5',
+            'products.develop.feature6'
           ],
-          cta: 'products.leica.cta',
-          ctaLink: '/products/leica-professional',
-          price: 'products.leica.price',
+          cta: 'products.develop.cta',
+          ctaLink: '/office-equipment/develop/ineo-550i',
+          price: 'products.develop.price',
           discount: 'products.discount',
           code: 'products.code'
         },
         images: [
           {
-            src: productLeica,
-            alt: 'Leica Professional GPS'
+            src: developPrinter1,
+            alt: 'Develop Ineo 550i'
           },
           {
-            src: productGarmin,
-            alt: 'Leica Professional GPS'
-          },
-          {
-            src: productTrimble,
-            alt: 'Leica Professional GPS'
+            src: developPrinter2,
+            alt: 'Develop Ineo 550i'
           }
         ],
         specifications: {
@@ -442,37 +440,33 @@ export const gpsContent = {
         category: 'bestselling'
       },
       {
-        id: 'konika-minolt-extra-demo',
+        id: 'develop-ineo-550i-demo',
         product: {
-          title: 'products.leica.title',
-          subtitle: 'products.leica.subtitle',
-          description: 'products.leica.description',
+          title: 'products.develop.title',
+          subtitle: 'products.develop.subtitle',
+          description: 'products.develop.description',
           features: [
-            'products.leica.feature1',
-            'products.leica.feature2',
-            'products.leica.feature3',
-            'products.leica.feature4',
-            'products.leica.feature5',
-            'products.leica.feature6'
+            'products.develop.feature1',
+            'products.develop.feature2',
+            'products.develop.feature3',
+            'products.develop.feature4',
+            'products.develop.feature5',
+            'products.develop.feature6'
           ],
-          cta: 'products.leica.cta',
-          ctaLink: '/products/leica-professional',
-          price: 'products.leica.price',
+          cta: 'products.develop.cta',
+          ctaLink: '/office-equipment/develop/ineo-550i',
+          price: 'products.develop.price',
           discount: 'products.discount',
           code: 'products.code'
         },
         images: [
           {
-            src: productLeica,
-            alt: 'Leica Professional GPS'
+            src: developPrinter1,
+            alt: 'Develop Ineo 550i'
           },
           {
-            src: productGarmin,
-            alt: 'Leica Professional GPS'
-          },
-          {
-            src: productTrimble,
-            alt: 'Leica Professional GPS'
+            src: developPrinter2,
+            alt: 'Develop Ineo 550i'
           }
         ],
         specifications: {
@@ -486,37 +480,33 @@ export const gpsContent = {
         category: 'discounts'
       },
       {
-        id: 'konika-minolt-extra-demo',
+        id: 'develop-ineo-550i-new',
         product: {
-          title: 'products.leica.title',
-          subtitle: 'products.leica.subtitle',
-          description: 'products.leica.description',
+          title: 'products.develop.title',
+          subtitle: 'products.develop.subtitle',
+          description: 'products.develop.description',
           features: [
-            'products.leica.feature1',
-            'products.leica.feature2',
-            'products.leica.feature3',
-            'products.leica.feature4',
-            'products.leica.feature5',
-            'products.leica.feature6'
+            'products.develop.feature1',
+            'products.develop.feature2',
+            'products.develop.feature3',
+            'products.develop.feature4',
+            'products.develop.feature5',
+            'products.develop.feature6'
           ],
-          cta: 'products.leica.cta',
-          ctaLink: '/products/leica-professional',
-          price: 'products.leica.price',
+          cta: 'products.develop.cta',
+          ctaLink: '/office-equipment/develop/ineo-550i',
+          price: 'products.develop.price',
           discount: 'products.discount',
           code: 'products.code'
         },
         images: [
           {
-            src: productLeica,
-            alt: 'Leica Professional GPS'
+            src: developPrinter1,
+            alt: 'Develop Ineo 550i'
           },
           {
-            src: productGarmin,
-            alt: 'Leica Professional GPS'
-          },
-          {
-            src: productTrimble,
-            alt: 'Leica Professional GPS'
+            src: developPrinter2,
+            alt: 'Develop Ineo 550i'
           }
         ],
         specifications: {
