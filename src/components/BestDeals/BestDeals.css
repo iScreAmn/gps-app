@@ -265,7 +265,8 @@ body[data-theme="dark"] .deals-image {
 @media (max-width: 480px) {
   .best-deals {
     padding: 12px;
-    min-height: 200px;
+    width: 160px;
+    height: 100px;
   }
   
   .deals-header {
@@ -273,7 +274,8 @@ body[data-theme="dark"] .deals-image {
   }
   
   .deals-title {
-    font-size: 1.1rem;
+    width: 100%;
+    font-size: 20px;
   }
   
   .deals-subtitle {
@@ -287,6 +289,7 @@ body[data-theme="dark"] .deals-image {
   
   .deals-image {
     max-width: 120px;
+    transform: translate(-30px, 10px);
   }
   
   .deals-icons {
