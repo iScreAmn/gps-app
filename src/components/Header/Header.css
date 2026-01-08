@@ -77,6 +77,39 @@ body[data-theme="dark"] .header {
   gap: 1.5rem;
 }
 
+.header-controls__construction-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1.25rem;
+  border-radius: 999px;
+  background: linear-gradient(135deg, #822121, #dc2626);
+  color: #fff;
+  font-size: 0.775rem;
+  font-weight: var(--font-semibold);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  border: none;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, filter 0.2s ease;
+  box-shadow: 0 6px 16px rgba(220, 38, 38, 0.3);
+}
+
+.header-controls__construction-btn svg {
+  font-size: 1rem;
+}
+
+.header-controls__construction-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 10px 24px rgba(220, 38, 38, 0.35);
+  filter: brightness(1.05);
+}
+
+.header-controls__construction-btn:focus-visible {
+  outline: 2px solid rgba(255, 255, 255, 0.8);
+  outline-offset: 4px;
+}
+
 /* Language Switcher */
 .language-switcher {
   display: flex;
