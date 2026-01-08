@@ -114,7 +114,7 @@
   "catalog": {
     "title": "Catalog",
     "full_catalog": "Full Catalog",
-    "subtitle": "Discover our wide range of Konica Minolta products",
+    "subtitle": "Discover Konica Minolta's Develop products",
     "filters": "Filters",
     "type": "Type",
     "speed": "Speed (ppm)",
@@ -237,6 +237,23 @@
       "feature5": "Waterproof: IP67",
       "feature6": "Weight: 1.2 kg",
       "cta": "Learn More"
+    },
+    "develop": {
+      "title": "Develop Ineo 550i",
+      "subtitle": "Professional Office Printer",
+      "description": "High-performance office printing solution with advanced finishing capabilities",
+      "feature1": "Print Resolution: 1,800 (equivalent) × 600 dpi / 1,200 × 1,200 dpi",
+      "feature2": "Paper Input Capacity: Up to 6,650 sheets",
+      "feature3": "Copy/Print Volume: Recommended 50,000 pages/month, Maximum 200,000 pages/month",
+      "feature4": "Finishing Modes: Offset, Group, Sort, Staple, Punch, Half-fold, Letter-fold, Booklet",
+      "feature5": "Mobile Printing: AirPrint, Mopria, ineoPRINT, Wi-Fi Direct",
+      "feature6": "System Memory: 8,192 MB standard",
+      "cta": "Learn More",
+      "price": "Price on request",
+      "backToDevelop": "Back to Develop",
+      "needHelp": "Need Help?",
+      "systemSpecs": "System Specifications",
+      "printerSpecs": "Printer Specifications"
     }
   },
   "services": {
@@ -549,6 +566,28 @@
   "construction": {
     "title": "Under Construction",
     "message": "We are working hard to bring you new features!",
-    "closeButton": "Got it!"
+    "closeButton": "Got it!",
+    "headerButton": "Old version"
+  },
+  "countdown": {
+    "days": "Days",
+    "hours": "Hours",
+    "minutes": "Minutes",
+    "seconds": "Seconds",
+    "expired": "Offer is expired"
+  },
+  "tempContent": {
+    "title": "Subscribe our WhatsApp.",
+    "paragraph1": "Learn more. Subscribe to our WhatsApp channel and turn on notifications to be the first to discover new products and catalogs.",
+    "paragraph2": "Promotions, stock replenishments, and important news delivered straight to your phone. We care about your comfort.",
+    "imageAlt": "WhatsApp contact",
+    "cta": "Subscribe"
+  },
+  "ledModules": {
+    "title": "Innovative LED Modules",
+    "downloadButton": "View Catalog",
+    "downloading": "Downloading...",
+    "successMessage": "File downloaded successfully",
+    "alreadyDownloaded": "You have already downloaded the catalog"
   }
 }
