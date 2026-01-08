@@ -2,6 +2,7 @@ import React, { useMemo } from 'react';
 import { Link, useLocation, useParams } from 'react-router-dom';
 import { useLanguage } from '../../hooks/useLanguage';
 import { getCurrentLanguageFromPath } from '../../i18n';
+import developData from '../../database/brands/develop.json';
 import './Breadcrumbs.css';
 
 const Breadcrumbs = ({ items, separator = '→' }) => {
@@ -92,6 +93,7 @@ const Breadcrumbs = ({ items, separator = '→' }) => {
     
     segments.forEach((segment, index) => {
       const isLast = index === segments.length - 1;
+      const nextSegment = segments[index + 1];
       
       // Специальная обработка для страницы продукта
       if (segment === 'product' && params.id) {
@@ -127,11 +129,46 @@ const Breadcrumbs = ({ items, separator = '→' }) => {
         }
       }
       
+      // Специальная обработка для office-equipment - ведет на catalog/office
+      if (segment === 'office-equipment') {
+        const officeCatalogPath = currentLang ? `/${currentLang}/catalog/office` : '/catalog/office';
+        crumbs.push({
+          label: t('categories.office'),
+          path: officeCatalogPath,
+          isActive: false
+        });
+        // Обновляем currentPath для следующих сегментов
+        currentPath = officeCatalogPath;
+        return; // Пропускаем стандартную обработку
+      }
+      
+      // Пропускаем сегмент "develop", если следующий сегмент существует (это modelId)
+      if (segment === 'develop' && nextSegment) {
+        // Пропускаем "develop", модель будет обработана в следующей итерации
+        return;
+      }
+      
+      // Специальная обработка для modelId после "develop"
+      if (segments[index - 1] === 'develop') {
+        // Добавляем модель, пропуская "develop"
+        currentPath += `/develop/${segment}`;
+        // Получаем название модели из данных Develop
+        const product = developData?.products?.find(p => p.id === segment);
+        const modelLabel = product?.name || segment || 'Model';
+        crumbs.push({
+          label: modelLabel,
+          path: currentPath,
+          isActive: true
+        });
+        return; // Пропускаем стандартную обработку
+      }
+      
       // Проверяем, является ли сегмент значением параметра из URL
       const isParamValue = params && (
         segment === params.id || 
         segment === params.category || 
-        segment === params.brand
+        segment === params.brand ||
+        segment === params.modelId
       );
       
       currentPath += `/${segment}`;
