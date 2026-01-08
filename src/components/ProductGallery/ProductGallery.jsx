@@ -1,4 +1,5 @@
 import React, { useState, useRef, useCallback, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import Carousel from '../Carousel/Carousel';
 import { getProductItems, getProductsByCategory } from '../../data/contentData';
 import { useLanguage } from '../../hooks/useLanguage';
@@ -34,8 +35,7 @@ const ProductGallery = () => {
   // Category definitions
   const categories = [
     { id: 'new', key: 'products.categories.new' },
-    { id: 'bestselling', key: 'products.categories.bestselling' },
-    { id: 'discounts', key: 'products.categories.discounts' }
+    { id: 'bestselling', key: 'products.categories.bestselling' }
   ];
 
   // Filter products based on active category
@@ -159,6 +159,7 @@ const ProductGallery = () => {
   const featuredProduct = filteredProducts[currentProductIndex];
   const productData = featuredProduct?.product;
   const images = featuredProduct?.images || [];
+  const { language } = useLanguage();
   
   
   // Fallback images if no images are provided
@@ -445,13 +446,18 @@ const ProductGallery = () => {
                 </div>
 
                 <div className="product__cta">
-                  <motion.button className="learn-more-btn learn-more-btn-primary"
+                  <motion.div
                     whileHover={{ scale: 1.05, y: -2 }}
                     whileTap={{ scale: 0.95 }}
                     transition={{ type: "spring", stiffness: 300, damping: 20 }}
                   >
-                    {t(productData?.cta, 'Learn More')}
-                  </motion.button>
+                    <Link 
+                      to={`/${language}${productData?.ctaLink || '#'}`}
+                      className="learn-more-btn learn-more-btn-primary"
+                    >
+                      {t(productData?.cta, 'Learn More')}
+                    </Link>
+                  </motion.div>
                 </div>
 
                 {/* Product Navigation */}
