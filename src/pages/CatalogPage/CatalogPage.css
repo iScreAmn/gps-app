@@ -80,7 +80,6 @@ body[data-theme="dark"] .catalog-page .office-equipment__card-image {
 }
 
 .catalog-page .office-equipment__card:hover .office-equipment__card-image img {
-  transform: scale(1.05);
   filter: grayscale(0%);
 }
 
