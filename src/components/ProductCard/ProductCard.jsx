@@ -5,10 +5,13 @@ import './ProductCard.css';
 
 const ProductCard = ({ product }) => {
   const { language, t } = useLanguage();
+  
+  // Use custom link if provided, otherwise use default product page
+  const productLink = product.link || `/${language}/product/${product.id}`;
 
   return (
     <div className="product-card">
-      <Link to={`/${language}/product/${product.id}`} className="product-card-link">
+      <Link to={productLink} className="product-card-link">
         <div className="product-card-image">
           <img src={product.image} alt={product.name} />
           <div className="product-card-overlay">
@@ -28,13 +31,6 @@ const ProductCard = ({ product }) => {
             <span className="spec">
               <strong>{t('product.format')}</strong> {product.format}
             </span>
-          </div>
-          
-          <div className="product-card-footer">
-            <span className="product-price">{product.price}</span>
-            <button className="btn-primary product-cta">
-              {t('common.request')}
-            </button>
           </div>
         </div>
       </Link>
