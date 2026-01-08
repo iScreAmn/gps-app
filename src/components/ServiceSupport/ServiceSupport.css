@@ -281,7 +281,8 @@
 @media (max-width: 480px) {
   .service-support {
     padding: 12px;
-    min-height: 200px;
+    width: 160px;
+    height: 100px;
   }
   
   .support-header {
