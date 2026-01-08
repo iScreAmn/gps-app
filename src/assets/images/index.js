@@ -71,6 +71,8 @@ export { default as artPrinter2 } from './printers/art/thanku_art.webp';
 export { default as underConstruction } from './web-art/construction.webp';
 export { default as ConstructionModal } from './web-art/constructionModal.webp';
 export { default as proModel } from './web-art/flat-design.webp';
+export { default as nocaiArt } from './products/nocai-NC-UV9060MAX/nocai-plotter.png';
+export { default as whatsApp } from './web-art/printing-contact.png';
 
 //Categories
 //IECHO
@@ -88,6 +90,11 @@ export { default as duploBinder } from './products/binders/duplo/duploBinder.jpg
 export { default as productGarmin } from './printers/pr_01.png';
 export { default as productTrimble } from './printers/pr_02.png';
 export { default as productLeica } from './printers/pr_03.png';
+
+
+// Develop Printers
+export { default as developPrinter1 } from './printers/office/ineo550i/ineo_1.jpg';
+export { default as developPrinter2 } from './printers/office/ineo550i/ineo_2.jpg';
 
 // Nocai UV Printing
 export { default as nocai1 } from './products/nocai-UV0609XIII/nocai1.png';
