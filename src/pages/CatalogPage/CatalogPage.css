@@ -22,6 +22,11 @@
   margin-top: 2rem;
 }
 
+.catalog-subtitle {
+  text-align: center;
+  color: #9b9b9b;
+}
+
 /* Card core styles align to product-card */
 .catalog-page .office-equipment__card {
   background: var(--light-card-bg);

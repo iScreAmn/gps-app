@@ -124,7 +124,7 @@ const CatalogPage = () => {
       {category === 'office' && developData && developData.products && (
         <div className="office-equipment">
           <div className="container">
-            <h1 className="office-equipment__title">{developData.displayName}</h1>
+            <h1 className="office-equipment__title">{t('products.develop.displayName')}</h1>
             <p className="catalog-subtitle">
               {t('catalog.subtitle')}
             </p>
