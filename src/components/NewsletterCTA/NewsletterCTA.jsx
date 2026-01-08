@@ -118,10 +118,6 @@ const NewsletterCTA = () => {
     <section className={containerClasses} aria-live="polite">
       <div className="newsletter-cta__content">
         <h2 className="newsletter-cta__title">{t('newsletter.title')}</h2>
-        <p className="newsletter-cta__subtitle">
-          {t('newsletter.subtitle')}
-        </p>
-
         <form className="newsletter-cta__form" onSubmit={handleSubmit} noValidate>
           <div
             className={[
