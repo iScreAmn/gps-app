@@ -6,6 +6,146 @@
   padding: 2rem 0;
 }
 
+/* Office Equipment Brands Section */
+.catalog-page .office-equipment__header {
+  text-align: center;
+  margin: 5rem 0 0;
+  display: flex;
+}
+
+.catalog-page .office-equipment__title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--color-text);
+  margin: 0;
+  text-align: center;
+  margin-top: 2rem;
+}
+
+/* Card core styles align to product-card */
+.catalog-page .office-equipment__card {
+  background: var(--light-card-bg);
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: var(--light-shadow);
+  transition: all var(--transition-normal);
+  position: relative;
+}
+
+body[data-theme="dark"] .catalog-page .office-equipment__card {
+  background: var(--dark-card-bg);
+  box-shadow: var(--dark-shadow);
+}
+
+.catalog-page .office-equipment__card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
+
+body[data-theme="dark"] .catalog-page .office-equipment__card:hover {
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+}
+
+.catalog-page .office-equipment__card-image {
+  position: relative;
+  height: 200px;
+  overflow: hidden;
+  background: var(--light-hover-bg);
+}
+
+body[data-theme="dark"] .catalog-page .office-equipment__card-image {
+  background: var(--dark-hover-bg);
+}
+
+.catalog-page .office-equipment__card-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform var(--transition-normal);
+  filter: grayscale(100%);
+}
+
+.catalog-page .office-equipment__card:hover .office-equipment__card-image img {
+  transform: scale(1.05);
+  filter: grayscale(0%);
+}
+
+.catalog-page .office-equipment__overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(34, 34, 34, 0.778);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity var(--transition-normal);
+}
+
+.catalog-page .office-equipment__card:hover .office-equipment__overlay {
+  opacity: 1;
+}
+
+.catalog-page .office-equipment__more {
+  color: white;
+  font-weight: var(--font-semibold);
+  font-size: 1rem;
+  padding: 0.75rem 1.5rem;
+  border: 2px solid white;
+  border-radius: 25px;
+  transition: all var(--transition-fast);
+}
+
+.catalog-page .office-equipment__more:hover {
+  background: white;
+  color: var(--primary-red);
+}
+
+.catalog-page .office-equipment__card-content {
+  padding: 25px 15px 0 15px;
+  text-align: left;
+
+}
+
+.catalog-page .office-equipment__card-title {
+  font-size: 1.125rem;
+  font-weight: var(--font-semibold);
+  margin-bottom: 1rem;
+  line-height: 1.3;
+  color: var(--light-text);
+  text-align: left;
+}
+
+body[data-theme="dark"] .catalog-page .office-equipment__card-title {
+  color: var(--dark-text);
+}
+
+.catalog-page .office-equipment__specs {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.catalog-page .office-equipment__specs .spec {
+  font-size: 0.875rem;
+  color: var(--light-text-secondary);
+}
+
+body[data-theme="dark"] .catalog-page .office-equipment__specs .spec {
+  color: var(--dark-text-secondary);
+}
+
+.catalog-page .office-equipment__specs .spec strong {
+  color: var(--light-text);
+}
+
+body[data-theme="dark"] .catalog-page .office-equipment__specs .spec strong {
+  color: var(--dark-text);
+}
+
 .catalog-header {
   text-align: center;
   margin-bottom: 3rem;
@@ -23,6 +163,7 @@
   color: var(--light-text-secondary);
   max-width: 600px;
   margin: 0 auto;
+  text-align: center;
 }
 
 body[data-theme="dark"] .catalog-subtitle {
@@ -38,24 +179,41 @@ body[data-theme="dark"] .catalog-subtitle {
 
 /* Filters */
 .catalog-filters {
-  background: var(--light-card-bg);
-  padding: 1.5rem;
-  border-radius: 12px;
-  box-shadow: var(--light-shadow);
+  background: linear-gradient(145deg, rgba(255, 255, 255, 0.85), rgba(246, 248, 252, 0.9));
+  padding: 1.75rem;
+  margin-right: 6rem;
+  border-radius: 16px;
+  box-shadow: 0 20px 50px rgba(0,0,0,0.08);
   position: sticky;
   top: 100px;
+  border: 1px solid rgba(255,255,255,0.6);
+  backdrop-filter: blur(12px);
+  align-self: start;
+  height: fit-content;
 }
 
 body[data-theme="dark"] .catalog-filters {
-  background: var(--dark-card-bg);
-  box-shadow: var(--dark-shadow);
+  background: linear-gradient(145deg, rgba(35, 38, 45, 0.92), rgba(25, 27, 33, 0.9));
+  box-shadow: 0 20px 50px rgba(0,0,0,0.35);
+  border: 1px solid rgba(255,255,255,0.05);
 }
 
-.catalog-filters h3 {
-  margin-bottom: 1.5rem;
-  font-size: 1.25rem;
+.filters-header h3 {
+  margin: 0 0 1rem;
+  font-size: 1.1rem;
   font-weight: var(--font-semibold);
   color: var(--primary-red);
+}
+
+.filters-subtitle {
+  margin: 0 0 1.25rem;
+  color: var(--light-text-secondary);
+  font-size: 0.95rem;
+  line-height: 1.4;
+}
+
+body[data-theme="dark"] .filters-subtitle {
+  color: var(--dark-text-secondary);
 }
 
 .filter-group {
@@ -75,24 +233,27 @@ body[data-theme="dark"] .filter-group label {
 
 .filter-group select {
   width: 100%;
-  padding: 0.75rem;
-  border: 1px solid var(--light-border);
-  border-radius: 8px;
-  background: var(--light-bg);
+  padding: 0.9rem 1rem;
+  border: 1px solid rgba(0,0,0,0.07);
+  border-radius: 10px;
+  background: #fff;
   color: var(--light-text);
   font-family: inherit;
-  transition: border-color var(--transition-fast);
+  transition: border-color var(--transition-fast), box-shadow var(--transition-fast), transform var(--transition-fast);
+  box-shadow: inset 0 1px 2px rgba(0,0,0,0.04);
 }
 
 body[data-theme="dark"] .filter-group select {
-  border-color: var(--dark-border);
-  background: var(--dark-bg);
+  border-color: rgba(255,255,255,0.08);
+  background: rgba(255,255,255,0.04);
   color: var(--dark-text);
 }
 
 .filter-group select:focus {
   outline: none;
   border-color: var(--primary-red);
+  box-shadow: 0 10px 25px rgba(235, 64, 52, 0.15);
+  transform: translateY(-1px);
 }
 
 /* Products */
@@ -141,6 +302,15 @@ body[data-theme="dark"] .no-products {
   .filter-group {
     margin-bottom: 1rem;
   }
+
+  .catalog-page .office-equipment__grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+  }
+
+  .catalog-page .office-equipment__title {
+    font-size: 2rem;
+  }
 }
 
 @media (max-width: 768px) {
@@ -165,6 +335,27 @@ body[data-theme="dark"] .no-products {
     font-size: 1.1rem;
     margin-bottom: 1rem;
   }
+
+  .catalog-page .office-equipment {
+    padding: 2rem 0;
+  }
+
+  .catalog-page .office-equipment__grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+  }
+
+  .catalog-page .office-equipment__title {
+    font-size: 1.75rem;
+  }
+
+  .catalog-page .office-equipment__card-content {
+    padding: 1rem;
+  }
+
+  .catalog-page .office-equipment__card-title {
+    font-size: 1rem;
+  }
 }
 
 @media (max-width: 480px) {
@@ -179,4 +370,17 @@ body[data-theme="dark"] .no-products {
   .catalog-header {
     margin-bottom: 2rem;
   }
+
+  .catalog-page .office-equipment__grid {
+    grid-template-columns: 1fr;
+  }
+
+  .catalog-page .office-equipment__card-image {
+    height: 180px;
+  }
+
+  .catalog-page .office-equipment__specs .spec {
+    font-size: 0.8rem;
+  }
 }
+
