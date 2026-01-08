@@ -66,28 +66,6 @@ const CatalogPage = () => {
     officeProducts: products.filter(p => p.category === 'office').map(p => p.name)
   });
 
-  const filteredProducts = products.filter(product => {
-    if (category && product.category !== category) return false;
-    if (filters.speed && product.speed !== filters.speed) return false;
-    if (filters.tonerLifetime && product.tonerLifetime !== filters.tonerLifetime) return false;
-    return true;
-  });
-
-  const getCategoryTitle = () => {
-    if (!category) return t('catalog.full_catalog');
-    switch (category) {
-      case 'office':
-        return t('categories.office');
-      case 'professional':
-        return t('categories.professional');
-      case 'industrial':
-        return t('categories.industrial');
-      case 'binder':
-        return t('categories.binder');
-      default:
-        return t('catalog.title');
-    }
-  };
 
   // Map product IDs to images for brand sections
   const imageMap = {
@@ -192,41 +170,6 @@ const CatalogPage = () => {
           </div>
         </div>
       )}
-      
-      <div className="container">
-        <div className="catalog-header ">
-          <h1 className="catalog-title">{getCategoryTitle()}</h1>
-          {category !== 'office' && (
-            <p className="catalog-subtitle">
-              {t('catalog.subtitle')}
-            </p>
-          )}
-        </div>
-
-        <div className="catalog-content ">
-          {/* Filters */}
-          {category !== 'office' && filtersContent}
-
-          {/* Products Grid */}
-          <div className="catalog-products">
-            <div className="products-count">
-              {filteredProducts.length} {t('catalog.products_found')}
-            </div>
-            
-            <div className="products-grid">
-              {filteredProducts.map(product => (
-                <ProductCard key={product.id} product={product} />
-              ))}
-            </div>
-
-            {filteredProducts.length === 0 && (
-              <div className="no-products">
-                <p>{t('catalog.no_products')}</p>
-              </div>
-            )}
-          </div>
-        </div>
-      </div>
     </div>
   );
 };
