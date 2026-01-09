@@ -57,7 +57,7 @@ export const gpsContent = {
         title: 'hero.iecho.title',
         subtitle: 'hero.iecho.subtitle',
         cta: 'hero.iecho.cta',
-        ctaLink: '/catalog/office'
+        ctaLink: '/news?highlight=office-hero-primary'
       }, {
         src: iechoPrinter,
         alt: 'Office GPS Equipment Background'
@@ -67,7 +67,7 @@ export const gpsContent = {
         title: 'hero.office.title',
         subtitle: 'hero.office.subtitle',
         cta: 'hero.office.cta',
-        ctaLink: '/catalog/office'
+        ctaLink: '/news?highlight=office-hero-secondary'
       }, {
         src: printer3,
         alt: 'Office GPS Equipment Background'
@@ -82,7 +82,7 @@ export const gpsContent = {
           title: 'hero.professional.title',
           subtitle: 'hero.professional.subtitle',
           cta: 'hero.professional.cta',
-          ctaLink: '/catalog/professional'
+          ctaLink: '/news?highlight=professional-equipment'
         }
       ),
       
@@ -95,7 +95,7 @@ export const gpsContent = {
           title: 'hero.industrial.title',
           subtitle: 'hero.industrial.subtitle',
           cta: 'hero.industrial.cta',
-          ctaLink: '/catalog/industrial'
+          ctaLink: '/news?highlight=industrial-solutions'
         }
       ),
       
@@ -103,7 +103,7 @@ export const gpsContent = {
         title: 'hero.support.title',
         subtitle: 'hero.support.subtitle',
         cta: 'hero.support.cta',
-        ctaLink: '/services'
+        ctaLink: '/news?highlight=support-services'
       }, {
         src: printer4,
         alt: 'GPS Support Services Background'
@@ -734,6 +734,56 @@ export default gpsContent;
 
 export const getCarouselSlides = () => {
   return gpsContent.carousel.slides;
+};
+
+export const getNewsItemsFromCarousel = () => {
+  const slides = gpsContent.carousel.slides.slice(0, 5);
+  const baseDates = [
+    '2025-01-05',
+    '2025-01-12',
+    '2025-01-19',
+    '2025-01-26',
+    '2025-02-02'
+  ];
+
+  return slides.map((slide, index) => {
+    const type = slide.type;
+    const titleKey = type === 'product' 
+      ? slide.product?.title 
+      : type === 'service'
+        ? slide.service?.title
+        : slide.content?.title || slide.title;
+
+    const subtitleKey = type === 'product' 
+      ? slide.product?.subtitle 
+      : type === 'service'
+        ? slide.service?.subtitle
+        : slide.content?.subtitle || slide.subtitle;
+
+    const image = slide.backgroundImage?.src 
+      || slide.image?.src 
+      || slide.images?.[0]?.src 
+      || null;
+
+    const alt = slide.backgroundImage?.alt 
+      || slide.image?.alt 
+      || slide.images?.[0]?.alt 
+      || 'News image';
+
+    const id = slide.id || `news-${index}`;
+
+    return {
+      id,
+      type,
+      titleKey,
+      subtitleKey,
+      excerptKey: subtitleKey,
+      image,
+      alt,
+      date: baseDates[index % baseDates.length],
+      newsLink: `/news?highlight=${id}`
+    };
+  });
 };
 
 export const getProductItems = () => {
