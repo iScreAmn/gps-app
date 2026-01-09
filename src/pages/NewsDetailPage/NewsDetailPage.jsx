@@ -1,12 +1,11 @@
 import React, { useMemo } from 'react';
-import { useParams, useNavigate, Link } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 import { useLanguage } from '../../hooks/useLanguage';
 import { getNewsItemById } from '../../data/contentData';
 import './NewsDetailPage.css';
 
 const NewsDetailPage = () => {
   const { id } = useParams();
-  const navigate = useNavigate();
   const { t, language } = useLanguage();
 
   const newsItem = useMemo(() => getNewsItemById(id), [id]);
@@ -15,6 +14,30 @@ const NewsDetailPage = () => {
     const date = new Date(dateString);
     const locale = language === 'ka' ? 'ka-GE' : language === 'ru' ? 'ru-RU' : 'en-US';
     return date.toLocaleDateString(locale, { day: 'numeric', month: 'short', year: 'numeric' });
+  };
+
+  const getYouTubeEmbedUrl = (url) => {
+    if (!url) return null;
+    
+    // Extract video ID from various YouTube URL formats
+    let videoId = null;
+    
+    // Standard YouTube watch URL: https://www.youtube.com/watch?v=VIDEO_ID
+    const watchMatch = url.match(/(?:youtube\.com\/watch\?v=|youtu\.be\/)([^&\n?#]+)/);
+    if (watchMatch) {
+      videoId = watchMatch[1];
+    }
+    
+    // If already an embed URL, return as is
+    if (url.includes('youtube.com/embed/')) {
+      return url;
+    }
+    
+    if (videoId) {
+      return `https://www.youtube.com/embed/${videoId}`;
+    }
+    
+    return null;
   };
 
   if (!newsItem) {
@@ -57,15 +80,45 @@ const NewsDetailPage = () => {
       <section className="news-detail__body">
         <div className="container">
           <div className="news-detail__content">
-            <p className="news-detail__lead">
-              {t(newsItem.subtitleKey)}
-            </p>
-            <p className="news-detail__paragraph">
-              {t(newsItem.subtitleKey)}
-            </p>
-            <p className="news-detail__paragraph">
-              {t(newsItem.subtitleKey)}
-            </p>
+            {newsItem.body && newsItem.body.length > 0 ? (
+              <>
+                <p className="news-detail__lead">{t(newsItem.body[0])}</p>
+                {newsItem.body.slice(1).map((p, idx) => (
+                  <p key={idx} className="news-detail__paragraph">
+                    {t(p)}
+                  </p>
+                ))}
+              </>
+            ) : (
+              <p className="news-detail__lead">{t(newsItem.subtitleKey)}</p>
+            )}
+
+            {newsItem.gallery && newsItem.gallery.length > 0 && (
+              <div className="news-detail__gallery">
+                {newsItem.gallery.map((img, idx) => (
+                  <div className="news-detail__gallery-item" key={idx}>
+                    <img src={img.src} alt={img.alt || `Gallery ${idx + 1}`} loading="lazy" />
+                  </div>
+                ))}
+              </div>
+            )}
+
+            {newsItem.videoUrl && (() => {
+              const embedUrl = getYouTubeEmbedUrl(newsItem.videoUrl);
+              return embedUrl ? (
+                <div className="news-detail__video">
+                  <div className="news-detail__video-embed">
+                    <iframe
+                      src={embedUrl}
+                      title={t(newsItem.titleKey)}
+                      frameBorder="0"
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                      allowFullScreen
+                    />
+                  </div>
+                </div>
+              ) : null;
+            })()}
           </div>
         </div>
       </section>

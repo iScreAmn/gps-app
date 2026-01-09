@@ -57,7 +57,17 @@ export const gpsContent = {
         title: 'hero.iecho.title',
         subtitle: 'hero.iecho.subtitle',
         cta: 'hero.iecho.cta',
-        ctaLink: '/news/office-hero-primary'
+        ctaLink: '/news/office-hero-primary',
+        details: {
+          body: [
+            'hero.iecho.subtitle',
+            'hero.iecho.description',
+          ],
+          gallery: [
+            { src: iechoPrinter, alt: 'IECHO systems detail' }
+          ],
+          videoUrl: '#'
+        }
       }, {
         src: iechoPrinter,
         alt: 'Office GPS Equipment Background'
@@ -67,7 +77,17 @@ export const gpsContent = {
         title: 'hero.office.title',
         subtitle: 'hero.office.subtitle',
         cta: 'hero.office.cta',
-        ctaLink: '/news/office-hero-secondary'
+        ctaLink: '/news/office-hero-secondary',
+        details: {
+          body: [
+            'news.officeHeroSecondary.body1',
+            'news.officeHeroSecondary.body2'
+          ],
+          gallery: [
+            { src: printer3, alt: 'Office equipment showcase' }
+          ],
+          videoUrl: ''
+        }
       }, {
         src: printer3,
         alt: 'Office GPS Equipment Background'
@@ -82,7 +102,18 @@ export const gpsContent = {
           title: 'hero.professional.title',
           subtitle: 'hero.professional.subtitle',
           cta: 'hero.professional.cta',
-          ctaLink: '/news/professional-equipment'
+          ctaLink: '/news/professional-equipment',
+          details: {
+            body: [
+              'news.professionalEquipment.body1',
+              'news.professionalEquipment.body2',
+              'news.professionalEquipment.body3'
+            ],
+            gallery: [
+              { src: printer1, alt: 'Professional equipment hero' }
+            ],
+            videoUrl: ''
+          }
         }
       ),
       
@@ -95,7 +126,17 @@ export const gpsContent = {
           title: 'hero.industrial.title',
           subtitle: 'hero.industrial.subtitle',
           cta: 'hero.industrial.cta',
-          ctaLink: '/news/industrial-solutions'
+          ctaLink: '/news/industrial-solutions',
+          details: {
+            body: [
+              'news.industrialSolutions.body1',
+              'news.industrialSolutions.body2'
+            ],
+            gallery: [
+              { src: toners, alt: 'Industrial solutions materials' }
+            ],
+            videoUrl: ''
+          }
         }
       ),
       
@@ -103,7 +144,18 @@ export const gpsContent = {
         title: 'hero.support.title',
         subtitle: 'hero.support.subtitle',
         cta: 'hero.support.cta',
-        ctaLink: '/news/support-services'
+        ctaLink: '/news/support-services',
+        details: {
+          body: [
+            'news.supportServices.body1',
+            'news.supportServices.body2',
+            'news.supportServices.body3'
+          ],
+          gallery: [
+            { src: printer4, alt: 'Support services' }
+          ],
+          videoUrl: ''
+        }
       }, {
         src: printer4,
         alt: 'GPS Support Services Background'
@@ -772,6 +824,8 @@ export const getNewsItemsFromCarousel = () => {
 
     const id = slide.id || `news-${index}`;
 
+    const details = slide.content?.details || slide.details || {};
+
     return {
       id,
       type,
@@ -781,7 +835,10 @@ export const getNewsItemsFromCarousel = () => {
       image,
       alt,
       date: baseDates[index % baseDates.length],
-      newsLink: `/news/${id}`
+      newsLink: `/news/${id}`,
+      body: details.body || [],
+      gallery: details.gallery || [],
+      videoUrl: details.videoUrl || ''
     };
   });
 };
@@ -789,6 +846,13 @@ export const getNewsItemsFromCarousel = () => {
 export const getNewsItemById = (id) => {
   const items = getNewsItemsFromCarousel();
   return items.find(item => item.id === id);
+};
+
+export const getNewsDetailsById = (id) => {
+  const slides = gpsContent.carousel.slides;
+  const slide = slides.find(s => s.id === id);
+  const details = slide?.content?.details || slide?.details || {};
+  return details || null;
 };
 
 export const getProductItems = () => {
