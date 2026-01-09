@@ -35,7 +35,8 @@ body[data-theme="dark"] .online-order-page {
 /* Tablet Portrait & Mobile Landscape (481px - 768px) */
 @media (max-width: 768px) {
   .online-order-page {
-    display: block;
+    display: flex;
+    flex-direction: column;
     padding: clamp(16px, 4vw, 24px) clamp(16px, 5vw, 24px);
     padding-bottom: calc(clamp(16px, 5vw, 24px) + env(safe-area-inset-bottom));
     gap: 1.25rem;
@@ -55,7 +56,7 @@ body[data-theme="dark"] .online-order-page {
   .online-order-page {
     padding: clamp(16px, 5vw, 24px);
     padding-bottom: calc(clamp(16px, 5vw, 24px) + env(safe-area-inset-bottom));
-    gap: 1rem;
+    gap: 2rem;
   }
 }
 
