@@ -94,20 +94,6 @@ const NewsPage = () => {
   return (
     <div className="news-page">
       <div className="container">
-        <div className="news-carousel">
-          <div className="news-carousel__nav">
-            <div>
-              <h1 className="news-heading">{t('news.title') || 'News'}</h1>
-              <p className="news-subheading">
-                {t('hero.support.subtitle') || 'Latest highlights from our hero stories.'}
-              </p>
-            </div>
-            <Link className="news-cta" to={`/${language}/news`}>
-              {t('products.section.viewAll') || 'All news'}
-            </Link>
-          </div>
-        </div>
-
         <section className="news-hero">
           <div className="news-hero__container">
             <div className="news-hero__main-card">

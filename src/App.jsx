@@ -10,6 +10,7 @@ import AboutPage from './pages/AboutPage/AboutPage';
 import ServicesPage from './pages/ServicesPage/ServicesPage';
 import NewsPage from './pages/NewsPage/NewsPage';
 import ContactsPage from './pages/ContactsPage/ContactsPage';
+import NewsDetailPage from './pages/NewsDetailPage/NewsDetailPage';
 import PrivacyPolicyPage from './pages/PrivacyPolicyPage/PrivacyPolicyPage';
 import CuttingSystemsPage from './pages/CuttingSystemsPage/CuttingSystemsPage';
 import Iecho from './pages/CuttingSystemsPage/Iecho/Iecho';
@@ -39,6 +40,7 @@ function App() {
               <Route path="/ka/about" element={<AboutPage />} />
               <Route path="/ka/services" element={<ServicesPage />} />
               <Route path="/ka/news" element={<NewsPage />} />
+              <Route path="/ka/news/:id" element={<NewsDetailPage />} />
               <Route path="/ka/contacts" element={<ContactsPage />} />
               <Route path="/ka/privacy-policy" element={<PrivacyPolicyPage />} />
               
@@ -56,10 +58,12 @@ function App() {
               <Route path="/en/about" element={<AboutPage />} />
               <Route path="/en/services" element={<ServicesPage />} />
               <Route path="/en/news" element={<NewsPage />} />
+              <Route path="/en/news/:id" element={<NewsDetailPage />} />
               <Route path="/en/contacts" element={<ContactsPage />} />
               <Route path="/en/privacy-policy" element={<PrivacyPolicyPage />} />
 
               <Route path="/privacy-policy" element={<PrivacyPolicyPage />} />
+              <Route path="/news/:id" element={<NewsDetailPage />} />
               <Route path="/cutting-systems" element={<CuttingSystemsPage />} />
               <Route path="/cutting-systems/iecho" element={<Iecho />} />
               <Route path="/cutting-systems/iecho/:modelId" element={<IechoModelPage />} />

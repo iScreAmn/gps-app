@@ -57,7 +57,7 @@ export const gpsContent = {
         title: 'hero.iecho.title',
         subtitle: 'hero.iecho.subtitle',
         cta: 'hero.iecho.cta',
-        ctaLink: '/news?highlight=office-hero-primary'
+        ctaLink: '/news/office-hero-primary'
       }, {
         src: iechoPrinter,
         alt: 'Office GPS Equipment Background'
@@ -67,7 +67,7 @@ export const gpsContent = {
         title: 'hero.office.title',
         subtitle: 'hero.office.subtitle',
         cta: 'hero.office.cta',
-        ctaLink: '/news?highlight=office-hero-secondary'
+        ctaLink: '/news/office-hero-secondary'
       }, {
         src: printer3,
         alt: 'Office GPS Equipment Background'
@@ -82,7 +82,7 @@ export const gpsContent = {
           title: 'hero.professional.title',
           subtitle: 'hero.professional.subtitle',
           cta: 'hero.professional.cta',
-          ctaLink: '/news?highlight=professional-equipment'
+          ctaLink: '/news/professional-equipment'
         }
       ),
       
@@ -95,7 +95,7 @@ export const gpsContent = {
           title: 'hero.industrial.title',
           subtitle: 'hero.industrial.subtitle',
           cta: 'hero.industrial.cta',
-          ctaLink: '/news?highlight=industrial-solutions'
+          ctaLink: '/news/industrial-solutions'
         }
       ),
       
@@ -103,7 +103,7 @@ export const gpsContent = {
         title: 'hero.support.title',
         subtitle: 'hero.support.subtitle',
         cta: 'hero.support.cta',
-        ctaLink: '/news?highlight=support-services'
+        ctaLink: '/news/support-services'
       }, {
         src: printer4,
         alt: 'GPS Support Services Background'
@@ -781,9 +781,14 @@ export const getNewsItemsFromCarousel = () => {
       image,
       alt,
       date: baseDates[index % baseDates.length],
-      newsLink: `/news?highlight=${id}`
+      newsLink: `/news/${id}`
     };
   });
+};
+
+export const getNewsItemById = (id) => {
+  const items = getNewsItemsFromCarousel();
+  return items.find(item => item.id === id);
 };
 
 export const getProductItems = () => {
