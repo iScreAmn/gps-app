@@ -1,11 +1,12 @@
 import React, { useMemo } from 'react';
 import { Link, useLocation, useParams } from 'react-router-dom';
+import { HiArrowSmRight } from "react-icons/hi";
 import { useLanguage } from '../../hooks/useLanguage';
 import { getCurrentLanguageFromPath } from '../../i18n';
 import developData from '../../database/brands/develop.json';
 import './Breadcrumbs.css';
 
-const Breadcrumbs = ({ items, separator = '→' }) => {
+const Breadcrumbs = ({ items, separator }) => {
   const location = useLocation();
   const params = useParams();
   const { language, t } = useLanguage();
@@ -202,32 +203,34 @@ const Breadcrumbs = ({ items, separator = '→' }) => {
 
   return (
     <nav className="breadcrumbs" aria-label="Breadcrumb">
-      <ol className="breadcrumbs__list">
-        {breadcrumbs.map((crumb, index) => {
-          const isLast = index === breadcrumbs.length - 1;
-          
-          return (
-            <li key={`${crumb.path}-${index}`} className="breadcrumbs__item">
-              {isLast ? (
-                <span className="breadcrumbs__item--active">
-                  {crumb.label}
-                </span>
-              ) : (
-                <>
-                  <Link to={crumb.path} className="breadcrumbs__link">
+      <div className="container">
+        <ol className="breadcrumbs__list">
+          {breadcrumbs.map((crumb, index) => {
+            const isLast = index === breadcrumbs.length - 1;
+            
+            return (
+              <li key={`${crumb.path}-${index}`} className="breadcrumbs__item">
+                {isLast ? (
+                  <span className="breadcrumbs__item--active">
                     {crumb.label}
-                  </Link>
-                  {!isLast && (
-                    <span className="breadcrumbs__separator" aria-hidden="true">
-                      {separator}
-                    </span>
-                  )}
-                </>
-              )}
-            </li>
-          );
-        })}
-      </ol>
+                  </span>
+                ) : (
+                  <>
+                    <Link to={crumb.path} className="breadcrumbs__link">
+                      {crumb.label}
+                    </Link>
+                    {!isLast && (
+                      <span className="breadcrumbs__separator" aria-hidden="true">
+                        {separator || <HiArrowSmRight />}
+                      </span>
+                    )}
+                  </>
+                )}
+              </li>
+            );
+          })}
+        </ol>
+      </div>
     </nav>
   );
 };
