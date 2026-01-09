@@ -241,11 +241,27 @@ body[data-theme="dark"] .news-card__link:hover {
     grid-template-columns: 1fr;
   }
 
+  .news-card--main {
+    height: auto;
+    min-height: unset;
+  }
+
+  .news-hero__small-card .news-card {
+    height: auto;
+    min-height: 200px;
+  }
+
   .news-card--main .news-card__image {
     aspect-ratio: 16 / 10;
   }
 
   .news-card__content {
     padding: 18px;
+  }
+
+  .news-card__title {
+    white-space: normal;
+    overflow: visible;
+    text-overflow: initial;
   }
 }
