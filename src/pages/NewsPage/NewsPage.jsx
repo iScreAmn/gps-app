@@ -67,14 +67,16 @@ const NewsPage = () => {
         </div>
       )}
       <div className="news-card__content">
-        <p className="news-card__date">
-          <span className="news-card__dot" />
-          {formatDate(item.date)}
-        </p>
+        {variant === 'main' && (
+          <p className="news-card__date">
+            <span className="news-card__dot" />
+            {formatDate(item.date)}
+          </p>
+        )}
         <h3 className="news-card__title">
           {item.titleKey ? t(item.titleKey) : t('news.title')}
         </h3>
-        {item.excerptKey && (
+        {variant === 'main' && item.excerptKey && (
           <p className="news-card__excerpt">
             {t(item.excerptKey)}
           </p>
