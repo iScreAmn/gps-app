@@ -64,9 +64,9 @@ export const gpsContent = {
             'hero.iecho.description',
           ],
           gallery: [
-            { src: iechoPrinter, alt: 'IECHO systems detail' }
+            // { src: iechoPrinter, alt: 'IECHO systems detail' }
           ],
-          videoUrl: '#'
+          videoUrl: 'https://www.youtube.com/watch?v=BZpCcxM0rBA'
         }
       }, {
         src: iechoPrinter,
