@@ -60,3 +60,9 @@ body[data-theme="dark"] .service-card {
     font-size: 2rem;
   }
 }
+
+@media (max-width: 480px) {
+  .under-construction {
+    width: 100%;
+  }
+}
