@@ -3,6 +3,7 @@ import { Link, useLocation, useParams } from 'react-router-dom';
 import { HiArrowSmRight } from "react-icons/hi";
 import { useLanguage } from '../../hooks/useLanguage';
 import { getCurrentLanguageFromPath } from '../../i18n';
+import { getNewsItemById } from '../../data/contentData';
 import developData from '../../database/brands/develop.json';
 import './Breadcrumbs.css';
 
@@ -96,6 +97,49 @@ const Breadcrumbs = ({ items, separator }) => {
       const isLast = index === segments.length - 1;
       const nextSegment = segments[index + 1];
       
+      // Специальная обработка для страницы новости
+      if (segment === 'news') {
+        const newsId = nextSegment || params.id;
+        if (newsId) {
+          // Добавляем новости перед конкретной новостью
+          const newsPath = currentLang ? `/${currentLang}/news` : '/news';
+          crumbs.push({
+            label: t('navigation.news'),
+            path: newsPath,
+            isActive: false
+          });
+          // Получаем название новости из данных
+          const newsItem = getNewsItemById(newsId);
+          let newsTitle = null;
+          if (newsItem && newsItem.titleKey) {
+            const translated = t(newsItem.titleKey);
+            // Если перевод найден (не равен ключу), используем его
+            if (translated !== newsItem.titleKey) {
+              newsTitle = translated;
+            }
+          }
+          // Если название не найдено, не добавляем последний элемент breadcrumbs
+          if (newsTitle) {
+            currentPath += `/${segment}/${newsId}`;
+            crumbs.push({
+              label: newsTitle,
+              path: currentPath,
+              isActive: true
+            });
+          }
+          return; // Прерываем цикл
+        } else {
+          // Просто страница новостей без конкретной новости
+          currentPath += `/${segment}`;
+          crumbs.push({
+            label: t('navigation.news'),
+            path: currentPath,
+            isActive: isLast
+          });
+          return;
+        }
+      }
+      
       // Специальная обработка для страницы продукта
       if (segment === 'product' && params.id) {
         // Добавляем каталог перед продуктом
@@ -161,6 +205,11 @@ const Breadcrumbs = ({ items, separator }) => {
           path: currentPath,
           isActive: true
         });
+        return; // Пропускаем стандартную обработку
+      }
+      
+      // Пропускаем id новости после "news" (он уже обработан выше)
+      if (segments[index - 1] === 'news') {
         return; // Пропускаем стандартную обработку
       }
       
