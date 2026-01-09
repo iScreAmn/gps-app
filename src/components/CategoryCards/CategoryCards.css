@@ -9,8 +9,7 @@ body[data-theme="dark"] .category-cards-section {
 .category-cards-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-  gap: 2rem;
-  max-width: 1200px;
+  gap: 1rem;
   margin: 0 auto;
 }
 
