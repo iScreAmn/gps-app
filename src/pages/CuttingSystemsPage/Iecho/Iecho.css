@@ -225,6 +225,7 @@ body[data-theme="dark"] .filter-group select {
   .catalog-filters {
     width: 100%;
     margin-right: 0;
+    position: static;
   }
 
   .iecho__card-image {
