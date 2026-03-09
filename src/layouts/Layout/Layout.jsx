@@ -17,19 +17,19 @@ const Layout = ({ children }) => {
   const [isConstructionModalOpen, setIsConstructionModalOpen] = useState(false);
   const { t } = useLanguage();
 
-  // Auto-open construction modal 8s after initial mount, regardless of the current route
-  useEffect(() => {
-    constructionTimerRef.current = setTimeout(() => {
-      setIsConstructionModalOpen(true);
-      constructionTimerRef.current = null;
-    }, 8000);
-
-    return () => {
-      if (constructionTimerRef.current) {
-        clearTimeout(constructionTimerRef.current);
-      }
-    };
-  }, []);
+  // Auto-open construction modal 8s after initial mount (temporarily disabled)
+  // useEffect(() => {
+  //   constructionTimerRef.current = setTimeout(() => {
+  //     setIsConstructionModalOpen(true);
+  //     constructionTimerRef.current = null;
+  //   }, 8000);
+  //
+  //   return () => {
+  //     if (constructionTimerRef.current) {
+  //       clearTimeout(constructionTimerRef.current);
+  //     }
+  //   };
+  // }, []);
 
   const openConstructionModal = () => {
     setIsConstructionModalOpen(true);
