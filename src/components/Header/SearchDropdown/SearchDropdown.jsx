@@ -132,9 +132,6 @@ export default function SearchDropdown() {
                     <div className="search-dropdown__item-body">
                       <span className="search-dropdown__item-name">{product.name}</span>
                       <span className="search-dropdown__item-brand">{product.brand}</span>
-                      {product.price && (
-                        <span className="search-dropdown__item-price">{product.price}</span>
-                      )}
                     </div>
                   </button>
                 </li>
