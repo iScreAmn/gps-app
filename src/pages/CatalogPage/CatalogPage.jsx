@@ -4,7 +4,7 @@ import { useLanguage } from "../../hooks/useLanguage";
 import ProductCard from '../../components/ProductCard/ProductCard';
 import CategoryCards from '../../components/CategoryCards/CategoryCards';
 import { searchProducts } from '../../utils/productSearch';
-import { printer2, printer3, developPrinter1, developPrinter3, developPrinter4, developPrinter5, developPrinter6, PK0604, PK0604plus, PK0705, PK0705plus, PK1209 } from '../../assets/images';
+import { developPrinter1, developPrinter3, developPrinter4, developPrinter5, developPrinter6, PK0604, PK0604plus, PK0705, PK0705plus, PK1209 } from '../../assets/images';
 import developData from '../../database/brands/develop.json';
 import iechoData from '../../database/brands/iecho.json';
 import './CatalogPage.css';
@@ -18,12 +18,6 @@ const CatalogPage = () => {
     speed: '',
     tonerLifetime: ''
   });
-
-  // Mock data - replace with real data
-  const baseProducts = [
-    { id: 2, name: 'Konica Minolta bizhub C450i', brand: 'Konica Minolta', category: 'professional', type: 'multifunction', speed: '45', format: 'A3', image: printer2, price: t('catalog.price_on_request') },
-    { id: 3, name: 'Konica Minolta AccurioPress C3080', brand: 'Konica Minolta', category: 'industrial', type: 'printer', speed: '80', format: 'A3+', image: printer3, price: t('catalog.price_on_request') }
-  ];
 
   // Add Develop products
   const developProducts = developData?.products?.length > 0
@@ -57,7 +51,7 @@ const CatalogPage = () => {
       }))
     : [];
 
-  const allProducts = [...baseProducts, ...developProducts, ...iechoProducts];
+  const allProducts = [...developProducts, ...iechoProducts];
   const products = searchQuery.trim() ? searchProducts(allProducts, searchQuery) : allProducts;
 
   // Map product IDs to images for brand sections

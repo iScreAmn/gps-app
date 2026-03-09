@@ -1,15 +1,10 @@
-import { printer2, printer3, developPrinter1, PK0604, PK0604plus, PK0705, PK0705plus, PK1209 } from '../assets/images';
+import { developPrinter1, PK0604, PK0604plus, PK0705, PK0705plus, PK1209 } from '../assets/images';
 import developData from '../database/brands/develop.json';
 import iechoData from '../database/brands/iecho.json';
 
 const iechoImageMap = { pk0604: PK0604, 'pk0604-plus': PK0604plus, pk0705: PK0705, 'pk0705-plus': PK0705plus, 'pk1209-pro-max': PK1209 };
 
 export function getSearchableProducts(language, t) {
-  const baseProducts = [
-    { id: 2, name: 'Konica Minolta bizhub C450i', brand: 'Konica Minolta', category: 'professional', image: printer2, price: t('catalog.price_on_request'), link: null },
-    { id: 3, name: 'Konica Minolta AccurioPress C3080', brand: 'Konica Minolta', category: 'industrial', image: printer3, price: t('catalog.price_on_request'), link: null }
-  ];
-
   const developProducts = developData?.products?.length > 0
     ? developData.products.map((p) => ({
         id: `develop-${p.id}`,
@@ -35,7 +30,7 @@ export function getSearchableProducts(language, t) {
       }))
     : [];
 
-  return [...baseProducts, ...developProducts, ...iechoProducts].map((p) => ({
+  return [...developProducts, ...iechoProducts].map((p) => ({
     ...p,
     link: p.link || `/${language}/product/${p.id}`
   }));
