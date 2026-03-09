@@ -4,8 +4,9 @@ import { useLanguage } from "../../hooks/useLanguage";
 import ProductCard from '../../components/ProductCard/ProductCard';
 import CategoryCards from '../../components/CategoryCards/CategoryCards';
 import { searchProducts } from '../../utils/productSearch';
-import { printer2, printer3, developPrinter1, developPrinter3, developPrinter4, developPrinter5, developPrinter6 } from '../../assets/images';
+import { printer2, printer3, developPrinter1, developPrinter3, developPrinter4, developPrinter5, developPrinter6, PK0604, PK0604plus, PK0705, PK0705plus, PK1209 } from '../../assets/images';
 import developData from '../../database/brands/develop.json';
+import iechoData from '../../database/brands/iecho.json';
 import './CatalogPage.css';
 
 const CatalogPage = () => {
@@ -41,7 +42,22 @@ const CatalogPage = () => {
       }))
     : [];
 
-  const allProducts = [...baseProducts, ...developProducts];
+  const iechoImageMap = { pk0604: PK0604, 'pk0604-plus': PK0604plus, pk0705: PK0705, 'pk0705-plus': PK0705plus, 'pk1209-pro-max': PK1209 };
+
+  const iechoProducts = iechoData?.products?.length > 0
+    ? iechoData.products.map((product) => ({
+        id: `iecho-${product.id}`,
+        name: product.name,
+        brand: 'IECHO',
+        category: 'cutting',
+        description: [product.materials, product.tools].flat().join(' '),
+        image: iechoImageMap[product.id] || PK0604,
+        price: t('catalog.price_on_request'),
+        link: `/${language}/cutting-systems/iecho/${product.id}`
+      }))
+    : [];
+
+  const allProducts = [...baseProducts, ...developProducts, ...iechoProducts];
   const products = searchQuery.trim() ? searchProducts(allProducts, searchQuery) : allProducts;
 
   // Map product IDs to images for brand sections

@@ -1,32 +1,17 @@
-import React, { useState, useEffect } from 'react';
-import { Link, useNavigate, useSearchParams } from 'react-router-dom';
-import { useLanguage } from '../../hooks/useLanguage';
+import React from 'react';
+import { Link } from 'react-router-dom';
 import { useTheme } from '../../contexts/ThemeContext';
-import { FaSearch, FaTelegram, FaWhatsapp } from 'react-icons/fa';
+import { FaTelegram, FaWhatsapp } from 'react-icons/fa';
 import { mainLogo, mainLogoWhite } from '../../assets/images';
 import contactsData from '../../data/contactsData';
+import SearchDropdown from './SearchDropdown/SearchDropdown';
+import { useLanguage } from '../../hooks/useLanguage';
 import './TopHeader.css';
 
 const TopHeader = () => {
   const { language, t } = useLanguage();
   const { theme } = useTheme();
-  const navigate = useNavigate();
-  const [searchParams] = useSearchParams();
-  const [searchQuery, setSearchQuery] = useState(searchParams.get('q') || '');
-
-  useEffect(() => {
-    setSearchQuery(searchParams.get('q') || '');
-  }, [searchParams]);
-
   const currentLogo = theme === 'dark' ? mainLogoWhite : mainLogo;
-
-  const handleSearch = (e) => {
-    e.preventDefault();
-    const q = searchQuery.trim();
-    if (q) {
-      navigate(`/${language}/catalog?q=${encodeURIComponent(q)}`);
-    }
-  };
 
   return (
     <div className="top-header">
@@ -42,18 +27,7 @@ const TopHeader = () => {
           </Link>
 
           {/* Search */}
-          <form className="search-form" onSubmit={handleSearch}>
-            <input
-              type="text"
-              className="search-input"
-              placeholder={t('header.searchPlaceholder')}
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
-            />
-            <button type="submit" className="search-button">
-              <FaSearch />
-            </button>
-          </form>
+          <SearchDropdown />
 
           {/* Contact Info */}
           <div className="contact-info">
