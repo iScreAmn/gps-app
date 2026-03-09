@@ -1,7 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { useTheme } from '../../contexts/ThemeContext';
-import { FaTelegram, FaWhatsapp } from 'react-icons/fa';
+import { FaTelegramPlane, FaWhatsapp } from 'react-icons/fa';
+import { HiOutlineMail } from 'react-icons/hi';
 import { mainLogo, mainLogoWhite } from '../../assets/images';
 import contactsData from '../../data/contactsData';
 import SearchDropdown from './SearchDropdown/SearchDropdown';
@@ -38,13 +39,13 @@ const TopHeader = () => {
               >
                 {contactsData.phone.label}
               </a>
+              <a
+                href={contactsData.phoneSecondary.href}
+                className="phone contact-link"
+              >
+                {contactsData.phoneSecondary.label}
+              </a>
             </div>
-            <a
-              href={contactsData.email.href}
-              className="email contact-link"
-            >
-              {contactsData.email.label}
-            </a>
           </div>
 
           {/* Social Media */}
@@ -66,7 +67,14 @@ const TopHeader = () => {
                 rel="noopener noreferrer"
                 aria-label="Telegram"
               >
-                <FaTelegram />
+                <FaTelegramPlane />
+              </a>
+              <a 
+                href={contactsData.email.href} 
+                className="social-link email"
+                aria-label="Email"
+              >
+                <HiOutlineMail />
               </a>
             </div>
             <div className="hours none">{t('header.hours')}</div>
