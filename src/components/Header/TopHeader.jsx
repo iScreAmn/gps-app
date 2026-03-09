@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { Link, useNavigate, useSearchParams } from 'react-router-dom';
 import { useLanguage } from '../../hooks/useLanguage';
 import { useTheme } from '../../contexts/ThemeContext';
 import { FaSearch, FaTelegram, FaWhatsapp } from 'react-icons/fa';
@@ -10,14 +10,21 @@ import './TopHeader.css';
 const TopHeader = () => {
   const { language, t } = useLanguage();
   const { theme } = useTheme();
-  const [searchQuery, setSearchQuery] = useState('');
-  
+  const navigate = useNavigate();
+  const [searchParams] = useSearchParams();
+  const [searchQuery, setSearchQuery] = useState(searchParams.get('q') || '');
+
+  useEffect(() => {
+    setSearchQuery(searchParams.get('q') || '');
+  }, [searchParams]);
+
   const currentLogo = theme === 'dark' ? mainLogoWhite : mainLogo;
 
   const handleSearch = (e) => {
     e.preventDefault();
-    if (searchQuery.trim()) {
-      console.log('Searching for:', searchQuery);
+    const q = searchQuery.trim();
+    if (q) {
+      navigate(`/${language}/catalog?q=${encodeURIComponent(q)}`);
     }
   };
 

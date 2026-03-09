@@ -1,14 +1,17 @@
 import React, { useState } from 'react';
-import { useParams, Link } from 'react-router-dom';
+import { useParams, useSearchParams, Link } from 'react-router-dom';
 import { useLanguage } from "../../hooks/useLanguage";
 import ProductCard from '../../components/ProductCard/ProductCard';
 import CategoryCards from '../../components/CategoryCards/CategoryCards';
+import { searchProducts } from '../../utils/productSearch';
 import { printer2, printer3, developPrinter1, developPrinter3, developPrinter4, developPrinter5, developPrinter6 } from '../../assets/images';
 import developData from '../../database/brands/develop.json';
 import './CatalogPage.css';
 
 const CatalogPage = () => {
   const { category } = useParams();
+  const [searchParams] = useSearchParams();
+  const searchQuery = searchParams.get('q') || '';
   const { language, t } = useLanguage();
   const [filters, setFilters] = useState({
     speed: '',
@@ -17,33 +20,16 @@ const CatalogPage = () => {
 
   // Mock data - replace with real data
   const baseProducts = [
-    {
-      id: 2,
-      name: 'Konica Minolta bizhub C450i',
-      category: 'professional',
-      type: 'multifunction',
-      speed: '45',
-      format: 'A3',
-      image: printer2,
-      price: t('catalog.price_on_request')
-    },
-    {
-      id: 3,
-      name: 'Konica Minolta AccurioPress C3080',
-      category: 'industrial',
-      type: 'printer',
-      speed: '80',
-      format: 'A3+',
-      image: printer3,
-      price: t('catalog.price_on_request')
-    }
+    { id: 2, name: 'Konica Minolta bizhub C450i', brand: 'Konica Minolta', category: 'professional', type: 'multifunction', speed: '45', format: 'A3', image: printer2, price: t('catalog.price_on_request') },
+    { id: 3, name: 'Konica Minolta AccurioPress C3080', brand: 'Konica Minolta', category: 'industrial', type: 'printer', speed: '80', format: 'A3+', image: printer3, price: t('catalog.price_on_request') }
   ];
 
-  // Add Develop Ineo 550i products
-  const developProducts = developData && developData.products && developData.products.length > 0
+  // Add Develop products
+  const developProducts = developData?.products?.length > 0
     ? developData.products.map((product) => ({
         id: `develop-${product.id}`,
         name: product.name,
+        brand: 'Develop',
         category: 'office',
         type: 'multifunction',
         speed: '55',
@@ -55,7 +41,8 @@ const CatalogPage = () => {
       }))
     : [];
 
-  const products = [...baseProducts, ...developProducts];
+  const allProducts = [...baseProducts, ...developProducts];
+  const products = searchQuery.trim() ? searchProducts(allProducts, searchQuery) : allProducts;
 
   // Map product IDs to images for brand sections
   const imageMap = {
@@ -111,11 +98,45 @@ const CatalogPage = () => {
 
   return (
     <div className="catalog-page">
+      {/* Search results */}
+      {searchQuery && (
+        <div className="container" style={{ paddingTop: '2rem' }}>
+          <h2>{products.length} {t('catalog.products_found')}</h2>
+          {products.length > 0 ? (
+            <div className="office-equipment__grid" style={{ marginTop: '1rem' }}>
+              {products.map((product) => (
+                <Link
+                  key={product.id}
+                  to={product.link || `/${language}/product/${product.id}`}
+                  className="office-equipment__card"
+                >
+                  <div className="office-equipment__card-image">
+                    <img src={product.image} alt={product.name} />
+                    <div className="office-equipment__overlay">
+                      <span className="office-equipment__more">{t('common.more')}</span>
+                    </div>
+                  </div>
+                  <div className="office-equipment__card-content">
+                    <h3 className="office-equipment__card-title">{product.name}</h3>
+                    <div className="office-equipment__specs">
+                      {product.speed && <span className="spec"><strong>{t('product.speed')}</strong> {product.speed} {t('common.ppm')}</span>}
+                      {product.tonerLifetime && <span className="spec"><strong>Toner lifetime</strong> {product.tonerLifetime}</span>}
+                    </div>
+                  </div>
+                </Link>
+              ))}
+            </div>
+          ) : (
+            <p>{t('catalog.no_products')}</p>
+          )}
+        </div>
+      )}
+
       {/* Category Cards Section */}
-      {!category && <CategoryCards />}
+      {!category && !searchQuery && <CategoryCards />}
       
       {/* Office Equipment Brands Section */}
-      {category === 'office' && developData && developData.products && (
+      {category === 'office' && !searchQuery && developData?.products && (
         <div className="office-equipment">
           <div className="container">
             <h1 className="office-equipment__title">{t('products.develop.displayName')}</h1>
