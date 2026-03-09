@@ -15,11 +15,15 @@ export { default as categoryOffice } from './printers/sections/develop-office.jp
 export { default as categoryPro } from './printers/sections/developPro.jpg';
 export { default as categoryIndustrial } from './printers/sections/develoopIndustrial.jpg';
 export { default as binder } from './printers/sections/binder.jpg';
+export { default as plotterCutting } from './other/unifol.webp';
+export { default as plotterCutting2 } from './other/unifol1.jpg';
+export { default as plotterCutting3 } from './other/unifol2.jpg';
 
 //Logos
 export { default as mainLogo } from './gps_logo.png';
 export { default as mainLogoWhite } from './gps_logo-white.webp';
 export { default as tmtLogo } from './partners/logos/tmt.png';
+
 //Partners logos
 export { default as duplo } from './partners/duplo.webp';
 export { default as knb } from './partners/knb.png';

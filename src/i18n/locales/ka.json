@@ -558,6 +558,15 @@
     "imageAlt": "WhatsApp კონტაქტი",
     "cta": "გამოიწერე"
   },
+  "plotterCutting": {
+    "viewCatalog": "კატალოგის ნახვა",
+    "imageAlt": "პლოტერის საჭრელი"
+  },
+  "plotterCatalog": {
+    "title": "პლოტერის სარეკლამო სასერი ფირები",
+    "image1Alt": "პლოტერის საჭრელი კატალოგი 1",
+    "image2Alt": "პლოტერის საჭრელი კატალოგი 2"
+  },
   "ledModules": {
     "title": "ინოვაცური LED-მოდულები",
     "downloadButton": "კატალოგის ნახვა",

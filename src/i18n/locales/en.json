@@ -584,6 +584,15 @@
     "imageAlt": "WhatsApp contact",
     "cta": "Subscribe"
   },
+  "plotterCutting": {
+    "viewCatalog": "View Catalog",
+    "imageAlt": "Plotter cutting"
+  },
+  "plotterCatalog": {
+    "title": "Plotter Cutting Catalog",
+    "image1Alt": "Plotter cutting catalog 1",
+    "image2Alt": "Plotter cutting catalog 2"
+  },
   "ledModules": {
     "title": "Innovative LED Modules",
     "downloadButton": "View Catalog",

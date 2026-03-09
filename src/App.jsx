@@ -13,6 +13,7 @@ import ContactsPage from './pages/ContactsPage/ContactsPage';
 import NewsDetailPage from './pages/NewsPage/NewsDetailPage/NewsDetailPage';
 import PrivacyPolicyPage from './pages/PrivacyPolicyPage/PrivacyPolicyPage';
 import CuttingSystemsPage from './pages/CatalogPage/CuttingSystemsPage/CuttingSystemsPage';
+import PlotterCatalogPage from './pages/PlotterCatalogPage/PlotterCatalogPage';
 import Iecho from './pages/CatalogPage/CuttingSystemsPage/Iecho/Iecho';
 import IechoModelPage from './pages/CatalogPage/CuttingSystemsPage/Iecho/IechoModelPage';
 import OfficeEquipment from './pages/CatalogPage/OfficeEquipment/OfficeEquipment';
@@ -43,6 +44,7 @@ function App() {
               <Route path="/ka/news/:id" element={<NewsDetailPage />} />
               <Route path="/ka/contacts" element={<ContactsPage />} />
               <Route path="/ka/privacy-policy" element={<PrivacyPolicyPage />} />
+              <Route path="/ka/plotter-catalog" element={<PlotterCatalogPage />} />
               
               {/* English routes */}
               <Route path="/en" element={<HomePage />} />
@@ -61,6 +63,7 @@ function App() {
               <Route path="/en/news/:id" element={<NewsDetailPage />} />
               <Route path="/en/contacts" element={<ContactsPage />} />
               <Route path="/en/privacy-policy" element={<PrivacyPolicyPage />} />
+              <Route path="/en/plotter-catalog" element={<PlotterCatalogPage />} />
 
               <Route path="/privacy-policy" element={<PrivacyPolicyPage />} />
               <Route path="/news/:id" element={<NewsDetailPage />} />
