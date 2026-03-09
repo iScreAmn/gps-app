@@ -1,8 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { useLanguage } from '../../hooks/useLanguage';
-import { developPrinter1, developPrinter3, developPrinter4, developPrinter5, developPrinter6 } from '../../assets/images';
-import developData from '../../database/brands/develop.json';
+import { useLanguage } from '../../../hooks/useLanguage';
+import { developPrinter1, developPrinter3, developPrinter4, developPrinter5, developPrinter6 } from '../../../assets/images';
+import developData from '../../../database/brands/develop.json';
 import './OfficeEquipment.css';
 
 const OfficeEquipment = () => {

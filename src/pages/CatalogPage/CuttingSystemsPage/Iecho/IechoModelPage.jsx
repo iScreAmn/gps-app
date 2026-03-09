@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
-import { useLanguage } from '../../../hooks/useLanguage';
-import { PK0604, PK0604plus, PK0705, PK0705plus, PK1209 } from '../../../assets/images';
-import iechoData from '../../../database/brands/iecho.json';
-import { Modal, CallbackForm } from '../../../components/widgets/Modals';
+import { useLanguage } from '../../../../hooks/useLanguage';
+import { PK0604, PK0604plus, PK0705, PK0705plus, PK1209 } from '../../../../assets/images';
+import iechoData from '../../../../database/brands/iecho.json';
+import { Modal, CallbackForm } from '../../../../components/widgets/Modals';
 import './IechoModelPage.css';
 
 const IechoModelPage = () => {

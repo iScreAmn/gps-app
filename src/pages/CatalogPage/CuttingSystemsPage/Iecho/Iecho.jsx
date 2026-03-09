@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { useLanguage } from '../../../hooks/useLanguage';
-import { PK0604, PK0604plus, PK0705, PK0705plus, PK1209 } from '../../../assets/images';
-import iechoData from '../../../database/brands/iecho.json';
+import { useLanguage } from '../../../../hooks/useLanguage';
+import { PK0604, PK0604plus, PK0705, PK0705plus, PK1209 } from '../../../../assets/images';
+import iechoData from '../../../../database/brands/iecho.json';
 import './Iecho.css';
 
 const Iecho = () => {

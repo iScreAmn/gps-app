@@ -1,7 +1,7 @@
 import React, { useMemo } from 'react';
 import { useParams, Link } from 'react-router-dom';
-import { useLanguage } from '../../hooks/useLanguage';
-import { getNewsItemById } from '../../data/contentData';
+import { useLanguage } from '../../../hooks/useLanguage';
+import { getNewsItemById } from '../../../data/contentData';
 import './NewsDetailPage.css';
 
 const NewsDetailPage = () => {

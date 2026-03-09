@@ -10,13 +10,13 @@ import AboutPage from './pages/AboutPage/AboutPage';
 import ServicesPage from './pages/ServicesPage/ServicesPage';
 import NewsPage from './pages/NewsPage/NewsPage';
 import ContactsPage from './pages/ContactsPage/ContactsPage';
-import NewsDetailPage from './pages/NewsDetailPage/NewsDetailPage';
+import NewsDetailPage from './pages/NewsPage/NewsDetailPage/NewsDetailPage';
 import PrivacyPolicyPage from './pages/PrivacyPolicyPage/PrivacyPolicyPage';
-import CuttingSystemsPage from './pages/CuttingSystemsPage/CuttingSystemsPage';
-import Iecho from './pages/CuttingSystemsPage/Iecho/Iecho';
-import IechoModelPage from './pages/CuttingSystemsPage/Iecho/IechoModelPage';
-import OfficeEquipment from './pages/OfficeEquipment/OfficeEquipment';
-import DevelopModelPage from './pages/OfficeEquipment/DevelopModelPage';
+import CuttingSystemsPage from './pages/CatalogPage/CuttingSystemsPage/CuttingSystemsPage';
+import Iecho from './pages/CatalogPage/CuttingSystemsPage/Iecho/Iecho';
+import IechoModelPage from './pages/CatalogPage/CuttingSystemsPage/Iecho/IechoModelPage';
+import OfficeEquipment from './pages/CatalogPage/OfficeEquipment/OfficeEquipment';
+import DevelopModelPage from './pages/CatalogPage/OfficeEquipment/DevelopModelPage';
 import './App.css';
 
 function App() {

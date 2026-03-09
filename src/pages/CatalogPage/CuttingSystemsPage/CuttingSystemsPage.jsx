@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { useLanguage } from '../../hooks/useLanguage';
-import { iecho, teneth, duplo, ideal } from '../../assets/images';
+import { useLanguage } from '../../../hooks/useLanguage';
+import { iecho, teneth, duplo, ideal } from '../../../assets/images';
 import './CuttingSystemsPage.css';
 
 const CuttingSystemsPage = () => {

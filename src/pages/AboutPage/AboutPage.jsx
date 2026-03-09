@@ -1,18 +1,21 @@
 import React from "react";
 import { useLanguage } from "../../hooks/useLanguage";
-import { aboutImage, mainLogo } from "../../assets/images";
 // eslint-disable-next-line no-unused-vars
 import { motion } from "motion/react";
 import AnimatedNumber from "../../components/widgets/AnimatedNumber/AnimatedNumber";
-import { 
-  counterVariants,
-  counterContainerVariants
-} from '../../utils/animation';
-import { konikaAbout, konikaAbout2 } from "../../assets/images";
+import { counterVariants, counterContainerVariants } from '../../utils/animation';
 import PartnersCarousel from "../../components/PartnersCarousel/PartnersCarousel";
 import TextType from "../../components/widgets/TextType/TextType";
-import { global, service3, demo } from "../../assets/images";
 import ParallaxText from "../../components/widgets/ParallaxText/ParallaxText";
+import {
+  aboutCover,
+  aboutParallaxTitles,
+  aboutCounters,
+  aboutPartners,
+  aboutInfoBlocks,
+  aboutOption,
+  aboutCta,
+} from "../../data/aboutData";
 import "./AboutPage.css";
 
 
@@ -25,89 +28,43 @@ const AboutPage = () => {
         <div className="about__content">
           <div className="about__cover-container">
             <div className="about__cover-gradient">
-              <img src={mainLogo} alt="GPS Logo" className="about__cover-logo" />
+              <img src={aboutCover.logo} alt={aboutCover.logoAlt} className="about__cover-logo" />
             </div>
-            <img src={aboutImage} alt="cover" className="about__cover" />
+            <img src={aboutCover.image} alt={aboutCover.imageAlt} className="about__cover" />
           </div>
           <div className="about__title">
-            <ParallaxText baseVelocity={-3} colorClass="parallax__text--blue">Georgian Polygraph Services</ParallaxText>
-            <ParallaxText baseVelocity={3} colorClass="parallax__text--green">Professional Excellence</ParallaxText>
+            {aboutParallaxTitles.map((item, i) => (
+              <ParallaxText key={i} baseVelocity={item.baseVelocity} colorClass={item.colorClass}>
+                {item.text}
+              </ParallaxText>
+            ))}
           </div>
-          <motion.div 
+          <motion.div
             className="about__counter"
             variants={counterContainerVariants}
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, amount: 0.3 }}
           >
-            <motion.div 
-              className="counter__item"
-              variants={counterVariants}
-            >
-              <div className="counter__number">
-                <AnimatedNumber 
-                  value="18+" 
-                  duration={2} 
-                  delay={0.2} 
-                />
-              </div>
-              <div className="counter__label">{t("about.counter.years")}</div>
-            </motion.div>
-            
-            <motion.div 
-              className="counter__item"
-              variants={counterVariants}
-            >
-              <div className="counter__number">
-                <AnimatedNumber 
-                  value="500+" 
-                  duration={2} 
-                  delay={0.4} 
-                />
-              </div>
-              <div className="counter__label">{t("about.counter.clients")}</div>
-            </motion.div>
-            
-            <motion.div 
-              className="counter__item"
-              variants={counterVariants}
-            >
-              <div className="counter__number">
-                <AnimatedNumber 
-                  value="1000+" 
-                  duration={2} 
-                  delay={0.6} 
-                />
-              </div>
-              <div className="counter__label">{t("about.counter.projects")}</div>
-            </motion.div>
-            
-            <motion.div 
-              className="counter__item"
-              variants={counterVariants}
-            >
-              <div className="counter__number">
-                <AnimatedNumber 
-                  value="100%" 
-                  duration={2} 
-                  delay={0.8} 
-                />
-              </div>
-              <div className="counter__label">{t("about.counter.satisfaction")}</div>
-            </motion.div>
+            {aboutCounters.map((item, i) => (
+              <motion.div key={i} className="counter__item" variants={counterVariants}>
+                <div className="counter__number">
+                  <AnimatedNumber value={item.value} duration={item.duration} delay={item.delay} />
+                </div>
+                <div className="counter__label">{t(item.labelKey)}</div>
+              </motion.div>
+            ))}
           </motion.div>
         </div>
         
         <div className="about__partners">
           <div className="container">
-            <TextType 
-              text={[
-                t("about.partners.title")
-              ]}
-              typingSpeed={75}
-              pauseDuration={1500}
+            <TextType
+              text={[t(aboutPartners.titleKey)]}
+              typingSpeed={aboutPartners.typingSpeed}
+              pauseDuration={aboutPartners.pauseDuration}
               showCursor={true}
-              cursorCharacter="|"
+              cursorCharacter={aboutPartners.cursorCharacter}
               className="about__partners-text"
             />
             <PartnersCarousel />
@@ -115,46 +72,42 @@ const AboutPage = () => {
         </div>
         
         <div className="about__info-wrapper">
-            <div className="about__info">
-              <div className="about__description">
-                <h2>Georgian Polygraph Services</h2>
-                <p>{t("about.description.text1")}</p>
-                <p>{t("about.description.text2")}</p>           
-              </div>
+          {aboutInfoBlocks.map((block, i) => (
+            <div key={i} className="about__info">
+              {!block.imageOnLeft && (
+                <div className="about__description">
+                  <h2>{block.titleKey ? t(block.titleKey) : block.title}</h2>
+                  {block.textKeys.map((key) => (
+                    <p key={key}>{t(key)}</p>
+                  ))}
+                </div>
+              )}
               <div className="about__img-container">
-                <img className="about__img" src={konikaAbout} alt="" />
+                <img className="about__img" src={block.image} alt={block.imageAlt} />
               </div>
+              {block.imageOnLeft && (
+                <div className="about__description">
+                  <h2>{block.titleKey ? t(block.titleKey) : block.title}</h2>
+                  {block.textKeys.map((key) => (
+                    <p key={key}>{t(key)}</p>
+                  ))}
+                </div>
+              )}
             </div>
-            <div className="about__info">
-              <div className="about__img-container">
-                <img className="about__img" src={konikaAbout2} alt="" />
-              </div>
-              <div className="about__description">
-                <h2>Konika Minolta Official Dealer</h2>
-                <p>{t("about.description.text3")}</p>
-              </div>
-            </div>
+          ))}
         </div>
 
         <div className="about__option">
-          <h2 className="option__title">{t("about.option.title")}</h2>
-          <p className="option__description">{t("about.option.description")}</p>
+          <h2 className="option__title">{t(aboutOption.titleKey)}</h2>
+          <p className="option__description">{t(aboutOption.descriptionKey)}</p>
           <div className="option__wrapper">
-            <div className="option__item">
-              <img className="option__img" src={global} alt="Global Brand Trust" />
-              <h2 className="option__item-title">{t("about.option.feature1.title")}</h2>
-              <p className="option__item-description">{t("about.option.feature1.description")}</p>
-            </div>
-            <div className="option__item">
-              <img className="option__img" src={service3} alt="Expert Service & Support" />
-              <h2 className="option__item-title">{t("about.option.feature2.title")}</h2>
-              <p className="option__item-description">{t("about.option.feature2.description")}</p>
-            </div>
-            <div className="option__item">
-              <img className="option__img" src={demo} alt="Solutions for Every Business" />
-              <h2 className="option__item-title">{t("about.option.feature3.title")}</h2>
-              <p className="option__item-description">{t("about.option.feature3.description")}</p>
-            </div>
+            {aboutOption.features.map((feature, i) => (
+              <div key={i} className="option__item">
+                <img className="option__img" src={feature.image} alt={feature.imageAlt} />
+                <h2 className="option__item-title">{t(feature.titleKey)}</h2>
+                <p className="option__item-description">{t(feature.descriptionKey)}</p>
+              </div>
+            ))}
           </div>
         </div>
 
@@ -175,33 +128,28 @@ const AboutPage = () => {
               transition={{ duration: 0.6, delay: 0.4 }}
             >
               <div className="cta__text">
-                <h2 className="cta__title">{t("about.cta.title")}</h2>
-                <p className="cta__description">{t("about.cta.description")}</p>
+                <h2 className="cta__title">{t(aboutCta.titleKey)}</h2>
+                <p className="cta__description">{t(aboutCta.descriptionKey)}</p>
               </div>
-              
-              <motion.div 
+              <motion.div
                 className="cta__buttons"
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, amount: 0.3 }}
                 transition={{ duration: 0.6, delay: 0.6 }}
               >
-                <motion.button 
-                  className="cta__button cta__button--primary"
-                  whileHover={{ scale: 1.05, y: -2 }}
-                  whileTap={{ scale: 0.95 }}
-                  transition={{ type: "spring", stiffness: 300, damping: 20 }}
-                >
-                  {t("about.cta.contact")}
-                </motion.button>
-                <motion.button 
-                  className="cta__button cta__button--secondary"
-                  whileHover={{ scale: 1.05, y: -2 }}
-                  whileTap={{ scale: 0.95 }}
-                  transition={{ type: "spring", stiffness: 300, damping: 20 }}
-                >
-                  {t("about.cta.learnMore")}
-                </motion.button>
+                {aboutCta.buttons.map((btn, i) => (
+                  <motion.button
+                    key={i}
+                    type="button"
+                    className={btn.className}
+                    whileHover={{ scale: 1.05, y: -2 }}
+                    whileTap={{ scale: 0.95 }}
+                    transition={{ type: "spring", stiffness: 300, damping: 20 }}
+                  >
+                    {t(btn.labelKey)}
+                  </motion.button>
+                ))}
               </motion.div>
             </motion.div>
             
