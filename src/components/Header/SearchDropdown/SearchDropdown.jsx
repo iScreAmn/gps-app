@@ -55,7 +55,8 @@ export default function SearchDropdown() {
   };
 
   const handleResultClick = (product) => {
-    saveQuery(query);
+    setQuery('');
+    localStorage.removeItem(STORAGE_KEY);
     setIsOpen(false);
     navigate(product.link);
   };
