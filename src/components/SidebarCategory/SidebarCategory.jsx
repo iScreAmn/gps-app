@@ -42,6 +42,11 @@ const SidebarCategory = () => {
       id: 'plotters',
       title: 'categories.plotters',
       link: `/${language}/catalog/plotters`
+    },
+    {
+      id: 'supplies',
+      title: 'categories.supplies',
+      link: `/${language}/catalog/supplies`
     }
   ];
 
