@@ -596,6 +596,10 @@ body[data-theme="dark"] .about__demo::before {
 }
 
 @media (max-width: 768px) {
+  .about__option {
+    margin: 32px 0;
+  }
+
   .about__info {
     flex-direction: column;
     text-align: center;
@@ -635,10 +639,25 @@ body[data-theme="dark"] .about__demo::before {
     font-size: 1rem;
   }
   
+  .option__wrapper {
+    flex-wrap: wrap;
+    gap: 16px;
+    margin-top: 24px;
+    padding: 0 8px;
+  }
+
   .option__item {
+    flex: 1 1 280px;
+    min-width: 0;
     width: 100%;
     max-width: 350px;
+    padding: 18px;
     box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.1), 0 1px 2px -1px rgba(0, 0, 0, 0.06);
+  }
+
+  .option__img {
+    width: 160px;
+    height: 160px;
   }
   
   body[data-theme="dark"] .option__item {
@@ -655,6 +674,10 @@ body[data-theme="dark"] .about__demo::before {
 }
 
 @media (max-width: 480px) {
+  .about__option {
+    margin: 28px 0;
+  }
+
   .about__partners {
     margin: 2rem 0;
     padding: 2.5rem 0;
@@ -686,12 +709,18 @@ body[data-theme="dark"] .about__demo::before {
   
   .option__wrapper {
     flex-direction: column;
+    align-items: center;
+    gap: 16px;
+    margin-top: 20px;
+    padding: 0 4px;
   }
 
   .option__item {
+    flex: 1 1 auto;
+    min-width: 0;
     width: 100%;
-    max-width: 300px;
-    padding: 15px;
+    max-width: 100%;
+    padding: 16px;
     box-shadow: 0 1px 3px -1px rgba(0, 0, 0, 0.1), 0 1px 2px -1px rgba(0, 0, 0, 0.06);
   }
   
@@ -700,12 +729,66 @@ body[data-theme="dark"] .about__demo::before {
   }
   
   .option__item:hover {
-    transform: translateY(-1px);
+    transform: translateY(-2px);
     box-shadow: 0 4px 6px -2px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.05);
   }
   
   body[data-theme="dark"] .option__item:hover {
     box-shadow: 0 4px 6px -2px rgba(0, 0, 0, 0.4), 0 2px 4px -1px rgba(0, 0, 0, 0.3);
+  }
+
+  .option__title {
+    font-size: 1.5rem;
+  }
+
+  .option__description {
+    font-size: 1rem;
+  }
+
+  .option__img {
+    width: 140px;
+    height: 140px;
+  }
+
+  .option__item-title {
+    font-size: 1.1rem;
+  }
+
+  .option__item-description {
+    font-size: 0.95rem;
+  }
+}
+
+@media (max-width: 360px) {
+  .option__wrapper {
+    gap: 12px;
+    margin-top: 16px;
+    padding: 0;
+  }
+
+  .option__title {
+    font-size: 1.35rem;
+  }
+
+  .option__description {
+    font-size: 0.95rem;
+  }
+
+  .option__item {
+    padding: 12px;
+  }
+
+  .option__img {
+    width: 120px;
+    height: 120px;
+  }
+
+  .option__item-title {
+    font-size: 1rem;
+  }
+
+  .option__item-description {
+    font-size: 0.9rem;
   }
 }
 
