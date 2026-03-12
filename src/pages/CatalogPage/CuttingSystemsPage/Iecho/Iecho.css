@@ -70,11 +70,6 @@ body[data-theme="dark"] .iecho__card-image {
   height: 100%;
   object-fit: cover;
   transition: transform var(--transition-normal);
-  filter: grayscale(100%);
-}
-
-.iecho__card:hover .iecho__card-image img {
-  filter: grayscale(0%);
 }
 
 .iecho__overlay {

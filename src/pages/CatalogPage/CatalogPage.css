@@ -33,6 +33,65 @@
   color: #9b9b9b;
 }
 
+/* Plotters brands (Cutting Systems style) */
+.catalog-page__plotters-brands {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  max-width: 1200px;
+  margin: 2rem auto 0;
+}
+
+.catalog-page__plotters-brand-card {
+  flex: 0 0 auto;
+  width: 230px;
+  min-width: 140px;
+  height: 110px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+  background: var(--light-card-bg);
+  box-shadow: var(--light-shadow);
+  border-radius: 20px;
+  transition: all 0.3s ease;
+  text-decoration: none;
+  position: relative;
+  overflow: hidden;
+}
+
+body[data-theme="dark"] .catalog-page__plotters-brand-card {
+  background: var(--dark-card-bg);
+  box-shadow: var(--dark-shadow);
+}
+
+.catalog-page__plotters-brand-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, var(--primary-color), var(--accent-color));
+  transform: scaleX(0);
+  transition: transform 0.3s ease;
+}
+
+.catalog-page__plotters-brand-card:hover::before {
+  transform: scaleX(1);
+}
+
+.catalog-page__plotters-brand-card:hover {
+  transform: translateY(-12px);
+  box-shadow: 0 24px 48px rgba(220, 38, 38, 0.15);
+}
+
+.catalog-page__plotters-brand-logo {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+}
+
 /* Card core styles align to product-card */
 .catalog-page .office-equipment__card {
   background: var(--light-card-bg);
@@ -74,13 +133,7 @@ body[data-theme="dark"] .catalog-page .office-equipment__card-image {
 .catalog-page .office-equipment__card-image img {
   width: 100%;
   height: 100%;
-  object-fit: cover;
   transition: transform var(--transition-normal);
-  filter: grayscale(100%);
-}
-
-.catalog-page .office-equipment__card:hover .office-equipment__card-image img {
-  filter: grayscale(0%);
 }
 
 .catalog-page .office-equipment__overlay {
@@ -161,6 +214,62 @@ body[data-theme="dark"] .catalog-page .office-equipment__specs .spec strong {
   color: var(--dark-text);
 }
 
+/* Supplies cards - partner-style */
+.supplies__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+.supplies__card {
+  position: relative;
+  display: block;
+  min-height: 280px;
+  background: var(--light-card-bg);
+  border-radius: 12px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  text-decoration: none;
+  color: inherit;
+  overflow: hidden;
+}
+
+body[data-theme="dark"] .supplies__card {
+  background: var(--dark-card-bg);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+}
+
+.supplies__card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
+
+body[data-theme="dark"] .supplies__card:hover {
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
+}
+
+.supplies__card-img {
+  width: 100%;
+  height: 100%;
+  min-height: 280px;
+  object-fit: cover;
+  display: block;
+}
+
+.supplies__card-title {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 1rem 1.25rem;
+  margin: 0;
+  font-size: 1.125rem;
+  font-weight: var(--font-semibold);
+  text-align: center;
+  color: #fff;
+  background: linear-gradient(to top, rgba(0,0,0,0.75), transparent);
+}
 
 /* Filters */
 .catalog-filters {
@@ -301,6 +410,23 @@ body[data-theme="dark"] .filter-group select {
 
   .catalog-page .office-equipment__specs .spec {
     font-size: 0.8rem;
+  }
+
+  .supplies__grid {
+    gap: 1.5rem;
+  }
+
+  .supplies__card {
+    min-height: 220px;
+  }
+
+  .supplies__card-img {
+    min-height: 220px;
+  }
+
+  .supplies__card-title {
+    font-size: 1rem;
+    padding: 0.75rem 1rem;
   }
 }
 

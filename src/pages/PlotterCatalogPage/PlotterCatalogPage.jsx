@@ -1,5 +1,5 @@
 import React from 'react';
-import { plotterCutting2, plotterCutting3 } from '../../assets/images';
+import { plotterCutting2, plotterCutting3, plotterCutting4 } from '../../assets/images';
 import { useLanguage } from '../../hooks/useLanguage';
 import './PlotterCatalogPage.css';
 
@@ -19,6 +19,11 @@ const PlotterCatalogPage = () => {
           <img
             src={plotterCutting3}
             alt={t('plotterCatalog.image2Alt')}
+            className="plotter-catalog__image"
+          />
+          <img
+            src={plotterCutting4}
+            alt={t('plotterCatalog.image3Alt')}
             className="plotter-catalog__image"
           />
         </div>

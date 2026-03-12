@@ -344,6 +344,7 @@ export const gpsContent = {
         product: {
           title: 'products.iecho.title',
           subtitle: 'products.iecho.subtitle',
+          subtitleLink: '/cutting-systems/iecho/pk0604-plus',
           description: 'products.iecho.description',
           features: [
             'products.iecho.feature1',
@@ -356,7 +357,7 @@ export const gpsContent = {
             'products.iecho.feature8'
           ],
           cta: 'products.iecho.cta',
-          ctaLink: '/products/trimble-surveying',
+          ctaLink: '/cutting-systems/iecho/pk0604-plus',
           price: 'products.trimble.price',
           discount: 'products.discount',
           code: 'products.code'
@@ -418,7 +419,7 @@ export const gpsContent = {
             'products.nocai.feature8'
           ],
           cta: 'products.nocai.cta',
-          ctaLink: '/products/garmin-gps',
+          ctaLink: '/plotter-catalog/nocai/nc-uv0609xiii',
           price: 'products.garmin.price',
           discount: 'products.discount',
           code: 'products.code'

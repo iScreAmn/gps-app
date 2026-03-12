@@ -1,0 +1,62 @@
+@import '../../CatalogPage/OfficeEquipment/OfficeEquipment.css';
+
+/* Uniform card size for all Nocai products */
+.nocai-plotters .office-equipment__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 280px));
+  justify-content: start;
+  gap: 30px;
+}
+
+.nocai-plotters .office-equipment__card {
+  width: 280px;
+  max-width: 280px;
+}
+
+/* Hover overlay - same as Pro models */
+.nocai-plotters .office-equipment__card-image {
+  position: relative;
+}
+
+.nocai-plotters .office-equipment__overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(34, 34, 34, 0.778);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.nocai-plotters .office-equipment__card:hover .office-equipment__overlay {
+  opacity: 1;
+}
+
+.nocai-plotters .office-equipment__more {
+  color: white;
+  font-weight: 600;
+  font-size: 1rem;
+  padding: 0.75rem 1.5rem;
+  border: 2px solid white;
+  border-radius: 25px;
+  transition: all 0.2s ease;
+}
+
+.nocai-plotters .office-equipment__more:hover {
+  background: white;
+  color: var(--primary-red, #dc2626);
+}
+
+.nocai-plotters .office-equipment__card-content {
+  padding: 25px 15px 20px 15px;
+  text-align: left;
+}
+
+.nocai-plotters .office-equipment__card-title {
+  text-align: left;
+  margin: 0;
+}

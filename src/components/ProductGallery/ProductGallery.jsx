@@ -428,7 +428,13 @@ const ProductGallery = () => {
               <div className="product__header">
                 <h1 className="product__title">{t(productData?.title)}</h1>
                 <div className="product__brand">
-                  <span className="brand-name">{t(productData?.subtitle)}</span>
+                  {productData?.subtitleLink ? (
+                    <Link to={`/${language}${productData.subtitleLink}`} className="brand-name brand-name-link">
+                      {t(productData?.subtitle)}
+                    </Link>
+                  ) : (
+                    <span className="brand-name">{t(productData?.subtitle)}</span>
+                  )}
                 </div>
               </div>
 

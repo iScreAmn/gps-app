@@ -4,8 +4,9 @@ import { useLanguage } from "../../hooks/useLanguage";
 import ProductCard from '../../components/ProductCard/ProductCard';
 import CategoryCards from '../../components/CategoryCards/CategoryCards';
 import { searchProducts } from '../../utils/productSearch';
-import { developPrinter1, developPrinter3, developPrinter4, developPrinter5, developPrinter6, PK0604, PK0604plus, PK0705, PK0705plus, PK1209 } from '../../assets/images';
+import { developPrinter1, developPrinter3, developPrinter4, developPrinter5, developPrinter6, developPro1, developPro2, developPro3, developPro4, nocai, PK0604, PK0604plus, PK0705, PK0705plus, PK1209, plotterCutting, inks } from '../../assets/images';
 import developData from '../../database/brands/develop.json';
+import { professionalData } from '../../data/professionalData';
 import iechoData from '../../database/brands/iecho.json';
 import './CatalogPage.css';
 
@@ -36,6 +37,19 @@ const CatalogPage = () => {
       }))
     : [];
 
+  const professionalImageByKey = { developPro1, developPro2, developPro3, developPro4 };
+  const professionalProducts = professionalData?.products?.length > 0
+    ? professionalData.products.map((product) => ({
+        id: `professional-${product.id}`,
+        name: product.name,
+        brand: 'Develop',
+        category: 'professional',
+        image: professionalImageByKey[product.imageKey] || developPro1,
+        price: t('catalog.price_on_request'),
+        link: `/${language}/professional-equipment/develop/${product.id}`
+      }))
+    : [];
+
   const iechoImageMap = { pk0604: PK0604, 'pk0604-plus': PK0604plus, pk0705: PK0705, 'pk0705-plus': PK0705plus, 'pk1209-pro-max': PK1209 };
 
   const iechoProducts = iechoData?.products?.length > 0
@@ -51,7 +65,7 @@ const CatalogPage = () => {
       }))
     : [];
 
-  const allProducts = [...developProducts, ...iechoProducts];
+  const allProducts = [...developProducts, ...professionalProducts, ...iechoProducts];
   const products = searchQuery.trim() ? searchProducts(allProducts, searchQuery) : allProducts;
 
   // Map product IDs to images for brand sections
@@ -144,7 +158,89 @@ const CatalogPage = () => {
 
       {/* Category Cards Section */}
       {!category && !searchQuery && <CategoryCards />}
+
+      {/* Plotters Section */}
+      {category === 'plotters' && !searchQuery && (
+        <div className="office-equipment">
+          <div className="container">
+            <h1 className="office-equipment__title">{t('categories.plotters')}</h1>
+            <p className="catalog-subtitle">
+              {t('categories.plotters_description')}
+            </p>
+            <div className="catalog-page__plotters-brands">
+              <Link
+                to={`/${language}/plotter-catalog/nocai`}
+                className="catalog-page__plotters-brand-card"
+              >
+                <img src={nocai} alt="Nocai" className="catalog-page__plotters-brand-logo" />
+              </Link>
+            </div>
+          </div>
+        </div>
+      )}
       
+      {/* Supplies Section */}
+      {category === 'supplies' && !searchQuery && (
+        <div className="office-equipment supplies-section">
+          <div className="container">
+            <h1 className="office-equipment__title">{t('categories.supplies')}</h1>
+            <p className="catalog-subtitle">
+              {t('categories.supplies_description')}
+            </p>
+            <div className="supplies__grid">
+              <Link
+                to={`/${language}/plotter-catalog`}
+                className="supplies__card"
+              >
+                <img src={plotterCutting} alt={t('catalog.plotter_cutting_solutions')} className="supplies__card-img" />
+                <h3 className="supplies__card-title">{t('catalog.plotter_cutting_solutions')}</h3>
+              </Link>
+              <Link
+                to={`/${language}/catalog/supplies/inks`}
+                className="supplies__card"
+              >
+                <img src={inks} alt={t('catalog.inks')} className="supplies__card-img" />
+                <h3 className="supplies__card-title">{t('catalog.inks')}</h3>
+              </Link>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Professional Equipment Section */}
+      {category === 'professional' && !searchQuery && professionalData?.products && (
+        <div className="office-equipment">
+          <div className="container">
+            <h1 className="office-equipment__title">{t('categories.professional')}</h1>
+            <p className="catalog-subtitle">
+              {t('categories.professional_description')}
+            </p>
+            <div className="office-equipment__grid">
+              {professionalData.products.map((product) => (
+                <Link
+                  key={product.id}
+                  to={`/${language}/professional-equipment/develop/${product.id}`}
+                  className="office-equipment__card"
+                >
+                  <div className="office-equipment__card-image">
+                    <img
+                      src={professionalImageByKey[product.imageKey] || developPro1}
+                      alt={product.name}
+                    />
+                    <div className="office-equipment__overlay">
+                      <span className="office-equipment__more">{t('common.more')}</span>
+                    </div>
+                  </div>
+                  <div className="office-equipment__card-content">
+                    <h3 className="office-equipment__card-title">{product.name}</h3>
+                  </div>
+                </Link>
+              ))}
+            </div>
+          </div>
+        </div>
+      )}
+
       {/* Office Equipment Brands Section */}
       {category === 'office' && !searchQuery && developData?.products && (
         <div className="office-equipment">
