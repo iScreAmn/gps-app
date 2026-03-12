@@ -8,21 +8,29 @@ export { default as iechoPrinter } from './printers/iecho.webp';
 export { default as toners } from './printers/toners.jpg';
 
 //Sections
-export { default as laminator } from './printers/sections/laminator.jpg';
-export { default as plotter } from './printers/sections/plotter.png';
+export { default as laminator } from './printers/sections/laminator.webp';
+export { default as plotter } from './printers/sections/plotter.webp';
 export { default as cutters } from './printers/sections/cutters.webp';
-export { default as categoryOffice } from './printers/sections/develop-office.jpg';
-export { default as categoryPro } from './printers/sections/developPro.jpg';
-export { default as categoryIndustrial } from './printers/sections/develoopIndustrial.jpg';
+export { default as categoryOffice } from './printers/sections/develop-office.webp';
+export { default as categoryPro } from './printers/sections/developPro.webp';
+export { default as categoryIndustrial } from './printers/sections/develoopIndustrial.webp';
 export { default as binder } from './printers/sections/binder.jpg';
+export { default as inks } from './other/inks.webp';
+export { default as supplies } from './other/supplies.webp';
 export { default as plotterCutting } from './other/unifol.webp';
 export { default as plotterCutting2 } from './other/unifol1.jpg';
 export { default as plotterCutting3 } from './other/unifol2.jpg';
+export { default as plotterCutting4 } from './other/unifol3.jpg';
 
 //Logos
 export { default as mainLogo } from './gps_logo.png';
 export { default as mainLogoWhite } from './gps_logo-white.webp';
 export { default as tmtLogo } from './partners/logos/tmt.png';
+
+// Products
+export { default as ink1 } from './products/supplies/ink1.webp';
+export { default as ink2 } from './products/supplies/ink2.webp';
+export { default as ink3 } from './products/supplies/ink3.webp';
 
 //Partners logos
 export { default as duplo } from './partners/duplo.webp';
@@ -98,6 +106,11 @@ export { default as developPrinter3 } from './printers/office/ineo450i/ineo_2.we
 export { default as developPrinter4 } from './printers/office/ineo360i/ineo_1.jpg';
 export { default as developPrinter5 } from './printers/office/ineo759/ineo_1.jpg';
 export { default as developPrinter6 } from './printers/office/ineo4020i/ineo_1.png';
+
+export { default as developPro1 } from './printers/pro/7090/7090.webp';
+export { default as developPro2 } from './printers/pro/2010/2010.webp';
+export { default as developPro3 } from './printers/pro/4065/4065.webp';
+export { default as developPro4 } from './printers/pro/4070/4070.webp';
 
 
 // Nocai UV Printing
