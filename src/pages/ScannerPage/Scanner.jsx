@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useId, useRef, useState } from "react";
 import { Html5Qrcode } from "html5-qrcode";
+import qrcodeSuccessSound from "../../assets/files/qrcode.mp3";
 import "./Scanner.css";
 
 function isCameraContextOk() {
@@ -35,6 +36,21 @@ export default function Scanner() {
   const instanceRef = useRef(null);
   const lastCodeRef = useRef(null);
   const stoppingRef = useRef(false);
+  const successAudioRef = useRef(null);
+
+  const playSuccessSound = useCallback(() => {
+    if (typeof window === "undefined") return;
+    try {
+      if (!successAudioRef.current) {
+        successAudioRef.current = new Audio(qrcodeSuccessSound);
+      }
+      const audio = successAudioRef.current;
+      audio.currentTime = 0;
+      void audio.play();
+    } catch {
+      /* decode / autoplay */
+    }
+  }, []);
 
   const stopScanner = useCallback(async () => {
     const qr = instanceRef.current;
@@ -75,6 +91,8 @@ export default function Scanner() {
     const onSuccess = async (decodedText) => {
       if (decodedText === lastCodeRef.current) return;
       lastCodeRef.current = decodedText;
+
+      playSuccessSound();
 
       await stopScanner();
       setCameraOpen(false);
@@ -132,7 +150,7 @@ export default function Scanner() {
     return () => {
       void stopScanner();
     };
-  }, [cameraOpen, readerId, stopScanner]);
+  }, [cameraOpen, playSuccessSound, readerId, stopScanner]);
 
   const handleScanClick = () => {
     setError(null);
@@ -154,8 +172,13 @@ export default function Scanner() {
       </p>
     ) : null;
 
+  const sectionClassName =
+    result != null
+      ? "scanner scanner--success"
+      : "scanner";
+
   return (
-    <section className="scanner" aria-label="Сканер кодов">
+    <section className={sectionClassName} aria-label="Сканер кодов">
       <div className="scanner__actions">
         <button
           type="button"
@@ -188,9 +211,19 @@ export default function Scanner() {
       ) : null}
 
       {result != null ? (
-        <div className="scanner__result-block">
-          <p className="scanner__hint">Результат:</p>
-          <div className="scanner__result">{result}</div>
+        <div
+          className="scanner__result-block scanner__result-block--success"
+          aria-live="polite"
+        >
+          <p className="scanner__hint scanner__hint--success">
+            Код зафиксирован:
+          </p>
+          <output
+            className="scanner__result scanner__result--success"
+            aria-label="Отсканированный код"
+          >
+            {result}
+          </output>
           {postError ? <p className="scanner__error">{postError}</p> : null}
         </div>
       ) : null}

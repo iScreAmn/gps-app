@@ -5,6 +5,13 @@
   border: 1px solid rgba(0, 0, 0, 0.12);
   border-radius: 8px;
   background: #fafafa;
+  transition: border-color 0.25s ease, box-shadow 0.25s ease;
+}
+
+.scanner--success {
+  border-color: #2e7d32;
+  box-shadow: 0 0 0 1px rgba(46, 125, 50, 0.25);
+  background: #f1f8e9;
 }
 
 .scanner__actions {
@@ -49,6 +56,11 @@
   margin-bottom: 0.5rem;
 }
 
+.scanner__hint--success {
+  color: #1b5e20;
+  font-weight: 600;
+}
+
 .scanner__error {
   color: #b00020;
   font-size: 0.875rem;
@@ -62,6 +74,17 @@
   background: #fff;
   border-radius: 6px;
   border: 1px solid #ddd;
+  display: block;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.scanner__result--success {
+  border: 2px solid #2e7d32;
+  background: #e8f5e9;
+  color: #1b3d1f;
+  user-select: all;
+  cursor: text;
 }
 
 .scanner__reader {
