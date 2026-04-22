@@ -44,7 +44,11 @@ function loadScansFromStorage() {
     const raw = localStorage.getItem(STORAGE_KEY);
     if (!raw) return [];
     const parsed = JSON.parse(raw);
-    return Array.isArray(parsed) ? parsed : [];
+    if (!Array.isArray(parsed)) return [];
+    return parsed.map((item) => ({
+      ...item,
+      count: typeof item.count === "number" && item.count > 0 ? item.count : 1,
+    }));
   } catch {
     return [];
   }
@@ -68,6 +72,36 @@ const groupScansByDate = (scans) => {
     return groups;
   }, {});
 };
+
+function isSameDay(leftTimestamp, rightTimestamp) {
+  return (
+    new Date(leftTimestamp).toDateString() === new Date(rightTimestamp).toDateString()
+  );
+}
+
+function saveToHistory(history, scanRecord) {
+  const existingIndex = history.findIndex(
+    (item) =>
+      item.cleanCode === scanRecord.cleanCode &&
+      isSameDay(item.timestamp, scanRecord.timestamp)
+  );
+
+  if (existingIndex > -1) {
+    return history.map((item, index) =>
+      index === existingIndex
+        ? {
+            ...item,
+            rawCode: scanRecord.rawCode,
+            timestamp: scanRecord.timestamp,
+            type: scanRecord.type,
+            count: (item.count || 1) + 1,
+          }
+        : item
+    );
+  }
+
+  return [{ ...scanRecord, count: 1 }, ...history];
+}
 
 function isCameraContextOk() {
   if (typeof window === "undefined") return false;
@@ -198,7 +232,7 @@ export default function Scanner() {
       setLastScan(scanRecord);
       setPostError(null);
       setScans((prev) => {
-        const next = [scanRecord, ...prev];
+        const next = saveToHistory(prev, scanRecord);
         saveScansToStorage(next);
         return next;
       });
@@ -365,7 +399,10 @@ export default function Scanner() {
                       {scan.cleanCode}
                     </output>
                     <div className="scanner__meta">
-                      <span>{scan.type}</span>
+                      <span className="scanner__meta-left">
+                        <span>{scan.type}</span>
+                        <span className="scanner__count-badge">x{scan.count || 1}</span>
+                      </span>
                       <span>
                         {new Date(scan.timestamp).toLocaleTimeString([], {
                           hour: "2-digit",

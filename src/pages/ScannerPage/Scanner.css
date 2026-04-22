@@ -149,8 +149,29 @@
   margin-top: 0.35rem;
   display: flex;
   justify-content: space-between;
+  align-items: center;
   font-size: 0.75rem;
   color: #4d5b4f;
+}
+
+.scanner__meta-left {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.scanner__count-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 1.4rem;
+  height: 1.1rem;
+  padding: 0 0.35rem;
+  border-radius: 999px;
+  background: #dff3e2;
+  color: #1f5e29;
+  font-weight: 600;
+  font-size: 0.68rem;
 }
 
 .scanner__modal-overlay {
