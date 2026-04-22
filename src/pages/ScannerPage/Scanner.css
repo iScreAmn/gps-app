@@ -365,6 +365,14 @@
   flex-shrink: 0;
 }
 
+/* iOS Safari: font-size < 16px on inputs вызывает авто-зум при фокусе */
+@media (max-width: 640px) {
+  .scanner__input,
+  .scanner__input--count {
+    font-size: 16px;
+  }
+}
+
 .scanner__button--step {
   width: auto;
   min-width: 2.2rem;
