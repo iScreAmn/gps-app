@@ -14,6 +14,31 @@
   background: #fafafa;
 }
 
+/* iOS: no navigator.vibrate — короткое визуальное «срабатывание» вместо мотора */
+@media (prefers-reduced-motion: no-preference) {
+  .scanner--haptic-bump {
+    animation: scannerHapticNudge 0.2s ease-out;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .scanner--haptic-bump {
+    box-shadow: 0 0 0 2px rgba(46, 125, 50, 0.4);
+  }
+}
+
+@keyframes scannerHapticNudge {
+
+  0%,
+  100% {
+    transform: translateZ(0) scale(1);
+  }
+
+  35% {
+    transform: translateZ(0) scale(0.985);
+  }
+}
+
 .scanner__actions {
   display: flex;
   flex-wrap: wrap;
@@ -57,7 +82,7 @@
 }
 
 .scanner__hint--success {
-  color: #1b5e20;
+  color: #5e1b1b;
   font-weight: 600;
 }
 
@@ -80,9 +105,9 @@
 }
 
 .scanner__result--success {
-  border: 2px solid #2e7d32;
+  border: 2px solid #bf4343;
   background: #fff;
-  color: #1b3d1f;
+  color: #1e1e1e;
   user-select: all;
   cursor: text;
 }
@@ -185,8 +210,8 @@
   height: 1.1rem;
   padding: 0 0.35rem;
   border-radius: 999px;
-  background: #dff3e2;
-  color: #1f5e29;
+  background: #bf4343;
+  color: #fff;
   font-weight: 600;
   font-size: 0.68rem;
 }
@@ -367,6 +392,7 @@
 
 /* iOS Safari: font-size < 16px on inputs вызывает авто-зум при фокусе */
 @media (max-width: 640px) {
+
   .scanner__input,
   .scanner__input--count {
     font-size: 16px;

@@ -126,6 +126,41 @@ function isCameraContextOk() {
   return Boolean(navigator.mediaDevices?.getUserMedia);
 }
 
+/**
+ * Haptic on successful read. Decode callbacks are not a user gesture; Chrome may ignore
+ * the first `vibrate` while a touch is active — retry on next task + after ~100ms.
+ * Safari (incl. iOS): `vibrate` is missing — return false, UI can show a visual bump.
+ */
+function triggerScanHaptic() {
+  if (typeof globalThis === "undefined") return false;
+  const nav = globalThis.navigator;
+  if (typeof nav?.vibrate !== "function") return false;
+
+  const ms = 100;
+  let settled = false;
+  const once = () => {
+    if (settled) return;
+    let ok = true;
+    try {
+      nav.vibrate(0);
+    } catch {
+      /* ignore */
+    }
+    try {
+      const r = nav.vibrate(ms);
+      if (r === false) ok = false;
+    } catch {
+      ok = false;
+    }
+    if (ok) settled = true;
+  };
+
+  once();
+  setTimeout(once, 0);
+  setTimeout(once, 100);
+  return true;
+}
+
 async function postScan(code) {
   const timestamp = new Date().toISOString();
   const res = await fetch("/api/scan", {
@@ -153,6 +188,7 @@ export default function Scanner() {
   const [isSheetDragging, setIsSheetDragging] = useState(false);
   const [draftProductName, setDraftProductName] = useState("");
   const [draftCount, setDraftCount] = useState("1");
+  const [hapticFallbackBump, setHapticFallbackBump] = useState(false);
 
   const instanceRef = useRef(null);
   const lastCodeRef = useRef(null);
@@ -162,6 +198,7 @@ export default function Scanner() {
   const sheetStartPtrYRef = useRef(0);
   const sheetActiveDragRef = useRef(false);
   const sheetCloseTimerRef = useRef(null);
+  const hapticFallbackTimerRef = useRef(null);
   const scansRef = useRef(scans);
   scansRef.current = scans;
 
@@ -271,6 +308,9 @@ export default function Scanner() {
       if (sheetCloseTimerRef.current) {
         clearTimeout(sheetCloseTimerRef.current);
       }
+      if (hapticFallbackTimerRef.current) {
+        clearTimeout(hapticFallbackTimerRef.current);
+      }
     };
   }, []);
 
@@ -357,6 +397,17 @@ export default function Scanner() {
       if (scanRecord.cleanCode === lastCodeRef.current) return;
       lastCodeRef.current = scanRecord.cleanCode;
 
+      const hapticOn = triggerScanHaptic();
+      if (!hapticOn) {
+        if (hapticFallbackTimerRef.current) {
+          clearTimeout(hapticFallbackTimerRef.current);
+        }
+        setHapticFallbackBump(true);
+        hapticFallbackTimerRef.current = window.setTimeout(() => {
+          setHapticFallbackBump(false);
+          hapticFallbackTimerRef.current = null;
+        }, 220);
+      }
       playSuccessSound();
 
       await stopScanner();
@@ -423,6 +474,11 @@ export default function Scanner() {
   }, [cameraOpen, playSuccessSound, readerId, stopScanner]);
 
   const handleScanClick = () => {
+    if (hapticFallbackTimerRef.current) {
+      clearTimeout(hapticFallbackTimerRef.current);
+      hapticFallbackTimerRef.current = null;
+    }
+    setHapticFallbackBump(false);
     primeSuccessSound();
     setError(null);
     setPostError(null);
@@ -572,10 +628,13 @@ export default function Scanner() {
       </p>
     ) : null;
 
-  const sectionClassName =
-    lastScan != null
-      ? "scanner scanner--success"
-      : "scanner";
+  const sectionClassName = [
+    "scanner",
+    lastScan != null && "scanner--success",
+    hapticFallbackBump && "scanner--haptic-bump",
+  ]
+    .filter(Boolean)
+    .join(" ");
   const groupedScans = groupScansByDate(scans);
   const groupedEntries = Object.entries(groupedScans).sort(
     (a, b) =>
