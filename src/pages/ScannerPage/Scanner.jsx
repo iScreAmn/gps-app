@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useId, useRef, useState } from "react";
 import { Html5Qrcode } from "html5-qrcode";
-import styles from "./Scanner.module.css";
+import "./Scanner.css";
 
 function isCameraContextOk() {
   if (typeof window === "undefined") return false;
@@ -149,49 +149,49 @@ export default function Scanner() {
 
   const httpsHint =
     typeof window !== "undefined" && !isCameraContextOk() ? (
-      <p className={styles.hint}>
+      <p className="scanner__hint">
         Для работы камеры нужен HTTPS (на продакшене) или localhost при разработке.
       </p>
     ) : null;
 
   return (
-    <section className={styles.wrap} aria-label="Сканер кодов">
-      <div className={styles.row}>
+    <section className="scanner" aria-label="Сканер кодов">
+      <div className="scanner__actions">
         <button
           type="button"
-          className={styles.btnPrimary}
+          className="scanner__button scanner__button--primary"
           onClick={handleScanClick}
           disabled={cameraOpen || !isCameraContextOk()}
         >
-          Сканировать
+          Scan
         </button>
         {cameraOpen ? (
           <button
             type="button"
-            className={styles.btn}
+            className="scanner__button"
             onClick={() => void handleCloseCamera()}
           >
-            Закрыть камеру
+            Close
           </button>
         ) : null}
       </div>
 
       {httpsHint}
 
-      {error ? <p className={styles.error}>{error}</p> : null}
+      {error ? <p className="scanner__error">{error}</p> : null}
 
       {cameraOpen ? (
         <>
-          <p className={styles.hint}>Наведите камеру на QR или штрих-код</p>
-          <div id={readerId} className={styles.reader} />
+          <p className="scanner__hint">Наведите камеру на QR или штрих-код</p>
+          <div id={readerId} className="scanner__reader" />
         </>
       ) : null}
 
       {result != null ? (
-        <div>
-          <p className={styles.hint}>Результат:</p>
-          <div className={styles.result}>{result}</div>
-          {postError ? <p className={styles.error}>{postError}</p> : null}
+        <div className="scanner__result-block">
+          <p className="scanner__hint">Результат:</p>
+          <div className="scanner__result">{result}</div>
+          {postError ? <p className="scanner__error">{postError}</p> : null}
         </div>
       ) : null}
     </section>

@@ -39,6 +39,7 @@ const Breadcrumbs = ({ items, separator }) => {
     'plotters': 'categories.plotters',
     'plotter-catalog': 'plotterCatalog.title',
     'inks': 'catalog.inks',
+    'scanner': 'navigation.scanner',
   };
 
   // Функция для получения перевода или исходного значения
@@ -82,7 +83,7 @@ const Breadcrumbs = ({ items, separator }) => {
     const currentLang = getCurrentLanguageFromPath(pathname);
     
     // Убираем префикс языка из пути
-    const pathWithoutLang = pathname.replace(/^\/[a-z]{2}/, '') || '/';
+    const pathWithoutLang = pathname.replace(/^\/(en|ka)(?=\/|$)/, '') || '/';
     
     // Разбиваем путь на сегменты
     const segments = pathWithoutLang.split('/').filter(Boolean);
