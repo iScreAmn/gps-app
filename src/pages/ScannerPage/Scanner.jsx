@@ -825,6 +825,13 @@ export default function Scanner() {
             <div className="scanner__sheet-actions">
               <button
                 type="button"
+                className="scanner__button scanner__button--primary scanner__button--inline"
+                onClick={handleItemSave}
+              >
+                Save
+              </button>
+              <button
+                type="button"
                 className="scanner__button scanner__button--modal-cancel"
                 onClick={() => closeItemSheet()}
               >
@@ -832,19 +839,12 @@ export default function Scanner() {
               </button>
               <button
                 type="button"
-                className="scanner__button scanner__button--primary scanner__button--inline"
-                onClick={handleItemSave}
+                className="scanner__button scanner__button--danger scanner__button--delete"
+                onClick={handleItemDeleteRequest}
               >
-                Save
+                Delete
               </button>
             </div>
-            <button
-              type="button"
-              className="scanner__button scanner__button--danger scanner__button--delete"
-              onClick={handleItemDeleteRequest}
-            >
-              Delete from list
-            </button>
           </div>
         </div>
       ) : null}

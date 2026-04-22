@@ -108,8 +108,7 @@
   border: 2px solid #bf4343;
   background: #fff;
   color: #1e1e1e;
-  user-select: all;
-  cursor: text;
+  cursor: pointer;
 }
 
 .scanner__reader {
@@ -409,10 +408,20 @@
 }
 
 .scanner__sheet-actions {
-  display: flex;
-  justify-content: flex-end;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 0.5rem;
   margin-bottom: 0.5rem;
+}
+
+.scanner__sheet-actions .scanner__button {
+  width: 100%;
+  min-height: 2.6rem;
+  padding: 0.55rem 0.75rem;
+  font-size: 0.85rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .scanner__button--inline {
@@ -422,7 +431,7 @@
 }
 
 .scanner__button--delete {
-  width: 100%;
+  width: auto;
   font-size: 0.8rem;
-  margin-top: 0.25rem;
+  margin-top: 0;
 }
