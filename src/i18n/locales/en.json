@@ -6,6 +6,7 @@
     "services": "Service",
     "news": "News",
     "contacts": "Contacts",
+    "scanner": "Scanner",
     "privacy_policy": "Privacy Policy"
   },
   "header": {
@@ -52,11 +53,13 @@
     "industrial": "Industrial",
     "cutting": "Cutting Systems",
     "binder": "Binder",
+    "supplies": "Supplies",
     "office_description": "Multifunction devices for office use",
     "professional_description": "Professional printing solutions",
     "industrial_description": "Industrial-grade equipment",
     "cutting_description": "Professional cutting systems and equipment",
     "binder_description": "Professional binding systems and equipment",
+    "supplies_description": "Consumables and printing materials",
     "office_equipment": "Office Equipment",
     "production_printers": "Production Printers",
     "wide_format_printers": "Wide-Format Printers",
@@ -74,7 +77,7 @@
       "years": "Years Experience",
       "clients": "Successful Cases",
       "projects": "Projects Completed",
-      "satisfaction": "Happy Clients"
+      "satisfaction": "Happy Customer"
     },
     "option": {
       "title": "Why We Are the Best Choice?",
@@ -124,7 +127,19 @@
     "printer": "Printer",
     "products_found": "products found",
     "no_products": "No products found",
-    "price_on_request": "Price on request"
+    "price_on_request": "Price on request",
+    "plotter_cutting_solutions": "Plotter Cutting Solutions Unifol",
+    "inks": "Inks"
+  },
+  "inks": {
+    "subtitle": "Professional printing inks for wide-format and industrial applications",
+    "audley_dtf": "Audley DTF Inks",
+    "audley_dtf_desc": "High-quality DTF (Direct to Film) inks for vibrant, durable prints on textile. Perfect for T-shirts, sportswear and promotional materials.",
+    "audley_eco": "Audley Eco Solvent Inks",
+    "audley_eco_desc": "Eco-solvent inks for wide-format printing. Low odor, outdoor durable, suitable for banners, signs and vehicle wraps.",
+    "nocai_uv": "Nocai UV Inks",
+    "nocai_uv_desc": "UV-curable inks for industrial and wide-format printers. Instant curing, excellent adhesion on various substrates including rigid and flexible materials.",
+    "backToInks": "Back to Inks"
   },
   "product": {
     "speed": "Speed:",
@@ -239,6 +254,7 @@
       "cta": "Learn More"
     },
     "develop": {
+      "displayName": "Office Equipment",
       "title": "Develop Ineo 550i",
       "subtitle": "Professional Office Printer",
       "description": "High-performance office printing solution with advanced finishing capabilities",
@@ -582,6 +598,16 @@
     "paragraph2": "Promotions, stock replenishments, and important news delivered straight to your phone. We care about your comfort.",
     "imageAlt": "WhatsApp contact",
     "cta": "Subscribe"
+  },
+  "plotterCutting": {
+    "viewCatalog": "View Catalog",
+    "imageAlt": "Plotter cutting"
+  },
+  "plotterCatalog": {
+    "title": "Plotter Cutting Catalog",
+    "image1Alt": "Plotter cutting catalog 1",
+    "image2Alt": "Plotter cutting catalog 2",
+    "image3Alt": "Plotter cutting catalog 3"
   },
   "ledModules": {
     "title": "Innovative LED Modules",

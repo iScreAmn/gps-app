@@ -1,0 +1,40 @@
+.plotter-catalog-page {
+  padding: 20px 0 30px;
+}
+
+.plotter-catalog__brands {
+  margin-bottom: 3rem;
+}
+
+.plotter-catalog__title {
+  font-family: 'Archyedt';
+  font-size: 2rem;
+  font-weight: 600;
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+.plotter-catalog__grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.plotter-catalog__image:last-child {
+  grid-column: 1 / -1;
+}
+
+.plotter-catalog__image {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  border-radius: 12px;
+}
+
+@media (max-width: 640px) {
+  .plotter-catalog__grid {
+    grid-template-columns: 1fr;
+  }
+}

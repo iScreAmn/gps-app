@@ -21,13 +21,6 @@ body[data-theme="dark"] .breadcrumbs {
   align-items: center;
   gap: 0.5rem;
   list-style: none;
-  margin: 0;
-  padding: 0;
-  max-width: 1200px;
-  margin-left: auto;
-  margin-right: auto;
-  padding-left: 1rem;
-  padding-right: 1rem;
 }
 
 .breadcrumbs__item {
@@ -68,8 +61,10 @@ body[data-theme="dark"] .breadcrumbs__link {
 
 .breadcrumbs__separator {
   color: var(--light-text-secondary);
+  /* font-size: 10px; */
   margin: 0 0.25rem;
   user-select: none;
+  display: flex;
 }
 
 body[data-theme="dark"] .breadcrumbs__separator {

@@ -117,11 +117,13 @@ const Navigation = ({
       ))}
     </motion.ul>
     <motion.div 
-      className="mobile-controls-container"
+      className="mobile-controls-footer"
       variants={itemVariants}
     >
-      <MobileLanguageSwitcher />
-      <MobileThemeToggle />
+      <div className="mobile-controls-container">
+        <MobileLanguageSwitcher />
+        <MobileThemeToggle />
+      </div>
     </motion.div>
   </motion.div>
 );
@@ -150,15 +152,14 @@ const MenuItem = ({ item, getLocalizedPath, isActivePath, t, onLinkClick }) => {
     <motion.li
       className="mobile-nav-item"
       variants={itemVariants}
-      whileHover={{ scale: 1.05 }}
-      whileTap={{ scale: 0.95 }}
     >
       <Link 
         to={getLocalizedPath(item.path)} 
-        className={`mobile-nav-link ${isActive ? 'active' : ''}`}
+        className={`mobile-nav-link ${isActive ? 'mobile-nav-link--active' : ''}`}
         onClick={onLinkClick}
       >
-        {t(item.key)}
+        <span>{t(item.key)}</span>
+        {isActive && <span className="mobile-nav-link-dot" aria-hidden="true" />}
       </Link>
     </motion.li>
   );

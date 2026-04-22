@@ -17,6 +17,17 @@
     </script>
   </head>
   <body>
+    <script>
+      (function () {
+        var savedTheme = localStorage.getItem('gps-theme');
+        var defaultTheme = 'light';
+        var theme = savedTheme || defaultTheme;
+        document.body.setAttribute('data-theme', theme);
+        if (!savedTheme) {
+          localStorage.setItem('gps-theme', defaultTheme);
+        }
+      })();
+    </script>
     <div id="root"></div>
     <script type="module" src="/src/main.jsx"></script>
   </body>

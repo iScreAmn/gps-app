@@ -260,6 +260,16 @@ body[data-theme="dark"] .contact-info {
   transform: scale(1.1);
 }
 
+.social-link.email {
+  background-color: #DC2626;
+  color: white;
+}
+
+.social-link.email:hover {
+  background-color: #9e1b1b;
+  transform: scale(1.1);
+}
+
 /* Mobile Styles */
 @media (max-width: 1024px) {
   .top-header-content {

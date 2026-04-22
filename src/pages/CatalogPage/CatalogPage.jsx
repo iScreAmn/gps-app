@@ -1,49 +1,31 @@
 import React, { useState } from 'react';
-import { useParams, Link } from 'react-router-dom';
+import { useParams, useSearchParams, Link } from 'react-router-dom';
 import { useLanguage } from "../../hooks/useLanguage";
 import ProductCard from '../../components/ProductCard/ProductCard';
 import CategoryCards from '../../components/CategoryCards/CategoryCards';
-import { printer2, printer3, developPrinter1 } from '../../assets/images';
+import { searchProducts } from '../../utils/productSearch';
+import { developPrinter1, developPrinter3, developPrinter4, developPrinter5, developPrinter6, developPro1, developPro2, developPro3, developPro4, nocai, PK0604, PK0604plus, PK0705, PK0705plus, PK1209, plotterCutting, inks } from '../../assets/images';
 import developData from '../../database/brands/develop.json';
+import { professionalData } from '../../data/professionalData';
+import iechoData from '../../database/brands/iecho.json';
 import './CatalogPage.css';
 
 const CatalogPage = () => {
   const { category } = useParams();
+  const [searchParams] = useSearchParams();
+  const searchQuery = searchParams.get('q') || '';
   const { language, t } = useLanguage();
   const [filters, setFilters] = useState({
     speed: '',
     tonerLifetime: ''
   });
 
-  // Mock data - replace with real data
-  const baseProducts = [
-    {
-      id: 2,
-      name: 'Konica Minolta bizhub C450i',
-      category: 'professional',
-      type: 'multifunction',
-      speed: '45',
-      format: 'A3',
-      image: printer2,
-      price: t('catalog.price_on_request')
-    },
-    {
-      id: 3,
-      name: 'Konica Minolta AccurioPress C3080',
-      category: 'industrial',
-      type: 'printer',
-      speed: '80',
-      format: 'A3+',
-      image: printer3,
-      price: t('catalog.price_on_request')
-    }
-  ];
-
-  // Add Develop Ineo 550i products
-  const developProducts = developData && developData.products && developData.products.length > 0
+  // Add Develop products
+  const developProducts = developData?.products?.length > 0
     ? developData.products.map((product) => ({
         id: `develop-${product.id}`,
         name: product.name,
+        brand: 'Develop',
         category: 'office',
         type: 'multifunction',
         speed: '55',
@@ -55,43 +37,44 @@ const CatalogPage = () => {
       }))
     : [];
 
-  const products = [...baseProducts, ...developProducts];
+  const professionalImageByKey = { developPro1, developPro2, developPro3, developPro4 };
+  const professionalProducts = professionalData?.products?.length > 0
+    ? professionalData.products.map((product) => ({
+        id: `professional-${product.id}`,
+        name: product.name,
+        brand: 'Develop',
+        category: 'professional',
+        image: professionalImageByKey[product.imageKey] || developPro1,
+        price: t('catalog.price_on_request'),
+        link: `/${language}/professional-equipment/develop/${product.id}`
+      }))
+    : [];
 
-  // Debug: Check if developData is loaded
-  console.log('CatalogPage Debug:', {
-    category,
-    developDataExists: !!developData,
-    developProductsCount: developProducts.length,
-    totalProducts: products.length,
-    officeProducts: products.filter(p => p.category === 'office').map(p => p.name)
-  });
+  const iechoImageMap = { pk0604: PK0604, 'pk0604-plus': PK0604plus, pk0705: PK0705, 'pk0705-plus': PK0705plus, 'pk1209-pro-max': PK1209 };
 
-  const filteredProducts = products.filter(product => {
-    if (category && product.category !== category) return false;
-    if (filters.speed && product.speed !== filters.speed) return false;
-    if (filters.tonerLifetime && product.tonerLifetime !== filters.tonerLifetime) return false;
-    return true;
-  });
+  const iechoProducts = iechoData?.products?.length > 0
+    ? iechoData.products.map((product) => ({
+        id: `iecho-${product.id}`,
+        name: product.name,
+        brand: 'IECHO',
+        category: 'cutting',
+        description: [product.materials, product.tools].flat().join(' '),
+        image: iechoImageMap[product.id] || PK0604,
+        price: t('catalog.price_on_request'),
+        link: `/${language}/cutting-systems/iecho/${product.id}`
+      }))
+    : [];
 
-  const getCategoryTitle = () => {
-    if (!category) return t('catalog.full_catalog');
-    switch (category) {
-      case 'office':
-        return t('categories.office');
-      case 'professional':
-        return t('categories.professional');
-      case 'industrial':
-        return t('categories.industrial');
-      case 'binder':
-        return t('categories.binder');
-      default:
-        return t('catalog.title');
-    }
-  };
+  const allProducts = [...developProducts, ...professionalProducts, ...iechoProducts];
+  const products = searchQuery.trim() ? searchProducts(allProducts, searchQuery) : allProducts;
 
   // Map product IDs to images for brand sections
   const imageMap = {
-    'ineo-550i': developPrinter1
+    'ineo-550i': developPrinter1,
+    'ineo-450i': developPrinter3,
+    'ineo-360i': developPrinter4,
+    'ineo-759': developPrinter5,
+    'ineo-4020i': developPrinter6
   };
 
   const speedOptions = Array.from(new Set(products.map(p => p.speed).filter(Boolean)));
@@ -139,14 +122,130 @@ const CatalogPage = () => {
 
   return (
     <div className="catalog-page">
+      {/* Search results */}
+      {searchQuery && (
+        <div className="container" style={{ paddingTop: '2rem' }}>
+          <h2>{products.length} {t('catalog.products_found')}</h2>
+          {products.length > 0 ? (
+            <div className="office-equipment__grid" style={{ marginTop: '1rem' }}>
+              {products.map((product) => (
+                <Link
+                  key={product.id}
+                  to={product.link || `/${language}/product/${product.id}`}
+                  className="office-equipment__card"
+                >
+                  <div className="office-equipment__card-image">
+                    <img src={product.image} alt={product.name} />
+                    <div className="office-equipment__overlay">
+                      <span className="office-equipment__more">{t('common.more')}</span>
+                    </div>
+                  </div>
+                  <div className="office-equipment__card-content">
+                    <h3 className="office-equipment__card-title">{product.name}</h3>
+                    <div className="office-equipment__specs">
+                      {product.speed && <span className="spec"><strong>{t('product.speed')}</strong> {product.speed} {t('common.ppm')}</span>}
+                      {product.tonerLifetime && <span className="spec"><strong>Toner lifetime</strong> {product.tonerLifetime}</span>}
+                    </div>
+                  </div>
+                </Link>
+              ))}
+            </div>
+          ) : (
+            <p>{t('catalog.no_products')}</p>
+          )}
+        </div>
+      )}
+
       {/* Category Cards Section */}
-      {!category && <CategoryCards />}
-      
-      {/* Office Equipment Brands Section */}
-      {category === 'office' && developData && developData.products && (
+      {!category && !searchQuery && <CategoryCards />}
+
+      {/* Plotters Section */}
+      {category === 'plotters' && !searchQuery && (
         <div className="office-equipment">
           <div className="container">
-            <h1 className="office-equipment__title">{developData.displayName}</h1>
+            <h1 className="office-equipment__title">{t('categories.plotters')}</h1>
+            <p className="catalog-subtitle">
+              {t('categories.plotters_description')}
+            </p>
+            <div className="catalog-page__plotters-brands">
+              <Link
+                to={`/${language}/plotter-catalog/nocai`}
+                className="catalog-page__plotters-brand-card"
+              >
+                <img src={nocai} alt="Nocai" className="catalog-page__plotters-brand-logo" />
+              </Link>
+            </div>
+          </div>
+        </div>
+      )}
+      
+      {/* Supplies Section */}
+      {category === 'supplies' && !searchQuery && (
+        <div className="office-equipment supplies-section">
+          <div className="container">
+            <h1 className="office-equipment__title">{t('categories.supplies')}</h1>
+            <p className="catalog-subtitle">
+              {t('categories.supplies_description')}
+            </p>
+            <div className="supplies__grid">
+              <Link
+                to={`/${language}/plotter-catalog`}
+                className="supplies__card"
+              >
+                <img src={plotterCutting} alt={t('catalog.plotter_cutting_solutions')} className="supplies__card-img" />
+                <h3 className="supplies__card-title">{t('catalog.plotter_cutting_solutions')}</h3>
+              </Link>
+              <Link
+                to={`/${language}/catalog/supplies/inks`}
+                className="supplies__card"
+              >
+                <img src={inks} alt={t('catalog.inks')} className="supplies__card-img" />
+                <h3 className="supplies__card-title">{t('catalog.inks')}</h3>
+              </Link>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Professional Equipment Section */}
+      {category === 'professional' && !searchQuery && professionalData?.products && (
+        <div className="office-equipment">
+          <div className="container">
+            <h1 className="office-equipment__title">{t('categories.professional')}</h1>
+            <p className="catalog-subtitle">
+              {t('categories.professional_description')}
+            </p>
+            <div className="office-equipment__grid">
+              {professionalData.products.map((product) => (
+                <Link
+                  key={product.id}
+                  to={`/${language}/professional-equipment/develop/${product.id}`}
+                  className="office-equipment__card"
+                >
+                  <div className="office-equipment__card-image">
+                    <img
+                      src={professionalImageByKey[product.imageKey] || developPro1}
+                      alt={product.name}
+                    />
+                    <div className="office-equipment__overlay">
+                      <span className="office-equipment__more">{t('common.more')}</span>
+                    </div>
+                  </div>
+                  <div className="office-equipment__card-content">
+                    <h3 className="office-equipment__card-title">{product.name}</h3>
+                  </div>
+                </Link>
+              ))}
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Office Equipment Brands Section */}
+      {category === 'office' && !searchQuery && developData?.products && (
+        <div className="office-equipment">
+          <div className="container">
+            <h1 className="office-equipment__title">{t('products.develop.displayName')}</h1>
             <p className="catalog-subtitle">
               {t('catalog.subtitle')}
             </p>
@@ -192,41 +291,6 @@ const CatalogPage = () => {
           </div>
         </div>
       )}
-      
-      <div className="container">
-        <div className="catalog-header ">
-          <h1 className="catalog-title">{getCategoryTitle()}</h1>
-          {category !== 'office' && (
-            <p className="catalog-subtitle">
-              {t('catalog.subtitle')}
-            </p>
-          )}
-        </div>
-
-        <div className="catalog-content ">
-          {/* Filters */}
-          {category !== 'office' && filtersContent}
-
-          {/* Products Grid */}
-          <div className="catalog-products">
-            <div className="products-count">
-              {filteredProducts.length} {t('catalog.products_found')}
-            </div>
-            
-            <div className="products-grid">
-              {filteredProducts.map(product => (
-                <ProductCard key={product.id} product={product} />
-              ))}
-            </div>
-
-            {filteredProducts.length === 0 && (
-              <div className="no-products">
-                <p>{t('catalog.no_products')}</p>
-              </div>
-            )}
-          </div>
-        </div>
-      </div>
     </div>
   );
 };

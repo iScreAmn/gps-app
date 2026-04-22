@@ -16,7 +16,7 @@ export const LanguageProvider = ({ children }) => {
   }, [language]);
 
   const changeLanguage = (newLang) => {
-    const newPath = buildPathWithLanguage(location.pathname, newLang);
+    const newPath = buildPathWithLanguage(location.pathname, newLang) + (location.search || '');
     navigate(newPath);
   };
 

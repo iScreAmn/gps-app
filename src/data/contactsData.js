@@ -3,6 +3,10 @@ const contactsData = {
     label: '+995 (322) 30 81 77',
     href: 'tel:+995322308177',
   },
+  phoneSecondary: {
+    label: '+995 (577) 13 90 15',
+    href: 'tel:+995577139015',
+  },
   email: {
     label: 'info@geopolser.ge',
     href: 'mailto:info@geopolser.ge',

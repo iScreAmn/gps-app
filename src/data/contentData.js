@@ -57,7 +57,17 @@ export const gpsContent = {
         title: 'hero.iecho.title',
         subtitle: 'hero.iecho.subtitle',
         cta: 'hero.iecho.cta',
-        ctaLink: '/catalog/office'
+        ctaLink: '/news/office-hero-primary',
+        details: {
+          body: [
+            'hero.iecho.subtitle',
+            'hero.iecho.description',
+          ],
+          gallery: [
+            // { src: iechoPrinter, alt: 'IECHO systems detail' }
+          ],
+          videoUrl: 'https://www.youtube.com/watch?v=BZpCcxM0rBA'
+        }
       }, {
         src: iechoPrinter,
         alt: 'Office GPS Equipment Background'
@@ -67,7 +77,17 @@ export const gpsContent = {
         title: 'hero.office.title',
         subtitle: 'hero.office.subtitle',
         cta: 'hero.office.cta',
-        ctaLink: '/catalog/office'
+        ctaLink: '/news/office-hero-secondary',
+        details: {
+          body: [
+            'news.officeHeroSecondary.body1',
+            'news.officeHeroSecondary.body2'
+          ],
+          gallery: [
+            { src: printer3, alt: 'Office equipment showcase' }
+          ],
+          videoUrl: ''
+        }
       }, {
         src: printer3,
         alt: 'Office GPS Equipment Background'
@@ -82,7 +102,18 @@ export const gpsContent = {
           title: 'hero.professional.title',
           subtitle: 'hero.professional.subtitle',
           cta: 'hero.professional.cta',
-          ctaLink: '/catalog/professional'
+          ctaLink: '/news/professional-equipment',
+          details: {
+            body: [
+              'news.professionalEquipment.body1',
+              'news.professionalEquipment.body2',
+              'news.professionalEquipment.body3'
+            ],
+            gallery: [
+              { src: printer1, alt: 'Professional equipment hero' }
+            ],
+            videoUrl: ''
+          }
         }
       ),
       
@@ -95,7 +126,17 @@ export const gpsContent = {
           title: 'hero.industrial.title',
           subtitle: 'hero.industrial.subtitle',
           cta: 'hero.industrial.cta',
-          ctaLink: '/catalog/industrial'
+          ctaLink: '/news/industrial-solutions',
+          details: {
+            body: [
+              'news.industrialSolutions.body1',
+              'news.industrialSolutions.body2'
+            ],
+            gallery: [
+              { src: toners, alt: 'Industrial solutions materials' }
+            ],
+            videoUrl: ''
+          }
         }
       ),
       
@@ -103,7 +144,18 @@ export const gpsContent = {
         title: 'hero.support.title',
         subtitle: 'hero.support.subtitle',
         cta: 'hero.support.cta',
-        ctaLink: '/services'
+        ctaLink: '/news/support-services',
+        details: {
+          body: [
+            'news.supportServices.body1',
+            'news.supportServices.body2',
+            'news.supportServices.body3'
+          ],
+          gallery: [
+            { src: printer4, alt: 'Support services' }
+          ],
+          videoUrl: ''
+        }
       }, {
         src: printer4,
         alt: 'GPS Support Services Background'
@@ -292,6 +344,7 @@ export const gpsContent = {
         product: {
           title: 'products.iecho.title',
           subtitle: 'products.iecho.subtitle',
+          subtitleLink: '/cutting-systems/iecho/pk0604-plus',
           description: 'products.iecho.description',
           features: [
             'products.iecho.feature1',
@@ -304,7 +357,7 @@ export const gpsContent = {
             'products.iecho.feature8'
           ],
           cta: 'products.iecho.cta',
-          ctaLink: '/products/trimble-surveying',
+          ctaLink: '/cutting-systems/iecho/pk0604-plus',
           price: 'products.trimble.price',
           discount: 'products.discount',
           code: 'products.code'
@@ -366,7 +419,7 @@ export const gpsContent = {
             'products.nocai.feature8'
           ],
           cta: 'products.nocai.cta',
-          ctaLink: '/products/garmin-gps',
+          ctaLink: '/plotter-catalog/nocai/nc-uv0609xiii',
           price: 'products.garmin.price',
           discount: 'products.discount',
           code: 'products.code'
@@ -734,6 +787,73 @@ export default gpsContent;
 
 export const getCarouselSlides = () => {
   return gpsContent.carousel.slides;
+};
+
+export const getNewsItemsFromCarousel = () => {
+  const slides = gpsContent.carousel.slides.slice(0, 5);
+  const baseDates = [
+    '2025-01-05',
+    '2025-01-12',
+    '2025-01-19',
+    '2025-01-26',
+    '2025-02-02'
+  ];
+
+  return slides.map((slide, index) => {
+    const type = slide.type;
+    const titleKey = type === 'product' 
+      ? slide.product?.title 
+      : type === 'service'
+        ? slide.service?.title
+        : slide.content?.title || slide.title;
+
+    const subtitleKey = type === 'product' 
+      ? slide.product?.subtitle 
+      : type === 'service'
+        ? slide.service?.subtitle
+        : slide.content?.subtitle || slide.subtitle;
+
+    const image = slide.backgroundImage?.src 
+      || slide.image?.src 
+      || slide.images?.[0]?.src 
+      || null;
+
+    const alt = slide.backgroundImage?.alt 
+      || slide.image?.alt 
+      || slide.images?.[0]?.alt 
+      || 'News image';
+
+    const id = slide.id || `news-${index}`;
+
+    const details = slide.content?.details || slide.details || {};
+
+    return {
+      id,
+      type,
+      titleKey,
+      subtitleKey,
+      excerptKey: subtitleKey,
+      image,
+      alt,
+      date: baseDates[index % baseDates.length],
+      newsLink: `/news/${id}`,
+      body: details.body || [],
+      gallery: details.gallery || [],
+      videoUrl: details.videoUrl || ''
+    };
+  });
+};
+
+export const getNewsItemById = (id) => {
+  const items = getNewsItemsFromCarousel();
+  return items.find(item => item.id === id);
+};
+
+export const getNewsDetailsById = (id) => {
+  const slides = gpsContent.carousel.slides;
+  const slide = slides.find(s => s.id === id);
+  const details = slide?.content?.details || slide?.details || {};
+  return details || null;
 };
 
 export const getProductItems = () => {

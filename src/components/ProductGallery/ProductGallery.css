@@ -446,6 +446,17 @@ body[data-theme="dark"] .product__header h1.product__title {
   font-weight: 600;
 }
 
+.brand-name-link {
+  text-decoration: none;
+  display: inline-block;
+  transition: opacity 0.2s ease;
+}
+
+.brand-name-link:hover {
+  opacity: 0.9;
+  color: white;
+}
+
 .product__code {
   color: #6b7280;
   font-size: 0.875rem;

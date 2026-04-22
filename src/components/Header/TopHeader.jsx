@@ -1,25 +1,18 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
-import { useLanguage } from '../../hooks/useLanguage';
 import { useTheme } from '../../contexts/ThemeContext';
-import { FaSearch, FaTelegram, FaWhatsapp } from 'react-icons/fa';
+import { FaTelegramPlane, FaWhatsapp } from 'react-icons/fa';
+import { HiOutlineMail } from 'react-icons/hi';
 import { mainLogo, mainLogoWhite } from '../../assets/images';
 import contactsData from '../../data/contactsData';
+import SearchDropdown from './SearchDropdown/SearchDropdown';
+import { useLanguage } from '../../hooks/useLanguage';
 import './TopHeader.css';
 
 const TopHeader = () => {
   const { language, t } = useLanguage();
   const { theme } = useTheme();
-  const [searchQuery, setSearchQuery] = useState('');
-  
   const currentLogo = theme === 'dark' ? mainLogoWhite : mainLogo;
-
-  const handleSearch = (e) => {
-    e.preventDefault();
-    if (searchQuery.trim()) {
-      console.log('Searching for:', searchQuery);
-    }
-  };
 
   return (
     <div className="top-header">
@@ -35,18 +28,7 @@ const TopHeader = () => {
           </Link>
 
           {/* Search */}
-          <form className="search-form" onSubmit={handleSearch}>
-            <input
-              type="text"
-              className="search-input"
-              placeholder={t('header.searchPlaceholder')}
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
-            />
-            <button type="submit" className="search-button">
-              <FaSearch />
-            </button>
-          </form>
+          <SearchDropdown />
 
           {/* Contact Info */}
           <div className="contact-info">
@@ -57,13 +39,13 @@ const TopHeader = () => {
               >
                 {contactsData.phone.label}
               </a>
+              <a
+                href={contactsData.phoneSecondary.href}
+                className="phone contact-link"
+              >
+                {contactsData.phoneSecondary.label}
+              </a>
             </div>
-            <a
-              href={contactsData.email.href}
-              className="email contact-link"
-            >
-              {contactsData.email.label}
-            </a>
           </div>
 
           {/* Social Media */}
@@ -85,7 +67,14 @@ const TopHeader = () => {
                 rel="noopener noreferrer"
                 aria-label="Telegram"
               >
-                <FaTelegram />
+                <FaTelegramPlane />
+              </a>
+              <a 
+                href={contactsData.email.href} 
+                className="social-link email"
+                aria-label="Email"
+              >
+                <HiOutlineMail />
               </a>
             </div>
             <div className="hours none">{t('header.hours')}</div>
