@@ -96,3 +96,102 @@
 .scanner__reader video {
   border-radius: 6px;
 }
+
+.scanner__history {
+  margin-top: 0.75rem;
+}
+
+.scanner__history-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+}
+
+.scanner__button--danger {
+  width: auto;
+  padding: 0.45rem 0.7rem;
+  font-size: 0.8rem;
+  border-color: #b00020;
+  color: #b00020;
+}
+
+.scanner__button--danger:hover {
+  background: #fdecef;
+}
+
+.scanner__group {
+  margin-top: 0.75rem;
+}
+
+.scanner__group-title {
+  margin: 0 0 0.4rem;
+  font-size: 0.85rem;
+  color: #4a4a4a;
+}
+
+.scanner__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 0.5rem;
+}
+
+.scanner__item {
+  background: #fff;
+  border: 1px solid #dfe3df;
+  border-radius: 8px;
+  padding: 0.5rem;
+}
+
+.scanner__meta {
+  margin-top: 0.35rem;
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.75rem;
+  color: #4d5b4f;
+}
+
+.scanner__modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: 1rem;
+}
+
+.scanner__modal {
+  width: min(420px, 100%);
+  background: #fff;
+  border-radius: 10px;
+  padding: 1rem;
+  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.25);
+}
+
+.scanner__modal-title {
+  margin: 0 0 0.5rem;
+  font-size: 1rem;
+}
+
+.scanner__modal-text {
+  margin: 0;
+  color: #555;
+  font-size: 0.9rem;
+}
+
+.scanner__modal-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.5rem;
+  margin-top: 1rem;
+}
+
+.scanner__button--modal-cancel {
+  width: auto;
+  padding: 0.45rem 0.7rem;
+  font-size: 0.8rem;
+}

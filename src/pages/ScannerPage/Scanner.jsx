@@ -3,6 +3,8 @@ import { Html5Qrcode } from "html5-qrcode";
 import qrcodeSuccessSound from "../../assets/files/qrcode.mp3";
 import "./Scanner.css";
 
+const STORAGE_KEY = "scanner_scans_v1";
+
 /** GS1 Application Identifier — убираем известные префиксы (дополняй knownPrefixes при новых AI). */
 function normalizeCode(raw) {
   if (typeof raw !== "string") return raw;
@@ -14,6 +16,58 @@ function normalizeCode(raw) {
   }
   return raw;
 }
+
+function getCodeType(rawCode, cleanCode) {
+  if (typeof rawCode !== "string" || typeof cleanCode !== "string") {
+    return "TEXT";
+  }
+  return rawCode !== cleanCode ? "GS1" : "TEXT";
+}
+
+function buildScanRecord(rawCode) {
+  const cleanCode = normalizeCode(rawCode);
+  return {
+    id:
+      typeof crypto !== "undefined" && crypto.randomUUID
+        ? crypto.randomUUID()
+        : `${Date.now()}-${Math.random().toString(16).slice(2)}`,
+    rawCode,
+    cleanCode,
+    timestamp: Date.now(),
+    type: getCodeType(rawCode, cleanCode),
+  };
+}
+
+function loadScansFromStorage() {
+  if (typeof window === "undefined") return [];
+  try {
+    const raw = localStorage.getItem(STORAGE_KEY);
+    if (!raw) return [];
+    const parsed = JSON.parse(raw);
+    return Array.isArray(parsed) ? parsed : [];
+  } catch {
+    return [];
+  }
+}
+
+function saveScansToStorage(scans) {
+  if (typeof window === "undefined") return;
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(scans));
+}
+
+function clearScansStorage() {
+  if (typeof window === "undefined") return;
+  localStorage.removeItem(STORAGE_KEY);
+}
+
+const groupScansByDate = (scans) => {
+  return scans.reduce((groups, scan) => {
+    const date = new Date(scan.timestamp).toLocaleDateString();
+    if (!groups[date]) groups[date] = [];
+    groups[date].push(scan);
+    return groups;
+  }, {});
+};
 
 function isCameraContextOk() {
   if (typeof window === "undefined") return false;
@@ -41,9 +95,11 @@ async function postScan(code) {
 export default function Scanner() {
   const readerId = useId().replace(/:/g, "");
   const [cameraOpen, setCameraOpen] = useState(false);
-  const [result, setResult] = useState(null);
+  const [lastScan, setLastScan] = useState(null);
+  const [scans, setScans] = useState(() => loadScansFromStorage());
   const [error, setError] = useState(null);
   const [postError, setPostError] = useState(null);
+  const [isConfirmOpen, setIsConfirmOpen] = useState(false);
 
   const instanceRef = useRef(null);
   const lastCodeRef = useRef(null);
@@ -57,10 +113,40 @@ export default function Scanner() {
         successAudioRef.current = new Audio(qrcodeSuccessSound);
       }
       const audio = successAudioRef.current;
+      audio.volume = 1;
       audio.currentTime = 0;
       void audio.play();
     } catch {
       /* decode / autoplay */
+    }
+  }, []);
+
+  const primeSuccessSound = useCallback(() => {
+    if (typeof window === "undefined") return;
+    try {
+      if (!successAudioRef.current) {
+        successAudioRef.current = new Audio(qrcodeSuccessSound);
+      }
+      const audio = successAudioRef.current;
+      audio.volume = 0;
+      const unlock = audio.play();
+      if (unlock && typeof unlock.then === "function") {
+        unlock
+          .then(() => {
+            audio.pause();
+            audio.currentTime = 0;
+            audio.volume = 1;
+          })
+          .catch(() => {
+            audio.volume = 1;
+          });
+      } else {
+        audio.pause();
+        audio.currentTime = 0;
+        audio.volume = 1;
+      }
+    } catch {
+      /* ignore unlock failure */
     }
   }, []);
 
@@ -101,19 +187,24 @@ export default function Scanner() {
     };
 
     const onSuccess = async (decodedText) => {
-      const code = normalizeCode(decodedText);
-      if (code === lastCodeRef.current) return;
-      lastCodeRef.current = code;
+      const scanRecord = buildScanRecord(decodedText);
+      if (scanRecord.cleanCode === lastCodeRef.current) return;
+      lastCodeRef.current = scanRecord.cleanCode;
 
       playSuccessSound();
 
       await stopScanner();
       setCameraOpen(false);
-      setResult(code);
+      setLastScan(scanRecord);
       setPostError(null);
+      setScans((prev) => {
+        const next = [scanRecord, ...prev];
+        saveScansToStorage(next);
+        return next;
+      });
 
       try {
-        await postScan(code);
+        await postScan(scanRecord.cleanCode);
       } catch {
         setPostError("Не удалось отправить данные на сервер");
       }
@@ -166,9 +257,10 @@ export default function Scanner() {
   }, [cameraOpen, playSuccessSound, readerId, stopScanner]);
 
   const handleScanClick = () => {
+    primeSuccessSound();
     setError(null);
     setPostError(null);
-    setResult(null);
+    setLastScan(null);
     setCameraOpen(true);
   };
 
@@ -176,6 +268,21 @@ export default function Scanner() {
     setError(null);
     await stopScanner();
     setCameraOpen(false);
+  };
+
+  const handleClearHistory = () => {
+    setIsConfirmOpen(true);
+  };
+
+  const handleConfirmClearHistory = () => {
+    clearScansStorage();
+    setScans([]);
+    setLastScan(null);
+    setIsConfirmOpen(false);
+  };
+
+  const handleCancelClearHistory = () => {
+    setIsConfirmOpen(false);
   };
 
   const httpsHint =
@@ -186,9 +293,15 @@ export default function Scanner() {
     ) : null;
 
   const sectionClassName =
-    result != null
+    lastScan != null
       ? "scanner scanner--success"
       : "scanner";
+  const groupedScans = groupScansByDate(scans);
+  const groupedEntries = Object.entries(groupedScans).sort(
+    (a, b) =>
+      Math.max(...b[1].map((scan) => scan.timestamp)) -
+      Math.max(...a[1].map((scan) => scan.timestamp))
+  );
 
   return (
     <section className={sectionClassName} aria-label="Сканер кодов">
@@ -223,21 +336,86 @@ export default function Scanner() {
         </>
       ) : null}
 
-      {result != null ? (
+      {postError ? <p className="scanner__error">{postError}</p> : null}
+
+      {groupedEntries.length > 0 ? (
+        <div className="scanner__history" aria-live="polite">
+          <div className="scanner__history-header">
+            <p className="scanner__hint scanner__hint--success">
+              История сканирований:
+            </p>
+            <button
+              type="button"
+              className="scanner__button scanner__button--danger"
+              onClick={handleClearHistory}
+            >
+              Clear history
+            </button>
+          </div>
+          {groupedEntries.map(([date, dateScans]) => (
+            <div key={date} className="scanner__group">
+              <h4 className="scanner__group-title">{date}</h4>
+              <ul className="scanner__list">
+                {dateScans.map((scan) => (
+                  <li key={scan.id} className="scanner__item">
+                    <output
+                      className="scanner__result scanner__result--success"
+                      aria-label="Отсканированный код"
+                    >
+                      {scan.cleanCode}
+                    </output>
+                    <div className="scanner__meta">
+                      <span>{scan.type}</span>
+                      <span>
+                        {new Date(scan.timestamp).toLocaleTimeString([], {
+                          hour: "2-digit",
+                          minute: "2-digit",
+                          second: "2-digit",
+                        })}
+                      </span>
+                    </div>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
+        </div>
+      ) : null}
+
+      {isConfirmOpen ? (
         <div
-          className="scanner__result-block scanner__result-block--success"
-          aria-live="polite"
+          className="scanner__modal-overlay"
+          onClick={handleCancelClearHistory}
+          role="presentation"
         >
-          <p className="scanner__hint scanner__hint--success">
-            Код зафиксирован:
-          </p>
-          <output
-            className="scanner__result scanner__result--success"
-            aria-label="Отсканированный код"
+          <div
+            className="scanner__modal"
+            role="dialog"
+            aria-modal="true"
+            aria-label="Подтверждение удаления истории"
+            onClick={(event) => event.stopPropagation()}
           >
-            {result}
-          </output>
-          {postError ? <p className="scanner__error">{postError}</p> : null}
+            <h3 className="scanner__modal-title">Удалить историю?</h3>
+            <p className="scanner__modal-text">
+              Это действие удалит все отсканированные коды из localStorage.
+            </p>
+            <div className="scanner__modal-actions">
+              <button
+                type="button"
+                className="scanner__button scanner__button--modal-cancel"
+                onClick={handleCancelClearHistory}
+              >
+                Cancel
+              </button>
+              <button
+                type="button"
+                className="scanner__button scanner__button--danger"
+                onClick={handleConfirmClearHistory}
+              >
+                Delete
+              </button>
+            </div>
+          </div>
         </div>
       ) : null}
     </section>
