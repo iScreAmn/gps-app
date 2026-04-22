@@ -24,6 +24,7 @@ import OfficeEquipment from './pages/CatalogPage/OfficeEquipment/OfficeEquipment
 import DevelopModelPage from './pages/CatalogPage/OfficeEquipment/DevelopModelPage';
 import ProfessionalEquipment from './pages/CatalogPage/ProfessionalEquipment/ProfessionalEquipment';
 import ProfessionalModelPage from './pages/CatalogPage/ProfessionalEquipment/ProfessionalModelPage';
+import ScanerPage from './pages/ScanerPage/ScanerPage';
 import './App.css';
 
 function App() {
@@ -93,6 +94,7 @@ function App() {
               <Route path="/office-equipment/develop/:modelId" element={<DevelopModelPage />} />
               <Route path="/professional-equipment/develop" element={<ProfessionalEquipment />} />
               <Route path="/professional-equipment/develop/:modelId" element={<ProfessionalModelPage />} />
+              <Route path="/scaner" element={<ScanerPage />} />
               
               {/* Default route - show Georgian homepage */}
               <Route path="/" element={<HomePage />} />
