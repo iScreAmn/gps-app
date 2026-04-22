@@ -48,6 +48,7 @@ function loadScansFromStorage() {
     return parsed.map((item) => ({
       ...item,
       count: typeof item.count === "number" && item.count > 0 ? item.count : 1,
+      productName: typeof item.productName === "string" ? item.productName : "",
     }));
   } catch {
     return [];
@@ -95,12 +96,21 @@ function saveToHistory(history, scanRecord) {
             timestamp: scanRecord.timestamp,
             type: scanRecord.type,
             count: (item.count || 1) + 1,
+            productName: item.productName ?? "",
           }
         : item
     );
   }
 
-  return [{ ...scanRecord, count: 1 }, ...history];
+  return [{ ...scanRecord, count: 1, productName: "" }, ...history];
+}
+
+function updateScanInList(list, id, patch) {
+  return list.map((item) => (item.id === id ? { ...item, ...patch } : item));
+}
+
+function removeScanInList(list, id) {
+  return list.filter((item) => item.id !== id);
 }
 
 function isCameraContextOk() {
@@ -134,11 +144,16 @@ export default function Scanner() {
   const [error, setError] = useState(null);
   const [postError, setPostError] = useState(null);
   const [isConfirmOpen, setIsConfirmOpen] = useState(false);
+  const [itemModalId, setItemModalId] = useState(null);
+  const [draftProductName, setDraftProductName] = useState("");
+  const [draftCount, setDraftCount] = useState("1");
 
   const instanceRef = useRef(null);
   const lastCodeRef = useRef(null);
   const stoppingRef = useRef(false);
   const successAudioRef = useRef(null);
+  const scansRef = useRef(scans);
+  scansRef.current = scans;
 
   const playSuccessSound = useCallback(() => {
     if (typeof window === "undefined") return;
@@ -305,6 +320,7 @@ export default function Scanner() {
   };
 
   const handleClearHistory = () => {
+    setItemModalId(null);
     setIsConfirmOpen(true);
   };
 
@@ -317,6 +333,87 @@ export default function Scanner() {
 
   const handleCancelClearHistory = () => {
     setIsConfirmOpen(false);
+  };
+
+  useEffect(() => {
+    if (!itemModalId) {
+      return;
+    }
+    const s = scansRef.current.find((x) => x.id === itemModalId);
+    if (s) {
+      setDraftProductName(s.productName ?? "");
+      setDraftCount(String(Math.max(1, s.count || 1)));
+    }
+  }, [itemModalId]);
+
+  useEffect(() => {
+    if (!itemModalId) {
+      return;
+    }
+    if (!scans.some((s) => s.id === itemModalId)) {
+      setItemModalId(null);
+    }
+  }, [itemModalId, scans]);
+
+  useEffect(() => {
+    if (!itemModalId) {
+      return undefined;
+    }
+    const onKey = (e) => {
+      if (e.key === "Escape") {
+        setItemModalId(null);
+      }
+    };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [itemModalId]);
+
+  const handleOpenItem = (id) => {
+    setItemModalId(id);
+  };
+
+  const handleCloseItem = () => {
+    setItemModalId(null);
+  };
+
+  const handleDraftCountChange = (e) => {
+    const v = e.target.value.replace(/[^\d]/g, "");
+    setDraftCount(v === "" ? "" : v);
+  };
+
+  const handleAdjustCount = (delta) => {
+    setDraftCount((prev) => {
+      const base = Math.max(1, parseInt(prev, 10) || 1);
+      const n = Math.min(99999, Math.max(1, base + delta));
+      return String(n);
+    });
+  };
+
+  const handleItemSave = () => {
+    if (!itemModalId) return;
+    const n = Math.max(
+      1,
+      Math.min(99999, parseInt(draftCount, 10) || 1)
+    );
+    setScans((prev) => {
+      const next = updateScanInList(prev, itemModalId, {
+        productName: draftProductName.trim(),
+        count: n,
+      });
+      saveScansToStorage(next);
+      return next;
+    });
+    setItemModalId(null);
+  };
+
+  const handleItemDelete = () => {
+    if (!itemModalId) return;
+    setScans((prev) => {
+      const next = removeScanInList(prev, itemModalId);
+      saveScansToStorage(next);
+      return next;
+    });
+    setItemModalId(null);
   };
 
   const httpsHint =
@@ -336,6 +433,10 @@ export default function Scanner() {
       Math.max(...b[1].map((scan) => scan.timestamp)) -
       Math.max(...a[1].map((scan) => scan.timestamp))
   );
+
+  const itemForModal = itemModalId
+    ? scans.find((s) => s.id === itemModalId)
+    : null;
 
   return (
     <section className={sectionClassName} aria-label="Сканер кодов">
@@ -391,31 +492,127 @@ export default function Scanner() {
               <h4 className="scanner__group-title">{date}</h4>
               <ul className="scanner__list">
                 {dateScans.map((scan) => (
-                  <li key={scan.id} className="scanner__item">
-                    <output
-                      className="scanner__result scanner__result--success"
-                      aria-label="Отсканированный код"
+                  <li key={scan.id} className="scanner__list-item">
+                    <button
+                      type="button"
+                      className="scanner__item"
+                      onClick={() => handleOpenItem(scan.id)}
                     >
-                      {scan.cleanCode}
-                    </output>
-                    <div className="scanner__meta">
-                      <span className="scanner__meta-left">
-                        <span>{scan.type}</span>
-                        <span className="scanner__count-badge">x{scan.count || 1}</span>
-                      </span>
-                      <span>
-                        {new Date(scan.timestamp).toLocaleTimeString([], {
-                          hour: "2-digit",
-                          minute: "2-digit",
-                          second: "2-digit",
-                        })}
-                      </span>
-                    </div>
+                      <output
+                        className="scanner__result scanner__result--success"
+                        aria-label="Отсканированный код"
+                      >
+                        {scan.cleanCode}
+                      </output>
+                      {scan.productName ? (
+                        <p className="scanner__product-name">{scan.productName}</p>
+                      ) : null}
+                      <div className="scanner__meta">
+                        <span className="scanner__meta-left">
+                          <span>{scan.type}</span>
+                          <span className="scanner__count-badge">
+                            x{scan.count || 1}
+                          </span>
+                        </span>
+                        <span>
+                          {new Date(scan.timestamp).toLocaleTimeString([], {
+                            hour: "2-digit",
+                            minute: "2-digit",
+                            second: "2-digit",
+                          })}
+                        </span>
+                      </div>
+                    </button>
                   </li>
                 ))}
               </ul>
             </div>
           ))}
+        </div>
+      ) : null}
+
+      {itemModalId && itemForModal ? (
+        <div
+          className="scanner__modal-overlay scanner__modal-overlay--item"
+          onClick={handleCloseItem}
+          role="presentation"
+        >
+          <div
+            className="scanner__sheet"
+            role="dialog"
+            aria-modal="true"
+            aria-label="Редактирование скана"
+            onClick={(event) => event.stopPropagation()}
+          >
+            <div className="scanner__sheet-handle" aria-hidden="true" />
+            <h3 className="scanner__modal-title">Позиция</h3>
+            <p className="scanner__sheet-code">{itemForModal.cleanCode}</p>
+            <p className="scanner__sheet-meta">
+              {itemForModal.type} · {itemForModal.rawCode}
+            </p>
+            <label className="scanner__field" htmlFor="scanner-product-name">
+              Название продукта
+            </label>
+            <input
+              id="scanner-product-name"
+              className="scanner__input"
+              type="text"
+              value={draftProductName}
+              onChange={(e) => setDraftProductName(e.target.value)}
+              placeholder="Необязательно"
+              autoComplete="off"
+            />
+            <p className="scanner__field-label">Количество</p>
+            <div className="scanner__count-row">
+              <button
+                type="button"
+                className="scanner__button scanner__button--step"
+                onClick={() => handleAdjustCount(-1)}
+                aria-label="Минус"
+              >
+                −
+              </button>
+              <input
+                className="scanner__input scanner__input--count"
+                type="text"
+                inputMode="numeric"
+                value={draftCount}
+                onChange={handleDraftCountChange}
+                aria-label="Количество"
+              />
+              <button
+                type="button"
+                className="scanner__button scanner__button--step"
+                onClick={() => handleAdjustCount(1)}
+                aria-label="Плюс"
+              >
+                +
+              </button>
+            </div>
+            <div className="scanner__sheet-actions">
+              <button
+                type="button"
+                className="scanner__button scanner__button--modal-cancel"
+                onClick={handleCloseItem}
+              >
+                Cancel
+              </button>
+              <button
+                type="button"
+                className="scanner__button scanner__button--primary scanner__button--inline"
+                onClick={handleItemSave}
+              >
+                Save
+              </button>
+            </div>
+            <button
+              type="button"
+              className="scanner__button scanner__button--danger scanner__button--delete"
+              onClick={handleItemDelete}
+            >
+              Delete from list
+            </button>
+          </div>
         </div>
       ) : null}
 
