@@ -4,6 +4,8 @@ import qrcodeSuccessSound from "../../assets/files/qrcode.mp3";
 import "./Scanner.css";
 
 const STORAGE_KEY = "scanner_scans_v1";
+const SHEET_TRANSITION_MS = 280;
+const SHEET_SWIPE_CLOSE_PX = 100;
 
 /** GS1 Application Identifier — убираем известные префиксы (дополняй knownPrefixes при новых AI). */
 function normalizeCode(raw) {
@@ -144,7 +146,11 @@ export default function Scanner() {
   const [error, setError] = useState(null);
   const [postError, setPostError] = useState(null);
   const [isConfirmOpen, setIsConfirmOpen] = useState(false);
+  const [deleteItemConfirmId, setDeleteItemConfirmId] = useState(null);
   const [itemModalId, setItemModalId] = useState(null);
+  const [isItemSheetEntered, setIsItemSheetEntered] = useState(false);
+  const [sheetDragY, setSheetDragY] = useState(0);
+  const [isSheetDragging, setIsSheetDragging] = useState(false);
   const [draftProductName, setDraftProductName] = useState("");
   const [draftCount, setDraftCount] = useState("1");
 
@@ -152,8 +158,121 @@ export default function Scanner() {
   const lastCodeRef = useRef(null);
   const stoppingRef = useRef(false);
   const successAudioRef = useRef(null);
+  const sheetRef = useRef(null);
+  const sheetStartPtrYRef = useRef(0);
+  const sheetActiveDragRef = useRef(false);
+  const sheetCloseTimerRef = useRef(null);
   const scansRef = useRef(scans);
   scansRef.current = scans;
+
+  const closeItemSheet = useCallback(
+    (options) => {
+      if (sheetCloseTimerRef.current) {
+        clearTimeout(sheetCloseTimerRef.current);
+        sheetCloseTimerRef.current = null;
+      }
+      setIsItemSheetEntered(false);
+      setSheetDragY(0);
+      setIsSheetDragging(false);
+      sheetActiveDragRef.current = false;
+      sheetCloseTimerRef.current = window.setTimeout(() => {
+        setItemModalId(null);
+        options?.onAfter?.();
+        sheetCloseTimerRef.current = null;
+      }, SHEET_TRANSITION_MS);
+    },
+    []
+  );
+
+  const openItem = useCallback((id) => {
+    if (sheetCloseTimerRef.current) {
+      clearTimeout(sheetCloseTimerRef.current);
+      sheetCloseTimerRef.current = null;
+    }
+    setItemModalId(id);
+    setIsItemSheetEntered(false);
+    setSheetDragY(0);
+    setIsSheetDragging(false);
+    sheetActiveDragRef.current = false;
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => {
+        setIsItemSheetEntered(true);
+      });
+    });
+  }, []);
+
+  const sheetDragYRef = useRef(0);
+
+  const handleSheetPointerDown = useCallback((e) => {
+    if (e.target.closest("input, button, textarea, select")) {
+      return;
+    }
+    const isHandle = e.target.closest(".scanner__sheet-handle");
+    const sc = sheetRef.current;
+    if (!isHandle && sc && sc.scrollTop > 0) {
+      return;
+    }
+    sheetStartPtrYRef.current = e.clientY;
+    sheetActiveDragRef.current = true;
+    sheetDragYRef.current = 0;
+    setIsSheetDragging(true);
+    setSheetDragY(0);
+    e.currentTarget.setPointerCapture(e.pointerId);
+  }, []);
+
+  const handleSheetPointerMove = useCallback((e) => {
+    if (!sheetActiveDragRef.current) {
+      return;
+    }
+    const delta = Math.max(0, e.clientY - sheetStartPtrYRef.current);
+    const capped = Math.min(delta, window.innerHeight);
+    sheetDragYRef.current = capped;
+    setSheetDragY(capped);
+  }, []);
+
+  const endSheetPointer = useCallback(
+    (e) => {
+      if (!sheetActiveDragRef.current) {
+        return;
+      }
+      sheetActiveDragRef.current = false;
+      try {
+        e.currentTarget.releasePointerCapture(e.pointerId);
+      } catch {
+        /* noop */
+      }
+      setIsSheetDragging(false);
+      const y = sheetDragYRef.current;
+      sheetDragYRef.current = 0;
+      if (y > SHEET_SWIPE_CLOSE_PX) {
+        closeItemSheet();
+      }
+      setSheetDragY(0);
+    },
+    [closeItemSheet]
+  );
+
+  const handleSheetPointerUp = useCallback(
+    (e) => {
+      endSheetPointer(e);
+    },
+    [endSheetPointer]
+  );
+
+  const handleSheetPointerCancel = useCallback(
+    (e) => {
+      endSheetPointer(e);
+    },
+    [endSheetPointer]
+  );
+
+  useEffect(() => {
+    return () => {
+      if (sheetCloseTimerRef.current) {
+        clearTimeout(sheetCloseTimerRef.current);
+      }
+    };
+  }, []);
 
   const playSuccessSound = useCallback(() => {
     if (typeof window === "undefined") return;
@@ -320,7 +439,15 @@ export default function Scanner() {
   };
 
   const handleClearHistory = () => {
+    if (sheetCloseTimerRef.current) {
+      clearTimeout(sheetCloseTimerRef.current);
+      sheetCloseTimerRef.current = null;
+    }
     setItemModalId(null);
+    setIsItemSheetEntered(false);
+    setSheetDragY(0);
+    setIsSheetDragging(false);
+    setDeleteItemConfirmId(null);
     setIsConfirmOpen(true);
   };
 
@@ -361,20 +488,25 @@ export default function Scanner() {
     }
     const onKey = (e) => {
       if (e.key === "Escape") {
-        setItemModalId(null);
+        closeItemSheet();
       }
     };
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
-  }, [itemModalId]);
+  }, [itemModalId, closeItemSheet]);
 
-  const handleOpenItem = (id) => {
-    setItemModalId(id);
-  };
-
-  const handleCloseItem = () => {
-    setItemModalId(null);
-  };
+  useEffect(() => {
+    if (!deleteItemConfirmId) {
+      return undefined;
+    }
+    const onKey = (e) => {
+      if (e.key === "Escape") {
+        setDeleteItemConfirmId(null);
+      }
+    };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [deleteItemConfirmId]);
 
   const handleDraftCountChange = (e) => {
     const v = e.target.value.replace(/[^\d]/g, "");
@@ -403,17 +535,36 @@ export default function Scanner() {
       saveScansToStorage(next);
       return next;
     });
-    setItemModalId(null);
+    closeItemSheet();
   };
 
-  const handleItemDelete = () => {
-    if (!itemModalId) return;
+  const handleItemDeleteRequest = () => {
+    if (!itemModalId) {
+      return;
+    }
+    const idToRemove = itemModalId;
+    closeItemSheet({
+      onAfter: () => {
+        setDeleteItemConfirmId(idToRemove);
+      },
+    });
+  };
+
+  const handleConfirmDeleteItem = () => {
+    if (!deleteItemConfirmId) {
+      return;
+    }
+    const id = deleteItemConfirmId;
     setScans((prev) => {
-      const next = removeScanInList(prev, itemModalId);
+      const next = removeScanInList(prev, id);
       saveScansToStorage(next);
       return next;
     });
-    setItemModalId(null);
+    setDeleteItemConfirmId(null);
+  };
+
+  const handleCancelDeleteItem = () => {
+    setDeleteItemConfirmId(null);
   };
 
   const httpsHint =
@@ -436,6 +587,10 @@ export default function Scanner() {
 
   const itemForModal = itemModalId
     ? scans.find((s) => s.id === itemModalId)
+    : null;
+
+  const itemPendingDelete = deleteItemConfirmId
+    ? scans.find((s) => s.id === deleteItemConfirmId)
     : null;
 
   return (
@@ -496,7 +651,7 @@ export default function Scanner() {
                     <button
                       type="button"
                       className="scanner__item"
-                      onClick={() => handleOpenItem(scan.id)}
+                      onClick={() => openItem(scan.id)}
                     >
                       <output
                         className="scanner__result scanner__result--success"
@@ -533,16 +688,37 @@ export default function Scanner() {
 
       {itemModalId && itemForModal ? (
         <div
-          className="scanner__modal-overlay scanner__modal-overlay--item"
-          onClick={handleCloseItem}
+          className={`scanner__modal-overlay scanner__modal-overlay--item${
+            isItemSheetEntered ? " scanner__modal-overlay--item-open" : ""
+          }`}
+          onClick={() => closeItemSheet()}
           role="presentation"
         >
           <div
-            className="scanner__sheet"
+            ref={sheetRef}
+            className={[
+              "scanner__sheet",
+              isItemSheetEntered ? "scanner__sheet--open" : "scanner__sheet--closed",
+              isSheetDragging ? "scanner__sheet--dragging" : "",
+            ]
+              .filter(Boolean)
+              .join(" ")}
+            style={
+              isSheetDragging && isItemSheetEntered
+                ? {
+                    transform: `translate3d(0, ${sheetDragY}px, 0)`,
+                    touchAction: "none",
+                  }
+                : undefined
+            }
             role="dialog"
             aria-modal="true"
             aria-label="Редактирование скана"
             onClick={(event) => event.stopPropagation()}
+            onPointerDown={handleSheetPointerDown}
+            onPointerMove={handleSheetPointerMove}
+            onPointerUp={handleSheetPointerUp}
+            onPointerCancel={handleSheetPointerCancel}
           >
             <div className="scanner__sheet-handle" aria-hidden="true" />
             <h3 className="scanner__modal-title">Позиция</h3>
@@ -593,7 +769,7 @@ export default function Scanner() {
               <button
                 type="button"
                 className="scanner__button scanner__button--modal-cancel"
-                onClick={handleCloseItem}
+                onClick={() => closeItemSheet()}
               >
                 Cancel
               </button>
@@ -608,10 +784,49 @@ export default function Scanner() {
             <button
               type="button"
               className="scanner__button scanner__button--danger scanner__button--delete"
-              onClick={handleItemDelete}
+              onClick={handleItemDeleteRequest}
             >
               Delete from list
             </button>
+          </div>
+        </div>
+      ) : null}
+
+      {deleteItemConfirmId ? (
+        <div
+          className="scanner__modal-overlay scanner__modal-overlay--stack"
+          onClick={handleCancelDeleteItem}
+          role="presentation"
+        >
+          <div
+            className="scanner__modal"
+            role="dialog"
+            aria-modal="true"
+            aria-label="Подтверждение удаления позиции"
+            onClick={(event) => event.stopPropagation()}
+          >
+            <h3 className="scanner__modal-title">Удалить позицию?</h3>
+            <p className="scanner__modal-text">
+              {itemPendingDelete
+                ? `Удалить «${itemPendingDelete.cleanCode}»${itemPendingDelete.productName ? ` (${itemPendingDelete.productName})` : ""} из списка?`
+                : "Удалить эту позицию из списка?"}
+            </p>
+            <div className="scanner__modal-actions">
+              <button
+                type="button"
+                className="scanner__button scanner__button--modal-cancel"
+                onClick={handleCancelDeleteItem}
+              >
+                Cancel
+              </button>
+              <button
+                type="button"
+                className="scanner__button scanner__button--danger"
+                onClick={handleConfirmDeleteItem}
+              >
+                Delete
+              </button>
+            </div>
           </div>
         </div>
       ) : null}
