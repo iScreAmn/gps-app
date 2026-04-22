@@ -3,6 +3,18 @@ import { Html5Qrcode } from "html5-qrcode";
 import qrcodeSuccessSound from "../../assets/files/qrcode.mp3";
 import "./Scanner.css";
 
+/** GS1 Application Identifier — убираем известные префиксы (дополняй knownPrefixes при новых AI). */
+function normalizeCode(raw) {
+  if (typeof raw !== "string") return raw;
+  const knownPrefixes = ["(1P)", "1P"];
+  for (const prefix of knownPrefixes) {
+    if (raw.startsWith(prefix)) {
+      return raw.replace(prefix, "");
+    }
+  }
+  return raw;
+}
+
 function isCameraContextOk() {
   if (typeof window === "undefined") return false;
   const host = window.location.hostname;
@@ -89,18 +101,19 @@ export default function Scanner() {
     };
 
     const onSuccess = async (decodedText) => {
-      if (decodedText === lastCodeRef.current) return;
-      lastCodeRef.current = decodedText;
+      const code = normalizeCode(decodedText);
+      if (code === lastCodeRef.current) return;
+      lastCodeRef.current = code;
 
       playSuccessSound();
 
       await stopScanner();
       setCameraOpen(false);
-      setResult(decodedText);
+      setResult(code);
       setPostError(null);
 
       try {
-        await postScan(decodedText);
+        await postScan(code);
       } catch {
         setPostError("Не удалось отправить данные на сервер");
       }
