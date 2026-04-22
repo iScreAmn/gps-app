@@ -281,6 +281,7 @@ export default function Scanner() {
         successAudioRef.current = new Audio(qrcodeSuccessSound);
       }
       const audio = successAudioRef.current;
+      audio.muted = false;
       audio.volume = 1;
       audio.currentTime = 0;
       void audio.play();
@@ -289,6 +290,7 @@ export default function Scanner() {
     }
   }, []);
 
+  /** Warm Audio element in the Scan click stack (iOS). Use muted, not volume=0 — mobile often still plays a blip. */
   const primeSuccessSound = useCallback(() => {
     if (typeof window === "undefined") return;
     try {
@@ -296,22 +298,18 @@ export default function Scanner() {
         successAudioRef.current = new Audio(qrcodeSuccessSound);
       }
       const audio = successAudioRef.current;
-      audio.volume = 0;
+      audio.muted = true;
+      audio.volume = 1;
       const unlock = audio.play();
-      if (unlock && typeof unlock.then === "function") {
-        unlock
-          .then(() => {
-            audio.pause();
-            audio.currentTime = 0;
-            audio.volume = 1;
-          })
-          .catch(() => {
-            audio.volume = 1;
-          });
-      } else {
+      const finish = () => {
         audio.pause();
         audio.currentTime = 0;
-        audio.volume = 1;
+        audio.muted = false;
+      };
+      if (unlock && typeof unlock.then === "function") {
+        unlock.then(finish).catch(finish);
+      } else {
+        finish();
       }
     } catch {
       /* ignore unlock failure */

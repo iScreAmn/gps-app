@@ -11,7 +11,7 @@
 .scanner--success {
   border-color: #2e7d32;
   box-shadow: 0 0 0 1px rgba(46, 125, 50, 0.25);
-  background: #f1f8e9;
+  background: #fafafa;
 }
 
 .scanner__actions {
@@ -81,7 +81,7 @@
 
 .scanner__result--success {
   border: 2px solid #2e7d32;
-  background: #e8f5e9;
+  background: #fff;
   color: #1b3d1f;
   user-select: all;
   cursor: text;
