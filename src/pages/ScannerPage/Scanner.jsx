@@ -135,6 +135,44 @@ function isCameraContextOk() {
   return Boolean(navigator.mediaDevices?.getUserMedia);
 }
 
+const TARGET_ZOOM_2X = 2;
+
+/** Chrome/Android: zoom { min, max, step }; часть устройств — без zoom. */
+function isZoomSupportedByCapabilities(caps) {
+  if (!caps || caps.zoom == null) {
+    return false;
+  }
+  const z = caps.zoom;
+  if (typeof z === "object" && "max" in z && typeof z.max === "number") {
+    return z.max > (typeof z.min === "number" ? z.min : 1);
+  }
+  return true;
+}
+
+function getZoom1xValue(caps) {
+  if (!caps?.zoom) {
+    return 1;
+  }
+  const z = caps.zoom;
+  if (typeof z === "object" && typeof z.min === "number") {
+    return z.min;
+  }
+  return 1;
+}
+
+function getZoom2xClampedValue(caps) {
+  if (!caps?.zoom) {
+    return TARGET_ZOOM_2X;
+  }
+  const z = caps.zoom;
+  if (typeof z === "object" && typeof z.max === "number") {
+    const min = typeof z.min === "number" ? z.min : 1;
+    const t = Math.min(TARGET_ZOOM_2X, z.max);
+    return Math.max(min, t);
+  }
+  return TARGET_ZOOM_2X;
+}
+
 /**
  * Haptic on successful read. Decode callbacks are not a user gesture; Chrome may ignore
  * the first `vibrate` while a touch is active — retry on next task + after ~100ms.
@@ -209,6 +247,8 @@ export default function Scanner() {
   const [hapticFallbackBump, setHapticFallbackBump] = useState(false);
   const [torchOn, setTorchOn] = useState(false);
   const [isTorchSupported, setIsTorchSupported] = useState(false);
+  const [isZoom2x, setIsZoom2x] = useState(false);
+  const [isZoomSupported, setIsZoomSupported] = useState(false);
 
   const instanceRef = useRef(null);
   const readerIdRef = useRef(readerId);
@@ -404,6 +444,8 @@ export default function Scanner() {
       }
       setTorchOn(false);
       setIsTorchSupported(false);
+      setIsZoom2x(false);
+      setIsZoomSupported(false);
       try {
         qr.clear();
       } catch {
@@ -423,12 +465,37 @@ export default function Scanner() {
     if (!qr?.isScanning) return;
     const next = !torchOn;
     try {
-      await qr.applyVideoConstraints({ advanced: [{ torch: next }] });
+      const cap = qr.getRunningTrackCapabilities();
+      const adv = { torch: next };
+      if (isZoomSupportedByCapabilities(cap)) {
+        adv.zoom = isZoom2x ? getZoom2xClampedValue(cap) : getZoom1xValue(cap);
+      }
+      await qr.applyVideoConstraints({ advanced: [adv] });
       setTorchOn(next);
     } catch (err) {
       console.error("Failed to toggle torch", err);
     }
-  }, [torchOn]);
+  }, [torchOn, isZoom2x]);
+
+  const toggleZoom2x = useCallback(async () => {
+    const qr = instanceRef.current;
+    if (!qr?.isScanning || !isZoomSupported) {
+      return;
+    }
+    const next = !isZoom2x;
+    try {
+      const cap = qr.getRunningTrackCapabilities();
+      const value = next ? getZoom2xClampedValue(cap) : getZoom1xValue(cap);
+      const adv = { zoom: value };
+      if (Boolean(cap.torch) && torchOn) {
+        adv.torch = true;
+      }
+      await qr.applyVideoConstraints({ advanced: [adv] });
+      setIsZoom2x(next);
+    } catch (err) {
+      console.error("Failed to set camera zoom", err);
+    }
+  }, [isZoom2x, isZoomSupported, torchOn]);
 
   useEffect(() => {
     if (!cameraOpen) {
@@ -462,14 +529,18 @@ export default function Scanner() {
       },
     };
 
-    const syncTorchSupport = (qr) => {
+    const syncTrackCapabilities = (qr) => {
       try {
         const cap = qr.getRunningTrackCapabilities();
         setIsTorchSupported(Boolean(cap.torch));
         setTorchOn(false);
+        setIsZoomSupported(isZoomSupportedByCapabilities(cap));
+        setIsZoom2x(false);
       } catch {
         setIsTorchSupported(false);
         setTorchOn(false);
+        setIsZoomSupported(false);
+        setIsZoom2x(false);
       }
     };
 
@@ -559,7 +630,7 @@ export default function Scanner() {
           await stopScanner();
           return;
         }
-        syncTorchSupport(qr);
+        syncTrackCapabilities(qr);
       } catch (e1) {
         if (cancelled || myRun !== cameraRunIdRef.current) {
           return;
@@ -577,7 +648,7 @@ export default function Scanner() {
             await stopScanner();
             return;
           }
-          syncTorchSupport(qr);
+          syncTrackCapabilities(qr);
         } catch (e2) {
           const msg =
             e2?.message ||
@@ -844,7 +915,9 @@ export default function Scanner() {
           className="scanner__live"
           onPointerDown={onLivePointerDown}
         >
-          <p className="scanner__live-hint">Hold the barcode horizontal inside the frame</p>
+          <p className="scanner__live-hint">
+            Hold 15–20 cm away, barcode horizontal. Tap 2× for digital zoom.
+          </p>
           <div className="scanner__viewfinder" aria-label="Viewfinder">
             <div id={readerId} className="scanner__reader scanner__reader--live" />
             <div
@@ -865,6 +938,23 @@ export default function Scanner() {
               title={isTorchSupported ? "Flash" : "Flash not available on this device"}
             >
               Flash
+            </button>
+            <button
+              type="button"
+              className="scanner__live-button scanner__live-button--zoom"
+              onClick={() => void toggleZoom2x()}
+              disabled={!isZoomSupported}
+              aria-pressed={isZoom2x}
+              aria-label={isZoom2x ? "Normal zoom" : "Digital zoom 2×"}
+              title={
+                isZoomSupported
+                  ? isZoom2x
+                    ? "1× (normal)"
+                    : "2× (hold phone 15–20 cm from code)"
+                  : "Digital zoom is not available on this camera"
+              }
+            >
+              {isZoom2x ? "1×" : "2×"}
             </button>
             <button
               type="button"
