@@ -454,13 +454,11 @@ export default function Scanner() {
 
     const scanConfig = {
       fps: 10,
-      /* Полный кадр: библиотека не рисует #qr-shaded-region (дубли «второго» просмотрщика/углов). */
+      /* Горизонтальная полоса (1D / code-128 / EAN) — библиотека рисует #qr-shaded-region под неё. */
       qrbox: (viewfinderWidth, viewfinderHeight) => {
-        if (isLive) {
-          return { width: viewfinderWidth, height: viewfinderHeight };
-        }
-        const s = Math.floor(Math.min(viewfinderWidth, viewfinderHeight) * 0.9);
-        return { width: s, height: s };
+        const w = Math.max(2, Math.floor(viewfinderWidth * 0.92));
+        const h = Math.max(2, Math.floor(viewfinderHeight * 0.3));
+        return { width: w, height: h };
       },
     };
 
@@ -846,14 +844,14 @@ export default function Scanner() {
           className="scanner__live"
           onPointerDown={onLivePointerDown}
         >
-          <p className="scanner__live-hint">Place the camera over the QR or barcode</p>
+          <p className="scanner__live-hint">Hold the barcode horizontal inside the frame</p>
           <div className="scanner__viewfinder" aria-label="Viewfinder">
             <div id={readerId} className="scanner__reader scanner__reader--live" />
-            <div className="scanner__viewfinder-guides" aria-hidden="true">
-              <span className="scanner__guide scanner__guide--tl" />
-              <span className="scanner__guide scanner__guide--tr" />
-              <span className="scanner__guide scanner__guide--bl" />
-              <span className="scanner__guide scanner__guide--br" />
+            <div
+              className="scanner__viewfinder-guides scanner__viewfinder-guides--barcode"
+              aria-hidden="true"
+            >
+              <div className="scanner__barcode-frame" />
             </div>
           </div>
           <div className="scanner__live-bar">

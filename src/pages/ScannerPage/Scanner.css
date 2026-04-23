@@ -58,9 +58,9 @@
   flex: 1 1 auto;
   min-height: 0;
   width: 100%;
-  max-height: min(58dvh, 520px);
-  aspect-ratio: 3 / 4;
-  max-width: 420px;
+  max-height: min(52dvh, 440px);
+  aspect-ratio: 16 / 9;
+  max-width: min(100%, 640px);
   margin: 0 auto;
   background: #000;
   border-radius: 8px;
@@ -99,43 +99,65 @@
   justify-content: center;
 }
 
-.scanner__guide {
+.scanner__viewfinder-guides--barcode {
+  align-items: center;
+  justify-content: center;
+}
+
+/* Сетка 92%×30% согласована с qrbox в Scanner.jsx */
+.scanner__barcode-frame {
   position: absolute;
-  width: 2rem;
-  height: 2rem;
-  border: 3px solid #fff;
+  left: 4%;
+  right: 4%;
+  top: 50%;
+  transform: translateY(-50%);
+  height: 30%;
+  box-sizing: border-box;
+  border: 2px solid rgba(255, 255, 255, 0.92);
+  border-radius: 4px;
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.04) 0%,
+    rgba(255, 255, 255, 0.02) 50%,
+    rgba(255, 255, 255, 0.04) 100%
+  );
+  overflow: hidden;
 }
 
-.scanner__guide--tl {
-  top: 12%;
-  left: 8%;
-  border-right: none;
-  border-bottom: none;
-  border-top-left-radius: 4px;
+.scanner__barcode-frame::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 2px;
+  border-radius: 1px;
+  top: 22%;
+  background: linear-gradient(90deg, transparent, rgba(0, 255, 200, 0.6), transparent);
+  box-shadow: 0 0 6px rgba(0, 255, 200, 0.35);
+  animation: scannerBarcodeScan 2.2s ease-in-out infinite;
 }
 
-.scanner__guide--tr {
-  top: 12%;
-  right: 8%;
-  border-left: none;
-  border-bottom: none;
-  border-top-right-radius: 4px;
+@media (prefers-reduced-motion: reduce) {
+  .scanner__barcode-frame::after {
+    animation: none;
+    top: 50%;
+    margin-top: -1px;
+    background: rgba(0, 255, 200, 0.4);
+  }
 }
 
-.scanner__guide--bl {
-  bottom: 12%;
-  left: 8%;
-  border-right: none;
-  border-top: none;
-  border-bottom-left-radius: 4px;
-}
+@keyframes scannerBarcodeScan {
 
-.scanner__guide--br {
-  bottom: 12%;
-  right: 8%;
-  border-left: none;
-  border-top: none;
-  border-bottom-right-radius: 4px;
+  0%,
+  100% {
+    top: 16%;
+    opacity: 0.4;
+  }
+
+  50% {
+    top: 72%;
+    opacity: 0.95;
+  }
 }
 
 .scanner__live-bar {
