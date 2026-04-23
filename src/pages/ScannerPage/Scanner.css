@@ -350,6 +350,30 @@
   align-items: center;
   justify-content: space-between;
   gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.scanner__history-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 0.5rem;
+}
+
+.scanner__button--export {
+  width: auto;
+  padding: 0.45rem 0.7rem;
+  font-size: 0.8rem;
+  border-color: #1b5e20;
+  color: #1b5e20;
+  background: #fff;
+  text-transform: none;
+  letter-spacing: 0.02em;
+}
+
+.scanner__button--export:hover {
+  background: #e8f5e9;
 }
 
 .scanner__button--danger {

@@ -2,6 +2,7 @@ import { useCallback, useEffect, useId, useRef, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { Html5Qrcode } from "html5-qrcode";
 import qrcodeSuccessSound from "../../assets/files/qrcode.mp3";
+import { exportScansToExcel } from "../../utils/excelExport";
 import "./Scanner.css";
 
 const STORAGE_KEY = "scanner_scans_v1";
@@ -861,6 +862,10 @@ export default function Scanner() {
     setDeleteItemConfirmId(null);
   };
 
+  const handleExportXlsx = useCallback(() => {
+    exportScansToExcel(scans);
+  }, [scans]);
+
   const httpsHint =
     typeof window !== "undefined" && !isCameraContextOk() ? (
       <p className="scanner__hint">
@@ -986,13 +991,22 @@ export default function Scanner() {
             <p className="scanner__hint scanner__hint--success">
               Scan History:
             </p>
-            <button
-              type="button"
-              className="scanner__button scanner__button--danger"
-              onClick={handleClearHistory}
-            >
-              Clear history
-            </button>
+            <div className="scanner__history-actions">
+              <button
+                type="button"
+                className="scanner__button scanner__button--export"
+                onClick={handleExportXlsx}
+              >
+                Save XLSX
+              </button>
+              <button
+                type="button"
+                className="scanner__button scanner__button--danger"
+                onClick={handleClearHistory}
+              >
+                Clear history
+              </button>
+            </div>
           </div>
           {groupedEntries.map(([date, dateScans]) => (
             <div key={date} className="scanner__group">
