@@ -14,6 +14,183 @@
   background: #fafafa;
 }
 
+/* Полноэкранная съёмка: /scanner/scan — вписываемся в 100dvh, без раздувания flex min-content */
+.scanner--live {
+  --scanner-live-ui-offset: 10.5rem;
+  max-width: 100%;
+  width: 100%;
+  margin: 0 auto;
+  padding: 0.4rem 0.6rem 0.65rem;
+  padding-bottom: max(0.65rem, env(safe-area-inset-bottom, 0px));
+  border: none;
+  border-radius: 0;
+  background: #f0f0f0;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  max-height: calc(100dvh - var(--scanner-live-ui-offset));
+  flex: 1 1 auto;
+  overflow: hidden;
+}
+
+.scanner__live {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  flex: 1 1 auto;
+  min-height: 0;
+  max-height: 100%;
+  overflow: hidden;
+}
+
+.scanner__live-hint {
+  margin: 0;
+  text-align: center;
+  font-size: 0.8rem;
+  color: #555;
+  flex-shrink: 0;
+  line-height: 1.2;
+}
+
+.scanner__viewfinder {
+  position: relative;
+  flex: 1 1 auto;
+  min-height: 0;
+  width: 100%;
+  max-height: min(58dvh, 520px);
+  aspect-ratio: 3 / 4;
+  max-width: 420px;
+  margin: 0 auto;
+  background: #000;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.scanner__reader--live {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  min-height: 0;
+  margin: 0;
+}
+
+.scanner__reader--live video {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100% !important;
+  height: 100% !important;
+  min-height: 0 !important;
+  min-width: 0 !important;
+  object-fit: cover;
+  border-radius: 0;
+  display: block;
+}
+
+.scanner__viewfinder-guides {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.scanner__guide {
+  position: absolute;
+  width: 2rem;
+  height: 2rem;
+  border: 3px solid #fff;
+}
+
+.scanner__guide--tl {
+  top: 12%;
+  left: 8%;
+  border-right: none;
+  border-bottom: none;
+  border-top-left-radius: 4px;
+}
+
+.scanner__guide--tr {
+  top: 12%;
+  right: 8%;
+  border-left: none;
+  border-bottom: none;
+  border-top-right-radius: 4px;
+}
+
+.scanner__guide--bl {
+  bottom: 12%;
+  left: 8%;
+  border-right: none;
+  border-top: none;
+  border-bottom-left-radius: 4px;
+}
+
+.scanner__guide--br {
+  bottom: 12%;
+  right: 8%;
+  border-left: none;
+  border-top: none;
+  border-bottom-right-radius: 4px;
+}
+
+.scanner__live-bar {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.65rem;
+  align-items: stretch;
+  margin-top: 0.1rem;
+  flex-shrink: 0;
+  width: 100%;
+}
+
+.scanner__live-button {
+  border: none;
+  border-radius: 999px;
+  padding: 0.9rem 1rem;
+  font-size: 0.95rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  cursor: pointer;
+  min-height: 3rem;
+  box-sizing: border-box;
+}
+
+.scanner__live-button--flash {
+  background: #1a1a1a;
+  color: #fff;
+}
+
+.scanner__live-button--flash:hover:not(:disabled) {
+  background: #333;
+}
+
+.scanner__live-button--flash:disabled {
+  cursor: not-allowed;
+  opacity: 0.4;
+}
+
+.scanner__live-button--close {
+  background: #7a6a5c;
+  color: #fff;
+}
+
+.scanner__live-button--close:hover {
+  background: #6b5d51;
+}
+
+.scanner__live-error-actions {
+  display: flex;
+  justify-content: center;
+  margin: 0.5rem 0 0.75rem;
+  padding: 0 0.5rem;
+}
+
 /* iOS: no navigator.vibrate — короткое визуальное «срабатывание» вместо мотора */
 @media (prefers-reduced-motion: no-preference) {
   .scanner--haptic-bump {
@@ -296,7 +473,7 @@
 .scanner__sheet {
   width: 100%;
   max-width: 100%;
-  max-height: 88vh;
+  height: 400px;
   overflow-y: auto;
   background: #fff;
   border-radius: 12px 12px 0 0;
@@ -418,7 +595,7 @@
 
 .scanner__sheet-actions .scanner__button {
   width: 100%;
-  min-height: 2.6rem;
+  min-height: 3.6rem;
   padding: 0.55rem 0.75rem;
   font-size: 0.85rem;
   display: inline-flex;

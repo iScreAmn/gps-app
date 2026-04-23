@@ -58,6 +58,8 @@ function App() {
               <Route path="/ka/plotter-catalog/nocai/:modelId" element={<NocaiModelPage />} />
               <Route path="/ka/catalog/supplies/inks" element={<InksPage />} />
               <Route path="/ka/catalog/supplies/inks/:inkId" element={<InkModelPage />} />
+              <Route path="/ka/scanner/scan" element={<ScannerPage />} />
+              <Route path="/ka/scanner" element={<ScannerPage />} />
               
               {/* English routes */}
               <Route path="/en" element={<HomePage />} />
@@ -83,6 +85,8 @@ function App() {
               <Route path="/en/plotter-catalog/nocai/:modelId" element={<NocaiModelPage />} />
               <Route path="/en/catalog/supplies/inks" element={<InksPage />} />
               <Route path="/en/catalog/supplies/inks/:inkId" element={<InkModelPage />} />
+              <Route path="/en/scanner/scan" element={<ScannerPage />} />
+              <Route path="/en/scanner" element={<ScannerPage />} />
 
               <Route path="/privacy-policy" element={<PrivacyPolicyPage />} />
               <Route path="/news/:id" element={<NewsDetailPage />} />
@@ -94,6 +98,7 @@ function App() {
               <Route path="/office-equipment/develop/:modelId" element={<DevelopModelPage />} />
               <Route path="/professional-equipment/develop" element={<ProfessionalEquipment />} />
               <Route path="/professional-equipment/develop/:modelId" element={<ProfessionalModelPage />} />
+              <Route path="/scanner/scan" element={<ScannerPage />} />
               <Route path="/scanner" element={<ScannerPage />} />
               <Route path="/scaner" element={<Navigate to="/scanner" replace />} />
               

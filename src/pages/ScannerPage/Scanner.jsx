@@ -1,4 +1,5 @@
 import { useCallback, useEffect, useId, useRef, useState } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
 import { Html5Qrcode } from "html5-qrcode";
 import qrcodeSuccessSound from "../../assets/files/qrcode.mp3";
 import "./Scanner.css";
@@ -6,6 +7,14 @@ import "./Scanner.css";
 const STORAGE_KEY = "scanner_scans_v1";
 const SHEET_TRANSITION_MS = 280;
 const SHEET_SWIPE_CLOSE_PX = 100;
+
+function clearReaderDomById(id) {
+  if (typeof document === "undefined") return;
+  const el = document.getElementById(id);
+  if (el) {
+    el.innerHTML = "";
+  }
+}
 
 /** GS1 Application Identifier — убираем известные префиксы (дополняй knownPrefixes при новых AI). */
 function normalizeCode(raw) {
@@ -175,7 +184,16 @@ async function postScan(code) {
 
 export default function Scanner() {
   const readerId = useId().replace(/:/g, "");
-  const [cameraOpen, setCameraOpen] = useState(false);
+  const location = useLocation();
+  const navigate = useNavigate();
+  const normalizedPath = (location.pathname || "/").replace(/\/$/, "") || "/";
+  const isLive = /\/scanner\/scan$/.test(normalizedPath);
+  const listPath = isLive
+    ? normalizedPath.replace(/\/scanner\/scan$/, "/scanner")
+    : normalizedPath;
+  const scanPath = `${listPath}/scan`;
+
+  const [cameraOpen, setCameraOpen] = useState(() => isLive);
   const [lastScan, setLastScan] = useState(null);
   const [scans, setScans] = useState(() => loadScansFromStorage());
   const [error, setError] = useState(null);
@@ -189,8 +207,14 @@ export default function Scanner() {
   const [draftProductName, setDraftProductName] = useState("");
   const [draftCount, setDraftCount] = useState("1");
   const [hapticFallbackBump, setHapticFallbackBump] = useState(false);
+  const [torchOn, setTorchOn] = useState(false);
+  const [isTorchSupported, setIsTorchSupported] = useState(false);
 
   const instanceRef = useRef(null);
+  const readerIdRef = useRef(readerId);
+  readerIdRef.current = readerId;
+  const cameraRunIdRef = useRef(0);
+  const liveSoundPrimedRef = useRef(false);
   const lastCodeRef = useRef(null);
   const stoppingRef = useRef(false);
   const successAudioRef = useRef(null);
@@ -358,38 +382,97 @@ export default function Scanner() {
 
   const stopScanner = useCallback(async () => {
     const qr = instanceRef.current;
-    if (!qr || stoppingRef.current) return;
+    if (!qr) {
+      clearReaderDomById(readerIdRef.current);
+      return;
+    }
+    if (stoppingRef.current) {
+      return;
+    }
     stoppingRef.current = true;
     try {
       if (qr.isScanning) {
+        try {
+          const cap = qr.getRunningTrackCapabilities();
+          if (cap.torch) {
+            await qr.applyVideoConstraints({ advanced: [{ torch: false }] });
+          }
+        } catch {
+          /* ignore */
+        }
         await qr.stop();
       }
-      qr.clear();
+      setTorchOn(false);
+      setIsTorchSupported(false);
+      try {
+        qr.clear();
+      } catch {
+        /* noop */
+      }
     } catch {
       /* already stopped */
     } finally {
       instanceRef.current = null;
       stoppingRef.current = false;
+      clearReaderDomById(readerIdRef.current);
     }
   }, []);
 
+  const toggleTorch = useCallback(async () => {
+    const qr = instanceRef.current;
+    if (!qr?.isScanning) return;
+    const next = !torchOn;
+    try {
+      await qr.applyVideoConstraints({ advanced: [{ torch: next }] });
+      setTorchOn(next);
+    } catch (err) {
+      console.error("Failed to toggle torch", err);
+    }
+  }, [torchOn]);
+
   useEffect(() => {
-    if (!cameraOpen) return undefined;
+    if (!cameraOpen) {
+      return undefined;
+    }
 
     if (!isCameraContextOk()) {
       setError(
         "Камера доступна только по HTTPS (или на localhost). Откройте сайт по защищенному соединению."
       );
       setCameraOpen(false);
+      if (isLive) {
+        navigate(listPath, { replace: true });
+      }
       return undefined;
     }
 
     lastCodeRef.current = null;
     setError(null);
 
+    const myRun = ++cameraRunIdRef.current;
+    let cancelled = false;
+
     const scanConfig = {
       fps: 10,
-      qrbox: { width: 260, height: 260 },
+      /* Полный кадр: библиотека не рисует #qr-shaded-region (дубли «второго» просмотрщика/углов). */
+      qrbox: (viewfinderWidth, viewfinderHeight) => {
+        if (isLive) {
+          return { width: viewfinderWidth, height: viewfinderHeight };
+        }
+        const s = Math.floor(Math.min(viewfinderWidth, viewfinderHeight) * 0.9);
+        return { width: s, height: s };
+      },
+    };
+
+    const syncTorchSupport = (qr) => {
+      try {
+        const cap = qr.getRunningTrackCapabilities();
+        setIsTorchSupported(Boolean(cap.torch));
+        setTorchOn(false);
+      } catch {
+        setIsTorchSupported(false);
+        setTorchOn(false);
+      }
     };
 
     const onSuccess = async (decodedText) => {
@@ -411,7 +494,6 @@ export default function Scanner() {
       playSuccessSound();
 
       await stopScanner();
-      setCameraOpen(false);
       setLastScan(scanRecord);
       setPostError(null);
       setScans((prev) => {
@@ -420,10 +502,22 @@ export default function Scanner() {
         return next;
       });
 
+      let postFailed = false;
       try {
         await postScan(scanRecord.cleanCode);
       } catch {
         setPostError("Не удалось отправить данные на сервер");
+        postFailed = true;
+      }
+
+      if (postFailed) {
+        setCameraOpen(false);
+        return;
+      }
+      if (isLive) {
+        navigate(listPath, { replace: true });
+      } else {
+        setCameraOpen(false);
       }
     };
 
@@ -431,10 +525,31 @@ export default function Scanner() {
       /* ignore noisy frame errors */
     };
 
-    const qr = new Html5Qrcode(readerId, { verbose: false });
-    instanceRef.current = qr;
+    (async () => {
+      const waitMs = 80;
+      const deadline = Date.now() + 4000;
+      while (stoppingRef.current && Date.now() < deadline) {
+        await new Promise((r) => {
+          setTimeout(r, waitMs);
+        });
+      }
+      if (myRun !== cameraRunIdRef.current || cancelled) {
+        return;
+      }
+      await stopScanner();
+      if (myRun !== cameraRunIdRef.current || cancelled) {
+        return;
+      }
+      clearReaderDomById(readerId);
 
-    const start = async () => {
+      const qr = new Html5Qrcode(readerId, { verbose: false });
+      if (myRun !== cameraRunIdRef.current || cancelled) {
+        return;
+      }
+      instanceRef.current = qr;
+      if (myRun !== cameraRunIdRef.current || cancelled) {
+        return;
+      }
       try {
         await qr.start(
           { facingMode: "environment" },
@@ -442,13 +557,29 @@ export default function Scanner() {
           onSuccess,
           onError
         );
+        if (myRun !== cameraRunIdRef.current || cancelled) {
+          await stopScanner();
+          return;
+        }
+        syncTorchSupport(qr);
       } catch (e1) {
+        if (cancelled || myRun !== cameraRunIdRef.current) {
+          return;
+        }
         try {
           const devices = await Html5Qrcode.getCameras();
           if (!devices.length) {
             throw new Error("Камеры не найдены");
           }
+          if (myRun !== cameraRunIdRef.current || cancelled) {
+            return;
+          }
           await qr.start(devices[0].id, scanConfig, onSuccess, onError);
+          if (myRun !== cameraRunIdRef.current || cancelled) {
+            await stopScanner();
+            return;
+          }
+          syncTorchSupport(qr);
         } catch (e2) {
           const msg =
             e2?.message ||
@@ -462,18 +593,33 @@ export default function Scanner() {
             /* noop */
           }
           instanceRef.current = null;
+          clearReaderDomById(readerId);
+          if (isLive) {
+            navigate(listPath, { replace: true });
+          }
         }
       }
-    };
-
-    start();
+    })();
 
     return () => {
-      void stopScanner();
+      cancelled = true;
+      cameraRunIdRef.current += 1;
+      void (async () => {
+        await stopScanner();
+        clearReaderDomById(readerId);
+      })();
     };
-  }, [cameraOpen, playSuccessSound, readerId, stopScanner]);
+  }, [
+    cameraOpen,
+    playSuccessSound,
+    readerId,
+    stopScanner,
+    isLive,
+    listPath,
+    navigate,
+  ]);
 
-  const handleScanClick = () => {
+  const handleOpenScan = useCallback(() => {
     if (hapticFallbackTimerRef.current) {
       clearTimeout(hapticFallbackTimerRef.current);
       hapticFallbackTimerRef.current = null;
@@ -483,14 +629,39 @@ export default function Scanner() {
     setError(null);
     setPostError(null);
     setLastScan(null);
-    setCameraOpen(true);
-  };
+    navigate(scanPath);
+  }, [navigate, scanPath, primeSuccessSound]);
 
-  const handleCloseCamera = async () => {
+  const handleCloseCamera = useCallback(async () => {
     setError(null);
     await stopScanner();
-    setCameraOpen(false);
-  };
+    if (isLive) {
+      navigate(listPath, { replace: true });
+    } else {
+      setCameraOpen(false);
+    }
+  }, [isLive, listPath, navigate, stopScanner]);
+
+  useEffect(() => {
+    if (!isLive || !cameraOpen) {
+      return undefined;
+    }
+    const onKey = (e) => {
+      if (e.key === "Escape") {
+        void handleCloseCamera();
+      }
+    };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [isLive, cameraOpen, handleCloseCamera]);
+
+  const onLivePointerDown = useCallback(() => {
+    if (liveSoundPrimedRef.current) {
+      return;
+    }
+    liveSoundPrimedRef.current = true;
+    primeSuccessSound();
+  }, [primeSuccessSound]);
 
   const handleClearHistory = () => {
     if (sheetCloseTimerRef.current) {
@@ -630,6 +801,7 @@ export default function Scanner() {
 
   const sectionClassName = [
     "scanner",
+    isLive && "scanner--live",
     lastScan != null && "scanner--success",
     hapticFallbackBump && "scanner--haptic-bump",
   ]
@@ -652,40 +824,75 @@ export default function Scanner() {
 
   return (
     <section className={sectionClassName} aria-label="Сканер кодов">
-      <div className="scanner__actions">
-        <button
-          type="button"
-          className="scanner__button scanner__button--primary"
-          onClick={handleScanClick}
-          disabled={cameraOpen || !isCameraContextOk()}
-        >
-          Scan
-        </button>
-        {cameraOpen ? (
+      {!isLive ? (
+        <div className="scanner__actions">
           <button
             type="button"
-            className="scanner__button"
-            onClick={() => void handleCloseCamera()}
+            className="scanner__button scanner__button--primary"
+            onClick={handleOpenScan}
+            disabled={!isCameraContextOk()}
           >
-            Close
+            Scan
           </button>
-        ) : null}
-      </div>
+        </div>
+      ) : null}
 
       {httpsHint}
 
       {error ? <p className="scanner__error">{error}</p> : null}
 
-      {cameraOpen ? (
-        <>
-          <p className="scanner__hint">Place the camera over the QR or barcode</p>
-          <div id={readerId} className="scanner__reader" />
-        </>
+      {isLive && cameraOpen ? (
+        <div
+          className="scanner__live"
+          onPointerDown={onLivePointerDown}
+        >
+          <p className="scanner__live-hint">Place the camera over the QR or barcode</p>
+          <div className="scanner__viewfinder" aria-label="Viewfinder">
+            <div id={readerId} className="scanner__reader scanner__reader--live" />
+            <div className="scanner__viewfinder-guides" aria-hidden="true">
+              <span className="scanner__guide scanner__guide--tl" />
+              <span className="scanner__guide scanner__guide--tr" />
+              <span className="scanner__guide scanner__guide--bl" />
+              <span className="scanner__guide scanner__guide--br" />
+            </div>
+          </div>
+          <div className="scanner__live-bar">
+            <button
+              type="button"
+              className="scanner__live-button scanner__live-button--flash"
+              onClick={() => void toggleTorch()}
+              disabled={!isTorchSupported}
+              aria-pressed={torchOn}
+              aria-label="Flash / torch"
+              title={isTorchSupported ? "Flash" : "Flash not available on this device"}
+            >
+              Flash
+            </button>
+            <button
+              type="button"
+              className="scanner__live-button scanner__live-button--close"
+              onClick={() => void handleCloseCamera()}
+            >
+              Close
+            </button>
+          </div>
+        </div>
       ) : null}
 
       {postError ? <p className="scanner__error">{postError}</p> : null}
+      {isLive && !cameraOpen && postError ? (
+        <div className="scanner__live-error-actions">
+          <button
+            type="button"
+            className="scanner__button scanner__button--primary"
+            onClick={() => void handleCloseCamera()}
+          >
+            Close
+          </button>
+        </div>
+      ) : null}
 
-      {groupedEntries.length > 0 ? (
+      {!isLive && groupedEntries.length > 0 ? (
         <div className="scanner__history" aria-live="polite">
           <div className="scanner__history-header">
             <p className="scanner__hint scanner__hint--success">
