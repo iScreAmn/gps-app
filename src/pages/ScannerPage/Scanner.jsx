@@ -2,8 +2,22 @@ import { useCallback, useEffect, useId, useRef, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { Html5Qrcode } from "html5-qrcode";
 import qrcodeSuccessSound from "../../assets/files/qrcode.mp3";
-import { exportScansToExcel } from "../../utils/excelExport";
+import { exportScansToExcel, scansToXlsxBase64 } from "../../utils/excelExport";
 import "./Scanner.css";
+
+const API_URL = (() => {
+  const envUrl =
+    import.meta.env.VITE_API_URL && String(import.meta.env.VITE_API_URL).trim();
+  if (envUrl) return envUrl.replace(/\/$/, "");
+  if (typeof window !== "undefined") {
+    const host = window.location.hostname;
+    if (host === "localhost" || host === "127.0.0.1") {
+      return `http://${host}:3001`;
+    }
+    return "https://gps-app-server.vercel.app";
+  }
+  return "https://gps-app-server.vercel.app";
+})();
 
 const STORAGE_KEY = "scanner_scans_v1";
 const SHEET_TRANSITION_MS = 280;
@@ -250,6 +264,10 @@ export default function Scanner() {
   const [isTorchSupported, setIsTorchSupported] = useState(false);
   const [isZoom2x, setIsZoom2x] = useState(false);
   const [isZoomSupported, setIsZoomSupported] = useState(false);
+  const [exportFlow, setExportFlow] = useState(null);
+  const [exportEmail, setExportEmail] = useState("");
+  const [exportSending, setExportSending] = useState(false);
+  const [exportEmailError, setExportEmailError] = useState(null);
 
   const instanceRef = useRef(null);
   const readerIdRef = useRef(readerId);
@@ -862,9 +880,70 @@ export default function Scanner() {
     setDeleteItemConfirmId(null);
   };
 
-  const handleExportXlsx = useCallback(() => {
+  const handleOpenExportModal = useCallback(() => {
+    setExportFlow("menu");
+    setExportEmail("");
+    setExportEmailError(null);
+  }, []);
+
+  const handleCloseExportModal = useCallback(() => {
+    if (exportSending) return;
+    setExportFlow(null);
+    setExportEmail("");
+    setExportEmailError(null);
+  }, [exportSending]);
+
+  const handleExportSaveToDevice = useCallback(() => {
     exportScansToExcel(scans);
+    setExportFlow(null);
   }, [scans]);
+
+  const handleExportShowEmail = useCallback(() => {
+    setExportFlow("email");
+    setExportEmailError(null);
+  }, []);
+
+  const handleExportBackToMenu = useCallback(() => {
+    setExportFlow("menu");
+    setExportEmailError(null);
+  }, []);
+
+  const handleExportSendEmail = useCallback(async () => {
+    const to = exportEmail.trim();
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(to)) {
+      setExportEmailError("Invalid email");
+      return;
+    }
+    const packed = scansToXlsxBase64(scans);
+    if (!packed) {
+      setExportEmailError("Nothing to export");
+      return;
+    }
+    setExportSending(true);
+    setExportEmailError(null);
+    try {
+      const res = await fetch(`${API_URL}/api/scanner/send-report`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          to,
+          attachmentBase64: packed.base64,
+          filename: packed.filename,
+        }),
+      });
+      const data = await res.json().catch(() => ({}));
+      if (!res.ok) {
+        throw new Error(data.message || `HTTP ${res.status}`);
+      }
+      setExportFlow(null);
+      setExportEmail("");
+    } catch (e) {
+      setExportEmailError(e.message || "Send failed");
+    } finally {
+      setExportSending(false);
+    }
+  }, [exportEmail, scans]);
 
   const httpsHint =
     typeof window !== "undefined" && !isCameraContextOk() ? (
@@ -995,9 +1074,9 @@ export default function Scanner() {
               <button
                 type="button"
                 className="scanner__button scanner__button--export"
-                onClick={handleExportXlsx}
+                onClick={handleOpenExportModal}
               >
-                Save XLSX
+                Export
               </button>
               <button
                 type="button"
@@ -1193,6 +1272,94 @@ export default function Scanner() {
                 Delete
               </button>
             </div>
+          </div>
+        </div>
+      ) : null}
+
+      {exportFlow ? (
+        <div
+          className="scanner__modal-overlay scanner__modal-overlay--stack"
+          onClick={handleCloseExportModal}
+          role="presentation"
+        >
+          <div
+            className="scanner__modal scanner__modal--export"
+            role="dialog"
+            aria-modal="true"
+            aria-label="Export scans"
+            onClick={(event) => event.stopPropagation()}
+          >
+            {exportFlow === "menu" ? (
+              <>
+                <h3 className="scanner__modal-title">Export</h3>
+                <p className="scanner__modal-text">
+                  Save the spreadsheet on this device or send it by email.
+                </p>
+                <div className="scanner__export-choices">
+                  <button
+                    type="button"
+                    className="scanner__button scanner__button--primary scanner__export-choice"
+                    onClick={handleExportSaveToDevice}
+                  >
+                    Save
+                  </button>
+                  <button
+                    type="button"
+                    className="scanner__button scanner__button--export scanner__export-choice"
+                    onClick={handleExportShowEmail}
+                  >
+                    Send Email
+                  </button>
+                </div>
+                <div className="scanner__modal-actions">
+                  <button
+                    type="button"
+                    className="scanner__button scanner__button--modal-cancel"
+                    onClick={handleCloseExportModal}
+                  >
+                    Cancel
+                  </button>
+                </div>
+              </>
+            ) : (
+              <>
+                <h3 className="scanner__modal-title">Send Email</h3>
+                <label className="scanner__field" htmlFor="scanner-export-email">
+                  Recipient
+                </label>
+                <input
+                  id="scanner-export-email"
+                  type="email"
+                  className="scanner__input"
+                  autoComplete="email"
+                  placeholder="name@example.com"
+                  value={exportEmail}
+                  onChange={(e) => setExportEmail(e.target.value)}
+                  disabled={exportSending}
+                />
+                {exportEmailError ? (
+                  <p className="scanner__error scanner__error--compact">{exportEmailError}</p>
+                ) : null}
+                <div className="scanner__modal-actions scanner__modal-actions--spread">
+                  <button
+                    type="button"
+                    className="scanner__button scanner__button--modal-cancel"
+                    onClick={handleExportBackToMenu}
+                    disabled={exportSending}
+                  >
+                    Back
+                  </button>
+                  <button
+                    type="button"
+                    className="scanner__button scanner__button--primary"
+                    onClick={() => void handleExportSendEmail()}
+                    disabled={exportSending}
+                  >
+                    {exportSending ? "Sending…" : "Send"}
+                  </button>
+                </div>
+              </>
+            )}
           </div>
         </div>
       ) : null}

@@ -30,9 +30,9 @@ function applyHeaderRowStyle(worksheet) {
  *   timestamp: number;
  * }>} scans
  */
-export function exportScansToExcel(scans) {
+function buildScansWorkbook(scans) {
   if (!Array.isArray(scans) || scans.length === 0) {
-    return;
+    return null;
   }
 
   const dataForExcel = scans.map((item) => ({
@@ -45,17 +45,54 @@ export function exportScansToExcel(scans) {
   const worksheet = XLSX.utils.json_to_sheet(dataForExcel);
   applyHeaderRowStyle(worksheet);
 
-  const wscols = [
-    { wch: 30 },
-    { wch: 20 },
-    { wch: 10 },
-    { wch: 25 },
-  ];
+  const wscols = [{ wch: 30 }, { wch: 20 }, { wch: 10 }, { wch: 25 }];
   worksheet["!cols"] = wscols;
 
   const workbook = XLSX.utils.book_new();
   XLSX.utils.book_append_sheet(workbook, worksheet, "Сканирования");
+  return workbook;
+}
 
+/**
+ * @param {Array<{
+ *   productName?: string;
+ *   cleanCode: string;
+ *   count?: number;
+ *   timestamp: number;
+ * }>} scans
+ */
+export function exportScansToExcel(scans) {
+  const workbook = buildScansWorkbook(scans);
+  if (!workbook) {
+    return;
+  }
   const date = new Date().toISOString().slice(0, 10);
   XLSX.writeFile(workbook, `scans_report_${date}.xlsx`);
+}
+
+/**
+ * @param {Array<{
+ *   productName?: string;
+ *   cleanCode: string;
+ *   count?: number;
+ *   timestamp: number;
+ * }>} scans
+ * @returns {{ base64: string; filename: string } | null}
+ */
+export function scansToXlsxBase64(scans) {
+  const workbook = buildScansWorkbook(scans);
+  if (!workbook) {
+    return null;
+  }
+  const date = new Date().toISOString().slice(0, 10);
+  const filename = `scans_report_${date}.xlsx`;
+  const buf = XLSX.write(workbook, { bookType: "xlsx", type: "array" });
+  const u8 = new Uint8Array(buf);
+  let binary = "";
+  const chunk = 0x8000;
+  for (let i = 0; i < u8.length; i += chunk) {
+    binary += String.fromCharCode.apply(null, u8.subarray(i, i + chunk));
+  }
+  const base64 = btoa(binary);
+  return { base64, filename };
 }
