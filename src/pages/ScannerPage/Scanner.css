@@ -50,6 +50,7 @@
 .scanner__button {
   width: 100%;
   padding: 20px 55px;
+  text-transform: uppercase;
   font-size: 15px;
   cursor: pointer;
   border: 1px solid #333;
@@ -64,6 +65,7 @@
 .scanner__button--primary {
   padding: 20px 55px;
   font-size: 15px;
+  text-transform: uppercase;
   cursor: pointer;
   border-radius: 6px;
   background: #1a1a1a;
@@ -105,7 +107,7 @@
 }
 
 .scanner__result--success {
-  border: 2px solid #bf4343;
+  border: 2px solid #cbcbcb80;
   background: #fff;
   color: #1e1e1e;
   cursor: pointer;
@@ -209,7 +211,7 @@
   height: 1.1rem;
   padding: 0 0.35rem;
   border-radius: 999px;
-  background: #bf4343;
+  background: #e55656c4;
   color: #fff;
   font-weight: 600;
   font-size: 0.68rem;

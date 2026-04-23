@@ -678,7 +678,7 @@ export default function Scanner() {
 
       {cameraOpen ? (
         <>
-          <p className="scanner__hint">Наведите камеру на QR или штрих-код</p>
+          <p className="scanner__hint">Place the camera over the QR or barcode</p>
           <div id={readerId} className="scanner__reader" />
         </>
       ) : null}
@@ -689,7 +689,7 @@ export default function Scanner() {
         <div className="scanner__history" aria-live="polite">
           <div className="scanner__history-header">
             <p className="scanner__hint scanner__hint--success">
-              История сканирований:
+              Scan History:
             </p>
             <button
               type="button"
@@ -778,13 +778,13 @@ export default function Scanner() {
             onPointerCancel={handleSheetPointerCancel}
           >
             <div className="scanner__sheet-handle" aria-hidden="true" />
-            <h3 className="scanner__modal-title">Позиция</h3>
+            <h3 className="scanner__modal-title">Product</h3>
             <p className="scanner__sheet-code">{itemForModal.cleanCode}</p>
             <p className="scanner__sheet-meta">
               {itemForModal.type} · {itemForModal.rawCode}
             </p>
             <label className="scanner__field" htmlFor="scanner-product-name">
-              Название продукта
+              Product Name
             </label>
             <input
               id="scanner-product-name"
@@ -792,10 +792,10 @@ export default function Scanner() {
               type="text"
               value={draftProductName}
               onChange={(e) => setDraftProductName(e.target.value)}
-              placeholder="Необязательно"
+              placeholder="Enter product name"
               autoComplete="off"
             />
-            <p className="scanner__field-label">Количество</p>
+            <p className="scanner__field-label">Quantity</p>
             <div className="scanner__count-row">
               <button
                 type="button"
@@ -862,10 +862,10 @@ export default function Scanner() {
             aria-label="Подтверждение удаления позиции"
             onClick={(event) => event.stopPropagation()}
           >
-            <h3 className="scanner__modal-title">Удалить позицию?</h3>
+            <h3 className="scanner__modal-title">Delete Item?</h3>
             <p className="scanner__modal-text">
               {itemPendingDelete
-                ? `Удалить «${itemPendingDelete.cleanCode}»${itemPendingDelete.productName ? ` (${itemPendingDelete.productName})` : ""} из списка?`
+                ? `Delete «${itemPendingDelete.cleanCode}»${itemPendingDelete.productName ? ` (${itemPendingDelete.productName})` : ""} from the list?`
                 : "Удалить эту позицию из списка?"}
             </p>
             <div className="scanner__modal-actions">
@@ -901,9 +901,9 @@ export default function Scanner() {
             aria-label="Подтверждение удаления истории"
             onClick={(event) => event.stopPropagation()}
           >
-            <h3 className="scanner__modal-title">Удалить историю?</h3>
+            <h3 className="scanner__modal-title">Delete history?</h3>
             <p className="scanner__modal-text">
-              Это действие удалит все отсканированные коды из localStorage.
+              This action will delete all scanned codes from localStorage.
             </p>
             <div className="scanner__modal-actions">
               <button
