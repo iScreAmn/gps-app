@@ -306,6 +306,12 @@
   font-weight: 600;
 }
 
+.scanner__history-buttons {
+  width: 100%;
+  display: flex;
+  gap: 0.5rem;
+}
+
 .scanner__error {
   color: #b00020;
   font-size: 0.875rem;
@@ -362,13 +368,12 @@
 }
 
 .scanner__button--export {
-  width: auto;
-  padding: 0.45rem 0.7rem;
+  padding: 20px 55px;
   font-size: 0.8rem;
   border-color: #1b5e20;
   color: #1b5e20;
   background: #fff;
-  text-transform: none;
+  text-transform: uppercase;
   letter-spacing: 0.02em;
 }
 
@@ -377,8 +382,7 @@
 }
 
 .scanner__button--danger {
-  width: auto;
-  padding: 0.45rem 0.7rem;
+  padding: 20px 55px;
   font-size: 0.8rem;
   border-color: #b00020;
   color: #b00020;
@@ -524,7 +528,6 @@
 
 .scanner__modal-actions {
   display: flex;
-  justify-content: flex-end;
   gap: 0.5rem;
   margin-top: 1rem;
 }
@@ -542,8 +545,7 @@
 
 .scanner__export-choice {
   width: 100%;
-  min-height: 2.75rem;
-  justify-content: center;
+  text-transform: uppercase;
 }
 
 .scanner__modal--export .scanner__input {
@@ -556,8 +558,7 @@
 }
 
 .scanner__button--modal-cancel {
-  width: auto;
-  padding: 0.45rem 0.7rem;
+  padding: 20px 55px;
   font-size: 0.8rem;
 }
 
@@ -678,8 +679,7 @@
 }
 
 .scanner__sheet-actions {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  display: flex;
   gap: 0.5rem;
   margin-bottom: 0.5rem;
 }

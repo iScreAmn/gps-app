@@ -1070,7 +1070,7 @@ export default function Scanner() {
             <p className="scanner__hint scanner__hint--success">
               Scan History:
             </p>
-            <div className="scanner__history-actions">
+            <div className="scanner__history-buttons">
               <button
                 type="button"
                 className="scanner__button scanner__button--export"
@@ -1083,7 +1083,7 @@ export default function Scanner() {
                 className="scanner__button scanner__button--danger"
                 onClick={handleClearHistory}
               >
-                Clear history
+                Clear
               </button>
             </div>
           </div>
@@ -1166,7 +1166,6 @@ export default function Scanner() {
             onPointerCancel={handleSheetPointerCancel}
           >
             <div className="scanner__sheet-handle" aria-hidden="true" />
-            <h3 className="scanner__modal-title">Product</h3>
             <p className="scanner__sheet-code">{itemForModal.cleanCode}</p>
             <p className="scanner__sheet-meta">
               {itemForModal.type} · {itemForModal.rawCode}
@@ -1218,13 +1217,7 @@ export default function Scanner() {
               >
                 Save
               </button>
-              <button
-                type="button"
-                className="scanner__button scanner__button--modal-cancel"
-                onClick={() => closeItemSheet()}
-              >
-                Cancel
-              </button>
+
               <button
                 type="button"
                 className="scanner__button scanner__button--danger scanner__button--delete"
@@ -1293,7 +1286,7 @@ export default function Scanner() {
               <>
                 <h3 className="scanner__modal-title">Export</h3>
                 <p className="scanner__modal-text">
-                  Save the spreadsheet on this device or send it by email.
+                  Save the XLSX on this device or send it by email
                 </p>
                 <div className="scanner__export-choices">
                   <button
@@ -1312,13 +1305,6 @@ export default function Scanner() {
                   </button>
                 </div>
                 <div className="scanner__modal-actions">
-                  <button
-                    type="button"
-                    className="scanner__button scanner__button--modal-cancel"
-                    onClick={handleCloseExportModal}
-                  >
-                    Cancel
-                  </button>
                 </div>
               </>
             ) : (
