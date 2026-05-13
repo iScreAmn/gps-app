@@ -631,6 +631,9 @@
       "stat2Sub": "Response",
       "stat3Title": "18+",
       "stat3Sub": "Years"
+    },
+    "sticky": {
+      "call": "Call"
     }
   }
 }

@@ -9,6 +9,7 @@ import {
   FaMapMarkerAlt,
   FaClock,
   FaArrowRight,
+  FaArrowUp,
 } from 'react-icons/fa';
 import {
   FiTool,
@@ -98,6 +99,14 @@ const InfoPage = () => {
   /* hide sticky bar when footer-cta is in view */
   const footerCtaRef = useRef(null);
   const footerCtaInView = useInView(footerCtaRef, { margin: '-30% 0px 0px 0px' });
+  const reduceMotion = useReducedMotion();
+
+  const scrollInfoPageToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: reduceMotion ? 'auto' : 'smooth',
+    });
+  };
 
   const quickActions = [
     {
@@ -113,21 +122,6 @@ const InfoPage = () => {
       sub: 'Оригинал и совместимые',
       href: '#supplies',
       accent: 'blue',
-    },
-    {
-      icon: <FiSettings />,
-      title: 'Обслуживание',
-      sub: 'Регулярный сервис',
-      href: '#services',
-      accent: 'violet',
-    },
-    {
-      icon: <FaTelegramPlane />,
-      title: 'Telegram',
-      sub: 'Ответим в течение 5 минут',
-      href: tgHref,
-      external: true,
-      accent: 'cyan',
     },
     {
       icon: <FaWhatsapp />,
@@ -252,9 +246,6 @@ const InfoPage = () => {
         </div>
       </section>
 
-      {/* ============================================================ */}
-      {/*  QUICK ACTIONS                                                */}
-      {/* ============================================================ */}
       <section className="info-section info-quick">
         <div className="info-container">
           <Reveal>
@@ -263,7 +254,6 @@ const InfoPage = () => {
                 <FiZap /> быстрые действия
               </span>
               <h2>Что вам нужно?</h2>
-              <p>Выберите действие — мы откликнемся в течение нескольких минут.</p>
             </header>
           </Reveal>
 
@@ -520,24 +510,13 @@ const InfoPage = () => {
         </div>
       </section>
 
-      {/* ============================================================ */}
-      {/*  STICKY MOBILE CTA BAR                                       */}
-      {/* ============================================================ */}
       <div
         className="info-sticky-bar"
         data-hidden={footerCtaInView ? 'true' : 'false'}
+        data-sticky-lang={heroLang}
       >
         <a href={phoneHref} className="info-sticky-btn info-sticky-call">
-          <FaPhoneAlt /> <span>Позвонить</span>
-        </a>
-        <a
-          href={tgHref}
-          target="_blank"
-          rel="noreferrer"
-          className="info-sticky-btn info-sticky-tg"
-          aria-label="Telegram"
-        >
-          <FaTelegramPlane />
+          <FaPhoneAlt /> <span>{t('infoPage.sticky.call')}</span>
         </a>
         <a
           href={waHref}
@@ -548,6 +527,14 @@ const InfoPage = () => {
         >
           <FaWhatsapp />
         </a>
+        <button
+          type="button"
+          className="info-sticky-btn info-sticky-top"
+          aria-label="Наверх"
+          onClick={scrollInfoPageToTop}
+        >
+          <FaArrowUp />
+        </button>
       </div>
     </div>
   );

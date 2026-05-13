@@ -1065,6 +1065,34 @@ body[data-theme="light"] .info-footer-card {
   pointer-events: none;
 }
 
+/*
+ * Georgian sticky bar only — change the variables; `data-sticky-lang="en"` keeps base styles.
+ */
+.info-sticky-bar[data-sticky-lang="ka"] {
+  font-family: 'Archyedt';
+  --info-sticky-bar-gap: 6px;
+  --info-sticky-bar-pad: 7px;
+  --info-sticky-call-fs: 0.88rem;
+  --info-sticky-btn-height: 46px;
+  --info-sticky-icon-size: 44px;
+  gap: var(--info-sticky-bar-gap);
+  padding: var(--info-sticky-bar-pad);
+}
+
+.info-sticky-bar[data-sticky-lang="ka"] .info-sticky-btn {
+  height: var(--info-sticky-btn-height);
+}
+
+.info-sticky-bar[data-sticky-lang="ka"] .info-sticky-call {
+  font-size: 18px;
+  letter-spacing: -0.02em;
+}
+
+.info-sticky-bar[data-sticky-lang="ka"] .info-sticky-wa,
+.info-sticky-bar[data-sticky-lang="ka"] .info-sticky-top {
+  width: var(--info-sticky-icon-size);
+}
+
 .info-sticky-btn {
   display: inline-flex;
   align-items: center;
@@ -1087,13 +1115,26 @@ body[data-theme="light"] .info-footer-card {
   background: linear-gradient(135deg, #ef4444 0%, var(--info-accent) 100%);
   box-shadow: 0 8px 20px -8px rgba(220, 38, 38, 0.6);
 }
-.info-sticky-tg {
-  width: 48px; flex-shrink: 0;
-  background: linear-gradient(135deg, #229ED9 0%, #1a86bb 100%);
-}
 .info-sticky-wa {
   width: 48px; flex-shrink: 0;
   background: linear-gradient(135deg, #25D366 0%, #1ea84f 100%);
+}
+
+.info-sticky-top {
+  width: 48px;
+  flex-shrink: 0;
+  padding: 0;
+  border: 1px solid var(--info-border-strong);
+  background: var(--info-glass);
+  color: var(--info-text);
+  cursor: pointer;
+  box-shadow: none;
+}
+.info-sticky-top:hover {
+  filter: none;
+  background: var(--info-glass-strong);
+  border-color: var(--info-accent);
+  color: var(--info-accent);
 }
 
 @media (min-width: 900px) {
