@@ -76,6 +76,7 @@ body[data-theme="dark"] .info-page {
 .info-section {
   padding: 35px 0;
   position: relative;
+  z-index: 1;
 }
 
 .info-section-head {
@@ -196,11 +197,11 @@ body[data-theme="dark"] .info-page {
 
 .info-hero {
   position: relative;
+  z-index: 1;
   padding: 20px 0 80px;
-  overflow: hidden;
-  isolation: isolate;
 }
 
+/* Full-page decorative background (was scoped to `.info-hero` only). */
 .info-bg-layer {
   position: absolute;
   inset: 0;
@@ -251,8 +252,9 @@ body[data-theme="dark"] .info-orb-3 { opacity: 0.28; }
     linear-gradient(to right, var(--info-border) 1px, transparent 1px),
     linear-gradient(to bottom, var(--info-border) 1px, transparent 1px);
   background-size: 56px 56px;
-  mask-image: radial-gradient(ellipse 70% 55% at 50% 40%, #000 30%, transparent 75%);
-  -webkit-mask-image: radial-gradient(ellipse 70% 55% at 50% 40%, #000 30%, transparent 75%);
+  /* Anchor to top of page — % height would center in a tall document. */
+  mask-image: radial-gradient(ellipse 85% 52% at 50% min(32vh, 300px), #000 28%, transparent 76%);
+  -webkit-mask-image: radial-gradient(ellipse 85% 52% at 50% min(32vh, 300px), #000 28%, transparent 76%);
   opacity: 0.5;
 }
 

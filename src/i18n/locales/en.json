@@ -630,8 +630,8 @@
       "stat1Sub": "Support",
       "stat2Title": "Quick",
       "stat2Sub": "Response",
-      "stat3Title": "18+",
-      "stat3Sub": "Years"
+      "stat3Title": "18 Years",
+      "stat3Sub": "Of Experience"
     },
     "sticky": {
       "call": "Call"
@@ -650,8 +650,8 @@
         "sub": "Same-day on-site visit"
       },
       "cartridge": {
-        "title": "Buy a cartridge",
-        "sub": "OEM and compatible supplies"
+        "title": "Order a toner",
+        "sub": "Delivery or visit to the office"
       },
       "whatsapp": {
         "title": "WhatsApp",
@@ -693,33 +693,6 @@
         }
       ]
     },
-    "supplies": {
-      "eyebrow": "Consumables",
-      "title": "Everything that prints — we stock it",
-      "lead": "We’ll match your printer model. Same-day delivery available.",
-      "footerPrompt": "Can’t find your model?",
-      "footerCta": "Message us",
-      "items": [
-        { "title": "Cartridges", "tag": "All brands" },
-        { "title": "Toners", "tag": "OEM" },
-        { "title": "Drums", "tag": "OEM-grade" },
-        { "title": "Paper", "tag": "A4–A0" },
-        { "title": "Spare parts", "tag": "In stock" },
-        { "title": "Inks", "tag": "Pigment / dye" }
-      ]
-    },
-    "trust": {
-      "eyebrow": "By the numbers",
-      "title": "Chosen when print uptime matters"
-    },
-    "stats": {
-      "items": [
-        { "suffix": "+", "label": "years in business" },
-        { "suffix": "+", "label": "devices serviced" },
-        { "suffix": " min", "label": "average dispatch time" },
-        { "suffix": "+", "label": "corporate clients" }
-      ]
-    },
     "contact": {
       "eyebrow": "Contact",
       "title": "Always on call",
@@ -736,9 +709,8 @@
     },
     "footerCta": {
       "title": "Need service or supplies?",
-      "lead": "Leave a request — an engineer will reach out within 15 minutes.",
-      "call": "Call now",
-      "telegram": "Message on Telegram"
+      "lead": "Contact us and we will help you solve your problem.",
+      "call": "Call now"
     },
     "mapIframeTitle": "GPS office map"
   }

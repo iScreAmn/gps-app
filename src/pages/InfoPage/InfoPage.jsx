@@ -159,17 +159,17 @@ const InfoPage = () => {
 
   return (
     <div className="info-page" data-page-lang={pageLang}>
+      <div className="info-bg-layer" aria-hidden>
+        <div className="info-orb info-orb-1" />
+        <div className="info-orb info-orb-2" />
+        <div className="info-orb info-orb-3" />
+        <div className="info-grid-overlay" />
+      </div>
+
       {/* ============================================================ */}
       {/*  HERO                                                        */}
       {/* ============================================================ */}
       <section className="info-hero" data-hero-lang={pageLang}>
-        <div className="info-bg-layer">
-          <div className="info-orb info-orb-1" />
-          <div className="info-orb info-orb-2" />
-          <div className="info-orb info-orb-3" />
-          <div className="info-grid-overlay" />
-        </div>
-
         <div className="info-container">
           <m.h1
             className="info-hero-title"
