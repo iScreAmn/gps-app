@@ -6,9 +6,6 @@ import {
   FaPhoneAlt,
   FaTelegramPlane,
   FaWhatsapp,
-  FaEnvelope,
-  FaMapMarkerAlt,
-  FaClock,
   FaArrowRight,
   FaArrowUp,
 } from 'react-icons/fa';
@@ -16,7 +13,6 @@ import {
   FiTool,
   FiPrinter,
   FiShoppingBag,
-  FiHeadphones,
   FiSend,
   FiZap,
   FiSettings,
@@ -95,8 +91,7 @@ const InfoPage = () => {
   const phoneLabel = contactsData.phone.label;
   const tgHref = contactsData.socials.telegram;
   const waHref = contactsData.socials.whatsapp;
-  const emailHref = contactsData.email.href;
-  const emailLabel = contactsData.email.label;
+  const contactsHref = `/${pageLang}/contacts`;
 
   /* hide sticky bar when footer-cta is in view */
   const footerCtaRef = useRef(null);
@@ -111,7 +106,7 @@ const InfoPage = () => {
   };
 
   const quickActionDefs = [
-    { key: 'master', icon: <FiTool />, href: '#contact-form', accent: 'red', external: false },
+    { key: 'master', icon: <FiTool />, href: contactsHref, accent: 'red', external: false },
     { key: 'cartridge', icon: <FiDroplet />, href: '#supplies', accent: 'blue', external: false },
     { key: 'whatsapp', icon: <FaWhatsapp />, href: waHref, accent: 'green', external: true },
     { key: 'call', icon: <FaPhoneAlt />, href: phoneHref, accent: 'amber', external: false },
@@ -201,7 +196,7 @@ const InfoPage = () => {
             <a href={phoneHref} className="info-btn info-btn-primary">
               <FaPhoneAlt /> {t('infoPage.hero.ctaContact')}
             </a>
-            <a href="#contact-form" className="info-btn info-btn-ghost">
+            <a href={contactsHref} className="info-btn info-btn-ghost">
               <FiSend /> {t('infoPage.hero.ctaRequest')}
             </a>
           </m.div>
@@ -378,104 +373,6 @@ const InfoPage = () => {
                 </div>
               </Reveal>
             ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ============================================================ */}
-      {/*  CONTACT                                                      */}
-      {/* ============================================================ */}
-      <section className="info-section info-contact" id="contact-form">
-        <div className="info-container">
-          <Reveal>
-            <header className="info-section-head">
-              <span className="info-eyebrow">
-                <FiHeadphones /> {t('infoPage.contact.eyebrow')}
-              </span>
-              <h2>{t('infoPage.contact.title')}</h2>
-              <p>{t('infoPage.contact.lead')}</p>
-            </header>
-          </Reveal>
-
-          <div className="info-contact-grid">
-            <Reveal className="info-contact-card-wrap">
-              <div className="info-contact-card">
-                <a href={phoneHref} className="info-contact-row">
-                  <span className="info-contact-row-icon"><FaPhoneAlt /></span>
-                  <span className="info-contact-row-text">
-                    <small>{t('infoPage.contact.phoneLabel')}</small>
-                    <strong>{phoneLabel}</strong>
-                  </span>
-                  <FaArrowRight className="info-contact-row-arrow" />
-                </a>
-
-                <a
-                  href={tgHref}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="info-contact-row"
-                >
-                  <span className="info-contact-row-icon info-bg-tg"><FaTelegramPlane /></span>
-                  <span className="info-contact-row-text">
-                    <small>{t('infoPage.contact.telegramLabel')}</small>
-                    <strong>@geopolser</strong>
-                  </span>
-                  <FaArrowRight className="info-contact-row-arrow" />
-                </a>
-
-                <a
-                  href={waHref}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="info-contact-row"
-                >
-                  <span className="info-contact-row-icon info-bg-wa"><FaWhatsapp /></span>
-                  <span className="info-contact-row-text">
-                    <small>{t('infoPage.contact.whatsappLabel')}</small>
-                    <strong>{t('infoPage.contact.whatsappValue')}</strong>
-                  </span>
-                  <FaArrowRight className="info-contact-row-arrow" />
-                </a>
-
-                <a href={emailHref} className="info-contact-row">
-                  <span className="info-contact-row-icon"><FaEnvelope /></span>
-                  <span className="info-contact-row-text">
-                    <small>{t('infoPage.contact.emailLabel')}</small>
-                    <strong>{emailLabel}</strong>
-                  </span>
-                  <FaArrowRight className="info-contact-row-arrow" />
-                </a>
-
-                <div className="info-contact-row info-contact-row-static">
-                  <span className="info-contact-row-icon"><FaMapMarkerAlt /></span>
-                  <span className="info-contact-row-text">
-                    <small>{t('infoPage.contact.addressLabel')}</small>
-                    <strong>{t('infoPage.contact.addressValue')}</strong>
-                  </span>
-                </div>
-
-                <div className="info-contact-row info-contact-row-static">
-                  <span className="info-contact-row-icon"><FaClock /></span>
-                  <span className="info-contact-row-text">
-                    <small>{t('infoPage.contact.hoursLabel')}</small>
-                    <strong>{t('infoPage.contact.hoursValue')}</strong>
-                  </span>
-                </div>
-              </div>
-            </Reveal>
-
-            <Reveal delay={0.1} className="info-map-wrap">
-              <div className="info-map">
-                <iframe
-                  title={t('infoPage.mapIframeTitle')}
-                  src="https://www.google.com/maps?q=41.724653,44.786316&z=15&output=embed"
-                  loading="lazy"
-                  referrerPolicy="no-referrer-when-downgrade"
-                  allowFullScreen=""
-                />
-                <div className="info-map-overlay" />
-              </div>
-            </Reveal>
           </div>
         </div>
       </section>
