@@ -90,9 +90,6 @@ const InfoPage = () => {
   const waHref = contactsData.socials.whatsapp;
   const contactsHref = `/${pageLang}/contacts`;
 
-  /* hide sticky bar when footer-cta is in view */
-  const footerCtaRef = useRef(null);
-  const footerCtaInView = useInView(footerCtaRef, { margin: '-30% 0px 0px 0px' });
   const reduceMotion = useReducedMotion();
 
   const scrollInfoPageToTop = () => {
@@ -273,7 +270,7 @@ const InfoPage = () => {
         </div>
       </section>
 
-      <section className="info-section info-footer-cta" ref={footerCtaRef}>
+      <section className="info-section info-footer-cta">
         <div className="info-container">
           <Reveal>
             <div className="info-footer-card">
@@ -297,7 +294,6 @@ const InfoPage = () => {
 
       <div
         className="info-sticky-bar"
-        data-hidden={footerCtaInView ? 'true' : 'false'}
         data-sticky-lang={pageLang}
       >
         <a href={phoneHref} className="info-sticky-btn info-sticky-call">
