@@ -615,5 +615,22 @@
     "downloading": "Downloading...",
     "successMessage": "File downloaded successfully",
     "alreadyDownloaded": "You have already downloaded the catalog"
+  },
+  "infoPage": {
+    "hero": {
+      "titleLine1": "Service & Supplies",
+      "titleAccent": "For your device",
+      "subtitle": "You've scanned the QR code on the device. Here's everything you need to keep it running without interruptions: repairs, consumables, and support — all in one tap.",
+      "ctaContact": "Contact us",
+      "ctaRequest": "Leave a request",
+      "printerStatus": "Connected",
+      "printerTagline": "We are ready to help",
+      "stat1Title": "Full",
+      "stat1Sub": "Support",
+      "stat2Title": "Quick",
+      "stat2Sub": "Response",
+      "stat3Title": "18+",
+      "stat3Sub": "Years"
+    }
   }
 }
