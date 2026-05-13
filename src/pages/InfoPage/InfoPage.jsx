@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { motion, useInView, useReducedMotion } from 'motion/react';
+// eslint-disable-next-line no-unused-vars -- motion primitives (m.div, m.h1, …)
+import { motion as m, useInView, useReducedMotion } from 'motion/react';
 import {
   FaPhoneAlt,
   FaTelegramPlane,
@@ -37,7 +38,7 @@ import './InfoPage.css';
 /* ------------------------------------------------------------------ */
 /*  Animated counter — counts up when the card scrolls into view       */
 /* ------------------------------------------------------------------ */
-const Counter = ({ to, suffix = '', duration = 1600 }) => {
+const Counter = ({ to, suffix = '', duration = 1600, numberLocale = 'en-US' }) => {
   const ref = useRef(null);
   const inView = useInView(ref, { once: true, margin: '-10% 0px' });
   const reduce = useReducedMotion();
@@ -59,7 +60,7 @@ const Counter = ({ to, suffix = '', duration = 1600 }) => {
 
   return (
     <span ref={ref} className="info-stat-value">
-      {value.toLocaleString('ru-RU')}
+      {value.toLocaleString(numberLocale)}
       <span className="info-stat-suffix">{suffix}</span>
     </span>
   );
@@ -69,7 +70,7 @@ const Counter = ({ to, suffix = '', duration = 1600 }) => {
 /*  Reveal-on-scroll wrapper                                           */
 /* ------------------------------------------------------------------ */
 const Reveal = ({ children, delay = 0, y = 24, className = '' }) => (
-  <motion.div
+  <m.div
     className={className}
     initial={{ opacity: 0, y }}
     whileInView={{ opacity: 1, y: 0 }}
@@ -77,7 +78,7 @@ const Reveal = ({ children, delay = 0, y = 24, className = '' }) => (
     transition={{ duration: 0.7, delay, ease: [0.22, 1, 0.36, 1] }}
   >
     {children}
-  </motion.div>
+  </m.div>
 );
 
 /* ------------------------------------------------------------------ */
@@ -85,10 +86,11 @@ const Reveal = ({ children, delay = 0, y = 24, className = '' }) => (
 /* ------------------------------------------------------------------ */
 const InfoPage = () => {
   const { t, i18n } = useTranslation();
-  const heroLang =
+  const pageLang =
     String(i18n.resolvedLanguage || i18n.language || '').split('-')[0] === 'ka'
       ? 'ka'
       : 'en';
+  const numberLocale = pageLang === 'ka' ? 'ka-GE' : 'en-US';
   const phoneHref = contactsData.phone.href;
   const phoneLabel = contactsData.phone.label;
   const tgHref = contactsData.socials.telegram;
@@ -108,69 +110,70 @@ const InfoPage = () => {
     });
   };
 
-  const quickActions = [
-    {
-      icon: <FiTool />,
-      title: 'Вызвать мастера',
-      sub: 'Выезд в день обращения',
-      href: '#contact-form',
-      accent: 'red',
-    },
-    {
-      icon: <FiDroplet />,
-      title: 'Купить картридж',
-      sub: 'Оригинал и совместимые',
-      href: '#supplies',
-      accent: 'blue',
-    },
-    {
-      icon: <FaWhatsapp />,
-      title: 'WhatsApp',
-      sub: 'Чат с инженером',
-      href: waHref,
-      external: true,
-      accent: 'green',
-    },
-    {
-      icon: <FaPhoneAlt />,
-      title: 'Позвонить',
-      sub: phoneLabel,
-      href: phoneHref,
-      accent: 'amber',
-    },
+  const quickActionDefs = [
+    { key: 'master', icon: <FiTool />, href: '#contact-form', accent: 'red', external: false },
+    { key: 'cartridge', icon: <FiDroplet />, href: '#supplies', accent: 'blue', external: false },
+    { key: 'whatsapp', icon: <FaWhatsapp />, href: waHref, accent: 'green', external: true },
+    { key: 'call', icon: <FaPhoneAlt />, href: phoneHref, accent: 'amber', external: false },
   ];
+  const quickActions = quickActionDefs.map((def) => ({
+    ...def,
+    title: t(`infoPage.quickActions.${def.key}.title`),
+    sub: def.key === 'call' ? phoneLabel : t(`infoPage.quickActions.${def.key}.sub`),
+  }));
 
-  const services = [
-    { icon: <FiActivity />, title: 'Диагностика', desc: 'Полная проверка узлов и калибровка' },
-    { icon: <FiTool />, title: 'Ремонт принтеров', desc: 'Лазерные, струйные, МФУ, плоттеры' },
-    { icon: <FiDroplet />, title: 'Заправка картриджей', desc: 'Оригинальные тонеры и чернила' },
-    { icon: <FiUsers />, title: 'Обслуживание офисов', desc: 'Контракты на парк техники' },
-    { icon: <FiTruck />, title: 'Выезд мастера', desc: 'По Тбилиси — в течение часа' },
-    { icon: <FiCpu />, title: 'Настройка оборудования', desc: 'Сеть, драйверы, профили печати' },
+  const servicesBlock = t('infoPage.services', { returnObjects: true });
+  const serviceIcons = [
+    <FiActivity />,
+    <FiTool />,
+    <FiDroplet />,
+    <FiUsers />,
+    <FiTruck />,
+    <FiCpu />,
   ];
+  const services = Array.isArray(servicesBlock?.items)
+    ? servicesBlock.items.map((item, i) => ({
+        icon: serviceIcons[i],
+        title: item.title,
+        desc: item.desc,
+      }))
+    : [];
 
-  const supplies = [
-    { icon: <FiBox />, title: 'Картриджи', tag: 'Все бренды' },
-    { icon: <FiDroplet />, title: 'Тонеры', tag: 'Оригинал' },
-    { icon: <FiLayers />, title: 'Фотобарабаны', tag: 'OEM качество' },
-    { icon: <FiFileText />, title: 'Бумага', tag: 'A4 — A0' },
-    { icon: <FiSettings />, title: 'Запчасти', tag: 'В наличии' },
-    { icon: <FiPrinter />, title: 'Чернила', tag: 'Pigment / Dye' },
+  const suppliesBlock = t('infoPage.supplies', { returnObjects: true });
+  const supplyIcons = [
+    <FiBox />,
+    <FiDroplet />,
+    <FiLayers />,
+    <FiFileText />,
+    <FiSettings />,
+    <FiPrinter />,
   ];
+  const supplies = Array.isArray(suppliesBlock?.items)
+    ? suppliesBlock.items.map((item, i) => ({
+        icon: supplyIcons[i],
+        title: item.title,
+        tag: item.tag,
+      }))
+    : [];
 
-  const stats = [
-    { value: 15, suffix: '+', label: 'лет на рынке', icon: <FiAward /> },
-    { value: 12000, suffix: '+', label: 'обслуженных устройств', icon: <FiCheckCircle /> },
-    { value: 60, suffix: ' мин', label: 'средняя скорость выезда', icon: <FiClock /> },
-    { value: 350, suffix: '+', label: 'корпоративных клиентов', icon: <FiUsers /> },
-  ];
+  const statsBlock = t('infoPage.stats', { returnObjects: true });
+  const statIcons = [<FiAward />, <FiCheckCircle />, <FiClock />, <FiUsers />];
+  const statValues = [15, 12000, 60, 350];
+  const stats = Array.isArray(statsBlock?.items)
+    ? statsBlock.items.map((item, i) => ({
+        value: statValues[i],
+        suffix: item.suffix,
+        label: item.label,
+        icon: statIcons[i],
+      }))
+    : [];
 
   return (
-    <div className="info-page">
+    <div className="info-page" data-page-lang={pageLang}>
       {/* ============================================================ */}
       {/*  HERO                                                        */}
       {/* ============================================================ */}
-      <section className="info-hero" data-hero-lang={heroLang}>
+      <section className="info-hero" data-hero-lang={pageLang}>
         <div className="info-bg-layer">
           <div className="info-orb info-orb-1" />
           <div className="info-orb info-orb-2" />
@@ -179,7 +182,7 @@ const InfoPage = () => {
         </div>
 
         <div className="info-container">
-          <motion.h1
+          <m.h1
             className="info-hero-title"
             initial={{ opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
@@ -188,8 +191,8 @@ const InfoPage = () => {
             {t('infoPage.hero.titleLine1')}
             <br />
             <span className="info-hero-title-accent">{t('infoPage.hero.titleAccent')}</span>
-          </motion.h1>
-          <motion.div
+          </m.h1>
+          <m.div
             className="info-hero-cta"
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
@@ -201,10 +204,10 @@ const InfoPage = () => {
             <a href="#contact-form" className="info-btn info-btn-ghost">
               <FiSend /> {t('infoPage.hero.ctaRequest')}
             </a>
-          </motion.div>
+          </m.div>
 
           {/* floating printer card */}
-          <motion.div
+          <m.div
             className="info-hero-printer"
             initial={{ opacity: 0, scale: 0.92, y: 30 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
@@ -242,7 +245,7 @@ const InfoPage = () => {
                 </div>
               </div>
             </div>
-          </motion.div>
+          </m.div>
         </div>
       </section>
 
@@ -251,15 +254,15 @@ const InfoPage = () => {
           <Reveal>
             <header className="info-section-head">
               <span className="info-eyebrow">
-                <FiZap /> быстрые действия
+                <FiZap /> {t('infoPage.quick.eyebrow')}
               </span>
-              <h2>Что вам нужно?</h2>
+              <h2>{t('infoPage.quick.title')}</h2>
             </header>
           </Reveal>
 
           <div className="info-quick-grid">
             {quickActions.map((a, i) => (
-              <Reveal key={a.title} delay={i * 0.05}>
+              <Reveal key={a.key} delay={i * 0.05}>
                 <a
                   className={`info-quick-card info-accent-${a.accent}`}
                   href={a.href}
@@ -286,10 +289,10 @@ const InfoPage = () => {
           <Reveal>
             <header className="info-section-head">
               <span className="info-eyebrow">
-                <FiTool /> сервис и ремонт
+                <FiTool /> {t('infoPage.services.eyebrow')}
               </span>
-              <h2>Полный цикл обслуживания</h2>
-              <p>От разовой диагностики до контракта на парк техники.</p>
+              <h2>{t('infoPage.services.title')}</h2>
+              <p>{t('infoPage.services.lead')}</p>
             </header>
           </Reveal>
 
@@ -316,10 +319,10 @@ const InfoPage = () => {
           <Reveal>
             <header className="info-section-head">
               <span className="info-eyebrow">
-                <FiBox /> расходные материалы
+                <FiBox /> {t('infoPage.supplies.eyebrow')}
               </span>
-              <h2>Всё, что печатает — у нас в наличии</h2>
-              <p>Подберём по модели вашего принтера. Доставим в день заказа.</p>
+              <h2>{t('infoPage.supplies.title')}</h2>
+              <p>{t('infoPage.supplies.lead')}</p>
             </header>
           </Reveal>
 
@@ -342,9 +345,9 @@ const InfoPage = () => {
 
           <Reveal delay={0.1}>
             <div className="info-supplies-foot">
-              <span>Не нашли свою модель?</span>
+              <span>{t('infoPage.supplies.footerPrompt')}</span>
               <a href={tgHref} target="_blank" rel="noreferrer" className="info-link-cta">
-                Напишите нам <FaArrowRight />
+                {t('infoPage.supplies.footerCta')} <FaArrowRight />
               </a>
             </div>
           </Reveal>
@@ -359,9 +362,9 @@ const InfoPage = () => {
           <Reveal>
             <header className="info-section-head">
               <span className="info-eyebrow">
-                <FiAward /> доверие в цифрах
+                <FiAward /> {t('infoPage.trust.eyebrow')}
               </span>
-              <h2>Нас выбирают, когда печать критична</h2>
+              <h2>{t('infoPage.trust.title')}</h2>
             </header>
           </Reveal>
 
@@ -370,7 +373,7 @@ const InfoPage = () => {
               <Reveal key={s.label} delay={i * 0.06}>
                 <div className="info-stat-card">
                   <div className="info-stat-icon">{s.icon}</div>
-                  <Counter to={s.value} suffix={s.suffix} />
+                  <Counter to={s.value} suffix={s.suffix} numberLocale={numberLocale} />
                   <span className="info-stat-label">{s.label}</span>
                 </div>
               </Reveal>
@@ -387,10 +390,10 @@ const InfoPage = () => {
           <Reveal>
             <header className="info-section-head">
               <span className="info-eyebrow">
-                <FiHeadphones /> контакты
+                <FiHeadphones /> {t('infoPage.contact.eyebrow')}
               </span>
-              <h2>На связи 24/7</h2>
-              <p>Один тап — и вы с инженером, а не в очереди.</p>
+              <h2>{t('infoPage.contact.title')}</h2>
+              <p>{t('infoPage.contact.lead')}</p>
             </header>
           </Reveal>
 
@@ -400,7 +403,7 @@ const InfoPage = () => {
                 <a href={phoneHref} className="info-contact-row">
                   <span className="info-contact-row-icon"><FaPhoneAlt /></span>
                   <span className="info-contact-row-text">
-                    <small>Телефон</small>
+                    <small>{t('infoPage.contact.phoneLabel')}</small>
                     <strong>{phoneLabel}</strong>
                   </span>
                   <FaArrowRight className="info-contact-row-arrow" />
@@ -414,7 +417,7 @@ const InfoPage = () => {
                 >
                   <span className="info-contact-row-icon info-bg-tg"><FaTelegramPlane /></span>
                   <span className="info-contact-row-text">
-                    <small>Telegram</small>
+                    <small>{t('infoPage.contact.telegramLabel')}</small>
                     <strong>@geopolser</strong>
                   </span>
                   <FaArrowRight className="info-contact-row-arrow" />
@@ -428,8 +431,8 @@ const InfoPage = () => {
                 >
                   <span className="info-contact-row-icon info-bg-wa"><FaWhatsapp /></span>
                   <span className="info-contact-row-text">
-                    <small>WhatsApp</small>
-                    <strong>Чат с инженером</strong>
+                    <small>{t('infoPage.contact.whatsappLabel')}</small>
+                    <strong>{t('infoPage.contact.whatsappValue')}</strong>
                   </span>
                   <FaArrowRight className="info-contact-row-arrow" />
                 </a>
@@ -437,7 +440,7 @@ const InfoPage = () => {
                 <a href={emailHref} className="info-contact-row">
                   <span className="info-contact-row-icon"><FaEnvelope /></span>
                   <span className="info-contact-row-text">
-                    <small>Email</small>
+                    <small>{t('infoPage.contact.emailLabel')}</small>
                     <strong>{emailLabel}</strong>
                   </span>
                   <FaArrowRight className="info-contact-row-arrow" />
@@ -446,16 +449,16 @@ const InfoPage = () => {
                 <div className="info-contact-row info-contact-row-static">
                   <span className="info-contact-row-icon"><FaMapMarkerAlt /></span>
                   <span className="info-contact-row-text">
-                    <small>Адрес</small>
-                    <strong>Тбилиси, Грузия</strong>
+                    <small>{t('infoPage.contact.addressLabel')}</small>
+                    <strong>{t('infoPage.contact.addressValue')}</strong>
                   </span>
                 </div>
 
                 <div className="info-contact-row info-contact-row-static">
                   <span className="info-contact-row-icon"><FaClock /></span>
                   <span className="info-contact-row-text">
-                    <small>График</small>
-                    <strong>Пн–Сб · 10:00 — 19:00</strong>
+                    <small>{t('infoPage.contact.hoursLabel')}</small>
+                    <strong>{t('infoPage.contact.hoursValue')}</strong>
                   </span>
                 </div>
               </div>
@@ -464,7 +467,7 @@ const InfoPage = () => {
             <Reveal delay={0.1} className="info-map-wrap">
               <div className="info-map">
                 <iframe
-                  title="GPS office map"
+                  title={t('infoPage.mapIframeTitle')}
                   src="https://www.google.com/maps?q=41.724653,44.786316&z=15&output=embed"
                   loading="lazy"
                   referrerPolicy="no-referrer-when-downgrade"
@@ -489,11 +492,11 @@ const InfoPage = () => {
                 <div className="info-orb info-orb-cta-2" />
               </div>
               <div className="info-footer-card-content">
-                <h2>Нужен сервис или расходные материалы?</h2>
-                <p>Оставьте заявку — инженер свяжется с вами в течение 15 минут.</p>
+                <h2>{t('infoPage.footerCta.title')}</h2>
+                <p>{t('infoPage.footerCta.lead')}</p>
                 <div className="info-footer-card-cta">
                   <a href={phoneHref} className="info-btn info-btn-primary info-btn-lg">
-                    <FaPhoneAlt /> Позвонить сейчас
+                    <FaPhoneAlt /> {t('infoPage.footerCta.call')}
                   </a>
                   <a
                     href={tgHref}
@@ -501,7 +504,7 @@ const InfoPage = () => {
                     rel="noreferrer"
                     className="info-btn info-btn-ghost info-btn-lg"
                   >
-                    <FaTelegramPlane /> Написать в Telegram
+                    <FaTelegramPlane /> {t('infoPage.footerCta.telegram')}
                   </a>
                 </div>
               </div>
@@ -513,7 +516,7 @@ const InfoPage = () => {
       <div
         className="info-sticky-bar"
         data-hidden={footerCtaInView ? 'true' : 'false'}
-        data-sticky-lang={heroLang}
+        data-sticky-lang={pageLang}
       >
         <a href={phoneHref} className="info-sticky-btn info-sticky-call">
           <FaPhoneAlt /> <span>{t('infoPage.sticky.call')}</span>
@@ -523,14 +526,14 @@ const InfoPage = () => {
           target="_blank"
           rel="noreferrer"
           className="info-sticky-btn info-sticky-wa"
-          aria-label="WhatsApp"
+          aria-label={t('infoPage.aria.whatsapp')}
         >
           <FaWhatsapp />
         </a>
         <button
           type="button"
           className="info-sticky-btn info-sticky-top"
-          aria-label="Наверх"
+          aria-label={t('infoPage.aria.toTop')}
           onClick={scrollInfoPageToTop}
         >
           <FaArrowUp />
