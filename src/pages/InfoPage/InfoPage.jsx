@@ -77,9 +77,6 @@ const Reveal = ({ children, delay = 0, y = 24, className = '' }) => (
   </m.div>
 );
 
-/* ------------------------------------------------------------------ */
-/*  Page                                                                */
-/* ------------------------------------------------------------------ */
 const InfoPage = () => {
   const { t, i18n } = useTranslation();
   const pageLang =
@@ -276,110 +273,6 @@ const InfoPage = () => {
         </div>
       </section>
 
-      {/* ============================================================ */}
-      {/*  SERVICES                                                     */}
-      {/* ============================================================ */}
-      <section className="info-section info-services" id="services">
-        <div className="info-container">
-          <Reveal>
-            <header className="info-section-head">
-              <span className="info-eyebrow">
-                <FiTool /> {t('infoPage.services.eyebrow')}
-              </span>
-              <h2>{t('infoPage.services.title')}</h2>
-              <p>{t('infoPage.services.lead')}</p>
-            </header>
-          </Reveal>
-
-          <div className="info-services-grid">
-            {services.map((s, i) => (
-              <Reveal key={s.title} delay={i * 0.04}>
-                <article className="info-service-card">
-                  <div className="info-service-icon">{s.icon}</div>
-                  <h3>{s.title}</h3>
-                  <p>{s.desc}</p>
-                  <span className="info-service-shine" />
-                </article>
-              </Reveal>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ============================================================ */}
-      {/*  SUPPLIES                                                     */}
-      {/* ============================================================ */}
-      <section className="info-section info-supplies" id="supplies">
-        <div className="info-container">
-          <Reveal>
-            <header className="info-section-head">
-              <span className="info-eyebrow">
-                <FiBox /> {t('infoPage.supplies.eyebrow')}
-              </span>
-              <h2>{t('infoPage.supplies.title')}</h2>
-              <p>{t('infoPage.supplies.lead')}</p>
-            </header>
-          </Reveal>
-
-          <div className="info-supplies-grid">
-            {supplies.map((s, i) => (
-              <Reveal key={s.title} delay={i * 0.04}>
-                <article className="info-supply-card">
-                  <div className="info-supply-visual">
-                    <span className="info-supply-glow" />
-                    <div className="info-supply-icon">{s.icon}</div>
-                  </div>
-                  <div className="info-supply-meta">
-                    <span className="info-supply-tag">{s.tag}</span>
-                    <h3>{s.title}</h3>
-                  </div>
-                </article>
-              </Reveal>
-            ))}
-          </div>
-
-          <Reveal delay={0.1}>
-            <div className="info-supplies-foot">
-              <span>{t('infoPage.supplies.footerPrompt')}</span>
-              <a href={tgHref} target="_blank" rel="noreferrer" className="info-link-cta">
-                {t('infoPage.supplies.footerCta')} <FaArrowRight />
-              </a>
-            </div>
-          </Reveal>
-        </div>
-      </section>
-
-      {/* ============================================================ */}
-      {/*  TRUST                                                        */}
-      {/* ============================================================ */}
-      <section className="info-section info-trust">
-        <div className="info-container">
-          <Reveal>
-            <header className="info-section-head">
-              <span className="info-eyebrow">
-                <FiAward /> {t('infoPage.trust.eyebrow')}
-              </span>
-              <h2>{t('infoPage.trust.title')}</h2>
-            </header>
-          </Reveal>
-
-          <div className="info-stats-grid">
-            {stats.map((s, i) => (
-              <Reveal key={s.label} delay={i * 0.06}>
-                <div className="info-stat-card">
-                  <div className="info-stat-icon">{s.icon}</div>
-                  <Counter to={s.value} suffix={s.suffix} numberLocale={numberLocale} />
-                  <span className="info-stat-label">{s.label}</span>
-                </div>
-              </Reveal>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ============================================================ */}
-      {/*  FOOTER CTA                                                   */}
-      {/* ============================================================ */}
       <section className="info-section info-footer-cta" ref={footerCtaRef}>
         <div className="info-container">
           <Reveal>
@@ -394,14 +287,6 @@ const InfoPage = () => {
                 <div className="info-footer-card-cta">
                   <a href={phoneHref} className="info-btn info-btn-primary info-btn-lg">
                     <FaPhoneAlt /> {t('infoPage.footerCta.call')}
-                  </a>
-                  <a
-                    href={tgHref}
-                    target="_blank"
-                    rel="noreferrer"
-                    className="info-btn info-btn-ghost info-btn-lg"
-                  >
-                    <FaTelegramPlane /> {t('infoPage.footerCta.telegram')}
                   </a>
                 </div>
               </div>
