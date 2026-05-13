@@ -1,7 +1,3 @@
-/* =========================================================================
-   /info — premium QR landing page
-   ========================================================================= */
-
 .info-page {
   --info-radius: 22px;
   --info-radius-sm: 14px;
@@ -109,7 +105,7 @@ body[data-theme="dark"] .info-page {
 
 /* ---------------------------- buttons ---------------------------- */
 .info-btn {
-  display: inline-flex;
+  display: flex;
   align-items: center;
   justify-content: center;
   gap: 10px;
@@ -165,12 +161,9 @@ body[data-theme="dark"] .info-page {
   border-radius: 16px;
 }
 
-/* ============================================================
-   HERO
-   ============================================================ */
 .info-hero {
   position: relative;
-  padding: 56px 0 80px;
+  padding: 20px 0 80px;
   overflow: hidden;
   isolation: isolate;
 }
@@ -272,11 +265,12 @@ body[data-theme="dark"] .info-orb-3 { opacity: 0.28; }
 }
 
 .info-hero-title {
-  font-size: clamp(2rem, 7vw, 3.6rem);
+  font-size: 36px;
   font-weight: 700;
   letter-spacing: -0.03em;
+  text-transform: uppercase;
   line-height: 1.05;
-  margin: 0 0 18px;
+  margin: 0 0 30px;
   max-width: 880px;
 }
 
@@ -285,6 +279,8 @@ body[data-theme="dark"] .info-orb-3 { opacity: 0.28; }
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
+  font-size: 41px;
+  text-transform: uppercase;
 }
 
 .info-hero-sub {
@@ -296,18 +292,26 @@ body[data-theme="dark"] .info-orb-3 { opacity: 0.28; }
 }
 
 .info-hero-cta {
-  display: flex;
-  flex-wrap: wrap;
+  align-self: stretch;
+  min-width: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   gap: 10px;
-  justify-content: center;
-  margin-bottom: 56px;
+  width: 100%;
+  max-width: min(520px, 100%);
+  margin: 0 auto 40px;
+  box-sizing: border-box;
+}
+
+.info-hero-cta .info-btn {
+  width: 100%;
+  box-sizing: border-box;
 }
 
 /* floating printer card */
 .info-hero-printer {
   position: relative;
   width: min(520px, 100%);
-  margin-top: 10px;
 }
 
 .info-hero-printer-glow {
@@ -319,6 +323,7 @@ body[data-theme="dark"] .info-orb-3 { opacity: 0.28; }
 }
 
 .info-hero-printer-card {
+  font-family: 'Archyedt';
   position: relative;
   z-index: 1;
   background: var(--info-glass-strong);
@@ -371,7 +376,7 @@ body[data-theme="dark"] .info-orb-3 { opacity: 0.28; }
 }
 
 .info-hero-printer-icon {
-  font-size: 2.4rem;
+  font-size: 3.4rem;
   padding: 14px;
   border-radius: 14px;
   background: linear-gradient(135deg, var(--info-accent-soft), transparent);
@@ -390,7 +395,7 @@ body[data-theme="dark"] .info-orb-3 { opacity: 0.28; }
 .info-hero-printer-status {
   display: inline-flex;
   align-items: center;
-  gap: 6px;
+  gap: 10px;
   font-size: 0.78rem;
   color: var(--info-text-soft);
   font-weight: 500;
@@ -429,9 +434,63 @@ body[data-theme="dark"] .info-orb-3 { opacity: 0.28; }
   color: var(--info-text-soft);
 }
 
-/* ============================================================
-   QUICK ACTIONS
-   ============================================================ */
+/*
+ * Georgian hero only — tweak the variables below; English (`data-hero-lang="en"`)
+ * keeps the rules above unchanged.
+ */
+.info-hero[data-hero-lang="ka"] {
+  --info-hero-title-fs: clamp(1.45rem, 4.8vw, 2.35rem);
+  --info-hero-accent-fs: clamp(1.55rem, 5.2vw, 2.55rem);
+  --info-hero-sub-fs: clamp(0.86rem, 2.4vw, 1rem);
+  --info-hero-cta-fs: 0.86rem;
+  --info-hero-cta-pad-y: 12px;
+  --info-hero-cta-pad-x: 16px;
+  --info-hero-printer-status-fs: 0.7rem;
+  --info-hero-printer-name-fs: 0.92rem;
+  --info-hero-printer-stat-span-fs: 1rem;
+  --info-hero-printer-stat-small-fs: 0.6rem;
+}
+
+.info-hero[data-hero-lang="ka"] .info-hero-title {
+  font-size: 31px;
+  font-family: 'Archyedt';
+  text-transform: none;
+  letter-spacing: -0.02em;
+  line-height: 1.12;
+}
+
+.info-hero[data-hero-lang="ka"] .info-hero-title-accent {
+  font-family: 'Archyedt';
+  text-transform: none;
+  font-size: 37px;
+}
+
+.info-hero[data-hero-lang="ka"] .info-hero-sub {
+  font-size: var(--info-hero-sub-fs);
+}
+
+.info-hero[data-hero-lang="ka"] .info-hero-cta .info-btn {
+  font-family: 'Archyedt';
+  font-size: 18px;
+  padding: var(--info-hero-cta-pad-y) var(--info-hero-cta-pad-x);
+}
+
+.info-hero[data-hero-lang="ka"] .info-hero-printer-status {
+  font-size: var(--info-hero-printer-status-fs);
+}
+
+.info-hero[data-hero-lang="ka"] .info-hero-printer-name {
+  font-size: var(--info-hero-printer-name-fs);
+}
+
+.info-hero[data-hero-lang="ka"] .info-hero-printer-stats span {
+  font-size: var(--info-hero-printer-stat-span-fs);
+}
+
+.info-hero[data-hero-lang="ka"] .info-hero-printer-stats small {
+  font-size: var(--info-hero-printer-stat-small-fs);
+}
+
 .info-quick-grid {
   display: grid;
   grid-template-columns: 1fr;
@@ -542,9 +601,7 @@ body[data-theme="dark"] .info-orb-3 { opacity: 0.28; }
 .info-accent-green  { --qa-bg: rgba(16,185,129,0.12); --qa-fg: #10b981; --qa-glow: #10b981; }
 .info-accent-amber  { --qa-bg: rgba(245,158,11,0.12); --qa-fg: #f59e0b; --qa-glow: #f59e0b; }
 
-/* ============================================================
-   SERVICES
-   ============================================================ */
+
 .info-services-grid {
   display: grid;
   grid-template-columns: 1fr;
@@ -614,9 +671,7 @@ body[data-theme="dark"] .info-service-shine {
   background: linear-gradient(115deg, transparent, rgba(255,255,255,0.05), transparent);
 }
 
-/* ============================================================
-   SUPPLIES
-   ============================================================ */
+
 .info-supplies-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -724,9 +779,7 @@ body[data-theme="dark"] .info-service-shine {
 .info-link-cta:hover { gap: 12px; }
 .info-link-cta svg { font-size: 0.8rem; }
 
-/* ============================================================
-   TRUST / STATS
-   ============================================================ */
+
 .info-stats-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -791,9 +844,7 @@ body[data-theme="dark"] .info-service-shine {
   line-height: 1.35;
 }
 
-/* ============================================================
-   CONTACT
-   ============================================================ */
+
 .info-contact-grid {
   display: grid;
   grid-template-columns: 1fr;
@@ -908,9 +959,7 @@ body[data-theme="dark"] .info-map iframe {
   opacity: 0.35;
 }
 
-/* ============================================================
-   FOOTER CTA
-   ============================================================ */
+
 .info-footer-cta { padding-bottom: 60px; }
 
 .info-footer-card {
@@ -990,9 +1039,6 @@ body[data-theme="light"] .info-footer-card {
   border-color: rgba(255,255,255,0.3);
 }
 
-/* ============================================================
-   STICKY MOBILE CTA
-   ============================================================ */
 .info-sticky-bar {
   position: fixed;
   left: 12px; right: 12px;
@@ -1055,9 +1101,7 @@ body[data-theme="light"] .info-footer-card {
   .info-page { padding-bottom: 0; }
 }
 
-/* ============================================================
-   Reduced motion
-   ============================================================ */
+
 @media (prefers-reduced-motion: reduce) {
   .info-orb,
   .info-hero-printer-card,

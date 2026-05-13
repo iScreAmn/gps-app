@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { motion, useInView, useReducedMotion } from 'motion/react';
 import {
   FaPhoneAlt,
@@ -82,6 +83,11 @@ const Reveal = ({ children, delay = 0, y = 24, className = '' }) => (
 /*  Page                                                                */
 /* ------------------------------------------------------------------ */
 const InfoPage = () => {
+  const { t, i18n } = useTranslation();
+  const heroLang =
+    String(i18n.resolvedLanguage || i18n.language || '').split('-')[0] === 'ka'
+      ? 'ka'
+      : 'en';
   const phoneHref = contactsData.phone.href;
   const phoneLabel = contactsData.phone.label;
   const tgHref = contactsData.socials.telegram;
@@ -170,7 +176,7 @@ const InfoPage = () => {
       {/* ============================================================ */}
       {/*  HERO                                                        */}
       {/* ============================================================ */}
-      <section className="info-hero">
+      <section className="info-hero" data-hero-lang={heroLang}>
         <div className="info-bg-layer">
           <div className="info-orb info-orb-1" />
           <div className="info-orb info-orb-2" />
@@ -179,37 +185,16 @@ const InfoPage = () => {
         </div>
 
         <div className="info-container">
-          <motion.div
-            className="info-hero-badge"
-            initial={{ opacity: 0, y: -10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-          >
-            <span className="info-pulse-dot" />
-            QR-сервис · GPS Print
-          </motion.div>
-
           <motion.h1
             className="info-hero-title"
             initial={{ opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.05, ease: [0.22, 1, 0.36, 1] }}
           >
-            Сервис и расходные материалы
+            {t('infoPage.hero.titleLine1')}
             <br />
-            <span className="info-hero-title-accent">для вашего принтера</span>
+            <span className="info-hero-title-accent">{t('infoPage.hero.titleAccent')}</span>
           </motion.h1>
-
-          <motion.p
-            className="info-hero-sub"
-            initial={{ opacity: 0, y: 16 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.2 }}
-          >
-            Вы отсканировали QR-код на устройстве. Здесь — всё, что нужно,
-            чтобы оно работало без остановок: ремонт, расходники и поддержка в один тап.
-          </motion.p>
-
           <motion.div
             className="info-hero-cta"
             initial={{ opacity: 0, y: 16 }}
@@ -217,18 +202,10 @@ const InfoPage = () => {
             transition={{ duration: 0.7, delay: 0.32 }}
           >
             <a href={phoneHref} className="info-btn info-btn-primary">
-              <FaPhoneAlt /> Связаться
-            </a>
-            <a
-              href={tgHref}
-              target="_blank"
-              rel="noreferrer"
-              className="info-btn info-btn-ghost"
-            >
-              <FaTelegramPlane /> Telegram
+              <FaPhoneAlt /> {t('infoPage.hero.ctaContact')}
             </a>
             <a href="#contact-form" className="info-btn info-btn-ghost">
-              <FiSend /> Оставить заявку
+              <FiSend /> {t('infoPage.hero.ctaRequest')}
             </a>
           </motion.div>
 
@@ -245,30 +222,29 @@ const InfoPage = () => {
                 <span className="info-hero-printer-dot" />
                 <span className="info-hero-printer-dot" />
                 <span className="info-hero-printer-dot" />
-                <span className="info-hero-printer-label">device.online</span>
               </div>
               <div className="info-hero-printer-body">
                 <FiPrinter className="info-hero-printer-icon" />
                 <div className="info-hero-printer-meta">
                   <span className="info-hero-printer-status">
                     <span className="info-pulse-dot info-pulse-dot-green" />
-                    Подключено к сервису
+                    {t('infoPage.hero.printerStatus')}
                   </span>
-                  <span className="info-hero-printer-name">Ваш принтер · GPS</span>
+                  <span className="info-hero-printer-name">{t('infoPage.hero.printerTagline')}</span>
                 </div>
               </div>
               <div className="info-hero-printer-stats">
                 <div>
-                  <span>24/7</span>
-                  <small>поддержка</small>
+                  <span>{t('infoPage.hero.stat1Title')}</span>
+                  <small>{t('infoPage.hero.stat1Sub')}</small>
                 </div>
                 <div>
-                  <span>~60м</span>
-                  <small>выезд</small>
+                  <span>{t('infoPage.hero.stat2Title')}</span>
+                  <small>{t('infoPage.hero.stat2Sub')}</small>
                 </div>
                 <div>
-                  <span>15+</span>
-                  <small>лет</small>
+                  <span>{t('infoPage.hero.stat3Title')}</span>
+                  <small>{t('infoPage.hero.stat3Sub')}</small>
                 </div>
               </div>
             </div>
