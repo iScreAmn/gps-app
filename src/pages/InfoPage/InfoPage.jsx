@@ -1,10 +1,9 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 // eslint-disable-next-line no-unused-vars -- motion primitives (m.div, m.h1, …)
-import { motion as m, useInView, useReducedMotion } from 'motion/react';
+import { motion as m, useReducedMotion } from 'motion/react';
 import {
   FaPhoneAlt,
-  FaTelegramPlane,
   FaWhatsapp,
   FaArrowRight,
   FaArrowUp,
@@ -12,60 +11,14 @@ import {
 import {
   FiTool,
   FiPrinter,
-  FiShoppingBag,
   FiSend,
   FiZap,
-  FiSettings,
-  FiTruck,
-  FiActivity,
-  FiBox,
   FiDroplet,
-  FiLayers,
-  FiFileText,
-  FiCpu,
-  FiCheckCircle,
-  FiClock,
-  FiUsers,
-  FiAward,
 } from 'react-icons/fi';
 import contactsData from '../../data/contactsData';
 import ProblemReportModal from './ProblemReportModal';
 import './InfoPage.css';
 
-/* ------------------------------------------------------------------ */
-/*  Animated counter — counts up when the card scrolls into view       */
-/* ------------------------------------------------------------------ */
-const Counter = ({ to, suffix = '', duration = 1600, numberLocale = 'en-US' }) => {
-  const ref = useRef(null);
-  const inView = useInView(ref, { once: true, margin: '-10% 0px' });
-  const reduce = useReducedMotion();
-  const [value, setValue] = useState(reduce ? to : 0);
-
-  useEffect(() => {
-    if (!inView || reduce) return;
-    const start = performance.now();
-    let raf;
-    const tick = (now) => {
-      const p = Math.min(1, (now - start) / duration);
-      const eased = 1 - Math.pow(1 - p, 3);
-      setValue(Math.round(eased * to));
-      if (p < 1) raf = requestAnimationFrame(tick);
-    };
-    raf = requestAnimationFrame(tick);
-    return () => cancelAnimationFrame(raf);
-  }, [inView, to, duration, reduce]);
-
-  return (
-    <span ref={ref} className="info-stat-value">
-      {value.toLocaleString(numberLocale)}
-      <span className="info-stat-suffix">{suffix}</span>
-    </span>
-  );
-};
-
-/* ------------------------------------------------------------------ */
-/*  Reveal-on-scroll wrapper                                           */
-/* ------------------------------------------------------------------ */
 const Reveal = ({ children, delay = 0, y = 24, className = '' }) => (
   <m.div
     className={className}
@@ -84,10 +37,8 @@ const InfoPage = () => {
     String(i18n.resolvedLanguage || i18n.language || '').split('-')[0] === 'ka'
       ? 'ka'
       : 'en';
-  const numberLocale = pageLang === 'ka' ? 'ka-GE' : 'en-US';
   const phoneHref = contactsData.phone.href;
   const phoneLabel = contactsData.phone.label;
-  const tgHref = contactsData.socials.telegram;
   const waHref = contactsData.socials.whatsapp;
   const contactsHref = `/${pageLang}/contacts`;
 
@@ -113,52 +64,6 @@ const InfoPage = () => {
     sub: def.key === 'call' ? phoneLabel : t(`infoPage.quickActions.${def.key}.sub`),
   }));
 
-  const servicesBlock = t('infoPage.services', { returnObjects: true });
-  const serviceIcons = [
-    <FiActivity />,
-    <FiTool />,
-    <FiDroplet />,
-    <FiUsers />,
-    <FiTruck />,
-    <FiCpu />,
-  ];
-  const services = Array.isArray(servicesBlock?.items)
-    ? servicesBlock.items.map((item, i) => ({
-        icon: serviceIcons[i],
-        title: item.title,
-        desc: item.desc,
-      }))
-    : [];
-
-  const suppliesBlock = t('infoPage.supplies', { returnObjects: true });
-  const supplyIcons = [
-    <FiBox />,
-    <FiDroplet />,
-    <FiLayers />,
-    <FiFileText />,
-    <FiSettings />,
-    <FiPrinter />,
-  ];
-  const supplies = Array.isArray(suppliesBlock?.items)
-    ? suppliesBlock.items.map((item, i) => ({
-        icon: supplyIcons[i],
-        title: item.title,
-        tag: item.tag,
-      }))
-    : [];
-
-  const statsBlock = t('infoPage.stats', { returnObjects: true });
-  const statIcons = [<FiAward />, <FiCheckCircle />, <FiClock />, <FiUsers />];
-  const statValues = [15, 12000, 60, 350];
-  const stats = Array.isArray(statsBlock?.items)
-    ? statsBlock.items.map((item, i) => ({
-        value: statValues[i],
-        suffix: item.suffix,
-        label: item.label,
-        icon: statIcons[i],
-      }))
-    : [];
-
   return (
     <div className="info-page" data-page-lang={pageLang}>
       <div className="info-bg-layer" aria-hidden>
@@ -168,9 +73,6 @@ const InfoPage = () => {
         <div className="info-grid-overlay" />
       </div>
 
-      {/* ============================================================ */}
-      {/*  HERO                                                        */}
-      {/* ============================================================ */}
       <section className="info-hero" data-hero-lang={pageLang}>
         <div className="info-container">
           <m.h1
