@@ -11,10 +11,10 @@ import {
 import {
   FiTool,
   FiPrinter,
-  FiSend,
   FiZap,
   FiDroplet,
 } from 'react-icons/fi';
+import { VscGitPullRequestNewChanges } from "react-icons/vsc";
 import contactsData from '../../data/contactsData';
 import ProblemReportModal from './ProblemReportModal';
 import './InfoPage.css';
@@ -40,6 +40,7 @@ const InfoPage = () => {
   const phoneHref = contactsData.phone.href;
   const phoneLabel = contactsData.phone.label;
   const waHref = contactsData.socials.whatsapp;
+  const waChatHref = contactsData.socials.whatsappChat;
   const contactsHref = `/${pageLang}/contacts`;
 
   const reduceMotion = useReducedMotion();
@@ -55,7 +56,7 @@ const InfoPage = () => {
   const quickActionDefs = [
     { key: 'master', icon: <FiTool />, href: contactsHref, accent: 'red', external: false },
     { key: 'cartridge', icon: <FiDroplet />, href: '#supplies', accent: 'blue', external: false },
-    { key: 'whatsapp', icon: <FaWhatsapp />, href: waHref, accent: 'green', external: true },
+    { key: 'whatsapp', icon: <FaWhatsapp />, href: waChatHref, accent: 'green', external: true },
     { key: 'call', icon: <FaPhoneAlt />, href: phoneHref, accent: 'amber', external: false },
   ];
   const quickActions = quickActionDefs.map((def) => ({
@@ -99,7 +100,7 @@ const InfoPage = () => {
               onClick={() => setReportOpen(true)}
               className="info-btn info-btn-ghost"
             >
-              <FiSend /> {t('infoPage.hero.ctaRequest')}
+              <VscGitPullRequestNewChanges /> {t('infoPage.hero.ctaRequest')}
             </button>
           </m.div>
 
