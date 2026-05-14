@@ -324,7 +324,11 @@ const InfoPage = () => {
         </button>
       </div>
 
-      <ProblemReportModal open={reportOpen} onClose={() => setReportOpen(false)} />
+      <ProblemReportModal
+        open={reportOpen}
+        onClose={() => setReportOpen(false)}
+        lang={pageLang}
+      />
     </div>
   );
 };
