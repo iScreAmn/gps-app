@@ -131,7 +131,7 @@ const InfoPage = () => {
 
   const quickActionDefs = [
     { key: 'master', icon: <FiTool />, href: contactsHref, accent: 'red', external: false },
-    { key: 'cartridge', icon: <FiDroplet />, href: '#supplies', accent: 'blue', external: false },
+    { key: 'cartridge', icon: <FiDroplet />, href: phoneHref, accent: 'blue', external: false },
     { key: 'whatsapp', icon: <FaWhatsapp />, href: waChatHref, accent: 'green', external: true },
     { key: 'call', icon: <FaPhoneAlt />, href: phoneHref, accent: 'amber', external: false },
   ];
@@ -249,22 +249,52 @@ const InfoPage = () => {
           </Reveal>
 
           <div className="info-quick-grid">
-            {quickActions.map((a, i) => (
-              <Reveal key={a.key} delay={i * 0.05}>
-                <a
-                  className={`info-quick-card info-accent-${a.accent}`}
-                  href={a.href}
-                  {...(a.external ? { target: '_blank', rel: 'noreferrer' } : {})}
-                >
+            {quickActions.map((a, i) => {
+              const cardClass = `info-quick-card info-accent-${a.accent}`;
+              const inner = (
+                <>
                   <div className="info-quick-icon">{a.icon}</div>
                   <div className="info-quick-text">
                     <span className="info-quick-title">{a.title}</span>
                     <span className="info-quick-sub">{a.sub}</span>
                   </div>
                   <FaArrowRight className="info-quick-arrow" />
-                </a>
-              </Reveal>
-            ))}
+                </>
+              );
+              if (a.accent === 'red') {
+                return (
+                  <Reveal key={a.key} delay={i * 0.05}>
+                    <button
+                      type="button"
+                      className={cardClass}
+                      onClick={() => setReportOpen(true)}
+                    >
+                      {inner}
+                    </button>
+                  </Reveal>
+                );
+              }
+              if (a.accent === 'blue') {
+                return (
+                  <Reveal key={a.key} delay={i * 0.05}>
+                    <a href={phoneHref} className={cardClass}>
+                      {inner}
+                    </a>
+                  </Reveal>
+                );
+              }
+              return (
+                <Reveal key={a.key} delay={i * 0.05}>
+                  <a
+                    className={cardClass}
+                    href={a.href}
+                    {...(a.external ? { target: '_blank', rel: 'noreferrer' } : {})}
+                  >
+                    {inner}
+                  </a>
+                </Reveal>
+              );
+            })}
           </div>
         </div>
       </section>

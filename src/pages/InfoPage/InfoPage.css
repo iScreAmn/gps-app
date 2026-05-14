@@ -573,6 +573,15 @@ body[data-theme="dark"] .info-orb-3 { opacity: 0.28; }
   -webkit-tap-highlight-color: transparent;
 }
 
+button.info-quick-card {
+  width: 100%;
+  font: inherit;
+  color: inherit;
+  cursor: pointer;
+  text-align: left;
+  appearance: none;
+}
+
 .info-quick-card::before {
   content: '';
   position: absolute;
