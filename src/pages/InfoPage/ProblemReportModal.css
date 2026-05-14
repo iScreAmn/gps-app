@@ -31,6 +31,9 @@
   align-items: center;
   justify-content: center;
   padding: 24px;
+  /* Use dynamic viewport units so iOS Safari URL bar doesn't clip the panel */
+  height: 100dvh;
+  overscroll-behavior: contain;
   background: radial-gradient(
       120% 80% at 50% 0%,
       rgba(15, 23, 42, 0.35),
@@ -64,7 +67,7 @@ body[data-theme="dark"] .prm-backdrop {
   position: relative;
   width: 100%;
   max-width: 620px;
-  max-height: calc(100vh - 48px);
+  max-height: calc(100dvh - 48px);
   display: flex;
   flex-direction: column;
   background: var(--prm-glass);
@@ -705,19 +708,63 @@ body[data-theme="dark"] .prm-select-list {
 
 /* ---------- Mobile ---------- */
 @media (max-width: 640px) {
-  .prm-backdrop { padding: 0; align-items: flex-end; }
+  .prm-backdrop {
+    padding: 0;
+    align-items: flex-end;
+    /* Prefer the small viewport so the panel never sits behind the URL bar */
+    height: 100svh;
+  }
   .prm-panel {
     max-width: 100%;
-    max-height: 92vh;
+    max-height: calc(100svh - env(safe-area-inset-top) - 8px);
     border-radius: 22px 22px 0 0;
   }
-  .prm-header { padding: 22px 20px 16px; }
-  .prm-form { padding: 18px 20px 22px; gap: 16px; }
-  .prm-urgency-grid { grid-template-columns: 1fr; }
-  .prm-footer { flex-direction: column-reverse; align-items: stretch; }
+  .prm-header { 
+    padding: 70px 20px 14px; 
+  }
+  .prm-form { 
+    padding: 16px 20px 0; gap: 16px; 
+  }
+  .prm-urgency-grid { 
+    grid-template-columns: 1fr; 
+  }
+  .prm-footer {
+    flex-direction: column-reverse;
+    align-items: stretch;
+    position: sticky;
+    bottom: 0;
+    background: var(--prm-glass);
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+    margin: 8px -20px 0;
+    padding: 14px 20px calc(14px + env(safe-area-inset-bottom));
+    border-top: 1px solid var(--prm-border);
+  }
   .prm-btn { width: 100%; padding: 14px 20px; }
-  .prm-header-text h2 { font-size: 1.2rem; }
-  .prm-header-text p { font-size: 0.86rem; }
+  .prm-header-text h2 { font-size: 1.15rem; }
+  .prm-header-text p { font-size: 0.85rem; }
+  /* Drag-handle affordance for the bottom sheet */
+  .prm-panel::before {
+    content: '';
+    position: absolute;
+    top: 8px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 40px;
+    height: 4px;
+    border-radius: 999px;
+    background: var(--prm-border-strong);
+    z-index: 6;
+  }
+}
+
+/* Very short viewports (landscape phones) — keep header visible */
+@media (max-height: 560px) {
+  .prm-backdrop { align-items: stretch; padding: 0; }
+  .prm-panel {
+    max-height: 100dvh;
+    border-radius: 0;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
