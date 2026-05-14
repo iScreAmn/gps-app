@@ -1,4 +1,5 @@
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 // eslint-disable-next-line no-unused-vars
 import { motion as m, AnimatePresence, useReducedMotion } from 'motion/react';
 import {
@@ -20,107 +21,7 @@ import {
 } from 'react-icons/fi';
 import './ProblemReportModal.css';
 
-/* ------------------------------------------------------------------ */
-/*  i18n dictionary (ka / en)                                          */
-/* ------------------------------------------------------------------ */
-const STRINGS = {
-  ka: {
-    eyebrow: 'სერვისის განაცხადი',
-    title: 'აღწერეთ პრობლემა',
-    subtitle:
-      'შეავსეთ ინფორმაცია მოწყობილობის ხარვეზის შესახებ სწრაფი დიაგნოსტიკისთვის',
-    closeAria: 'დახურვა',
-    deviceLabel: 'მოწყობილობის ტიპი',
-    devicePlaceholder: 'აირჩიეთ მოწყობილობის ტიპი',
-    modelLabel: 'მოდელი',
-    modelPlaceholder: 'აირჩიეთ მოდელი',
-    problemLabel: 'პრობლემის ტიპი',
-    problemSelectPlaceholder: 'აირჩიეთ პრობლემის ტიპი',
-    problemTextLabel: 'პრობლემის აღწერა',
-    problemTextPlaceholder: 'მოკლედ აღწერეთ ხარვეზი…',
-    errorCodeLabel: 'შეცდომის კოდი',
-    errorCodePlaceholder: 'მაგ.: C-2557',
-    errorCodeHint: 'თუ ეკრანზე გამოჩნდება შეცდომის კოდი — მიუთითეთ',
-    urgencyLabel: 'გადაუდებლობა',
-    urgencyCriticalTitle: 'მოწყობილობა სრულიად გაჩერებულია',
-    urgencyCriticalDesc: 'ბეჭდვა და სკანირება მიუწვდომელია',
-    urgencyPartialTitle: 'მუშაობს, მაგრამ დეფექტით',
-    urgencyPartialDesc: 'მოწყობილობა ნაწილობრივ მუშაობს',
-    uploadLabel: 'დაამატეთ პრობლემის ფოტო',
-    uploadMain: 'გადმოიტანეთ ფაილები აქ',
-    uploadSub: 'ან დააჭირეთ ასარჩევად · PNG, JPG 10MB-მდე',
-    removeAria: 'ფაილის წაშლა',
-    optional: 'არასავალდებულო',
-    cancel: 'გაუქმება',
-    submit: 'განაცხადის გაგზავნა',
-    submitting: 'იგზავნება…',
-    successTitle: 'განაცხადი გაიგზავნა',
-    successDesc: 'ჩვენ მალე დაგიკავშირდებით',
-    formError: 'ვერ მოხერხდა გაგზავნა. სცადეთ თავიდან.',
-    errDevice: 'აირჩიეთ მოწყობილობის ტიპი',
-    errModel: 'აირჩიეთ მოდელი',
-    errProblem: 'მიუთითეთ პრობლემა',
-    devices: {
-      printer: 'პრინტერი',
-      cutting: 'საჭრელი მოწყობილობა',
-      wideformat: 'ფართოფორმატიანი მოწყობილობა',
-      finishing: 'ბეჭდვისშემდგომი აპარატურა',
-    },
-    printerProblems: [
-      'პრინტერი ბეჭდავს ზოლებით',
-      'ADF / კოპირების / სკანერის პრობლემა',
-      'ქაღალდი იჭედება',
-    ],
-  },
-  en: {
-    eyebrow: 'Service request',
-    title: 'Describe the problem',
-    subtitle:
-      'Fill in the equipment fault details so we can diagnose it quickly',
-    closeAria: 'Close',
-    deviceLabel: 'Device type',
-    devicePlaceholder: 'Select a device type',
-    modelLabel: 'Model',
-    modelPlaceholder: 'Select a model',
-    problemLabel: 'Problem',
-    problemSelectPlaceholder: 'Select a problem type',
-    problemTextLabel: 'Problem description',
-    problemTextPlaceholder: 'Briefly describe the issue…',
-    errorCodeLabel: 'Error code',
-    errorCodePlaceholder: 'e.g. C-2557',
-    errorCodeHint: 'If an error code is shown on the display — include it',
-    urgencyLabel: 'Urgency',
-    urgencyCriticalTitle: 'Device is completely down',
-    urgencyCriticalDesc: 'Printing and scanning unavailable',
-    urgencyPartialTitle: 'Works, but with defects',
-    urgencyPartialDesc: 'The device operates partially',
-    uploadLabel: 'Add photos of the problem',
-    uploadMain: 'Drop files here',
-    uploadSub: 'or click to choose · PNG, JPG up to 10MB',
-    removeAria: 'Remove file',
-    optional: 'optional',
-    cancel: 'Cancel',
-    submit: 'Submit request',
-    submitting: 'Sending…',
-    successTitle: 'Request sent',
-    successDesc: "We'll get back to you shortly",
-    formError: "Couldn't submit. Please try again.",
-    errDevice: 'Please choose a device type',
-    errModel: 'Please choose a model',
-    errProblem: 'Please describe the problem',
-    devices: {
-      printer: 'Printer',
-      cutting: 'Cutting system',
-      wideformat: 'Wide-format printing',
-      finishing: 'Finishing equipment',
-    },
-    printerProblems: [
-      'Printer prints with streaks',
-      'Issue with ADF / copying / scanner',
-      'Paper jam',
-    ],
-  },
-};
+const PR_NS = 'infoPage.problemReport';
 
 /* ------------------------------------------------------------------ */
 /*  Device-type config: model lists + problem mode                     */
@@ -233,9 +134,10 @@ const Dropdown = ({
 };
 
 /* ================================================================== */
-const ProblemReportModal = ({ open, onClose, lang = 'ka' }) => {
+const ProblemReportModal = ({ open, onClose }) => {
+  const { t } = useTranslation();
   const reduce = useReducedMotion();
-  const t = STRINGS[lang] || STRINGS.ka;
+  const tr = useCallback((key) => t(`${PR_NS}.${key}`), [t]);
 
   const dialogRef = useRef(null);
   const firstFieldRef = useRef(null);
@@ -311,6 +213,7 @@ const ProblemReportModal = ({ open, onClose, lang = 'ka' }) => {
     setDeviceModel('');
     setProblemSelect('');
     setProblemText('');
+    setErrorCode('');
     setTouched((p) => ({ ...p, model: false, problem: false }));
   }, [deviceType]);
 
@@ -342,8 +245,11 @@ const ProblemReportModal = ({ open, onClose, lang = 'ka' }) => {
 
   /* Validation */
   const isDeviceValid = deviceType !== '';
-  const needsModel = currentDevice?.models != null;
-  const isModelValid = !needsModel || deviceModel !== '';
+  const hasPresetModels = currentDevice?.models != null;
+  const showModelField = deviceType !== '';
+  const modelRequired = deviceType === 'printer';
+  const isModelValid =
+    !showModelField || !modelRequired || deviceModel.trim().length > 0;
   const isProblemValid =
     currentDevice?.problemMode === 'select'
       ? problemSelect !== ''
@@ -380,15 +286,20 @@ const ProblemReportModal = ({ open, onClose, lang = 'ka' }) => {
   };
 
   /* Dropdown option lists */
+  const printerProblems = useMemo(() => {
+    const arr = t(`${PR_NS}.printerProblems`, { returnObjects: true });
+    return Array.isArray(arr) ? arr : [];
+  }, [t]);
+
   const deviceOptions = DEVICE_DEFS.map((d) => ({
     value: d.value,
-    label: t.devices[d.value],
+    label: tr(`devices.${d.value}`),
     icon: d.icon,
   }));
   const modelOptions = currentDevice?.models
     ? currentDevice.models.map((mname) => ({ value: mname, label: mname }))
     : [];
-  const problemOptions = t.printerProblems.map((label, i) => ({
+  const problemOptions = printerProblems.map((label, i) => ({
     value: `p${i}`,
     label,
   }));
@@ -446,8 +357,8 @@ const ProblemReportModal = ({ open, onClose, lang = 'ka' }) => {
                   >
                     <FiCheck />
                   </m.div>
-                  <h3>{t.successTitle}</h3>
-                  <p>{t.successDesc}</p>
+                  <h3>{tr('successTitle')}</h3>
+                  <p>{tr('successDesc')}</p>
                 </m.div>
               )}
             </AnimatePresence>
@@ -455,16 +366,16 @@ const ProblemReportModal = ({ open, onClose, lang = 'ka' }) => {
             <header className="prm-header">
               <div className="prm-header-text">
                 <span className="prm-eyebrow">
-                  <FiZap /> {t.eyebrow}
+                  <FiZap /> {tr('eyebrow')}
                 </span>
-                <h2 id="prm-title">{t.title}</h2>
-                <p id="prm-subtitle">{t.subtitle}</p>
+                <h2 id="prm-title">{tr('title')}</h2>
+                <p id="prm-subtitle">{tr('subtitle')}</p>
               </div>
               <button
                 type="button"
                 className="prm-close"
                 onClick={handleClose}
-                aria-label={t.closeAria}
+                aria-label={tr('closeAria')}
                 disabled={status === 'loading'}
               >
                 <FiX />
@@ -475,12 +386,12 @@ const ProblemReportModal = ({ open, onClose, lang = 'ka' }) => {
               {/* 1. Device type */}
               <div className="prm-field">
                 <label className="prm-label">
-                  {t.deviceLabel} <span className="prm-req">*</span>
+                  {tr('deviceLabel')} <span className="prm-req">*</span>
                 </label>
                 <Dropdown
                   value={deviceType}
                   options={deviceOptions}
-                  placeholder={t.devicePlaceholder}
+                  placeholder={tr('devicePlaceholder')}
                   invalid={touched.device && !isDeviceValid}
                   onChange={(v) => {
                     setDeviceType(v);
@@ -491,39 +402,66 @@ const ProblemReportModal = ({ open, onClose, lang = 'ka' }) => {
                 />
                 {touched.device && !isDeviceValid && (
                   <span className="prm-error">
-                    <FiAlertCircle /> {t.errDevice}
+                    <FiAlertCircle /> {tr('errDevice')}
                   </span>
                 )}
               </div>
 
-              {/* 2a. Model dropdown — non-printer */}
+              {/* 2a. Model — every device; preset list or free text (printer) */}
               <AnimatePresence initial={false}>
-                {needsModel && (
+                {showModelField && (
                   <m.div
-                    key="model-field"
+                    key={`model-field-${deviceType}`}
                     className="prm-field"
                     initial={{ opacity: 0, height: 0, marginTop: -10 }}
                     animate={{ opacity: 1, height: 'auto', marginTop: 0 }}
                     exit={{ opacity: 0, height: 0, marginTop: -10 }}
                     transition={{ duration: 0.22, ease: [0.22, 1, 0.36, 1] }}
                   >
-                    <label className="prm-label">
-                      {t.modelLabel} <span className="prm-req">*</span>
+                    <label
+                      className="prm-label"
+                      {...(!hasPresetModels ? { htmlFor: 'prm-model-free' } : {})}
+                    >
+                      {tr('modelLabel')}{' '}
+                      {modelRequired ? (
+                        <span className="prm-req">*</span>
+                      ) : (
+                        <span className="prm-optional">{tr('optional')}</span>
+                      )}
                     </label>
-                    <Dropdown
-                      value={deviceModel}
-                      options={modelOptions}
-                      placeholder={t.modelPlaceholder}
-                      invalid={touched.model && !isModelValid}
-                      onChange={(v) => {
-                        setDeviceModel(v);
-                        setTouched((p) => ({ ...p, model: true }));
-                      }}
-                      onBlur={() => setTouched((p) => ({ ...p, model: true }))}
-                    />
+                    {hasPresetModels ? (
+                      <Dropdown
+                        value={deviceModel}
+                        options={modelOptions}
+                        placeholder={tr('modelPlaceholder')}
+                        invalid={touched.model && !isModelValid}
+                        onChange={(v) => {
+                          setDeviceModel(v);
+                          setTouched((p) => ({ ...p, model: true }));
+                        }}
+                        onBlur={() => setTouched((p) => ({ ...p, model: true }))}
+                      />
+                    ) : (
+                      <div
+                        className={`prm-input-wrap ${
+                          touched.model && !isModelValid ? 'is-invalid' : ''
+                        }`}
+                      >
+                        <input
+                          id="prm-model-free"
+                          type="text"
+                          className="prm-input"
+                          placeholder={tr('modelFreePlaceholder')}
+                          value={deviceModel}
+                          onChange={(e) => setDeviceModel(e.target.value)}
+                          onBlur={() => setTouched((p) => ({ ...p, model: true }))}
+                          autoComplete="off"
+                        />
+                      </div>
+                    )}
                     {touched.model && !isModelValid && (
                       <span className="prm-error">
-                        <FiAlertCircle /> {t.errModel}
+                        <FiAlertCircle /> {tr('errModel')}
                       </span>
                     )}
                   </m.div>
@@ -542,12 +480,12 @@ const ProblemReportModal = ({ open, onClose, lang = 'ka' }) => {
                     transition={{ duration: 0.22 }}
                   >
                     <label className="prm-label">
-                      {t.problemLabel} <span className="prm-req">*</span>
+                      {tr('problemLabel')} <span className="prm-req">*</span>
                     </label>
                     <Dropdown
                       value={problemSelect}
                       options={problemOptions}
-                      placeholder={t.problemSelectPlaceholder}
+                      placeholder={tr('problemSelectPlaceholder')}
                       invalid={touched.problem && !isProblemValid}
                       onChange={(v) => {
                         setProblemSelect(v);
@@ -557,7 +495,7 @@ const ProblemReportModal = ({ open, onClose, lang = 'ka' }) => {
                     />
                     {touched.problem && !isProblemValid && (
                       <span className="prm-error">
-                        <FiAlertCircle /> {t.errProblem}
+                        <FiAlertCircle /> {tr('errProblem')}
                       </span>
                     )}
                   </m.div>
@@ -573,14 +511,14 @@ const ProblemReportModal = ({ open, onClose, lang = 'ka' }) => {
                     transition={{ duration: 0.22 }}
                   >
                     <label htmlFor="prm-problem-text" className="prm-label">
-                      {t.problemTextLabel} <span className="prm-req">*</span>
+                      {tr('problemTextLabel')} <span className="prm-req">*</span>
                     </label>
                     <textarea
                       id="prm-problem-text"
                       className={`prm-textarea ${
                         touched.problem && !isProblemValid ? 'is-invalid' : ''
                       }`}
-                      placeholder={t.problemTextPlaceholder}
+                      placeholder={tr('problemTextPlaceholder')}
                       rows={3}
                       value={problemText}
                       onChange={(e) => setProblemText(e.target.value)}
@@ -588,49 +526,58 @@ const ProblemReportModal = ({ open, onClose, lang = 'ka' }) => {
                     />
                     {touched.problem && !isProblemValid && (
                       <span className="prm-error">
-                        <FiAlertCircle /> {t.errProblem}
+                        <FiAlertCircle /> {tr('errProblem')}
                       </span>
                     )}
                   </m.div>
                 )}
               </AnimatePresence>
 
-              {/* 4. Error code (optional) */}
-              <div className="prm-field">
-                <label htmlFor="prm-code" className="prm-label">
-                  {t.errorCodeLabel}{' '}
-                  <span className="prm-optional">{t.optional}</span>
-                </label>
-                <div className="prm-input-wrap">
-                  <FiHash className="prm-input-icon" />
-                  <input
-                    id="prm-code"
-                    type="text"
-                    className="prm-input"
-                    placeholder={t.errorCodePlaceholder}
-                    value={errorCode}
-                    onChange={(e) => setErrorCode(e.target.value)}
-                    autoComplete="off"
-                  />
-                </div>
-                <span className="prm-hint">{t.errorCodeHint}</span>
-              </div>
+              {/* 4. Error code (optional) — printers only */}
+              <AnimatePresence initial={false}>
+                {deviceType === 'printer' && (
+                  <m.div
+                    key="error-code-field"
+                    className="prm-field"
+                    initial={{ opacity: 0, height: 0, marginTop: -10 }}
+                    animate={{ opacity: 1, height: 'auto', marginTop: 0 }}
+                    exit={{ opacity: 0, height: 0, marginTop: -10 }}
+                    transition={{ duration: 0.22, ease: [0.22, 1, 0.36, 1] }}
+                  >
+                    <label htmlFor="prm-code" className="prm-label">
+                      {tr('errorCodeLabel')}{' '}
+                      <span className="prm-optional">{tr('optional')}</span>
+                    </label>
+                    <div className="prm-input-wrap">
+                      <FiHash className="prm-input-icon" />
+                      <input
+                        id="prm-code"
+                        type="text"
+                        className="prm-input"
+                        placeholder={tr('errorCodePlaceholder')}
+                        value={errorCode}
+                        onChange={(e) => setErrorCode(e.target.value)}
+                        autoComplete="off"
+                      />
+                    </div>
+                    <span className="prm-hint">{tr('errorCodeHint')}</span>
+                  </m.div>
+                )}
+              </AnimatePresence>
 
               {/* 5. Urgency */}
               <div className="prm-field">
-                <span className="prm-label">{t.urgencyLabel}</span>
+                <span className="prm-label">{tr('urgencyLabel')}</span>
                 <div className="prm-urgency-grid">
                   {[
                     {
                       value: 'critical',
-                      title: t.urgencyCriticalTitle,
-                      desc: t.urgencyCriticalDesc,
+                      title: tr('urgencyCriticalTitle'),
                       icon: <FiAlertTriangle />,
                     },
                     {
                       value: 'partial',
-                      title: t.urgencyPartialTitle,
-                      desc: t.urgencyPartialDesc,
+                      title: tr('urgencyPartialTitle'),
                       icon: <FiActivity />,
                     },
                   ].map((opt) => {
@@ -645,7 +592,6 @@ const ProblemReportModal = ({ open, onClose, lang = 'ka' }) => {
                         <span className="prm-urgency-icon">{opt.icon}</span>
                         <span className="prm-urgency-text">
                           <strong>{opt.title}</strong>
-                          <small>{opt.desc}</small>
                         </span>
                         <span className="prm-urgency-radio" aria-hidden>
                           <span className="prm-urgency-radio-dot" />
@@ -659,7 +605,7 @@ const ProblemReportModal = ({ open, onClose, lang = 'ka' }) => {
               {/* 6. Upload */}
               <div className="prm-field">
                 <span className="prm-label">
-                  {t.uploadLabel} <span className="prm-optional">{t.optional}</span>
+                  {tr('uploadLabel')} <span className="prm-optional">{tr('optional')}</span>
                 </span>
                 <div
                   className={`prm-upload ${dragOver ? 'is-drag' : ''}`}
@@ -685,8 +631,8 @@ const ProblemReportModal = ({ open, onClose, lang = 'ka' }) => {
                 >
                   <FiUploadCloud className="prm-upload-icon" />
                   <div className="prm-upload-text">
-                    <strong>{t.uploadMain}</strong>
-                    <span>{t.uploadSub}</span>
+                    <strong>{tr('uploadMain')}</strong>
+                    <span>{tr('uploadSub')}</span>
                   </div>
                   <input
                     ref={fileInputRef}
@@ -717,7 +663,7 @@ const ProblemReportModal = ({ open, onClose, lang = 'ka' }) => {
                           type="button"
                           className="prm-preview-remove"
                           onClick={() => removeFile(p.id)}
-                          aria-label={`${t.removeAria}: ${p.name}`}
+                          aria-label={`${tr('removeAria')}: ${p.name}`}
                         >
                           <FiX />
                         </button>
@@ -734,7 +680,7 @@ const ProblemReportModal = ({ open, onClose, lang = 'ka' }) => {
               {status === 'error' && (
                 <div className="prm-form-error" role="alert">
                   <FiAlertCircle />
-                  {t.formError}
+                  {tr('formError')}
                 </div>
               )}
 
@@ -745,7 +691,7 @@ const ProblemReportModal = ({ open, onClose, lang = 'ka' }) => {
                   onClick={handleClose}
                   disabled={status === 'loading'}
                 >
-                  {t.cancel}
+                  {tr('cancel')}
                 </button>
                 <button
                   type="submit"
@@ -754,10 +700,10 @@ const ProblemReportModal = ({ open, onClose, lang = 'ka' }) => {
                 >
                   {status === 'loading' ? (
                     <>
-                      <FiLoader className="prm-spin" /> {t.submitting}
+                      <FiLoader className="prm-spin" /> {tr('submitting')}
                     </>
                   ) : (
-                    <>{t.submit}</>
+                    <>{tr('submit')}</>
                   )}
                 </button>
               </footer>

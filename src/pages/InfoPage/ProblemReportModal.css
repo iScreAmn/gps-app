@@ -456,10 +456,11 @@ body[data-theme="dark"] .prm-select-list {
 .prm-urgency-card {
   position: relative;
   display: flex;
-  align-items: flex-start;
+  align-items: center;
   gap: 12px;
   text-align: left;
   background: var(--prm-field-bg);
+  box-shadow: 0 10px 24px -14px rgba(15, 23, 42, 0.2);
   border: 1.5px solid var(--prm-border);
   border-radius: var(--prm-radius-sm);
   padding: 14px 14px 14px 14px;
@@ -470,12 +471,6 @@ body[data-theme="dark"] .prm-select-list {
               border-color 0.22s var(--prm-ease),
               background 0.22s var(--prm-ease),
               box-shadow 0.22s var(--prm-ease);
-}
-
-.prm-urgency-card:hover {
-  transform: translateY(-2px);
-  border-color: var(--prm-border-strong);
-  box-shadow: 0 10px 24px -14px rgba(15, 23, 42, 0.2);
 }
 
 .prm-urgency-card:focus-visible {

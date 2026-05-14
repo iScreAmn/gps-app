@@ -327,7 +327,6 @@ const InfoPage = () => {
       <ProblemReportModal
         open={reportOpen}
         onClose={() => setReportOpen(false)}
-        lang={pageLang}
       />
     </div>
   );

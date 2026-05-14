@@ -714,6 +714,52 @@
       "call": "დაგვიკავშირდით",
       "telegram": "მოგვწერეთ Telegram-ში"
     },
-    "mapIframeTitle": "GPS ოფისის რუკა"
+    "mapIframeTitle": "GPS ოფისის რუკა",
+    "problemReport": {
+      "eyebrow": "სერვისის განაცხადი",
+      "title": "აღწერეთ პრობლემა",
+      "subtitle": "შეავსეთ ინფორმაცია მოწყობილობის ხარვეზის შესახებ სწრაფი დიაგნოსტიკისთვის",
+      "closeAria": "დახურვა",
+      "deviceLabel": "მოწყობილობის ტიპი",
+      "devicePlaceholder": "აირჩიეთ მოწყობილობის ტიპი",
+      "modelLabel": "მოდელი",
+      "modelPlaceholder": "აირჩიეთ მოდელი",
+      "modelFreePlaceholder": "ჩაწერეთ მოდელი",
+      "problemLabel": "პრობლემის ტიპი",
+      "problemSelectPlaceholder": "აირჩიეთ პრობლემის ტიპი",
+      "problemTextLabel": "პრობლემის აღწერა",
+      "problemTextPlaceholder": "მოკლედ აღწერეთ ხარვეზი…",
+      "errorCodeLabel": "შეცდომის კოდი",
+      "errorCodePlaceholder": "მაგ.: C-2557",
+      "errorCodeHint": "თუ ეკრანზე გამოჩნდება შეცდომის კოდი — მიუთითეთ",
+      "urgencyLabel": "გადაუდებლობა",
+      "urgencyCriticalTitle": "მოწყობილობა სრულიად გაჩერებულია",
+      "urgencyPartialTitle": "მუშაობს, მაგრამ დეფექტით",
+      "uploadLabel": "დაამატეთ პრობლემის ფოტო",
+      "uploadMain": "გადმოიტანეთ ფაილები აქ",
+      "uploadSub": "ან დააჭირეთ ასარჩევად · PNG, JPG 10MB-მდე",
+      "removeAria": "ფაილის წაშლა",
+      "optional": "არასავალდებულო",
+      "cancel": "გაუქმება",
+      "submit": "განაცხადის გაგზავნა",
+      "submitting": "იგზავნება…",
+      "successTitle": "განაცხადი გაიგზავნა",
+      "successDesc": "ჩვენ მალე დაგიკავშირდებით",
+      "formError": "ვერ მოხერხდა გაგზავნა. სცადეთ თავიდან.",
+      "errDevice": "აირჩიეთ მოწყობილობის ტიპი",
+      "errModel": "მიუთითეთ ან აირჩიეთ მოდელი",
+      "errProblem": "მიუთითეთ პრობლემა",
+      "devices": {
+        "printer": "პრინტერი",
+        "cutting": "საჭრელი მოწყობილობა",
+        "wideformat": "ფართოფორმატიანი მოწყობილობა",
+        "finishing": "ბეჭდვისშემდგომი აპარატურა"
+      },
+      "printerProblems": [
+        "პრინტერი ბეჭდავს ზოლებით",
+        "ADF / კოპირების / სკანერის პრობლემა",
+        "ქაღალდი იჭედება"
+      ]
+    }
   }
 }
