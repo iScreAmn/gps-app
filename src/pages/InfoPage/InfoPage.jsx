@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 // eslint-disable-next-line no-unused-vars -- motion primitives (m.div, m.h1, …)
 import { motion as m, useReducedMotion } from 'motion/react';
@@ -10,14 +10,82 @@ import {
 } from 'react-icons/fa';
 import {
   FiTool,
-  FiPrinter,
   FiZap,
   FiDroplet,
 } from 'react-icons/fi';
+import { RiCustomerService2Fill } from "react-icons/ri";
 import { VscGitPullRequestNewChanges } from "react-icons/vsc";
 import contactsData from '../../data/contactsData';
 import ProblemReportModal from './ProblemReportModal';
 import './InfoPage.css';
+
+/** IANA id supported by this runtime, or null → UTC+4 (Georgia, no DST). */
+let cachedGeorgiaTz;
+function getGeorgiaTimeZoneId() {
+  if (cachedGeorgiaTz !== undefined) return cachedGeorgiaTz;
+  for (const tz of ['Europe/Tbilisi', 'Asia/Tbilisi']) {
+    try {
+      new Date().toLocaleString('en-US', { timeZone: tz });
+      cachedGeorgiaTz = tz;
+      return tz;
+    } catch {
+      /* next */
+    }
+  }
+  cachedGeorgiaTz = null;
+  return null;
+}
+
+const TBILISI_WEEKDAYS_EN = [
+  'Sunday',
+  'Monday',
+  'Tuesday',
+  'Wednesday',
+  'Thursday',
+  'Friday',
+  'Saturday',
+];
+
+/** Mon–Fri 10:00–18:00, Sat 10:00–14:00 (Georgia). */
+function isTbilisOfficeHours(date = new Date()) {
+  const tz = getGeorgiaTimeZoneId();
+  let weekday;
+  let hour;
+  let minute;
+
+  if (tz) {
+    weekday = date.toLocaleDateString('en-US', { timeZone: tz, weekday: 'long' });
+    const parts = new Intl.DateTimeFormat('en-GB', {
+      timeZone: tz,
+      hour: '2-digit',
+      minute: '2-digit',
+      hourCycle: 'h23',
+    }).formatToParts(date);
+    hour = Number(parts.find((p) => p.type === 'hour')?.value);
+    minute = Number(parts.find((p) => p.type === 'minute')?.value);
+  } else {
+    const shifted = new Date(date.getTime() + 4 * 60 * 60 * 1000);
+    weekday = TBILISI_WEEKDAYS_EN[shifted.getUTCDay()];
+    hour = shifted.getUTCHours();
+    minute = shifted.getUTCMinutes();
+  }
+
+  if (Number.isNaN(hour) || Number.isNaN(minute)) return false;
+  const mins = hour * 60 + minute;
+
+  if (weekday === 'Sunday') return false;
+  if (weekday === 'Saturday') return mins >= 10 * 60 && mins < 14 * 60;
+  if (
+    weekday === 'Monday' ||
+    weekday === 'Tuesday' ||
+    weekday === 'Wednesday' ||
+    weekday === 'Thursday' ||
+    weekday === 'Friday'
+  ) {
+    return mins >= 10 * 60 && mins < 18 * 60;
+  }
+  return false;
+}
 
 const Reveal = ({ children, delay = 0, y = 24, className = '' }) => (
   <m.div
@@ -45,6 +113,14 @@ const InfoPage = () => {
 
   const reduceMotion = useReducedMotion();
   const [reportOpen, setReportOpen] = useState(false);
+  const [printerOnline, setPrinterOnline] = useState(() => isTbilisOfficeHours());
+
+  useEffect(() => {
+    const tick = () => setPrinterOnline(isTbilisOfficeHours());
+    tick();
+    const id = window.setInterval(tick, 60_000);
+    return () => window.clearInterval(id);
+  }, []);
 
   const scrollInfoPageToTop = () => {
     window.scrollTo({
@@ -119,13 +195,27 @@ const InfoPage = () => {
                 <span className="info-hero-printer-dot" />
               </div>
               <div className="info-hero-printer-body">
-                <FiPrinter className="info-hero-printer-icon" />
+                <RiCustomerService2Fill className="info-hero-printer-icon" />
                 <div className="info-hero-printer-meta">
                   <span className="info-hero-printer-status">
-                    <span className="info-pulse-dot info-pulse-dot-green" />
-                    {t('infoPage.hero.printerStatus')}
+                    <span
+                      className={
+                        printerOnline
+                          ? 'info-pulse-dot info-pulse-dot-green'
+                          : 'info-pulse-dot info-pulse-dot-red'
+                      }
+                      aria-hidden
+                    />
+                    {printerOnline
+                      ? t('infoPage.hero.printerStatusOnline')
+                      : t('infoPage.hero.printerStatusOffline')}
                   </span>
-                  <span className="info-hero-printer-name">{t('infoPage.hero.printerTagline')}</span>
+                  <span className="info-hero-printer-name">
+                    {printerOnline
+                      ? t('infoPage.hero.printerTagline')
+                      : t('infoPage.hero.printerOutsideHours')}
+                  </span>
+                  <p className="info-hero-printer-hours">{t('infoPage.hero.printerHours')}</p>
                 </div>
               </div>
               <div className="info-hero-printer-stats">

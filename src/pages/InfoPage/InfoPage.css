@@ -296,6 +296,7 @@ body[data-theme="dark"] .info-orb-3 { opacity: 0.28; }
 }
 
 .info-pulse-dot-green { background: #10b981; }
+.info-pulse-dot-red { background: #ef4444; }
 
 @keyframes info-pulse {
   0%   { box-shadow: 0 0 0 0 rgba(220, 38, 38, 0.5); }
@@ -409,7 +410,6 @@ body[data-theme="dark"] .info-orb-3 { opacity: 0.28; }
 
 .info-hero-printer-body {
   display: flex;
-  align-items: center;
   gap: 16px;
   margin-bottom: 18px;
 }
@@ -422,6 +422,7 @@ body[data-theme="dark"] .info-orb-3 { opacity: 0.28; }
   color: var(--info-accent);
   border: 1px solid var(--info-border);
   flex-shrink: 0;
+  height: 78px;
 }
 
 .info-hero-printer-meta {
@@ -444,6 +445,14 @@ body[data-theme="dark"] .info-orb-3 { opacity: 0.28; }
   font-size: 1.05rem;
   font-weight: 700;
   letter-spacing: -0.01em;
+}
+
+.info-hero-printer-hours {
+  margin: 0;
+  font-size: 11px;
+  line-height: 1.4;
+  font-weight: 500;
+  color: var(--info-text-soft);
 }
 
 .info-hero-printer-stats {
