@@ -722,10 +722,13 @@ body[data-theme="dark"] .prm-select-list {
   .prm-header { 
     padding: 70px 20px 14px; 
   }
-  .prm-form { 
-    padding: 16px 20px 0; gap: 16px; 
+  .prm-form {
+    padding: 16px 20px 0; gap: 16px;
   }
-  .prm-urgency-grid { 
+  /* Prevent iOS Safari auto-zoom on focus (triggers when font-size < 16px) */
+  .prm-input,
+  .prm-select-trigger { font-size: 16px; }
+  .prm-urgency-grid {
     grid-template-columns: 1fr; 
   }
   .prm-footer {
