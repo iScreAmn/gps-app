@@ -29,6 +29,7 @@ import {
   FiAward,
 } from 'react-icons/fi';
 import contactsData from '../../data/contactsData';
+import ProblemReportModal from './ProblemReportModal';
 import './InfoPage.css';
 
 /* ------------------------------------------------------------------ */
@@ -91,6 +92,7 @@ const InfoPage = () => {
   const contactsHref = `/${pageLang}/contacts`;
 
   const reduceMotion = useReducedMotion();
+  const [reportOpen, setReportOpen] = useState(false);
 
   const scrollInfoPageToTop = () => {
     window.scrollTo({
@@ -190,9 +192,13 @@ const InfoPage = () => {
             <a href={phoneHref} className="info-btn info-btn-primary">
               <FaPhoneAlt /> {t('infoPage.hero.ctaContact')}
             </a>
-            <a href={contactsHref} className="info-btn info-btn-ghost">
+            <button
+              type="button"
+              onClick={() => setReportOpen(true)}
+              className="info-btn info-btn-ghost"
+            >
               <FiSend /> {t('infoPage.hero.ctaRequest')}
-            </a>
+            </button>
           </m.div>
 
           {/* floating printer card */}
@@ -317,6 +323,8 @@ const InfoPage = () => {
           <FaArrowUp />
         </button>
       </div>
+
+      <ProblemReportModal open={reportOpen} onClose={() => setReportOpen(false)} />
     </div>
   );
 };
