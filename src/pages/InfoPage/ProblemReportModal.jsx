@@ -22,10 +22,6 @@ import {
 import './ProblemReportModal.css';
 
 const PR_NS = 'infoPage.problemReport';
-
-/* ------------------------------------------------------------------ */
-/*  Device-type config: model lists + problem mode                     */
-/* ------------------------------------------------------------------ */
 const DEVICE_DEFS = [
   { value: 'printer', icon: <FiPrinter />, problemMode: 'select', models: null },
   {
@@ -133,7 +129,6 @@ const Dropdown = ({
   );
 };
 
-/* ================================================================== */
 const ProblemReportModal = ({ open, onClose }) => {
   const { t, i18n } = useTranslation();
   const prmLang =
@@ -148,6 +143,8 @@ const ProblemReportModal = ({ open, onClose }) => {
   const firstFieldRef = useRef(null);
   const fileInputRef = useRef(null);
 
+  const [companyName, setCompanyName] = useState('');
+  const [phone, setPhone] = useState('');
   const [deviceType, setDeviceType] = useState('');
   const [deviceModel, setDeviceModel] = useState('');
   const [problemSelect, setProblemSelect] = useState('');
@@ -177,6 +174,8 @@ const ProblemReportModal = ({ open, onClose }) => {
   }, [previews]);
 
   const resetForm = useCallback(() => {
+    setCompanyName('');
+    setPhone('');
     setDeviceType('');
     setDeviceModel('');
     setProblemSelect('');
@@ -249,6 +248,8 @@ const ProblemReportModal = ({ open, onClose }) => {
   }, [open, handleClose]);
 
   /* Validation */
+  const isCompanyValid = companyName.trim().length > 0;
+  const isPhoneValid = phone.trim().length > 0;
   const isDeviceValid = deviceType !== '';
   const hasPresetModels = currentDevice?.models != null;
   const showModelField = deviceType !== '';
@@ -262,7 +263,12 @@ const ProblemReportModal = ({ open, onClose }) => {
         ? problemText.trim().length > 0
         : false;
   const canSubmit =
-    isDeviceValid && isModelValid && isProblemValid && status !== 'loading';
+    isCompanyValid &&
+    isPhoneValid &&
+    isDeviceValid &&
+    isModelValid &&
+    isProblemValid &&
+    status !== 'loading';
 
   const addFiles = (incoming) => {
     const list = Array.from(incoming || [])
@@ -278,7 +284,13 @@ const ProblemReportModal = ({ open, onClose }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setTouched({ device: true, model: true, problem: true });
+    setTouched({
+      company: true,
+      phone: true,
+      device: true,
+      model: true,
+      problem: true,
+    });
     if (!canSubmit) return;
     setStatus('loading');
     try {
@@ -380,6 +392,63 @@ const ProblemReportModal = ({ open, onClose }) => {
             </header>
 
             <form className="prm-form" onSubmit={handleSubmit} noValidate>
+              {/* Contact */}
+              <div className="prm-field">
+                <label htmlFor="prm-company" className="prm-label">
+                  {tr('companyNameLabel')} <span className="prm-req">*</span>
+                </label>
+                <div
+                  className={`prm-input-wrap ${
+                    touched.company && !isCompanyValid ? 'is-invalid' : ''
+                  }`}
+                >
+                  <input
+                    ref={firstFieldRef}
+                    id="prm-company"
+                    type="text"
+                    className="prm-input"
+                    placeholder={tr('companyNamePlaceholder')}
+                    value={companyName}
+                    onChange={(e) => setCompanyName(e.target.value)}
+                    onBlur={() => setTouched((p) => ({ ...p, company: true }))}
+                    autoComplete="organization"
+                  />
+                </div>
+                {touched.company && !isCompanyValid && (
+                  <span className="prm-error">
+                    <FiAlertCircle /> {tr('errCompanyName')}
+                  </span>
+                )}
+              </div>
+
+              <div className="prm-field">
+                <label htmlFor="prm-phone" className="prm-label">
+                  {tr('phoneLabel')} <span className="prm-req">*</span>
+                </label>
+                <div
+                  className={`prm-input-wrap ${
+                    touched.phone && !isPhoneValid ? 'is-invalid' : ''
+                  }`}
+                >
+                  <input
+                    id="prm-phone"
+                    type="tel"
+                    inputMode="tel"
+                    className="prm-input"
+                    placeholder={tr('phonePlaceholder')}
+                    value={phone}
+                    onChange={(e) => setPhone(e.target.value)}
+                    onBlur={() => setTouched((p) => ({ ...p, phone: true }))}
+                    autoComplete="tel"
+                  />
+                </div>
+                {touched.phone && !isPhoneValid && (
+                  <span className="prm-error">
+                    <FiAlertCircle /> {tr('errPhone')}
+                  </span>
+                )}
+              </div>
+
               {/* 1. Device type */}
               <div className="prm-field">
                 <label className="prm-label">
