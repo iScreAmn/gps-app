@@ -111,10 +111,6 @@ body[data-theme="dark"] .prm-panel {
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  font-size: 0.72rem;
-  font-weight: 600;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
   color: var(--prm-accent);
   background: var(--prm-accent-soft);
   padding: 5px 10px;
@@ -124,12 +120,40 @@ body[data-theme="dark"] .prm-panel {
 
 .prm-eyebrow svg { font-size: 13px; }
 
+/* Eyebrow typography — per language (tune `ka` for Mkhedruli) */
+.prm-panel[data-prm-lang="en"] .prm-eyebrow {
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.prm-panel[data-prm-lang="ka"] .prm-eyebrow {
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  font-family: 'Archyedt';
+  text-transform: none;
+}
+
 .prm-header-text h2 {
   margin: 0 0 6px;
+}
+
+/* Title typography — per language */
+.prm-panel[data-prm-lang="en"] .prm-header-text h2 {
   font-size: clamp(1.25rem, 2.6vw, 1.5rem);
   font-weight: 700;
   letter-spacing: -0.02em;
   line-height: 1.2;
+}
+
+.prm-panel[data-prm-lang="ka"] .prm-header-text h2 {
+  font-size: clamp(1.25rem, 2.6vw, 1.5rem);
+  font-family: 'Archyedt';
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.25;
 }
 
 .prm-header-text p {
@@ -671,8 +695,6 @@ body[data-theme="dark"] .prm-select-list {
   border: 1px solid transparent;
   border-radius: 12px;
   padding: 12px 20px;
-  font-size: 0.92rem;
-  font-weight: 600;
   font-family: inherit;
   cursor: pointer;
   transition: transform 0.2s var(--prm-ease),
@@ -684,6 +706,22 @@ body[data-theme="dark"] .prm-select-list {
 }
 
 .prm-btn:focus-visible { outline: none; box-shadow: var(--prm-ring); }
+
+/* Footer buttons — typography per language */
+.prm-panel[data-prm-lang="en"] .prm-btn-ghost,
+.prm-panel[data-prm-lang="en"] .prm-btn-primary {
+  font-size: 0.92rem;
+  font-weight: 600;
+  letter-spacing: 0;
+}
+
+.prm-panel[data-prm-lang="ka"] .prm-btn-ghost,
+.prm-panel[data-prm-lang="ka"] .prm-btn-primary {
+  font-size: 0.92rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  font-family: 'Archyedt';
+}
 
 .prm-btn-ghost {
   background: transparent;
@@ -816,7 +854,20 @@ body[data-theme="dark"] .prm-select-list {
     border-top: 1px solid var(--prm-border);
   }
   .prm-btn { width: 100%; padding: 14px 20px; }
-  .prm-header-text h2 { font-size: 1.15rem; }
+  .prm-panel[data-prm-lang="en"] .prm-btn-ghost,
+  .prm-panel[data-prm-lang="en"] .prm-btn-primary {
+    font-size: 0.92rem;
+    font-weight: 600;
+    letter-spacing: 0;
+  }
+  .prm-panel[data-prm-lang="ka"] .prm-btn-ghost,
+  .prm-panel[data-prm-lang="ka"] .prm-btn-primary {
+    font-size: 0.92rem;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+  }
+  .prm-panel[data-prm-lang="en"] .prm-header-text h2 { font-size: 1.15rem; }
+  .prm-panel[data-prm-lang="ka"] .prm-header-text h2 { font-size: 1.15rem; }
   .prm-header-text p { font-size: 0.85rem; }
   /* Drag-handle affordance for the bottom sheet */
   .prm-panel::before {

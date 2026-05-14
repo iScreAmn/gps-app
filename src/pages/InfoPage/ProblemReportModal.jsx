@@ -135,7 +135,12 @@ const Dropdown = ({
 
 /* ================================================================== */
 const ProblemReportModal = ({ open, onClose }) => {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
+  const prmLang =
+    String(i18n.resolvedLanguage || i18n.language || 'ka').split('-')[0] === 'ka'
+      ? 'ka'
+      : 'en';
+
   const reduce = useReducedMotion();
   const tr = useCallback((key) => t(`${PR_NS}.${key}`), [t]);
 
@@ -334,6 +339,7 @@ const ProblemReportModal = ({ open, onClose }) => {
         >
           <m.div
             className="prm-panel"
+            data-prm-lang={prmLang}
             role="dialog"
             aria-modal="true"
             aria-labelledby="prm-title"
@@ -371,15 +377,6 @@ const ProblemReportModal = ({ open, onClose }) => {
                 <h2 id="prm-title">{tr('title')}</h2>
                 <p id="prm-subtitle">{tr('subtitle')}</p>
               </div>
-              <button
-                type="button"
-                className="prm-close"
-                onClick={handleClose}
-                aria-label={tr('closeAria')}
-                disabled={status === 'loading'}
-              >
-                <FiX />
-              </button>
             </header>
 
             <form className="prm-form" onSubmit={handleSubmit} noValidate>
