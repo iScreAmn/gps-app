@@ -1195,13 +1195,13 @@ body[data-theme="light"] .info-footer-card {
   height: var(--info-sticky-btn-height);
 }
 
-.info-sticky-bar[data-sticky-lang="ka"] .info-sticky-call {
-  font-family: 'Dinamo Mt Medium';
+.info-sticky-bar[data-sticky-lang="ka"] .info-sticky-call,
+.info-sticky-bar[data-sticky-lang="ka"] .info-sticky-chat {
+  font-family: 'Dinamo Mt Thin';
   font-size: 18px;
   letter-spacing: -0.02em;
 }
 
-.info-sticky-bar[data-sticky-lang="ka"] .info-sticky-wa,
 .info-sticky-bar[data-sticky-lang="ka"] .info-sticky-top {
   width: var(--info-sticky-icon-size);
 }
@@ -1228,10 +1228,15 @@ body[data-theme="light"] .info-footer-card {
   background: linear-gradient(135deg, #ef4444 0%, var(--info-accent) 100%);
   box-shadow: 0 8px 20px -8px rgba(220, 38, 38, 0.6);
 }
-.info-sticky-wa {
-  width: 48px; flex-shrink: 0;
-  background: linear-gradient(135deg, #25D366 0%, #1ea84f 100%);
+.info-sticky-chat {
+  flex: 1;
+  border: none;
+  cursor: pointer;
+  font-family: inherit;
+  background: linear-gradient(135deg, #334155 0%, #0f172a 100%);
+  box-shadow: 0 8px 20px -8px rgba(15, 23, 42, 0.55);
 }
+.info-sticky-chat svg { font-size: 1.05rem; }
 
 .info-sticky-top {
   width: 48px;

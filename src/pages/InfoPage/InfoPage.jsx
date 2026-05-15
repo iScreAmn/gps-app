@@ -108,7 +108,6 @@ const InfoPage = () => {
       : 'en';
   const phoneHref = contactsData.phone.href;
   const phoneLabel = contactsData.phone.label;
-  const waHref = contactsData.socials.whatsapp;
   const waChatHref = contactsData.socials.whatsappChat;
   const contactsHref = `/${pageLang}/contacts`;
 
@@ -339,17 +338,15 @@ const InfoPage = () => {
         className="info-sticky-bar"
         data-sticky-lang={pageLang}
       >
+        <button
+          type="button"
+          className="info-sticky-btn info-sticky-chat"
+          onClick={() => setChatOpen(true)}
+        >
+          <RiChat3Line /> <span>{t('infoPage.sticky.textUs')}</span>
+        </button>
         <a href={phoneHref} className="info-sticky-btn info-sticky-call">
           <FaPhoneAlt /> <span>{t('infoPage.sticky.call')}</span>
-        </a>
-        <a
-          href={waHref}
-          target="_blank"
-          rel="noreferrer"
-          className="info-sticky-btn info-sticky-wa"
-          aria-label={t('infoPage.aria.whatsapp')}
-        >
-          <FaWhatsapp />
         </a>
         <button
           type="button"

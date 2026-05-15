@@ -641,7 +641,8 @@
       "stat3Sub": "Of Experience"
     },
     "sticky": {
-      "call": "Call"
+      "call": "Call",
+      "textUs": "Text us"
     },
     "aria": {
       "whatsapp": "WhatsApp",
