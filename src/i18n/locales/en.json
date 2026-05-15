@@ -646,7 +646,8 @@
     },
     "aria": {
       "whatsapp": "WhatsApp",
-      "toTop": "Back to top"
+      "toTop": "Back to top",
+      "unread": "{{count}} unread messages"
     },
     "quick": {
       "eyebrow": "Quick actions",

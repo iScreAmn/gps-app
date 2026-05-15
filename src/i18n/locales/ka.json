@@ -619,7 +619,8 @@
     },
     "aria": {
       "whatsapp": "WhatsApp",
-      "toTop": "ზემოთ"
+      "toTop": "ზემოთ",
+      "unread": "{{count}} წაუკითხავი შეტყობინება"
     },
     "quick": {
       "eyebrow": "სწრაფი ქმედებები",

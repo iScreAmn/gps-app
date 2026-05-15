@@ -124,6 +124,7 @@ const InfoPage = () => {
   const reduceMotion = useReducedMotion();
   const [reportOpen, setReportOpen] = useState(false);
   const [chatOpen, setChatOpen] = useState(false);
+  const [chatUnread, setChatUnread] = useState(0);
   const [offHoursOpen, setOffHoursOpen] = useState(false);
   const [printerOnline, setPrinterOnline] = useState(() => isTbilisOfficeHours());
 
@@ -381,6 +382,11 @@ const InfoPage = () => {
           onClick={() => setChatOpen(true)}
         >
           <RiChat3Line /> <span>{t('infoPage.sticky.textUs')}</span>
+          {chatUnread > 0 && (
+            <span className="info-sticky-badge" aria-label={t('infoPage.aria.unread', { count: chatUnread })}>
+              {chatUnread > 99 ? '99+' : chatUnread}
+            </span>
+          )}
         </button>
         <a href={phoneHref} className="info-sticky-btn info-sticky-call">
           <FaPhoneAlt /> <span>{t('infoPage.sticky.call')}</span>
@@ -399,7 +405,11 @@ const InfoPage = () => {
         open={reportOpen}
         onClose={() => setReportOpen(false)}
       />
-      <ChatModal open={chatOpen} onClose={() => setChatOpen(false)} />
+      <ChatModal
+        open={chatOpen}
+        onClose={() => setChatOpen(false)}
+        onUnreadChange={setChatUnread}
+      />
 
       <AnimatePresence>
         {offHoursOpen && (

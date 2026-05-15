@@ -8,7 +8,17 @@ import './ChatModal.css';
 
 const CM_NS = 'infoPage.chat';
 const STORAGE_KEY = 'gps:chat:messages:v1';
+const UNREAD_KEY = 'gps:chat:unread:v1';
 const MAX_IMAGE_BYTES = 10 * 1024 * 1024;
+
+const loadUnread = () => {
+  try {
+    const n = parseInt(localStorage.getItem(UNREAD_KEY) || '0', 10);
+    return Number.isFinite(n) && n > 0 ? n : 0;
+  } catch {
+    return 0;
+  }
+};
 
 const readImageAsDataUrl = (file) =>
   new Promise((resolve, reject) => {
@@ -46,7 +56,7 @@ const persistMessages = (msgs) => {
   }
 };
 
-const ChatModal = ({ open, onClose }) => {
+const ChatModal = ({ open, onClose, onUnreadChange }) => {
   const { t, i18n } = useTranslation();
   const lang =
     String(i18n.resolvedLanguage || i18n.language || 'ka').split('-')[0] === 'ka'
@@ -66,6 +76,27 @@ const ChatModal = ({ open, onClose }) => {
   const [error, setError] = useState('');
   const [viewerImage, setViewerImage] = useState(null);
   const [pendingImage, setPendingImage] = useState(null);
+  const [unread, setUnread] = useState(() => loadUnread());
+
+  const openRef = useRef(open);
+  useEffect(() => {
+    openRef.current = open;
+  }, [open]);
+
+  /* Sync unread count to parent + localStorage */
+  useEffect(() => {
+    try {
+      localStorage.setItem(UNREAD_KEY, String(unread));
+    } catch {
+      /* ignore */
+    }
+    onUnreadChange?.(unread);
+  }, [unread, onUnreadChange]);
+
+  /* Clear unread when chat opens */
+  useEffect(() => {
+    if (open) setUnread(0);
+  }, [open]);
 
   const formatTime = useCallback(
     (date) =>
@@ -172,6 +203,7 @@ const ChatModal = ({ open, onClose }) => {
             at: new Date(),
           },
         ]);
+        if (!openRef.current) setUnread((n) => n + 1);
       },
       1400 + Math.random() * 600
     );
