@@ -215,15 +215,17 @@ const ChatModal = ({ open, onClose, onUnreadChange }) => {
     persistMessages(messages);
   }, [messages]);
 
-  /* Poll for new messages when chat is open */
+  /* Poll for new messages (always, even when chat is closed) */
   useEffect(() => {
-    if (!open) return;
-
     const interval = setInterval(fetchNewMessages, POLLING_INTERVAL);
-    fetchNewMessages(); // Fetch immediately on open
+    
+    // Fetch immediately on mount or when chat opens
+    if (open) {
+      fetchNewMessages();
+    }
 
     return () => clearInterval(interval);
-  }, [open, userId]);
+  }, [userId]); // Removed 'open' dependency to poll always
 
   useEffect(() => {
     if (!open) return;
@@ -285,7 +287,12 @@ const ChatModal = ({ open, onClose, onUnreadChange }) => {
       const data = await response.json();
       
       if (data.success && data.messages && data.messages.length > 0) {
-        setMessages((prev) => [...prev, ...data.messages]);
+        // Convert date strings to Date objects
+        const messagesWithDates = data.messages.map(msg => ({
+          ...msg,
+          at: new Date(msg.at)
+        }));
+        setMessages((prev) => [...prev, ...messagesWithDates]);
         if (!openRef.current) {
           setUnread((n) => n + data.messages.length);
         }

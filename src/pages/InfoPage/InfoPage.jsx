@@ -388,7 +388,11 @@ const InfoPage = () => {
             </span>
           )}
         </button>
-        <a href={phoneHref} className="info-sticky-btn info-sticky-call">
+        <a
+          href={phoneHref}
+          className="info-sticky-btn info-sticky-call"
+          onClick={gateOffHours}
+        >
           <FaPhoneAlt /> <span>{t('infoPage.sticky.call')}</span>
         </a>
         <button
