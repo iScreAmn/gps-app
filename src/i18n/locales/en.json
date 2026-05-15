@@ -628,7 +628,11 @@
       "printerStatusOffline": "Offline",
       "printerTagline": "We are ready to help",
       "printerOutsideHours": "Outside working hours",
-      "printerHours": "We are open every day: Monday – Friday from 10:00 to 18:00, Saturday from 10:00 to 14:00.",
+      "printerHoursLabel": "Working hours:",
+      "printerHoursWeekdays": "Monday – Friday: 10:00–18:00",
+      "printerHoursSaturday": "Saturday: 10:00–14:00",
+      "textUs": "Text us",
+      "textUsOffline": "Available during working hours",
       "stat1Title": "Full",
       "stat1Sub": "Support",
       "stat2Title": "Quick",
@@ -708,7 +712,7 @@
       "addressLabel": "Address",
       "addressValue": "Tbilisi, Georgia",
       "hoursLabel": "Hours",
-      "hoursValue": "Mon–Sat · 10:00 — 19:00"
+      "hoursValue": "Mon–Fri: 10:00 — 18:00, Sat: 10:00 — 14:00"
     },
     "footerCta": {
       "title": "Have questions?",
@@ -716,6 +720,19 @@
       "call": "Call now"
     },
     "mapIframeTitle": "GPS office map",
+    "chat": {
+      "title": "Support chat",
+      "statusOnline": "Online — usually replies in a few minutes",
+      "today": "Today",
+      "greeting": "Hi! How can we help with your device today?",
+      "autoReply": "Thanks for your message — an engineer will reply shortly.",
+      "inputPlaceholder": "Write a message…",
+      "sendAria": "Send",
+      "attachAria": "Attach",
+      "emojiAria": "Emoji",
+      "closeAria": "Close",
+      "typingAria": "Support is typing"
+    },
     "problemReport": {
       "eyebrow": "Service request",
       "title": "Describe the problem",

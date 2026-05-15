@@ -601,7 +601,11 @@
       "printerStatusOffline": "Offline",
       "printerTagline": "მზად ვართ დაგეხმაროთ",
       "printerOutsideHours": "სამუშაო საათები დასრულებულია",
-      "printerHours": "სამუშაო საათები: ორშაბათი - პარასკევი: 10:00-18:00, შაბათი: 10:00-14:00",
+      "printerHoursLabel": "სამუშაო საათები:",
+      "printerHoursWeekdays": "პარასკევი: 10:00-18:00",
+      "printerHoursSaturday": "შაბათი: 10:00-14:00",
+      "textUs": "მოგვწერეთ",
+      "textUsOffline": "ხელმისაწვდომია სამუშაო საათებში",
       "stat1Title": "სრული",
       "stat1Sub": "მხარდაჭერა",
       "stat2Title": "სწრაფი",
@@ -627,7 +631,7 @@
       },
       "cartridge": {
         "title": "ტონერის შეკვეთა",
-        "sub": "მიწოდებით ან ოფისში მისვლით "
+        "sub": "მიწოდებით ან ოფისში მისვლით"
       },
       "whatsapp": {
         "title": "WhatsApp",
@@ -716,6 +720,19 @@
       "call": "დაგვიკავშირდით"
     },
     "mapIframeTitle": "GPS ოფისის რუკა",
+    "chat": {
+      "title": "მხარდაჭერის ჩატი",
+      "statusOnline": "ონლაინ — პასუხი რამდენიმე წუთში",
+      "today": "დღეს",
+      "greeting": "გამარჯობა! რით დაგეხმაროთ თქვენი დანადგარის გარშემო?",
+      "autoReply": "მადლობა შეტყობინებისთვის — ინჟინერი მალე გიპასუხებთ.",
+      "inputPlaceholder": "დაწერეთ შეტყობინება…",
+      "sendAria": "გაგზავნა",
+      "attachAria": "ფაილის მიმაგრება",
+      "emojiAria": "ემოჯი",
+      "closeAria": "დახურვა",
+      "typingAria": "მხარდაჭერა წერს"
+    },
     "problemReport": {
       "eyebrow": "სერვისის განაცხადი",
       "title": "აღწერეთ პრობლემა",
