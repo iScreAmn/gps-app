@@ -13,10 +13,11 @@ import {
   FiZap,
   FiDroplet,
 } from 'react-icons/fi';
-import { RiCustomerService2Fill } from "react-icons/ri";
+import { RiCustomerService2Fill, RiChat3Line } from "react-icons/ri";
 import { VscGitPullRequestNewChanges } from "react-icons/vsc";
 import contactsData from '../../data/contactsData';
 import ProblemReportModal from './ProblemReportModal';
+import ChatModal from './ChatModal';
 import './InfoPage.css';
 
 /** IANA id supported by this runtime, or null → UTC+4 (Georgia, no DST). */
@@ -113,6 +114,7 @@ const InfoPage = () => {
 
   const reduceMotion = useReducedMotion();
   const [reportOpen, setReportOpen] = useState(false);
+  const [chatOpen, setChatOpen] = useState(false);
   const [printerOnline, setPrinterOnline] = useState(() => isTbilisOfficeHours());
 
   useEffect(() => {
@@ -215,9 +217,25 @@ const InfoPage = () => {
                       ? t('infoPage.hero.printerTagline')
                       : t('infoPage.hero.printerOutsideHours')}
                   </span>
-                  <p className="info-hero-printer-hours">{t('infoPage.hero.printerHours')}</p>
+                  <div className="info-hero-printer-hours">
+                    <span>{t('infoPage.hero.printerHoursLabel')}</span>
+                    <span>{t('infoPage.hero.printerHoursWeekdays')}</span>
+                    <span>{t('infoPage.hero.printerHoursSaturday')}</span>
+                  </div>
                 </div>
               </div>
+              <button
+                type="button"
+                className="info-hero-printer-textus"
+                onClick={() => setChatOpen(true)}
+                disabled={!printerOnline}
+                aria-disabled={!printerOnline}
+              >
+                <RiChat3Line />
+                {printerOnline
+                  ? t('infoPage.hero.textUs')
+                  : t('infoPage.hero.textUsOffline')}
+              </button>
               <div className="info-hero-printer-stats">
                 <div>
                   <span>{t('infoPage.hero.stat1Title')}</span>
@@ -351,6 +369,7 @@ const InfoPage = () => {
         open={reportOpen}
         onClose={() => setReportOpen(false)}
       />
+      <ChatModal open={chatOpen} onClose={() => setChatOpen(false)} />
     </div>
   );
 };
