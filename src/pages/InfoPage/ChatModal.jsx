@@ -2,7 +2,7 @@ import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 // eslint-disable-next-line no-unused-vars
 import { motion as m, AnimatePresence, useReducedMotion } from 'motion/react';
-import { FiX, FiSend, FiPaperclip, FiSmile, FiAlertCircle } from 'react-icons/fi';
+import { FiX, FiSend, FiPaperclip, FiSmile, FiAlertCircle, FiChevronDown } from 'react-icons/fi';
 import { RiCustomerService2Fill } from 'react-icons/ri';
 import './ChatModal.css';
 
@@ -130,6 +130,13 @@ const ChatModal = ({ open, onClose, onUnreadChange }) => {
   const [showNamePrompt, setShowNamePrompt] = useState(false);
   const [userId] = useState(() => getUserId());
   const lastFetchRef = useRef(new Date());
+  const [atBottom, setAtBottom] = useState(true);
+  const [newSinceScroll, setNewSinceScroll] = useState(0);
+  const atBottomRef = useRef(true);
+  useEffect(() => {
+    atBottomRef.current = atBottom;
+  }, [atBottom]);
+  const prevMsgCountRef = useRef(messages.length);
 
   const openRef = useRef(open);
   useEffect(() => {
@@ -146,9 +153,17 @@ const ChatModal = ({ open, onClose, onUnreadChange }) => {
     onUnreadChange?.(unread);
   }, [unread, onUnreadChange]);
 
-  /* Clear unread when chat opens */
+  /* Clear unread + jump to bottom when chat opens */
   useEffect(() => {
-    if (open) setUnread(0);
+    if (!open) return;
+    setUnread(0);
+    setAtBottom(true);
+    setNewSinceScroll(0);
+    const id = setTimeout(() => {
+      const el = scrollRef.current;
+      if (el) el.scrollTo({ top: el.scrollHeight, behavior: 'auto' });
+    }, 50);
+    return () => clearTimeout(id);
   }, [open]);
 
   const formatTime = useCallback(
@@ -243,8 +258,32 @@ const ChatModal = ({ open, onClose, onUnreadChange }) => {
   useEffect(() => {
     const el = scrollRef.current;
     if (!el) return;
-    el.scrollTo({ top: el.scrollHeight, behavior: reduce ? 'auto' : 'smooth' });
+    const added = messages.length - prevMsgCountRef.current;
+    prevMsgCountRef.current = messages.length;
+
+    if (atBottomRef.current) {
+      el.scrollTo({ top: el.scrollHeight, behavior: reduce ? 'auto' : 'smooth' });
+    } else if (added > 0) {
+      setNewSinceScroll((n) => n + added);
+    }
   }, [messages, typing, reduce]);
+
+  const handleBodyScroll = useCallback(() => {
+    const el = scrollRef.current;
+    if (!el) return;
+    const distance = el.scrollHeight - el.scrollTop - el.clientHeight;
+    const isAtBottom = distance < 80;
+    setAtBottom(isAtBottom);
+    if (isAtBottom) setNewSinceScroll(0);
+  }, []);
+
+  const jumpToBottom = useCallback(() => {
+    const el = scrollRef.current;
+    if (!el) return;
+    el.scrollTo({ top: el.scrollHeight, behavior: reduce ? 'auto' : 'smooth' });
+    setAtBottom(true);
+    setNewSinceScroll(0);
+  }, [reduce]);
 
   /* Auto-clear error after a few seconds */
   useEffect(() => {
@@ -487,7 +526,7 @@ const ChatModal = ({ open, onClose, onUnreadChange }) => {
               </button>
             </header>
 
-            <div className="cm-body" ref={scrollRef}>
+            <div className="cm-body" ref={scrollRef} onScroll={handleBodyScroll}>
               <div className="cm-day-sep">
                 <span>{tr('today')}</span>
               </div>
@@ -560,6 +599,28 @@ const ChatModal = ({ open, onClose, onUnreadChange }) => {
                 )}
               </AnimatePresence>
             </div>
+
+            <AnimatePresence>
+              {!atBottom && (
+                <m.button
+                  type="button"
+                  className="cm-jump-bottom"
+                  initial={{ opacity: 0, scale: 0.85, y: 6 }}
+                  animate={{ opacity: 1, scale: 1, y: 0 }}
+                  exit={{ opacity: 0, scale: 0.9, y: 4 }}
+                  transition={{ duration: 0.2, ease: [0.22, 1, 0.36, 1] }}
+                  onClick={jumpToBottom}
+                  aria-label={tr('jumpBottomAria')}
+                >
+                  <FiChevronDown />
+                  {newSinceScroll > 0 && (
+                    <span className="cm-jump-badge">
+                      {newSinceScroll > 99 ? '99+' : newSinceScroll}
+                    </span>
+                  )}
+                </m.button>
+              )}
+            </AnimatePresence>
 
             <AnimatePresence>
               {error && (

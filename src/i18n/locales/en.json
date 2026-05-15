@@ -748,6 +748,7 @@
       "errImageRead": "Couldn't read the image. Please try another file.",
       "pendingHint": "Add a message or send",
       "removePendingAria": "Remove attachment",
+      "jumpBottomAria": "Jump to latest message",
       "namePromptTitle": "Please introduce yourself",
       "namePromptText": "How should we address you?",
       "namePlaceholder": "Your name",

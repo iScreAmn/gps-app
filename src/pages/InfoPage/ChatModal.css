@@ -429,6 +429,51 @@ body[data-theme="dark"] .cm-error {
 }
 .cm-error svg { flex-shrink: 0; }
 
+/* Jump-to-bottom floating button */
+.cm-jump-bottom {
+  position: absolute;
+  left: 50%;
+  bottom: 78px;
+  transform: translateX(-50%);
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--cm-bg);
+  color: var(--cm-text);
+  border: 1px solid var(--cm-border);
+  box-shadow: 0 10px 24px -10px rgba(15, 23, 42, 0.35),
+              0 4px 12px -4px rgba(15, 23, 42, 0.18);
+  cursor: pointer;
+  z-index: 5;
+  transition: background 0.2s var(--cm-ease), transform 0.2s var(--cm-ease);
+}
+.cm-jump-bottom:hover {
+  background: var(--cm-bg-soft);
+  transform: translateX(-50%) translateY(-1px);
+}
+.cm-jump-bottom svg { font-size: 1.2rem; }
+
+.cm-jump-badge {
+  position: absolute;
+  top: -4px;
+  right: -4px;
+  min-width: 20px;
+  height: 20px;
+  padding: 0 6px;
+  border-radius: 999px;
+  background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+  color: #fff;
+  font-size: 0.7rem;
+  font-weight: 700;
+  line-height: 20px;
+  text-align: center;
+  border: 2px solid var(--cm-bg);
+  box-shadow: 0 4px 10px -3px rgba(220, 38, 38, 0.55);
+}
+
 /* Typing indicator */
 .cm-typing-bubble {
   display: inline-flex;
