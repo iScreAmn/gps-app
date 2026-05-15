@@ -228,13 +228,9 @@ const InfoPage = () => {
                 type="button"
                 className="info-hero-printer-textus"
                 onClick={() => setChatOpen(true)}
-                disabled={!printerOnline}
-                aria-disabled={!printerOnline}
               >
                 <RiChat3Line />
-                {printerOnline
-                  ? t('infoPage.hero.textUs')
-                  : t('infoPage.hero.textUsOffline')}
+                {t('infoPage.hero.textUs')}
               </button>
               <div className="info-hero-printer-stats">
                 <div>
