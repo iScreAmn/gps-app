@@ -747,7 +747,13 @@
       "errImageSize": "Image is too large. Maximum size is 10 MB.",
       "errImageRead": "Couldn't read the image. Please try another file.",
       "pendingHint": "Add a message or send",
-      "removePendingAria": "Remove attachment"
+      "removePendingAria": "Remove attachment",
+      "namePromptTitle": "Please introduce yourself",
+      "namePromptText": "How should we address you?",
+      "namePlaceholder": "Your name",
+      "cancel": "Cancel",
+      "submit": "Send",
+      "sendError": "Failed to send message"
     },
     "problemReport": {
       "eyebrow": "Service request",

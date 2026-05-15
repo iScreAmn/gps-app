@@ -747,7 +747,13 @@
       "errImageSize": "სურათი ძალიან დიდია. მაქსიმუმი — 10 MB.",
       "errImageRead": "სურათის წაკითხვა ვერ მოხერხდა. სცადეთ სხვა ფაილი.",
       "pendingHint": "დაამატეთ ტექსტი ან გააგზავნეთ",
-      "removePendingAria": "მიმაგრებული ფაილის წაშლა"
+      "removePendingAria": "მიმაგრებული ფაილის წაშლა",
+      "namePromptTitle": "გთხოვთ, წარმოგიდგინოთ თავი",
+      "namePromptText": "როგორ შეგვიძლია მივმართოთ?",
+      "namePlaceholder": "თქვენი სახელი",
+      "cancel": "გაუქმება",
+      "submit": "გაგზავნა",
+      "sendError": "შეტყობინება ვერ გაიგზავნა"
     },
     "problemReport": {
       "eyebrow": "სერვისის განაცხადი",

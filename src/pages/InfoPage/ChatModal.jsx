@@ -9,7 +9,56 @@ import './ChatModal.css';
 const CM_NS = 'infoPage.chat';
 const STORAGE_KEY = 'gps:chat:messages:v1';
 const UNREAD_KEY = 'gps:chat:unread:v1';
+const USER_ID_KEY = 'gps:chat:userId:v1';
+const USER_NAME_KEY = 'gps:chat:userName:v1';
 const MAX_IMAGE_BYTES = 10 * 1024 * 1024;
+const POLLING_INTERVAL = 5000; // Poll for new messages every 5 seconds
+
+// API Configuration
+const API_URL = (() => {
+  const envUrl = import.meta.env.VITE_API_URL && String(import.meta.env.VITE_API_URL).trim();
+  if (envUrl) return envUrl.replace(/\/$/, '');
+  if (typeof window !== 'undefined') {
+    const host = window.location.hostname;
+    if (host === 'localhost' || host === '127.0.0.1') {
+      return `http://${host}:3001`;
+    }
+    return 'https://gps-app-server.vercel.app';
+  }
+  return 'https://gps-app-server.vercel.app';
+})();
+
+// Generate or retrieve user ID
+const getUserId = () => {
+  try {
+    let userId = localStorage.getItem(USER_ID_KEY);
+    if (!userId) {
+      userId = `user_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`;
+      localStorage.setItem(USER_ID_KEY, userId);
+    }
+    return userId;
+  } catch {
+    return `user_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`;
+  }
+};
+
+// Get or prompt for user name
+const getUserName = () => {
+  try {
+    return localStorage.getItem(USER_NAME_KEY) || '';
+  } catch {
+    return '';
+  }
+};
+
+// Save user name
+const saveUserName = (name) => {
+  try {
+    localStorage.setItem(USER_NAME_KEY, name);
+  } catch {
+    /* ignore */
+  }
+};
 
 const loadUnread = () => {
   try {
@@ -77,6 +126,10 @@ const ChatModal = ({ open, onClose, onUnreadChange }) => {
   const [viewerImage, setViewerImage] = useState(null);
   const [pendingImage, setPendingImage] = useState(null);
   const [unread, setUnread] = useState(() => loadUnread());
+  const [userName, setUserName] = useState(() => getUserName());
+  const [showNamePrompt, setShowNamePrompt] = useState(false);
+  const [userId] = useState(() => getUserId());
+  const lastFetchRef = useRef(new Date());
 
   const openRef = useRef(open);
   useEffect(() => {
@@ -162,6 +215,16 @@ const ChatModal = ({ open, onClose, onUnreadChange }) => {
     persistMessages(messages);
   }, [messages]);
 
+  /* Poll for new messages when chat is open */
+  useEffect(() => {
+    if (!open) return;
+
+    const interval = setInterval(fetchNewMessages, POLLING_INTERVAL);
+    fetchNewMessages(); // Fetch immediately on open
+
+    return () => clearInterval(interval);
+  }, [open, userId]);
+
   useEffect(() => {
     if (!open) return;
     const onKey = (e) => {
@@ -209,9 +272,68 @@ const ChatModal = ({ open, onClose, onUnreadChange }) => {
     );
   };
 
+  // Fetch new messages from server
+  const fetchNewMessages = async () => {
+    try {
+      const since = lastFetchRef.current.toISOString();
+      const response = await fetch(
+        `${API_URL}/api/chat/messages/${userId}?since=${since}`
+      );
+      
+      if (!response.ok) return;
+      
+      const data = await response.json();
+      
+      if (data.success && data.messages && data.messages.length > 0) {
+        setMessages((prev) => [...prev, ...data.messages]);
+        if (!openRef.current) {
+          setUnread((n) => n + data.messages.length);
+        }
+        lastFetchRef.current = new Date();
+      }
+    } catch (error) {
+      console.error('Failed to fetch messages:', error);
+    }
+  };
+
+  // Send message to server
+  const sendToServer = async (messageText) => {
+    try {
+      const response = await fetch(`${API_URL}/api/chat/send`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          userId,
+          userName: userName || 'Гость',
+          message: messageText,
+          timestamp: new Date().toISOString(),
+        }),
+      });
+
+      if (!response.ok) {
+        throw new Error('Failed to send message');
+      }
+
+      const data = await response.json();
+      console.log('Message sent to Telegram:', data);
+    } catch (error) {
+      console.error('Error sending message:', error);
+      setError(tr('sendError') || 'Не удалось отправить сообщение');
+    }
+  };
+
   const sendMessage = () => {
     const text = draft.trim();
     if (!text && !pendingImage) return;
+
+    // Check if user name is set, otherwise prompt
+    if (!userName) {
+      setShowNamePrompt(true);
+      return;
+    }
+
     const now = new Date();
     const message = {
       id: `user-${now.getTime()}`,
@@ -230,13 +352,21 @@ const ChatModal = ({ open, onClose, onUnreadChange }) => {
     const hadUserImage = messages.some(
       (m) => m.role === 'user' && Boolean(m.imageUrl)
     );
-    let replyKey = null;
-    if (pendingImage && !hadUserImage) replyKey = 'autoReplyImage';
-    else if (text && !hadUserText) replyKey = 'autoReply';
 
     setMessages((prev) => [...prev, message]);
     setDraft('');
     setPendingImage(null);
+
+    // Send to server
+    if (text) {
+      sendToServer(text);
+    }
+
+    // Only auto-reply for first messages (as before)
+    let replyKey = null;
+    if (pendingImage && !hadUserImage) replyKey = 'autoReplyImage';
+    else if (text && !hadUserText) replyKey = 'autoReply';
+
     if (replyKey) scheduleAgentReply(replyKey);
   };
 
@@ -281,6 +411,15 @@ const ChatModal = ({ open, onClose, onUnreadChange }) => {
       el.setSelectionRange(end, end);
     } catch {
       /* some textarea types throw on setSelectionRange */
+    }
+  };
+
+  const handleNameSubmit = () => {
+    const name = userName.trim();
+    if (name) {
+      saveUserName(name);
+      setShowNamePrompt(false);
+      sendMessage();
     }
   };
 
@@ -505,6 +644,53 @@ const ChatModal = ({ open, onClose, onUnreadChange }) => {
               </button>
             </footer>
           </m.div>
+
+          {/* Name prompt modal */}
+          <AnimatePresence>
+            {showNamePrompt && (
+              <m.div
+                className="cm-name-prompt"
+                initial={{ opacity: 0, scale: 0.95 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 0.95 }}
+                transition={{ duration: 0.2 }}
+              >
+                <div className="cm-name-prompt-content">
+                  <h3>{tr('namePromptTitle') || 'Представьтесь, пожалуйста'}</h3>
+                  <p>{tr('namePromptText') || 'Как мы можем к вам обращаться?'}</p>
+                  <input
+                    type="text"
+                    className="cm-name-input"
+                    placeholder={tr('namePlaceholder') || 'Ваше имя'}
+                    value={userName}
+                    onChange={(e) => setUserName(e.target.value)}
+                    onKeyDown={(e) => {
+                      if (e.key === 'Enter') handleNameSubmit();
+                      if (e.key === 'Escape') setShowNamePrompt(false);
+                    }}
+                    autoFocus
+                  />
+                  <div className="cm-name-prompt-buttons">
+                    <button
+                      type="button"
+                      className="cm-name-btn cm-name-btn-cancel"
+                      onClick={() => setShowNamePrompt(false)}
+                    >
+                      {tr('cancel') || 'Отмена'}
+                    </button>
+                    <button
+                      type="button"
+                      className="cm-name-btn cm-name-btn-submit"
+                      onClick={handleNameSubmit}
+                      disabled={!userName.trim()}
+                    >
+                      {tr('submit') || 'Отправить'}
+                    </button>
+                  </div>
+                </div>
+              </m.div>
+            )}
+          </AnimatePresence>
 
           <AnimatePresence>
             {viewerImage && (
