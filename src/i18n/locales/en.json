@@ -726,12 +726,19 @@
       "today": "Today",
       "greeting": "Hi! How can we help with your device today?",
       "autoReply": "Thanks for your message — an engineer will reply shortly.",
+      "autoReplyImage": "Got the photo, thanks! An engineer is taking a look.",
       "inputPlaceholder": "Write a message…",
       "sendAria": "Send",
-      "attachAria": "Attach",
+      "attachAria": "Attach image",
       "emojiAria": "Emoji",
       "closeAria": "Close",
-      "typingAria": "Support is typing"
+      "typingAria": "Support is typing",
+      "openImageAria": "Open full-size image",
+      "imageAlt": "Attached image",
+      "viewerAria": "Image viewer",
+      "errImageType": "Only image files are supported.",
+      "errImageSize": "Image is too large. Maximum size is 10 MB.",
+      "errImageRead": "Couldn't read the image. Please try another file."
     },
     "problemReport": {
       "eyebrow": "Service request",
