@@ -81,13 +81,28 @@ const ChatModal = ({ open, onClose }) => {
     onClose?.();
   }, [onClose]);
 
-  /* Seed greeting on first open if history is empty */
+  /* Seed greeting on first open if history is empty + lock background scroll */
   useEffect(() => {
     if (!open) return;
-    const prevOverflow = document.body.style.overflow;
-    document.body.style.overflow = 'hidden';
-    setMessages((prev) => {
-      if (prev.length > 0) return prev;
+    const scrollY = window.scrollY;
+    const body = document.body;
+    const prev = {
+      position: body.style.position,
+      top: body.style.top,
+      left: body.style.left,
+      right: body.style.right,
+      width: body.style.width,
+      overflow: body.style.overflow,
+    };
+    body.style.position = 'fixed';
+    body.style.top = `-${scrollY}px`;
+    body.style.left = '0';
+    body.style.right = '0';
+    body.style.width = '100%';
+    body.style.overflow = 'hidden';
+
+    setMessages((prevMsgs) => {
+      if (prevMsgs.length > 0) return prevMsgs;
       return [
         {
           id: `agent-greet-${Date.now()}`,
@@ -100,7 +115,13 @@ const ChatModal = ({ open, onClose }) => {
     });
     const focusTimer = setTimeout(() => inputRef.current?.focus(), 120);
     return () => {
-      document.body.style.overflow = prevOverflow;
+      body.style.position = prev.position;
+      body.style.top = prev.top;
+      body.style.left = prev.left;
+      body.style.right = prev.right;
+      body.style.width = prev.width;
+      body.style.overflow = prev.overflow;
+      window.scrollTo(0, scrollY);
       clearTimeout(focusTimer);
     };
   }, [open, tr]);
