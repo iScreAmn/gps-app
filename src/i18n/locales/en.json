@@ -738,7 +738,9 @@
       "viewerAria": "Image viewer",
       "errImageType": "Only image files are supported.",
       "errImageSize": "Image is too large. Maximum size is 10 MB.",
-      "errImageRead": "Couldn't read the image. Please try another file."
+      "errImageRead": "Couldn't read the image. Please try another file.",
+      "pendingHint": "Add a message or send",
+      "removePendingAria": "Remove attachment"
     },
     "problemReport": {
       "eyebrow": "Service request",

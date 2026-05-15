@@ -65,6 +65,7 @@ const ChatModal = ({ open, onClose }) => {
   const [typing, setTyping] = useState(false);
   const [error, setError] = useState('');
   const [viewerImage, setViewerImage] = useState(null);
+  const [pendingImage, setPendingImage] = useState(null);
 
   const formatTime = useCallback(
     (date) =>
@@ -157,20 +158,22 @@ const ChatModal = ({ open, onClose }) => {
 
   const sendMessage = () => {
     const text = draft.trim();
-    if (!text) return;
+    if (!text && !pendingImage) return;
     const now = new Date();
-    setMessages((prev) => [
-      ...prev,
-      {
-        id: `user-${now.getTime()}`,
-        role: 'user',
-        kind: 'text',
-        text,
-        at: now,
-      },
-    ]);
+    const message = {
+      id: `user-${now.getTime()}`,
+      role: 'user',
+      at: now,
+    };
+    if (pendingImage) {
+      message.imageUrl = pendingImage.dataUrl;
+      message.imageName = pendingImage.name;
+    }
+    if (text) message.text = text;
+    setMessages((prev) => [...prev, message]);
     setDraft('');
-    scheduleAgentReply('autoReply');
+    setPendingImage(null);
+    scheduleAgentReply(pendingImage ? 'autoReplyImage' : 'autoReply');
   };
 
   const handleKeyDown = (e) => {
@@ -196,19 +199,8 @@ const ChatModal = ({ open, onClose }) => {
     }
     try {
       const dataUrl = await readImageAsDataUrl(file);
-      const now = new Date();
-      setMessages((prev) => [
-        ...prev,
-        {
-          id: `user-img-${now.getTime()}`,
-          role: 'user',
-          kind: 'image',
-          imageUrl: dataUrl,
-          imageName: file.name,
-          at: now,
-        },
-      ]);
-      scheduleAgentReply('autoReplyImage');
+      setPendingImage({ dataUrl, name: file.name, size: file.size });
+      inputRef.current?.focus();
     } catch {
       setError(tr('errImageRead'));
     }
@@ -295,46 +287,49 @@ const ChatModal = ({ open, onClose }) => {
               </div>
 
               <AnimatePresence initial={false}>
-                {messages.map((msg) => (
-                  <m.div
-                    key={msg.id}
-                    className={`cm-msg cm-msg-${msg.role} ${
-                      msg.kind === 'image' ? 'cm-msg-image' : ''
-                    }`}
-                    initial={{ opacity: 0, y: 8, scale: 0.98 }}
-                    animate={{ opacity: 1, y: 0, scale: 1 }}
-                    transition={{ duration: 0.22, ease: [0.22, 1, 0.36, 1] }}
-                  >
-                    {msg.role === 'agent' && (
-                      <span className="cm-msg-avatar" aria-hidden>
-                        <RiCustomerService2Fill />
-                      </span>
-                    )}
-                    <div className="cm-msg-bubble">
-                      {msg.kind === 'image' ? (
-                        <button
-                          type="button"
-                          className="cm-msg-image-btn"
-                          onClick={() =>
-                            setViewerImage({
-                              url: msg.imageUrl,
-                              name: msg.imageName,
-                            })
-                          }
-                          aria-label={tr('openImageAria')}
-                        >
-                          <img
-                            src={msg.imageUrl}
-                            alt={msg.imageName || tr('imageAlt')}
-                          />
-                        </button>
-                      ) : (
-                        <p className="cm-msg-text">{msg.text}</p>
+                {messages.map((msg) => {
+                  const hasImage = Boolean(msg.imageUrl);
+                  const hasText = Boolean(msg.text);
+                  return (
+                    <m.div
+                      key={msg.id}
+                      className={`cm-msg cm-msg-${msg.role} ${
+                        hasImage ? 'cm-msg-has-image' : ''
+                      }`}
+                      initial={{ opacity: 0, y: 8, scale: 0.98 }}
+                      animate={{ opacity: 1, y: 0, scale: 1 }}
+                      transition={{ duration: 0.22, ease: [0.22, 1, 0.36, 1] }}
+                    >
+                      {msg.role === 'agent' && (
+                        <span className="cm-msg-avatar" aria-hidden>
+                          <RiCustomerService2Fill />
+                        </span>
                       )}
-                      <span className="cm-msg-time">{formatTime(msg.at)}</span>
-                    </div>
-                  </m.div>
-                ))}
+                      <div className="cm-msg-bubble">
+                        {hasImage && (
+                          <button
+                            type="button"
+                            className="cm-msg-image-btn"
+                            onClick={() =>
+                              setViewerImage({
+                                url: msg.imageUrl,
+                                name: msg.imageName,
+                              })
+                            }
+                            aria-label={tr('openImageAria')}
+                          >
+                            <img
+                              src={msg.imageUrl}
+                              alt={msg.imageName || tr('imageAlt')}
+                            />
+                          </button>
+                        )}
+                        {hasText && <p className="cm-msg-text">{msg.text}</p>}
+                        <span className="cm-msg-time">{formatTime(msg.at)}</span>
+                      </div>
+                    </m.div>
+                  );
+                })}
               </AnimatePresence>
 
               <AnimatePresence>
@@ -375,12 +370,43 @@ const ChatModal = ({ open, onClose }) => {
               )}
             </AnimatePresence>
 
+            <AnimatePresence>
+              {pendingImage && (
+                <m.div
+                  className="cm-pending"
+                  initial={{ opacity: 0, y: 8 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: 6 }}
+                  transition={{ duration: 0.2 }}
+                >
+                  <img
+                    src={pendingImage.dataUrl}
+                    alt={pendingImage.name}
+                    className="cm-pending-thumb"
+                  />
+                  <div className="cm-pending-meta">
+                    <span className="cm-pending-name">{pendingImage.name}</span>
+                    <span className="cm-pending-hint">{tr('pendingHint')}</span>
+                  </div>
+                  <button
+                    type="button"
+                    className="cm-pending-remove"
+                    aria-label={tr('removePendingAria')}
+                    onClick={() => setPendingImage(null)}
+                  >
+                    <FiX />
+                  </button>
+                </m.div>
+              )}
+            </AnimatePresence>
+
             <footer className="cm-composer">
               <button
                 type="button"
                 className="cm-composer-icon cm-composer-attach"
                 aria-label={tr('attachAria')}
                 onClick={handleAttachClick}
+                disabled={Boolean(pendingImage)}
               >
                 <FiPaperclip />
               </button>
@@ -413,7 +439,7 @@ const ChatModal = ({ open, onClose }) => {
                 className="cm-composer-send"
                 aria-label={tr('sendAria')}
                 onClick={sendMessage}
-                disabled={!draft.trim()}
+                disabled={!draft.trim() && !pendingImage}
               >
                 <FiSend />
               </button>

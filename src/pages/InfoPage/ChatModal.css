@@ -279,14 +279,8 @@ body[data-theme="dark"] .cm-header {
 .cm-msg-agent .cm-msg-time { color: var(--cm-text-mute); }
 
 /* Image message */
-.cm-msg-image .cm-msg-bubble {
-  padding: 4px 4px 6px;
-  background: var(--cm-bubble-agent);
-  border: 1px solid var(--cm-border);
-}
-.cm-msg-user.cm-msg-image .cm-msg-bubble {
-  background: var(--cm-bubble-user);
-  border: none;
+.cm-msg-has-image .cm-msg-bubble {
+  padding: 4px;
 }
 
 .cm-msg-image-btn {
@@ -307,9 +301,83 @@ body[data-theme="dark"] .cm-header {
   object-fit: cover;
 }
 
-.cm-msg-image .cm-msg-time {
-  padding: 0 8px;
+.cm-msg-has-image .cm-msg-text {
+  padding: 6px 10px 2px;
+}
+
+.cm-msg-has-image .cm-msg-time {
+  padding: 0 10px 4px;
   margin-top: 4px;
+}
+
+/* Pending (staged) image preview above composer */
+.cm-pending {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 0 12px 8px;
+  padding: 8px;
+  background: var(--cm-bg);
+  border: 1px solid var(--cm-border);
+  border-radius: 14px;
+  box-shadow: 0 4px 12px -8px rgba(15, 23, 42, 0.18);
+}
+
+.cm-pending-thumb {
+  width: 56px;
+  height: 56px;
+  border-radius: 10px;
+  object-fit: cover;
+  flex-shrink: 0;
+  border: 1px solid var(--cm-border);
+}
+
+.cm-pending-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+  flex: 1;
+}
+
+.cm-pending-name {
+  font-size: 0.86rem;
+  font-weight: 600;
+  color: var(--cm-text);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.cm-pending-hint {
+  font-size: 0.74rem;
+  color: var(--cm-text-mute);
+}
+
+.cm-pending-remove {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--cm-bg-soft);
+  color: var(--cm-text-soft);
+  border: 1px solid var(--cm-border);
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: background 0.2s var(--cm-ease), color 0.2s var(--cm-ease);
+}
+.cm-pending-remove:hover {
+  background: var(--cm-accent);
+  color: #fff;
+  border-color: var(--cm-accent);
+}
+.cm-pending-remove svg { font-size: 0.95rem; }
+
+.cm-composer-icon:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
 }
 
 /* Full-screen image viewer */
