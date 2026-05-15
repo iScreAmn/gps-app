@@ -170,10 +170,21 @@ const ChatModal = ({ open, onClose }) => {
       message.imageName = pendingImage.name;
     }
     if (text) message.text = text;
+
+    const hadUserText = messages.some(
+      (m) => m.role === 'user' && Boolean(m.text)
+    );
+    const hadUserImage = messages.some(
+      (m) => m.role === 'user' && Boolean(m.imageUrl)
+    );
+    let replyKey = null;
+    if (pendingImage && !hadUserImage) replyKey = 'autoReplyImage';
+    else if (text && !hadUserText) replyKey = 'autoReply';
+
     setMessages((prev) => [...prev, message]);
     setDraft('');
     setPendingImage(null);
-    scheduleAgentReply(pendingImage ? 'autoReplyImage' : 'autoReply');
+    if (replyKey) scheduleAgentReply(replyKey);
   };
 
   const handleKeyDown = (e) => {
@@ -266,10 +277,6 @@ const ChatModal = ({ open, onClose }) => {
                 <h2 id="cm-title" className="cm-header-name">
                   {tr('title')}
                 </h2>
-                <span className="cm-header-status">
-                  <span className="cm-header-dot" aria-hidden />
-                  {tr('statusOnline')}
-                </span>
               </div>
               <button
                 type="button"

@@ -722,7 +722,6 @@
     "mapIframeTitle": "GPS office map",
     "chat": {
       "title": "Support chat",
-      "statusOnline": "Online — usually replies in a few minutes",
       "today": "Today",
       "greeting": "Hi! How can we help with your device today?",
       "autoReply": "Thanks for your message — an engineer will reply shortly.",
