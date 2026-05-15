@@ -720,6 +720,12 @@
       "lead": "Contact us and we will help you solve your problem.",
       "call": "Call now"
     },
+    "offHours": {
+      "title": "Working hours ended",
+      "messageWeekday": "Working hours have ended for today. Please call us back tomorrow from 10:00.",
+      "messageWeekend": "The working week has ended. Please call us back on Monday from 10:00.",
+      "ok": "Got it"
+    },
     "mapIframeTitle": "GPS office map",
     "chat": {
       "title": "Support chat",

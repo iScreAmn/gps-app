@@ -1267,3 +1267,87 @@ body[data-theme="light"] .info-footer-card {
   .info-pulse-dot { animation: none !important; }
   .info-btn, .info-quick-card, .info-service-card, .info-supply-card { transition: none !important; }
 }
+
+/* ---------- Off-hours modal ---------- */
+.info-offhours-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 1050;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  height: 100dvh;
+  background: radial-gradient(
+      120% 80% at 50% 0%,
+      rgba(15, 23, 42, 0.4),
+      rgba(15, 23, 42, 0.6)
+    );
+  backdrop-filter: blur(10px) saturate(140%);
+  -webkit-backdrop-filter: blur(10px) saturate(140%);
+}
+
+.info-offhours-panel {
+  width: 100%;
+  max-width: 380px;
+  padding: 28px 24px 22px;
+  border-radius: 22px;
+  background: var(--info-glass-strong);
+  border: 1px solid var(--info-border-strong);
+  box-shadow: var(--info-shadow-lg);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  color: var(--info-text);
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+}
+
+.info-offhours-icon {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, rgba(220, 38, 38, 0.16), rgba(239, 68, 68, 0.06));
+  color: var(--info-accent);
+  border: 1px solid var(--info-border);
+}
+.info-offhours-icon svg { font-size: 1.3rem; }
+
+.info-offhours-title {
+  margin: 0;
+  font-size: 1.15rem;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+
+.info-offhours-message {
+  margin: 0;
+  font-size: 0.95rem;
+  line-height: 1.5;
+  color: var(--info-text-soft);
+}
+
+.info-page[data-page-lang="ka"] .info-offhours-title {
+  font-family: 'Dinamo Mt Medium';
+  font-size: 1.05rem;
+  letter-spacing: 0;
+}
+.info-page[data-page-lang="ka"] .info-offhours-message {
+  font-family: 'Dinamo Mt Medium';
+  font-size: 0.92rem;
+  line-height: 1.55;
+}
+.info-page[data-page-lang="ka"] .info-offhours-panel .info-btn {
+  font-family: 'Dinamo Mt Medium';
+  font-size: 16px;
+}
+
+.info-offhours-panel .info-btn {
+  margin-top: 6px;
+  min-width: 140px;
+}

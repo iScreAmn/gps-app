@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 // eslint-disable-next-line no-unused-vars -- motion primitives (m.div, m.h1, …)
-import { motion as m, useReducedMotion } from 'motion/react';
+import { motion as m, AnimatePresence, useReducedMotion } from 'motion/react';
 import {
   FaPhoneAlt,
   FaWhatsapp,
@@ -88,6 +88,16 @@ function isTbilisOfficeHours(date = new Date()) {
   return false;
 }
 
+/** Returns the Tbilisi weekday name (Sunday..Saturday) for a given date. */
+function getTbilisiWeekday(date = new Date()) {
+  const tz = getGeorgiaTimeZoneId();
+  if (tz) {
+    return date.toLocaleDateString('en-US', { timeZone: tz, weekday: 'long' });
+  }
+  const shifted = new Date(date.getTime() + 4 * 60 * 60 * 1000);
+  return TBILISI_WEEKDAYS_EN[shifted.getUTCDay()];
+}
+
 const Reveal = ({ children, delay = 0, y = 24, className = '' }) => (
   <m.div
     className={className}
@@ -114,7 +124,21 @@ const InfoPage = () => {
   const reduceMotion = useReducedMotion();
   const [reportOpen, setReportOpen] = useState(false);
   const [chatOpen, setChatOpen] = useState(false);
+  const [offHoursOpen, setOffHoursOpen] = useState(false);
   const [printerOnline, setPrinterOnline] = useState(() => isTbilisOfficeHours());
+
+  const offHoursMessageKey = () => {
+    const wd = getTbilisiWeekday();
+    return wd === 'Saturday' || wd === 'Sunday'
+      ? 'infoPage.offHours.messageWeekend'
+      : 'infoPage.offHours.messageWeekday';
+  };
+
+  const gateOffHours = (e) => {
+    if (printerOnline) return;
+    e.preventDefault();
+    setOffHoursOpen(true);
+  };
 
   useEffect(() => {
     const tick = () => setPrinterOnline(isTbilisOfficeHours());
@@ -169,7 +193,11 @@ const InfoPage = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.32 }}
           >
-            <a href={phoneHref} className="info-btn info-btn-primary">
+            <a
+              href={phoneHref}
+              className="info-btn info-btn-primary"
+              onClick={gateOffHours}
+            >
               <FaPhoneAlt /> {t('infoPage.hero.ctaContact')}
             </a>
             <button
@@ -290,7 +318,11 @@ const InfoPage = () => {
               if (a.accent === 'blue') {
                 return (
                   <Reveal key={a.key} delay={i * 0.05}>
-                    <a href={phoneHref} className={cardClass}>
+                    <a
+                      href={phoneHref}
+                      className={cardClass}
+                      onClick={gateOffHours}
+                    >
                       {inner}
                     </a>
                   </Reveal>
@@ -301,6 +333,7 @@ const InfoPage = () => {
                   <a
                     className={cardClass}
                     href={a.href}
+                    onClick={gateOffHours}
                     {...(a.external ? { target: '_blank', rel: 'noreferrer' } : {})}
                   >
                     {inner}
@@ -324,7 +357,11 @@ const InfoPage = () => {
                 <h2>{t('infoPage.footerCta.title')}</h2>
                 <p>{t('infoPage.footerCta.lead')}</p>
                 <div className="info-footer-card-cta">
-                  <a href={phoneHref} className="info-btn info-btn-primary info-btn-lg">
+                  <a
+                    href={phoneHref}
+                    className="info-btn info-btn-primary info-btn-lg"
+                    onClick={gateOffHours}
+                  >
                     <FaPhoneAlt /> {t('infoPage.footerCta.call')}
                   </a>
                 </div>
@@ -363,6 +400,47 @@ const InfoPage = () => {
         onClose={() => setReportOpen(false)}
       />
       <ChatModal open={chatOpen} onClose={() => setChatOpen(false)} />
+
+      <AnimatePresence>
+        {offHoursOpen && (
+          <m.div
+            className="info-offhours-backdrop"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.2 }}
+            onMouseDown={(e) => {
+              if (e.target === e.currentTarget) setOffHoursOpen(false);
+            }}
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="info-offhours-title"
+          >
+            <m.div
+              className="info-offhours-panel"
+              initial={{ opacity: 0, scale: 0.94, y: 12 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.96, y: 8 }}
+              transition={{ duration: 0.25, ease: [0.22, 1, 0.36, 1] }}
+            >
+              <div className="info-offhours-icon" aria-hidden>
+                <FaPhoneAlt />
+              </div>
+              <h3 id="info-offhours-title" className="info-offhours-title">
+                {t('infoPage.offHours.title')}
+              </h3>
+              <p className="info-offhours-message">{t(offHoursMessageKey())}</p>
+              <button
+                type="button"
+                className="info-btn info-btn-primary"
+                onClick={() => setOffHoursOpen(false)}
+              >
+                {t('infoPage.offHours.ok')}
+              </button>
+            </m.div>
+          </m.div>
+        )}
+      </AnimatePresence>
     </div>
   );
 };
