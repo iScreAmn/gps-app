@@ -342,7 +342,7 @@ const ChatModal = ({ open, onClose, onUnreadChange }) => {
     }
   };
 
-  // Send message to server
+  // Send text-only message to server
   const sendToServer = async (messageText) => {
     try {
       const response = await fetch(`${API_URL}/api/chat/send`, {
@@ -367,6 +367,35 @@ const ChatModal = ({ open, onClose, onUnreadChange }) => {
     } catch (error) {
       console.error('Error sending message:', error);
       setError(tr('sendError') || 'Не удалось отправить сообщение');
+    }
+  };
+
+  // Send image (with optional caption) to server
+  const sendImageToServer = async (imageDataUrl, caption) => {
+    try {
+      const response = await fetch(`${API_URL}/api/chat/send-image`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          userId,
+          userName: userName || 'Гость',
+          imageDataUrl,
+          caption: caption || '',
+          timestamp: new Date().toISOString(),
+        }),
+      });
+
+      if (!response.ok) {
+        throw new Error('Failed to send image');
+      }
+
+      const data = await response.json();
+      console.log('Image sent to Telegram:', data);
+    } catch (error) {
+      console.error('Error sending image:', error);
+      setError(tr('sendError') || 'Не удалось отправить изображение');
     }
   };
 
@@ -399,12 +428,17 @@ const ChatModal = ({ open, onClose, onUnreadChange }) => {
       (m) => m.role === 'user' && Boolean(m.imageUrl)
     );
 
+    const imageToSend = pendingImage;
+
     setMessages((prev) => [...prev, message]);
     setDraft('');
     setPendingImage(null);
 
-    // Send to server
-    if (text) {
+    // Send to server: image+caption goes through the image endpoint,
+    // text-only goes through the regular endpoint
+    if (imageToSend) {
+      sendImageToServer(imageToSend.dataUrl, text);
+    } else if (text) {
       sendToServer(text);
     }
 
