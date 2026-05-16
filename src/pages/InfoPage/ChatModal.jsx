@@ -2,7 +2,7 @@ import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 // eslint-disable-next-line no-unused-vars
 import { motion as m, AnimatePresence, useReducedMotion } from 'motion/react';
-import { FiX, FiSend, FiPaperclip, FiSmile, FiAlertCircle, FiChevronDown } from 'react-icons/fi';
+import { FiX, FiSend, FiPaperclip, FiAlertCircle, FiChevronDown } from 'react-icons/fi';
 import { RiCustomerService2Fill } from 'react-icons/ri';
 import './ChatModal.css';
 
@@ -446,20 +446,6 @@ const ChatModal = ({ open, onClose, onUnreadChange }) => {
     }
   };
 
-  const handleEmojiClick = () => {
-    /* Focus textarea so the device's native emoji keyboard/picker can be invoked
-       (mobile keyboards expose an emoji key; macOS users press Cmd+Ctrl+Space). */
-    const el = inputRef.current;
-    if (!el) return;
-    el.focus();
-    const end = el.value.length;
-    try {
-      el.setSelectionRange(end, end);
-    } catch {
-      /* some textarea types throw on setSelectionRange */
-    }
-  };
-
   const handleNameSubmit = () => {
     const name = userName.trim();
     if (name) {
@@ -695,14 +681,6 @@ const ChatModal = ({ open, onClose, onUnreadChange }) => {
               />
               <button
                 type="button"
-                className="cm-composer-icon cm-composer-emoji"
-                aria-label={tr('emojiAria')}
-                onClick={handleEmojiClick}
-              >
-                <FiSmile />
-              </button>
-              <button
-                type="button"
                 className="cm-composer-send"
                 aria-label={tr('sendAria')}
                 onClick={sendMessage}
@@ -725,7 +703,6 @@ const ChatModal = ({ open, onClose, onUnreadChange }) => {
               >
                 <div className="cm-name-prompt-content">
                   <h3>{tr('namePromptTitle') || 'Представьтесь, пожалуйста'}</h3>
-                  <p>{tr('namePromptText') || 'Как мы можем к вам обращаться?'}</p>
                   <input
                     type="text"
                     className="cm-name-input"
