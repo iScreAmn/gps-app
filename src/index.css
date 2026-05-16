@@ -22,6 +22,160 @@
   font-display: swap;
 }
 
+@font-face {
+  font-family: 'bpg_square_mtavruli_2009';
+  src: url('./assets/fonts/bpg_square_mtavruli_2009.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* GPS Mt */
+@font-face {
+  font-family: 'GPS Mt';
+  src: url('./assets/fonts/gl/GPS%20Mt.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'GPS Mt';
+  src: url('./assets/fonts/gl/GPS%20Mt%20Italic.ttf') format('truetype');
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'GPS Mt';
+  src: url('./assets/fonts/gl/GPS%20Mt%20Bold.ttf') format('truetype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'GPS Mt';
+  src: url('./assets/fonts/gl/GPS%20Bold%20Italic.ttf') format('truetype');
+  font-weight: 700;
+  font-style: italic;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'GPS Mt Thin';
+  src: url('./assets/fonts/gl/GPS%20Mt%20Thin.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'GPS Mt Thin';
+  src: url('./assets/fonts/gl/GPS%20Mt%20Thin%20Italic.ttf') format('truetype');
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'GPS Mt Medium';
+  src: url('./assets/fonts/gl/GPS%20Mt%20Medium.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'GPS Mt Medium';
+  src: url('./assets/fonts/gl/GPS%20Mt%20Medium%20Italic.ttf') format('truetype');
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'GPS Mt Heavy';
+  src: url('./assets/fonts/gl/GPS%20Mt%20Heavy.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'GPS Mt Heavy';
+  src: url('./assets/fonts/gl/GPS%20Mt%20Heavy%20Italic.ttf') format('truetype');
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+}
+
+/* GPS Nus */
+@font-face {
+  font-family: 'GPS Nus';
+  src: url('./assets/fonts/gl/GPS%20Nus%20Book.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'GPS Nus';
+  src: url('./assets/fonts/gl/GPS%20Nus%20Book%20Italic.ttf') format('truetype');
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'GPS Nus';
+  src: url('./assets/fonts/gl/GPS%20Nus%20Bold.ttf') format('truetype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'GPS Nus';
+  src: url('./assets/fonts/gl/GPS%20Nus%20Bold%20Italic.ttf') format('truetype');
+  font-weight: 700;
+  font-style: italic;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'GPS Nus Thin';
+  src: url('./assets/fonts/gl/GPS%20Nus%20Thin.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'GPS Nus Thin';
+  src: url('./assets/fonts/gl/GPS%20Nus%20Thin%20Italic.ttf') format('truetype');
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'GPS Nus Medium';
+  src: url('./assets/fonts/gl/GPS%20Nus%20Medium.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'GPS Nus Medium';
+  src: url('./assets/fonts/gl/GPS%20Nus%20Medium%20Italic.ttf') format('truetype');
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'GPS Nus Heavy';
+  src: url('./assets/fonts/gl/GPS%20Nus%20Heavy.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'GPS Nus Heavy';
+  src: url('./assets/fonts/gl/GPS%20Nus%20Heavy%20Italic.ttf') format('truetype');
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+}
+
+
+
 * {
   margin: 0;
   padding: 0;
