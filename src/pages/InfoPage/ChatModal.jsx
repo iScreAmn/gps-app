@@ -118,6 +118,7 @@ const ChatModal = ({ open, onClose, onUnreadChange }) => {
   const inputRef = useRef(null);
   const scrollRef = useRef(null);
   const fileInputRef = useRef(null);
+  const namePromptRef = useRef(null);
 
   const [messages, setMessages] = useState(() => loadStoredMessages() || []);
   const [draft, setDraft] = useState('');
@@ -152,6 +153,28 @@ const ChatModal = ({ open, onClose, onUnreadChange }) => {
     }
     onUnreadChange?.(unread);
   }, [unread, onUnreadChange]);
+
+  /* Anchor the name-prompt to the visible viewport so the on-screen keyboard
+     never pushes it off-screen. visualViewport reflects the area not covered
+     by the keyboard on iOS / Android. */
+  useEffect(() => {
+    if (!showNamePrompt) return;
+    const vv = window.visualViewport;
+    if (!vv) return;
+    const apply = () => {
+      const el = namePromptRef.current;
+      if (!el) return;
+      el.style.top = `${vv.offsetTop}px`;
+      el.style.height = `${vv.height}px`;
+    };
+    apply();
+    vv.addEventListener('resize', apply);
+    vv.addEventListener('scroll', apply);
+    return () => {
+      vv.removeEventListener('resize', apply);
+      vv.removeEventListener('scroll', apply);
+    };
+  }, [showNamePrompt]);
 
   /* Clear unread + jump to bottom when chat opens */
   useEffect(() => {
@@ -729,6 +752,7 @@ const ChatModal = ({ open, onClose, onUnreadChange }) => {
           <AnimatePresence>
             {showNamePrompt && (
               <m.div
+                ref={namePromptRef}
                 className="cm-name-prompt"
                 initial={{ opacity: 0, scale: 0.95 }}
                 animate={{ opacity: 1, scale: 1 }}

@@ -1369,7 +1369,7 @@ body[data-theme="light"] .info-footer-card {
 }
 .info-page[data-page-lang="ka"] .info-offhours-message {
   font-family: 'GPS Mt Medium';
-  font-size: 0.92rem;
+  font-size: 13px;
   line-height: 1.55;
 }
 .info-page[data-page-lang="ka"] .info-offhours-panel .info-btn {
