@@ -119,6 +119,7 @@ const ChatModal = ({ open, onClose, onUnreadChange }) => {
   const scrollRef = useRef(null);
   const fileInputRef = useRef(null);
   const namePromptRef = useRef(null);
+  const nameInputRef = useRef(null);
 
   const [messages, setMessages] = useState(() => loadStoredMessages() || []);
   const [draft, setDraft] = useState('');
@@ -153,6 +154,26 @@ const ChatModal = ({ open, onClose, onUnreadChange }) => {
     }
     onUnreadChange?.(unread);
   }, [unread, onUnreadChange]);
+
+  /* Focus the name input after the modal finishes animating in.
+     Focusing during a transform animation makes iOS Safari place the caret
+     at a stale x-offset inside the placeholder; deferring until the
+     transform is gone fixes the misplaced cursor. */
+  useEffect(() => {
+    if (!showNamePrompt) return;
+    const id = setTimeout(() => {
+      const el = nameInputRef.current;
+      if (!el) return;
+      el.focus({ preventScroll: true });
+      try {
+        const end = el.value.length;
+        el.setSelectionRange(end, end);
+      } catch {
+        /* some input types throw on setSelectionRange */
+      }
+    }, 220);
+    return () => clearTimeout(id);
+  }, [showNamePrompt]);
 
   /* Anchor the name-prompt to the visible viewport so the on-screen keyboard
      never pushes it off-screen. visualViewport reflects the area not covered
@@ -754,14 +775,15 @@ const ChatModal = ({ open, onClose, onUnreadChange }) => {
               <m.div
                 ref={namePromptRef}
                 className="cm-name-prompt"
-                initial={{ opacity: 0, scale: 0.95 }}
-                animate={{ opacity: 1, scale: 1 }}
-                exit={{ opacity: 0, scale: 0.95 }}
-                transition={{ duration: 0.2 }}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.18 }}
               >
                 <div className="cm-name-prompt-content">
                   <h3>{tr('namePromptTitle') || 'Представьтесь, пожалуйста'}</h3>
                   <input
+                    ref={nameInputRef}
                     type="text"
                     className="cm-name-input"
                     placeholder={tr('namePlaceholder') || 'Ваше имя'}
@@ -771,7 +793,6 @@ const ChatModal = ({ open, onClose, onUnreadChange }) => {
                       if (e.key === 'Enter') handleNameSubmit();
                       if (e.key === 'Escape') setShowNamePrompt(false);
                     }}
-                    autoFocus
                   />
                   <div className="cm-name-prompt-buttons">
                     <button

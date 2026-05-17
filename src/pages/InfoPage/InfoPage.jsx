@@ -225,7 +225,9 @@ const InfoPage = () => {
                 <span className="info-hero-printer-dot" />
               </div>
               <div className="info-hero-printer-body">
-                <RiCustomerService2Fill className="info-hero-printer-icon" />
+                <span className="info-hero-printer-icon-wrap" aria-hidden>
+                  <RiCustomerService2Fill className="info-hero-printer-icon" />
+                </span>
                 <div className="info-hero-printer-meta">
                   <span className="info-hero-printer-status">
                     <span

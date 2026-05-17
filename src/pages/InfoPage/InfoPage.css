@@ -416,15 +416,21 @@ body[data-theme="dark"] .info-orb-3 { opacity: 0.28; }
   margin-bottom: 18px;
 }
 
-.info-hero-printer-icon {
-  font-size: 3.4rem;
-  padding: 14px;
+.info-hero-printer-icon-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 78px;
+  height: 78px;
   border-radius: 14px;
   background: linear-gradient(135deg, var(--info-accent-soft), transparent);
-  color: var(--info-accent);
   border: 1px solid var(--info-border);
-  flex-shrink: 0;
-  height: 78px;
+}
+
+.info-hero-printer-icon {
+  font-size: 40px;
+  color: var(--info-accent);
 }
 
 .info-hero-printer-meta {
