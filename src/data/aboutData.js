@@ -19,7 +19,7 @@ export const aboutCover = {
 /** Parallax title lines (text, velocity, colorClass) */
 export const aboutParallaxTitles = [
   { text: 'Georgian Polygraph Services', baseVelocity: -3, colorClass: 'parallax__text--blue' },
-  { text: 'Professional Excellence', baseVelocity: 3, colorClass: 'parallax__text--green' },
+  { text: 'თქვენი სანდო პარტნიორი პოლიგრაფიის სამყაროში', baseVelocity: 3, colorClass: 'parallax__text--green' },
 ];
 
 /** Stats counters (value, duration, delay, label i18n key) */

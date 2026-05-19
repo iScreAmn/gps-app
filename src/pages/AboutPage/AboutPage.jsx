@@ -30,14 +30,6 @@ const AboutPage = () => {
       {/* ── Editorial Hero ──────────────────────────────── */}
       <section className="about-hero">
         <div className="container about-hero__inner">
-          <div className="about-hero__meta">
-            <span className="about-hero__eyebrow">
-              <span className="about-hero__dot" />
-              {t("about.partners.title")}
-            </span>
-            <span className="about-hero__index">{pad(1)} / {pad(4)}</span>
-          </div>
-
           <div className="about-hero__grid">
             <motion.div
               className="about-hero__lead"
@@ -45,14 +37,14 @@ const AboutPage = () => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
             >
+              <p className="about-hero__caption">
+                Est. 2006 — Printing technology, precision engineering, and partnership built across two decades.
+              </p>
               <h1 className="about-hero__title">
                 <span className="about-hero__title-line">Georgian</span>
                 <span className="about-hero__title-line about-hero__title-line--accent">Polygraph</span>
                 <span className="about-hero__title-line">Services<span className="about-hero__title-dot">.</span></span>
               </h1>
-              <p className="about-hero__caption">
-                Est. 2006 — Printing technology, precision engineering, and partnership built across two decades.
-              </p>
             </motion.div>
 
             <motion.figure
@@ -117,9 +109,6 @@ const AboutPage = () => {
         <div className="about-parallax__atmos" aria-hidden>
           <div className="about-parallax__beam about-parallax__beam--a" />
           <div className="about-parallax__beam about-parallax__beam--b" />
-        </div>
-        <div className="about-parallax__rail" aria-hidden>
-          <span className="about-parallax__rail-text">scroll · in motion · scroll · in motion ·</span>
         </div>
         <div className="about-parallax__stack">
           {aboutParallaxTitles.map((item, i) => (
