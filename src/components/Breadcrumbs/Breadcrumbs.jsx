@@ -24,6 +24,7 @@ const Breadcrumbs = ({ items, separator }) => {
     'services': 'navigation.services',
     'news': 'navigation.news',
     'contacts': 'navigation.contacts',
+    'info': 'navigation.info',
     'privacy-policy': 'navigation.privacy_policy',
     // Бренды
     'iecho': 'IECHO',

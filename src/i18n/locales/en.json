@@ -7,7 +7,8 @@
     "news": "News",
     "contacts": "Contacts",
     "scanner": "Scanner",
-    "privacy_policy": "Privacy Policy"
+    "privacy_policy": "Privacy Policy",
+    "info": "Information"
   },
   "header": {
     "system": "System",
@@ -615,5 +616,197 @@
     "downloading": "Downloading...",
     "successMessage": "File downloaded successfully",
     "alreadyDownloaded": "You have already downloaded the catalog"
+  },
+  "infoPage": {
+    "hero": {
+      "titleLine1": "Service & Supplies",
+      "titleAccent": "For your device",
+      "subtitle": "You've scanned the QR code on the device. Here's everything you need to keep it running without interruptions: repairs, consumables, and support — all in one tap.",
+      "ctaContact": "Contact us",
+      "ctaRequest": "Leave a request",
+      "printerStatusOnline": "Online",
+      "printerStatusOffline": "Offline",
+      "printerTagline": "We are ready to help",
+      "printerOutsideHours": "Outside working hours",
+      "printerHoursLabel": "Working hours:",
+      "printerHoursWeekdays": "Monday – Friday: 10:00–18:00",
+      "printerHoursSaturday": "Saturday: 10:00–14:00",
+      "textUs": "Text us",
+      "textUsOffline": "Available during working hours",
+      "stat1Title": "Full",
+      "stat1Sub": "Support",
+      "stat2Title": "Quick",
+      "stat2Sub": "Response",
+      "stat3Title": "18 Years",
+      "stat3Sub": "Of Experience"
+    },
+    "sticky": {
+      "call": "Call",
+      "textUs": "Text us"
+    },
+    "aria": {
+      "whatsapp": "WhatsApp",
+      "toTop": "Back to top",
+      "unread": "{{count}} unread messages"
+    },
+    "quick": {
+      "eyebrow": "Quick actions",
+      "title": "What do you need?"
+    },
+    "quickActions": {
+      "master": {
+        "title": "Book a technician",
+        "sub": "Same-day on-site visit"
+      },
+      "cartridge": {
+        "title": "Order a toner",
+        "sub": "Delivery or visit to the office"
+      },
+      "whatsapp": {
+        "title": "WhatsApp",
+        "sub": "Chat with an engineer"
+      },
+      "call": {
+        "title": "Call us",
+        "sub": ""
+      }
+    },
+    "services": {
+      "eyebrow": "Service & repair",
+      "title": "Full service lifecycle",
+      "lead": "From a one-off diagnostic to a contract for your entire fleet.",
+      "items": [
+        {
+          "title": "Diagnostics",
+          "desc": "Complete hardware checks and calibration."
+        },
+        {
+          "title": "Printer repair",
+          "desc": "Laser, inkjet, MFPs, and plotters."
+        },
+        {
+          "title": "Cartridge refilling",
+          "desc": "Original toners and inks."
+        },
+        {
+          "title": "Office maintenance",
+          "desc": "Contracts for managed printer fleets."
+        },
+        {
+          "title": "On-site technician",
+          "desc": "Across Tbilisi — often within an hour."
+        },
+        {
+          "title": "Equipment setup",
+          "desc": "Networking, drivers, and print profiles."
+        }
+      ]
+    },
+    "contact": {
+      "eyebrow": "Contact",
+      "title": "Always on call",
+      "lead": "One tap connects you with an engineer — no ticket queue.",
+      "phoneLabel": "Phone",
+      "telegramLabel": "Telegram",
+      "whatsappLabel": "WhatsApp",
+      "whatsappValue": "Chat with an engineer",
+      "emailLabel": "Email",
+      "addressLabel": "Address",
+      "addressValue": "Tbilisi, Georgia",
+      "hoursLabel": "Hours",
+      "hoursValue": "Mon–Fri: 10:00 — 18:00, Sat: 10:00 — 14:00"
+    },
+    "footerCta": {
+      "title": "Have questions?",
+      "lead": "Contact us and we will help you solve your problem.",
+      "call": "Call now"
+    },
+    "offHours": {
+      "title": "Working hours ended",
+      "messageWeekday": "Working hours have ended for today. Please call us back tomorrow from 10:00.",
+      "messageWeekend": "The working week has ended. Please call us back on Monday from 10:00.",
+      "ok": "Got it"
+    },
+    "mapIframeTitle": "GPS office map",
+    "chat": {
+      "title": "Support chat",
+      "today": "Today",
+      "greeting": "Hi! How can we help with your device today?",
+      "autoReply": "Thanks for your message — an engineer will reply shortly.",
+      "autoReplyImage": "Got the photo, thanks! An engineer is taking a look.",
+      "inputPlaceholder": "Write a message…",
+      "sendAria": "Send",
+      "attachAria": "Attach image",
+      "closeAria": "Close",
+      "typingAria": "Support is typing",
+      "openImageAria": "Open full-size image",
+      "imageAlt": "Attached image",
+      "viewerAria": "Image viewer",
+      "errImageType": "Only image files are supported.",
+      "errImageSize": "Image is too large. Maximum size is 10 MB.",
+      "errImageRead": "Couldn't read the image. Please try another file.",
+      "pendingHint": "Add a message or send",
+      "removePendingAria": "Remove attachment",
+      "jumpBottomAria": "Jump to latest message",
+      "namePromptTitle": "Please introduce yourself",
+      "namePromptText": "How should we address you?",
+      "namePlaceholder": "Your name",
+      "cancel": "Cancel",
+      "submit": "Send",
+      "sendError": "Failed to send message"
+    },
+    "problemReport": {
+      "eyebrow": "Service request",
+      "title": "Describe the problem",
+      "subtitle": "Fill in the equipment fault details so we can diagnose it quickly",
+      "closeAria": "Close",
+      "companyNameLabel": "Company name",
+      "companyNamePlaceholder": "Legal or trade name",
+      "phoneLabel": "Phone",
+      "phonePlaceholder": "+995 577 77 88 99",
+      "errCompanyName": "Please enter the company name",
+      "errPhone": "Please enter a phone number",
+      "deviceLabel": "Device type",
+      "devicePlaceholder": "Select a device type",
+      "modelLabel": "Model",
+      "modelPlaceholder": "Select a model",
+      "modelFreePlaceholder": "Enter the model",
+      "problemLabel": "Problem",
+      "problemSelectPlaceholder": "Select a problem type",
+      "problemTextLabel": "Problem description",
+      "problemTextPlaceholder": "Briefly describe the issue…",
+      "errorCodeLabel": "Error code",
+      "errorCodePlaceholder": "e.g. C-2557",
+      "errorCodeHint": "If an error code is shown on the display — include it",
+      "urgencyLabel": "Urgency",
+      "urgencyCriticalTitle": "Device is completely down",
+      "urgencyPartialTitle": "Works, but with defects",
+      "uploadLabel": "Add photos of the problem",
+      "uploadMain": "Drop files here",
+      "uploadSub": "or click to choose · PNG, JPG up to 10MB",
+      "removeAria": "Remove file",
+      "optional": "optional",
+      "cancel": "Cancel",
+      "submit": "Submit request",
+      "submitting": "Sending…",
+      "successTitle": "Request sent",
+      "successDesc": "We'll get back to you shortly",
+      "formError": "Couldn't submit. Please try again.",
+      "errDevice": "Please choose a device type",
+      "errModel": "Please enter or select the model",
+      "errProblem": "Please describe the problem",
+      "devices": {
+        "printer": "Printer",
+        "cutting": "Cutting system",
+        "wideformat": "Wide-format printing",
+        "finishing": "Finishing equipment"
+      },
+      "printerProblems": [
+        "Print quality",
+        "Paper feeding problem",
+        "Printer settings issue",
+        "Other"
+      ]
+    }
   }
 }

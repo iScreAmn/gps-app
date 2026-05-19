@@ -13,6 +13,8 @@ const contactsData = {
   },
   socials: {
     whatsapp: 'https://whatsapp.com/channel/0029Vb6P79E1yT2I2KS8GG3Y',
+    /** Direct chat (used e.g. Info quick action .info-accent-green) */
+    whatsappChat: 'https://wa.me/995577133992',
     telegram: 'https://t.me/geopolser',
     facebook: 'https://facebook.com/GeorgianPolygraphServices',
     instagram: 'https://instagram.com/geopolygraph',
