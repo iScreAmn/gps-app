@@ -262,20 +262,7 @@ const InfoPage = () => {
                 <RiChat3Line />
                 {t('infoPage.hero.textUs')}
               </button>
-              <div className="info-hero-printer-stats">
-                <div>
-                  <span>{t('infoPage.hero.stat1Title')}</span>
-                  <small>{t('infoPage.hero.stat1Sub')}</small>
-                </div>
-                <div>
-                  <span>{t('infoPage.hero.stat2Title')}</span>
-                  <small>{t('infoPage.hero.stat2Sub')}</small>
-                </div>
-                <div>
-                  <span>{t('infoPage.hero.stat3Title')}</span>
-                  <small>{t('infoPage.hero.stat3Sub')}</small>
-                </div>
-              </div>
+              
             </div>
           </m.div>
         </div>
@@ -349,29 +336,27 @@ const InfoPage = () => {
       </section>
 
       <section className="info-section info-footer-cta">
-        <div className="info-container">
-          <Reveal>
-            <div className="info-footer-card">
-              <div className="info-footer-card-bg">
-                <div className="info-orb info-orb-cta-1" />
-                <div className="info-orb info-orb-cta-2" />
-              </div>
-              <div className="info-footer-card-content">
-                <h2>{t('infoPage.footerCta.title')}</h2>
-                <p>{t('infoPage.footerCta.lead')}</p>
-                <div className="info-footer-card-cta">
-                  <a
-                    href={phoneHref}
-                    className="info-btn info-btn-primary info-btn-lg"
-                    onClick={gateOffHours}
-                  >
-                    <FaPhoneAlt /> {t('infoPage.footerCta.call')}
-                  </a>
-                </div>
+        <Reveal>
+          <div className="info-footer-card">
+            <div className="info-footer-card-bg">
+              <div className="info-orb info-orb-cta-1" />
+              <div className="info-orb info-orb-cta-2" />
+            </div>
+            <div className="info-footer-card-content">
+              <h2>{t('infoPage.footerCta.title')}</h2>
+              <p>{t('infoPage.footerCta.lead')}</p>
+              <div className="info-footer-card-cta">
+                <a
+                  href={phoneHref}
+                  className="info-btn info-btn-primary info-btn-lg"
+                  onClick={gateOffHours}
+                >
+                  <FaPhoneAlt /> {t('infoPage.footerCta.call')}
+                </a>
               </div>
             </div>
-          </Reveal>
-        </div>
+          </div>
+        </Reveal>
       </section>
 
       <div

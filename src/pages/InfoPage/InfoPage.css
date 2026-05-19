@@ -82,7 +82,7 @@ body[data-theme="dark"] .info-page {
 .info-section-head {
   text-align: center;
   max-width: 640px;
-  margin: 0 auto 44px;
+  margin: 0 auto 30px;
 }
 
 .info-section-head h2 {
@@ -203,10 +203,9 @@ body[data-theme="dark"] .info-page {
 .info-hero {
   position: relative;
   z-index: 1;
-  padding: 20px 0 80px;
+  padding: 20px 0 15px;
 }
 
-/* Full-page decorative background (was scoped to `.info-hero` only). */
 .info-bg-layer {
   position: absolute;
   inset: 0;
@@ -311,7 +310,7 @@ body[data-theme="dark"] .info-orb-3 { opacity: 0.28; }
   letter-spacing: -0.03em;
   text-transform: uppercase;
   line-height: 1.05;
-  margin: 0 0 30px;
+  margin: 0 0 5px;
   max-width: 880px;
 }
 
@@ -340,7 +339,7 @@ body[data-theme="dark"] .info-orb-3 { opacity: 0.28; }
   gap: 10px;
   width: 100%;
   max-width: min(520px, 100%);
-  margin: 0 auto 40px;
+  margin: 0 auto 25px;
   box-sizing: border-box;
 }
 
@@ -465,37 +464,6 @@ body[data-theme="dark"] .info-orb-3 { opacity: 0.28; }
   color: var(--info-text-soft);
 }
 
-.info-hero-printer-stats {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 12px;
-  padding-top: 14px;
-  border-top: 1px solid var(--info-border);
-}
-
-.info-hero-printer-stats > div {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 2px;
-}
-
-.info-hero-printer-stats span {
-  font-size: 1.15rem;
-  font-weight: 700;
-  letter-spacing: -0.02em;
-}
-.info-hero-printer-stats small {
-  font-size: 0.7rem;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  color: var(--info-text-soft);
-}
-
-/*
- * Georgian hero only — tweak the variables below; English (`data-hero-lang="en"`)
- * keeps the rules above unchanged.
- */
 .info-hero[data-hero-lang="ka"] {
   --info-hero-title-fs: clamp(1.45rem, 4.8vw, 2.35rem);
   --info-hero-accent-fs: clamp(1.55rem, 5.2vw, 2.55rem);
@@ -1060,6 +1028,16 @@ body[data-theme="dark"] .info-map iframe {
   opacity: 0.35;
 }
 
+
+.info-footer-cta {
+  padding: 0;
+}
+
+.info-footer-cta .info-footer-card {
+  border-radius: 0;
+  border-left: none;
+  border-right: none;
+}
 
 .info-footer-card {
   position: relative;

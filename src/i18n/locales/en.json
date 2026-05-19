@@ -802,9 +802,10 @@
         "finishing": "Finishing equipment"
       },
       "printerProblems": [
-        "Printer prints with streaks",
-        "Issue with ADF / copying / scanner",
-        "Paper jam"
+        "Print quality",
+        "Paper feeding problem",
+        "Printer settings issue",
+        "Other"
       ]
     }
   }
