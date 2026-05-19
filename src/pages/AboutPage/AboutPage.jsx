@@ -38,7 +38,7 @@ const AboutPage = () => {
               transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
             >
               <p className="about-hero__caption">
-                Est. 2006 — Printing technology, precision engineering, and partnership built across two decades.
+                {t("about.hero.caption")}
               </p>
               <h1 className="about-hero__title">
                 <span className="about-hero__title-line">Georgian</span>
@@ -149,11 +149,6 @@ const AboutPage = () => {
       {/* ── Editorial Story Blocks ──────────────────────── */}
       <section className="about-story">
         <div className="container">
-          <div className="about-story__head">
-            <span className="about-story__kicker">{pad(3)} / {pad(4)} — Story</span>
-            <h2 className="about-story__heading">A practice in precision.</h2>
-          </div>
-
           <div className="about-story__blocks">
             {aboutInfoBlocks.map((block, i) => (
               <motion.article
@@ -165,12 +160,16 @@ const AboutPage = () => {
                 transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
               >
                 <div className="about-story__media">
-                  <span className="about-story__chapter">Ch. {pad(i + 1)}</span>
                   <div className="about-story__media-frame">
                     <img src={block.image} alt={block.imageAlt} />
+                    <span className="about-story__media-tag" aria-hidden>
+                      <span className="about-story__media-tag-dot" />
+                      {String(i + 1).padStart(2, "0")} · GPS
+                    </span>
                   </div>
                 </div>
                 <div className="about-story__body">
+                  <span className="about-story__watermark" aria-hidden>{String(i + 1).padStart(2, "0")}</span>
                   <h3 className="about-story__title">
                     {block.titleKey ? t(block.titleKey) : block.title}
                   </h3>
@@ -179,6 +178,13 @@ const AboutPage = () => {
                     {block.textKeys.map((key) => (
                       <p key={key}>{t(key)}</p>
                     ))}
+                  </div>
+                  <div className="about-story__cta">
+                    <span className="about-story__cta-line" aria-hidden />
+                    <button type="button" className="about-story__cta-btn">
+                      <span>{t("about.cta.learnMore")}</span>
+                      <span className="about-story__cta-arrow" aria-hidden>↗</span>
+                    </button>
                   </div>
                 </div>
               </motion.article>

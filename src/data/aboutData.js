@@ -3,6 +3,7 @@ import {
   mainLogo,
   konikaAbout,
   konikaAbout2,
+  servicesAbout,
   global,
   service3,
   demo,
@@ -41,7 +42,7 @@ export const aboutPartners = {
 /** Info blocks (title, text i18n keys, image, imageOnLeft) */
 export const aboutInfoBlocks = [
   {
-    title: 'Georgian Polygraph Services',
+    titleKey: 'about.description.title0',
     textKeys: ['about.description.text1', 'about.description.text2'],
     image: konikaAbout,
     imageAlt: 'GPS About',
@@ -53,6 +54,13 @@ export const aboutInfoBlocks = [
     image: konikaAbout2,
     imageAlt: 'Konica Minolta',
     imageOnLeft: true,
+  },
+  {
+    titleKey: 'about.description.title2',
+    textKeys: ['about.description.text4', 'about.description.text5'],
+    image: servicesAbout,
+    imageAlt: 'GPS Services',
+    imageOnLeft: false,
   },
 ];
 

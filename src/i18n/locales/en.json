@@ -74,6 +74,9 @@
     "accessories": "Accessories"
   },
   "about": {
+    "hero": {
+      "caption": "Est. 2006 — Printing technology, precision engineering, and partnership built across two decades."
+    },
     "counter": {
       "years": "Years Experience",
       "clients": "Successful Cases",
@@ -97,8 +100,14 @@
       }
     },
     "description": {
-      "text1": "LLC Georgian Polygraph Service is a continuously growing company in the market of distribution of printing equipment and materials in Georgia. With 13 years of experience and a team of professionals, we are able to provide you with cutting-edge printing technologies and high-quality service. By partnering with us, you receive not only equipment but also a full range of services.",
-      "text2": "However, Georgian Polygraph Service considers its most significant achievement to be the exclusive rights obtained between 2016 and 2019 to be the sole official representative of Konica Minolta in Georgia. Since 2019, it has become an official dealer and gold partner of Konica Minolta's Develop brand."
+      "title0": "Georgian Polygraph Services",
+      "title": "Official Dealer of Konica Minolta",
+      "text1": "LLC Georgian Polygraph Service is a continuously growing company in the market of distribution of printing equipment and materials in Georgia. With 19 years of experience and a team of professionals, we are able to provide you with cutting-edge printing technologies and high-quality service. By partnering with us, you receive not only equipment but also a full range of services.",
+      "text2": "Our certified staff will provide you with highly qualified consultations regarding the equipment and services of interest to you, which in itself will ensure the success of your business.",
+      "text3": "Georgian Polygraph Service considers its most significant achievement to be the exclusive rights obtained between 2016 and 2019 to be the sole official representative of Konica Minolta in Georgia. Since 2019, it has become an official dealer and gold partner of Konica Minolta's Develop brand.",
+      "title2": "A trusted partner for 300+ organizations",
+      "text4": "Today, Georgian Polygraph Services provides its services to more than 300 organizations and individuals. Our clients include not only small and medium-sized advertising companies, but also printing houses, offices, universities, and governmental institutions.",
+      "text5": "Supported by our partners, our staff continuously upgrade their qualifications through the manufacturer's technical knowledge base. Years of experience and the professional work of our certified technicians have earned Georgian Polygraph Services the reputation of a reliable and stable company on the market."
     },
     "partners": {
       "title": "Georgian Polygraph Services successfully collaborates with world-renowned companies."

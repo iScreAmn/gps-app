@@ -24,6 +24,8 @@ body[data-theme="dark"] .partners-marquee {
 .partners-marquee__viewport {
   position: relative;
   overflow: hidden;
+  border-top: 1px solid var(--hairline);
+  border-bottom: 1px solid var(--hairline);
   -webkit-mask-image: linear-gradient(
     90deg,
     transparent 0%,
@@ -83,14 +85,7 @@ body[data-theme="dark"] .partners-marquee {
   padding: 0.5rem 1rem;
   text-decoration: none;
   color: var(--ink);
-  border-top: 1px solid var(--hairline);
-  border-bottom: 1px solid var(--hairline);
-  /* border-right: 1px solid var(--hairline); */
   transition: color 0.4s ease, background 0.4s ease;
-}
-
-.partners-marquee__item:first-child {
-  border-left: 1px solid var(--hairline);
 }
 
 .partners-marquee__item:hover {

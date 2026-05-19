@@ -70,6 +70,7 @@ export { default as demo } from './icons/demo.png';
 export { default as aboutImage } from './about/gps-office.webp';
 export { default as konikaAbout } from './about/konikaDisplay.jpg';
 export { default as konikaAbout2 } from './about/konicaDevelop.png';
+export { default as servicesAbout } from './about/service3.webp';
 export { default as aboutOrder } from './about/ineo4065.png';
 
 // Art Printers
