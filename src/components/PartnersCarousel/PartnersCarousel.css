@@ -1,263 +1,200 @@
-.partners-carousel {
+/* =========================================================
+   PARTNERS — Awwwards-style editorial marquee
+   Single seamless track. Monochrome logos. Name reveal on hover.
+   ========================================================= */
+
+.partners-marquee {
+  --row-h: clamp(80px, 9vw, 110px);
+  --gap: 0px;
+  --ink: var(--text-color, #000);
+  --ink-soft: color-mix(in srgb, var(--text-color) 55%, transparent);
+  --hairline: color-mix(in srgb, var(--text-color) 14%, transparent);
+
   width: 100%;
-  overflow: hidden;
   position: relative;
-  background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
-  border-radius: 15px;
-  padding: 1.5rem 0;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
-  margin: 2rem 0;
   display: flex;
   flex-direction: column;
-  gap: 1rem;
+  gap: clamp(0.5rem, 1.5vh, 1.25rem);
 }
 
-body[data-theme="dark"] .partners-carousel {
-  background: linear-gradient(135deg, #111827 0%, #343653 100%);
-  /* background: var(--dark-bg); */
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+body[data-theme="dark"] .partners-marquee {
+  --hairline: color-mix(in srgb, var(--text-color) 20%, transparent);
 }
 
-.partners-carousel__track {
-  display: flex;
-  align-items: center;
-  gap: 3rem;
-  will-change: transform;
-  width: fit-content;
-}
-
-/* Основная карусель - движение влево */
-.partners-carousel__track--primary {
-  animation: scrollLeft 50s linear infinite;
-}
-
-/* Дополнительная карусель - движение вправо */
-.partners-carousel__track--secondary {
-  animation: scrollRight 50s linear infinite;
-}
-
-.partners-carousel__item {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  min-width: 150px;
-  height: 80px;
-  padding: 1rem;
-  background: white;
-  border-radius: 12px;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-  transition: all 0.3s ease;
-  text-decoration: none;
+.partners-marquee__viewport {
   position: relative;
   overflow: hidden;
+  -webkit-mask-image: linear-gradient(
+    90deg,
+    transparent 0%,
+    #000 3%,
+    #000 97%,
+    transparent 100%
+  );
+  mask-image: linear-gradient(
+    90deg,
+    transparent 0%,
+    #000 3%,
+    #000 97%,
+    transparent 100%
+  );
 }
 
-body[data-theme="dark"] .partners-carousel__item {
-  background: var(--light-bg);
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+.partners-marquee__track {
+  display: flex;
+  align-items: stretch;
+  gap: var(--gap);
+  width: max-content;
+  will-change: transform;
 }
 
-.partners-carousel__item::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-  transition: left 0.5s ease;
+.partners-marquee__viewport--ltr .partners-marquee__track {
+  animation: partnersMarqueeLtr 110s linear infinite;
 }
 
-body[data-theme="dark"] .partners-carousel__item::before {
-  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+.partners-marquee__viewport--rtl .partners-marquee__track {
+  animation: partnersMarqueeRtl 130s linear infinite;
 }
 
-.partners-carousel__item:hover {
-  transform: translateY(-5px) scale(1.05);
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
-}
-
-body[data-theme="dark"] .partners-carousel__item:hover {
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
-}
-
-.partners-carousel__item:hover::before {
-  left: 100%;
-}
-
-.partners-carousel__logo {
-  max-width: 100%;
-  max-height: 100%;
-  object-fit: contain;
-  filter: grayscale(0.3) brightness(0.8);
-  transition: all 0.3s ease;
-}
-
-.partners-carousel__item:hover .partners-carousel__logo {
-  filter: grayscale(0) brightness(1);
-  transform: scale(1.1);
-}
-
-/* Анимация движения влево для основной карусели */
-@keyframes scrollLeft {
-  0% {
-    transform: translateX(0);
-  }
-  100% {
-    transform: translateX(-50%);
-  }
-}
-
-/* Анимация движения вправо для дополнительной карусели */
-@keyframes scrollRight {
-  0% {
-    transform: translateX(-50%);
-  }
-  100% {
-    transform: translateX(0);
-  }
-}
-
-/* Пауза анимации при наведении */
-.partners-carousel:hover .partners-carousel__track--primary,
-.partners-carousel:hover .partners-carousel__track--secondary {
+.partners-marquee:hover .partners-marquee__track {
   animation-play-state: paused;
 }
 
-/* Стили для элементов дополнительной карусели */
-.partners-carousel__item--secondary {
-  opacity: 0.8;
-  transform: scale(0.95);
+@keyframes partnersMarqueeLtr {
+  from { transform: translate3d(0, 0, 0); }
+  to   { transform: translate3d(-50%, 0, 0); }
 }
 
-.partners-carousel__item--secondary:hover {
+@keyframes partnersMarqueeRtl {
+  from { transform: translate3d(-50%, 0, 0); }
+  to   { transform: translate3d(0, 0, 0); }
+}
+
+/* item — no card; pure logo with index + name reveal */
+.partners-marquee__item {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.35rem;
+  flex: 0 0 clamp(140px, 13vw, 200px);
+  height: var(--row-h);
+  padding: 0.5rem 1rem;
+  text-decoration: none;
+  color: var(--ink);
+  border-top: 1px solid var(--hairline);
+  border-bottom: 1px solid var(--hairline);
+  border-right: 1px solid var(--hairline);
+  transition: color 0.4s ease, background 0.4s ease;
+}
+
+.partners-marquee__item:first-child {
+  border-left: 1px solid var(--hairline);
+}
+
+.partners-marquee__item:hover {
+  background: color-mix(in srgb, var(--ink) 4%, transparent);
+}
+
+.partners-marquee__num {
+  font-family: var(--display, system-ui), system-ui, sans-serif;
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  color: var(--ink-soft);
+  transition: color 0.4s ease;
+}
+
+.partners-marquee__logo-wrap {
+  flex: 1;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  position: relative;
+}
+
+.partners-marquee__logo {
+  max-width: 100%;
+  max-height: 100%;
+  height: auto;
+  width: auto;
+  object-fit: contain;
+  object-position: center;
+  filter: grayscale(1) brightness(0.55) contrast(1.15);
+  opacity: 0.7;
+  transition: filter 0.5s cubic-bezier(.16,1,.3,1),
+              opacity 0.5s ease,
+              transform 0.6s cubic-bezier(.16,1,.3,1);
+}
+
+body[data-theme="dark"] .partners-marquee__logo {
+  filter: grayscale(1) brightness(2.2) contrast(0.9) invert(1);
+  opacity: 0.55;
+}
+
+.partners-marquee__item:hover .partners-marquee__logo {
+  filter: grayscale(0) brightness(1) contrast(1);
   opacity: 1;
-  transform: translateY(-3px) scale(1.02);
+  transform: translateY(-2px);
 }
 
-/* Адаптивность для планшетов */
-@media (max-width: 1024px) {
-  .partners-carousel {
-    padding: 1.2rem 0;
-    gap: 0.8rem;
-  }
-  
-  .partners-carousel__track {
-    gap: 2.5rem;
-  }
-  
-  .partners-carousel__item {
-    min-width: 130px;
-    height: 70px;
-    padding: 0.8rem;
-  }
-  
-  .partners-carousel__track--primary {
-    animation-duration: 25s;
-  }
-  
-  .partners-carousel__track--secondary {
-    animation-duration: 25s;
-  }
+body[data-theme="dark"] .partners-marquee__item:hover .partners-marquee__logo {
+  filter: grayscale(0) brightness(1) contrast(1) invert(0);
+  opacity: 1;
 }
 
-/* Адаптивность для мобильных устройств */
+/* Name — sliding reveal on hover */
+.partners-marquee__name {
+  font-family: var(--display, system-ui), system-ui, sans-serif;
+  font-size: 0.82rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  color: var(--ink);
+  opacity: 0;
+  transform: translateY(6px);
+  transition: opacity 0.4s ease, transform 0.5s cubic-bezier(.16,1,.3,1), color 0.3s ease;
+  white-space: nowrap;
+}
+
+.partners-marquee__item:hover .partners-marquee__name {
+  opacity: 1;
+  transform: translateY(0);
+  color: var(--primary-red);
+}
+
+.partners-marquee__item:hover .partners-marquee__num {
+  color: var(--primary-red);
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .partners-marquee__track { animation: none; }
+  .partners-marquee__viewport {
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+  }
+  .partners-marquee__logo,
+  .partners-marquee__name { transition: none; }
+}
+
+/* Responsive */
 @media (max-width: 768px) {
-  .partners-carousel {
-    padding: 1rem 0;
-    margin: 1.5rem 0;
-    gap: 0.6rem;
-  }
-  
-  .partners-carousel__track {
-    gap: 2rem;
-  }
-  
-  .partners-carousel__track--primary {
-    animation-duration: 20s;
-  }
-  
-  .partners-carousel__track--secondary {
-    animation-duration: 20s;
-  }
-  
-  .partners-carousel__item {
-    min-width: 110px;
-    height: 60px;
-    padding: 0.6rem;
-  }
-  
-  .partners-carousel__item:hover {
-    transform: translateY(-3px) scale(1.03);
-  }
-  
-  .partners-carousel__item--secondary:hover {
-    transform: translateY(-2px) scale(1.01);
+  .partners-marquee__viewport--ltr .partners-marquee__track { animation-duration: 80s; }
+  .partners-marquee__viewport--rtl .partners-marquee__track { animation-duration: 95s; }
+  .partners-marquee__name { font-size: 0.75rem; }
+  .partners-marquee__item {
+    min-width: 140px;
   }
 }
 
 @media (max-width: 480px) {
-  .partners-carousel {
-    padding: 0.8rem 0;
-    margin: 1rem 0;
-    gap: 0.4rem;
+  .partners-marquee__viewport--ltr .partners-marquee__track { animation-duration: 65s; }
+  .partners-marquee__viewport--rtl .partners-marquee__track { animation-duration: 80s; }
+  .partners-marquee__item {
+    min-width: 120px;
   }
-  
-  .partners-carousel__track {
-    gap: 1.5rem;
-  }
-  
-  .partners-carousel__track--primary {
-    animation-duration: 18s;
-  }
-  
-  .partners-carousel__track--secondary {
-    animation-duration: 18s;
-  }
-  
-  .partners-carousel__item {
-    min-width: 90px;
-    height: 50px;
-    padding: 0.5rem;
-  }
-}
-
-/* Оптимизация производительности */
-.partners-carousel__track {
-  backface-visibility: hidden;
-  perspective: 1000px;
-}
-
-.partners-carousel__item {
-  backface-visibility: hidden;
-  transform-style: preserve-3d;
-}
-
-/* Улучшение доступности */
-@media (prefers-reduced-motion: reduce) {
-  .partners-carousel__track--primary,
-  .partners-carousel__track--secondary {
-    animation: none;
-  }
-  
-  .partners-carousel__item {
-    transition: none;
-  }
-  
-  .partners-carousel__item:hover {
-    transform: none;
-  }
-  
-  .partners-carousel__item--secondary {
-    opacity: 1;
-    transform: none;
-  }
-}
-
-/* Поддержка высокого DPI */
-@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
-  .partners-carousel__logo {
-    image-rendering: -webkit-optimize-contrast;
-    image-rendering: crisp-edges;
-  }
+  .partners-marquee__num { font-size: 0.65rem; }
 }

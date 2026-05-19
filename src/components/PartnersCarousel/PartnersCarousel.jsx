@@ -2,64 +2,68 @@ import React from 'react';
 import { konika, duplo, knb, unifol, vivid, audley, colorking, fedrigoni, iecho, mondi, nocai, reinauer, Rightint, teneth, tmt, goldensign } from '../../assets/images';
 import './PartnersCarousel.css';
 
-const PartnersCarousel = () => {
-  const partners = [
-    { logo: konika, name: 'Konica Minolta', url: 'https://www.konica-minolta.com/ge/en/index.html' },
-    { logo: duplo, name: 'Duplo', url: 'https://www.duplo.com/ge/en/index.html' },
-    { logo: knb, name: 'Knb', url: 'https://www.knb.com/ge/en/index.html' },
-    { logo: unifol, name: 'Unifol', url: 'https://www.unifol.com/ge/en/index.html' },
-    { logo: audley, name: 'Audley', url: '#' },
-    { logo: colorking, name: 'colorking', url: '#' },
-    { logo: fedrigoni, name: 'fedrigoni', url: '#' },
-    { logo: iecho, name: 'iecho', url: '#' },
-    { logo: mondi, name: 'mondi', url: '#' },
-    { logo: nocai, name: 'nocai', url: '#' },
-    { logo: reinauer, name: 'reinauer', url: '#' },
-    { logo: Rightint, name: 'Rightint', url: '#' },
-    { logo: teneth, name: 'teneth', url: '#' },
-    { logo: tmt, name: 'tmt', url: '#' },
-    { logo: vivid, name: 'vivid', url: '#!' },
-    { logo: goldensign, name: 'goldensign', url: 'https://www.goldensign.net/' },
-  ];
+const partners = [
+  { logo: konika, name: 'Konica Minolta', url: 'https://www.konica-minolta.com/ge/en/index.html' },
+  { logo: duplo, name: 'Duplo', url: 'https://www.duplo.com/ge/en/index.html' },
+  { logo: knb, name: 'Koenig & Bauer', url: 'https://www.knb.com/ge/en/index.html' },
+  { logo: unifol, name: 'Unifol', url: 'https://www.unifol.com/ge/en/index.html' },
+  { logo: audley, name: 'Audley', url: '#' },
+  { logo: colorking, name: 'ColorKing', url: '#' },
+  { logo: fedrigoni, name: 'Fedrigoni', url: '#' },
+  { logo: iecho, name: 'iEcho', url: '#' },
+  { logo: mondi, name: 'Mondi', url: '#' },
+  { logo: nocai, name: 'Nocai', url: '#' },
+  { logo: reinauer, name: 'Reinauer', url: '#' },
+  { logo: Rightint, name: 'Rightint', url: '#' },
+  { logo: teneth, name: 'Teneth', url: '#' },
+  { logo: tmt, name: 'TMT', url: '#' },
+  { logo: vivid, name: 'Vivid', url: '#' },
+  { logo: goldensign, name: 'Goldensign', url: 'https://www.goldensign.net/' },
+];
 
-  // Дублируем массив для бесшовной анимации
-  const duplicatedPartners = [...partners, ...partners];
+const half = Math.ceil(partners.length / 2);
+const rowA = partners.slice(0, half);
+const rowB = partners.slice(half);
 
-  const renderPartnerItem = (partner, index, className = '') => (
-    <a
-      key={`${partner.name}-${index}`}
-      href={partner.url}
-      target="_blank"
-      rel="noopener noreferrer"
-      className={`partners-carousel__item ${className}`}
-      aria-label={`Visit ${partner.name} website`}
-    >
-      <img
-        src={partner.logo}
-        alt={partner.name}
-        className="partners-carousel__logo"
-        loading="lazy"
-      />
-    </a>
-  );
-
+const renderRow = (items, offset, dir) => {
+  const loop = [...items, ...items];
   return (
-    <div className="partners-carousel">
-      {/* Основная карусель - движение влево */}
-      <div className="partners-carousel__track partners-carousel__track--primary">
-        {duplicatedPartners.map((partner, index) => 
-          renderPartnerItem(partner, index, 'partners-carousel__item--primary')
-        )}
-      </div>
-      
-      {/* Дополнительная карусель - движение вправо */}
-      <div className="partners-carousel__track partners-carousel__track--secondary">
-        {duplicatedPartners.map((partner, index) => 
-          renderPartnerItem(partner, index, 'partners-carousel__item--secondary')
-        )}
+    <div className={`partners-marquee__viewport partners-marquee__viewport--${dir}`}>
+      <div className="partners-marquee__track">
+        {loop.map((p, i) => {
+          const baseIdx = (i % items.length) + offset + 1;
+          return (
+            <a
+              key={`${p.name}-${i}`}
+              href={p.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="partners-marquee__item"
+              aria-label={`Visit ${p.name}`}
+            >
+              <span className="partners-marquee__num">{String(baseIdx).padStart(2, '0')}</span>
+              <span className="partners-marquee__logo-wrap">
+                <img
+                  src={p.logo}
+                  alt={p.name}
+                  className="partners-marquee__logo"
+                  loading="lazy"
+                />
+              </span>
+              <span className="partners-marquee__name">{p.name}</span>
+            </a>
+          );
+        })}
       </div>
     </div>
   );
 };
+
+const PartnersCarousel = () => (
+  <div className="partners-marquee" data-count={partners.length}>
+    {renderRow(rowA, 0, 'ltr')}
+    {renderRow(rowB, rowA.length, 'rtl')}
+  </div>
+);
 
 export default PartnersCarousel;
