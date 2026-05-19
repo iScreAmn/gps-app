@@ -264,39 +264,33 @@ body[data-theme="dark"] .about-stat__value {
   padding: clamp(3rem, 8vh, 6rem) 0;
   overflow: hidden;
   isolation: isolate;
+  contain: layout paint;
 }
 
-/* atmospheric ambient lighting behind parallax */
+/* atmospheric ambient lighting behind parallax —
+   pre-baked via radial-gradients on a single layer
+   (no `filter: blur()` — that is GPU-expensive on large surfaces
+   and forces full repaint on every scroll frame on mobile) */
 .about-parallax__atmos {
   position: absolute;
   inset: 0;
   pointer-events: none;
   z-index: 0;
+  background:
+    radial-gradient(
+      40vw 40vw at 15% 20%,
+      color-mix(in srgb, var(--accent) 18%, transparent),
+      transparent 70%
+    ),
+    radial-gradient(
+      32vw 32vw at 85% 85%,
+      color-mix(in srgb, var(--ink) 10%, transparent),
+      transparent 70%
+    );
 }
 
-.about-parallax__beam {
-  position: absolute;
-  border-radius: 50%;
-  filter: blur(80px);
-  opacity: 0.35;
-}
-
-.about-parallax__beam--a {
-  width: 50vw;
-  height: 50vw;
-  left: -10vw;
-  top: -20%;
-  background: radial-gradient(circle, color-mix(in srgb, var(--accent) 45%, transparent), transparent 70%);
-}
-
-.about-parallax__beam--b {
-  width: 40vw;
-  height: 40vw;
-  right: -10vw;
-  bottom: -25%;
-  background: radial-gradient(circle, color-mix(in srgb, var(--ink) 28%, transparent), transparent 70%);
-  opacity: 0.18;
-}
+/* legacy beam nodes — kept invisible to avoid extra layers */
+.about-parallax__beam { display: none; }
 
 /* small label rail above */
 .about-parallax__rail {
@@ -1149,6 +1143,16 @@ body[data-theme="dark"] .about-cta__btn.is-primary:hover {
   }
   .about-parallax__row--1 .parallax .scroller {
     font-size: clamp(44px, 11vw, 72px) !important;
+    /* text-stroke + transparent fill is expensive to repaint per-frame
+       on mobile GPUs — fall back to solid translucent ink */
+    -webkit-text-stroke: 0 !important;
+    text-stroke: 0 !important;
+    color: color-mix(in srgb, var(--ink) 70%, transparent) !important;
+  }
+
+  /* atmospheric layer is a luxury — drop it on small screens */
+  .about-parallax__atmos {
+    display: none;
   }
 
   .about-pillar__media {
@@ -1163,6 +1167,13 @@ body[data-theme="dark"] .about-cta__btn.is-primary:hover {
   .about-cta__btn {
     width: 100%;
     justify-content: center;
+  }
+}
+
+/* Respect users who opted out of motion */
+@media (prefers-reduced-motion: reduce) {
+  .about-parallax .parallax .scroller {
+    will-change: auto;
   }
 }
 

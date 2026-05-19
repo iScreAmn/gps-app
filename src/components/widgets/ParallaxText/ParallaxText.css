@@ -14,9 +14,11 @@
   font-size: 64px;
   display: flex;
   white-space: nowrap;
-  display: flex;
   flex-wrap: nowrap;
   color: var(--primary-red);
+  will-change: transform;
+  transform: translateZ(0);
+  backface-visibility: hidden;
 }
 
 body[data-theme="dark"] .parallax .scroller {
