@@ -223,8 +223,12 @@ body[data-theme="dark"] .about-page {
   font-size: 0.7rem;
   letter-spacing: 0.22em;
   text-transform: uppercase;
-  color: var(--ink-faint);
+  color: var(--light-text-secondary);
   font-weight: 500;
+}
+
+body[data-theme="dark"] .about-stat__idx {
+  color: color-mix(in srgb, var(--dark-text-secondary) 72%, transparent);
 }
 
 .about-stat__value {
