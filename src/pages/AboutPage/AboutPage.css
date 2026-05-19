@@ -233,7 +233,15 @@ body[data-theme="dark"] .about-page {
   line-height: 0.95;
   letter-spacing: -0.04em;
   font-weight: 800;
-  color: var(--ink);
+  color: var(--accent);
+}
+
+.about-stat__value .animated__number {
+  color: inherit;
+}
+
+body[data-theme="dark"] .about-stat__value {
+  color: #ffffff;
 }
 
 .about-stat__label {
@@ -338,8 +346,12 @@ body[data-theme="dark"] .about-page {
   letter-spacing: -0.04em;
   line-height: 0.9;
   text-transform: uppercase;
-  color: var(--ink) !important;
+  color: var(--accent) !important;
   opacity: 0.96;
+}
+
+body[data-theme="dark"] .about-parallax__row--0 .parallax .scroller {
+  color: #ffffff !important;
 }
 
 .about-parallax__row--1 {
