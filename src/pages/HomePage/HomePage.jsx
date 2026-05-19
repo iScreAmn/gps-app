@@ -9,11 +9,13 @@ import OnlineOrder from "../../components/OnlineOrder/OnlineOrder";
 import NewsletterCTA from "../../components/NewsletterCTA/NewsletterCTA";
 import LedModules from "../../components/LedModules/LedModules";
 import SpecialDiscounts from "../../components/SpecialDiscounts/SpecialDiscounts";
+import PageAmbientBackground from "../../components/PageAmbientBackground/PageAmbientBackground";
 import "./HomePage.css";
 
 const HomePage = () => {
   return (
-    <div className="home-page">
+    <div className="home-page page-ambient-shell">
+      <PageAmbientBackground />
       <Hero />
       <PartnersSection />
       <OnlineOrder />

@@ -1,5 +1,26 @@
+@import '../../styles/pageAmbientBackground.css';
+
 .about-page {
   padding-top: 2rem;
+}
+
+.about-page > *:not(.info-bg-layer) {
+  position: relative;
+  z-index: 1;
+}
+
+.about-page .about__partners,
+.about-page .about__cta-section,
+.about-page .partners-carousel {
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+body[data-theme="dark"] .about-page .about__partners,
+body[data-theme="dark"] .about-page .about__cta-section,
+body[data-theme="dark"] .about-page .partners-carousel {
+  background: transparent !important;
+  box-shadow: none !important;
 }
 
 .about-header {

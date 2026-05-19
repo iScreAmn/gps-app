@@ -16,6 +16,7 @@ import {
   aboutOption,
   aboutCta,
 } from "../../data/aboutData";
+import PageAmbientBackground from "../../components/PageAmbientBackground/PageAmbientBackground";
 import "./AboutPage.css";
 
 
@@ -23,7 +24,8 @@ const AboutPage = () => {
   const { t } = useLanguage();
 
   return (
-    <div className="about-page">
+    <div className="about-page page-ambient-shell">
+      <PageAmbientBackground />
       <div className="container">
         <div className="about__content">
           <div className="about__cover-container">
