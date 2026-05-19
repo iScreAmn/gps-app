@@ -19,6 +19,7 @@ import contactsData from '../../data/contactsData';
 import ProblemReportModal from './ProblemReportModal';
 import ChatModal from './ChatModal';
 import './InfoPage.css';
+import PageAmbientBackground from '../../components/PageAmbientBackground/PageAmbientBackground';
 
 /** IANA id supported by this runtime, or null → UTC+4 (Georgia, no DST). */
 let cachedGeorgiaTz;
@@ -168,13 +169,8 @@ const InfoPage = () => {
   }));
 
   return (
-    <div className="info-page" data-page-lang={pageLang}>
-      <div className="info-bg-layer" aria-hidden>
-        <div className="info-orb info-orb-1" />
-        <div className="info-orb info-orb-2" />
-        <div className="info-orb info-orb-3" />
-        <div className="info-grid-overlay" />
-      </div>
+    <div className="info-page page-ambient-shell" data-page-lang={pageLang}>
+      <PageAmbientBackground />
 
       <section className="info-hero" data-hero-lang={pageLang}>
         <div className="info-container">
