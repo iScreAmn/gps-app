@@ -22,6 +22,43 @@ import {
 import './ProblemReportModal.css';
 
 const PR_NS = 'infoPage.problemReport';
+
+const API_URL = (() => {
+  const envUrl =
+    import.meta.env.VITE_API_URL && String(import.meta.env.VITE_API_URL).trim();
+  if (envUrl) return envUrl.replace(/\/$/, '');
+  if (typeof window !== 'undefined') {
+    const host = window.location.hostname;
+    if (host === 'localhost' || host === '127.0.0.1') {
+      return `http://${host}:3001`;
+    }
+    return 'https://gps-app-server.vercel.app';
+  }
+  return 'https://gps-app-server.vercel.app';
+})();
+
+const DEVICE_LABELS_RU = {
+  printer: 'Принтер',
+  cutting: 'Режущий плоттер',
+  wideformat: 'Широкоформатный принтер',
+  finishing: 'Постобработка',
+};
+
+const URGENCY_LABELS_RU = {
+  critical: 'Критическая (оборудование не работает)',
+  partial: 'Частичная (работает с ограничениями)',
+};
+
+const fileToDataUrl = (file) =>
+  new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.onload = () => resolve(reader.result);
+    reader.onerror = reject;
+    reader.readAsDataURL(file);
+  });
+
+const makeReportId = () =>
+  `pr-${Date.now()}-${Math.random().toString(36).slice(2, 8)}`;
 const DEVICE_DEFS = [
   { value: 'printer', icon: <FiPrinter />, problemMode: 'select', models: null },
   {
@@ -142,6 +179,7 @@ const ProblemReportModal = ({ open, onClose }) => {
   const dialogRef = useRef(null);
   const firstFieldRef = useRef(null);
   const fileInputRef = useRef(null);
+  const reportIdRef = useRef(makeReportId());
 
   const [companyName, setCompanyName] = useState('');
   const [phone, setPhone] = useState('');
@@ -185,6 +223,7 @@ const ProblemReportModal = ({ open, onClose }) => {
     setFiles([]);
     setTouched({});
     setStatus('idle');
+    reportIdRef.current = makeReportId();
   }, []);
 
   const handleClose = useCallback(() => {
@@ -282,6 +321,30 @@ const ProblemReportModal = ({ open, onClose }) => {
 
   const removeFile = (id) => setFiles((prev) => prev.filter((f) => f.id !== id));
 
+  const buildReportText = () => {
+    const deviceLabel = DEVICE_LABELS_RU[deviceType] || deviceType || '—';
+    const urgencyLabel = URGENCY_LABELS_RU[urgency] || '—';
+    const problemResolved =
+      currentDevice?.problemMode === 'select'
+        ? printerProblems[Number(String(problemSelect).replace('p', ''))] ||
+          problemSelect
+        : problemText;
+
+    const lines = [
+      '🛠 Новая заявка — Сообщить о проблеме',
+      '',
+      `🏢 Компания: ${companyName.trim()}`,
+      `📞 Телефон: ${phone.trim()}`,
+      `🖨 Тип оборудования: ${deviceLabel}`,
+    ];
+    if (deviceModel.trim()) lines.push(`🔧 Модель: ${deviceModel.trim()}`);
+    lines.push(`⚠️ Проблема: ${problemResolved}`);
+    if (errorCode.trim()) lines.push(`#️⃣ Код ошибки: ${errorCode.trim()}`);
+    if (urgency) lines.push(`🚨 Срочность: ${urgencyLabel}`);
+    if (files.length) lines.push(`🖼 Изображений во вложении: ${files.length}`);
+    return lines.join('\n');
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     setTouched({
@@ -294,10 +357,42 @@ const ProblemReportModal = ({ open, onClose }) => {
     if (!canSubmit) return;
     setStatus('loading');
     try {
-      await new Promise((res) => setTimeout(res, 1400));
+      const userId = reportIdRef.current;
+      const userName = companyName.trim() || 'Заявка с сайта';
+      const reportText = buildReportText();
+
+      const textRes = await fetch(`${API_URL}/api/chat/send`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          userId,
+          userName,
+          message: reportText,
+          timestamp: new Date().toISOString(),
+        }),
+      });
+      if (!textRes.ok) throw new Error('Failed to send report text');
+
+      for (let i = 0; i < files.length; i++) {
+        const dataUrl = await fileToDataUrl(files[i].file);
+        const imgRes = await fetch(`${API_URL}/api/chat/send-image`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            userId,
+            userName,
+            imageDataUrl: dataUrl,
+            caption: `Изображение ${i + 1}/${files.length} к заявке`,
+            timestamp: new Date().toISOString(),
+          }),
+        });
+        if (!imgRes.ok) throw new Error('Failed to send image');
+      }
+
       setStatus('success');
       setTimeout(() => handleClose(), 1800);
-    } catch {
+    } catch (err) {
+      console.error('Problem report submit failed:', err);
       setStatus('error');
     }
   };
