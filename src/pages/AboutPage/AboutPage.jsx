@@ -1,7 +1,7 @@
-import React from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useLanguage } from "../../hooks/useLanguage";
 // eslint-disable-next-line no-unused-vars
-import { motion } from "motion/react";
+import { motion, useScroll, useTransform, useReducedMotion } from "motion/react";
 import AnimatedNumber from "../../components/widgets/AnimatedNumber/AnimatedNumber";
 import PartnersCarousel from "../../components/PartnersCarousel/PartnersCarousel";
 import TextType from "../../components/widgets/TextType/TextType";
@@ -19,6 +19,109 @@ import PageAmbientBackground from "../../components/PageAmbientBackground/PageAm
 import "./AboutPage.css";
 
 const pad = (n) => String(n).padStart(2, "0");
+
+const useIsMobile = (query = "(max-width: 768px)") => {
+  const [isMobile, setIsMobile] = useState(false);
+  useEffect(() => {
+    if (typeof window === "undefined" || !window.matchMedia) return;
+    const mql = window.matchMedia(query);
+    const update = () => setIsMobile(mql.matches);
+    update();
+    mql.addEventListener?.("change", update);
+    return () => mql.removeEventListener?.("change", update);
+  }, [query]);
+  return isMobile;
+};
+
+const StoryBlock = ({ block, index, t }) => {
+  const ref = useRef(null);
+  const isMobile = useIsMobile();
+  const prefersReducedMotion = useReducedMotion();
+  const disabled = isMobile || prefersReducedMotion;
+
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ["start end", "end start"],
+  });
+
+  // Number lags significantly — depth illusion
+  const numY = useTransform(scrollYProgress, [0, 1], disabled ? [0, 0] : [120, -120]);
+  // Image moves slightly opposite — gentle inner parallax
+  const imgY = useTransform(scrollYProgress, [0, 1], disabled ? ["0%", "0%"] : ["-8%", "8%"]);
+
+  return (
+    <motion.article
+      ref={ref}
+      className={`about-story__block ${block.imageOnLeft ? "is-flipped" : ""}`}
+      initial={{ opacity: 0, y: 70 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, amount: 0.18 }}
+      transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
+    >
+      <motion.span
+        className="about-story__numeral"
+        style={{ y: numY }}
+        aria-hidden
+      >
+        {String(index + 1).padStart(2, "0")}
+      </motion.span>
+
+      <motion.div
+        className="about-story__media"
+        initial={{ opacity: 0, y: 50 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, amount: 0.2 }}
+        transition={{ duration: 1.1, ease: [0.16, 1, 0.3, 1], delay: 0.05 }}
+      >
+        <div className="about-story__media-frame">
+          <motion.img
+            src={block.image}
+            alt={block.imageAlt}
+            style={{ y: imgY }}
+            draggable={false}
+          />
+          <span className="about-story__media-tag" aria-hidden>
+            <span className="about-story__media-tag-dot" />
+            {String(index + 1).padStart(2, "0")} · GPS
+          </span>
+        </div>
+      </motion.div>
+
+      <motion.div
+        className="about-story__body"
+        initial={{ opacity: 0, y: 50 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, amount: 0.2 }}
+        transition={{ duration: 1.1, ease: [0.16, 1, 0.3, 1], delay: 0.15 }}
+      >
+        <span className="about-story__index" aria-hidden>
+          <span className="about-story__index-dot" />
+          {String(index + 1).padStart(2, "0")} / {String(3).padStart(2, "0")}
+        </span>
+        <h3 className="about-story__title">
+          {block.titleKey ? t(block.titleKey) : block.title}
+        </h3>
+        <div className="about-story__divider" />
+        <div className="about-story__copy">
+          {block.textKeys.map((key) => (
+            <p key={key}>{t(key)}</p>
+          ))}
+        </div>
+        <div className="about-story__cta">
+          <button type="button" className="about-story__cta-btn">
+            <span className="about-story__cta-label">{t("about.cta.learnMore")}</span>
+            <span className="about-story__cta-arrow" aria-hidden>
+              <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+                <path d="M4 14L14 4M14 4H6M14 4V12" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
+              </svg>
+            </span>
+            <span className="about-story__cta-fill" aria-hidden />
+          </button>
+        </div>
+      </motion.div>
+    </motion.article>
+  );
+};
 
 const AboutPage = () => {
   const { t } = useLanguage();
@@ -151,43 +254,7 @@ const AboutPage = () => {
         <div className="container">
           <div className="about-story__blocks">
             {aboutInfoBlocks.map((block, i) => (
-              <motion.article
-                key={i}
-                className={`about-story__block ${block.imageOnLeft ? "is-flipped" : ""}`}
-                initial={{ opacity: 0, y: 60 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, amount: 0.2 }}
-                transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
-              >
-                <div className="about-story__media">
-                  <div className="about-story__media-frame">
-                    <img src={block.image} alt={block.imageAlt} />
-                    <span className="about-story__media-tag" aria-hidden>
-                      <span className="about-story__media-tag-dot" />
-                      {String(i + 1).padStart(2, "0")} · GPS
-                    </span>
-                  </div>
-                </div>
-                <div className="about-story__body">
-                  <span className="about-story__watermark" aria-hidden>{String(i + 1).padStart(2, "0")}</span>
-                  <h3 className="about-story__title">
-                    {block.titleKey ? t(block.titleKey) : block.title}
-                  </h3>
-                  <div className="about-story__divider" />
-                  <div className="about-story__copy">
-                    {block.textKeys.map((key) => (
-                      <p key={key}>{t(key)}</p>
-                    ))}
-                  </div>
-                  <div className="about-story__cta">
-                    <span className="about-story__cta-line" aria-hidden />
-                    <button type="button" className="about-story__cta-btn">
-                      <span>{t("about.cta.learnMore")}</span>
-                      <span className="about-story__cta-arrow" aria-hidden>↗</span>
-                    </button>
-                  </div>
-                </div>
-              </motion.article>
+              <StoryBlock key={i} block={block} index={i} t={t} />
             ))}
           </div>
         </div>
