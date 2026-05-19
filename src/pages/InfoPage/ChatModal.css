@@ -575,7 +575,6 @@ body[data-theme="dark"] .cm-error {
 }
 .cm-composer-send svg { font-size: 1rem; }
 
-/* ---------- Text us button (under printer body) ---------- */
 .info-hero-printer-textus {
   width: 100%;
   display: inline-flex;
@@ -583,7 +582,6 @@ body[data-theme="dark"] .cm-error {
   justify-content: center;
   gap: 10px;
   padding: 12px 18px;
-  margin-bottom: 14px;
   border-radius: 14px;
   font-family: inherit;
   font-size: 0.95rem;

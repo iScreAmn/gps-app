@@ -274,10 +274,38 @@ const ChatModal = ({ open, onClose, onUnreadChange }) => {
     persistMessages(messages);
   }, [messages]);
 
+  /* Load persisted history from server on mount (covers cleared localStorage) */
+  useEffect(() => {
+    let cancelled = false;
+    (async () => {
+      try {
+        const response = await fetch(`${API_URL}/api/chat/history/${userId}`);
+        if (!response.ok) return;
+        const data = await response.json();
+        if (cancelled || !data.success || !Array.isArray(data.messages)) return;
+        const fromServer = data.messages.map((m) => ({ ...m, at: new Date(m.at) }));
+        if (fromServer.length === 0) return;
+        setMessages((prev) => {
+          const existingIds = new Set(prev.map((m) => m.id));
+          const merged = [...prev, ...fromServer.filter((m) => !existingIds.has(m.id))];
+          merged.sort((a, b) => a.at - b.at);
+          return merged;
+        });
+        const latest = fromServer[fromServer.length - 1].at;
+        if (latest > lastFetchRef.current) lastFetchRef.current = latest;
+      } catch (err) {
+        console.error('Failed to load chat history:', err);
+      }
+    })();
+    return () => {
+      cancelled = true;
+    };
+  }, [userId]);
+
   /* Poll for new messages (always, even when chat is closed) */
   useEffect(() => {
     const interval = setInterval(fetchNewMessages, POLLING_INTERVAL);
-    
+
     // Fetch immediately on mount or when chat opens
     if (open) {
       fetchNewMessages();
