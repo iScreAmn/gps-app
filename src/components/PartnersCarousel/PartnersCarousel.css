@@ -43,17 +43,17 @@ body[data-theme="dark"] .partners-marquee {
 .partners-marquee__track {
   display: flex;
   align-items: stretch;
-  gap: var(--gap);
+  gap: 20px;
   width: max-content;
   will-change: transform;
 }
 
 .partners-marquee__viewport--ltr .partners-marquee__track {
-  animation: partnersMarqueeLtr 110s linear infinite;
+  animation: partnersMarqueeLtr 25s linear infinite;
 }
 
 .partners-marquee__viewport--rtl .partners-marquee__track {
-  animation: partnersMarqueeRtl 130s linear infinite;
+  animation: partnersMarqueeRtl 35s linear infinite;
 }
 
 .partners-marquee:hover .partners-marquee__track {
@@ -85,7 +85,7 @@ body[data-theme="dark"] .partners-marquee {
   color: var(--ink);
   border-top: 1px solid var(--hairline);
   border-bottom: 1px solid var(--hairline);
-  border-right: 1px solid var(--hairline);
+  /* border-right: 1px solid var(--hairline); */
   transition: color 0.4s ease, background 0.4s ease;
 }
 
@@ -94,7 +94,7 @@ body[data-theme="dark"] .partners-marquee {
 }
 
 .partners-marquee__item:hover {
-  background: color-mix(in srgb, var(--ink) 4%, transparent);
+  /* background: color-mix(in srgb, var(--ink) 4%, transparent); */
 }
 
 .partners-marquee__num {
@@ -182,19 +182,11 @@ body[data-theme="dark"] .partners-marquee__item:hover .partners-marquee__logo {
 
 /* Responsive */
 @media (max-width: 768px) {
-  .partners-marquee__viewport--ltr .partners-marquee__track { animation-duration: 80s; }
-  .partners-marquee__viewport--rtl .partners-marquee__track { animation-duration: 95s; }
-  .partners-marquee__name { font-size: 0.75rem; }
-  .partners-marquee__item {
-    min-width: 140px;
-  }
+  .partners-marquee__viewport--ltr .partners-marquee__track { animation-duration: 50s; }
+  .partners-marquee__viewport--rtl .partners-marquee__track { animation-duration: 62s; }
 }
 
 @media (max-width: 480px) {
-  .partners-marquee__viewport--ltr .partners-marquee__track { animation-duration: 65s; }
-  .partners-marquee__viewport--rtl .partners-marquee__track { animation-duration: 80s; }
-  .partners-marquee__item {
-    min-width: 120px;
-  }
-  .partners-marquee__num { font-size: 0.65rem; }
+  .partners-marquee__viewport--ltr .partners-marquee__track { animation-duration: 40s; }
+  .partners-marquee__viewport--rtl .partners-marquee__track { animation-duration: 52s; }
 }

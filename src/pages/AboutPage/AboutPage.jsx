@@ -131,14 +131,6 @@ const AboutPage = () => {
       <section className="about-partners">
         <div className="container about-partners__inner">
           <div className="about-partners__head">
-            <div className="about-partners__meta">
-              <span className="about-partners__kicker">{pad(2)} / {pad(4)} — Network</span>
-              <span className="about-partners__divider" aria-hidden />
-              <span className="about-partners__count">
-                <em>16</em>
-                <small>Global partners</small>
-              </span>
-            </div>
             <TextType
               text={[t(aboutPartners.titleKey)]}
               typingSpeed={aboutPartners.typingSpeed}
@@ -147,10 +139,6 @@ const AboutPage = () => {
               cursorCharacter={aboutPartners.cursorCharacter}
               className="about-partners__title"
             />
-            <div className="about-partners__hint">
-              <span className="about-partners__hint-dot" aria-hidden />
-              <span>Hover to pause · Click any brand to visit</span>
-            </div>
           </div>
           <div className="about-partners__carousel">
             <PartnersCarousel />
