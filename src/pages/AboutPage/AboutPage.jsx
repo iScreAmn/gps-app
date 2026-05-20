@@ -123,6 +123,149 @@ const StoryBlock = ({ block, index, t }) => {
   );
 };
 
+const PillarPanel = ({ feature, index, total, t }) => {
+  const ref = useRef(null);
+  const isMobile = useIsMobile();
+  const prefersReducedMotion = useReducedMotion();
+  const disabled = isMobile || prefersReducedMotion;
+
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ["start 85%", "end 15%"],
+  });
+
+  // Fade in / out as the panel passes through the viewport center.
+  const opacity = useTransform(
+    scrollYProgress,
+    [0, 0.2, 0.7, 1],
+    disabled ? [1, 1, 1, 1] : [0.15, 1, 1, 0.2]
+  );
+  const scale = useTransform(
+    scrollYProgress,
+    [0, 0.25, 0.75, 1],
+    disabled ? [1, 1, 1, 1] : [0.97, 1.0, 1.0, 0.98]
+  );
+  const numY = useTransform(
+    scrollYProgress,
+    [0, 1],
+    disabled ? ["0%", "0%"] : ["18%", "-18%"]
+  );
+
+  return (
+    <motion.article
+      ref={ref}
+      className="pillar-panel"
+      style={{ opacity, scale }}
+    >
+      <motion.span className="pillar-panel__numeral" style={{ y: numY }} aria-hidden>
+        {pad(index + 1)}
+      </motion.span>
+
+      <div className="pillar-panel__inner">
+        <div className="pillar-panel__meta">
+          <span className="pillar-panel__index">{pad(index + 1)}</span>
+          <span className="pillar-panel__divider" aria-hidden />
+          <span className="pillar-panel__count">{pad(total)}</span>
+        </div>
+
+        <h3 className="pillar-panel__title">{t(feature.titleKey)}</h3>
+
+        <div className="pillar-panel__rule" aria-hidden>
+          <span className="pillar-panel__rule-dot" />
+        </div>
+
+        <p className="pillar-panel__desc">{t(feature.descriptionKey)}</p>
+
+        <svg
+          className="pillar-panel__glyph"
+          viewBox="0 0 64 64"
+          fill="none"
+          aria-hidden
+        >
+          {index === 0 && (
+            <>
+              <circle cx="32" cy="32" r="22" stroke="currentColor" strokeWidth="1" />
+              <circle cx="32" cy="32" r="14" stroke="currentColor" strokeWidth="1" opacity="0.55" />
+              <path d="M10 32h44M32 10v44" stroke="currentColor" strokeWidth="1" opacity="0.35" />
+            </>
+          )}
+          {index === 1 && (
+            <>
+              <path d="M32 8l20 12v14c0 13-9 19-20 22-11-3-20-9-20-22V20l20-12z" stroke="currentColor" strokeWidth="1" />
+              <path d="M24 32l6 6 12-12" stroke="currentColor" strokeWidth="1.4" />
+            </>
+          )}
+          {index === 2 && (
+            <>
+              <rect x="10" y="10" width="20" height="20" stroke="currentColor" strokeWidth="1" />
+              <rect x="34" y="10" width="20" height="20" stroke="currentColor" strokeWidth="1" opacity="0.55" />
+              <rect x="10" y="34" width="20" height="20" stroke="currentColor" strokeWidth="1" opacity="0.55" />
+              <rect x="34" y="34" width="20" height="20" stroke="currentColor" strokeWidth="1" opacity="0.3" />
+            </>
+          )}
+        </svg>
+      </div>
+    </motion.article>
+  );
+};
+
+const PillarsSection = ({ t }) => {
+  const sectionRef = useRef(null);
+  const isMobile = useIsMobile();
+  const prefersReducedMotion = useReducedMotion();
+  const disabled = isMobile || prefersReducedMotion;
+
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ["start start", "end end"],
+  });
+
+  const progressScale = useTransform(
+    scrollYProgress,
+    [0, 1],
+    disabled ? [1, 1] : [0, 1]
+  );
+
+  const total = aboutOption.features.length;
+
+  return (
+    <section className="about-pillars" ref={sectionRef}>
+      <div className="container about-pillars__shell">
+        <aside className="about-pillars__sticky">
+          <div className="about-pillars__sticky-inner">
+            <h2 className="about-pillars__title">{t(aboutOption.titleKey)}</h2>
+            <p className="about-pillars__lede">{t(aboutOption.descriptionKey)}</p>
+
+            <div className="about-pillars__progress" aria-hidden>
+              <div className="about-pillars__progress-track">
+                <motion.div
+                  className="about-pillars__progress-fill"
+                  style={{ scaleY: progressScale }}
+                />
+              </div>
+              <span className="about-pillars__progress-label">
+                {pad(1)} <span>/</span> {pad(total)}
+              </span>
+            </div>
+          </div>
+        </aside>
+
+        <div className="about-pillars__stream">
+          {aboutOption.features.map((feature, i) => (
+            <PillarPanel
+              key={i}
+              feature={feature}
+              index={i}
+              total={total}
+              t={t}
+            />
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+};
+
 const AboutPage = () => {
   const { t } = useLanguage();
 
@@ -261,38 +404,7 @@ const AboutPage = () => {
       </section>
 
       {/* ── Pillars / Options ───────────────────────────── */}
-      <section className="about-pillars">
-        <div className="container">
-          <div className="about-pillars__head">
-            <span className="about-pillars__kicker">{pad(4)} / {pad(4)} — Pillars</span>
-            <h2 className="about-pillars__title">{t(aboutOption.titleKey)}</h2>
-            <p className="about-pillars__lede">{t(aboutOption.descriptionKey)}</p>
-          </div>
-
-          <ol className="about-pillars__grid">
-            {aboutOption.features.map((feature, i) => (
-              <motion.li
-                key={i}
-                className="about-pillar"
-                initial={{ opacity: 0, y: 40 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, amount: 0.3 }}
-                transition={{ duration: 0.7, delay: i * 0.08, ease: [0.16, 1, 0.3, 1] }}
-              >
-                <div className="about-pillar__head">
-                  <span className="about-pillar__num">{pad(i + 1)}</span>
-                  <span className="about-pillar__rule" />
-                </div>
-                <div className="about-pillar__media">
-                  <img src={feature.image} alt={feature.imageAlt} />
-                </div>
-                <h3 className="about-pillar__title">{t(feature.titleKey)}</h3>
-                <p className="about-pillar__desc">{t(feature.descriptionKey)}</p>
-              </motion.li>
-            ))}
-          </ol>
-        </div>
-      </section>
+      <PillarsSection t={t} />
 
       {/* ── Closing CTA ─────────────────────────────────── */}
       <section className="about-cta">
