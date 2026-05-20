@@ -1,9 +1,7 @@
 // Printers collection
 export { default as printer1 } from './printers/pr_01.jpg';
-export { default as printer2 } from './printers/pr_02.png';
 export { default as printer3 } from './printers/pr_03.jpg';
 export { default as printer4 } from './printers/pr_04.jpg';
-export { default as printer5 } from './printers/pr_05.png';
 export { default as iechoPrinter } from './printers/iecho.webp';
 export { default as toners } from './printers/toners.jpg';
 
@@ -59,6 +57,10 @@ export { default as ledModule } from './led-modules/led-module.png';
 export { default as modulesArt } from './led-modules/modules-art.png';
 
 //Icons
+export { default as pillar1 } from './about/pillar1.png';
+export { default as pillar2 } from './about/pillar2.png';
+export { default as pillar3 } from './about/pillar3.png';
+
 export { default as global } from './icons/global.webp';
 export { default as service } from './icons/service.webp';
 export { default as service2 } from './icons/service2.webp';
@@ -95,9 +97,9 @@ export { default as PK0705plus } from './products/cutting-systems/PK0705plus.jpg
 export { default as duploBinder } from './products/binders/duplo/duploBinder.jpg';
 
 // Product images - using actual printer images
-export { default as productGarmin } from './printers/pr_01.png';
-export { default as productTrimble } from './printers/pr_02.png';
-export { default as productLeica } from './printers/pr_03.png';
+export { default as productGarmin } from './printers/pr_01.jpg';
+export { default as productTrimble } from './printers/pr_04.jpg';
+export { default as productLeica } from './printers/pr_03.jpg';
 
 
 // Develop Printers

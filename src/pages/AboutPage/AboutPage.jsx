@@ -16,7 +16,10 @@ import {
   aboutCta,
 } from "../../data/aboutData";
 import PageAmbientBackground from "../../components/PageAmbientBackground/PageAmbientBackground";
+import { pillar1, pillar2, pillar3 } from "../../assets/images";
 import "./AboutPage.css";
+
+const pillarImages = [pillar1, pillar2, pillar3];
 
 const pad = (n) => String(n).padStart(2, "0");
 
@@ -157,9 +160,14 @@ const PillarPanel = ({ feature, index, total, t }) => {
       className="pillar-panel"
       style={{ opacity, scale }}
     >
-      <motion.span className="pillar-panel__numeral" style={{ y: numY }} aria-hidden>
-        {pad(index + 1)}
-      </motion.span>
+      <motion.img
+        className="pillar-panel__image"
+        src={pillarImages[index]}
+        alt=""
+        aria-hidden
+        style={{ y: numY }}
+        draggable={false}
+      />
 
       <div className="pillar-panel__inner">
         <div className="pillar-panel__meta">
@@ -175,35 +183,6 @@ const PillarPanel = ({ feature, index, total, t }) => {
         </div>
 
         <p className="pillar-panel__desc">{t(feature.descriptionKey)}</p>
-
-        <svg
-          className="pillar-panel__glyph"
-          viewBox="0 0 64 64"
-          fill="none"
-          aria-hidden
-        >
-          {index === 0 && (
-            <>
-              <circle cx="32" cy="32" r="22" stroke="currentColor" strokeWidth="1" />
-              <circle cx="32" cy="32" r="14" stroke="currentColor" strokeWidth="1" opacity="0.55" />
-              <path d="M10 32h44M32 10v44" stroke="currentColor" strokeWidth="1" opacity="0.35" />
-            </>
-          )}
-          {index === 1 && (
-            <>
-              <path d="M32 8l20 12v14c0 13-9 19-20 22-11-3-20-9-20-22V20l20-12z" stroke="currentColor" strokeWidth="1" />
-              <path d="M24 32l6 6 12-12" stroke="currentColor" strokeWidth="1.4" />
-            </>
-          )}
-          {index === 2 && (
-            <>
-              <rect x="10" y="10" width="20" height="20" stroke="currentColor" strokeWidth="1" />
-              <rect x="34" y="10" width="20" height="20" stroke="currentColor" strokeWidth="1" opacity="0.55" />
-              <rect x="10" y="34" width="20" height="20" stroke="currentColor" strokeWidth="1" opacity="0.55" />
-              <rect x="34" y="34" width="20" height="20" stroke="currentColor" strokeWidth="1" opacity="0.3" />
-            </>
-          )}
-        </svg>
       </div>
     </motion.article>
   );
@@ -416,7 +395,6 @@ const AboutPage = () => {
             viewport={{ once: true, amount: 0.3 }}
             transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
           >
-            <span className="about-cta__mark">— End —</span>
             <h2 className="about-cta__title">{t(aboutCta.titleKey)}</h2>
             <p className="about-cta__desc">{t(aboutCta.descriptionKey)}</p>
             <div className="about-cta__actions">

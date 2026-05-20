@@ -941,23 +941,18 @@ body[data-theme="dark"] .about-parallax__row--1 .parallax .scroller {
   will-change: opacity, transform;
 }
 
-.pillar-panel__numeral {
+.pillar-panel__image {
   position: absolute;
   top: 50%;
-  right: -2vw;
+  right: -30px;
   transform: translateY(-50%);
-  font-family: var(--display);
-  font-size: clamp(14rem, 28vw, 26rem);
-  font-weight: 900;
-  line-height: 0.8;
-  letter-spacing: -0.06em;
-  color: transparent;
-  -webkit-text-stroke: 1px color-mix(in srgb, var(--ink) 12%, transparent);
-  text-stroke: 1px color-mix(in srgb, var(--ink) 12%, transparent);
+  width: clamp(120px, 16vw, 200px);
+  height: auto;
+  object-fit: contain;
   pointer-events: none;
   user-select: none;
   z-index: 0;
-  white-space: nowrap;
+  opacity: 0.95;
 }
 
 .pillar-panel__inner {
@@ -1031,13 +1026,6 @@ body[data-theme="dark"] .about-parallax__row--1 .parallax .scroller {
   max-width: 50ch;
 }
 
-.pillar-panel__glyph {
-  width: 56px;
-  height: 56px;
-  margin-top: 0.5rem;
-  color: var(--ink-soft);
-  opacity: 0.85;
-}
 
 /* =========================================================
    6. CLOSING CTA
@@ -1200,9 +1188,13 @@ body[data-theme="dark"] .about-cta__btn.is-primary:hover {
     padding: 2rem 0;
     border-top: 1px solid var(--hairline);
   }
-  .pillar-panel__numeral {
-    font-size: clamp(8rem, 30vw, 14rem);
-    right: -4vw;
+  .pillar-panel__image {
+    position: relative;
+    top: auto;
+    right: auto;
+    transform: none;
+    width: clamp(90px, 24vw, 140px);
+    margin-bottom: 1rem;
   }
 }
 
@@ -1257,9 +1249,6 @@ body[data-theme="dark"] .about-cta__btn.is-primary:hover {
 
   .pillar-panel__title {
     font-size: clamp(1.6rem, 6vw, 2.2rem);
-  }
-  .pillar-panel__numeral {
-    -webkit-text-stroke: 1px color-mix(in srgb, var(--ink) 8%, transparent);
   }
 
   .about-cta__actions {
