@@ -843,7 +843,7 @@ body[data-theme="dark"] .about-parallax__row--1 .parallax .scroller {
 /* — Sticky left column ———————————————— */
 .about-pillars__sticky {
   position: sticky;
-  top: clamp(5rem, 14vh, 9rem);
+  top: clamp(5rem, 20vh, 9rem);
   align-self: start;
 }
 
