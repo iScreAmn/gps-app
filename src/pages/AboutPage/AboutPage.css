@@ -1111,17 +1111,6 @@ body[data-theme="dark"] .about-cta__btn.is-primary:hover {
   color: #000;
 }
 
-.about-cta__btn.is-ghost {
-  background: transparent;
-  color: var(--ink);
-  border-color: var(--hairline);
-}
-
-.about-cta__btn.is-ghost:hover {
-  border-color: var(--ink);
-  background: color-mix(in srgb, var(--ink) 6%, transparent);
-}
-
 .about-cta__btn-arrow {
   display: inline-block;
   transition: transform 0.3s ease;

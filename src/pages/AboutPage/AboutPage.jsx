@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import { useLanguage } from "../../hooks/useLanguage";
 // eslint-disable-next-line no-unused-vars
-import { motion, useScroll, useTransform, useReducedMotion } from "motion/react";
+import { motion, useScroll, useTransform, useReducedMotion, useInView } from "motion/react";
 import AnimatedNumber from "../../components/widgets/AnimatedNumber/AnimatedNumber";
 import PartnersCarousel from "../../components/PartnersCarousel/PartnersCarousel";
 import TextType from "../../components/widgets/TextType/TextType";
@@ -126,7 +126,7 @@ const StoryBlock = ({ block, index, t }) => {
   );
 };
 
-const PillarPanel = ({ feature, index, total, t }) => {
+const PillarPanel = ({ feature, index, total, t, onActive }) => {
   const ref = useRef(null);
   const isMobile = useIsMobile();
   const prefersReducedMotion = useReducedMotion();
@@ -136,6 +136,14 @@ const PillarPanel = ({ feature, index, total, t }) => {
     target: ref,
     offset: ["start 85%", "end 15%"],
   });
+
+  // The panel is "active" when its center is roughly aligned with the
+  // viewport center.  margin shrinks the trigger band so only one panel
+  // at a time satisfies it on long viewports.
+  const inView = useInView(ref, { margin: "-45% 0px -45% 0px" });
+  useEffect(() => {
+    if (inView) onActive?.(index);
+  }, [inView, index, onActive]);
 
   // Fade in / out as the panel passes through the viewport center.
   const opacity = useTransform(
@@ -206,6 +214,7 @@ const PillarsSection = ({ t }) => {
   );
 
   const total = aboutOption.features.length;
+  const [activeIndex, setActiveIndex] = useState(0);
 
   return (
     <section className="about-pillars" ref={sectionRef}>
@@ -223,7 +232,16 @@ const PillarsSection = ({ t }) => {
                 />
               </div>
               <span className="about-pillars__progress-label">
-                {pad(1)} <span>/</span> {pad(total)}
+                <motion.span
+                  key={activeIndex}
+                  initial={{ opacity: 0, y: -4 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
+                  style={{ display: "inline-block" }}
+                >
+                  {pad(activeIndex + 1)}
+                </motion.span>{" "}
+                <span>/</span> {pad(total)}
               </span>
             </div>
           </div>
@@ -237,6 +255,7 @@ const PillarsSection = ({ t }) => {
               index={i}
               total={total}
               t={t}
+              onActive={setActiveIndex}
             />
           ))}
         </div>
@@ -402,7 +421,7 @@ const AboutPage = () => {
                 <motion.button
                   key={i}
                   type="button"
-                  className={`about-cta__btn ${i === 0 ? "is-primary" : "is-ghost"}`}
+                  className="about-cta__btn is-primary"
                   whileHover={{ y: -2 }}
                   whileTap={{ scale: 0.98 }}
                   transition={{ type: "spring", stiffness: 320, damping: 22 }}

@@ -96,6 +96,5 @@ export const aboutCta = {
   descriptionKey: 'about.cta.description',
   buttons: [
     { labelKey: 'about.cta.contact', href: null, className: 'cta__button cta__button--primary' },
-    { labelKey: 'about.cta.learnMore', href: null, className: 'cta__button cta__button--secondary' },
   ],
 };
