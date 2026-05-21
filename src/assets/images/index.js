@@ -1,9 +1,7 @@
 // Printers collection
 export { default as printer1 } from './printers/pr_01.jpg';
-export { default as printer2 } from './printers/pr_02.png';
 export { default as printer3 } from './printers/pr_03.jpg';
 export { default as printer4 } from './printers/pr_04.jpg';
-export { default as printer5 } from './printers/pr_05.png';
 export { default as iechoPrinter } from './printers/iecho.webp';
 export { default as toners } from './printers/toners.jpg';
 
@@ -59,6 +57,10 @@ export { default as ledModule } from './led-modules/led-module.png';
 export { default as modulesArt } from './led-modules/modules-art.png';
 
 //Icons
+export { default as pillar1 } from './about/pillar1.png';
+export { default as pillar2 } from './about/pillar2.png';
+export { default as pillar3 } from './about/pillar3.png';
+
 export { default as global } from './icons/global.webp';
 export { default as service } from './icons/service.webp';
 export { default as service2 } from './icons/service2.webp';
@@ -67,9 +69,10 @@ export { default as solutions } from './icons/solutions.webp';
 export { default as demo } from './icons/demo.png';
 
 // About section
-export { default as aboutImage } from './about/about.webp';
-export { default as konikaAbout } from './about/konikaDisplay.jpg';
-export { default as konikaAbout2 } from './about/konicaDevelop.png';
+export { default as aboutImage } from './about/gps-office.webp';
+export { default as konikaAbout } from './about/konikaDisplay.webp';
+export { default as konikaAbout2 } from './about/konicaDevelop.webp';
+export { default as servicesAbout } from './about/service3.webp';
 export { default as aboutOrder } from './about/ineo4065.png';
 
 // Art Printers
@@ -80,6 +83,11 @@ export { default as ConstructionModal } from './web-art/constructionModal.webp';
 export { default as proModel } from './web-art/flat-design.webp';
 export { default as nocaiArt } from './products/nocai-NC-UV9060MAX/nocai-plotter.png';
 export { default as whatsApp } from './web-art/printing-contact.png';
+
+export { default as cutLine1 } from './web-art/cut-lines/office.webp';
+export { default as cutLine2 } from './web-art/cut-lines/pro.webp';
+export { default as cutLine3 } from './web-art/cut-lines/iecho.webp';
+export { default as cutLine4 } from './web-art/cut-lines/nocai.webp';
 
 //Categories
 //IECHO
@@ -94,9 +102,9 @@ export { default as PK0705plus } from './products/cutting-systems/PK0705plus.jpg
 export { default as duploBinder } from './products/binders/duplo/duploBinder.jpg';
 
 // Product images - using actual printer images
-export { default as productGarmin } from './printers/pr_01.png';
-export { default as productTrimble } from './printers/pr_02.png';
-export { default as productLeica } from './printers/pr_03.png';
+export { default as productGarmin } from './printers/pr_01.jpg';
+export { default as productTrimble } from './printers/pr_04.jpg';
+export { default as productLeica } from './printers/pr_03.jpg';
 
 
 // Develop Printers

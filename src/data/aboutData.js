@@ -3,9 +3,26 @@ import {
   mainLogo,
   konikaAbout,
   konikaAbout2,
+  servicesAbout,
   global,
   service3,
   demo,
+  konika,
+  duplo,
+  knb,
+  unifol,
+  vivid,
+  audley,
+  colorking,
+  fedrigoni,
+  iecho,
+  mondi,
+  nocai,
+  reinauer,
+  Rightint,
+  teneth,
+  tmt,
+  goldensign,
 } from '../assets/images';
 
 /** Cover / hero block */
@@ -19,7 +36,7 @@ export const aboutCover = {
 /** Parallax title lines (text, velocity, colorClass) */
 export const aboutParallaxTitles = [
   { text: 'Georgian Polygraph Services', baseVelocity: -3, colorClass: 'parallax__text--blue' },
-  { text: 'Professional Excellence', baseVelocity: 3, colorClass: 'parallax__text--green' },
+  { text: 'თქვენი სანდო პარტნიორი პოლიგრაფიის სამყაროში', baseVelocity: 3, colorClass: 'parallax__text--green' },
 ];
 
 /** Stats counters (value, duration, delay, label i18n key) */
@@ -38,10 +55,29 @@ export const aboutPartners = {
   cursorCharacter: '|',
 };
 
+export const partners = [
+  { logo: konika, name: 'Konica Minolta', url: 'https://www.konicaminolta.eu' },
+  { logo: duplo, name: 'Duplo', url: 'https://www.duplo.com' },
+  { logo: knb, name: 'Koenig & Bauer', url: 'https://www.koenig-bauer.com' },
+  { logo: unifol, name: 'Unifol', url: 'https://www.unifol.com.tr' },
+  { logo: audley, name: 'Audley', url: 'https://www.audley-printer.com' },
+  { logo: colorking, name: 'ColorKing', url: '#' },
+  { logo: fedrigoni, name: 'Fedrigoni', url: 'https://fedrigoni.com' },
+  { logo: iecho, name: 'Iecho', url: 'https://www.iechocutter.com' },
+  { logo: mondi, name: 'Mondi', url: 'https://www.mondigroup.com' },
+  { logo: nocai, name: 'Nocai', url: 'https://www.gznuocai.com' },
+  { logo: reinauer, name: 'Reinauer', url: 'https://www.reinauer.eu' },
+  { logo: Rightint, name: 'Rightint', url: 'https://www.rightint.com' },
+  { logo: teneth, name: 'Teneth', url: 'https://www.teneth.com' },
+  { logo: tmt, name: 'TMT', url: 'https://www.tmtleds.com' },
+  { logo: vivid, name: 'Vivid', url: 'https://www.vivid-online.com' },
+  { logo: goldensign, name: 'Goldensign', url: 'https://www.goldensign.net' },
+];
+
 /** Info blocks (title, text i18n keys, image, imageOnLeft) */
 export const aboutInfoBlocks = [
   {
-    title: 'Georgian Polygraph Services',
+    titleKey: 'about.description.title0',
     textKeys: ['about.description.text1', 'about.description.text2'],
     image: konikaAbout,
     imageAlt: 'GPS About',
@@ -53,6 +89,13 @@ export const aboutInfoBlocks = [
     image: konikaAbout2,
     imageAlt: 'Konica Minolta',
     imageOnLeft: true,
+  },
+  {
+    titleKey: 'about.description.title2',
+    textKeys: ['about.description.text4', 'about.description.text5'],
+    image: servicesAbout,
+    imageAlt: 'GPS Services',
+    imageOnLeft: false,
   },
 ];
 
@@ -86,8 +129,4 @@ export const aboutOption = {
 export const aboutCta = {
   titleKey: 'about.cta.title',
   descriptionKey: 'about.cta.description',
-  buttons: [
-    { labelKey: 'about.cta.contact', href: null, className: 'cta__button cta__button--primary' },
-    { labelKey: 'about.cta.learnMore', href: null, className: 'cta__button cta__button--secondary' },
-  ],
 };

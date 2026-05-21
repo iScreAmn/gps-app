@@ -1,4 +1,4 @@
-import { useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import {
   motion,
   useScroll,
@@ -6,12 +6,14 @@ import {
   useTransform,
   useMotionValue,
   useVelocity,
-  useAnimationFrame
+  useAnimationFrame,
+  useReducedMotion
 } from "motion/react";
 import { wrap } from "@motionone/utils";
 import "./ParallaxText.css";
 
 const ParallaxText = ({ children, baseVelocity = 100, colorClass = "" }) => {
+  const containerRef = useRef(null);
   const baseX = useMotionValue(0);
   const { scrollY } = useScroll();
   const scrollVelocity = useVelocity(scrollY);
@@ -22,22 +24,33 @@ const ParallaxText = ({ children, baseVelocity = 100, colorClass = "" }) => {
   const velocityFactor = useTransform(smoothVelocity, [0, 1000], [0, 5], {
     clamp: false
   });
+  const prefersReducedMotion = useReducedMotion();
+  const [inView, setInView] = useState(false);
 
-  /**
-   * This is a magic wrapping for the length of the text - you
-   * have to replace for wrapping that works for you or dynamically
-   * calculate
-   */
+  // Pause the animation loop when the element is off-screen
+  useEffect(() => {
+    const el = containerRef.current;
+    if (!el || typeof IntersectionObserver === "undefined") {
+      setInView(true);
+      return;
+    }
+    const io = new IntersectionObserver(
+      ([entry]) => setInView(entry.isIntersecting),
+      { rootMargin: "200px 0px" }
+    );
+    io.observe(el);
+    return () => io.disconnect();
+  }, []);
+
   const x = useTransform(baseX, (v) => `${wrap(-20, -45, v)}%`);
 
   const directionFactor = useRef(1);
   useAnimationFrame((t, delta) => {
-    let moveBy = directionFactor.current * baseVelocity * (delta / 1000);
+    if (!inView || prefersReducedMotion) return;
+    // Cap delta to avoid huge jumps after tab switch / off-screen pause
+    const dt = Math.min(delta, 50);
+    let moveBy = directionFactor.current * baseVelocity * (dt / 1000);
 
-    /**
-     * This is what changes the direction of the scroll once we
-     * switch scrolling directions.
-     */
     if (velocityFactor.get() < 0) {
       directionFactor.current = -1;
     } else if (velocityFactor.get() > 0) {
@@ -57,7 +70,7 @@ const ParallaxText = ({ children, baseVelocity = 100, colorClass = "" }) => {
    * dynamically generated number of children.
    */
   return (
-    <div className={`parallax ${colorClass}`}>
+    <div ref={containerRef} className={`parallax ${colorClass}`}>
       <motion.div className="scroller" style={{ x }}>
         <span>{children} </span>
         <span>{children} </span>

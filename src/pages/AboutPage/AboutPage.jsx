@@ -1,9 +1,8 @@
-import React from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useLanguage } from "../../hooks/useLanguage";
 // eslint-disable-next-line no-unused-vars
-import { motion } from "motion/react";
+import { motion, useScroll, useTransform, useReducedMotion, useInView } from "motion/react";
 import AnimatedNumber from "../../components/widgets/AnimatedNumber/AnimatedNumber";
-import { counterVariants, counterContainerVariants } from '../../utils/animation';
 import PartnersCarousel from "../../components/PartnersCarousel/PartnersCarousel";
 import TextType from "../../components/widgets/TextType/TextType";
 import ParallaxText from "../../components/widgets/ParallaxText/ParallaxText";
@@ -17,8 +16,243 @@ import {
   aboutCta,
 } from "../../data/aboutData";
 import PageAmbientBackground from "../../components/PageAmbientBackground/PageAmbientBackground";
+import { pillar1, pillar2, pillar3, cutLine1, cutLine2, cutLine3, cutLine4 } from "../../assets/images";
 import "./AboutPage.css";
 
+const pillarImages = [pillar1, pillar2, pillar3];
+const heroCutLines = [cutLine1, cutLine2, cutLine3, cutLine4];
+
+const pad = (n) => String(n).padStart(2, "0");
+
+const useIsMobile = (query = "(max-width: 768px)") => {
+  const [isMobile, setIsMobile] = useState(false);
+  useEffect(() => {
+    if (typeof window === "undefined" || !window.matchMedia) return;
+    const mql = window.matchMedia(query);
+    const update = () => setIsMobile(mql.matches);
+    update();
+    mql.addEventListener?.("change", update);
+    return () => mql.removeEventListener?.("change", update);
+  }, [query]);
+  return isMobile;
+};
+
+const StoryBlock = ({ block, index, t }) => {
+  const ref = useRef(null);
+  const isMobile = useIsMobile();
+  const prefersReducedMotion = useReducedMotion();
+  const disabled = isMobile || prefersReducedMotion;
+
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ["start end", "end start"],
+  });
+
+  // Number lags significantly — depth illusion
+  const numY = useTransform(scrollYProgress, [0, 1], disabled ? [0, 0] : [120, -120]);
+  // Image moves slightly opposite — gentle inner parallax
+  const imgY = useTransform(scrollYProgress, [0, 1], disabled ? ["0%", "0%"] : ["-8%", "8%"]);
+
+  return (
+    <motion.article
+      ref={ref}
+      className={`about-story__block ${block.imageOnLeft ? "is-flipped" : ""}`}
+      initial={{ opacity: 0, y: 70 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, amount: 0.18 }}
+      transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
+    >
+      <motion.span
+        className="about-story__numeral"
+        style={{ y: numY }}
+        aria-hidden
+      >
+        {String(index + 1).padStart(2, "0")}
+      </motion.span>
+
+      <motion.div
+        className="about-story__media"
+        initial={{ opacity: 0, y: 50 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, amount: 0.2 }}
+        transition={{ duration: 1.1, ease: [0.16, 1, 0.3, 1], delay: 0.05 }}
+      >
+        <div className="about-story__media-frame">
+          <motion.img
+            src={block.image}
+            alt={block.imageAlt}
+            style={{ y: imgY }}
+            draggable={false}
+          />
+          <span className="about-story__media-tag" aria-hidden>
+            <span className="about-story__media-tag-dot" />
+            {String(index + 1).padStart(2, "0")} · GPS
+          </span>
+        </div>
+      </motion.div>
+
+      <motion.div
+        className="about-story__body"
+        initial={{ opacity: 0, y: 50 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, amount: 0.2 }}
+        transition={{ duration: 1.1, ease: [0.16, 1, 0.3, 1], delay: 0.15 }}
+      >
+        <span className="about-story__index" aria-hidden>
+          <span className="about-story__index-dot" />
+          {String(index + 1).padStart(2, "0")} / {String(3).padStart(2, "0")}
+        </span>
+        <h3 className="about-story__title">
+          {block.titleKey ? t(block.titleKey) : block.title}
+        </h3>
+        <div className="about-story__divider" />
+        <div className="about-story__copy">
+          {block.textKeys.map((key) => (
+            <p key={key}>{t(key)}</p>
+          ))}
+        </div>
+      </motion.div>
+    </motion.article>
+  );
+};
+
+const PillarPanel = ({ feature, index, total, t, onActive }) => {
+  const ref = useRef(null);
+  const isMobile = useIsMobile();
+  const prefersReducedMotion = useReducedMotion();
+  const disabled = isMobile || prefersReducedMotion;
+
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ["start 85%", "end 15%"],
+  });
+
+  // The panel is "active" when its center is roughly aligned with the
+  // viewport center.  margin shrinks the trigger band so only one panel
+  // at a time satisfies it on long viewports.
+  const inView = useInView(ref, { margin: "-45% 0px -45% 0px" });
+  useEffect(() => {
+    if (inView) onActive?.(index);
+  }, [inView, index, onActive]);
+
+  // Fade in / out as the panel passes through the viewport center.
+  const opacity = useTransform(
+    scrollYProgress,
+    [0, 0.2, 0.7, 1],
+    disabled ? [1, 1, 1, 1] : [0.15, 1, 1, 0.2]
+  );
+  const scale = useTransform(
+    scrollYProgress,
+    [0, 0.25, 0.75, 1],
+    disabled ? [1, 1, 1, 1] : [0.97, 1.0, 1.0, 0.98]
+  );
+  const numY = useTransform(
+    scrollYProgress,
+    [0, 1],
+    disabled ? ["0%", "0%"] : ["18%", "-18%"]
+  );
+
+  return (
+    <motion.article
+      ref={ref}
+      className="pillar-panel"
+      style={{ opacity, scale }}
+    >
+      <motion.img
+        className="pillar-panel__image"
+        src={pillarImages[index]}
+        alt=""
+        aria-hidden
+        style={{ y: numY }}
+        draggable={false}
+      />
+
+      <div className="pillar-panel__inner">
+        <div className="pillar-panel__meta">
+          <span className="pillar-panel__index">{pad(index + 1)}</span>
+          <span className="pillar-panel__divider" aria-hidden />
+          <span className="pillar-panel__count">{pad(total)}</span>
+        </div>
+
+        <h3 className="pillar-panel__title">{t(feature.titleKey)}</h3>
+
+        <div className="pillar-panel__rule" aria-hidden>
+          <span className="pillar-panel__rule-dot" />
+        </div>
+
+        <p className="pillar-panel__desc">{t(feature.descriptionKey)}</p>
+      </div>
+    </motion.article>
+  );
+};
+
+const PillarsSection = ({ t }) => {
+  const sectionRef = useRef(null);
+  const isMobile = useIsMobile();
+  const prefersReducedMotion = useReducedMotion();
+  const disabled = isMobile || prefersReducedMotion;
+
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ["start start", "end end"],
+  });
+
+  const progressScale = useTransform(
+    scrollYProgress,
+    [0, 1],
+    disabled ? [1, 1] : [0, 1]
+  );
+
+  const total = aboutOption.features.length;
+  const [activeIndex, setActiveIndex] = useState(0);
+
+  return (
+    <section className="about-pillars" ref={sectionRef}>
+      <div className="container about-pillars__shell">
+        <aside className="about-pillars__sticky">
+          <div className="about-pillars__sticky-inner">
+            <h2 className="about-pillars__title">{t(aboutOption.titleKey)}</h2>
+            <p className="about-pillars__lede">{t(aboutOption.descriptionKey)}</p>
+
+            <div className="about-pillars__progress" aria-hidden>
+              <div className="about-pillars__progress-track">
+                <motion.div
+                  className="about-pillars__progress-fill"
+                  style={{ scaleY: progressScale }}
+                />
+              </div>
+              <span className="about-pillars__progress-label">
+                <motion.span
+                  key={activeIndex}
+                  initial={{ opacity: 0, y: -4 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
+                  style={{ display: "inline-block" }}
+                >
+                  {pad(activeIndex + 1)}
+                </motion.span>{" "}
+                <span>/</span> {pad(total)}
+              </span>
+            </div>
+          </div>
+        </aside>
+
+        <div className="about-pillars__stream">
+          {aboutOption.features.map((feature, i) => (
+            <PillarPanel
+              key={i}
+              feature={feature}
+              index={i}
+              total={total}
+              t={t}
+              onActive={setActiveIndex}
+            />
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+};
 
 const AboutPage = () => {
   const { t } = useLanguage();
@@ -26,149 +260,190 @@ const AboutPage = () => {
   return (
     <div className="about-page page-ambient-shell">
       <PageAmbientBackground />
-      <div className="container">
-        <div className="about__content">
-          <div className="about__cover-container">
-            <div className="about__cover-gradient">
-              <img src={aboutCover.logo} alt={aboutCover.logoAlt} className="about__cover-logo" />
-            </div>
-            <img src={aboutCover.image} alt={aboutCover.imageAlt} className="about__cover" />
+
+      {/* ── Editorial Hero ──────────────────────────────── */}
+      <section className="about-hero">
+        <div className="container about-hero__inner">
+          <div className="about-hero__grid">
+            <motion.div
+              className="about-hero__lead"
+              initial={{ opacity: 0, y: 40 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
+            >
+              <p className="about-hero__caption">
+                {t("about.hero.caption")}
+              </p>
+              <h1 className="about-hero__title">
+                <span className="about-hero__title-line">Georgian</span>
+                <span className="about-hero__title-line about-hero__title-line--accent">Polygraph</span>
+                <span className="about-hero__title-line">Services<span className="about-hero__title-dot">.</span></span>
+              </h1>
+
+              <motion.ul
+                className="about-hero__products"
+                aria-label="Product lineup"
+                initial="hidden"
+                animate="visible"
+                variants={{
+                  hidden: {},
+                  visible: { transition: { staggerChildren: 0.12, delayChildren: 0.4 } },
+                }}
+              >
+                {heroCutLines.map((src, i) => (
+                  <motion.li
+                    key={i}
+                    className="about-hero__product"
+                    variants={{
+                      hidden: { opacity: 0, y: 20 },
+                      visible: { opacity: 1, y: 0, transition: { duration: 0.9, ease: [0.16, 1, 0.3, 1] } },
+                    }}
+                  >
+                    <img src={src} alt="" aria-hidden draggable={false} />
+                  </motion.li>
+                ))}
+              </motion.ul>
+            </motion.div>
+
+            <motion.figure
+              className="about-hero__media"
+              initial={{ opacity: 0, scale: 1.02 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1], delay: 0.1 }}
+            >
+              <div className="about-hero__media-frame">
+                <img
+                  src={aboutCover.image}
+                  alt={aboutCover.imageAlt}
+                  className="about-hero__image"
+                />
+                <div className="about-hero__media-veil" />
+                <img
+                  src={aboutCover.logo}
+                  alt={aboutCover.logoAlt}
+                  className="about-hero__mark"
+                />
+              </div>
+              <figcaption className="about-hero__media-caption">
+                <span>GPS · Tbilisi</span>
+                <span>{new Date().getFullYear()}</span>
+              </figcaption>
+            </motion.figure>
           </div>
-          <div className="about__title">
-            {aboutParallaxTitles.map((item, i) => (
-              <ParallaxText key={i} baseVelocity={item.baseVelocity} colorClass={item.colorClass}>
-                {item.text}
-              </ParallaxText>
-            ))}
-          </div>
+
+          {/* Stat strip — editorial typography, no card */}
           <motion.div
-            className="about__counter"
-            variants={counterContainerVariants}
+            className="about-stats"
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, amount: 0.3 }}
+            variants={{
+              hidden: {},
+              visible: { transition: { staggerChildren: 0.12 } },
+            }}
           >
             {aboutCounters.map((item, i) => (
-              <motion.div key={i} className="counter__item" variants={counterVariants}>
-                <div className="counter__number">
+              <motion.div
+                key={i}
+                className="about-stat"
+                variants={{
+                  hidden: { opacity: 0, y: 24 },
+                  visible: { opacity: 1, y: 0, transition: { duration: 0.7, ease: [0.16, 1, 0.3, 1] } },
+                }}
+              >
+                <span className="about-stat__idx">{pad(i + 1)}</span>
+                <span className="about-stat__value">
                   <AnimatedNumber value={item.value} duration={item.duration} delay={item.delay} />
-                </div>
-                <div className="counter__label">{t(item.labelKey)}</div>
+                </span>
+                <span className="about-stat__label">{t(item.labelKey)}</span>
               </motion.div>
             ))}
           </motion.div>
         </div>
-        
-        <div className="about__partners">
-          <div className="container">
+      </section>
+
+      {/* ── Cinematic Parallax Moment ───────────────────── */}
+      <section className="about__title about-parallax">
+        <div className="about-parallax__atmos" aria-hidden>
+          <div className="about-parallax__beam about-parallax__beam--a" />
+          <div className="about-parallax__beam about-parallax__beam--b" />
+        </div>
+        <div className="about-parallax__stack">
+          {aboutParallaxTitles.map((item, i) => (
+            <div
+              key={i}
+              className={`about-parallax__row about-parallax__row--${i}`}
+              data-row={i}
+            >
+              <ParallaxText baseVelocity={item.baseVelocity} colorClass={item.colorClass}>
+                {item.text}
+              </ParallaxText>
+            </div>
+          ))}
+        </div>
+        <div className="about-parallax__fade about-parallax__fade--top" aria-hidden />
+        <div className="about-parallax__fade about-parallax__fade--bottom" aria-hidden />
+      </section>
+
+      {/* ── Partners ────────────────────────────────────── */}
+      <section className="about-partners">
+        <div className="container about-partners__inner">
+          <div className="about-partners__head">
             <TextType
               text={[t(aboutPartners.titleKey)]}
               typingSpeed={aboutPartners.typingSpeed}
               pauseDuration={aboutPartners.pauseDuration}
               showCursor={true}
               cursorCharacter={aboutPartners.cursorCharacter}
-              className="about__partners-text"
+              className="about-partners__title"
             />
+          </div>
+          <div className="about-partners__carousel">
             <PartnersCarousel />
           </div>
         </div>
-        
-        <div className="about__info-wrapper">
-          {aboutInfoBlocks.map((block, i) => (
-            <div key={i} className="about__info">
-              {!block.imageOnLeft && (
-                <div className="about__description">
-                  <h2>{block.titleKey ? t(block.titleKey) : block.title}</h2>
-                  {block.textKeys.map((key) => (
-                    <p key={key}>{t(key)}</p>
-                  ))}
-                </div>
-              )}
-              <div className="about__img-container">
-                <img className="about__img" src={block.image} alt={block.imageAlt} />
-              </div>
-              {block.imageOnLeft && (
-                <div className="about__description">
-                  <h2>{block.titleKey ? t(block.titleKey) : block.title}</h2>
-                  {block.textKeys.map((key) => (
-                    <p key={key}>{t(key)}</p>
-                  ))}
-                </div>
-              )}
-            </div>
-          ))}
-        </div>
+      </section>
 
-        <div className="about__option">
-          <h2 className="option__title">{t(aboutOption.titleKey)}</h2>
-          <p className="option__description">{t(aboutOption.descriptionKey)}</p>
-          <div className="option__wrapper">
-            {aboutOption.features.map((feature, i) => (
-              <div key={i} className="option__item">
-                <img className="option__img" src={feature.image} alt={feature.imageAlt} />
-                <h2 className="option__item-title">{t(feature.titleKey)}</h2>
-                <p className="option__item-description">{t(feature.descriptionKey)}</p>
-              </div>
+      {/* ── Editorial Story Blocks ──────────────────────── */}
+      <section className="about-story">
+        <div className="container">
+          <div className="about-story__blocks">
+            {aboutInfoBlocks.map((block, i) => (
+              <StoryBlock key={i} block={block} index={i} t={t} />
             ))}
           </div>
         </div>
+      </section>
 
-        {/* CTA Section */}
-        <motion.div 
-          className="about__cta-section"
-          initial={{ opacity: 0, y: 50 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.3 }}
-          transition={{ duration: 0.8, delay: 0.2 }}
-        >
-          <div className="cta__container">
-            <motion.div 
-              className="cta__content"
-              initial={{ opacity: 0, scale: 0.9 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true, amount: 0.3 }}
-              transition={{ duration: 0.6, delay: 0.4 }}
-            >
-              <div className="cta__text">
-                <h2 className="cta__title">{t(aboutCta.titleKey)}</h2>
-                <p className="cta__description">{t(aboutCta.descriptionKey)}</p>
-              </div>
-              <motion.div
-                className="cta__buttons"
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, amount: 0.3 }}
-                transition={{ duration: 0.6, delay: 0.6 }}
-              >
-                {aboutCta.buttons.map((btn, i) => (
-                  <motion.button
-                    key={i}
-                    type="button"
-                    className={btn.className}
-                    whileHover={{ scale: 1.05, y: -2 }}
-                    whileTap={{ scale: 0.95 }}
-                    transition={{ type: "spring", stiffness: 300, damping: 20 }}
-                  >
-                    {t(btn.labelKey)}
-                  </motion.button>
-                ))}
-              </motion.div>
-            </motion.div>
-            
-            <motion.div 
-              className="cta__visual"
-              initial={{ opacity: 0, x: 50 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true, amount: 0.3 }}
-              transition={{ duration: 0.8, delay: 0.3 }}
-            >
-              <div className="cta__gradient-circle"></div>
-              <div className="cta__animated-line"></div>
-            </motion.div>
-          </div>
-        </motion.div>
+      {/* ── Pillars / Options ───────────────────────────── */}
+      <PillarsSection t={t} />
 
-      </div>
+      {/* ── Closing CTA ─────────────────────────────────── */}
+      <section className="about-cta">
+        <div className="container">
+          <motion.div
+            className="about-cta__inner"
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.3 }}
+            transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
+          >
+            <h2 className="about-cta__title">{t(aboutCta.titleKey)}</h2>
+            <p className="about-cta__desc">{t(aboutCta.descriptionKey)}</p>
+            <div className="about-cta__actions">
+              <button type="button" className="about-story__cta-btn">
+                <span className="about-story__cta-label">{t("about.cta.learnMore")}</span>
+                <span className="about-story__cta-arrow" aria-hidden>
+                  <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+                    <path d="M4 14L14 4M14 4H6M14 4V12" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
+                  </svg>
+                </span>
+                <span className="about-story__cta-fill" aria-hidden />
+              </button>
+            </div>
+          </motion.div>
+        </div>
+      </section>
     </div>
   );
 };
