@@ -84,6 +84,11 @@ export { default as proModel } from './web-art/flat-design.webp';
 export { default as nocaiArt } from './products/nocai-NC-UV9060MAX/nocai-plotter.png';
 export { default as whatsApp } from './web-art/printing-contact.png';
 
+export { default as cutLine1 } from './web-art/cut-lines/office.webp';
+export { default as cutLine2 } from './web-art/cut-lines/pro.webp';
+export { default as cutLine3 } from './web-art/cut-lines/iecho.webp';
+export { default as cutLine4 } from './web-art/cut-lines/nocai.webp';
+
 //Categories
 //IECHO
 export { default as iechoCategory } from './products/cutting-systems/PK1209.webp';

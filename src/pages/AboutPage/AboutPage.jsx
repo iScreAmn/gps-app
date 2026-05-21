@@ -16,10 +16,11 @@ import {
   aboutCta,
 } from "../../data/aboutData";
 import PageAmbientBackground from "../../components/PageAmbientBackground/PageAmbientBackground";
-import { pillar1, pillar2, pillar3 } from "../../assets/images";
+import { pillar1, pillar2, pillar3, cutLine1, cutLine2, cutLine3, cutLine4 } from "../../assets/images";
 import "./AboutPage.css";
 
 const pillarImages = [pillar1, pillar2, pillar3];
+const heroCutLines = [cutLine1, cutLine2, cutLine3, cutLine4];
 
 const pad = (n) => String(n).padStart(2, "0");
 
@@ -109,17 +110,6 @@ const StoryBlock = ({ block, index, t }) => {
           {block.textKeys.map((key) => (
             <p key={key}>{t(key)}</p>
           ))}
-        </div>
-        <div className="about-story__cta">
-          <button type="button" className="about-story__cta-btn">
-            <span className="about-story__cta-label">{t("about.cta.learnMore")}</span>
-            <span className="about-story__cta-arrow" aria-hidden>
-              <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
-                <path d="M4 14L14 4M14 4H6M14 4V12" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
-              </svg>
-            </span>
-            <span className="about-story__cta-fill" aria-hidden />
-          </button>
         </div>
       </motion.div>
     </motion.article>
@@ -289,6 +279,30 @@ const AboutPage = () => {
                 <span className="about-hero__title-line about-hero__title-line--accent">Polygraph</span>
                 <span className="about-hero__title-line">Services<span className="about-hero__title-dot">.</span></span>
               </h1>
+
+              <motion.ul
+                className="about-hero__products"
+                aria-label="Product lineup"
+                initial="hidden"
+                animate="visible"
+                variants={{
+                  hidden: {},
+                  visible: { transition: { staggerChildren: 0.12, delayChildren: 0.4 } },
+                }}
+              >
+                {heroCutLines.map((src, i) => (
+                  <motion.li
+                    key={i}
+                    className="about-hero__product"
+                    variants={{
+                      hidden: { opacity: 0, y: 20 },
+                      visible: { opacity: 1, y: 0, transition: { duration: 0.9, ease: [0.16, 1, 0.3, 1] } },
+                    }}
+                  >
+                    <img src={src} alt="" aria-hidden draggable={false} />
+                  </motion.li>
+                ))}
+              </motion.ul>
             </motion.div>
 
             <motion.figure
@@ -417,19 +431,15 @@ const AboutPage = () => {
             <h2 className="about-cta__title">{t(aboutCta.titleKey)}</h2>
             <p className="about-cta__desc">{t(aboutCta.descriptionKey)}</p>
             <div className="about-cta__actions">
-              {aboutCta.buttons.map((btn, i) => (
-                <motion.button
-                  key={i}
-                  type="button"
-                  className="about-cta__btn is-primary"
-                  whileHover={{ y: -2 }}
-                  whileTap={{ scale: 0.98 }}
-                  transition={{ type: "spring", stiffness: 320, damping: 22 }}
-                >
-                  <span>{t(btn.labelKey)}</span>
-                  <span className="about-cta__btn-arrow" aria-hidden>→</span>
-                </motion.button>
-              ))}
+              <button type="button" className="about-story__cta-btn">
+                <span className="about-story__cta-label">{t("about.cta.learnMore")}</span>
+                <span className="about-story__cta-arrow" aria-hidden>
+                  <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+                    <path d="M4 14L14 4M14 4H6M14 4V12" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
+                  </svg>
+                </span>
+                <span className="about-story__cta-fill" aria-hidden />
+              </button>
             </div>
           </motion.div>
         </div>

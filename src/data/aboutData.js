@@ -7,6 +7,22 @@ import {
   global,
   service3,
   demo,
+  konika,
+  duplo,
+  knb,
+  unifol,
+  vivid,
+  audley,
+  colorking,
+  fedrigoni,
+  iecho,
+  mondi,
+  nocai,
+  reinauer,
+  Rightint,
+  teneth,
+  tmt,
+  goldensign,
 } from '../assets/images';
 
 /** Cover / hero block */
@@ -38,6 +54,25 @@ export const aboutPartners = {
   pauseDuration: 1500,
   cursorCharacter: '|',
 };
+
+export const partners = [
+  { logo: konika, name: 'Konica Minolta', url: 'https://www.konicaminolta.eu' },
+  { logo: duplo, name: 'Duplo', url: 'https://www.duplo.com' },
+  { logo: knb, name: 'Koenig & Bauer', url: 'https://www.koenig-bauer.com' },
+  { logo: unifol, name: 'Unifol', url: 'https://www.unifol.com.tr' },
+  { logo: audley, name: 'Audley', url: 'https://www.audley-printer.com' },
+  { logo: colorking, name: 'ColorKing', url: '#' },
+  { logo: fedrigoni, name: 'Fedrigoni', url: 'https://fedrigoni.com' },
+  { logo: iecho, name: 'Iecho', url: 'https://www.iechocutter.com' },
+  { logo: mondi, name: 'Mondi', url: 'https://www.mondigroup.com' },
+  { logo: nocai, name: 'Nocai', url: 'https://www.gznuocai.com' },
+  { logo: reinauer, name: 'Reinauer', url: 'https://www.reinauer.eu' },
+  { logo: Rightint, name: 'Rightint', url: 'https://www.rightint.com' },
+  { logo: teneth, name: 'Teneth', url: 'https://www.teneth.com' },
+  { logo: tmt, name: 'TMT', url: 'https://www.tmtleds.com' },
+  { logo: vivid, name: 'Vivid', url: 'https://www.vivid-online.com' },
+  { logo: goldensign, name: 'Goldensign', url: 'https://www.goldensign.net' },
+];
 
 /** Info blocks (title, text i18n keys, image, imageOnLeft) */
 export const aboutInfoBlocks = [
@@ -94,7 +129,4 @@ export const aboutOption = {
 export const aboutCta = {
   titleKey: 'about.cta.title',
   descriptionKey: 'about.cta.description',
-  buttons: [
-    { labelKey: 'about.cta.contact', href: null, className: 'cta__button cta__button--primary' },
-  ],
 };
