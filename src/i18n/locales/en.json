@@ -817,5 +817,142 @@
         "Other"
       ]
     }
+  },
+  "servicesV2": {
+    "hero": {
+      "eyebrow": "Service Ecosystem · Tbilisi · since 2006",
+      "line1": "Service",
+      "line2": "infrastructure",
+      "line3": "for print.",
+      "lead": "An end-to-end engineering service that keeps the entire polygraphic floor running — from desktop printers to industrial cutting and wide-format lines.",
+      "metrics": "Operational telemetry"
+    },
+    "metrics": {
+      "years": "Years on the floor",
+      "support": "Engineering coverage",
+      "clients": "Active service contracts",
+      "segments": "Equipment segments"
+    },
+    "nav": {
+      "label": "Service segments",
+      "printer": "Printers",
+      "cutting": "Cutting",
+      "wideformat": "Wide-format",
+      "finishing": "Finishing"
+    },
+    "segments": {
+      "printer": {
+        "eyebrow": "Segment 01 — Office & production printers",
+        "title": "Production printers, kept in spec.",
+        "description": "Installation, calibration and full-cycle service for Develop, Konica Minolta and OEM print engines — from compact office machines to high-volume production lines.",
+        "services": {
+          "install": {
+            "title": "Installation & setup",
+            "desc": "Site survey, network integration, color and finishing setup."
+          },
+          "calibration": {
+            "title": "Color calibration",
+            "desc": "ICC profiles, density linearisation, periodic colour audits."
+          },
+          "repair": {
+            "title": "On-site repair",
+            "desc": "Engineering response with original Konica Minolta parts."
+          },
+          "preventive": {
+            "title": "Preventive contracts",
+            "desc": "Scheduled maintenance windows that prevent unplanned downtime."
+          }
+        }
+      },
+      "cutting": {
+        "eyebrow": "Segment 02 — Iecho cutting systems",
+        "title": "Precision cutting, micron-stable.",
+        "description": "Service and tuning for Iecho digital cutters — blades, tooling, software workflows and the rigid mechanical platform that keeps tolerances tight.",
+        "services": {
+          "blades": {
+            "title": "Tooling & blades",
+            "desc": "Original tooling kits and replacement blade programs."
+          },
+          "tuning": {
+            "title": "Mechanical tuning",
+            "desc": "Bed flatness, belt tension, carriage geometry."
+          },
+          "software": {
+            "title": "Software workflow",
+            "desc": "RIP and cutting workflow integration with your prepress."
+          },
+          "parts": {
+            "title": "Spare parts",
+            "desc": "On-stock spares for fastest mean-time-to-repair."
+          }
+        }
+      },
+      "wideformat": {
+        "eyebrow": "Segment 03 — Wide-format & UV",
+        "title": "Wide-format, dialed in.",
+        "description": "End-to-end care for UV, eco-solvent and roll-to-roll platforms — Nocai, Audley, Goldensign — including print head service, media certification and firmware management.",
+        "services": {
+          "heads": {
+            "title": "Print head service",
+            "desc": "Cleaning, alignment and replacement of UV and solvent heads."
+          },
+          "profile": {
+            "title": "Media profiling",
+            "desc": "ICC profiles per substrate, per print mode."
+          },
+          "media": {
+            "title": "Media certification",
+            "desc": "Validation of films, banners and rigid substrates."
+          },
+          "firmware": {
+            "title": "Firmware & RIP",
+            "desc": "Controlled updates of firmware, drivers and RIP versions."
+          }
+        }
+      },
+      "finishing": {
+        "eyebrow": "Segment 04 — Finishing & post-press",
+        "title": "Post-press, without compromises.",
+        "description": "Laminators, binders, creasers and roll converters — service and consumables for Duplo and partner finishing platforms that complete every printed sheet.",
+        "services": {
+          "lamination": {
+            "title": "Lamination lines",
+            "desc": "Roller service, temperature calibration, film supply."
+          },
+          "binding": {
+            "title": "Binding systems",
+            "desc": "Duplo binder service and consumable supply."
+          },
+          "creasing": {
+            "title": "Creasing & folding",
+            "desc": "Mechanical alignment and tooling replacement."
+          },
+          "rollers": {
+            "title": "Rollers & belts",
+            "desc": "Scheduled replacement of wear parts."
+          }
+        }
+      }
+    },
+    "supplies": {
+      "eyebrow": "Ecosystem layer",
+      "title": "Original supplies, always in stock.",
+      "description": "We hold a continuous inventory of inks, toners, media, blades and wear parts — so engineering response is never blocked on logistics.",
+      "items": {
+        "inks": "UV & eco-solvent inks",
+        "toners": "Original toners",
+        "consumables": "Service consumables",
+        "media": "Media & substrates",
+        "parts": "Finishing parts",
+        "rolls": "Roll materials"
+      }
+    },
+    "cta": {
+      "eyebrow": "Engage engineering",
+      "title": "Bring your floor under a single service contract.",
+      "description": "Talk to our engineering desk about a tailored service envelope across printers, cutting, wide-format and finishing.",
+      "primary": "Talk to engineering",
+      "secondary": "Request callback"
+    }
   }
 }
