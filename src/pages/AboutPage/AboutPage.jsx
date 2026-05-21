@@ -15,6 +15,7 @@ import {
   aboutOption,
   aboutCta,
 } from "../../data/aboutData";
+import contactsData from "../../data/contactsData";
 import PageAmbientBackground from "../../components/PageAmbientBackground/PageAmbientBackground";
 import { pillar1, pillar2, pillar3, cutLine1, cutLine2, cutLine3, cutLine4 } from "../../assets/images";
 import "./AboutPage.css";
@@ -431,7 +432,11 @@ const AboutPage = () => {
             <h2 className="about-cta__title">{t(aboutCta.titleKey)}</h2>
             <p className="about-cta__desc">{t(aboutCta.descriptionKey)}</p>
             <div className="about-cta__actions">
-              <button type="button" className="about-story__cta-btn">
+              <a
+                href={contactsData.phone.href}
+                className="about-story__cta-btn"
+                aria-label={contactsData.phone.label}
+              >
                 <span className="about-story__cta-label">{t("about.cta.learnMore")}</span>
                 <span className="about-story__cta-arrow" aria-hidden>
                   <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
@@ -439,7 +444,7 @@ const AboutPage = () => {
                   </svg>
                 </span>
                 <span className="about-story__cta-fill" aria-hidden />
-              </button>
+              </a>
             </div>
           </motion.div>
         </div>
