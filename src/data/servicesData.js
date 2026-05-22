@@ -1,17 +1,14 @@
 import {
-  categoryOffice,
   categoryPro,
-  categoryIndustrial,
   plotter,
   cutters,
-  laminator,
-  binder,
   duploBinder,
-  plotterCutting,
   plotterCutting2,
   plotterCutting3,
-  plotterCutting4,
   inks,
+  audley1,
+  develop1,
+  iecho1,
   supplies,
   toners,
   iechoPrinter,
@@ -49,7 +46,7 @@ export const servicesSegments = [
     titleKey: 'servicesV2.segments.printer.title',
     descriptionKey: 'servicesV2.segments.printer.description',
     bigType: 'Print',
-    cover: categoryOffice,
+    cover: develop1,
     accentMedia: categoryPro,
     services: [
       { key: 'install', icon: '◆' },
@@ -65,8 +62,8 @@ export const servicesSegments = [
     eyebrowKey: 'servicesV2.segments.cutting.eyebrow',
     titleKey: 'servicesV2.segments.cutting.title',
     descriptionKey: 'servicesV2.segments.cutting.description',
-    bigType: 'Cut',
-    cover: cutters,
+    bigType: 'Cutting',
+    cover: iecho1,
     accentMedia: iechoPrinter,
     services: [
       { key: 'blades', icon: '◆' },
@@ -83,30 +80,13 @@ export const servicesSegments = [
     titleKey: 'servicesV2.segments.wideformat.title',
     descriptionKey: 'servicesV2.segments.wideformat.description',
     bigType: 'Wide',
-    cover: plotterCutting,
+    cover: audley1,
     accentMedia: nocaiArt,
     services: [
       { key: 'heads', icon: '◆' },
       { key: 'profile', icon: '◉' },
       { key: 'media', icon: '◇' },
       { key: 'firmware', icon: '✦' },
-    ],
-  },
-  {
-    id: 'finishing',
-    keyId: 'finishing',
-    indexLabel: '04',
-    eyebrowKey: 'servicesV2.segments.finishing.eyebrow',
-    titleKey: 'servicesV2.segments.finishing.title',
-    descriptionKey: 'servicesV2.segments.finishing.description',
-    bigType: 'Finish',
-    cover: laminator,
-    accentMedia: binder,
-    services: [
-      { key: 'lamination', icon: '◆' },
-      { key: 'binding', icon: '◉' },
-      { key: 'creasing', icon: '◇' },
-      { key: 'rollers', icon: '✦' },
     ],
   },
 ];
@@ -135,12 +115,3 @@ export const servicesCta = {
   secondaryLabelKey: 'servicesV2.cta.secondary',
 };
 
-/** Ambient stat strip in hero */
-export const servicesMetrics = [
-  { value: '19', labelKey: 'servicesV2.metrics.years' },
-  { value: '24/7', labelKey: 'servicesV2.metrics.support' },
-  { value: '300+', labelKey: 'servicesV2.metrics.clients' },
-  { value: '4', labelKey: 'servicesV2.metrics.segments' },
-];
-
-export const servicesBackdrop = [plotterCutting4];

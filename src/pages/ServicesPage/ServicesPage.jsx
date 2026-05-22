@@ -4,7 +4,6 @@ import { useLanguage } from "../../hooks/useLanguage";
 import { motion, useScroll, useTransform, useReducedMotion, useInView } from "motion/react";
 import PageAmbientBackground from "../../components/PageAmbientBackground/PageAmbientBackground";
 import ParallaxText from "../../components/widgets/ParallaxText/ParallaxText";
-import AnimatedNumber from "../../components/widgets/AnimatedNumber/AnimatedNumber";
 import contactsData from "../../data/contactsData";
 import {
   servicesHero,
@@ -12,7 +11,6 @@ import {
   servicesSegments,
   servicesSupplies,
   servicesCta,
-  servicesMetrics,
 } from "../../data/servicesData";
 import "./ServicesPage.css";
 
@@ -52,7 +50,7 @@ const ServicesHero = ({ t }) => {
         <div className="services-hero__noise" />
       </motion.div>
 
-      <div className="container services-hero__inner">
+      <div className="container services-hero__inner"> 
         <motion.div
           className="services-hero__topline"
           initial={{ opacity: 0, y: 16 }}
@@ -61,8 +59,6 @@ const ServicesHero = ({ t }) => {
         >
           <span className="services-hero__dot" aria-hidden />
           <span>{t(servicesHero.eyebrowKey)}</span>
-          <span className="services-hero__topline-rule" aria-hidden />
-          <span className="services-hero__topline-coords">41.7151° N — 44.8271° E</span>
         </motion.div>
 
         <motion.h1 className="services-hero__title" style={{ y: titleY }}>
@@ -129,41 +125,6 @@ const ServicesHero = ({ t }) => {
           </motion.ul>
         </div>
 
-        {/* Metrics strip */}
-        <motion.div
-          className="services-metrics"
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.3 }}
-          variants={{ hidden: {}, visible: { transition: { staggerChildren: 0.1 } } }}
-        >
-          <span className="services-metrics__label" aria-hidden>
-            <span className="services-metrics__label-dot" />
-            {t(servicesHero.metricsKey)}
-          </span>
-          <div className="services-metrics__row">
-            {servicesMetrics.map((m, i) => (
-              <motion.div
-                key={i}
-                className="services-metric"
-                variants={{
-                  hidden: { opacity: 0, y: 20 },
-                  visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] } },
-                }}
-              >
-                <span className="services-metric__idx">{pad(i + 1)}</span>
-                <span className="services-metric__value">
-                  {/^[0-9]+$/.test(m.value) ? (
-                    <AnimatedNumber value={m.value} duration={1.8} delay={0.1 * i} />
-                  ) : (
-                    m.value
-                  )}
-                </span>
-                <span className="services-metric__label">{t(m.labelKey)}</span>
-              </motion.div>
-            ))}
-          </div>
-        </motion.div>
       </div>
     </section>
   );

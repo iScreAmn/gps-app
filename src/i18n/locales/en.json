@@ -837,8 +837,7 @@
       "label": "Service segments",
       "printer": "Printers",
       "cutting": "Cutting",
-      "wideformat": "Wide-format",
-      "finishing": "Finishing"
+      "wideformat": "Wide-format"
     },
     "segments": {
       "printer": {
@@ -907,29 +906,6 @@
           "firmware": {
             "title": "Firmware & RIP",
             "desc": "Controlled updates of firmware, drivers and RIP versions."
-          }
-        }
-      },
-      "finishing": {
-        "eyebrow": "Segment 04 — Finishing & post-press",
-        "title": "Post-press, without compromises.",
-        "description": "Laminators, binders, creasers and roll converters — service and consumables for Duplo and partner finishing platforms that complete every printed sheet.",
-        "services": {
-          "lamination": {
-            "title": "Lamination lines",
-            "desc": "Roller service, temperature calibration, film supply."
-          },
-          "binding": {
-            "title": "Binding systems",
-            "desc": "Duplo binder service and consumable supply."
-          },
-          "creasing": {
-            "title": "Creasing & folding",
-            "desc": "Mechanical alignment and tooling replacement."
-          },
-          "rollers": {
-            "title": "Rollers & belts",
-            "desc": "Scheduled replacement of wear parts."
           }
         }
       }
