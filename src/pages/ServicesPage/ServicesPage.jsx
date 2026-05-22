@@ -1,7 +1,7 @@
 import React, { useEffect, useMemo, useRef, useState } from "react";
 import { useLanguage } from "../../hooks/useLanguage";
 // eslint-disable-next-line no-unused-vars
-import { motion, useScroll, useTransform, useReducedMotion, useInView } from "motion/react";
+import { motion, useScroll, useTransform, useReducedMotion } from "motion/react";
 import PageAmbientBackground from "../../components/PageAmbientBackground/PageAmbientBackground";
 import ParallaxText from "../../components/widgets/ParallaxText/ParallaxText";
 import contactsData from "../../data/contactsData";
@@ -147,49 +147,44 @@ const ServicesMarquee = () => (
   </section>
 );
 
-const SegmentNav = ({ activeId, onJump, t }) => {
+const SegmentNav = ({ activeId, visible, onJump, t }) => {
   return (
-    <div className="services-nav" role="navigation" aria-label={t("servicesV2.nav.label")}>
-      <div className="services-nav__shell">
-        <span className="services-nav__label" aria-hidden>
-          <span className="services-nav__dot" />
-          {t("servicesV2.nav.label")}
-        </span>
-        <ul className="services-nav__pills">
-          {servicesSegments.map((s) => {
-            const active = activeId === s.id;
-            return (
-              <li key={s.id} className={`services-nav__pill ${active ? "is-active" : ""}`}>
-                <button
-                  type="button"
-                  onClick={() => onJump(s.id)}
-                  aria-current={active ? "true" : undefined}
-                  aria-label={t(`servicesV2.nav.${s.keyId}`)}
-                >
-                  <span className="services-nav__pill-idx">{s.indexLabel}</span>
-                  <span className="services-nav__pill-label">{t(`servicesV2.nav.${s.keyId}`)}</span>
-                  {active && <span className="services-nav__pill-glow" aria-hidden />}
-                </button>
-              </li>
-            );
-          })}
-        </ul>
-      </div>
-    </div>
+    <nav
+      className={`services-nav ${visible ? "is-visible" : ""}`}
+      aria-label={t("servicesV2.nav.label")}
+    >
+      <span className="services-nav__title" aria-hidden>
+        {t("servicesV2.nav.label")}
+      </span>
+      <ul className="services-nav__list">
+        {servicesSegments.map((s) => {
+          const active = activeId === s.id;
+          return (
+            <li key={s.id} className={`services-nav__item ${active ? "is-active" : ""}`}>
+              <button
+                type="button"
+                onClick={() => onJump(s.id)}
+                aria-current={active ? "true" : undefined}
+                aria-label={t(`servicesV2.nav.${s.keyId}`)}
+              >
+                <span className="services-nav__label">{t(`servicesV2.nav.${s.keyId}`)}</span>
+                <span className="services-nav__idx">{s.indexLabel}</span>
+                <span className="services-nav__marker" aria-hidden />
+              </button>
+            </li>
+          );
+        })}
+      </ul>
+    </nav>
   );
 };
 
-const SegmentSection = ({ segment, index, total, t, onActive }) => {
+const SegmentSection = ({ segment, index, total, t }) => {
   const ref = useRef(null);
   const isMobile = useIsMobile();
   const prefersReducedMotion = useReducedMotion();
   const disabled = isMobile || prefersReducedMotion;
   const flipped = index % 2 === 1;
-
-  const inView = useInView(ref, { margin: "-40% 0px -40% 0px" });
-  useEffect(() => {
-    if (inView) onActive?.(segment.id);
-  }, [inView, onActive, segment.id]);
 
   const { scrollYProgress } = useScroll({
     target: ref,
@@ -406,17 +401,59 @@ const ServicesCta = ({ t }) => (
 const ServicesPage = () => {
   const { t } = useLanguage();
   const [activeId, setActiveId] = useState(servicesSegments[0].id);
+  const [navVisible, setNavVisible] = useState(false);
+  const segmentsRef = useRef(null);
   const total = servicesSegments.length;
+
+  const segments = useMemo(() => servicesSegments, []);
 
   const onJump = (id) => {
     const el = document.getElementById(`segment-${id}`);
     if (el) {
-      const offset = el.getBoundingClientRect().top + window.scrollY - 96;
-      window.scrollTo({ top: offset, behavior: "smooth" });
+      // clear the fixed header stack
+      const offset = el.getBoundingClientRect().top + window.scrollY - 200;
+      window.scrollTo({ top: Math.max(offset, 0), behavior: "smooth" });
     }
   };
 
-  const segments = useMemo(() => servicesSegments, []);
+  // Sequential active-segment tracking + show the rail only while the
+  // segments region occupies the viewport.
+  useEffect(() => {
+    let raf = 0;
+    const compute = () => {
+      raf = 0;
+      const vh = window.innerHeight;
+      const line = vh * 0.4;
+
+      let current = segments[0].id;
+      for (const seg of segments) {
+        const el = document.getElementById(`segment-${seg.id}`);
+        if (!el) continue;
+        if (el.getBoundingClientRect().top <= line) current = seg.id;
+      }
+      setActiveId((prev) => (prev === current ? prev : current));
+
+      const wrap = segmentsRef.current;
+      if (wrap) {
+        const r = wrap.getBoundingClientRect();
+        // visible only while the segments region straddles the viewport
+        // centre — hides before the following section scrolls in.
+        const visible = r.top < vh * 0.5 && r.bottom > vh * 0.78;
+        setNavVisible((prev) => (prev === visible ? prev : visible));
+      }
+    };
+    const onScroll = () => {
+      if (!raf) raf = window.requestAnimationFrame(compute);
+    };
+    compute();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onScroll);
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", onScroll);
+      if (raf) window.cancelAnimationFrame(raf);
+    };
+  }, [segments]);
 
   return (
     <div className="services-page page-ambient-shell">
@@ -426,19 +463,20 @@ const ServicesPage = () => {
 
       <ServicesMarquee />
 
-      <SegmentNav activeId={activeId} onJump={onJump} t={t} />
+      <SegmentNav activeId={activeId} visible={navVisible} onJump={onJump} t={t} />
 
-      <div className="services-stream">
-        {segments.map((segment, i) => (
-          <SegmentSection
-            key={segment.id}
-            segment={segment}
-            index={i}
-            total={total}
-            t={t}
-            onActive={setActiveId}
-          />
-        ))}
+      <div className="services-segments" ref={segmentsRef}>
+        <div className="services-stream">
+          {segments.map((segment, i) => (
+            <SegmentSection
+              key={segment.id}
+              segment={segment}
+              index={i}
+              total={total}
+              t={t}
+            />
+          ))}
+        </div>
       </div>
 
       <SuppliesSection t={t} />
