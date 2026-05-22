@@ -89,6 +89,10 @@ export { default as cutLine2 } from './web-art/cut-lines/pro.webp';
 export { default as cutLine3 } from './web-art/cut-lines/iecho.webp';
 export { default as cutLine4 } from './web-art/cut-lines/nocai.webp';
 
+export { default as audley1 } from './web-art/AI/audley1.webp';
+export { default as iecho1 } from './web-art/AI/iecho1.webp';
+export { default as develop1 } from './web-art/AI/develop1.webp';
+
 //Categories
 //IECHO
 export { default as iechoCategory } from './products/cutting-systems/PK1209.webp';
@@ -127,7 +131,7 @@ export { default as nocai2 } from './products/nocai-UV0609XIII/nocai2.png';
 export { default as nocai3 } from './products/nocai-UV0609XIII/nocai3.png';
 export { default as nocai4 } from './products/nocai-UV0609XIII/nocai4.png';
 // Iecho Cutting System
-export { default as iecho1 } from './products/iecho-PK0604/iecho1.webp';
+export { default as iechoProduct1 } from './products/iecho-PK0604/iecho1.webp';
 export { default as iecho2 } from './products/iecho-PK0604/iecho2.webp';
 export { default as iecho3 } from './products/iecho-PK0604/iecho3.webp';
 export { default as iecho4 } from './products/iecho-PK0604/iecho4.webp';
