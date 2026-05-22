@@ -1,7 +1,8 @@
 import {
   categoryPro,
-  plotter,
-  cutters,
+  fix1,
+  fix2,
+  fix3,
   duploBinder,
   plotterCutting2,
   plotterCutting3,
@@ -24,9 +25,9 @@ export const servicesHero = {
   leadKey: 'servicesV2.hero.lead',
   metricsKey: 'servicesV2.hero.metrics',
   media: [
-    { src: categoryPro, alt: 'Production print line' },
-    { src: plotter, alt: 'Wide-format plotter' },
-    { src: cutters, alt: 'Cutting system' },
+    { src: fix1, alt: 'Office printer service' },
+    { src: fix2, alt: 'Production printer service' },
+    { src: fix3, alt: 'Wide-format printer service' },
   ],
 };
 

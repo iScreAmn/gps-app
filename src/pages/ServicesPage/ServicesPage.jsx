@@ -119,7 +119,6 @@ const ServicesHero = ({ t }) => {
                 }}
               >
                 <img src={m.src} alt="" draggable={false} />
-                <span className="services-hero__media-tag">{pad(i + 1)} · GPS</span>
               </motion.li>
             ))}
           </motion.ul>

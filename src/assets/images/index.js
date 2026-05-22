@@ -89,6 +89,10 @@ export { default as cutLine2 } from './web-art/cut-lines/pro.webp';
 export { default as cutLine3 } from './web-art/cut-lines/iecho.webp';
 export { default as cutLine4 } from './web-art/cut-lines/nocai.webp';
 
+export { default as fix1 } from './web-art/AI/fixOffice.webp';
+export { default as fix2 } from './web-art/AI/fixPro.webp';
+export { default as fix3 } from './web-art/AI/fixNocai.webp';
+
 export { default as audley1 } from './web-art/AI/audley1.webp';
 export { default as iecho1 } from './web-art/AI/iecho1.webp';
 export { default as develop1 } from './web-art/AI/develop1.webp';
