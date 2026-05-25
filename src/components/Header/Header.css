@@ -188,7 +188,7 @@ body[data-theme="dark"] .theme-toggle:hover {
 
 
 /* Mobile Styles */
-@media (max-width: 768px) {
+@media (max-width: 1023px) {
   .header {
     top: 50px;
     display: none;

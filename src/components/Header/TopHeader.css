@@ -274,23 +274,28 @@ body[data-theme="dark"] .contact-info {
 @media (max-width: 1024px) {
   .top-header-content {
     gap: 1rem;
+    padding-right: 60px;
   }
-  
+
   .location-info,
   .contact-info {
     display: none;
   }
-  
+
   .top-header-logo {
     min-width: auto;
   }
-  
+
   .logo-image {
     height: 35px;
   }
 
   .social-section {
     display: none;
+  }
+
+  .search-dropdown {
+    margin: 0 auto;
   }
 }
 

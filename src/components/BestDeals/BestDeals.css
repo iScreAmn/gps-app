@@ -185,7 +185,16 @@ body[data-theme="dark"] .deals-image {
 @media (max-width: 1024px) {
   .best-deals {
     padding: 20px;
-    min-height: 250px;
+    height: 300px;
+    min-height: 300px;
+  }
+
+  .best-deals::before {
+    top: 160px;
+    right: -60px;
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
   }
   
   .deals-title {
@@ -202,7 +211,7 @@ body[data-theme="dark"] .deals-image {
 
   .deals-image {
     margin: 0;
-    max-width: 160px;
+    max-width: 250px;
   }
   
   .deal-icon {

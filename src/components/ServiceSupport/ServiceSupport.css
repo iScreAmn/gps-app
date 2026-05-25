@@ -199,7 +199,15 @@
 @media (max-width: 1024px) {
   .service-support {
     padding: 20px;
-    min-height: 250px;
+    height: 300px;
+    min-height: 300px;
+  }
+
+  .service-support::before {
+    top: -60px;
+    right: -80px;
+    width: 200px;
+    height: 200px;
   }
 
   .support-title {

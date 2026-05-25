@@ -91,6 +91,10 @@ body[data-theme="dark"] .hero {
 
 /* Tablet landscape (768px - 1023px) */
 @media (min-width: 768px) and (max-width: 1023px) {
+  .hero {
+    padding: 100px 0 20px;
+  }
+
   .hero-layout {
     grid-template-columns: 1fr;
     gap: 20px;
