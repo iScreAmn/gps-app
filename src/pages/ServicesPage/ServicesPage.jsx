@@ -178,7 +178,7 @@ const SegmentNav = ({ activeId, visible, onJump, t }) => {
   );
 };
 
-const SegmentSection = ({ segment, index, total, t }) => {
+const SegmentSection = ({ segment, index, t }) => {
   const ref = useRef(null);
   const isMobile = useIsMobile();
   const prefersReducedMotion = useReducedMotion();
@@ -194,8 +194,6 @@ const SegmentSection = ({ segment, index, total, t }) => {
     [0, 1],
     disabled ? ["0%", "0%"] : flipped ? ["8%", "-12%"] : ["-12%", "8%"]
   );
-  const imgY = useTransform(scrollYProgress, [0, 1], disabled ? ["0%", "0%"] : ["-6%", "6%"]);
-
   return (
     <motion.section
       ref={ref}
@@ -218,7 +216,6 @@ const SegmentSection = ({ segment, index, total, t }) => {
         <header className="services-segment__head">
           <div className="services-segment__meta">
             <span className="services-segment__index">{segment.indexLabel}</span>
-            <span className="services-segment__sep" aria-hidden />
           </div>
           <p className="services-segment__eyebrow">{t(segment.eyebrowKey)}</p>
           <h2 className="services-segment__title">{t(segment.titleKey)}</h2>
@@ -233,18 +230,13 @@ const SegmentSection = ({ segment, index, total, t }) => {
             transition={{ duration: 1.1, ease: [0.16, 1, 0.3, 1] }}
           >
             <div className="services-segment__media-frame">
-              <motion.img
+              <img
                 src={segment.cover}
                 alt=""
                 aria-hidden
-                style={{ y: imgY }}
                 draggable={false}
               />
               <span className="services-segment__media-veil" aria-hidden />
-              <span className="services-segment__media-tag">
-                <span className="services-segment__media-tag-dot" />
-                {segment.indexLabel} · {segment.bigType.toUpperCase()}
-              </span>
             </div>
           </motion.figure>
 
@@ -391,8 +383,6 @@ const ServicesPage = () => {
   const [activeId, setActiveId] = useState(servicesSegments[0].id);
   const [navVisible, setNavVisible] = useState(false);
   const segmentsRef = useRef(null);
-  const total = servicesSegments.length;
-
   const segments = useMemo(() => servicesSegments, []);
 
   const onJump = (id) => {
@@ -460,7 +450,6 @@ const ServicesPage = () => {
               key={segment.id}
               segment={segment}
               index={i}
-              total={total}
               t={t}
             />
           ))}
