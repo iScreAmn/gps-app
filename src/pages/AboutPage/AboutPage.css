@@ -566,9 +566,6 @@ body[data-theme="dark"] .about-parallax__row--1 .parallax .scroller {
   }
 }
 
-/* =========================================================
-   4. STORY BLOCKS — alternating editorial
-   ========================================================= */
 .about-story {
   padding: clamp(6rem, 14vh, 10rem) 0;
 }
