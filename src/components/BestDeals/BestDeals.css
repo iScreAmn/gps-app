@@ -168,6 +168,20 @@ body[data-theme="dark"] .deals-image {
 }
 
 /* Responsive Design */
+
+/* Desktop (1025px - 1439px) - narrow 260px sidebar */
+@media (min-width: 1025px) and (max-width: 1439px) {
+  .deals-title {
+    width: 100%;
+    font-size: 1.3rem;
+  }
+
+  .deals-image {
+    margin: 0;
+    max-width: 100%;
+  }
+}
+
 @media (max-width: 1024px) {
   .best-deals {
     padding: 20px;
@@ -178,11 +192,16 @@ body[data-theme="dark"] .deals-image {
     font-size: 1.3rem;
   }
   
+  .deals-title {
+    width: 100%;
+  }
+
   .deals-visual {
     min-height: 100px;
   }
-  
+
   .deals-image {
+    margin: 0;
     max-width: 160px;
   }
   

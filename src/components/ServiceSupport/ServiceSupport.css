@@ -182,21 +182,37 @@
 }
 
 /* Responsive Design */
+
+/* Desktop (1025px - 1439px) - narrow 260px sidebar */
+@media (min-width: 1025px) and (max-width: 1439px) {
+  .support-title {
+    width: 100%;
+    font-size: 1.3rem;
+  }
+
+  .support-image {
+    margin: 10px 0 0 0;
+    max-width: 100%;
+  }
+}
+
 @media (max-width: 1024px) {
   .service-support {
     padding: 20px;
     min-height: 250px;
   }
-  
+
   .support-title {
+    width: 100%;
     font-size: 1.3rem;
   }
-  
+
   .support-visual {
     min-height: 100px;
   }
-  
+
   .support-image {
+    margin: 10px 0 0 0;
     max-width: 160px;
   }
   
