@@ -51,7 +51,6 @@ export const servicesSegments = [
     accentMedia: categoryPro,
     services: [
       { key: 'install', icon: '◆' },
-      { key: 'calibration', icon: '◉' },
       { key: 'repair', icon: '◇' },
       { key: 'preventive', icon: '✦' },
     ],
@@ -70,7 +69,6 @@ export const servicesSegments = [
       { key: 'blades', icon: '◆' },
       { key: 'tuning', icon: '◉' },
       { key: 'software', icon: '◇' },
-      { key: 'parts', icon: '✦' },
     ],
   },
   {
@@ -86,7 +84,6 @@ export const servicesSegments = [
     services: [
       { key: 'heads', icon: '◆' },
       { key: 'profile', icon: '◉' },
-      { key: 'media', icon: '◇' },
       { key: 'firmware', icon: '✦' },
     ],
   },

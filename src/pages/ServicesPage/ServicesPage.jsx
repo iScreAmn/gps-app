@@ -219,7 +219,6 @@ const SegmentSection = ({ segment, index, total, t }) => {
           <div className="services-segment__meta">
             <span className="services-segment__index">{segment.indexLabel}</span>
             <span className="services-segment__sep" aria-hidden />
-            <span className="services-segment__count">— {pad(total)}</span>
           </div>
           <p className="services-segment__eyebrow">{t(segment.eyebrowKey)}</p>
           <h2 className="services-segment__title">{t(segment.titleKey)}</h2>
@@ -250,16 +249,6 @@ const SegmentSection = ({ segment, index, total, t }) => {
           </motion.figure>
 
           <div className="services-segment__column">
-            <motion.p
-              className="services-segment__desc"
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.3 }}
-              transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
-            >
-              {t(segment.descriptionKey)}
-            </motion.p>
-
             <motion.ul
               className="services-cards"
               initial="hidden"

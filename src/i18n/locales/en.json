@@ -849,10 +849,6 @@
             "title": "Installation & setup",
             "desc": "Site survey, network integration, color and finishing setup."
           },
-          "calibration": {
-            "title": "Color calibration",
-            "desc": "ICC profiles, density linearisation, periodic colour audits."
-          },
           "repair": {
             "title": "On-site repair",
             "desc": "Engineering response with original Konica Minolta parts."
@@ -879,10 +875,6 @@
           "software": {
             "title": "Software workflow",
             "desc": "RIP and cutting workflow integration with your prepress."
-          },
-          "parts": {
-            "title": "Spare parts",
-            "desc": "On-stock spares for fastest mean-time-to-repair."
           }
         }
       },
@@ -898,10 +890,6 @@
           "profile": {
             "title": "Media profiling",
             "desc": "ICC profiles per substrate, per print mode."
-          },
-          "media": {
-            "title": "Media certification",
-            "desc": "Validation of films, banners and rigid substrates."
           },
           "firmware": {
             "title": "Firmware & RIP",

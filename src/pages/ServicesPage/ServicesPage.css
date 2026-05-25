@@ -675,8 +675,8 @@ body[data-theme="dark"] .services-marquee__row--0 .parallax .scroller {
   list-style: none;
   margin: 0;
   padding: 0;
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  display: flex;
+  flex-direction: column;
   gap: clamp(0.8rem, 1.4vw, 1.2rem);
 }
 
