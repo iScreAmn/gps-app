@@ -1,4 +1,5 @@
 import React, { useEffect, useMemo, useRef, useState } from "react";
+import { IoChatboxEllipsesOutline } from "react-icons/io5";
 import { useLanguage } from "../../hooks/useLanguage";
 // eslint-disable-next-line no-unused-vars
 import { motion, useScroll, useTransform, useReducedMotion } from "motion/react";
@@ -9,7 +10,6 @@ import {
   servicesHero,
   servicesMarquee,
   servicesSegments,
-  servicesSupplies,
   servicesCta,
 } from "../../data/servicesData";
 import "./ServicesPage.css";
@@ -51,16 +51,6 @@ const ServicesHero = ({ t }) => {
       </motion.div>
 
       <div className="container services-hero__inner"> 
-        <motion.div
-          className="services-hero__topline"
-          initial={{ opacity: 0, y: 16 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
-        >
-          <span className="services-hero__dot" aria-hidden />
-          <span>{t(servicesHero.eyebrowKey)}</span>
-        </motion.div>
-
         <motion.h1 className="services-hero__title" style={{ y: titleY }}>
           <motion.span
             className="services-hero__title-line"
@@ -279,67 +269,6 @@ const SegmentSection = ({ segment, index, t }) => {
   );
 };
 
-const SuppliesSection = ({ t }) => {
-  return (
-    <section className="services-supplies">
-      <div className="container services-supplies__inner">
-        <header className="services-supplies__head">
-          <span className="services-supplies__eyebrow">
-            <span className="services-supplies__eyebrow-dot" />
-            {t(servicesSupplies.eyebrowKey)}
-          </span>
-          <motion.h2
-            className="services-supplies__title"
-            initial={{ opacity: 0, y: 40 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.3 }}
-            transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
-          >
-            {t(servicesSupplies.titleKey)}
-          </motion.h2>
-          <motion.p
-            className="services-supplies__desc"
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.3 }}
-            transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1], delay: 0.1 }}
-          >
-            {t(servicesSupplies.descriptionKey)}
-          </motion.p>
-        </header>
-
-        <motion.ul
-          className="services-supplies__grid"
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.1 }}
-          variants={{ hidden: {}, visible: { transition: { staggerChildren: 0.07 } } }}
-        >
-          {servicesSupplies.groups.map((g, i) => (
-            <motion.li
-              key={g.id}
-              className="services-supply"
-              variants={{
-                hidden: { opacity: 0, y: 30 },
-                visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] } },
-              }}
-            >
-              <div className="services-supply__frame">
-                <img src={g.image} alt="" draggable={false} aria-hidden />
-                <span className="services-supply__veil" aria-hidden />
-              </div>
-              <div className="services-supply__meta">
-                <span className="services-supply__idx">{pad(i + 1)}</span>
-                <span className="services-supply__label">{t(g.labelKey)}</span>
-              </div>
-            </motion.li>
-          ))}
-        </motion.ul>
-      </div>
-    </section>
-  );
-};
-
 const ServicesCta = ({ t }) => (
   <section className="services-cta">
     <div className="services-cta__atmos" aria-hidden>
@@ -360,7 +289,7 @@ const ServicesCta = ({ t }) => (
         <h2 className="services-cta__title">{t(servicesCta.titleKey)}</h2>
         <p className="services-cta__desc">{t(servicesCta.descriptionKey)}</p>
         <div className="services-cta__actions">
-          <a href={contactsData.phone.href} className="services-cta__btn services-cta__btn--primary">
+          <a href={contactsData.phoneServices.href} className="services-cta__btn services-cta__btn--primary">
             <span>{t(servicesCta.primaryLabelKey)}</span>
             <span className="services-cta__btn-arrow" aria-hidden>
               <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
@@ -369,8 +298,16 @@ const ServicesCta = ({ t }) => (
             </span>
             <span className="services-cta__btn-fill" aria-hidden />
           </a>
-          <a href={contactsData.email?.href || "#"} className="services-cta__btn services-cta__btn--ghost">
+          <a
+            href={contactsData.socials.whatsappChat}
+            className="services-cta__btn services-cta__btn--ghost"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
             <span>{t(servicesCta.secondaryLabelKey)}</span>
+            <span className="services-cta__btn-icon" aria-hidden>
+              <IoChatboxEllipsesOutline />
+            </span>
           </a>
         </div>
       </motion.div>
@@ -455,8 +392,6 @@ const ServicesPage = () => {
           ))}
         </div>
       </div>
-
-      <SuppliesSection t={t} />
 
       <ServicesCta t={t} />
     </div>
