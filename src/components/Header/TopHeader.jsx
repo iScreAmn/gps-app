@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { useTheme } from '../../contexts/ThemeContext';
-import { FaTelegramPlane, FaWhatsapp } from 'react-icons/fa';
+import { FaInstagram, FaFacebookF, FaPhoneAlt } from 'react-icons/fa';
 import { HiOutlineMail } from 'react-icons/hi';
 import { mainLogo, mainLogoWhite } from '../../assets/images';
 import contactsData from '../../data/contactsData';
@@ -10,7 +10,7 @@ import { useLanguage } from '../../hooks/useLanguage';
 import './TopHeader.css';
 
 const TopHeader = () => {
-  const { language, t } = useLanguage();
+  const { language } = useLanguage();
   const { theme } = useTheme();
   const currentLogo = theme === 'dark' ? mainLogoWhite : mainLogo;
 
@@ -30,54 +30,40 @@ const TopHeader = () => {
           {/* Search */}
           <SearchDropdown />
 
-          {/* Contact Info */}
-          <div className="contact-info">
-            <div className="phone-numbers">
-              <a
-                href={contactsData.phone.href}
-                className="phone contact-link"
-              >
-                {contactsData.phone.label}
-              </a>
-              <a
-                href={contactsData.phoneSecondary.href}
-                className="phone contact-link"
-              >
-                {contactsData.phoneSecondary.label}
-              </a>
-            </div>
-          </div>
-
-          {/* Social Media */}
-          <div className="social-section">
-            <div className="social-media">
-              <a 
-                href={contactsData.socials.whatsapp} 
-                className="social-link whatsapp"
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="WhatsApp"
-              >
-                <FaWhatsapp />
-              </a>
-              <a 
-                href={contactsData.socials.telegram} 
-                className="social-link telegram"
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="Telegram"
-              >
-                <FaTelegramPlane />
-              </a>
-              <a 
-                href={contactsData.email.href} 
-                className="social-link email"
-                aria-label="Email"
-              >
-                <HiOutlineMail />
-              </a>
-            </div>
-            <div className="hours none">{t('header.hours')}</div>
+          {/* Contact & Social Actions */}
+          <div className="header-actions">
+            <a
+              href={contactsData.phone.href}
+              className="header-action header-action--phone"
+            >
+              <FaPhoneAlt />
+              <span>{contactsData.phone.label}</span>
+            </a>
+            <a
+              href={contactsData.email.href}
+              className="header-action header-action--icon"
+              aria-label="Email"
+            >
+              <HiOutlineMail />
+            </a>
+            <a
+              href={contactsData.socials.instagram}
+              className="header-action header-action--icon"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Instagram"
+            >
+              <FaInstagram />
+            </a>
+            <a
+              href={contactsData.socials.facebook}
+              className="header-action header-action--icon"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Facebook"
+            >
+              <FaFacebookF />
+            </a>
           </div>
         </div>
       </div>
