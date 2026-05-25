@@ -3,15 +3,9 @@ import {
   fix1,
   fix2,
   fix3,
-  duploBinder,
-  plotterCutting2,
-  plotterCutting3,
-  inks,
   audley1,
   develop1,
   iecho1,
-  supplies,
-  toners,
   iechoPrinter,
   nocaiArt,
 } from '../assets/images';
@@ -33,8 +27,8 @@ export const servicesHero = {
 
 /** Floating ambient marquee (between hero & segments) */
 export const servicesMarquee = [
-  { text: 'Service · Calibration · Diagnostics · Repair · Supply', baseVelocity: -2.6, colorClass: 'parallax__text--blue' },
-  { text: 'პრინტერი — საჭრელი — ფართოფორმატიანი — ფინიშინგი', baseVelocity: 2.2, colorClass: 'parallax__text--green' },
+  { text: 'Service · Calibration · Diagnostics · Repair ·', baseVelocity: -2.6, colorClass: 'parallax__text--blue' },
+  { text: 'პრინტერი — საჭრელი — ფართოფორმატიანი -', baseVelocity: 2.2, colorClass: 'parallax__text--green' },
 ];
 
 /** 4 cinematic segments */
@@ -88,21 +82,6 @@ export const servicesSegments = [
     ],
   },
 ];
-
-/** Supplies ecosystem */
-export const servicesSupplies = {
-  eyebrowKey: 'servicesV2.supplies.eyebrow',
-  titleKey: 'servicesV2.supplies.title',
-  descriptionKey: 'servicesV2.supplies.description',
-  groups: [
-    { id: 'inks', image: inks, labelKey: 'servicesV2.supplies.items.inks' },
-    { id: 'toners', image: toners, labelKey: 'servicesV2.supplies.items.toners' },
-    { id: 'consumables', image: supplies, labelKey: 'servicesV2.supplies.items.consumables' },
-    { id: 'media', image: plotterCutting2, labelKey: 'servicesV2.supplies.items.media' },
-    { id: 'parts', image: duploBinder, labelKey: 'servicesV2.supplies.items.parts' },
-    { id: 'rolls', image: plotterCutting3, labelKey: 'servicesV2.supplies.items.rolls' },
-  ],
-};
 
 /** Cinematic CTA */
 export const servicesCta = {
