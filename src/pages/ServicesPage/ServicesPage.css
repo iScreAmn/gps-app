@@ -897,8 +897,15 @@ body[data-theme="dark"] .services-card {
 @media (max-width: 768px) {
   .services-hero { padding-top: 2.5rem; }
 
+  .services-hero__lead { order: 2; }
+  .services-hero__media { order: 1; }
+
   .services-hero__title-line:nth-child(2) { padding-left: 0.6em; }
   .services-hero__title-line:nth-child(3) { padding-left: 1.2em; }
+
+  .services-marquee {
+    margin: 0;
+  }
 
   .services-marquee__row--0,
   .services-marquee__row--1 { transform: none; }
@@ -919,6 +926,12 @@ body[data-theme="dark"] .services-card {
 
   .services-segment__bigtype {
     font-size: clamp(4rem, 20vw, 6.5rem);
+    left: 15px;
+  }
+
+  .services-segment.is-flipped .services-segment__bigtype {
+    left: 15px;
+    right: unset;
   }
 
   /* tighten vertical rhythm on phones */
@@ -946,6 +959,10 @@ body[data-theme="dark"] .services-card {
 
   .services-cta {
     padding: 0;
+  }
+
+  .services-cta .container.services-cta__inner {
+    padding-bottom: 25px;
   }
 }
 
