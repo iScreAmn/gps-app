@@ -5,25 +5,19 @@ import serviceIcon from '../../assets/images/icons/service-icon.webp';
 import './ServiceSupport.css';
 
 const ServiceSupport = () => {
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
 
   return (
-    <div className="service-support">
+    <Link to={`/${language}/services`} className="service-support">
       <div className="support-header">
         <h3 className="support-title">{t('support.title')}</h3>
         <p className="support-subtitle none">{t('support.subtitle')}</p>
       </div>
-      
+
       <div className="support-visual">
-        <img src={serviceIcon} alt="Service support" className="support-image" />
+        <img src={serviceIcon} alt="" className="support-image" aria-hidden />
       </div>
-      
-      <div className="support-cta none">
-        <Link to="/services" className="support-button">
-          {t('support.cta')}
-        </Link>
-      </div>
-    </div>
+    </Link>
   );
 };
 

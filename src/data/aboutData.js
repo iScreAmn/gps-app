@@ -1,6 +1,6 @@
 import {
   aboutImage,
-  mainLogo,
+  mainLogoWhite,
   konikaAbout,
   konikaAbout2,
   servicesAbout,
@@ -29,7 +29,7 @@ import {
 export const aboutCover = {
   image: aboutImage,
   imageAlt: 'cover',
-  logo: mainLogo,
+  logo: mainLogoWhite,
   logoAlt: 'GPS Logo',
 };
 

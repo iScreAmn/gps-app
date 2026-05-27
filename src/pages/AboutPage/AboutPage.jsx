@@ -326,7 +326,7 @@ const AboutPage = () => {
                 />
               </div>
               <figcaption className="about-hero__media-caption">
-                <span>GPS · Tbilisi</span>
+                <span>Archil Kurdiani #2</span>
                 <span>{new Date().getFullYear()}</span>
               </figcaption>
             </motion.figure>
