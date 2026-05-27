@@ -282,10 +282,6 @@ const ServicesCta = ({ t }) => (
         viewport={{ once: true, amount: 0.3 }}
         transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
       >
-        <span className="services-cta__eyebrow">
-          <span className="services-cta__eyebrow-dot" />
-          {t(servicesCta.eyebrowKey)}
-        </span>
         <h2 className="services-cta__title">{t(servicesCta.titleKey)}</h2>
         <p className="services-cta__desc">{t(servicesCta.descriptionKey)}</p>
         <div className="services-cta__actions">

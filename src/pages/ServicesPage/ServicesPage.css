@@ -758,26 +758,6 @@ body[data-theme="dark"] .services-card {
   border-top: 1px solid var(--hairline);
 }
 
-.services-cta__eyebrow {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.55rem;
-  font-family: var(--display);
-  font-size: 0.7rem;
-  font-weight: 600;
-  letter-spacing: 0.32em;
-  text-transform: uppercase;
-  color: var(--accent);
-}
-
-.services-cta__eyebrow-dot {
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background: var(--accent);
-  box-shadow: 0 0 14px color-mix(in srgb, var(--accent) 70%, transparent);
-}
-
 .services-cta__title {
   font-family: var(--display);
   font-size: clamp(2.2rem, 6vw, 3.5rem);
@@ -938,7 +918,34 @@ body[data-theme="dark"] .services-card {
   .services-cards { grid-template-columns: 1fr; }
 
   .services-segment__bigtype {
-    font-size: clamp(5.5rem, 26vw, 9rem);
+    font-size: clamp(4rem, 20vw, 6.5rem);
+  }
+
+  /* tighten vertical rhythm on phones */
+  .services-segments {
+    padding: 1rem 0 clamp(2rem, 6vh, 3rem);
+  }
+
+  .services-stream {
+    gap: clamp(2.5rem, 8vh, 4rem);
+    padding-top: 1rem;
+  }
+
+  .services-segment {
+    padding: 1rem 0;
+  }
+
+  .services-segment__head {
+    margin-top: clamp(3rem, 14vw, 4.5rem);
+    gap: 0.7rem;
+  }
+
+  .services-segment__inner {
+    gap: 1.75rem;
+  }
+
+  .services-cta {
+    padding: 0;
   }
 }
 
