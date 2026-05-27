@@ -82,7 +82,7 @@ body[data-theme="dark"] .header {
   align-items: center;
   gap: 0.5rem;
   padding: 0.5rem 1.25rem;
-  border-radius: 999px;
+  border-radius: 10px;
   background: linear-gradient(135deg, #822121, #dc2626);
   color: #fff;
   font-size: 0.775rem;
@@ -158,7 +158,7 @@ body[data-theme="dark"] .lang-separator {
   border: none;
   font-size: 1.25rem;
   padding: 0.5rem;
-  border-radius: 50%;
+  border-radius: 10px;
   transition: all var(--transition-fast);
   background-color: var(--light-hover-bg);
 }
