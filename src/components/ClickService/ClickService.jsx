@@ -42,9 +42,15 @@ const ClickService = () => {
     const update = () => {
       ticking = false;
       const rect = section.getBoundingClientRect();
-      const viewportH = window.innerHeight;
-      const total = section.offsetHeight - viewportH;
-      const scrolled = Math.min(Math.max(-rect.top, 0), total);
+      // sticky pins below the fixed site header; use its actual rendered height
+      const stickyEl = track.closest(".how-sticky");
+      const stickyH = stickyEl ? stickyEl.clientHeight : window.innerHeight;
+      const headerOffset = window.innerHeight - stickyH;
+      const total = section.offsetHeight - stickyH;
+      const scrolled = Math.min(
+        Math.max(-rect.top + headerOffset, 0),
+        total
+      );
       const progress = total > 0 ? scrolled / total : 0;
 
       const viewportEl = track.parentElement;
