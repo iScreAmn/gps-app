@@ -49,6 +49,9 @@ export { default as tmt } from './partners/tmt.png'
 export { default as goldensign } from './partners/goldensign.webp'
 export { default as develop } from './partners/develop.webp'
 
+export { default as recoSystems } from './partners/logos/recoSystems.webp'
+
+
 //Other Partners
 export { default as ideal } from './partners/logos/ideal.png'
 
@@ -142,5 +145,12 @@ export { default as iecho4 } from './products/iecho-PK0604/iecho4.webp';
 export { default as iecho5 } from './products/iecho-PK0604/iecho5.webp';
 export { default as iecho6 } from './products/iecho-PK0604/iecho6.webp';
 export { default as iecho7 } from './products/iecho-PK0604/iecho7.webp';
+
+// Laminators
+export { default as laminator1 } from './products/laminators/Recosystems RL 39s.webp';
+export { default as laminator2 } from './products/laminators/Recosystems RL 68s.webp';
+export { default as laminator3 } from './products/laminators/Recosystems RL 69s.webp';
+export { default as laminator4 } from './products/laminators/Recosystems RL 106.webp';
+
 
 
