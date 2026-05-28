@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
+// eslint-disable-next-line no-unused-vars
 import { motion, useReducedMotion } from "motion/react";
 import "./ClickService.css";
 
@@ -6,12 +7,12 @@ const STEPS = [
   {
     num: "01",
     title: "პრინტერის შეძენა აღარ გჭირდებათ",
-    text: "დაივიწყეთ ძვირადღირებული ტექნიკის შეძენა — ჩვენ უზრუნველვყოფთ პრინტერებს თქვენი საჭიროებების შესაბამისად.",
+    text: "მიიღეთ თანამედროვე პრინტერი მოქნილი პირობებით",
   },
   {
     num: "02",
-    title: "ტექნიკურ მომსახურებას ჩვენი გუნდი უზრუნველყოფს",
-    text: "სათადარიგო ნაწილები, რემონტი, კონსუმატივები — ყველაფერი ჩვენი პროფესიონალური გუნდის პასუხისმგებლობაა.",
+    title: "ტექნიკურ მომსახურებას ჩვენ ვუზრუნველყოფთ",
+    text: "ჩვენი გუნდი უზრუნველყოფს სრულ სერვისს და მუდმივ მხარდაჭერას",
   },
   {
     num: "03",
@@ -46,7 +47,9 @@ const ClickService = () => {
       const scrolled = Math.min(Math.max(-rect.top, 0), total);
       const progress = total > 0 ? scrolled / total : 0;
 
-      const maxX = Math.max(track.scrollWidth - window.innerWidth, 0);
+      const viewportEl = track.parentElement;
+      const viewportW = viewportEl ? viewportEl.clientWidth : window.innerWidth;
+      const maxX = Math.max(track.scrollWidth - viewportW, 0);
       track.style.transform = `translate3d(${-progress * maxX}px, 0, 0)`;
       bar.style.width = `${progress * 100}%`;
 
@@ -119,16 +122,9 @@ const ClickService = () => {
           </motion.p>
         </div>
 
-        <div className="how-head">
-          <h3 className="how-head-title">
-            CLICK სერვისი მარტივი პრინციპით მუშაობს:
-          </h3>
-          <span className="how-head-counter">
-            <span>{String(activeIndex + 1).padStart(2, "0")}</span>
-            <span className="how-head-counter-divider">/</span>
-            <span>{String(STEPS.length).padStart(2, "0")}</span>
-          </span>
-        </div>
+        <h3 className="how-head-title">
+          CLICK სერვისი მარტივი პრინციპით მუშაობს:
+        </h3>
 
         <div className="how-progress">
           <div ref={barRef} className="how-progress-bar" />
