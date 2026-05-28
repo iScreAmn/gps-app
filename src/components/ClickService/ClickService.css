@@ -20,7 +20,7 @@
   overflow: hidden;
   display: flex;
   flex-direction: column;
-  padding: clamp(32px, 4vh, 64px) var(--how-inset) clamp(32px, 4vh, 64px);
+  padding: clamp(32px, 8vh, 64px) var(--how-inset) clamp(32px, 4vh, 64px);
   box-sizing: border-box;
 }
 
