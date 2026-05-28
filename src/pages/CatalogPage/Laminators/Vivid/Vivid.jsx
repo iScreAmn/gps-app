@@ -9,6 +9,7 @@ const Vivid = () => {
   const { t } = useLanguage();
 
   const imageMap = {
+    'matrix-duo-md-460': laminator5,
     'matrix-duo-md-650': laminator5,
     'matrix-easymount-1200-double-hot': laminator6,
     'matrix-mx-530dp': laminator7,
@@ -42,7 +43,7 @@ const Vivid = () => {
                   <div className="office-equipment__specs">
                     {product.cardSpecs?.map((spec) => (
                       <span key={`${product.id}-${spec.label}`} className="spec">
-                        <strong>{spec.label}</strong> {spec.value}
+                        <strong>{spec.label}:</strong> <span className="spec__value">{spec.value}</span>
                       </span>
                     ))}
                   </div>

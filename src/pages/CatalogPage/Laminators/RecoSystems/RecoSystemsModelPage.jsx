@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { useLanguage } from '../../../../hooks/useLanguage';
-import { laminator1, laminator2, laminator3, laminator4 } from '../../../../assets/images';
+import { laminator1, laminator2, laminator3, laminator4, laminator11, laminator12 } from '../../../../assets/images';
 import recosystemsData from '../../../../database/brands/recosystems.json';
 import { Modal, CallbackForm } from '../../../../components/widgets/Modals';
 import '../../OfficeEquipment/DevelopModelPage.css';
@@ -18,7 +18,9 @@ const RecoSystemsModelPage = () => {
     'rl-39s': [laminator1],
     'rl-68s': [laminator2],
     'rl-69s': [laminator3],
-    'rl-106': [laminator4]
+    'rl-106': [laminator4],
+    'reco-lam-321-a3': [laminator11],
+    'royal-sovereign-es-400': [laminator12]
   };
 
   const images = product ? imageMap[product.id] || [] : [];
@@ -82,12 +84,25 @@ const RecoSystemsModelPage = () => {
           </div>
 
           <div className="develop-model__specs">
-            <h2 className="develop-model__specs-title">Specifications</h2>
-            {descriptionLines.map((line) => (
-              <div key={line} className="develop-model__spec-item">
-                <span className="develop-model__spec-value">{line}</span>
-              </div>
-            ))}
+            <h2 className="develop-model__specs-title">{language === 'ka' ? 'სპეციფიკაცია' : 'Specifications'}</h2>
+            {descriptionLines.map((line) => {
+              const colonIndex = line.indexOf(':');
+              if (colonIndex > -1) {
+                const label = line.slice(0, colonIndex).trim();
+                const value = line.slice(colonIndex + 1).trim();
+                return (
+                  <div key={line} className="develop-model__spec-item">
+                    <span className="develop-model__spec-label">{label}</span>
+                    <span className="develop-model__spec-value">{value}</span>
+                  </div>
+                );
+              }
+              return (
+                <div key={line} className="develop-model__spec-item develop-model__spec-item--full">
+                  <span className="develop-model__spec-value">{line}</span>
+                </div>
+              );
+            })}
           </div>
         </div>
       </div>

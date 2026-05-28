@@ -15,6 +15,7 @@ const VividModelPage = () => {
   const product = vividData.products.find((item) => item.id === modelId);
 
   const imageMap = {
+    'matrix-duo-md-460': [laminator5],
     'matrix-duo-md-650': [laminator5],
     'matrix-easymount-1200-double-hot': [laminator6],
     'matrix-mx-530dp': [laminator7],
@@ -94,11 +95,24 @@ const VividModelPage = () => {
 
           <div className="develop-model__specs">
             <h2 className="develop-model__specs-title">{specsTitle}</h2>
-            {descriptionLines.map((line) => (
-              <div key={line} className="develop-model__spec-item">
-                <span className="develop-model__spec-value">{line}</span>
-              </div>
-            ))}
+            {descriptionLines.map((line) => {
+              const colonIndex = line.indexOf(':');
+              if (colonIndex > -1) {
+                const label = line.slice(0, colonIndex).trim();
+                const value = line.slice(colonIndex + 1).trim();
+                return (
+                  <div key={line} className="develop-model__spec-item">
+                    <span className="develop-model__spec-label">{label}</span>
+                    <span className="develop-model__spec-value">{value}</span>
+                  </div>
+                );
+              }
+              return (
+                <div key={line} className="develop-model__spec-item develop-model__spec-item--full">
+                  <span className="develop-model__spec-value">{line}</span>
+                </div>
+              );
+            })}
           </div>
         </div>
       </div>
