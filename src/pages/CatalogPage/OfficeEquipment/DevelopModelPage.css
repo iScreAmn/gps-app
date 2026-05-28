@@ -127,9 +127,13 @@
   border-bottom: none;
 }
 
+.develop-model__spec-item--full {
+  grid-template-columns: 1fr;
+}
+
 .develop-model__spec-label {
-  font-weight: 600;
-  color: var(--color-text-secondary);
+  font-weight: 700;
+  color: var(--color-text);
   font-size: 0.95rem;
 }
 
@@ -137,6 +141,7 @@
   color: var(--color-text);
   font-size: 0.95rem;
   line-height: 1.6;
+  font-weight: 400;
 }
 
 /* Tablet */

@@ -152,6 +152,8 @@ export { default as laminator1 } from './products/laminators/Recosystems RL 39s.
 export { default as laminator2 } from './products/laminators/Recosystems RL 68s.webp';
 export { default as laminator3 } from './products/laminators/Recosystems RL 69s.webp';
 export { default as laminator4 } from './products/laminators/Recosystems RL 106.webp';
+export { default as laminator11 } from './products/laminators/reco-lam-321.webp';
+export { default as laminator12 } from './products/laminators/reco-lam2.webp';
 // Vivid
 export { default as laminator5 } from './products/laminators/vivid/Matrix Duo MD-650.webp';
 export { default as laminator6 } from './products/laminators/vivid/Matrix Easymount 1200 Double Hot.webp';

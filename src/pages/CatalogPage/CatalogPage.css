@@ -274,10 +274,20 @@ body[data-theme="dark"] .catalog-page .office-equipment__specs .spec {
 
 .catalog-page .office-equipment__specs .spec strong {
   color: var(--light-text);
+  font-weight: 700;
+}
+
+.catalog-page .office-equipment__specs .spec .spec__value {
+  font-weight: 400;
+  color: var(--light-text-secondary);
 }
 
 body[data-theme="dark"] .catalog-page .office-equipment__specs .spec strong {
   color: var(--dark-text);
+}
+
+body[data-theme="dark"] .catalog-page .office-equipment__specs .spec .spec__value {
+  color: var(--dark-text-secondary);
 }
 
 /* Supplies cards - partner-style */
