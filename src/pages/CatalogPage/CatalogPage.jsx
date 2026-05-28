@@ -223,7 +223,7 @@ const CatalogPage = () => {
                 />
               </Link>
               <Link
-                to={`/${language}/catalog/laminators?brand=vivid`}
+                to="/vivid"
                 className="catalog-page__laminators-brand-card"
               >
                 <img

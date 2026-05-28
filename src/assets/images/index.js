@@ -147,10 +147,19 @@ export { default as iecho6 } from './products/iecho-PK0604/iecho6.webp';
 export { default as iecho7 } from './products/iecho-PK0604/iecho7.webp';
 
 // Laminators
+// Recosystems
 export { default as laminator1 } from './products/laminators/Recosystems RL 39s.webp';
 export { default as laminator2 } from './products/laminators/Recosystems RL 68s.webp';
 export { default as laminator3 } from './products/laminators/Recosystems RL 69s.webp';
 export { default as laminator4 } from './products/laminators/Recosystems RL 106.webp';
+// Vivid
+export { default as laminator5 } from './products/laminators/vivid/Matrix Duo MD-650.webp';
+export { default as laminator6 } from './products/laminators/vivid/Matrix Easymount 1200 Double Hot.webp';
+export { default as laminator7 } from './products/laminators/vivid/Matrix MX-530DP.webp';
+export { default as laminator8 } from './products/laminators/vivid/Matrix Omni-Flow 370.webp';
+export { default as laminator9 } from './products/laminators/vivid/Matrix Omni-Flow 460.webp';
+export { default as laminator10 } from './products/laminators/vivid/Matrix Take-Up Unit.webp';
+
 
 
 

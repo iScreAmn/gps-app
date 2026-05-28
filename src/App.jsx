@@ -26,6 +26,8 @@ import ProfessionalEquipment from './pages/CatalogPage/ProfessionalEquipment/Pro
 import ProfessionalModelPage from './pages/CatalogPage/ProfessionalEquipment/ProfessionalModelPage';
 import RecoSystems from './pages/CatalogPage/Laminators/RecoSystems/RecoSystems';
 import RecoSystemsModelPage from './pages/CatalogPage/Laminators/RecoSystems/RecoSystemsModelPage';
+import Vivid from './pages/CatalogPage/Laminators/Vivid/Vivid';
+import VividModelPage from './pages/CatalogPage/Laminators/Vivid/VividModelPage';
 import ScannerPage from './pages/ScannerPage/ScannerPage';
 import InfoPage from './pages/InfoPage/InfoPage';
 import './App.css';
@@ -51,6 +53,8 @@ function App() {
               <Route path="/ka/professional-equipment/develop/:modelId" element={<ProfessionalModelPage />} />
               <Route path="/ka/recosystems" element={<RecoSystems />} />
               <Route path="/ka/recosystems/:modelId" element={<RecoSystemsModelPage />} />
+              <Route path="/ka/vivid" element={<Vivid />} />
+              <Route path="/ka/vivid/:modelId" element={<VividModelPage />} />
               <Route path="/ka/product/:id" element={<ProductPage />} />
               <Route path="/ka/about" element={<AboutPage />} />
               <Route path="/ka/services" element={<ServicesPage />} />
@@ -78,6 +82,8 @@ function App() {
               <Route path="/en/professional-equipment/develop/:modelId" element={<ProfessionalModelPage />} />
               <Route path="/en/recosystems" element={<RecoSystems />} />
               <Route path="/en/recosystems/:modelId" element={<RecoSystemsModelPage />} />
+              <Route path="/en/vivid" element={<Vivid />} />
+              <Route path="/en/vivid/:modelId" element={<VividModelPage />} />
               <Route path="/en/product/:id" element={<ProductPage />} />
               <Route path="/en/about" element={<AboutPage />} />
               <Route path="/en/services" element={<ServicesPage />} />
@@ -103,6 +109,8 @@ function App() {
               <Route path="/professional-equipment/develop/:modelId" element={<ProfessionalModelPage />} />
               <Route path="/recosystems" element={<RecoSystems />} />
               <Route path="/recosystems/:modelId" element={<RecoSystemsModelPage />} />
+              <Route path="/vivid" element={<Vivid />} />
+              <Route path="/vivid/:modelId" element={<VividModelPage />} />
               <Route path="/scanner" element={<ScannerPage />} />
               <Route path="/scaner" element={<Navigate to="/scanner" replace />} />
               <Route path="/info" element={<InfoPage />} />
