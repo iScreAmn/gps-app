@@ -1,21 +1,24 @@
 import React, { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { useLanguage } from '../../../../hooks/useLanguage';
-import { laminator1 } from '../../../../assets/images';
+import { laminator1, laminator2, laminator3, laminator4 } from '../../../../assets/images';
 import recosystemsData from '../../../../database/brands/recosystems.json';
 import { Modal, CallbackForm } from '../../../../components/widgets/Modals';
 import '../../OfficeEquipment/DevelopModelPage.css';
 
 const RecoSystemsModelPage = () => {
   const { modelId } = useParams();
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isSuccessModal, setIsSuccessModal] = useState(false);
 
   const product = recosystemsData.products.find((item) => item.id === modelId);
 
   const imageMap = {
-    'rl-39s': [laminator1]
+    'rl-39s': [laminator1],
+    'rl-68s': [laminator2],
+    'rl-69s': [laminator3],
+    'rl-106': [laminator4]
   };
 
   const images = product ? imageMap[product.id] || [] : [];
@@ -45,6 +48,10 @@ const RecoSystemsModelPage = () => {
       </div>
     );
   }
+
+  const descriptionLines = language === 'en' && product.descriptionLinesEn
+    ? product.descriptionLinesEn
+    : product.descriptionLines;
 
   return (
     <div className="develop-model">
@@ -76,7 +83,7 @@ const RecoSystemsModelPage = () => {
 
           <div className="develop-model__specs">
             <h2 className="develop-model__specs-title">Specifications</h2>
-            {product.descriptionLines.map((line) => (
+            {descriptionLines.map((line) => (
               <div key={line} className="develop-model__spec-item">
                 <span className="develop-model__spec-value">{line}</span>
               </div>

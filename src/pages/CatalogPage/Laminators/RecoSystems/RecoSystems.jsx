@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { useLanguage } from '../../../../hooks/useLanguage';
-import { laminator1 } from '../../../../assets/images';
+import { laminator1, laminator2, laminator3, laminator4 } from '../../../../assets/images';
 import recosystemsData from '../../../../database/brands/recosystems.json';
 import '../../CatalogPage.css';
 
@@ -9,7 +9,10 @@ const RecoSystems = () => {
   const { t } = useLanguage();
 
   const imageMap = {
-    'rl-39s': laminator1
+    'rl-39s': laminator1,
+    'rl-68s': laminator2,
+    'rl-69s': laminator3,
+    'rl-106': laminator4
   };
 
   return (

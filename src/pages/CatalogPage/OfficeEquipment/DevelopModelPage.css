@@ -60,7 +60,7 @@
 
 .develop-model__image-big {
   width: 100%;
-  height: auto;
+  height: 250px;
   max-height: 600px;
   object-fit: contain;
   cursor: default;
