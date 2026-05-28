@@ -1,10 +1,38 @@
-import { developPrinter1, developPro1, developPro2, developPro3, developPro4, nocai1, nocaiArt, PK0604, PK0604plus, PK0705, PK0705plus, PK1209, ink1, ink2, ink3, plotterCutting } from '../assets/images';
+import { developPrinter1, developPro1, developPro2, developPro3, developPro4, nocai1, nocaiArt, PK0604, PK0604plus, PK0705, PK0705plus, PK1209, ink1, ink2, ink3, plotterCutting, laminator1, laminator2, laminator3, laminator4, laminator5, laminator6, laminator7, laminator8, laminator9, laminator10, laminator11, laminator12 } from '../assets/images';
 import developData from '../database/brands/develop.json';
 import iechoData from '../database/brands/iecho.json';
+import vividData from '../database/brands/vivid.json';
+import recosystemsData from '../database/brands/recosystems.json';
 import { professionalData } from './professionalData';
 import { nocaiData } from './nocaiData';
 
 const iechoImageMap = { pk0604: PK0604, 'pk0604-plus': PK0604plus, pk0705: PK0705, 'pk0705-plus': PK0705plus, 'pk1209-pro-max': PK1209 };
+
+const vividImageMap = {
+  'matrix-duo-md-460': laminator5,
+  'matrix-duo-md-650': laminator5,
+  'matrix-easymount-1200-double-hot': laminator6,
+  'matrix-mx-530dp': laminator7,
+  'matrix-omni-flow-370': laminator8,
+  'matrix-omni-flow-460': laminator9,
+  'matrix-take-up-unit': laminator10
+};
+
+const recosystemsImageMap = {
+  'rl-39s': laminator1,
+  'rl-68s': laminator2,
+  'rl-69s': laminator3,
+  'rl-106': laminator4,
+  'reco-lam-321-a3': laminator11,
+  'royal-sovereign-es-400': laminator12
+};
+
+function buildLaminatorDescription(p, language) {
+  const lines = (language === 'en' && p.descriptionLinesEn) ? p.descriptionLinesEn : p.descriptionLines;
+  const specs = Array.isArray(p.cardSpecs) ? p.cardSpecs.map((s) => `${s.label} ${s.value}`).join(' ') : '';
+  const short = language === 'en' ? p.shortDescriptionEn : p.shortDescriptionKa;
+  return [short, specs, Array.isArray(lines) ? lines.join(' ') : ''].filter(Boolean).join(' ');
+}
 
 export function getSearchableProducts(language, t) {
   const developProducts = developData?.products?.length > 0
@@ -85,6 +113,32 @@ export function getSearchableProducts(language, t) {
       }))
     : [];
 
+  const vividProducts = vividData?.products?.length > 0
+    ? vividData.products.map((p) => ({
+        id: `vivid-${p.id}`,
+        name: p.name,
+        brand: 'Vivid',
+        category: 'laminators',
+        description: buildLaminatorDescription(p, language),
+        image: vividImageMap[p.id] || laminator5,
+        price: t('catalog.price_on_request'),
+        link: `/${language}/vivid/${p.id}`
+      }))
+    : [];
+
+  const recosystemsProducts = recosystemsData?.products?.length > 0
+    ? recosystemsData.products.map((p) => ({
+        id: `recosystems-${p.id}`,
+        name: p.name,
+        brand: 'RecoSystems',
+        category: 'laminators',
+        description: buildLaminatorDescription(p, language),
+        image: recosystemsImageMap[p.id] || laminator1,
+        price: t('catalog.price_on_request'),
+        link: `/${language}/recosystems/${p.id}`
+      }))
+    : [];
+
   const plotterCuttingProduct = {
     id: 'plotter-cutting-unifol',
     name: t('catalog.plotter_cutting_solutions'),
@@ -94,7 +148,7 @@ export function getSearchableProducts(language, t) {
     link: `/${language}/plotter-catalog`,
   };
 
-  return [...developProducts, ...professionalProducts, ...iechoProducts, ...nocaiPlotterProducts, ...inksProducts, plotterCuttingProduct].map((p) => ({
+  return [...developProducts, ...professionalProducts, ...iechoProducts, ...vividProducts, ...recosystemsProducts, ...nocaiPlotterProducts, ...inksProducts, plotterCuttingProduct].map((p) => ({
     ...p,
     link: p.link || `/${language}/product/${p.id}`
   }));
