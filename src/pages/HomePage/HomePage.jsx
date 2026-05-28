@@ -6,6 +6,7 @@ import SpecialOffers from "../../components/SpecialOffers/SpecialOffers";
 import TempContent from "../../components/TempContent/TempContent";
 import PlotterCuttingSection from "../../components/PlotterCuttingSection/PlotterCuttingSection";
 import OnlineOrder from "../../components/OnlineOrder/OnlineOrder";
+import ClickService from "../../components/ClickService/ClickService";
 import NewsletterCTA from "../../components/NewsletterCTA/NewsletterCTA";
 import LedModules from "../../components/LedModules/LedModules";
 import SpecialDiscounts from "../../components/SpecialDiscounts/SpecialDiscounts";
@@ -18,6 +19,7 @@ const HomePage = () => {
       <PageAmbientBackground />
       <Hero />
       <PartnersSection />
+      <ClickService />
       <OnlineOrder />
       <TempContent />
       <PlotterCuttingSection />
