@@ -4,7 +4,7 @@ import { useLanguage } from "../../hooks/useLanguage";
 import ProductCard from '../../components/ProductCard/ProductCard';
 import CategoryCards from '../../components/CategoryCards/CategoryCards';
 import { searchProducts } from '../../utils/productSearch';
-import { developPrinter1, developPrinter3, developPrinter4, developPrinter5, developPrinter6, developPro1, developPro2, developPro3, developPro4, nocai, PK0604, PK0604plus, PK0705, PK0705plus, PK1209, plotterCutting, inks } from '../../assets/images';
+import { developPrinter1, developPrinter3, developPrinter4, developPrinter5, developPrinter6, developPro1, developPro2, developPro3, developPro4, nocai, PK0604, PK0604plus, PK0705, PK0705plus, PK1209, plotterCutting, inks, recoSystems, vivid } from '../../assets/images';
 import developData from '../../database/brands/develop.json';
 import { professionalData } from '../../data/professionalData';
 import iechoData from '../../database/brands/iecho.json';
@@ -201,6 +201,36 @@ const CatalogPage = () => {
               >
                 <img src={inks} alt={t('catalog.inks')} className="supplies__card-img" />
                 <h3 className="supplies__card-title">{t('catalog.inks')}</h3>
+              </Link>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Laminators Brands Section */}
+      {category === 'laminators' && !searchQuery && (
+        <div className="office-equipment">
+          <div className="container">
+            <div className="catalog-page__laminators-brands">
+              <Link
+                to="/recosystems"
+                className="catalog-page__laminators-brand-card"
+              >
+                <img
+                  src={recoSystems}
+                  alt="recoSystems"
+                  className="catalog-page__laminators-brand-logo"
+                />
+              </Link>
+              <Link
+                to={`/${language}/catalog/laminators?brand=vivid`}
+                className="catalog-page__laminators-brand-card"
+              >
+                <img
+                  src={vivid}
+                  alt="vivid"
+                  className="catalog-page__laminators-brand-logo"
+                />
               </Link>
             </div>
           </div>

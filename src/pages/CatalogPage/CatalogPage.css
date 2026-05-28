@@ -1,5 +1,5 @@
 .catalog-page {
-  padding-bottom: 60px;
+  padding: 4rem 0;
 }
 
 .catalog-page > .container {
@@ -90,6 +90,72 @@ body[data-theme="dark"] .catalog-page__plotters-brand-card {
   max-width: 100%;
   max-height: 100%;
   object-fit: contain;
+}
+
+/* Laminators brands (same pattern as cutting systems) */
+.catalog-page__laminators-brands {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  max-width: 1200px;
+  margin: 2rem auto 0;
+}
+
+.catalog-page__laminators-brand-card {
+  width: 400px;
+  height: 150px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 3rem 2rem;
+  background: var(--light-card-bg);
+  box-shadow: var(--light-shadow);
+  border-radius: 20px;
+  transition: all var(--transition-normal);
+  text-decoration: none;
+  position: relative;
+  overflow: hidden;
+}
+
+body[data-theme="dark"] .catalog-page__laminators-brand-card {
+  box-shadow: var(--dark-shadow);
+}
+
+.catalog-page__laminators-brand-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, var(--primary-color), var(--accent-color));
+  transform: scaleX(0);
+  transition: transform var(--transition-normal);
+}
+
+.catalog-page__laminators-brand-card:hover::before {
+  transform: scaleX(1);
+}
+
+.catalog-page__laminators-brand-card:hover {
+  transform: translateY(-12px);
+  box-shadow: 0 24px 48px rgba(220, 38, 38, 0.15);
+}
+
+body[data-theme="dark"] .catalog-page__laminators-brand-card:hover {
+  box-shadow: 0 24px 48px rgba(220, 38, 38, 0.25);
+}
+
+.catalog-page__laminators-brand-logo {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  transition: all var(--transition-normal);
+}
+
+.catalog-page__laminators-brand-card:hover .catalog-page__laminators-brand-logo {
+  filter: brightness(1.1);
+  transform: scale(1.05);
 }
 
 /* Card core styles align to product-card */
@@ -388,6 +454,15 @@ body[data-theme="dark"] .filter-group select {
   .catalog-page .office-equipment__card-title {
     font-size: 1rem;
   }
+
+  .catalog-page__laminators-brands {
+    gap: 1.5rem;
+  }
+
+  .catalog-page__laminators-brand-card {
+    padding: 2rem 1.5rem;
+    min-height: 180px;
+  }
 }
 
 @media (max-width: 480px) {
@@ -427,6 +502,16 @@ body[data-theme="dark"] .filter-group select {
   .supplies__card-title {
     font-size: 1rem;
     padding: 0.75rem 1rem;
+  }
+
+  .catalog-page__laminators-brands {
+    gap: 1rem;
+    flex-direction: column;
+  }
+
+  .catalog-page__laminators-brand-card {
+    padding: 1.5rem 1rem;
+    min-height: 160px;
   }
 }
 
