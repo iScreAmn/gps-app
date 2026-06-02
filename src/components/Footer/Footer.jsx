@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useMemo } from "react";
 import { Link } from "react-router-dom";
 import { useLanguage } from "../../hooks/useLanguage";
 import { useTheme } from "../../contexts/ThemeContext";
@@ -13,6 +13,19 @@ const Footer = () => {
   const { language, t } = useLanguage();
   const { theme } = useTheme();
   const currentYear = new Date().getFullYear();
+  const portfolioLink = useMemo(() => {
+    const url = new URL("https://dj-myportfolio.vercel.app/");
+    const sourceHost =
+      typeof window !== "undefined"
+        ? window.location.hostname.replace(/^www\./, "")
+        : "unknown-host";
+
+    url.searchParams.set("utm_source", sourceHost || "unknown-host");
+    url.searchParams.set("utm_medium", "referral");
+    url.searchParams.set("utm_campaign", "gps_app_footer_credit");
+
+    return url.toString();
+  }, []);
 
   // Determine logo based on theme
   const currentLogo = theme === "dark" ? mainLogoWhite : mainLogo;
@@ -86,6 +99,14 @@ const Footer = () => {
               &copy; {currentYear} Georgian Polygraph Services.{" "}
               {t("footer.all_rights")}.
             </p>
+            <a
+              href={portfolioLink}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="footer-credit-link"
+            >
+              Developed by: «DJ Studio»
+            </a>
             <Link
               to={`/${language}/privacy-policy`}
               className="footer-bottom-link"

@@ -271,6 +271,21 @@ body[data-theme="dark"] .copyright-social-link:hover {
   transition: all var(--transition-fast);
 }
 
+.footer-credit-link {
+  color: var(--light-text-secondary);
+  text-decoration: none;
+  font-size: 0.9rem;
+  transition: color var(--transition-fast);
+}
+
+.footer-credit-link:hover {
+  color: var(--primary-red);
+}
+
+body[data-theme="dark"] .footer-credit-link {
+  color: var(--dark-text-secondary);
+}
+
 .footer-bottom-link:hover::after {
   width: 100%;
 }

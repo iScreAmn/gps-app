@@ -1,11 +1,84 @@
-import { useCallback, useEffect, useId, useRef, useState } from "react";
+import { useCallback, useEffect, useId, useMemo, useRef, useState } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
 import { Html5Qrcode } from "html5-qrcode";
+import {
+  FiUpload,
+  FiTrash2,
+  FiZap,
+  FiX,
+  FiSave,
+  FiMinus,
+  FiPlus,
+  FiMaximize,
+} from "react-icons/fi";
 import qrcodeSuccessSound from "../../assets/files/qrcode.mp3";
+import { exportScansToExcel, scansToXlsxBase64 } from "../../utils/excelExport";
 import "./Scanner.css";
+
+function ScanIcon({ className }) {
+  return (
+    <svg
+      className={className}
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      aria-hidden="true"
+    >
+      <path d="M3 7V5a2 2 0 0 1 2-2h2" />
+      <path d="M17 3h2a2 2 0 0 1 2 2v2" />
+      <path d="M21 17v2a2 2 0 0 1-2 2h-2" />
+      <path d="M7 21H5a2 2 0 0 1-2-2v-2" />
+      <path d="M7 12h10" />
+    </svg>
+  );
+}
+
+function EqualizerIcon({ className }) {
+  return (
+    <svg
+      className={className}
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      aria-hidden="true"
+    >
+      <line x1="6" y1="6" x2="6" y2="18" />
+      <line x1="12" y1="3" x2="12" y2="21" />
+      <line x1="18" y1="8" x2="18" y2="16" />
+    </svg>
+  );
+}
+
+const API_URL = (() => {
+  const envUrl =
+    import.meta.env.VITE_API_URL && String(import.meta.env.VITE_API_URL).trim();
+  if (envUrl) return envUrl.replace(/\/$/, "");
+  if (typeof window !== "undefined") {
+    const host = window.location.hostname;
+    if (host === "localhost" || host === "127.0.0.1") {
+      return `http://${host}:3001`;
+    }
+    return "https://gps-app-server.vercel.app";
+  }
+  return "https://gps-app-server.vercel.app";
+})();
 
 const STORAGE_KEY = "scanner_scans_v1";
 const SHEET_TRANSITION_MS = 280;
 const SHEET_SWIPE_CLOSE_PX = 100;
+
+function clearReaderDomById(id) {
+  if (typeof document === "undefined") return;
+  const el = document.getElementById(id);
+  if (el) {
+    el.innerHTML = "";
+  }
+}
 
 /** GS1 Application Identifier — убираем известные префиксы (дополняй knownPrefixes при новых AI). */
 function normalizeCode(raw) {
@@ -126,6 +199,79 @@ function isCameraContextOk() {
   return Boolean(navigator.mediaDevices?.getUserMedia);
 }
 
+const TARGET_ZOOM_2X = 2;
+
+/** Chrome/Android: zoom { min, max, step }; часть устройств — без zoom. */
+function isZoomSupportedByCapabilities(caps) {
+  if (!caps || caps.zoom == null) {
+    return false;
+  }
+  const z = caps.zoom;
+  if (typeof z === "object" && "max" in z && typeof z.max === "number") {
+    return z.max > (typeof z.min === "number" ? z.min : 1);
+  }
+  return true;
+}
+
+function getZoom1xValue(caps) {
+  if (!caps?.zoom) {
+    return 1;
+  }
+  const z = caps.zoom;
+  if (typeof z === "object" && typeof z.min === "number") {
+    return z.min;
+  }
+  return 1;
+}
+
+function getZoom2xClampedValue(caps) {
+  if (!caps?.zoom) {
+    return TARGET_ZOOM_2X;
+  }
+  const z = caps.zoom;
+  if (typeof z === "object" && typeof z.max === "number") {
+    const min = typeof z.min === "number" ? z.min : 1;
+    const t = Math.min(TARGET_ZOOM_2X, z.max);
+    return Math.max(min, t);
+  }
+  return TARGET_ZOOM_2X;
+}
+
+/**
+ * Haptic on successful read. Decode callbacks are not a user gesture; Chrome may ignore
+ * the first `vibrate` while a touch is active — retry on next task + after ~100ms.
+ * Safari (incl. iOS): `vibrate` is missing — return false, UI can show a visual bump.
+ */
+function triggerScanHaptic() {
+  if (typeof globalThis === "undefined") return false;
+  const nav = globalThis.navigator;
+  if (typeof nav?.vibrate !== "function") return false;
+
+  const ms = 100;
+  let settled = false;
+  const once = () => {
+    if (settled) return;
+    let ok = true;
+    try {
+      nav.vibrate(0);
+    } catch {
+      /* ignore */
+    }
+    try {
+      const r = nav.vibrate(ms);
+      if (r === false) ok = false;
+    } catch {
+      ok = false;
+    }
+    if (ok) settled = true;
+  };
+
+  once();
+  setTimeout(once, 0);
+  setTimeout(once, 100);
+  return true;
+}
+
 async function postScan(code) {
   const timestamp = new Date().toISOString();
   const res = await fetch("/api/scan", {
@@ -140,7 +286,16 @@ async function postScan(code) {
 
 export default function Scanner() {
   const readerId = useId().replace(/:/g, "");
-  const [cameraOpen, setCameraOpen] = useState(false);
+  const location = useLocation();
+  const navigate = useNavigate();
+  const normalizedPath = (location.pathname || "/").replace(/\/$/, "") || "/";
+  const isLive = /\/scanner\/scan$/.test(normalizedPath);
+  const listPath = isLive
+    ? normalizedPath.replace(/\/scanner\/scan$/, "/scanner")
+    : normalizedPath;
+  const scanPath = `${listPath}/scan`;
+
+  const [cameraOpen, setCameraOpen] = useState(() => isLive);
   const [lastScan, setLastScan] = useState(null);
   const [scans, setScans] = useState(() => loadScansFromStorage());
   const [error, setError] = useState(null);
@@ -153,8 +308,21 @@ export default function Scanner() {
   const [isSheetDragging, setIsSheetDragging] = useState(false);
   const [draftProductName, setDraftProductName] = useState("");
   const [draftCount, setDraftCount] = useState("1");
+  const [hapticFallbackBump, setHapticFallbackBump] = useState(false);
+  const [torchOn, setTorchOn] = useState(false);
+  const [isTorchSupported, setIsTorchSupported] = useState(false);
+  const [isZoom2x, setIsZoom2x] = useState(false);
+  const [isZoomSupported, setIsZoomSupported] = useState(false);
+  const [exportFlow, setExportFlow] = useState(null);
+  const [exportEmail, setExportEmail] = useState("");
+  const [exportSending, setExportSending] = useState(false);
+  const [exportEmailError, setExportEmailError] = useState(null);
 
   const instanceRef = useRef(null);
+  const readerIdRef = useRef(readerId);
+  readerIdRef.current = readerId;
+  const cameraRunIdRef = useRef(0);
+  const liveSoundPrimedRef = useRef(false);
   const lastCodeRef = useRef(null);
   const stoppingRef = useRef(false);
   const successAudioRef = useRef(null);
@@ -162,6 +330,7 @@ export default function Scanner() {
   const sheetStartPtrYRef = useRef(0);
   const sheetActiveDragRef = useRef(false);
   const sheetCloseTimerRef = useRef(null);
+  const hapticFallbackTimerRef = useRef(null);
   const scansRef = useRef(scans);
   scansRef.current = scans;
 
@@ -271,6 +440,9 @@ export default function Scanner() {
       if (sheetCloseTimerRef.current) {
         clearTimeout(sheetCloseTimerRef.current);
       }
+      if (hapticFallbackTimerRef.current) {
+        clearTimeout(hapticFallbackTimerRef.current);
+      }
     };
   }, []);
 
@@ -318,38 +490,126 @@ export default function Scanner() {
 
   const stopScanner = useCallback(async () => {
     const qr = instanceRef.current;
-    if (!qr || stoppingRef.current) return;
+    if (!qr) {
+      clearReaderDomById(readerIdRef.current);
+      return;
+    }
+    if (stoppingRef.current) {
+      return;
+    }
     stoppingRef.current = true;
     try {
       if (qr.isScanning) {
+        try {
+          const cap = qr.getRunningTrackCapabilities();
+          if (cap.torch) {
+            await qr.applyVideoConstraints({ advanced: [{ torch: false }] });
+          }
+        } catch {
+          /* ignore */
+        }
         await qr.stop();
       }
-      qr.clear();
+      setTorchOn(false);
+      setIsTorchSupported(false);
+      setIsZoom2x(false);
+      setIsZoomSupported(false);
+      try {
+        qr.clear();
+      } catch {
+        /* noop */
+      }
     } catch {
       /* already stopped */
     } finally {
       instanceRef.current = null;
       stoppingRef.current = false;
+      clearReaderDomById(readerIdRef.current);
     }
   }, []);
 
+  const toggleTorch = useCallback(async () => {
+    const qr = instanceRef.current;
+    if (!qr?.isScanning) return;
+    const next = !torchOn;
+    try {
+      const cap = qr.getRunningTrackCapabilities();
+      const adv = { torch: next };
+      if (isZoomSupportedByCapabilities(cap)) {
+        adv.zoom = isZoom2x ? getZoom2xClampedValue(cap) : getZoom1xValue(cap);
+      }
+      await qr.applyVideoConstraints({ advanced: [adv] });
+      setTorchOn(next);
+    } catch (err) {
+      console.error("Failed to toggle torch", err);
+    }
+  }, [torchOn, isZoom2x]);
+
+  const toggleZoom2x = useCallback(async () => {
+    const qr = instanceRef.current;
+    if (!qr?.isScanning || !isZoomSupported) {
+      return;
+    }
+    const next = !isZoom2x;
+    try {
+      const cap = qr.getRunningTrackCapabilities();
+      const value = next ? getZoom2xClampedValue(cap) : getZoom1xValue(cap);
+      const adv = { zoom: value };
+      if (Boolean(cap.torch) && torchOn) {
+        adv.torch = true;
+      }
+      await qr.applyVideoConstraints({ advanced: [adv] });
+      setIsZoom2x(next);
+    } catch (err) {
+      console.error("Failed to set camera zoom", err);
+    }
+  }, [isZoom2x, isZoomSupported, torchOn]);
+
   useEffect(() => {
-    if (!cameraOpen) return undefined;
+    if (!cameraOpen) {
+      return undefined;
+    }
 
     if (!isCameraContextOk()) {
       setError(
         "Камера доступна только по HTTPS (или на localhost). Откройте сайт по защищенному соединению."
       );
       setCameraOpen(false);
+      if (isLive) {
+        navigate(listPath, { replace: true });
+      }
       return undefined;
     }
 
     lastCodeRef.current = null;
     setError(null);
 
+    const myRun = ++cameraRunIdRef.current;
+    let cancelled = false;
+
     const scanConfig = {
       fps: 10,
-      qrbox: { width: 260, height: 260 },
+      /* Горизонтальная полоса (1D / code-128 / EAN) — библиотека рисует #qr-shaded-region под неё. */
+      qrbox: (viewfinderWidth, viewfinderHeight) => {
+        const w = Math.max(2, Math.floor(viewfinderWidth * 0.92));
+        const h = Math.max(2, Math.floor(viewfinderHeight * 0.3));
+        return { width: w, height: h };
+      },
+    };
+
+    const syncTrackCapabilities = (qr) => {
+      try {
+        const cap = qr.getRunningTrackCapabilities();
+        setIsTorchSupported(Boolean(cap.torch));
+        setTorchOn(false);
+        setIsZoomSupported(isZoomSupportedByCapabilities(cap));
+        setIsZoom2x(false);
+      } catch {
+        setIsTorchSupported(false);
+        setTorchOn(false);
+        setIsZoomSupported(false);
+        setIsZoom2x(false);
+      }
     };
 
     const onSuccess = async (decodedText) => {
@@ -357,10 +617,20 @@ export default function Scanner() {
       if (scanRecord.cleanCode === lastCodeRef.current) return;
       lastCodeRef.current = scanRecord.cleanCode;
 
+      const hapticOn = triggerScanHaptic();
+      if (!hapticOn) {
+        if (hapticFallbackTimerRef.current) {
+          clearTimeout(hapticFallbackTimerRef.current);
+        }
+        setHapticFallbackBump(true);
+        hapticFallbackTimerRef.current = window.setTimeout(() => {
+          setHapticFallbackBump(false);
+          hapticFallbackTimerRef.current = null;
+        }, 220);
+      }
       playSuccessSound();
 
       await stopScanner();
-      setCameraOpen(false);
       setLastScan(scanRecord);
       setPostError(null);
       setScans((prev) => {
@@ -369,10 +639,22 @@ export default function Scanner() {
         return next;
       });
 
+      let postFailed = false;
       try {
         await postScan(scanRecord.cleanCode);
       } catch {
         setPostError("Не удалось отправить данные на сервер");
+        postFailed = true;
+      }
+
+      if (postFailed) {
+        setCameraOpen(false);
+        return;
+      }
+      if (isLive) {
+        navigate(listPath, { replace: true });
+      } else {
+        setCameraOpen(false);
       }
     };
 
@@ -380,10 +662,31 @@ export default function Scanner() {
       /* ignore noisy frame errors */
     };
 
-    const qr = new Html5Qrcode(readerId, { verbose: false });
-    instanceRef.current = qr;
+    (async () => {
+      const waitMs = 80;
+      const deadline = Date.now() + 4000;
+      while (stoppingRef.current && Date.now() < deadline) {
+        await new Promise((r) => {
+          setTimeout(r, waitMs);
+        });
+      }
+      if (myRun !== cameraRunIdRef.current || cancelled) {
+        return;
+      }
+      await stopScanner();
+      if (myRun !== cameraRunIdRef.current || cancelled) {
+        return;
+      }
+      clearReaderDomById(readerId);
 
-    const start = async () => {
+      const qr = new Html5Qrcode(readerId, { verbose: false });
+      if (myRun !== cameraRunIdRef.current || cancelled) {
+        return;
+      }
+      instanceRef.current = qr;
+      if (myRun !== cameraRunIdRef.current || cancelled) {
+        return;
+      }
       try {
         await qr.start(
           { facingMode: "environment" },
@@ -391,13 +694,29 @@ export default function Scanner() {
           onSuccess,
           onError
         );
+        if (myRun !== cameraRunIdRef.current || cancelled) {
+          await stopScanner();
+          return;
+        }
+        syncTrackCapabilities(qr);
       } catch (e1) {
+        if (cancelled || myRun !== cameraRunIdRef.current) {
+          return;
+        }
         try {
           const devices = await Html5Qrcode.getCameras();
           if (!devices.length) {
             throw new Error("Камеры не найдены");
           }
+          if (myRun !== cameraRunIdRef.current || cancelled) {
+            return;
+          }
           await qr.start(devices[0].id, scanConfig, onSuccess, onError);
+          if (myRun !== cameraRunIdRef.current || cancelled) {
+            await stopScanner();
+            return;
+          }
+          syncTrackCapabilities(qr);
         } catch (e2) {
           const msg =
             e2?.message ||
@@ -411,30 +730,75 @@ export default function Scanner() {
             /* noop */
           }
           instanceRef.current = null;
+          clearReaderDomById(readerId);
+          if (isLive) {
+            navigate(listPath, { replace: true });
+          }
         }
       }
-    };
-
-    start();
+    })();
 
     return () => {
-      void stopScanner();
+      cancelled = true;
+      cameraRunIdRef.current += 1;
+      void (async () => {
+        await stopScanner();
+        clearReaderDomById(readerId);
+      })();
     };
-  }, [cameraOpen, playSuccessSound, readerId, stopScanner]);
+  }, [
+    cameraOpen,
+    playSuccessSound,
+    readerId,
+    stopScanner,
+    isLive,
+    listPath,
+    navigate,
+  ]);
 
-  const handleScanClick = () => {
+  const handleOpenScan = useCallback(() => {
+    if (hapticFallbackTimerRef.current) {
+      clearTimeout(hapticFallbackTimerRef.current);
+      hapticFallbackTimerRef.current = null;
+    }
+    setHapticFallbackBump(false);
     primeSuccessSound();
     setError(null);
     setPostError(null);
     setLastScan(null);
-    setCameraOpen(true);
-  };
+    navigate(scanPath);
+  }, [navigate, scanPath, primeSuccessSound]);
 
-  const handleCloseCamera = async () => {
+  const handleCloseCamera = useCallback(async () => {
     setError(null);
     await stopScanner();
-    setCameraOpen(false);
-  };
+    if (isLive) {
+      navigate(listPath, { replace: true });
+    } else {
+      setCameraOpen(false);
+    }
+  }, [isLive, listPath, navigate, stopScanner]);
+
+  useEffect(() => {
+    if (!isLive || !cameraOpen) {
+      return undefined;
+    }
+    const onKey = (e) => {
+      if (e.key === "Escape") {
+        void handleCloseCamera();
+      }
+    };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [isLive, cameraOpen, handleCloseCamera]);
+
+  const onLivePointerDown = useCallback(() => {
+    if (liveSoundPrimedRef.current) {
+      return;
+    }
+    liveSoundPrimedRef.current = true;
+    primeSuccessSound();
+  }, [primeSuccessSound]);
 
   const handleClearHistory = () => {
     if (sheetCloseTimerRef.current) {
@@ -565,6 +929,71 @@ export default function Scanner() {
     setDeleteItemConfirmId(null);
   };
 
+  const handleOpenExportModal = useCallback(() => {
+    setExportFlow("menu");
+    setExportEmail("");
+    setExportEmailError(null);
+  }, []);
+
+  const handleCloseExportModal = useCallback(() => {
+    if (exportSending) return;
+    setExportFlow(null);
+    setExportEmail("");
+    setExportEmailError(null);
+  }, [exportSending]);
+
+  const handleExportSaveToDevice = useCallback(() => {
+    exportScansToExcel(scans);
+    setExportFlow(null);
+  }, [scans]);
+
+  const handleExportShowEmail = useCallback(() => {
+    setExportFlow("email");
+    setExportEmailError(null);
+  }, []);
+
+  const handleExportBackToMenu = useCallback(() => {
+    setExportFlow("menu");
+    setExportEmailError(null);
+  }, []);
+
+  const handleExportSendEmail = useCallback(async () => {
+    const to = exportEmail.trim();
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(to)) {
+      setExportEmailError("Invalid email");
+      return;
+    }
+    const packed = scansToXlsxBase64(scans);
+    if (!packed) {
+      setExportEmailError("Nothing to export");
+      return;
+    }
+    setExportSending(true);
+    setExportEmailError(null);
+    try {
+      const res = await fetch(`${API_URL}/api/scanner/send-report`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          to,
+          attachmentBase64: packed.base64,
+          filename: packed.filename,
+        }),
+      });
+      const data = await res.json().catch(() => ({}));
+      if (!res.ok) {
+        throw new Error(data.message || `HTTP ${res.status}`);
+      }
+      setExportFlow(null);
+      setExportEmail("");
+    } catch (e) {
+      setExportEmailError(e.message || "Send failed");
+    } finally {
+      setExportSending(false);
+    }
+  }, [exportEmail, scans]);
+
   const httpsHint =
     typeof window !== "undefined" && !isCameraContextOk() ? (
       <p className="scanner__hint">
@@ -572,10 +1001,14 @@ export default function Scanner() {
       </p>
     ) : null;
 
-  const sectionClassName =
-    lastScan != null
-      ? "scanner scanner--success"
-      : "scanner";
+  const sectionClassName = [
+    "scanner",
+    isLive && "scanner--live",
+    lastScan != null && "scanner--success",
+    hapticFallbackBump && "scanner--haptic-bump",
+  ]
+    .filter(Boolean)
+    .join(" ");
   const groupedScans = groupScansByDate(scans);
   const groupedEntries = Object.entries(groupedScans).sort(
     (a, b) =>
@@ -591,58 +1024,154 @@ export default function Scanner() {
     ? scans.find((s) => s.id === deleteItemConfirmId)
     : null;
 
+  const totals = useMemo(() => {
+    const positions = scans.length;
+    const units = scans.reduce((acc, s) => acc + (s.count || 1), 0);
+    return { positions, units };
+  }, [scans]);
+
+  const liveScannedCount = scans.length;
+
   return (
     <section className={sectionClassName} aria-label="Сканер кодов">
-      <div className="scanner__actions">
-        <button
-          type="button"
-          className="scanner__button scanner__button--primary"
-          onClick={handleScanClick}
-          disabled={cameraOpen || !isCameraContextOk()}
-        >
-          Scan
-        </button>
-        {cameraOpen ? (
+      {!isLive ? (
+        <>
+          <div className="scanner__stats">
+            <div className="scanner__stat-card">
+              <span className="scanner__stat-value">{totals.positions}</span>
+              <span className="scanner__stat-label">პოზიცია</span>
+            </div>
+            <div className="scanner__stat-card">
+              <span className="scanner__stat-value">{totals.units}</span>
+              <span className="scanner__stat-label">ერთეული</span>
+            </div>
+          </div>
+
           <button
             type="button"
-            className="scanner__button"
-            onClick={() => void handleCloseCamera()}
+            className="scanner__scan-cta"
+            onClick={handleOpenScan}
+            disabled={!isCameraContextOk()}
           >
-            Close
+            <span className="scanner__scan-cta-icon">
+              <ScanIcon className="scanner__scan-cta-icon-svg" />
+            </span>
+            <span className="scanner__scan-cta-text">
+              <span className="scanner__scan-cta-title">SCAN</span>
+              <span className="scanner__scan-cta-sub">დაასკანირე შტრიხკოდი</span>
+            </span>
+            <EqualizerIcon className="scanner__scan-cta-eq" />
           </button>
-        ) : null}
-      </div>
+
+          <div className="scanner__action-row">
+            <button
+              type="button"
+              className="scanner__action-btn scanner__action-btn--export"
+              onClick={handleOpenExportModal}
+              disabled={scans.length === 0}
+            >
+              <FiUpload aria-hidden="true" />
+              <span>EXPORT</span>
+            </button>
+            <button
+              type="button"
+              className="scanner__action-btn scanner__action-btn--clear"
+              onClick={handleClearHistory}
+              disabled={scans.length === 0}
+            >
+              <FiTrash2 aria-hidden="true" />
+              <span>CLEAR</span>
+            </button>
+          </div>
+        </>
+      ) : null}
 
       {httpsHint}
 
       {error ? <p className="scanner__error">{error}</p> : null}
 
-      {cameraOpen ? (
-        <>
-          <p className="scanner__hint">Наведите камеру на QR или штрих-код</p>
-          <div id={readerId} className="scanner__reader" />
-        </>
+      {isLive && cameraOpen ? (
+        <div
+          className="scanner__live"
+          onPointerDown={onLivePointerDown}
+        >
+          <p className="scanner__live-hint">
+            დაიჭირე 15–20 სმ მანძილზე, შტრიხკოდი ჰორიზონტალურად. 2× ციფრული ზუმისთვის.
+          </p>
+          <div className="scanner__viewfinder" aria-label="Viewfinder">
+            <div id={readerId} className="scanner__reader scanner__reader--live" />
+            <div
+              className="scanner__viewfinder-guides scanner__viewfinder-guides--barcode"
+              aria-hidden="true"
+            >
+              <span className="scanner__viewfinder-corner scanner__viewfinder-corner--tl" />
+              <span className="scanner__viewfinder-corner scanner__viewfinder-corner--tr" />
+              <span className="scanner__viewfinder-corner scanner__viewfinder-corner--bl" />
+              <span className="scanner__viewfinder-corner scanner__viewfinder-corner--br" />
+              <span className="scanner__viewfinder-line" />
+            </div>
+            <div className="scanner__viewfinder-counter" aria-live="polite">
+              <span className="scanner__viewfinder-counter-dot" />
+              {liveScannedCount} scanned
+            </div>
+          </div>
+          <div className="scanner__live-bar">
+            <button
+              type="button"
+              className="scanner__live-button scanner__live-button--flash"
+              onClick={() => void toggleTorch()}
+              disabled={!isTorchSupported}
+              aria-pressed={torchOn}
+              aria-label="Flash / torch"
+            >
+              <FiZap aria-hidden="true" />
+              <span>FLASH</span>
+            </button>
+            <button
+              type="button"
+              className="scanner__live-button scanner__live-button--zoom"
+              onClick={() => void toggleZoom2x()}
+              disabled={!isZoomSupported}
+              aria-pressed={isZoom2x}
+              aria-label={isZoom2x ? "Normal zoom" : "Digital zoom 2×"}
+            >
+              <FiMaximize aria-hidden="true" />
+              <span>{isZoom2x ? "1×" : "2×"} ZOOM</span>
+            </button>
+            <button
+              type="button"
+              className="scanner__live-button scanner__live-button--close"
+              onClick={() => void handleCloseCamera()}
+            >
+              <FiX aria-hidden="true" />
+              <span>CLOSE</span>
+            </button>
+          </div>
+        </div>
       ) : null}
 
       {postError ? <p className="scanner__error">{postError}</p> : null}
+      {isLive && !cameraOpen && postError ? (
+        <div className="scanner__live-error-actions">
+          <button
+            type="button"
+            className="scanner__button scanner__button--primary"
+            onClick={() => void handleCloseCamera()}
+          >
+            Close
+          </button>
+        </div>
+      ) : null}
 
-      {groupedEntries.length > 0 ? (
+      {!isLive && groupedEntries.length > 0 ? (
         <div className="scanner__history" aria-live="polite">
-          <div className="scanner__history-header">
-            <p className="scanner__hint scanner__hint--success">
-              История сканирований:
-            </p>
-            <button
-              type="button"
-              className="scanner__button scanner__button--danger"
-              onClick={handleClearHistory}
-            >
-              Clear history
-            </button>
-          </div>
           {groupedEntries.map(([date, dateScans]) => (
             <div key={date} className="scanner__group">
-              <h4 className="scanner__group-title">{date}</h4>
+              <div className="scanner__group-head">
+                <span className="scanner__group-title">Scan History</span>
+                <span className="scanner__group-divider" aria-hidden="true" />
+                <span className="scanner__group-date">{date}</span>
+              </div>
               <ul className="scanner__list">
                 {dateScans.map((scan) => (
                   <li key={scan.id} className="scanner__list-item">
@@ -651,23 +1180,19 @@ export default function Scanner() {
                       className="scanner__item"
                       onClick={() => openItem(scan.id)}
                     >
-                      <output
-                        className="scanner__result scanner__result--success"
-                        aria-label="Отсканированный код"
-                      >
-                        {scan.cleanCode}
-                      </output>
-                      {scan.productName ? (
-                        <p className="scanner__product-name">{scan.productName}</p>
-                      ) : null}
-                      <div className="scanner__meta">
-                        <span className="scanner__meta-left">
-                          <span>{scan.type}</span>
-                          <span className="scanner__count-badge">
-                            x{scan.count || 1}
+                      <div className="scanner__item-top">
+                        <div className="scanner__item-main">
+                          <span className="scanner__item-code">{scan.cleanCode}</span>
+                          <span className="scanner__item-name">
+                            {scan.productName ? scan.productName : "სახელი მიუთითე"}
                           </span>
-                        </span>
-                        <span>
+                        </div>
+                        <span className="scanner__count-badge">×{scan.count || 1}</span>
+                      </div>
+                      <div className="scanner__item-bottom">
+                        <span className="scanner__type-pill">{scan.type}</span>
+                        <span className="scanner__item-raw">{scan.rawCode}</span>
+                        <span className="scanner__item-time">
                           {new Date(scan.timestamp).toLocaleTimeString([], {
                             hour: "2-digit",
                             minute: "2-digit",
@@ -719,13 +1244,13 @@ export default function Scanner() {
             onPointerCancel={handleSheetPointerCancel}
           >
             <div className="scanner__sheet-handle" aria-hidden="true" />
-            <h3 className="scanner__modal-title">Позиция</h3>
             <p className="scanner__sheet-code">{itemForModal.cleanCode}</p>
-            <p className="scanner__sheet-meta">
-              {itemForModal.type} · {itemForModal.rawCode}
-            </p>
+            <div className="scanner__sheet-meta-row">
+              <span className="scanner__type-pill">{itemForModal.type}</span>
+              <span className="scanner__sheet-raw">{itemForModal.rawCode}</span>
+            </div>
             <label className="scanner__field" htmlFor="scanner-product-name">
-              Название продукта
+              Product Name
             </label>
             <input
               id="scanner-product-name"
@@ -733,21 +1258,21 @@ export default function Scanner() {
               type="text"
               value={draftProductName}
               onChange={(e) => setDraftProductName(e.target.value)}
-              placeholder="Необязательно"
+              placeholder="სახელი მიუთითე / Enter name"
               autoComplete="off"
             />
-            <p className="scanner__field-label">Количество</p>
+            <p className="scanner__field-label">Quantity</p>
             <div className="scanner__count-row">
               <button
                 type="button"
-                className="scanner__button scanner__button--step"
+                className="scanner__count-step"
                 onClick={() => handleAdjustCount(-1)}
                 aria-label="Минус"
               >
-                −
+                <FiMinus aria-hidden="true" />
               </button>
               <input
-                className="scanner__input scanner__input--count"
+                className="scanner__count-input"
                 type="text"
                 inputMode="numeric"
                 value={draftCount}
@@ -756,36 +1281,31 @@ export default function Scanner() {
               />
               <button
                 type="button"
-                className="scanner__button scanner__button--step"
+                className="scanner__count-step"
                 onClick={() => handleAdjustCount(1)}
                 aria-label="Плюс"
               >
-                +
+                <FiPlus aria-hidden="true" />
               </button>
             </div>
             <div className="scanner__sheet-actions">
               <button
                 type="button"
-                className="scanner__button scanner__button--modal-cancel"
-                onClick={() => closeItemSheet()}
+                className="scanner__sheet-btn scanner__sheet-btn--save"
+                onClick={handleItemSave}
               >
-                Cancel
+                <FiSave aria-hidden="true" />
+                <span>SAVE</span>
               </button>
               <button
                 type="button"
-                className="scanner__button scanner__button--primary scanner__button--inline"
-                onClick={handleItemSave}
+                className="scanner__sheet-btn scanner__sheet-btn--delete"
+                onClick={handleItemDeleteRequest}
               >
-                Save
+                <FiTrash2 aria-hidden="true" />
+                <span>DELETE</span>
               </button>
             </div>
-            <button
-              type="button"
-              className="scanner__button scanner__button--danger scanner__button--delete"
-              onClick={handleItemDeleteRequest}
-            >
-              Delete from list
-            </button>
           </div>
         </div>
       ) : null}
@@ -803,10 +1323,10 @@ export default function Scanner() {
             aria-label="Подтверждение удаления позиции"
             onClick={(event) => event.stopPropagation()}
           >
-            <h3 className="scanner__modal-title">Удалить позицию?</h3>
+            <h3 className="scanner__modal-title">Delete Item?</h3>
             <p className="scanner__modal-text">
               {itemPendingDelete
-                ? `Удалить «${itemPendingDelete.cleanCode}»${itemPendingDelete.productName ? ` (${itemPendingDelete.productName})` : ""} из списка?`
+                ? `Delete «${itemPendingDelete.cleanCode}»${itemPendingDelete.productName ? ` (${itemPendingDelete.productName})` : ""} from the list?`
                 : "Удалить эту позицию из списка?"}
             </p>
             <div className="scanner__modal-actions">
@@ -829,6 +1349,87 @@ export default function Scanner() {
         </div>
       ) : null}
 
+      {exportFlow ? (
+        <div
+          className="scanner__modal-overlay scanner__modal-overlay--stack"
+          onClick={handleCloseExportModal}
+          role="presentation"
+        >
+          <div
+            className="scanner__modal scanner__modal--export"
+            role="dialog"
+            aria-modal="true"
+            aria-label="Export scans"
+            onClick={(event) => event.stopPropagation()}
+          >
+            {exportFlow === "menu" ? (
+              <>
+                <h3 className="scanner__modal-title">Export</h3>
+                <p className="scanner__modal-text">
+                  Save the XLSX on this device or send it by email
+                </p>
+                <div className="scanner__export-choices">
+                  <button
+                    type="button"
+                    className="scanner__button scanner__button--primary scanner__export-choice"
+                    onClick={handleExportSaveToDevice}
+                  >
+                    Save
+                  </button>
+                  <button
+                    type="button"
+                    className="scanner__button scanner__button--export scanner__export-choice"
+                    onClick={handleExportShowEmail}
+                  >
+                    Send Email
+                  </button>
+                </div>
+                <div className="scanner__modal-actions">
+                </div>
+              </>
+            ) : (
+              <>
+                <h3 className="scanner__modal-title">Send Email</h3>
+                <label className="scanner__field" htmlFor="scanner-export-email">
+                  Recipient
+                </label>
+                <input
+                  id="scanner-export-email"
+                  type="email"
+                  className="scanner__input"
+                  autoComplete="email"
+                  placeholder="name@example.com"
+                  value={exportEmail}
+                  onChange={(e) => setExportEmail(e.target.value)}
+                  disabled={exportSending}
+                />
+                {exportEmailError ? (
+                  <p className="scanner__error scanner__error--compact">{exportEmailError}</p>
+                ) : null}
+                <div className="scanner__modal-actions scanner__modal-actions--spread">
+                  <button
+                    type="button"
+                    className="scanner__button scanner__button--modal-cancel"
+                    onClick={handleExportBackToMenu}
+                    disabled={exportSending}
+                  >
+                    Back
+                  </button>
+                  <button
+                    type="button"
+                    className="scanner__button scanner__button--primary"
+                    onClick={() => void handleExportSendEmail()}
+                    disabled={exportSending}
+                  >
+                    {exportSending ? "Sending…" : "Send"}
+                  </button>
+                </div>
+              </>
+            )}
+          </div>
+        </div>
+      ) : null}
+
       {isConfirmOpen ? (
         <div
           className="scanner__modal-overlay"
@@ -836,30 +1437,35 @@ export default function Scanner() {
           role="presentation"
         >
           <div
-            className="scanner__modal"
+            className="scanner__modal scanner__modal--center"
             role="dialog"
             aria-modal="true"
             aria-label="Подтверждение удаления истории"
             onClick={(event) => event.stopPropagation()}
           >
-            <h3 className="scanner__modal-title">Удалить историю?</h3>
-            <p className="scanner__modal-text">
-              Это действие удалит все отсканированные коды из localStorage.
+            <div className="scanner__modal-icon" aria-hidden="true">
+              <FiTrash2 />
+            </div>
+            <h3 className="scanner__modal-title scanner__modal-title--center">
+              გასუფთავება?
+            </h3>
+            <p className="scanner__modal-text scanner__modal-text--center">
+              მთელი სკან-ისტორია წაიშლება. ეს ქმედება შეუქცევადია.
             </p>
-            <div className="scanner__modal-actions">
+            <div className="scanner__modal-actions scanner__modal-actions--center">
               <button
                 type="button"
-                className="scanner__button scanner__button--modal-cancel"
+                className="scanner__modal-btn scanner__modal-btn--cancel"
                 onClick={handleCancelClearHistory}
               >
-                Cancel
+                გაუქმება
               </button>
               <button
                 type="button"
-                className="scanner__button scanner__button--danger"
+                className="scanner__modal-btn scanner__modal-btn--danger"
                 onClick={handleConfirmClearHistory}
               >
-                Delete
+                CLEAR
               </button>
             </div>
           </div>
