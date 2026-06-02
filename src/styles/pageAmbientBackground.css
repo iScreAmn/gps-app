@@ -1,0 +1,91 @@
+/* Shared ambient page background (orbs + grid) — used on /info and home */
+.page-ambient-shell {
+  --info-bg: #f7f8fb;
+  --info-border: rgba(15, 23, 42, 0.08);
+  --info-orb-1: #ff4d4d;
+  --info-orb-2: #5b8cff;
+  --info-orb-3: #b366ff;
+
+  position: relative;
+  width: 100%;
+  background: var(--info-bg);
+  overflow: clip;
+}
+
+body[data-theme="dark"] .page-ambient-shell {
+  --info-bg: #0a0d14;
+  --info-border: rgba(255, 255, 255, 0.08);
+}
+
+.info-bg-layer {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.info-orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  opacity: 0.55;
+  animation: info-float 16s ease-in-out infinite;
+}
+
+.info-orb-1 {
+  width: 420px;
+  height: 420px;
+  top: -120px;
+  left: -80px;
+  background: radial-gradient(circle, var(--info-orb-1) 0%, transparent 70%);
+}
+
+.info-orb-2 {
+  width: 520px;
+  height: 520px;
+  top: 80px;
+  right: -180px;
+  background: radial-gradient(circle, var(--info-orb-2) 0%, transparent 70%);
+  animation-delay: -4s;
+}
+
+.info-orb-3 {
+  width: 360px;
+  height: 360px;
+  bottom: -120px;
+  left: 30%;
+  background: radial-gradient(circle, var(--info-orb-3) 0%, transparent 70%);
+  animation-delay: -8s;
+  opacity: 0.4;
+}
+
+body[data-theme="dark"] .info-orb {
+  opacity: 0.42;
+}
+
+body[data-theme="dark"] .info-orb-3 {
+  opacity: 0.28;
+}
+
+@keyframes info-float {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  50% {
+    transform: translate3d(20px, -30px, 0) scale(1.08);
+  }
+}
+
+.info-grid-overlay {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(to right, var(--info-border) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--info-border) 1px, transparent 1px);
+  background-size: 56px 56px;
+  mask-image: radial-gradient(ellipse 85% 52% at 50% min(32vh, 300px), #000 28%, transparent 76%);
+  -webkit-mask-image: radial-gradient(ellipse 85% 52% at 50% min(32vh, 300px), #000 28%, transparent 76%);
+  opacity: 0.5;
+}

@@ -1,3 +1,29 @@
-.home-page {
-  /* Additional styles specific to home page can be added here */
+@import '../../styles/pageAmbientBackground.css';
+
+.home-page > *:not(.info-bg-layer) {
+  position: relative;
+  z-index: 1;
+}
+
+/* Let the shared ambient background show through section wrappers */
+.home-page > .hero,
+.home-page > .partners-section,
+.home-page > .online-order-page,
+.home-page > .temp-content-section,
+.home-page > .plotter-cutting-section,
+.home-page > .special-discounts,
+.home-page > .product-gallery {
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+body[data-theme="dark"] .home-page > .hero,
+body[data-theme="dark"] .home-page > .partners-section,
+body[data-theme="dark"] .home-page > .online-order-page,
+body[data-theme="dark"] .home-page > .temp-content-section,
+body[data-theme="dark"] .home-page > .plotter-cutting-section,
+body[data-theme="dark"] .home-page > .special-discounts,
+body[data-theme="dark"] .home-page > .product-gallery {
+  background: transparent !important;
+  box-shadow: none !important;
 }

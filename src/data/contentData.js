@@ -11,7 +11,7 @@ import {
   nocai2,
   nocai3,
   nocai4,
-  iecho1,
+  iechoProduct1,
   iecho2,
   iecho3,
   iecho4,
@@ -364,7 +364,7 @@ export const gpsContent = {
         },
         images: [
           {
-            src: iecho1,
+            src: iechoProduct1,
             alt: 'iecho PK0604 Plus'
           },
           {

@@ -1,9 +1,7 @@
 // Printers collection
 export { default as printer1 } from './printers/pr_01.jpg';
-export { default as printer2 } from './printers/pr_02.png';
 export { default as printer3 } from './printers/pr_03.jpg';
 export { default as printer4 } from './printers/pr_04.jpg';
-export { default as printer5 } from './printers/pr_05.png';
 export { default as iechoPrinter } from './printers/iecho.webp';
 export { default as toners } from './printers/toners.jpg';
 
@@ -51,6 +49,9 @@ export { default as tmt } from './partners/tmt.png'
 export { default as goldensign } from './partners/goldensign.webp'
 export { default as develop } from './partners/develop.webp'
 
+export { default as recoSystems } from './partners/logos/recoSystems.webp'
+
+
 //Other Partners
 export { default as ideal } from './partners/logos/ideal.png'
 
@@ -59,6 +60,10 @@ export { default as ledModule } from './led-modules/led-module.png';
 export { default as modulesArt } from './led-modules/modules-art.png';
 
 //Icons
+export { default as pillar1 } from './about/pillar1.png';
+export { default as pillar2 } from './about/pillar2.png';
+export { default as pillar3 } from './about/pillar3.png';
+
 export { default as global } from './icons/global.webp';
 export { default as service } from './icons/service.webp';
 export { default as service2 } from './icons/service2.webp';
@@ -67,9 +72,10 @@ export { default as solutions } from './icons/solutions.webp';
 export { default as demo } from './icons/demo.png';
 
 // About section
-export { default as aboutImage } from './about/about.webp';
-export { default as konikaAbout } from './about/konikaDisplay.jpg';
-export { default as konikaAbout2 } from './about/konicaDevelop.png';
+export { default as aboutImage } from './about/gps-office.webp';
+export { default as konikaAbout } from './about/konikaDisplay.webp';
+export { default as konikaAbout2 } from './about/konicaDevelop.webp';
+export { default as servicesAbout } from './about/service3.webp';
 export { default as aboutOrder } from './about/ineo4065.png';
 
 // Art Printers
@@ -80,6 +86,19 @@ export { default as ConstructionModal } from './web-art/constructionModal.webp';
 export { default as proModel } from './web-art/flat-design.webp';
 export { default as nocaiArt } from './products/nocai-NC-UV9060MAX/nocai-plotter.png';
 export { default as whatsApp } from './web-art/printing-contact.png';
+
+export { default as cutLine1 } from './web-art/cut-lines/office.webp';
+export { default as cutLine2 } from './web-art/cut-lines/pro.webp';
+export { default as cutLine3 } from './web-art/cut-lines/iecho.webp';
+export { default as cutLine4 } from './web-art/cut-lines/nocai.webp';
+
+export { default as fix1 } from './web-art/AI/fixOffice.webp';
+export { default as fix2 } from './web-art/AI/fixPro.webp';
+export { default as fix3 } from './web-art/AI/fixNocai.webp';
+
+export { default as audley1 } from './web-art/AI/audley1.webp';
+export { default as iecho1 } from './web-art/AI/iecho1.webp';
+export { default as develop1 } from './web-art/AI/develop1.webp';
 
 //Categories
 //IECHO
@@ -94,9 +113,9 @@ export { default as PK0705plus } from './products/cutting-systems/PK0705plus.jpg
 export { default as duploBinder } from './products/binders/duplo/duploBinder.jpg';
 
 // Product images - using actual printer images
-export { default as productGarmin } from './printers/pr_01.png';
-export { default as productTrimble } from './printers/pr_02.png';
-export { default as productLeica } from './printers/pr_03.png';
+export { default as productGarmin } from './printers/pr_01.jpg';
+export { default as productTrimble } from './printers/pr_04.jpg';
+export { default as productLeica } from './printers/pr_03.jpg';
 
 
 // Develop Printers
@@ -119,12 +138,30 @@ export { default as nocai2 } from './products/nocai-UV0609XIII/nocai2.png';
 export { default as nocai3 } from './products/nocai-UV0609XIII/nocai3.png';
 export { default as nocai4 } from './products/nocai-UV0609XIII/nocai4.png';
 // Iecho Cutting System
-export { default as iecho1 } from './products/iecho-PK0604/iecho1.webp';
+export { default as iechoProduct1 } from './products/iecho-PK0604/iecho1.webp';
 export { default as iecho2 } from './products/iecho-PK0604/iecho2.webp';
 export { default as iecho3 } from './products/iecho-PK0604/iecho3.webp';
 export { default as iecho4 } from './products/iecho-PK0604/iecho4.webp';
 export { default as iecho5 } from './products/iecho-PK0604/iecho5.webp';
 export { default as iecho6 } from './products/iecho-PK0604/iecho6.webp';
 export { default as iecho7 } from './products/iecho-PK0604/iecho7.webp';
+
+// Laminators
+// Recosystems
+export { default as laminator1 } from './products/laminators/Recosystems RL 39s.webp';
+export { default as laminator2 } from './products/laminators/Recosystems RL 68s.webp';
+export { default as laminator3 } from './products/laminators/Recosystems RL 69s.webp';
+export { default as laminator4 } from './products/laminators/Recosystems RL 106.webp';
+export { default as laminator11 } from './products/laminators/reco-lam-321.webp';
+export { default as laminator12 } from './products/laminators/reco-lam2.webp';
+// Vivid
+export { default as laminator5 } from './products/laminators/vivid/Matrix Duo MD-650.webp';
+export { default as laminator6 } from './products/laminators/vivid/Matrix Easymount 1200 Double Hot.webp';
+export { default as laminator7 } from './products/laminators/vivid/Matrix MX-530DP.webp';
+export { default as laminator8 } from './products/laminators/vivid/Matrix Omni-Flow 370.webp';
+export { default as laminator9 } from './products/laminators/vivid/Matrix Omni-Flow 460.webp';
+export { default as laminator10 } from './products/laminators/vivid/Matrix Take-Up Unit.webp';
+
+
 
 

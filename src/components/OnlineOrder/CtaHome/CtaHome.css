@@ -114,6 +114,7 @@ body[data-theme="dark"] .order__content-title {
 }
 
 .order__content-subtitle {
+  font-family: 'GPS Mt';
   font-size: 1.1rem;
   line-height: 1.7;
   margin: 1.5rem 0 2rem;
@@ -144,6 +145,7 @@ body[data-theme="dark"] .order__content-subtitle {
 }
 
 .order__content-btn-primary {
+  font-family: 'GPS Mt Medium';
   background-color: var(--primary-red);
   color: #FFFFFF;
   box-shadow: 0 4px 15px rgba(220, 38, 38, 0.3);

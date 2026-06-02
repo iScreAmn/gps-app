@@ -71,6 +71,7 @@
 
 /* Modal Title */
 .modal__title {
+  font-family: 'GPS Mt Medium';
   font-size: 1.5rem;
   font-weight: 600;
   color: #111827;

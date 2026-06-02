@@ -5,6 +5,8 @@ import { useLanguage } from '../../hooks/useLanguage';
 import { getCurrentLanguageFromPath } from '../../i18n';
 import { getNewsItemById } from '../../data/contentData';
 import developData from '../../database/brands/develop.json';
+import recosystemsData from '../../database/brands/recosystems.json';
+import vividData from '../../database/brands/vivid.json';
 import { professionalData } from '../../data/professionalData';
 import { nocaiData } from '../../data/nocaiData';
 import { inksProducts } from '../../data/inksData';
@@ -24,6 +26,7 @@ const Breadcrumbs = ({ items, separator }) => {
     'services': 'navigation.services',
     'news': 'navigation.news',
     'contacts': 'navigation.contacts',
+    'info': 'navigation.info',
     'privacy-policy': 'navigation.privacy_policy',
     // Бренды
     'iecho': 'IECHO',
@@ -40,6 +43,8 @@ const Breadcrumbs = ({ items, separator }) => {
     'plotter-catalog': 'plotterCatalog.title',
     'inks': 'catalog.inks',
     'scanner': 'navigation.scanner',
+    'recosystems': 'RecoSystems',
+    'vivid': 'Vivid',
   };
 
   // Функция для получения перевода или исходного значения
@@ -276,6 +281,54 @@ const Breadcrumbs = ({ items, separator }) => {
         }
         return;
       }
+
+      // Специальная обработка для recosystems: Home - Catalog - Laminators - модель
+      if (segment === 'recosystems') {
+        const catalogPath = currentLang ? `/${currentLang}/catalog` : '/catalog';
+        const laminatorsCatalogPath = currentLang ? `/${currentLang}/catalog/laminators` : '/catalog/laminators';
+        const recosystemsPath = currentLang ? `/${currentLang}/recosystems` : '/recosystems';
+
+        crumbs.push(
+          { label: t('navigation.catalog'), path: catalogPath, isActive: false },
+          { label: t('categories.laminators'), path: laminatorsCatalogPath, isActive: false },
+          { label: 'RecoSystems', path: recosystemsPath, isActive: !segments[index + 1] }
+        );
+
+        if (segments[index + 1]) {
+          const modelId = segments[index + 1];
+          const product = recosystemsData?.products?.find(p => p.id === modelId);
+          crumbs.push({
+            label: product?.name || modelId,
+            path: `${recosystemsPath}/${modelId}`,
+            isActive: true
+          });
+        }
+        return;
+      }
+
+      // Специальная обработка для vivid: Home - Catalog - Laminators - модель
+      if (segment === 'vivid') {
+        const catalogPath = currentLang ? `/${currentLang}/catalog` : '/catalog';
+        const laminatorsCatalogPath = currentLang ? `/${currentLang}/catalog/laminators` : '/catalog/laminators';
+        const vividPath = currentLang ? `/${currentLang}/vivid` : '/vivid';
+
+        crumbs.push(
+          { label: t('navigation.catalog'), path: catalogPath, isActive: false },
+          { label: t('categories.laminators'), path: laminatorsCatalogPath, isActive: false },
+          { label: 'Vivid', path: vividPath, isActive: !segments[index + 1] }
+        );
+
+        if (segments[index + 1]) {
+          const modelId = segments[index + 1];
+          const product = vividData?.products?.find(p => p.id === modelId);
+          crumbs.push({
+            label: product?.name || modelId,
+            path: `${vividPath}/${modelId}`,
+            isActive: true
+          });
+        }
+        return;
+      }
       
       // Пропускаем сегмент "develop", если следующий сегмент существует (это modelId)
       if (segment === 'develop' && nextSegment) {
@@ -299,6 +352,16 @@ const Breadcrumbs = ({ items, separator }) => {
           isActive: true
         });
         return; // Пропускаем стандартную обработку
+      }
+
+      // Пропускаем modelId для recosystems — он уже добавлен в специальной обработке выше
+      if (segments[index - 1] === 'recosystems') {
+        return;
+      }
+
+      // Пропускаем modelId для vivid — он уже добавлен в специальной обработке выше
+      if (segments[index - 1] === 'vivid') {
+        return;
       }
       
       // Пропускаем id новости после "news" (он уже обработан выше)

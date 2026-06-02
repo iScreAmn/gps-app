@@ -8,7 +8,7 @@ body[data-theme="dark"] .category-cards-section {
 
 .category-cards-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  grid-template-columns: repeat(3, 1fr);
   gap: 1rem;
   margin: 0 auto;
 }
@@ -131,6 +131,10 @@ body[data-theme="dark"] .category-card {
 
 /* Tablet Responsive */
 @media (max-width: 900px) {
+  .category-cards-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
   .category-card-wide {
     grid-column: span 1;
   }

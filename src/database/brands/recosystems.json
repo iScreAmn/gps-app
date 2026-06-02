@@ -1,0 +1,254 @@
+{
+  "brand": "recosystems",
+  "displayName": "RecoSystems Laminators",
+  "products": [
+    {
+      "id": "rl-39s",
+      "name": "Recosystems RL 39s",
+      "cardSpecs": [
+        {
+          "label": "სამუშაო სიგანე",
+          "value": "380 mm"
+        },
+        {
+          "label": "მაქს. ტემპერატურა",
+          "value": "150°C"
+        }
+      ],
+      "descriptionLines": [
+        "სამუშაო სიგანე: 380 mm",
+        "ცხელი და ცივი ლამინირება",
+        "ორმხრივი და ცალმხრივი ლამინირება",
+        "25 - 250 მიკ.  (მაქს. ტემპერატურა 150°C)",
+        "ტემპერატურის რეგულირება ზედა და ქვედა როლიკზე",
+        "სიჩქარის 9 დონე (მაქს. სიჩქარე 4,5 მ/წ)",
+        "რეგულირებადი სამონტაჟო სისქე (მაქს. 6 მმ)",
+        "გახურების დაახლოებითი დრო 10 წთ.",
+        "230 V / 50 Hz - 1200 W",
+        "წონა: 54/48 kg",
+        "ზომები: 805 x 740 x 505 მმ / 640 x 550 x 470 მმ"
+      ],
+      "descriptionLinesEn": [
+        "Working width: 380 mm",
+        "Hot and cold lamination",
+        "Single-sided and double-sided lamination",
+        "25 - 250 mic. (max. temperature 150°C)",
+        "Top and bottom roller temperature adjustment",
+        "9 speed levels (max. speed 4.5 m/min)",
+        "Adjustable mounting thickness (max. 6 mm)",
+        "Approximate heating time: 10 min",
+        "230 V / 50 Hz - 1200 W",
+        "Weight: 54/48 kg",
+        "Dimensions: 805 x 740 x 505 mm / 640 x 550 x 470 mm"
+      ]
+    },
+    {
+      "id": "rl-68s",
+      "name": "Recosystems RL 68s",
+      "cardSpecs": [
+        {
+          "label": "სამუშაო სიგანე",
+          "value": "685 მმ"
+        },
+        {
+          "label": "მაქს. სიჩქარე",
+          "value": "2,4 მ/წ"
+        }
+      ],
+      "descriptionLines": [
+        "სამუშაო სიგანე: 685 მმ",
+        "ცხელი ლამინირება",
+        "ორმხრივი და ცალმხრივი ლამინირება",
+        "25 - 125 მიკ.",
+        "სიჩქარის 10 დონე (მაქს. სიჩქარე 2,4 მ/წ)",
+        "გახურების დაახლოებითი დრო 10 წთ.",
+        "სამონტაჟო სისქე: 2 მმ",
+        "1500 W - 230V, 50 Hz",
+        "წონა: 65/50 კგ",
+        "ზომები: 1130 x 740 x 520 mm / 920 x 520 x 320 მმ"
+      ],
+      "descriptionLinesEn": [
+        "Working width: 685 mm",
+        "Hot lamination",
+        "Single-sided and double-sided lamination",
+        "25 - 125 mic.",
+        "10 speed levels (max. speed 2.4 m/min)",
+        "Approximate heating time: 10 min",
+        "Mounting thickness: 2 mm",
+        "1500 W - 230V, 50 Hz",
+        "Weight: 65/50 kg",
+        "Dimensions: 1130 x 740 x 520 mm / 920 x 520 x 320 mm"
+      ]
+    },
+    {
+      "id": "rl-69s",
+      "name": "Recosystems RL 69s",
+      "cardSpecs": [
+        {
+          "label": "სამუშაო სიგანე",
+          "value": "685 მმ"
+        },
+        {
+          "label": "მაქს. სიჩქარე",
+          "value": "2,5 მ/წ"
+        }
+      ],
+      "descriptionLines": [
+        "სამუშაო სიგანე: 685 მმ",
+        "ცხელი და ცივი ლამინირება",
+        "ორმხრივი და ცალმხრივი ლამინირება",
+        "25 - 250 მიკ.  (მაქს. ტემპერატურა 150°C)",
+        "ტემპერატურის რეგულირება ზედა და ქვედა როლიკზე",
+        "სიჩქარის 9 დონე (მაქს. სიჩქარე 2,5 მ/წ)",
+        "რეგულირებადი სამონტაჟო სისქე (მაქს. 6 მმ)",
+        "გახურების დაახლოებითი დრო 10 წთ.",
+        "წონა: 83/75 კგ",
+        "ზომები: 1130 x 740 x 600 მმ / 970 x 540 x 470 მმ"
+      ],
+      "descriptionLinesEn": [
+        "Working width: 685 mm",
+        "Hot and cold lamination",
+        "Single-sided and double-sided lamination",
+        "25 - 250 mic. (max. temperature 150°C)",
+        "Top and bottom roller temperature adjustment",
+        "9 speed levels (max. speed 2.5 m/min)",
+        "Adjustable mounting thickness (max. 6 mm)",
+        "Approximate heating time: 10 min",
+        "Weight: 83/75 kg",
+        "Dimensions: 1130 x 740 x 600 mm / 970 x 540 x 470 mm"
+      ]
+    },
+    {
+      "id": "rl-106",
+      "name": "Recosystems RL 106",
+      "cardSpecs": [
+        {
+          "label": "სამუშაო სიგანე",
+          "value": "1050 მმ"
+        },
+        {
+          "label": "მაქს. სიჩქარე",
+          "value": "2,5 მ/წ"
+        }
+      ],
+      "descriptionLines": [
+        "სამუშაო სიგანე: 1050 მმ",
+        "ცხელი როლიკერის სისტემა",
+        "ცხელი და ცივი ლამინირება",
+        "ორმხრივი ლამინირება",
+        "ფირის სისქე : 25 - 250 მიკ.",
+        "ტემპერატურის რეგულირება",
+        "სიჩქარის 9 დონე (მაქს. სიჩქარე 2,5 მ/წ)",
+        "სამონტაჟო სისქე 6 მმ",
+        "გახურების დაახლოებითი დრო 15 წთ",
+        "230 V / 50 Hz",
+        "2400 W",
+        "წონა: 195/130 kg",
+        "ზომა: 1570 x 900 x 700 მმ / 1400 x 662 x 1200 მმ"
+      ],
+      "descriptionLinesEn": [
+        "Working width: 1050 mm",
+        "Hot roller system",
+        "Hot and cold lamination",
+        "Double-sided lamination",
+        "Film thickness: 25 - 250 mic.",
+        "Temperature control",
+        "9 speed levels (max. speed 2.5 m/min)",
+        "Mounting thickness: 6 mm",
+        "Approximate heating time: 15 min",
+        "230 V / 50 Hz",
+        "2400 W",
+        "Weight: 195/130 kg",
+        "Dimensions: 1570 x 900 x 700 mm / 1400 x 662 x 1200 mm"
+      ]
+    },
+    {
+      "id": "reco-lam-321-a3",
+      "name": "RECO LAM 321 - A3 Laminator",
+      "cardSpecs": [
+        {
+          "label": "სამუშაო სიგანე",
+          "value": "320 mm"
+        },
+        {
+          "label": "ფორმატი",
+          "value": "A3-მდე"
+        }
+      ],
+      "descriptionLines": [
+        "ცხელი და ცივი ლამინატორი",
+        "სამუშაო სიგანე: 320 mm",
+        "A3-მდე პაკეტებისთვის",
+        "ლამინირების პაკეტები: 2x75 მიკ - 2x250 მიკ",
+        "ლამინირების სიჩქარე: A4: დაახლოებით 45 წმ",
+        "გახურების დრო: დაახლოებით 3 წთ",
+        "ტემპერატურის კონტროლი: 5 დონე",
+        "ძალიან პოპულარული საოფისე ლამინატორი",
+        "230V / 50Hz"
+      ],
+      "descriptionLinesEn": [
+        "hot and cold laminator",
+        "working width: 320 mm",
+        "for pouches up to A3",
+        "laminating pouches: 2x75 mic - 2x250 mic",
+        "laminating speed: A4: approx. 45 sec",
+        "heating-up time: approx. 3 min.",
+        "temperature control: 5 levels",
+        "very popular office laminator",
+        "230V / 50Hz"
+      ]
+    },
+    {
+      "id": "royal-sovereign-es-400",
+      "name": "Royal Sovereign ES 400",
+      "cardSpecs": [
+        {
+          "label": "მოდელი",
+          "value": "ES-400"
+        },
+        {
+          "label": "მაქს. ლამინირების სიგანე",
+          "value": "112 მმ"
+        }
+      ],
+      "descriptionLines": [
+        "მოდელი: ES-400",
+        "კვების წყარო: 220-240 V",
+        "ენერგომოხმარება (ვატი): 100",
+        "მაქს. ლამინირების სიგანე (მმ): 112",
+        "ფირის სისქე (მიკრონი): 75-100",
+        "მაქს. ლამინირების სისქე (მმ): 0.8",
+        "ლამინირების სიჩქარე (მმ/წთ): 338",
+        "გახურების დრო (წთ): 9",
+        "გახურების მეთოდი: გარე როლიკერის გახურება",
+        "ტემპერატურის არჩევა: ფიქსირებული",
+        "ტემპერატურის კონტროლი: თერმოსტატი",
+        "მოტორი: AC სინქრონული მოტორი",
+        "ქაღალდის მიწოდების სისტემა: 2 როლიკერი",
+        "ფოტო ლამინირება: დიახ",
+        "რევერსის ფუნქცია: არა",
+        "ზომები (W×D×H, მმ): 210 × 130 × 85",
+        "წონა: 1.2 კგ"
+      ],
+      "descriptionLinesEn": [
+        "Model: ES-400",
+        "Power Supply: 220–240 V",
+        "Power Consumption (Watts): 100",
+        "Max. Laminating Width (mm): 112",
+        "Film Thickness (microns): 75–100",
+        "Max. Laminating Thickness (mm): 0.8",
+        "Laminating Speed (mm/min): 338",
+        "Warm-up Time (min): 9",
+        "Heating Method: External Roller Heating",
+        "Temperature Selection: Fixed",
+        "Temperature Control: Thermostat",
+        "Motor: AC Synchronous Motor",
+        "Paper Feeding System: 2 Rollers",
+        "Photo Laminating: Yes",
+        "Reverse Function: No",
+        "Dimensions (W×D×H, mm): 210 × 130 × 85",
+        "Weight: 1.2 kg"
+      ]
+    }
+  ]
+}

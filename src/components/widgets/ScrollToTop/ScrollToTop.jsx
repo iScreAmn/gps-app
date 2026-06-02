@@ -1,10 +1,35 @@
 import React, { useState, useEffect, useRef } from 'react';
+import { useLocation } from 'react-router-dom';
 import { FaArrowUp } from "react-icons/fa";
 import './ScrollToTop.css';
 
+/** Same breakpoint as `.info-sticky-bar` hide on desktop in InfoPage.css */
+const INFO_PAGE_FLOATING_SCROLL_HIDE_MQ = '(max-width: 899px)';
+const INFO_PAGE_PATH = /^\/(en|ka)\/info$|^\/info$/i;
+
 const ScrollToTop = () => {
+  const location = useLocation();
+  const [hideFloatingOnInfoMobile, setHideFloatingOnInfoMobile] = useState(() => {
+    if (typeof window === 'undefined') return false;
+    return (
+      INFO_PAGE_PATH.test(location.pathname)
+      && window.matchMedia(INFO_PAGE_FLOATING_SCROLL_HIDE_MQ).matches
+    );
+  });
   const [isVisible, setIsVisible] = useState(false);
   const buttonRef = useRef(null);
+
+  useEffect(() => {
+    const mq = window.matchMedia(INFO_PAGE_FLOATING_SCROLL_HIDE_MQ);
+    const sync = () => {
+      setHideFloatingOnInfoMobile(
+        INFO_PAGE_PATH.test(location.pathname) && mq.matches
+      );
+    };
+    sync();
+    mq.addEventListener('change', sync);
+    return () => mq.removeEventListener('change', sync);
+  }, [location.pathname]);
 
   useEffect(() => {
     const toggleVisibility = () => {
@@ -97,7 +122,7 @@ const ScrollToTop = () => {
       buttonEl.classList.remove('scroll-to-top--footer-visible');
       buttonEl.style.removeProperty('--scroll-to-top-offset');
     };
-  }, []);
+  }, [hideFloatingOnInfoMobile]);
 
   const scrollToTop = () => {
     window.scrollTo({
@@ -105,6 +130,10 @@ const ScrollToTop = () => {
       behavior: 'smooth'
     });
   };
+
+  if (hideFloatingOnInfoMobile) {
+    return null;
+  }
 
   return (
     <button

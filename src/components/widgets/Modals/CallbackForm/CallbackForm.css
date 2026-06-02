@@ -8,6 +8,7 @@
 /* Form Group */
 .callback-form__group {
   margin-bottom: 1.25rem;
+  font-family: 'GPS Mt';
 }
 
 /* Input Fields */
@@ -160,6 +161,7 @@
 }
 
 .callback-form__checkbox-text {
+  font-family: 'GPS Mt';
   font-size: 0.875rem;
   color: #6b7280;
   line-height: 1.5;
@@ -185,16 +187,14 @@
 .callback-form__submit {
   width: 100%;
   padding: 1rem 2rem;
+  font-family: 'Archyedt';
   font-size: 1.125rem;
-  font-weight: 600;
-  color: #ffffff;
+  color: #fff;
   background: linear-gradient(135deg, var(--primary-red), #d32f2f);
   border: none;
   border-radius: 12px;
   cursor: pointer;
-  /* transition: all 0.3s ease; */
   box-shadow: 0 4px 15px rgba(220, 38, 38, 0.3);
-  font-family: inherit;
 }
 
 .callback-form__submit:hover:not(:disabled) {
@@ -221,6 +221,7 @@
 /* Note */
 .callback-form__note {
   margin-top: 1rem;
+  font-family: 'GPS Mt';
   font-size: 0.875rem;
   color: #6b7280;
   text-align: center;
@@ -255,6 +256,7 @@
 }
 
 .callback-form__divider span {
+  font-family: 'GPS Mt';
   padding: 0 1rem;
 }
 
@@ -265,6 +267,7 @@
 
 
 .callback-form__phone-title {
+  font-family: 'GPS Mt';
   font-size: 1.125rem;
   font-weight: 600;
   color: #1f2937;
@@ -281,12 +284,11 @@
   gap: 0.625rem;
   padding: 0.875rem 1.5rem;
   font-size: 1.25rem;
-  font-weight: 600;
+  font-family: 'GPS Mt';
   color: #ffffff;
   background: var(--primary-red);
   border-radius: 10px;
   text-decoration: none;
-  /* transition: all 0.2s ease; */
   box-shadow: 0 2px 8px rgba(220, 38, 38, 0.2);
 }
 

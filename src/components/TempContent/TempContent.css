@@ -22,13 +22,14 @@ body[data-theme='dark'] .temp-content-section {
 }
 
 .temp-content__title {
-  font-family: 'Archyedt';
+  font-family: 'GPS Mt';
   font-size: 2rem;
   font-weight: 600;
   margin-bottom: 1rem;
 }
 
 .temp-content__paragraph {
+  font-family: 'GPS Mt';
   font-size: 1.2rem;
   line-height: 1.5;
   margin: 0 0 1rem;
@@ -42,6 +43,7 @@ body[data-theme='dark'] .temp-content-section {
   padding: 1rem 2rem;
   border: none;
   border-radius: 8px;
+  font-family: 'GPS Mt';
   font-size: 1rem;
   font-weight: var(--font-semibold);
   cursor: pointer;

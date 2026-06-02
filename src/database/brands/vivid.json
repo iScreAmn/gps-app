@@ -1,0 +1,267 @@
+{
+  "brand": "vivid",
+  "displayName": "Vivid Laminators",
+  "products": [
+    {
+      "id": "matrix-duo-md-460",
+      "name": "Matrix Duo MD-460",
+      "cardSpecs": [
+        {
+          "label": "მაქს. ფირის სიგანე",
+          "value": "460მმ / 18”"
+        },
+        {
+          "label": "სიმძლავრე (W)",
+          "value": "1300"
+        }
+      ],
+      "descriptionLines": [
+        "მაქს. მექანიკური სიჩქარე (მ/ფუტი/წთ): 1.4მ/5ფუტი",
+        "მაქს. ლამინირების ფირის სიგანე (მმ/ინჩი): 460მმ/18”",
+        "ქაღალდის მინ. სისქე (gsm/lbs): 70gsm/47lbs",
+        "ფურცლის მაქს. სიგანე (მმ/ინჩი): 470მმ/19”",
+        "გახურების დრო (წთ): 10",
+        "ტემპერატურის დიაპაზონი (°C/°F): 0-140°C/32-284°F",
+        "ენერგო მიწოდება (V): 220/240/110",
+        "საჭირო კვების დენი (ამპერი): 13",
+        "ენერგო მოხმარება (W): 1300",
+        "საერთო ზომები - სიგანე (მმ/ინჩი): 720მმ/28”",
+        "საერთო ზომები - სიღრმე x სიმაღლე (მმ/ინჩი): 480x400მმ/19×16”",
+        "დანადგარის მთლიანი წონა (კგ/ფუნტი): 45კგ/99ფუნტი"
+      ],
+      "descriptionLinesEn": [
+        "Max. Mechanical Speed (m/ft/min): 1.4m/5ft",
+        "Max. Lamination Film Width (mm/inches): 460mm/18”",
+        "Minimum Paper Thickness (gsm/lbs): 70gsm/47lbs",
+        "Maximum Sheet Width (mm/inches): 470mm/19”",
+        "Warm-up Time (mins): 10",
+        "Temperature Range (°C/°F): 0-140°C/32-284°F",
+        "Power Supply (V): 220/240/110",
+        "Power Supply Required (Amps): 13",
+        "Power Consumption (W): 1300",
+        "Overall Dimensions – Width (mm/inches): 720mm/28”",
+        "Overall Dimensions – Depth x Height (mm/inches): 480x400mm/19×16”",
+        "Gross Machine Weight (kg/lbs): 45kg/99lbs"
+      ]
+    },
+    {
+      "id": "matrix-duo-md-650",
+      "name": "Matrix Duo MD-650",
+      "cardSpecs": [
+        {
+          "label": "მაქსიმალური სიგანე",
+          "value": "650 / 26"
+        },
+        {
+          "label": "სიმძლავრე (W)",
+          "value": "1600"
+        }
+      ],
+      "descriptionLines": [
+        "ლამინირების სიჩქარე (მ / წთ): 1.4 / 5",
+        "ენკაფსულაციის სიჩქარე (მმ / წთ): 1.4 / 0",
+        "მაქსიმალური სიგანე (მმ / ინჩი): 650 / 26",
+        "გახურების დრო (წუთი): 10",
+        "ლამინირების ტემპერატურის დიაპაზონი (°C/°F): 0-140 / 32-284",
+        "ფირის გული (მმ / ინჩი): 25 & 75 / 1 & 3",
+        "ძაბვა AC (v, 50Hz): 220/240",
+        "ძაბვა AC (v, 60Hz): 110",
+        "დენის წყარო: -",
+        "სიმძლავრე (W): 1600",
+        "ზომა - სიგანე (მმ / ინჩი): 960 / 38",
+        "ზომა - სიღრმე x სიმაღლე (მმ / ინჩი): 480x400 / 19x16",
+        "წონა (კგ / ფუნტი): 55 / 121"
+      ],
+      "descriptionLinesEn": [
+        "Laminating speed (m/min): 1.4 / 5",
+        "Encapsulation speed (mm/min): 1.4 / 0",
+        "Maximum width (mm / inch): 650 / 26",
+        "Warm-up time (min): 10",
+        "Laminating temperature range (°C/°F): 0-140 / 32-284",
+        "Film core (mm / inch): 25 & 75 / 1 & 3",
+        "Voltage AC (v, 50Hz): 220/240",
+        "Voltage AC (v, 60Hz): 110",
+        "Power supply: -",
+        "Power (W): 1600",
+        "Dimensions - width (mm / inch): 960 / 38",
+        "Dimensions - depth x height (mm / inch): 480x400 / 19x16",
+        "Weight (kg / lbs): 55 / 121"
+      ]
+    },
+    {
+      "id": "matrix-easymount-1200-double-hot",
+      "name": "Matrix Easymount 1200 Double Hot",
+      "cardSpecs": [
+        {
+          "label": "მაქს. ლამინირების სიგანე",
+          "value": "1200 მმ"
+        },
+        {
+          "label": "მაქს. ლამინირების სიჩქარე",
+          "value": "3,9 მმ"
+        }
+      ],
+      "descriptionLines": [
+        "მაქს. ლამინირების სიჩქარე: 3,9 მმ",
+        "მაქს. ლამინირების სიგანე: 1200 მმ",
+        "სამონტაჟო სისქე: 25 მმ",
+        "როლის დიამეტრი: 112 მმ",
+        "ქაღალდის სისქე: 100+ მმ (ორმხრივი)",
+        "გახურების დრო: 15 წთ",
+        "ლამინირების ტემპერატურა: 0-130 °C",
+        "მართვის პანელი: ციფრული",
+        "წნევის რეგულირება: მექანიკური / პანელით",
+        "ლილვის გახურების სისტემა: შიდა ინფრაწითელი",
+        "ფირის გული: 77 მმ",
+        "ზომები (W x D x H): 1700 x 785 x 1255 მმ",
+        "ენერგო მიწოდება: 220-240 v"
+      ],
+      "descriptionLinesEn": [
+        "Max. laminating speed: 3.9 mm",
+        "Max. laminating width: 1200 mm",
+        "Mounting thickness: 25 mm",
+        "Roll diameter: 112 mm",
+        "Paper thickness: 100+ mm (double-sided) mm",
+        "Warm-up time: 15 min",
+        "Laminating temperature: 0-130 °C",
+        "Control panel: digital",
+        "Pressure adjustment: mechanical / via panel",
+        "Roller heating system: internal infrared",
+        "Film core: 77 mm",
+        "Dimensions (W x D x H): 1700 x 785 x 1255 mm",
+        "Power supply: 220-240 v"
+      ]
+    },
+    {
+      "id": "matrix-mx-530dp",
+      "name": "Matrix MX-530DP",
+      "cardSpecs": [
+        {
+          "label": "მაქს.ლამინირების სიგანე",
+          "value": "500 მმ"
+        },
+        {
+          "label": "ენერგო მოხმარება",
+          "value": "4500 W"
+        }
+      ],
+      "descriptionLines": [
+        "მაქს. ლამინირების სიჩქარე: 10 მმ",
+        "მაქს. კაფსულირების სიგანე: 320 მმ",
+        "მაქს. ლამინირების სიგანე: 500 მმ",
+        "ქაღალდის სისქე: 100+ მმ (ორმხრივი)",
+        "გახურების დრო: 10 წთ",
+        "ლამინირების ტემპერატურა: 0-140 °C",
+        "მართვის პანელი: მრავალენოვანი LCD",
+        "წნევის რეგულირება: პნევმატური",
+        "ენერგო მიწოდება: 220-240 v",
+        "ენერგო მოხმარება: 4500 W",
+        "ზომები (W x D x H): 900 x 2050 x 1400 მმ"
+      ],
+      "descriptionLinesEn": [
+        "Max. laminating speed: 10 mm",
+        "Max. encapsulation width: 320 mm",
+        "Max. laminating width: 500 mm",
+        "Paper thickness: 100+ (double-sided) mm",
+        "Warm-up time: 10 min",
+        "Laminating temperature: 0-140 °C",
+        "Control panel: multilingual LCD",
+        "Pressure adjustment: pneumatic",
+        "Power supply: 220-240 v",
+        "Power consumption: 4500 W",
+        "Dimensions (W x D x H): 900 x 2050 x 1400 mm"
+      ]
+    },
+    {
+      "id": "matrix-omni-flow-370",
+      "name": "Matrix Omni-Flow 370",
+      "shortDescriptionKa": "ავტო მიმწოდებელი",
+      "shortDescriptionEn": "Deep Pile Feeder",
+      "cardSpecs": [
+        {
+          "label": "მაქს სიგანე",
+          "value": "375 მმ"
+        },
+        {
+          "label": "წონა",
+          "value": "91 კგ"
+        }
+      ],
+      "descriptionLines": [
+        "დამატებითი ფუნქცია: ავტომატური მიმწოდებელი",
+        "მაქს. სიგანე: 375 მმ",
+        "ენერგო მიწოდება: 230 V",
+        "ზომები (W x D x H): 820 x 710 x 1260 მმ",
+        "წონა: 91 კგ",
+        "თავსებადობა: Matrix MX-370DP"
+      ],
+      "descriptionLinesEn": [
+        "Additional feature: automatic feeder",
+        "Max width: 375 mm",
+        "Power supply: 230 V",
+        "Dimensions WxDxH: 820 x 710 x 1260 mm",
+        "Weight: 91 kg",
+        "Compatibility: Matrix MX-370DP"
+      ]
+    },
+    {
+      "id": "matrix-omni-flow-460",
+      "name": "Matrix Omni-Flow 460",
+      "shortDescriptionKa": "ავტო მიმწოდებელი",
+      "shortDescriptionEn": "Deep Pile Feeder",
+      "cardSpecs": [
+        {
+          "label": "მაქს სიგანე",
+          "value": "460 მმ"
+        },
+        {
+          "label": "ენერგო მოხმარება",
+          "value": "200 W"
+        }
+      ],
+      "descriptionLines": [
+        "დამატებითი ფუნქცია: ავტომატური მიმწოდებელი",
+        "მაქს. სიგანე: 460 მმ",
+        "ენერგო მიწოდება: 230 V",
+        "ენერგო მოხმარება: 200 W",
+        "ზომები (W x D x H): 820 x 710 x 1260 მმ",
+        "წონა: 91 კგ",
+        "თავსებადობა: Matrix MX-530DP, Matrix MX-370DP"
+      ],
+      "descriptionLinesEn": [
+        "Additional feature: automatic feeder",
+        "Max width: 460 mm",
+        "Power supply: 230 V",
+        "Power consumption: 200 W",
+        "Dimensions WxDxH: 820 x 710 x 1260 mm",
+        "Weight: 91 kg",
+        "Compatibility: Matrix MX-530DP",
+        "Matrix MX-370DP"
+      ]
+    },
+    {
+      "id": "matrix-take-up-unit",
+      "name": "Matrix Take-Up Unit",
+      "shortDescriptionKa": "ფოლიოს ნარჩენის დამხვევი",
+      "shortDescriptionEn": "Matrix Take-Up Unit",
+      "cardSpecs": [
+        {
+          "label": "ფუნქცია",
+          "value": "Take-Up Unit"
+        },
+        {
+          "label": "მონტაჟი",
+          "value": "უკანა მხარე"
+        }
+      ],
+      "descriptionLines": [
+        "დამატებითი ფუნქცია: Take-Up Unit - ფოლიოს ნარჩენის დამხვევი",
+        "დგება დანადგარის უკანა მხარეს გამოიყენება ფოლიოზე მუშაობის დროს"
+      ],
+      "descriptionLinesEn": [
+        "Additional function: Take-Up Unit - foil waste rewinder",
+        "Mounted on the rear side of the machine and used during foil operation"
+      ]
+    }
+  ]
+}
