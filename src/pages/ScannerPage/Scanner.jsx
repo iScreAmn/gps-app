@@ -1,9 +1,58 @@
-import { useCallback, useEffect, useId, useRef, useState } from "react";
+import { useCallback, useEffect, useId, useMemo, useRef, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { Html5Qrcode } from "html5-qrcode";
+import {
+  FiUpload,
+  FiTrash2,
+  FiZap,
+  FiX,
+  FiSave,
+  FiMinus,
+  FiPlus,
+  FiMaximize,
+} from "react-icons/fi";
 import qrcodeSuccessSound from "../../assets/files/qrcode.mp3";
 import { exportScansToExcel, scansToXlsxBase64 } from "../../utils/excelExport";
 import "./Scanner.css";
+
+function ScanIcon({ className }) {
+  return (
+    <svg
+      className={className}
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      aria-hidden="true"
+    >
+      <path d="M3 7V5a2 2 0 0 1 2-2h2" />
+      <path d="M17 3h2a2 2 0 0 1 2 2v2" />
+      <path d="M21 17v2a2 2 0 0 1-2 2h-2" />
+      <path d="M7 21H5a2 2 0 0 1-2-2v-2" />
+      <path d="M7 12h10" />
+    </svg>
+  );
+}
+
+function EqualizerIcon({ className }) {
+  return (
+    <svg
+      className={className}
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      aria-hidden="true"
+    >
+      <line x1="6" y1="6" x2="6" y2="18" />
+      <line x1="12" y1="3" x2="12" y2="21" />
+      <line x1="18" y1="8" x2="18" y2="16" />
+    </svg>
+  );
+}
 
 const API_URL = (() => {
   const envUrl =
@@ -975,19 +1024,66 @@ export default function Scanner() {
     ? scans.find((s) => s.id === deleteItemConfirmId)
     : null;
 
+  const totals = useMemo(() => {
+    const positions = scans.length;
+    const units = scans.reduce((acc, s) => acc + (s.count || 1), 0);
+    return { positions, units };
+  }, [scans]);
+
+  const liveScannedCount = scans.length;
+
   return (
     <section className={sectionClassName} aria-label="Сканер кодов">
       {!isLive ? (
-        <div className="scanner__actions">
+        <>
+          <div className="scanner__stats">
+            <div className="scanner__stat-card">
+              <span className="scanner__stat-value">{totals.positions}</span>
+              <span className="scanner__stat-label">პოზიცია</span>
+            </div>
+            <div className="scanner__stat-card">
+              <span className="scanner__stat-value">{totals.units}</span>
+              <span className="scanner__stat-label">ერთეული</span>
+            </div>
+          </div>
+
           <button
             type="button"
-            className="scanner__button scanner__button--primary"
+            className="scanner__scan-cta"
             onClick={handleOpenScan}
             disabled={!isCameraContextOk()}
           >
-            Scan
+            <span className="scanner__scan-cta-icon">
+              <ScanIcon className="scanner__scan-cta-icon-svg" />
+            </span>
+            <span className="scanner__scan-cta-text">
+              <span className="scanner__scan-cta-title">SCAN</span>
+              <span className="scanner__scan-cta-sub">დაასკანირე შტრიხკოდი</span>
+            </span>
+            <EqualizerIcon className="scanner__scan-cta-eq" />
           </button>
-        </div>
+
+          <div className="scanner__action-row">
+            <button
+              type="button"
+              className="scanner__action-btn scanner__action-btn--export"
+              onClick={handleOpenExportModal}
+              disabled={scans.length === 0}
+            >
+              <FiUpload aria-hidden="true" />
+              <span>EXPORT</span>
+            </button>
+            <button
+              type="button"
+              className="scanner__action-btn scanner__action-btn--clear"
+              onClick={handleClearHistory}
+              disabled={scans.length === 0}
+            >
+              <FiTrash2 aria-hidden="true" />
+              <span>CLEAR</span>
+            </button>
+          </div>
+        </>
       ) : null}
 
       {httpsHint}
@@ -1000,7 +1096,7 @@ export default function Scanner() {
           onPointerDown={onLivePointerDown}
         >
           <p className="scanner__live-hint">
-            Hold 15–20 cm away, barcode horizontal. Tap 2× for digital zoom.
+            დაიჭირე 15–20 სმ მანძილზე, შტრიხკოდი ჰორიზონტალურად. 2× ციფრული ზუმისთვის.
           </p>
           <div className="scanner__viewfinder" aria-label="Viewfinder">
             <div id={readerId} className="scanner__reader scanner__reader--live" />
@@ -1008,7 +1104,15 @@ export default function Scanner() {
               className="scanner__viewfinder-guides scanner__viewfinder-guides--barcode"
               aria-hidden="true"
             >
-              <div className="scanner__barcode-frame" />
+              <span className="scanner__viewfinder-corner scanner__viewfinder-corner--tl" />
+              <span className="scanner__viewfinder-corner scanner__viewfinder-corner--tr" />
+              <span className="scanner__viewfinder-corner scanner__viewfinder-corner--bl" />
+              <span className="scanner__viewfinder-corner scanner__viewfinder-corner--br" />
+              <span className="scanner__viewfinder-line" />
+            </div>
+            <div className="scanner__viewfinder-counter" aria-live="polite">
+              <span className="scanner__viewfinder-counter-dot" />
+              {liveScannedCount} scanned
             </div>
           </div>
           <div className="scanner__live-bar">
@@ -1019,9 +1123,9 @@ export default function Scanner() {
               disabled={!isTorchSupported}
               aria-pressed={torchOn}
               aria-label="Flash / torch"
-              title={isTorchSupported ? "Flash" : "Flash not available on this device"}
             >
-              Flash
+              <FiZap aria-hidden="true" />
+              <span>FLASH</span>
             </button>
             <button
               type="button"
@@ -1030,22 +1134,17 @@ export default function Scanner() {
               disabled={!isZoomSupported}
               aria-pressed={isZoom2x}
               aria-label={isZoom2x ? "Normal zoom" : "Digital zoom 2×"}
-              title={
-                isZoomSupported
-                  ? isZoom2x
-                    ? "1× (normal)"
-                    : "2× (hold phone 15–20 cm from code)"
-                  : "Digital zoom is not available on this camera"
-              }
             >
-              {isZoom2x ? "1×" : "2×"}
+              <FiMaximize aria-hidden="true" />
+              <span>{isZoom2x ? "1×" : "2×"} ZOOM</span>
             </button>
             <button
               type="button"
               className="scanner__live-button scanner__live-button--close"
               onClick={() => void handleCloseCamera()}
             >
-              Close
+              <FiX aria-hidden="true" />
+              <span>CLOSE</span>
             </button>
           </div>
         </div>
@@ -1066,30 +1165,13 @@ export default function Scanner() {
 
       {!isLive && groupedEntries.length > 0 ? (
         <div className="scanner__history" aria-live="polite">
-          <div className="scanner__history-header">
-            <p className="scanner__hint scanner__hint--success">
-              Scan History:
-            </p>
-            <div className="scanner__history-buttons">
-              <button
-                type="button"
-                className="scanner__button scanner__button--export"
-                onClick={handleOpenExportModal}
-              >
-                Export
-              </button>
-              <button
-                type="button"
-                className="scanner__button scanner__button--danger"
-                onClick={handleClearHistory}
-              >
-                Clear
-              </button>
-            </div>
-          </div>
           {groupedEntries.map(([date, dateScans]) => (
             <div key={date} className="scanner__group">
-              <h4 className="scanner__group-title">{date}</h4>
+              <div className="scanner__group-head">
+                <span className="scanner__group-title">Scan History</span>
+                <span className="scanner__group-divider" aria-hidden="true" />
+                <span className="scanner__group-date">{date}</span>
+              </div>
               <ul className="scanner__list">
                 {dateScans.map((scan) => (
                   <li key={scan.id} className="scanner__list-item">
@@ -1098,23 +1180,19 @@ export default function Scanner() {
                       className="scanner__item"
                       onClick={() => openItem(scan.id)}
                     >
-                      <output
-                        className="scanner__result scanner__result--success"
-                        aria-label="Отсканированный код"
-                      >
-                        {scan.cleanCode}
-                      </output>
-                      {scan.productName ? (
-                        <p className="scanner__product-name">{scan.productName}</p>
-                      ) : null}
-                      <div className="scanner__meta">
-                        <span className="scanner__meta-left">
-                          <span>{scan.type}</span>
-                          <span className="scanner__count-badge">
-                            x{scan.count || 1}
+                      <div className="scanner__item-top">
+                        <div className="scanner__item-main">
+                          <span className="scanner__item-code">{scan.cleanCode}</span>
+                          <span className="scanner__item-name">
+                            {scan.productName ? scan.productName : "სახელი მიუთითე"}
                           </span>
-                        </span>
-                        <span>
+                        </div>
+                        <span className="scanner__count-badge">×{scan.count || 1}</span>
+                      </div>
+                      <div className="scanner__item-bottom">
+                        <span className="scanner__type-pill">{scan.type}</span>
+                        <span className="scanner__item-raw">{scan.rawCode}</span>
+                        <span className="scanner__item-time">
                           {new Date(scan.timestamp).toLocaleTimeString([], {
                             hour: "2-digit",
                             minute: "2-digit",
@@ -1167,9 +1245,10 @@ export default function Scanner() {
           >
             <div className="scanner__sheet-handle" aria-hidden="true" />
             <p className="scanner__sheet-code">{itemForModal.cleanCode}</p>
-            <p className="scanner__sheet-meta">
-              {itemForModal.type} · {itemForModal.rawCode}
-            </p>
+            <div className="scanner__sheet-meta-row">
+              <span className="scanner__type-pill">{itemForModal.type}</span>
+              <span className="scanner__sheet-raw">{itemForModal.rawCode}</span>
+            </div>
             <label className="scanner__field" htmlFor="scanner-product-name">
               Product Name
             </label>
@@ -1179,21 +1258,21 @@ export default function Scanner() {
               type="text"
               value={draftProductName}
               onChange={(e) => setDraftProductName(e.target.value)}
-              placeholder="Enter product name"
+              placeholder="სახელი მიუთითე / Enter name"
               autoComplete="off"
             />
             <p className="scanner__field-label">Quantity</p>
             <div className="scanner__count-row">
               <button
                 type="button"
-                className="scanner__button scanner__button--step"
+                className="scanner__count-step"
                 onClick={() => handleAdjustCount(-1)}
                 aria-label="Минус"
               >
-                −
+                <FiMinus aria-hidden="true" />
               </button>
               <input
-                className="scanner__input scanner__input--count"
+                className="scanner__count-input"
                 type="text"
                 inputMode="numeric"
                 value={draftCount}
@@ -1202,28 +1281,29 @@ export default function Scanner() {
               />
               <button
                 type="button"
-                className="scanner__button scanner__button--step"
+                className="scanner__count-step"
                 onClick={() => handleAdjustCount(1)}
                 aria-label="Плюс"
               >
-                +
+                <FiPlus aria-hidden="true" />
               </button>
             </div>
             <div className="scanner__sheet-actions">
               <button
                 type="button"
-                className="scanner__button scanner__button--primary scanner__button--inline"
+                className="scanner__sheet-btn scanner__sheet-btn--save"
                 onClick={handleItemSave}
               >
-                Save
+                <FiSave aria-hidden="true" />
+                <span>SAVE</span>
               </button>
-
               <button
                 type="button"
-                className="scanner__button scanner__button--danger scanner__button--delete"
+                className="scanner__sheet-btn scanner__sheet-btn--delete"
                 onClick={handleItemDeleteRequest}
               >
-                Delete
+                <FiTrash2 aria-hidden="true" />
+                <span>DELETE</span>
               </button>
             </div>
           </div>
@@ -1357,30 +1437,35 @@ export default function Scanner() {
           role="presentation"
         >
           <div
-            className="scanner__modal"
+            className="scanner__modal scanner__modal--center"
             role="dialog"
             aria-modal="true"
             aria-label="Подтверждение удаления истории"
             onClick={(event) => event.stopPropagation()}
           >
-            <h3 className="scanner__modal-title">Delete history?</h3>
-            <p className="scanner__modal-text">
-              This action will delete all scanned codes from localStorage.
+            <div className="scanner__modal-icon" aria-hidden="true">
+              <FiTrash2 />
+            </div>
+            <h3 className="scanner__modal-title scanner__modal-title--center">
+              გასუფთავება?
+            </h3>
+            <p className="scanner__modal-text scanner__modal-text--center">
+              მთელი სკან-ისტორია წაიშლება. ეს ქმედება შეუქცევადია.
             </p>
-            <div className="scanner__modal-actions">
+            <div className="scanner__modal-actions scanner__modal-actions--center">
               <button
                 type="button"
-                className="scanner__button scanner__button--modal-cancel"
+                className="scanner__modal-btn scanner__modal-btn--cancel"
                 onClick={handleCancelClearHistory}
               >
-                Cancel
+                გაუქმება
               </button>
               <button
                 type="button"
-                className="scanner__button scanner__button--danger"
+                className="scanner__modal-btn scanner__modal-btn--danger"
                 onClick={handleConfirmClearHistory}
               >
-                Delete
+                CLEAR
               </button>
             </div>
           </div>
