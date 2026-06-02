@@ -88,6 +88,7 @@ body[data-theme="dark"] .calculator__title {
 }
 
 .calculator__subtitle {
+  font-family: 'GPS Mt'; 
   font-size: 15px;
   color: var(--light-text-secondary);
   max-width: 600px;
@@ -187,6 +188,7 @@ body[data-theme="dark"] .calculator__question {
 
 /* Options Grid */
 .calculator__options {
+  font-family:'GPS Mt';
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 1rem;
@@ -230,7 +232,6 @@ body[data-theme="dark"] .calculator__option {
 
 body[data-theme="dark"] .calculator__option::before {
   border-color: var(--dark-border);
-  /* background-color: var(--dark-bg); */
 }
 
 .calculator__option:hover {
@@ -240,12 +241,8 @@ body[data-theme="dark"] .calculator__option::before {
 }
 
 body[data-theme="dark"] .calculator__option:hover {
+  border-color: var(--primary-red);
   box-shadow: var(--dark-shadow);
-}
-
-.calculator__option:focus {
-  outline: 2px solid var(--primary-red);
-  outline-offset: 2px;
 }
 
 .calculator__option--selected {
@@ -275,9 +272,10 @@ body[data-theme="dark"] .calculator__option--selected::before {
 }
 
 .calculator__contact-methods {
+  font-family: 'GPS Mt Medium';
   display: flex;
   gap: 1rem;
-  justify-content: flex-start;
+  justify-content: space-between;
   flex-wrap: wrap;
 }
 
@@ -353,6 +351,7 @@ body[data-theme="dark"] .calculator__contact-method {
 
 /* Input Group */
 .calculator__input-group {
+  font-family: 'GPS Mt';
   display: flex;
   flex-direction: column;
   gap: 0.75rem;
@@ -437,6 +436,7 @@ body[data-theme="dark"] .calculator__input::placeholder {
 }
 
 .calculator__checkbox-label {
+  font-family: 'GPS Mt';
   font-size: 0.875rem;
   color: var(--light-text);
   line-height: 1.6;
@@ -448,6 +448,7 @@ body[data-theme="dark"] .calculator__checkbox-label {
 }
 
 .calculator__checkbox-link {
+  font-family: 'GPS Mt Medium';
   color: var(--primary-red);
   font-weight: var(--font-medium);
   text-decoration: underline;
@@ -703,11 +704,11 @@ body[data-theme="dark"] .calculator__btn--back {
 }
 
 .calculator__btn--back:hover:not(:disabled) {
-  border-color: var(--primary-red);
   transform: translateX(-2px);
 }
 
 .calculator__btn--next {
+  font-family: 'GPS Mt Medium';
   background-color: var(--primary-red);
   color: #FFFFFF;
   flex: 1;
@@ -724,11 +725,6 @@ body[data-theme="dark"] .calculator__btn--back {
   box-shadow: 0 4px 12px rgba(220, 38, 38, 0.3);
 }
 
-.calculator__btn:focus {
-  outline: 2px solid var(--primary-red);
-  outline-offset: 2px;
-}
-
 .calculator__btn:disabled {
   opacity: 0.5;
   cursor: not-allowed;
@@ -739,6 +735,7 @@ body[data-theme="dark"] .calculator__btn--back {
   flex: 1;
   max-width: 300px;
   padding: 1rem 2rem;
+  font-family: 'GPS Mt';
   font-size: 1rem;
   font-weight: var(--font-bold);
   border-radius: 8px;
@@ -756,10 +753,7 @@ body[data-theme="dark"] .calculator__btn--back {
   box-shadow: 0 4px 12px rgba(220, 38, 38, 0.3);
 }
 
-.calculator__submit:focus {
-  outline: 2px solid var(--primary-red);
-  outline-offset: 2px;
-}
+
 
 .calculator__submit--disabled {
   opacity: 0.4;
@@ -777,10 +771,6 @@ body[data-theme="dark"] .calculator__submit--disabled {
   transform: none !important;
   box-shadow: none !important;
 }
-
-/* ============================================
-   Responsive Design
-   ============================================ */
 
 /* Tablet Landscape & Small Desktop (769px - 1199px) */
 @media (min-width: 769px) and (max-width: 1199px) {
