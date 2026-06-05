@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { useParams, useSearchParams, Link } from 'react-router-dom';
+import { useParams, useSearchParams, Link, Navigate } from 'react-router-dom';
+import { getBrandSearchRoute } from '../../data/searchableProducts';
 import { useLanguage } from "../../hooks/useLanguage";
 import ProductCard from '../../components/ProductCard/ProductCard';
 import CategoryCards from '../../components/CategoryCards/CategoryCards';
@@ -65,6 +66,11 @@ const CatalogPage = () => {
       }))
     : [];
 
+  const brandSearchRoute = getBrandSearchRoute(searchQuery, language);
+  if (brandSearchRoute) {
+    return <Navigate to={brandSearchRoute} replace />;
+  }
+
   const allProducts = [...developProducts, ...professionalProducts, ...iechoProducts];
   const products = searchQuery.trim() ? searchProducts(allProducts, searchQuery) : allProducts;
 
@@ -124,10 +130,12 @@ const CatalogPage = () => {
     <div className="catalog-page">
       {/* Search results */}
       {searchQuery && (
-        <div className="container" style={{ paddingTop: '2rem' }}>
-          <h2>{products.length} {t('catalog.products_found')}</h2>
+        <div className="container">
+          <h1 className="catalog-page__found-count">
+            {products.length} {t('catalog.products_found')}
+          </h1>
           {products.length > 0 ? (
-            <div className="office-equipment__grid" style={{ marginTop: '1rem' }}>
+            <div className="office-equipment__grid">
               {products.map((product) => (
                 <Link
                   key={product.id}

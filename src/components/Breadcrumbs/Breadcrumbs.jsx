@@ -150,6 +150,11 @@ const Breadcrumbs = ({ items, separator }) => {
       ) {
         return;
       }
+
+      const idealIdx = segments.indexOf('ideal');
+      if (idealIdx >= 0 && segments[idealIdx + 1] === 'products' && index > idealIdx) {
+        return;
+      }
       
       // Специальная обработка для страницы новости
       if (segment === 'news') {
@@ -320,6 +325,22 @@ const Breadcrumbs = ({ items, separator }) => {
             isActive: true
           });
         }
+        return;
+      }
+
+      // ideal/products: Home - Catalog - Cutting Systems - Ideal - Products
+      if (segment === 'ideal' && nextSegment === 'products') {
+        const catalogPath = currentLang ? `/${currentLang}/catalog` : '/catalog';
+        const cuttingPath = currentLang ? `/${currentLang}/cutting-systems` : '/cutting-systems';
+        const idealPath = `${cuttingPath}/ideal`;
+        const productsPath = currentLang ? `/${currentLang}/ideal/products` : '/ideal/products';
+
+        crumbs.push(
+          { label: t('navigation.catalog'), path: catalogPath, isActive: false },
+          { label: t('categories.cutting'), path: cuttingPath, isActive: false },
+          { label: 'Ideal', path: idealPath, isActive: false },
+          { label: t('ideal.all_products'), path: productsPath, isActive: true }
+        );
         return;
       }
 

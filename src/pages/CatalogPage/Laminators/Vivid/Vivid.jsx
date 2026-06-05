@@ -7,6 +7,7 @@ import '../../CatalogPage.css';
 
 const Vivid = () => {
   const { t } = useLanguage();
+  const products = vividData.products;
 
   const imageMap = {
     'matrix-duo-md-460': laminator5,
@@ -22,8 +23,11 @@ const Vivid = () => {
     <div className="catalog-page">
       <div className="office-equipment">
         <div className="container">
+          <h1 className="catalog-page__found-count">
+            {products.length} {t('catalog.products_found')}
+          </h1>
           <div className="office-equipment__grid">
-            {vividData.products.map((product) => (
+            {products.map((product) => (
               <Link
                 key={product.id}
                 to={`/vivid/${product.id}`}

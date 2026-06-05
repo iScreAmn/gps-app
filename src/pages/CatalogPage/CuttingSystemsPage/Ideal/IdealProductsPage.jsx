@@ -1,22 +1,12 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { useLanguage } from '../../../../hooks/useLanguage';
-import { laminator1, laminator2, laminator3, laminator4, laminator11, laminator12 } from '../../../../assets/images';
-import recosystemsData from '../../../../database/brands/recosystems.json';
+import { getIdealProducts } from '../../../../data/searchableProducts';
 import '../../CatalogPage.css';
 
-const RecoSystems = () => {
-  const { t } = useLanguage();
-  const products = recosystemsData.products;
-
-  const imageMap = {
-    'rl-39s': laminator1,
-    'rl-68s': laminator2,
-    'rl-69s': laminator3,
-    'rl-106': laminator4,
-    'reco-lam-321-a3': laminator11,
-    'royal-sovereign-es-400': laminator12
-  };
+const IdealProductsPage = () => {
+  const { language, t } = useLanguage();
+  const products = getIdealProducts(language, t);
 
   return (
     <div className="catalog-page">
@@ -29,12 +19,12 @@ const RecoSystems = () => {
             {products.map((product) => (
               <Link
                 key={product.id}
-                to={`/recosystems/${product.id}`}
+                to={product.link}
                 className="office-equipment__card"
               >
                 <div className="office-equipment__card-image">
                   <img
-                    src={imageMap[product.id]}
+                    src={product.image}
                     alt={product.name}
                   />
                   <div className="office-equipment__overlay">
@@ -46,7 +36,7 @@ const RecoSystems = () => {
                   <div className="office-equipment__specs">
                     {product.cardSpecs?.map((spec) => (
                       <span key={`${product.id}-${spec.label}`} className="spec">
-                        <strong>{spec.label}</strong> {spec.value}
+                        <strong>{spec.label}:</strong> <span className="spec__value">{spec.value}</span>
                       </span>
                     ))}
                   </div>
@@ -60,4 +50,4 @@ const RecoSystems = () => {
   );
 };
 
-export default RecoSystems;
+export default IdealProductsPage;

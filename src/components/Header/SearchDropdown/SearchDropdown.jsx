@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef, useCallback, useMemo } from 'react'
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import { FaSearch } from 'react-icons/fa';
 import { searchProducts, createDebouncedSearch } from '../../../utils/productSearch';
-import { getSearchableProducts } from '../../../data/searchableProducts';
+import { getSearchableProducts, getBrandSearchRoute } from '../../../data/searchableProducts';
 import { useLanguage } from '../../../hooks/useLanguage';
 import './SearchDropdown.css';
 
@@ -66,7 +66,12 @@ export default function SearchDropdown() {
     const q = query.trim();
     if (q) {
       saveQuery(q);
-      navigate(`/${language}/catalog?q=${encodeURIComponent(q)}`);
+      const brandRoute = getBrandSearchRoute(q, language);
+      if (brandRoute) {
+        navigate(brandRoute);
+      } else {
+        navigate(`/${language}/catalog?q=${encodeURIComponent(q)}`);
+      }
       setIsOpen(false);
     }
   };

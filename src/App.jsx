@@ -25,6 +25,7 @@ import IdealGuillotine from './pages/CatalogPage/CuttingSystemsPage/Ideal/Guillo
 import IdealGuillotineModelPage from './pages/CatalogPage/CuttingSystemsPage/Ideal/Guillotine/IdealGuillotineModelPage';
 import IdealShredder from './pages/CatalogPage/CuttingSystemsPage/Ideal/Shredder/IdealShredder';
 import IdealShredderModelPage from './pages/CatalogPage/CuttingSystemsPage/Ideal/Shredder/IdealShredderModelPage';
+import IdealProductsPage from './pages/CatalogPage/CuttingSystemsPage/Ideal/IdealProductsPage';
 import OfficeEquipment from './pages/CatalogPage/OfficeEquipment/OfficeEquipment';
 import DevelopModelPage from './pages/CatalogPage/OfficeEquipment/DevelopModelPage';
 import ProfessionalEquipment from './pages/CatalogPage/ProfessionalEquipment/ProfessionalEquipment';
@@ -52,6 +53,7 @@ function App() {
               <Route path="/ka/cutting-systems/iecho" element={<Iecho />} />
               <Route path="/ka/cutting-systems/iecho/:modelId" element={<IechoModelPage />} />
               <Route path="/ka/cutting-systems/ideal" element={<Ideal />} />
+              <Route path="/ka/ideal/products" element={<IdealProductsPage />} />
               <Route path="/ka/cutting-systems/ideal/guillotine" element={<IdealGuillotine />} />
               <Route path="/ka/cutting-systems/ideal/guillotine/:modelId" element={<IdealGuillotineModelPage />} />
               <Route path="/ka/shredder" element={<IdealShredder />} />
@@ -86,6 +88,7 @@ function App() {
               <Route path="/en/cutting-systems/iecho" element={<Iecho />} />
               <Route path="/en/cutting-systems/iecho/:modelId" element={<IechoModelPage />} />
               <Route path="/en/cutting-systems/ideal" element={<Ideal />} />
+              <Route path="/en/ideal/products" element={<IdealProductsPage />} />
               <Route path="/en/cutting-systems/ideal/guillotine" element={<IdealGuillotine />} />
               <Route path="/en/cutting-systems/ideal/guillotine/:modelId" element={<IdealGuillotineModelPage />} />
               <Route path="/en/shredder" element={<IdealShredder />} />
@@ -118,6 +121,7 @@ function App() {
               <Route path="/cutting-systems/iecho" element={<Iecho />} />
               <Route path="/cutting-systems/iecho/:modelId" element={<IechoModelPage />} />
               <Route path="/cutting-systems/ideal" element={<Ideal />} />
+              <Route path="/ideal/products" element={<IdealProductsPage />} />
               <Route path="/cutting-systems/ideal/guillotine" element={<IdealGuillotine />} />
               <Route path="/cutting-systems/ideal/guillotine/:modelId" element={<IdealGuillotineModelPage />} />
               <Route path="/shredder" element={<IdealShredder />} />
