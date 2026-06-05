@@ -381,14 +381,14 @@ body[data-theme="dark"] .how-step-text {
     min-height: 0;
     overflow: hidden;
     display: flex;
-    align-items: flex-start;
+    align-items: center;
     padding-top: clamp(16px, 4vh, 40px);
   }
 
   /* Track stays horizontal; JS drives the translateX as usual */
   .how-track {
     flex-wrap: nowrap;
-    gap: 16px;
+    gap: 45px;
     padding: 0 24px 0 0;
     align-items: flex-start;
   }
