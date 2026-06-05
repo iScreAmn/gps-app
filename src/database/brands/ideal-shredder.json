@@ -1,0 +1,251 @@
+{
+  "brand": "ideal",
+  "category": "shredder",
+  "displayName": "Ideal Shredder",
+  "products": [
+    {
+      "id": "shredder-4606-cc",
+      "name": "Shredder 4606 CC",
+      "cardSpecs": [
+        {
+          "label": "სამუშაო განი",
+          "value": "460 მმ"
+        },
+        {
+          "label": "უსაფრთხოების დონე",
+          "value": "P-3"
+        }
+      ],
+      "cardSpecsEn": [
+        {
+          "label": "Working width",
+          "value": "460 mm"
+        },
+        {
+          "label": "Security level",
+          "value": "P-3"
+        }
+      ],
+      "descriptionLines": [
+        "სამუშაო განი: 460 მმ",
+        "ნაწილაკების ზომა: 6x50 ჯვარედინი",
+        "უსაფრთხოების დონე: P-3",
+        "ფურცლის მოცულობა: 80-95 ფურცელი (A4 ფორმატი, 70გრ) | 70-83 ფურცელი (A4 ფორმატი, 80გრ)",
+        "მოცულობა: 230 ლიტრი",
+        "ასევე ანადგურებს: სტეპლერის კავები, ქაღალდის სამაგრები, საკრედიტო ბარათები, დისკები",
+        "ზომები: 1700 x 740 x 765 მმ",
+        "წონა: 256 კგ"
+      ],
+      "descriptionLinesEn": [
+        "Working width: 460 mm",
+        "Particle size: 6x50 mm cross-cut",
+        "Security level: P-3",
+        "Sheet capacity: 80-95 sheets (A4, 70 gsm) | 70-83 sheets (A4, 80 gsm)",
+        "Bin capacity: 230 litres",
+        "Also shreds: staples, paper clips, credit cards, CDs",
+        "Dimensions: 1700 x 740 x 765 mm",
+        "Weight: 256 kg"
+      ]
+    },
+    {
+      "id": "shredder-2220",
+      "name": "Shredder 2220",
+      "cardSpecs": [
+        {
+          "label": "ჭრის მეთოდი",
+          "value": "პარალელური"
+        },
+        {
+          "label": "მიმწოდებელი ჭრილის სიგანე",
+          "value": "220 მმ"
+        }
+      ],
+      "cardSpecsEn": [
+        {
+          "label": "Cutting method",
+          "value": "Strip-cut"
+        },
+        {
+          "label": "Feed opening width",
+          "value": "220 mm"
+        }
+      ],
+      "descriptionLines": [
+        "ჭრის მეთოდი: პარალელური",
+        "ნაწილაკების ზომა: 4 მმ",
+        "მიმწოდებელი ჭრილის სიგანე: 220 მმ",
+        "ფურცლების რაოდენობა: 70გრ - 12 ფურცელი",
+        "კალათის მოცულობა: 20 ლიტრი",
+        "ენერგო მოხმარება: 150 ვატი"
+      ],
+      "descriptionLinesEn": [
+        "Cutting method: Strip-cut",
+        "Particle size: 4 mm",
+        "Feed opening width: 220 mm",
+        "Sheet capacity: 70 gsm - 12 sheets",
+        "Bin capacity: 20 litres",
+        "Power consumption: 150 W"
+      ]
+    },
+    {
+      "id": "shredder-2240",
+      "name": "Shredder 2240",
+      "cardSpecs": [
+        {
+          "label": "ჭრის მეთოდი",
+          "value": "პარალელური"
+        },
+        {
+          "label": "მიმწოდებელი ჭრილის სიგანე",
+          "value": "220 მმ"
+        }
+      ],
+      "cardSpecsEn": [
+        {
+          "label": "Cutting method",
+          "value": "Strip-cut"
+        },
+        {
+          "label": "Feed opening width",
+          "value": "220 mm"
+        }
+      ],
+      "descriptionLines": [
+        "ჭრის მეთოდი: პარალელური",
+        "ნაწილაკების ზომა: 4 მმ",
+        "მიმწოდებელი ჭრილის სიგანე: 220 მმ",
+        "ფურცლების რაოდენობა: 70გრ - 12 ფურცელი",
+        "კალათის მოცულობა: 20 ლიტრი",
+        "ენერგო მოხმარება: 150 ვატი"
+      ],
+      "descriptionLinesEn": [
+        "Cutting method: Strip-cut",
+        "Particle size: 4 mm",
+        "Feed opening width: 220 mm",
+        "Sheet capacity: 70 gsm - 12 sheets",
+        "Bin capacity: 20 litres",
+        "Power consumption: 150 W"
+      ]
+    },
+    {
+      "id": "shredder-2240-cc",
+      "name": "Shredder 2240 CC",
+      "cardSpecs": [
+        {
+          "label": "ჭრის მეთოდი",
+          "value": "ჯვარედინი"
+        },
+        {
+          "label": "მიმწოდებელი ჭრილის სიგანე",
+          "value": "220 მმ"
+        }
+      ],
+      "cardSpecsEn": [
+        {
+          "label": "Cutting method",
+          "value": "Cross-cut"
+        },
+        {
+          "label": "Feed opening width",
+          "value": "220 mm"
+        }
+      ],
+      "descriptionLines": [
+        "ჭრის მეთოდი: ჯვარედინი",
+        "ნაწილაკების ზომა: 3x25 მმ",
+        "მიმწოდებელი ჭრილის სიგანე: 220 მმ",
+        "ფურცლების რაოდენობა: 70გრ - 5 ფურცელი",
+        "კალათის მოცულობა: 20 ლიტრი",
+        "ენერგო მოხმარება: 120 ვატი"
+      ],
+      "descriptionLinesEn": [
+        "Cutting method: Cross-cut",
+        "Particle size: 3x25 mm",
+        "Feed opening width: 220 mm",
+        "Sheet capacity: 70 gsm - 5 sheets",
+        "Bin capacity: 20 litres",
+        "Power consumption: 120 W"
+      ]
+    },
+    {
+      "id": "shredder-2260",
+      "name": "Shredder 2260",
+      "cardSpecs": [
+        {
+          "label": "ჭრის მეთოდი",
+          "value": "პარალელური"
+        },
+        {
+          "label": "მიმწოდებელი ჭრილის სიგანე",
+          "value": "220 მმ"
+        }
+      ],
+      "cardSpecsEn": [
+        {
+          "label": "Cutting method",
+          "value": "Strip-cut"
+        },
+        {
+          "label": "Feed opening width",
+          "value": "220 mm"
+        }
+      ],
+      "descriptionLines": [
+        "ჭრის მეთოდი: პარალელური",
+        "ნაკუწების ზომა: 4 მმ",
+        "მიმწოდებელი ჭრილის სიგანე: 220 მმ",
+        "ფურცლების რაოდენობა: 70გრ - 12 ფურცელი",
+        "კალათის მოცულობა: 20 ლიტრი",
+        "ენერგო მოხმარება: 150 ვატი"
+      ],
+      "descriptionLinesEn": [
+        "Cutting method: Strip-cut",
+        "Particle size: 4 mm",
+        "Feed opening width: 220 mm",
+        "Sheet capacity: 70 gsm - 12 sheets",
+        "Bin capacity: 20 litres",
+        "Power consumption: 150 W"
+      ]
+    },
+    {
+      "id": "shredder-2260-cc",
+      "name": "Shredder 2260 CC",
+      "cardSpecs": [
+        {
+          "label": "ჭრის მეთოდი",
+          "value": "ჯვარედინი"
+        },
+        {
+          "label": "მიმწოდებელი ჭრილის სიგანე",
+          "value": "220 მმ"
+        }
+      ],
+      "cardSpecsEn": [
+        {
+          "label": "Cutting method",
+          "value": "Cross-cut"
+        },
+        {
+          "label": "Feed opening width",
+          "value": "220 mm"
+        }
+      ],
+      "descriptionLines": [
+        "ჭრის მეთოდი: ჯვარედინი",
+        "ნაწილაკების ზომა: 2x15 მმ",
+        "მიმწოდებელი ჭრილის სიგანე: 220 მმ",
+        "ფურცლების რაოდენობა: 70გრ - 4 ფურცელი",
+        "კალათის მოცულობა: 20 ლიტრი",
+        "ენერგო მოხმარება: 150 ვატი"
+      ],
+      "descriptionLinesEn": [
+        "Cutting method: Cross-cut",
+        "Particle size: 2x15 mm",
+        "Feed opening width: 220 mm",
+        "Sheet capacity: 70 gsm - 4 sheets",
+        "Bin capacity: 20 litres",
+        "Power consumption: 150 W"
+      ]
+    }
+  ]
+}

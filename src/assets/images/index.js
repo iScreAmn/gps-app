@@ -179,8 +179,16 @@ export { default as guillotine12 } from './products/guillotine/IDEAL 6660.jpg';
 export { default as guillotine13 } from './products/guillotine/IDEAL 7260.jpg';
 export { default as guillotine14 } from './products/guillotine/IDEAL 4855.jpg';
 
-// Shreddera
+// Shredder
 export { default as shredder } from './printers/sections/shredder.webp';
+export { default as shredder1 } from './products/shredders/Shredder 4606 CC.webp';
+export { default as shredder2 } from './products/shredders/Shredder 2220.webp';
+export { default as shredder3 } from './products/shredders/Shredder 2240.webp';
+export { default as shredder4 } from './products/shredders/Shredder 2240 CC.webp';
+export { default as shredder5 } from './products/shredders/Shredder 2260.webp';
+export { default as shredder6 } from './products/shredders/Shredder 2260 CC.webp';
+
+
 
 // Accessories
 export { default as accessories } from './printers/sections/accessories.webp';

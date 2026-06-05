@@ -7,6 +7,7 @@ import { getNewsItemById } from '../../data/contentData';
 import developData from '../../database/brands/develop.json';
 import recosystemsData from '../../database/brands/recosystems.json';
 import idealGuillotineData from '../../database/brands/ideal-guillotine.json';
+import idealShredderData from '../../database/brands/ideal-shredder.json';
 import vividData from '../../database/brands/vivid.json';
 import { professionalData } from '../../data/professionalData';
 import { nocaiData } from '../../data/nocaiData';
@@ -322,6 +323,32 @@ const Breadcrumbs = ({ items, separator }) => {
         return;
       }
 
+      // shredder: Home - Catalog - Cutting Systems - Ideal - Shredder [- model]
+      if (segment === 'shredder') {
+        const catalogPath = currentLang ? `/${currentLang}/catalog` : '/catalog';
+        const cuttingPath = currentLang ? `/${currentLang}/cutting-systems` : '/cutting-systems';
+        const idealPath = `${cuttingPath}/ideal`;
+        const shredderPath = currentLang ? `/${currentLang}/shredder` : '/shredder';
+
+        crumbs.push(
+          { label: t('navigation.catalog'), path: catalogPath, isActive: false },
+          { label: t('categories.cutting'), path: cuttingPath, isActive: false },
+          { label: 'Ideal', path: idealPath, isActive: false },
+          { label: t('categories.shredder'), path: shredderPath, isActive: !segments[index + 1] }
+        );
+
+        if (segments[index + 1]) {
+          const modelId = segments[index + 1];
+          const product = idealShredderData?.products?.find(p => p.id === modelId);
+          crumbs.push({
+            label: product?.name || modelId,
+            path: `${shredderPath}/${modelId}`,
+            isActive: true
+          });
+        }
+        return;
+      }
+
       // Специальная обработка для recosystems: Home - Catalog - Laminators - модель
       if (segment === 'recosystems') {
         const catalogPath = currentLang ? `/${currentLang}/catalog` : '/catalog';
@@ -396,6 +423,11 @@ const Breadcrumbs = ({ items, separator }) => {
 
       // Пропускаем modelId для recosystems — он уже добавлен в специальной обработке выше
       if (segments[index - 1] === 'recosystems') {
+        return;
+      }
+
+      // Пропускаем modelId для shredder — он уже добавлен в специальной обработке выше
+      if (segments[index - 1] === 'shredder') {
         return;
       }
 
