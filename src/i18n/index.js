@@ -23,7 +23,7 @@ i18n
     fallbackLng: 'ka',
     
     interpolation: {
-      escapeValue: false, // react already does escaping
+      escapeValue: false,
     },
     
     detection: {

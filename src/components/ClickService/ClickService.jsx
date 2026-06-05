@@ -111,8 +111,8 @@ const ClickService = () => {
             transition={{ duration: 0.8, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
           >
             აირჩიეთ <em>CLICK სერვისი</em> და გადაიხადეთ მხოლოდ{" "}
-            <span className="how-intro-highlight">რეალურად დაბეჭდილ</span>{" "}
-            გვერდებში.
+            <span className="how-intro-highlight">დაბეჭდილი</span>{" "}
+            გვერდების საფასური.
           </motion.h2>
 
           <motion.p
@@ -122,7 +122,7 @@ const ClickService = () => {
             viewport={{ once: true, amount: 0.4 }}
             transition={{ duration: 0.7, delay: 0.35, ease: [0.22, 1, 0.36, 1] }}
           >
-            დაივიწყეთ ზედმეტი დანახარჯი ტექნიკაზე, მომსახურებაზე და მოვლაზე.
+            დაივიწყეთ ზედმეტი დანახარჯი ტექნიკაზე, მომსახურებაზე და სერვისზე.
             პრინტერებთან დაკავშირებულ ყველა პროცესს ჩვენი პროფესიონალთა გუნდი
             სრულად უზრუნველყოფს.
           </motion.p>
