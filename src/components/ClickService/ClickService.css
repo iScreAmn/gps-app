@@ -330,36 +330,126 @@ body[data-theme="dark"] .how-step-text {
 }
 
 @media (max-width: 768px) {
+  /* Keep full scroll space so the sticky mechanic works */
   .click-service-how {
-    height: auto;
+    height: 400vh;
+    --how-header-offset: 100px;
   }
 
+  /* Sticky panel fills the visible viewport (svh accounts for mobile browser chrome) */
   .click-service-how .how-sticky {
-    position: relative;
-    height: auto;
-    overflow: visible;
-    padding: 48px 20px;
+    position: sticky;
+    top: var(--how-header-offset);
+    height: calc(100vh - var(--how-header-offset));
+    height: calc(100svh - var(--how-header-offset));
+    overflow: hidden;
+    padding: 20px 16px 12px;
+    display: flex;
+    flex-direction: column;
   }
 
+  /* Compact intro — hide the supporting text, keep the headline */
+  .how-intro {
+    margin-bottom: 12px;
+    gap: 8px;
+  }
+
+  .how-intro-text {
+    display: none;
+  }
+
+  .how-intro-title {
+    grid-column: 1 / -1;
+    font-size: clamp(20px, 5.5vw, 30px);
+    line-height: 1.2;
+  }
+
+  .how-head-title {
+    font-size: clamp(12px, 3.2vw, 17px);
+    margin-bottom: 8px;
+  }
+
+  /* Keep progress bar visible — it signals scroll intent */
+  .how-progress {
+    display: block;
+    margin-bottom: 12px;
+  }
+
+  /* Viewport clips the track horizontally — card sits just below the progress bar */
   .how-viewport {
-    overflow: visible;
+    flex: 1 1 auto;
+    min-height: 0;
+    overflow: hidden;
+    display: flex;
+    align-items: flex-start;
+    padding-top: clamp(16px, 4vh, 40px);
   }
 
+  /* Track stays horizontal; JS drives the translateX as usual */
   .how-track {
-    flex-wrap: wrap;
-    transform: none !important;
+    flex-wrap: nowrap;
     gap: 16px;
+    padding: 0 24px 0 0;
+    align-items: flex-start;
+  }
+
+  /* Each card is ~88vw so only one is visible at a time */
+  .how-step {
+    flex: 0 0 88vw;
+    width: 88vw;
+    min-height: 0;
+    max-width: none;
+    opacity: 0.3;
+    grid-template-columns: auto 1fr;
+    gap: clamp(12px, 4vw, 20px);
+    padding: 0;
+    align-items: center;
+    transition: opacity 0.45s ease;
+  }
+
+  .how-step.is-active {
+    opacity: 1;
+  }
+
+  /* Larger outline number for stronger presence on mobile */
+  .how-step-num {
+    font-size: clamp(96px, 36vw, 160px);
+  }
+
+  .how-step-title {
+    font-size: clamp(18px, 5.4vw, 26px);
+    line-height: 1.2;
+  }
+
+  .how-step-text {
+    font-size: clamp(14px, 3.9vw, 17px);
+    line-height: 1.55;
+    max-width: none;
+  }
+}
+
+/* Very small screens (320–374px) */
+@media (max-width: 374px) {
+  .click-service-how .how-sticky {
+    padding: 16px 12px 10px;
+  }
+
+  .how-intro-title {
+    font-size: clamp(18px, 5vw, 24px);
   }
 
   .how-step {
-    width: 100%;
-    min-height: 0;
-    opacity: 1;
-    filter: none;
-    padding: 28px;
+    flex: 0 0 92vw;
+    width: 92vw;
+    padding: 0;
+    gap: 10px;
   }
 
-  .how-progress {
-    display: none;
+  .how-step-num {
+    font-size: clamp(82px, 32vw, 120px);
+  }
+
+  .how-step-title {
+    font-size: clamp(16px, 5vw, 22px);
   }
 }
