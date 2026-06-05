@@ -18,7 +18,7 @@ const Ideal = () => {
       id: 'shredder',
       titleKey: 'categories.shredder',
       image: shredder,
-      link: `/${language}/cutting-systems/ideal/shredder`
+      link: `/${language}/shredder`
     },
     {
       id: 'accessories',
@@ -47,9 +47,6 @@ const Ideal = () => {
                   src={category.image}
                   alt={t(category.titleKey)}
                 />
-                <div className="ideal__overlay">
-                  <span className="ideal__more">{t('common.more')}</span>
-                </div>
               </div>
               <div className="ideal__card-content">
                 <h3 className="ideal__card-title">{t(category.titleKey)}</h3>

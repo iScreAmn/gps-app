@@ -72,34 +72,6 @@ body[data-theme="dark"] .ideal__card-image {
   transform: scale(1.05);
 }
 
-.ideal__overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: rgba(34, 34, 34, 0.778);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  opacity: 0;
-  transition: opacity var(--transition-normal);
-}
-
-.ideal__card:hover .ideal__overlay {
-  opacity: 1;
-}
-
-.ideal__more {
-  color: white;
-  font-weight: var(--font-semibold);
-  font-size: 1rem;
-  padding: 0.75rem 1.5rem;
-  border: 2px solid white;
-  border-radius: 25px;
-  transition: all var(--transition-fast);
-}
-
 .ideal__card-content {
   padding: 1.5rem;
   text-align: center;
@@ -109,6 +81,7 @@ body[data-theme="dark"] .ideal__card-image {
 }
 
 .ideal__card-title {
+  font-family: 'GPS Mt';
   font-size: 1.25rem;
   font-weight: var(--font-semibold);
   line-height: 1.3;
