@@ -26,7 +26,7 @@ const CuttingSystemsPage = () => {
       id: 'ideal',
       name: 'Ideal',
       logo: ideal,
-      link: `/${language}/catalog/cutting/ideal`,
+      link: `/${language}/cutting-systems/ideal`,
       modifier: 'ideal'
     },
     {

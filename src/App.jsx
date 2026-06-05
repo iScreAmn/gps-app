@@ -20,6 +20,9 @@ import InksPage from './pages/InksPage/InksPage';
 import InkModelPage from './pages/InksPage/InkModelPage';
 import Iecho from './pages/CatalogPage/CuttingSystemsPage/Iecho/Iecho';
 import IechoModelPage from './pages/CatalogPage/CuttingSystemsPage/Iecho/IechoModelPage';
+import Ideal from './pages/CatalogPage/CuttingSystemsPage/Ideal/Ideal';
+import IdealGuillotine from './pages/CatalogPage/CuttingSystemsPage/Ideal/Guillotine/IdealGuillotine';
+import IdealGuillotineModelPage from './pages/CatalogPage/CuttingSystemsPage/Ideal/Guillotine/IdealGuillotineModelPage';
 import OfficeEquipment from './pages/CatalogPage/OfficeEquipment/OfficeEquipment';
 import DevelopModelPage from './pages/CatalogPage/OfficeEquipment/DevelopModelPage';
 import ProfessionalEquipment from './pages/CatalogPage/ProfessionalEquipment/ProfessionalEquipment';
@@ -46,6 +49,9 @@ function App() {
               <Route path="/ka/cutting-systems" element={<CuttingSystemsPage />} />
               <Route path="/ka/cutting-systems/iecho" element={<Iecho />} />
               <Route path="/ka/cutting-systems/iecho/:modelId" element={<IechoModelPage />} />
+              <Route path="/ka/cutting-systems/ideal" element={<Ideal />} />
+              <Route path="/ka/cutting-systems/ideal/guillotine" element={<IdealGuillotine />} />
+              <Route path="/ka/cutting-systems/ideal/guillotine/:modelId" element={<IdealGuillotineModelPage />} />
               <Route path="/ka/cutting-systems/:brand" element={<CatalogPage />} />
               <Route path="/ka/office-equipment/develop" element={<OfficeEquipment />} />
               <Route path="/ka/office-equipment/develop/:modelId" element={<DevelopModelPage />} />
@@ -75,6 +81,9 @@ function App() {
               <Route path="/en/cutting-systems" element={<CuttingSystemsPage />} />
               <Route path="/en/cutting-systems/iecho" element={<Iecho />} />
               <Route path="/en/cutting-systems/iecho/:modelId" element={<IechoModelPage />} />
+              <Route path="/en/cutting-systems/ideal" element={<Ideal />} />
+              <Route path="/en/cutting-systems/ideal/guillotine" element={<IdealGuillotine />} />
+              <Route path="/en/cutting-systems/ideal/guillotine/:modelId" element={<IdealGuillotineModelPage />} />
               <Route path="/en/cutting-systems/:brand" element={<CatalogPage />} />
               <Route path="/en/office-equipment/develop" element={<OfficeEquipment />} />
               <Route path="/en/office-equipment/develop/:modelId" element={<DevelopModelPage />} />
@@ -102,6 +111,9 @@ function App() {
               <Route path="/cutting-systems" element={<CuttingSystemsPage />} />
               <Route path="/cutting-systems/iecho" element={<Iecho />} />
               <Route path="/cutting-systems/iecho/:modelId" element={<IechoModelPage />} />
+              <Route path="/cutting-systems/ideal" element={<Ideal />} />
+              <Route path="/cutting-systems/ideal/guillotine" element={<IdealGuillotine />} />
+              <Route path="/cutting-systems/ideal/guillotine/:modelId" element={<IdealGuillotineModelPage />} />
               <Route path="/cutting-systems/:brand" element={<CatalogPage />} />
               <Route path="/office-equipment/develop" element={<OfficeEquipment />} />
               <Route path="/office-equipment/develop/:modelId" element={<DevelopModelPage />} />
