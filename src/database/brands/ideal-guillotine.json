@@ -1,0 +1,661 @@
+{
+  "brand": "ideal",
+  "category": "guillotine",
+  "displayName": "Ideal Guillotine",
+  "products": [
+    {
+      "id": "ideal-7260",
+      "name": "IDEAL 7260",
+      "cardSpecs": [
+        {
+          "label": "ჭრის სიგრძე",
+          "value": "720 მმ"
+        },
+        {
+          "label": "ჭრის სიმაღლე",
+          "value": "80 მმ"
+        }
+      ],
+      "cardSpecsEn": [
+        {
+          "label": "Cutting length",
+          "value": "720 mm"
+        },
+        {
+          "label": "Cutting height",
+          "value": "80 mm"
+        }
+      ],
+      "descriptionLines": [
+        "ჭრის სიგრძე: 720 მმ",
+        "ჭრის სიმაღლე: 80 მმ",
+        "ვიწრო ჭრა: 20 მმ",
+        "მაგიდის სიღრმე: 720 მმ",
+        "ელექტროენერგია (სხვა ძაბვები ხელმისაწვდომია): 400 Volt / 50 Hz / 3~",
+        "სიმძლავრე: 1.9 kw",
+        "ზომები: 1335 x 1305 x 1540 მმ",
+        "ზომები გვერდითა მაგიდასთან ერთად: 1335 x 2100 x 1600 მმ",
+        "წონა: 620 კგ"
+      ],
+      "descriptionLinesEn": [
+        "Cutting length: 720 mm",
+        "Cutting height: 80 mm",
+        "Narrow cut: 20 mm",
+        "Table depth: 720 mm",
+        "Power supply (other voltages available): 400 Volt / 50 Hz / 3~",
+        "Power: 1.9 kW",
+        "Dimensions: 1335 x 1305 x 1540 mm",
+        "Dimensions with side table: 1335 x 2100 x 1600 mm",
+        "Weight: 620 kg"
+      ]
+    },
+    {
+      "id": "ideal-6660",
+      "name": "IDEAL 6660",
+      "cardSpecs": [
+        {
+          "label": "ჭრის სიგრძე",
+          "value": "650 მმ"
+        },
+        {
+          "label": "ჭრის სიმაღლე",
+          "value": "80 მმ"
+        }
+      ],
+      "cardSpecsEn": [
+        {
+          "label": "Cutting length",
+          "value": "650 mm"
+        },
+        {
+          "label": "Cutting height",
+          "value": "80 mm"
+        }
+      ],
+      "descriptionLines": [
+        "ჭრის სიგრძე: 650 მმ",
+        "ჭრის სიმაღლე: 80 მმ",
+        "ვიწრო ჭრა: 25 მმ",
+        "მაგიდის სიღრმე: 610 მმ",
+        "ელექტროენერგია (სხვა ძაბვები ხელმისაწვდომია): 230 Volt / 50 Hz / 1~",
+        "სიმძლავრე: 1.42 kw",
+        "ზომები: 1290 x 992 x 1120 მმ",
+        "ზომები გვერდითა მაგიდასთან ერთად: 1290 x 1565 x 1220 მმ",
+        "წონა: 312 kg",
+        "წონა გვერდითა მაგიდასთან ერთად: 321 kg"
+      ],
+      "descriptionLinesEn": [
+        "Cutting length: 650 mm",
+        "Cutting height: 80 mm",
+        "Narrow cut: 25 mm",
+        "Table depth: 610 mm",
+        "Power supply (other voltages available): 230 Volt / 50 Hz / 1~",
+        "Power: 1.42 kW",
+        "Dimensions: 1290 x 992 x 1120 mm",
+        "Dimensions with side table: 1290 x 1565 x 1220 mm",
+        "Weight: 312 kg",
+        "Weight with side table: 321 kg"
+      ]
+    },
+    {
+      "id": "ideal-6655",
+      "name": "IDEAL 6655",
+      "cardSpecs": [
+        {
+          "label": "ჭრის სიგრძე",
+          "value": "650 მმ"
+        },
+        {
+          "label": "ჭრის სიმაღლე",
+          "value": "80 მმ"
+        }
+      ],
+      "cardSpecsEn": [
+        {
+          "label": "Cutting length",
+          "value": "650 mm"
+        },
+        {
+          "label": "Cutting height",
+          "value": "80 mm"
+        }
+      ],
+      "descriptionLines": [
+        "ჭრის სიგრძე: 650 მმ",
+        "ჭრის სიმაღლე: 80 მმ",
+        "ვიწრო ჭრა: 25 მმ",
+        "მაგიდის სიღრმე: 610 მმ",
+        "ელექტროენერგია (სხვა ძაბვები ხელმისაწვდომია): 230 Volt / 50 Hz / 1~",
+        "სიმძლავრე: 1.42 kw",
+        "ზომები: 1293 x 992 x 1120 მმ",
+        "ზომები გვერდითა მაგიდასთან ერთად: 1293 x 1565 x 1220 მმ",
+        "წონა: 302 კგ",
+        "წონა გვერდითა მაგიდასთან ერთად: 311 კგ"
+      ],
+      "descriptionLinesEn": [
+        "Cutting length: 650 mm",
+        "Cutting height: 80 mm",
+        "Narrow cut: 25 mm",
+        "Table depth: 610 mm",
+        "Power supply (other voltages available): 230 Volt / 50 Hz / 1~",
+        "Power: 1.42 kW",
+        "Dimensions: 1293 x 992 x 1120 mm",
+        "Dimensions with side table: 1293 x 1565 x 1220 mm",
+        "Weight: 302 kg",
+        "Weight with side table: 311 kg"
+      ]
+    },
+    {
+      "id": "ideal-5260",
+      "name": "IDEAL 5260",
+      "cardSpecs": [
+        {
+          "label": "სიგრძის ჭრა",
+          "value": "520 მმ"
+        },
+        {
+          "label": "ჭრის სიმაღლე",
+          "value": "80 მმ"
+        }
+      ],
+      "cardSpecsEn": [
+        {
+          "label": "Cutting length",
+          "value": "520 mm"
+        },
+        {
+          "label": "Cutting height",
+          "value": "80 mm"
+        }
+      ],
+      "descriptionLines": [
+        "სიგრძის ჭრა: 520 მმ",
+        "ჭრის სიმაღლე: 80 მმ",
+        "ვიწრო ჭრა: 35 მმ",
+        "მაგიდის სიღრმე: 520 მმ",
+        "ელექტრო ენერია (სხვა ძაბვები ხელმისაწვდომია): 230 Volt / 50 Hz / 1~",
+        "სიმძლავრე: 1.42 kw",
+        "ზომები: 1293 x 860 x 1126 mm",
+        "ზომები გვერდითა მაგიდასთან ერთად: 1293 x 436 x 988 მმ",
+        "წონა: 257 კგ"
+      ],
+      "descriptionLinesEn": [
+        "Cutting length: 520 mm",
+        "Cutting height: 80 mm",
+        "Narrow cut: 35 mm",
+        "Table depth: 520 mm",
+        "Power supply (other voltages available): 230 Volt / 50 Hz / 1~",
+        "Power: 1.42 kW",
+        "Dimensions: 1293 x 860 x 1126 mm",
+        "Dimensions with side table: 1293 x 436 x 988 mm",
+        "Weight: 257 kg"
+      ]
+    },
+    {
+      "id": "ideal-5255",
+      "name": "IDEAL 5255",
+      "cardSpecs": [
+        {
+          "label": "ჭრის სიგრძე",
+          "value": "520 მმ"
+        },
+        {
+          "label": "ჭრის სიმაღლე",
+          "value": "80 მმ"
+        }
+      ],
+      "cardSpecsEn": [
+        {
+          "label": "Cutting length",
+          "value": "520 mm"
+        },
+        {
+          "label": "Cutting height",
+          "value": "80 mm"
+        }
+      ],
+      "descriptionLines": [
+        "ჭრის სიგრძე: 520 მმ",
+        "ჭრის სიმაღლე: 80 მმ",
+        "ვიწრო ჭრა: 35 მმ",
+        "მაგიდის სიღრმე: 520 მმ",
+        "ელექტროენერგია (სხვა ძაბვები ხელმისაწვდომია): 230 Volt / 50 Hz / 1~",
+        "სიმძლავრე: 1.42 kw",
+        "ზომები: 1293 x 860 x 1120 მმ",
+        "ზომები გვერდითა მაგიდასთან ერთად: 1293 x 1436 x 1120 მმ",
+        "წონა: 252 კგ"
+      ],
+      "descriptionLinesEn": [
+        "Cutting length: 520 mm",
+        "Cutting height: 80 mm",
+        "Narrow cut: 35 mm",
+        "Table depth: 520 mm",
+        "Power supply (other voltages available): 230 Volt / 50 Hz / 1~",
+        "Power: 1.42 kW",
+        "Dimensions: 1293 x 860 x 1120 mm",
+        "Dimensions with side table: 1293 x 1436 x 1120 mm",
+        "Weight: 252 kg"
+      ]
+    },
+    {
+      "id": "ideal-4860",
+      "name": "IDEAL 4860",
+      "cardSpecs": [
+        {
+          "label": "ჭრის სიგრძე",
+          "value": "475 მმ"
+        },
+        {
+          "label": "ჭრის სიმაღლე",
+          "value": "80 მმ"
+        }
+      ],
+      "cardSpecsEn": [
+        {
+          "label": "Cutting length",
+          "value": "475 mm"
+        },
+        {
+          "label": "Cutting height",
+          "value": "80 mm"
+        }
+      ],
+      "descriptionLines": [
+        "ჭრის სიგრძე: 475 მმ",
+        "ჭრის სიმაღლე: 80 მმ",
+        "ვიწრო ჭრა: 35 მმ",
+        "მაგიდის სიღრმე: 450 მმ",
+        "ელექტროენერგია (სხვა ძაბვები ხელმისაწვდომია): 230 Volt / 50 Hz / 1~",
+        "სიმძლავრე: 1.52 kw",
+        "ზომები: 1296 x 762 x 992 მმ",
+        "ზომები გვერდითა მაგიდასთან ერთად: 1296 x 1349 x 992 მმ",
+        "წონა: 232 კგ"
+      ],
+      "descriptionLinesEn": [
+        "Cutting length: 475 mm",
+        "Cutting height: 80 mm",
+        "Narrow cut: 35 mm",
+        "Table depth: 450 mm",
+        "Power supply (other voltages available): 230 Volt / 50 Hz / 1~",
+        "Power: 1.52 kW",
+        "Dimensions: 1296 x 762 x 992 mm",
+        "Dimensions with side table: 1296 x 1349 x 992 mm",
+        "Weight: 232 kg"
+      ]
+    },
+    {
+      "id": "ideal-4850",
+      "name": "IDEAL 4850",
+      "cardSpecs": [
+        {
+          "label": "ჭრის სიგრძე",
+          "value": "475 მმ"
+        },
+        {
+          "label": "ჭრის სიმაღლე",
+          "value": "80 მმ"
+        }
+      ],
+      "cardSpecsEn": [
+        {
+          "label": "Cutting length",
+          "value": "475 mm"
+        },
+        {
+          "label": "Cutting height",
+          "value": "80 mm"
+        }
+      ],
+      "descriptionLines": [
+        "ჭრის სიგრძე: 475 მმ",
+        "ჭრის სიმაღლე: 80 მმ",
+        "ვიწრო ჭრა: 35 მმ",
+        "მაგიდის სიღრმე: 450 მმ",
+        "ელექტროენერგია (სხვა ძაბვები ხელმისაწვდომია): 230 Volt / 50 Hz / 1~",
+        "სიმძლავრე: 1.52 kw",
+        "ზომები: 1296 x 762 x 992 მმ",
+        "ზომები გვერდითა მაგიდასთან ერთად: 1296 x 1349 x 992 მმ",
+        "წონა: 232 კგ",
+        "წონა გვერდითა მაგიდასთან ერთად: 241 კგ"
+      ],
+      "descriptionLinesEn": [
+        "Cutting length: 475 mm",
+        "Cutting height: 80 mm",
+        "Narrow cut: 35 mm",
+        "Table depth: 450 mm",
+        "Power supply (other voltages available): 230 Volt / 50 Hz / 1~",
+        "Power: 1.52 kW",
+        "Dimensions: 1296 x 762 x 992 mm",
+        "Dimensions with side table: 1296 x 1349 x 992 mm",
+        "Weight: 232 kg",
+        "Weight with side table: 241 kg"
+      ]
+    },
+    {
+      "id": "ideal-4855",
+      "name": "IDEAL 4855",
+      "cardSpecs": [
+        {
+          "label": "ჭრის სიგრძე",
+          "value": "475 მმ"
+        },
+        {
+          "label": "ჭრის სიმაღლე",
+          "value": "80 მმ"
+        }
+      ],
+      "cardSpecsEn": [
+        {
+          "label": "Cutting length",
+          "value": "475 mm"
+        },
+        {
+          "label": "Cutting height",
+          "value": "80 mm"
+        }
+      ],
+      "descriptionLines": [
+        "ჭრის სიგრძე: 475 მმ",
+        "ჭრის სიმაღლე: 80 მმ",
+        "ვიწრო ჭრა: 35 მმ",
+        "მაგიდის სიღრმე: 450 მმ",
+        "ელექტროენერგია (სხვა ძაბვები ხელმისაწვდომია): 230 Volt / 50 Hz / 1~",
+        "სიმძლავრე: 1.42 kw",
+        "ზომები: 1296 x 762 x 992 მმ",
+        "ზომები გვერდითა მაგიდასთან ერთად: 1296 x 1349 x 992 მმ",
+        "წონა: 228 კგ",
+        "წონა გვერდითა მაგიდასთან ერთად: 237 კგ"
+      ],
+      "descriptionLinesEn": [
+        "Cutting length: 475 mm",
+        "Cutting height: 80 mm",
+        "Narrow cut: 35 mm",
+        "Table depth: 450 mm",
+        "Power supply (other voltages available): 230 Volt / 50 Hz / 1~",
+        "Power: 1.42 kW",
+        "Dimensions: 1296 x 762 x 992 mm",
+        "Dimensions with side table: 1296 x 1349 x 992 mm",
+        "Weight: 228 kg",
+        "Weight with side table: 237 kg"
+      ]
+    },
+    {
+      "id": "ideal-4815",
+      "name": "IDEAL 4815",
+      "cardSpecs": [
+        {
+          "label": "ჭრის სიგრძე",
+          "value": "475 მმ"
+        },
+        {
+          "label": "ჭრის სიმაღლე",
+          "value": "80 მმ"
+        }
+      ],
+      "cardSpecsEn": [
+        {
+          "label": "Cutting length",
+          "value": "475 mm"
+        },
+        {
+          "label": "Cutting height",
+          "value": "80 mm"
+        }
+      ],
+      "descriptionLines": [
+        "ჭრის სიგრძე: 475 მმ",
+        "ჭრის სიმაღლე: 80 მმ",
+        "ვიწრო ჭრა: 30 მმ",
+        "მაგიდის სიღრმე: 458 მმ",
+        "ელექტროენერგია (სხვა ძაბვები ხელმისაწვდომია): 230 Volt / 50 Hz / 1~",
+        "სიმძლავრე: 1.1 kw",
+        "ზომები: 1410 x 762 x 1053 მმ",
+        "ზომები გვერდითა მაგიდასთან ერთად: 1410 x 1349 x 1053 მმ",
+        "წონა: 212 კგ",
+        "წონა გვერდითა მაგიდასთან ერთად: 221 კგ"
+      ],
+      "descriptionLinesEn": [
+        "Cutting length: 475 mm",
+        "Cutting height: 80 mm",
+        "Narrow cut: 30 mm",
+        "Table depth: 458 mm",
+        "Power supply (other voltages available): 230 Volt / 50 Hz / 1~",
+        "Power: 1.1 kW",
+        "Dimensions: 1410 x 762 x 1053 mm",
+        "Dimensions with side table: 1410 x 1349 x 1053 mm",
+        "Weight: 212 kg",
+        "Weight with side table: 221 kg"
+      ]
+    },
+    {
+      "id": "ideal-4705",
+      "name": "IDEAL 4705",
+      "cardSpecs": [
+        {
+          "label": "ჭრის სიგრძე",
+          "value": "475 მმ"
+        },
+        {
+          "label": "ჭრის სიმაღლე",
+          "value": "70 მმ"
+        }
+      ],
+      "cardSpecsEn": [
+        {
+          "label": "Cutting length",
+          "value": "475 mm"
+        },
+        {
+          "label": "Cutting height",
+          "value": "70 mm"
+        }
+      ],
+      "descriptionLines": [
+        "ჭრის სიგრძე: 475 მმ",
+        "ჭრის სიმაღლე: 70 მმ",
+        "ვიწრო ჭრა: 30 მმ",
+        "მაგიდის სიღრმე: 435 მმ",
+        "ზომები: 590 x 1000 x 890 მმ",
+        "სიმაღლე სტენდით: 1055 მმ",
+        "ზომები: 360 x 640 x 880 მმ",
+        "წონა: 85 კგ"
+      ],
+      "descriptionLinesEn": [
+        "Cutting length: 475 mm",
+        "Cutting height: 70 mm",
+        "Narrow cut: 30 mm",
+        "Table depth: 435 mm",
+        "Dimensions: 590 x 1000 x 890 mm",
+        "Height with stand: 1055 mm",
+        "Dimensions: 360 x 640 x 880 mm",
+        "Weight: 85 kg"
+      ]
+    },
+    {
+      "id": "ideal-4350",
+      "name": "IDEAL 4350",
+      "cardSpecs": [
+        {
+          "label": "ჭრის სიგრძე",
+          "value": "430 მმ"
+        },
+        {
+          "label": "ჭრის სიმაღლე",
+          "value": "40 მმ"
+        }
+      ],
+      "cardSpecsEn": [
+        {
+          "label": "Cutting length",
+          "value": "430 mm"
+        },
+        {
+          "label": "Cutting height",
+          "value": "40 mm"
+        }
+      ],
+      "descriptionLines": [
+        "ჭრის სიგრძე: 430 მმ",
+        "ჭრის სიმაღლე: 40 მმ",
+        "ვიწრო ჭრა: 35 მმ",
+        "მაგიდის სიღრმე: 435 მმ",
+        "ელექტროენერგია (სხვა ძაბვები ხელმისაწვდომია): 230 Volt / 50 Hz / 1~",
+        "სიმძლავრე: 0.45 kw",
+        "ზომები: 360 x 640 x 880 მმ",
+        "სიმაღლე სტენდით: 1055 მმ",
+        "სიმაღლე კაბინეტით: 1080 მმ",
+        "წონა: 86 kg",
+        "წონა სტენდით: 96 კგ",
+        "წონა კაბინეტით: 118 კგ"
+      ],
+      "descriptionLinesEn": [
+        "Cutting length: 430 mm",
+        "Cutting height: 40 mm",
+        "Narrow cut: 35 mm",
+        "Table depth: 435 mm",
+        "Power supply (other voltages available): 230 Volt / 50 Hz / 1~",
+        "Power: 0.45 kW",
+        "Dimensions: 360 x 640 x 880 mm",
+        "Height with stand: 1055 mm",
+        "Height with cabinet: 1080 mm",
+        "Weight: 86 kg",
+        "Weight with stand: 96 kg",
+        "Weight with cabinet: 118 kg"
+      ]
+    },
+    {
+      "id": "ideal-4315",
+      "name": "IDEAL 4315",
+      "cardSpecs": [
+        {
+          "label": "ჭრის სიგრძე",
+          "value": "430 მმ"
+        },
+        {
+          "label": "ჭრის სიმაღლე",
+          "value": "40 მმ"
+        }
+      ],
+      "cardSpecsEn": [
+        {
+          "label": "Cutting length",
+          "value": "430 mm"
+        },
+        {
+          "label": "Cutting height",
+          "value": "40 mm"
+        }
+      ],
+      "descriptionLines": [
+        "ჭრის სიგრძე: 430 მმ",
+        "ჭრის სიმაღლე: 40 მმ",
+        "ვიწრო ჭრა: 35 მმ",
+        "მაგიდის სიღრმე: 435 მმ",
+        "ელექტროენერგია (სხვა ძაბვები ხელმისაწვდომია): 230 Volt / 50 Hz / 1~",
+        "სიმძლავრე: 0.45 kw",
+        "ზომები: 355 x 640 x 887 მმ",
+        "სიმაღლე სტენდით: 1055 მმ",
+        "სიმაღლე კაბინეტით: 1080 მმ",
+        "წონა სტენდით: 81 კგ",
+        "წონა კაბინეტით: 113 კგ"
+      ],
+      "descriptionLinesEn": [
+        "Cutting length: 430 mm",
+        "Cutting height: 40 mm",
+        "Narrow cut: 35 mm",
+        "Table depth: 435 mm",
+        "Power supply (other voltages available): 230 Volt / 50 Hz / 1~",
+        "Power: 0.45 kW",
+        "Dimensions: 355 x 640 x 887 mm",
+        "Height with stand: 1055 mm",
+        "Height with cabinet: 1080 mm",
+        "Weight with stand: 81 kg",
+        "Weight with cabinet: 113 kg"
+      ]
+    },
+    {
+      "id": "ideal-4305",
+      "name": "IDEAL 4305",
+      "cardSpecs": [
+        {
+          "label": "ჭრის სიგრძე",
+          "value": "430 მმ"
+        },
+        {
+          "label": "ჭრის სიმაღლე",
+          "value": "40 მმ"
+        }
+      ],
+      "cardSpecsEn": [
+        {
+          "label": "Cutting length",
+          "value": "430 mm"
+        },
+        {
+          "label": "Cutting height",
+          "value": "40 mm"
+        }
+      ],
+      "descriptionLines": [
+        "ჭრის სიგრძე: 430 მმ",
+        "ჭრის სიმაღლე: 40 მმ",
+        "ვიწრო ჭრა: 34 მმ",
+        "მაგიდის სიღრმე: 435 მმ",
+        "ზომები: 400 x 880 x 880 მმ",
+        "სიმაღლე სტენდით: 1090 მმ",
+        "წონა: 44 კგ",
+        "წონა სტენდით: 54 კგ"
+      ],
+      "descriptionLinesEn": [
+        "Cutting length: 430 mm",
+        "Cutting height: 40 mm",
+        "Narrow cut: 34 mm",
+        "Table depth: 435 mm",
+        "Dimensions: 400 x 880 x 880 mm",
+        "Height with stand: 1090 mm",
+        "Weight: 44 kg",
+        "Weight with stand: 54 kg"
+      ]
+    },
+    {
+      "id": "ideal-4300",
+      "name": "IDEAL 4300",
+      "cardSpecs": [
+        {
+          "label": "ჭრის სიგრძე",
+          "value": "430 მმ"
+        },
+        {
+          "label": "ჭრის სიმაღლე",
+          "value": "20 მმ"
+        }
+      ],
+      "cardSpecsEn": [
+        {
+          "label": "Cutting length",
+          "value": "430 mm"
+        },
+        {
+          "label": "Cutting height",
+          "value": "20 mm"
+        }
+      ],
+      "descriptionLines": [
+        "ჭრის სიგრძე: 430 მმ",
+        "ჭრის სიმაღლე: 20 მმ",
+        "ვიწრო ჭრა: 36 მმ",
+        "ზომები: 340 მმ",
+        "ზომები: 470 x 720 x 575 მმ",
+        "წონა: 30.5 კგ"
+      ],
+      "descriptionLinesEn": [
+        "Cutting length: 430 mm",
+        "Cutting height: 20 mm",
+        "Narrow cut: 36 mm",
+        "Dimensions: 340 mm",
+        "Dimensions: 470 x 720 x 575 mm",
+        "Weight: 30.5 kg"
+      ]
+    }
+  ]
+}

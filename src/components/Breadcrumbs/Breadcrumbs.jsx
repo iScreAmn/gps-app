@@ -6,6 +6,7 @@ import { getCurrentLanguageFromPath } from '../../i18n';
 import { getNewsItemById } from '../../data/contentData';
 import developData from '../../database/brands/develop.json';
 import recosystemsData from '../../database/brands/recosystems.json';
+import idealGuillotineData from '../../database/brands/ideal-guillotine.json';
 import vividData from '../../database/brands/vivid.json';
 import { professionalData } from '../../data/professionalData';
 import { nocaiData } from '../../data/nocaiData';
@@ -32,6 +33,9 @@ const Breadcrumbs = ({ items, separator }) => {
     'iecho': 'IECHO',
     'teneth': 'Teneth',
     'ideal': 'Ideal',
+    'guillotine': 'categories.guillotine_cutter',
+    'shredder': 'categories.shredder',
+    'accessories': 'categories.accessories',
     'duplo': 'Duplo',
     // Категории
     'office': 'categories.office',
@@ -135,6 +139,16 @@ const Breadcrumbs = ({ items, separator }) => {
       if (segments[0] === 'plotter-catalog' && segments[1] === 'nocai' && index >= 1) {
         return;
       }
+
+      const cuttingSystemsIdx = segments.indexOf('cutting-systems');
+      if (
+        cuttingSystemsIdx >= 0 &&
+        segments[cuttingSystemsIdx + 1] === 'ideal' &&
+        segments[cuttingSystemsIdx + 2] === 'guillotine' &&
+        index > cuttingSystemsIdx
+      ) {
+        return;
+      }
       
       // Специальная обработка для страницы новости
       if (segment === 'news') {
@@ -198,6 +212,32 @@ const Breadcrumbs = ({ items, separator }) => {
         return; // Прерываем цикл
       }
       
+      // cutting-systems/ideal/guillotine: Home - Catalog - Cutting Systems - Ideal - Guillotine [- model]
+      if (segment === 'cutting-systems' && nextSegment === 'ideal' && segments[index + 2] === 'guillotine') {
+        const catalogPath = currentLang ? `/${currentLang}/catalog` : '/catalog';
+        const cuttingPath = currentLang ? `/${currentLang}/cutting-systems` : '/cutting-systems';
+        const idealPath = `${cuttingPath}/ideal`;
+        const guillotinePath = `${idealPath}/guillotine`;
+
+        crumbs.push(
+          { label: t('navigation.catalog'), path: catalogPath, isActive: false },
+          { label: t('categories.cutting'), path: cuttingPath, isActive: false },
+          { label: 'Ideal', path: idealPath, isActive: false },
+          { label: t('categories.guillotine_cutter'), path: guillotinePath, isActive: !segments[index + 3] }
+        );
+
+        if (segments[index + 3]) {
+          const modelId = segments[index + 3];
+          const product = idealGuillotineData?.products?.find(p => p.id === modelId);
+          crumbs.push({
+            label: product?.name || modelId,
+            path: `${guillotinePath}/${modelId}`,
+            isActive: true
+          });
+        }
+        return;
+      }
+
       // Специальная обработка для cutting-systems - добавляем Catalog перед ним
       if (segment === 'cutting-systems') {
         const catalogPath = currentLang ? `/${currentLang}/catalog` : '/catalog';

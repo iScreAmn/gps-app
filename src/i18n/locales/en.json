@@ -619,6 +619,12 @@
     "image2Alt": "Plotter cutting catalog 2",
     "image3Alt": "Plotter cutting catalog 3"
   },
+  "ideal": {
+    "title": "Ideal",
+    "guillotine_description": "Professional guillotines for precise cutting",
+    "shredder_description": "Secure document destruction systems",
+    "accessories_description": "Accessories and consumables for Ideal equipment"
+  },
   "ledModules": {
     "title": "Innovative LED Modules",
     "downloadButton": "View Catalog",

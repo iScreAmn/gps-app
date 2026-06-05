@@ -590,6 +590,12 @@
     "image2Alt": "პლოტერის საჭრელი კატალოგი 2",
     "image3Alt": "პლოტერის საჭრელი კატალოგი 3"
   },
+  "ideal": {
+    "title": "Ideal",
+    "guillotine_description": "პროფესიონალური გილიოტინები ზუსტი ჭრისთვის",
+    "shredder_description": "დოკუმენტების უსაფრთხო განადგურების სისტემები",
+    "accessories_description": "აქსესუარები და სახარჯი მასალები Ideal-ისთვის"
+  },
   "ledModules": {
     "title": "ინოვაცური LED-მოდულები",
     "downloadButton": "კატალოგის ნახვა",

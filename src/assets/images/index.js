@@ -8,7 +8,7 @@ export { default as toners } from './printers/toners.jpg';
 //Sections
 export { default as laminator } from './printers/sections/laminator.webp';
 export { default as plotter } from './printers/sections/plotter.webp';
-export { default as cutters } from './printers/sections/cutters.webp';
+export { default as cutters } from './printers/sections/cutter-section.webp';
 export { default as categoryOffice } from './printers/sections/develop-office.webp';
 export { default as categoryPro } from './printers/sections/developPro.webp';
 export { default as categoryIndustrial } from './printers/sections/develoopIndustrial.webp';
@@ -162,6 +162,25 @@ export { default as laminator8 } from './products/laminators/vivid/Matrix Omni-F
 export { default as laminator9 } from './products/laminators/vivid/Matrix Omni-Flow 460.webp';
 export { default as laminator10 } from './products/laminators/vivid/Matrix Take-Up Unit.webp';
 
+// Guillotine
+export { default as guillotine } from './printers/sections/guillotine.webp';
+export { default as guillotine1 } from './products/guillotine/IDEAL 4300.jpg';
+export { default as guillotine2 } from './products/guillotine/IDEAL 4305.jpg';
+export { default as guillotine3 } from './products/guillotine/IDEAL 4315.jpg';
+export { default as guillotine4 } from './products/guillotine/IDEAL 4350.jpg';
+export { default as guillotine5 } from './products/guillotine/IDEAL 4705.jpg';
+export { default as guillotine6 } from './products/guillotine/IDEAL 4815.jpg';
+export { default as guillotine7 } from './products/guillotine/IDEAL 4850.jpg';
+export { default as guillotine8 } from './products/guillotine/IDEAL 4860.jpg';
+export { default as guillotine9 } from './products/guillotine/IDEAL 5255.jpg';
+export { default as guillotine10 } from './products/guillotine/IDEAL 5260.jpg';
+export { default as guillotine11 } from './products/guillotine/IDEAL 6655.jpg';
+export { default as guillotine12 } from './products/guillotine/IDEAL 6660.jpg';
+export { default as guillotine13 } from './products/guillotine/IDEAL 7260.jpg';
+export { default as guillotine14 } from './products/guillotine/IDEAL 4855.jpg';
 
+// Shreddera
+export { default as shredder } from './printers/sections/shredder.webp';
 
-
+// Accessories
+export { default as accessories } from './printers/sections/accessories.webp';
