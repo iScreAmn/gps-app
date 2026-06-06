@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { useLanguage } from '../../../hooks/useLanguage';
-import { iecho, teneth, duplo, ideal } from '../../../assets/images';
+import { iecho, teneth, duplo, ideal, rapid, cyklos, boway, recoSystems, vivid } from '../../../assets/images';
 import './CuttingSystemsPage.css';
 
 const CuttingSystemsPage = () => {
@@ -35,6 +35,41 @@ const CuttingSystemsPage = () => {
       logo: duplo,
       link: `/${language}/catalog/cutting/duplo`,
       modifier: 'duplo'
+    },
+    {
+      id: 'recosystems',
+      name: 'RecoSystems',
+      logo: recoSystems,
+      link: `/${language}/cutting-systems/recosystems`,
+      modifier: 'recosystems'
+    },
+    {
+      id: 'rapid',
+      name: 'Rapid',
+      logo: rapid,
+      link: `/${language}/cutting-systems/rapid`,
+      modifier: 'rapid'
+    },
+    {
+      id: 'cyklos',
+      name: 'Cyklos',
+      logo: cyklos,
+      link: `/${language}/cutting-systems/cyklos`,
+      modifier: 'cyklos'
+    },
+    {
+      id: 'boway',
+      name: 'Boway',
+      logo: boway,
+      link: `/${language}/cutting-systems/boway`,
+      modifier: 'boway'
+    },
+    {
+      id: 'vivid',
+      name: 'Vivid',
+      logo: vivid,
+      link: `/${language}/cutting-systems/vivid`,
+      modifier: 'vivid'
     }
   ];
 
@@ -46,10 +81,10 @@ const CuttingSystemsPage = () => {
             <Link
               key={brand.id}
               to={brand.link}
-              className="brand-card__logo-wrapper"
+              className={`brand-card__logo-wrapper brand-card__logo-wrapper--${brand.modifier}`}
             >
-              <img 
-                src={brand.logo} 
+              <img
+                src={brand.logo}
                 alt={brand.name}
                 className="brand-card__logo"
               />

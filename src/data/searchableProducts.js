@@ -85,8 +85,8 @@ export function isVividBrandSearch(query) {
 
 export function getBrandSearchRoute(query, language) {
   if (isIdealBrandSearch(query)) return `/${language}/ideal/products`;
-  if (isRecoSystemsBrandSearch(query)) return `/${language}/recosystems`;
-  if (isVividBrandSearch(query)) return `/${language}/vivid`;
+  if (isRecoSystemsBrandSearch(query)) return `/${language}/cutting-systems/recosystems`;
+  if (isVividBrandSearch(query)) return `/${language}/cutting-systems/vivid`;
   return null;
 }
 
@@ -214,7 +214,7 @@ export function getSearchableProducts(language, t) {
         description: buildLaminatorDescription(p, language),
         image: vividImageMap[p.id] || laminator5,
         price: t('catalog.price_on_request'),
-        link: `/${language}/vivid/${p.id}`
+        link: `/${language}/cutting-systems/vivid/${p.id}`
       }))
     : [];
 
@@ -227,7 +227,7 @@ export function getSearchableProducts(language, t) {
         description: buildLaminatorDescription(p, language),
         image: recosystemsImageMap[p.id] || laminator1,
         price: t('catalog.price_on_request'),
-        link: `/${language}/recosystems/${p.id}`
+        link: `/${language}/cutting-systems/recosystems/${p.id}`
       }))
     : [];
 

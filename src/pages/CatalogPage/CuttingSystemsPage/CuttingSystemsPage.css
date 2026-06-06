@@ -9,23 +9,23 @@ body[data-theme="dark"] .cutting-systems-page {
 }
 
 .cutting-systems-page__brands {
-  display: flex;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  grid-template-rows: repeat(2, 150px);
   gap: 2rem;
   max-width: 1200px;
   margin: 0 auto;
 }
 
-/* Brand Card Logo Wrapper */
 .brand-card__logo-wrapper {
-  width: 100%;
-  height: 150px;
-  /* min-height: 200px; */
+  height: 100%;
+  min-height: 150px;
   display: flex;
   align-items: center;
   justify-content: center;
   padding: 3rem 2rem;
   background: var(--light-card-bg);
-  box-shadow: var(--light-shadow);
+  box-shadow: 0 4px 20px rgb(0 0 0 / 25%);
   border-radius: 20px;
   transition: all var(--transition-normal);
   text-decoration: none;
@@ -33,9 +33,12 @@ body[data-theme="dark"] .cutting-systems-page {
   overflow: hidden;
 }
 
+.brand-card__logo-wrapper--iecho {
+  grid-row: span 2;
+}
+
 body[data-theme="dark"] .brand-card__logo-wrapper {
-  /* background: var(--dark-card-bg); */
-  box-shadow: var(--dark-shadow);
+  box-shadow: 0 4px 20px rgb(0 0 0 / 25%);
 }
 
 .brand-card__logo-wrapper::before {
@@ -56,11 +59,6 @@ body[data-theme="dark"] .brand-card__logo-wrapper {
 
 .brand-card__logo-wrapper:hover {
   transform: translateY(-12px);
-  box-shadow: 0 24px 48px rgba(220, 38, 38, 0.15);
-}
-
-body[data-theme="dark"] .brand-card__logo-wrapper:hover {
-  box-shadow: 0 24px 48px rgba(220, 38, 38, 0.25);
 }
 
 .brand-card__logo {
@@ -78,7 +76,14 @@ body[data-theme="dark"] .brand-card__logo-wrapper:hover {
 /* Tablet */
 @media (max-width: 1024px) {
   .cutting-systems-page__brands {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: auto;
+  }
+
+  .brand-card__logo-wrapper--iecho {
+    grid-column: 1 / -1;
+    grid-row: span 1;
+    min-height: 180px;
   }
 }
 
@@ -89,13 +94,17 @@ body[data-theme="dark"] .brand-card__logo-wrapper:hover {
   }
 
   .cutting-systems-page__brands {
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(2, 1fr);
     gap: 1.5rem;
   }
 
   .brand-card__logo-wrapper {
     padding: 2rem 1.5rem;
-    min-height: 180px;
+    min-height: 140px;
+  }
+
+  .brand-card__logo-wrapper--iecho {
+    grid-column: 1 / -1;
   }
 }
 
@@ -105,13 +114,12 @@ body[data-theme="dark"] .brand-card__logo-wrapper:hover {
   }
 
   .cutting-systems-page__brands {
+    grid-template-columns: 1fr;
     gap: 1rem;
-    flex-direction: column;
   }
 
   .brand-card__logo-wrapper {
     padding: 1.5rem 1rem;
-    min-height: 160px;
+    min-height: 130px;
   }
 }
-

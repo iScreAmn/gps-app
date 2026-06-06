@@ -39,7 +39,7 @@ body[data-theme="dark"] .catalog-page__found-count {
 /* Plotters brands (Cutting Systems style) */
 .catalog-page__plotters-brands {
   display: flex;
-  flex-wrap: wrap;
+  justify-content: center;
   gap: 2rem;
   max-width: 1200px;
   margin: 2rem auto 0;

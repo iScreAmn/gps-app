@@ -5,7 +5,7 @@ import { useLanguage } from "../../hooks/useLanguage";
 import ProductCard from '../../components/ProductCard/ProductCard';
 import CategoryCards from '../../components/CategoryCards/CategoryCards';
 import { searchProducts } from '../../utils/productSearch';
-import { developPrinter1, developPrinter3, developPrinter4, developPrinter5, developPrinter6, developPro1, developPro2, developPro3, developPro4, nocai, PK0604, PK0604plus, PK0705, PK0705plus, PK1209, plotterCutting, inks, recoSystems, vivid } from '../../assets/images';
+import { developPrinter1, developPrinter3, developPrinter4, developPrinter5, developPrinter6, developPro1, developPro2, developPro3, developPro4, nocai, audley, teneth, PK0604, PK0604plus, PK0705, PK0705plus, PK1209, plotterCutting, inks, recoSystems, vivid } from '../../assets/images';
 import developData from '../../database/brands/develop.json';
 import { professionalData } from '../../data/professionalData';
 import iechoData from '../../database/brands/iecho.json';
@@ -182,6 +182,18 @@ const CatalogPage = () => {
               >
                 <img src={nocai} alt="Nocai" className="catalog-page__plotters-brand-logo" />
               </Link>
+              <Link
+                to={`/${language}/plotter-catalog/audley`}
+                className="catalog-page__plotters-brand-card"
+              >
+                <img src={audley} alt="Audley" className="catalog-page__plotters-brand-logo" />
+              </Link>
+              <Link
+                to={`/${language}/plotter-catalog/teneth`}
+                className="catalog-page__plotters-brand-card"
+              >
+                <img src={teneth} alt="Teneth" className="catalog-page__plotters-brand-logo" />
+              </Link>
             </div>
           </div>
         </div>
@@ -221,7 +233,7 @@ const CatalogPage = () => {
           <div className="container">
             <div className="catalog-page__laminators-brands">
               <Link
-                to="/recosystems"
+                to={`/${language}/cutting-systems/recosystems`}
                 className="catalog-page__laminators-brand-card"
               >
                 <img
@@ -231,7 +243,7 @@ const CatalogPage = () => {
                 />
               </Link>
               <Link
-                to="/vivid"
+                to={`/${language}/cutting-systems/vivid`}
                 className="catalog-page__laminators-brand-card"
               >
                 <img

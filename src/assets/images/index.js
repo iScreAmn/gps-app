@@ -53,7 +53,10 @@ export { default as recoSystems } from './partners/logos/recoSystems.webp'
 
 
 //Other Partners
-export { default as ideal } from './partners/logos/ideal.png'
+export { default as ideal } from './partners/logos/ideal.webp'
+export { default as rapid } from './partners/logos/rapid.webp'
+export { default as cyklos } from './partners/logos/cyklos.webp'
+export { default as boway } from './partners/logos/boway.webp'
 
 //Led Modules
 export { default as ledModule } from './led-modules/led-module.png';

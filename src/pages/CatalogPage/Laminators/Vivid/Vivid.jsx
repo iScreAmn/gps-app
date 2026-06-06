@@ -6,7 +6,7 @@ import vividData from '../../../../database/brands/vivid.json';
 import '../../CatalogPage.css';
 
 const Vivid = () => {
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
   const products = vividData.products;
 
   const imageMap = {
@@ -30,7 +30,7 @@ const Vivid = () => {
             {products.map((product) => (
               <Link
                 key={product.id}
-                to={`/vivid/${product.id}`}
+                to={`/${language}/cutting-systems/vivid/${product.id}`}
                 className="office-equipment__card"
               >
                 <div className="office-equipment__card-image">

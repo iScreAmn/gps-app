@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Navigate, useParams } from 'react-router-dom';
 import { ThemeProvider } from './contexts/ThemeContext';
 import { LanguageProvider } from "./contexts/LanguageContext";
 import Layout from './layouts/Layout/Layout';
@@ -38,6 +38,12 @@ import ScannerPage from './pages/ScannerPage/ScannerPage';
 import InfoPage from './pages/InfoPage/InfoPage';
 import './App.css';
 
+function LegacyLaminatorRedirect({ brand, langPrefix = '' }) {
+  const { modelId } = useParams();
+  const base = `${langPrefix}/cutting-systems/${brand}`;
+  return <Navigate to={modelId ? `${base}/${modelId}` : base} replace />;
+}
+
 function App() {
   return (
     <ThemeProvider>
@@ -56,6 +62,10 @@ function App() {
               <Route path="/ka/ideal/products" element={<IdealProductsPage />} />
               <Route path="/ka/cutting-systems/ideal/guillotine" element={<IdealGuillotine />} />
               <Route path="/ka/cutting-systems/ideal/guillotine/:modelId" element={<IdealGuillotineModelPage />} />
+              <Route path="/ka/cutting-systems/recosystems" element={<RecoSystems />} />
+              <Route path="/ka/cutting-systems/recosystems/:modelId" element={<RecoSystemsModelPage />} />
+              <Route path="/ka/cutting-systems/vivid" element={<Vivid />} />
+              <Route path="/ka/cutting-systems/vivid/:modelId" element={<VividModelPage />} />
               <Route path="/ka/shredder" element={<IdealShredder />} />
               <Route path="/ka/shredder/:modelId" element={<IdealShredderModelPage />} />
               <Route path="/ka/cutting-systems/:brand" element={<CatalogPage />} />
@@ -63,10 +73,10 @@ function App() {
               <Route path="/ka/office-equipment/develop/:modelId" element={<DevelopModelPage />} />
               <Route path="/ka/professional-equipment/develop" element={<ProfessionalEquipment />} />
               <Route path="/ka/professional-equipment/develop/:modelId" element={<ProfessionalModelPage />} />
-              <Route path="/ka/recosystems" element={<RecoSystems />} />
-              <Route path="/ka/recosystems/:modelId" element={<RecoSystemsModelPage />} />
-              <Route path="/ka/vivid" element={<Vivid />} />
-              <Route path="/ka/vivid/:modelId" element={<VividModelPage />} />
+              <Route path="/ka/recosystems" element={<LegacyLaminatorRedirect brand="recosystems" langPrefix="/ka" />} />
+              <Route path="/ka/recosystems/:modelId" element={<LegacyLaminatorRedirect brand="recosystems" langPrefix="/ka" />} />
+              <Route path="/ka/vivid" element={<LegacyLaminatorRedirect brand="vivid" langPrefix="/ka" />} />
+              <Route path="/ka/vivid/:modelId" element={<LegacyLaminatorRedirect brand="vivid" langPrefix="/ka" />} />
               <Route path="/ka/product/:id" element={<ProductPage />} />
               <Route path="/ka/about" element={<AboutPage />} />
               <Route path="/ka/services" element={<ServicesPage />} />
@@ -91,6 +101,10 @@ function App() {
               <Route path="/en/ideal/products" element={<IdealProductsPage />} />
               <Route path="/en/cutting-systems/ideal/guillotine" element={<IdealGuillotine />} />
               <Route path="/en/cutting-systems/ideal/guillotine/:modelId" element={<IdealGuillotineModelPage />} />
+              <Route path="/en/cutting-systems/recosystems" element={<RecoSystems />} />
+              <Route path="/en/cutting-systems/recosystems/:modelId" element={<RecoSystemsModelPage />} />
+              <Route path="/en/cutting-systems/vivid" element={<Vivid />} />
+              <Route path="/en/cutting-systems/vivid/:modelId" element={<VividModelPage />} />
               <Route path="/en/shredder" element={<IdealShredder />} />
               <Route path="/en/shredder/:modelId" element={<IdealShredderModelPage />} />
               <Route path="/en/cutting-systems/:brand" element={<CatalogPage />} />
@@ -98,10 +112,10 @@ function App() {
               <Route path="/en/office-equipment/develop/:modelId" element={<DevelopModelPage />} />
               <Route path="/en/professional-equipment/develop" element={<ProfessionalEquipment />} />
               <Route path="/en/professional-equipment/develop/:modelId" element={<ProfessionalModelPage />} />
-              <Route path="/en/recosystems" element={<RecoSystems />} />
-              <Route path="/en/recosystems/:modelId" element={<RecoSystemsModelPage />} />
-              <Route path="/en/vivid" element={<Vivid />} />
-              <Route path="/en/vivid/:modelId" element={<VividModelPage />} />
+              <Route path="/en/recosystems" element={<LegacyLaminatorRedirect brand="recosystems" langPrefix="/en" />} />
+              <Route path="/en/recosystems/:modelId" element={<LegacyLaminatorRedirect brand="recosystems" langPrefix="/en" />} />
+              <Route path="/en/vivid" element={<LegacyLaminatorRedirect brand="vivid" langPrefix="/en" />} />
+              <Route path="/en/vivid/:modelId" element={<LegacyLaminatorRedirect brand="vivid" langPrefix="/en" />} />
               <Route path="/en/product/:id" element={<ProductPage />} />
               <Route path="/en/about" element={<AboutPage />} />
               <Route path="/en/services" element={<ServicesPage />} />
@@ -124,6 +138,10 @@ function App() {
               <Route path="/ideal/products" element={<IdealProductsPage />} />
               <Route path="/cutting-systems/ideal/guillotine" element={<IdealGuillotine />} />
               <Route path="/cutting-systems/ideal/guillotine/:modelId" element={<IdealGuillotineModelPage />} />
+              <Route path="/cutting-systems/recosystems" element={<RecoSystems />} />
+              <Route path="/cutting-systems/recosystems/:modelId" element={<RecoSystemsModelPage />} />
+              <Route path="/cutting-systems/vivid" element={<Vivid />} />
+              <Route path="/cutting-systems/vivid/:modelId" element={<VividModelPage />} />
               <Route path="/shredder" element={<IdealShredder />} />
               <Route path="/shredder/:modelId" element={<IdealShredderModelPage />} />
               <Route path="/cutting-systems/:brand" element={<CatalogPage />} />
@@ -131,10 +149,10 @@ function App() {
               <Route path="/office-equipment/develop/:modelId" element={<DevelopModelPage />} />
               <Route path="/professional-equipment/develop" element={<ProfessionalEquipment />} />
               <Route path="/professional-equipment/develop/:modelId" element={<ProfessionalModelPage />} />
-              <Route path="/recosystems" element={<RecoSystems />} />
-              <Route path="/recosystems/:modelId" element={<RecoSystemsModelPage />} />
-              <Route path="/vivid" element={<Vivid />} />
-              <Route path="/vivid/:modelId" element={<VividModelPage />} />
+              <Route path="/recosystems" element={<LegacyLaminatorRedirect brand="recosystems" />} />
+              <Route path="/recosystems/:modelId" element={<LegacyLaminatorRedirect brand="recosystems" />} />
+              <Route path="/vivid" element={<LegacyLaminatorRedirect brand="vivid" />} />
+              <Route path="/vivid/:modelId" element={<LegacyLaminatorRedirect brand="vivid" />} />
               <Route path="/scanner" element={<ScannerPage />} />
               <Route path="/scaner" element={<Navigate to="/scanner" replace />} />
               <Route path="/info" element={<InfoPage />} />

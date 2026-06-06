@@ -6,7 +6,7 @@ import recosystemsData from '../../../../database/brands/recosystems.json';
 import '../../CatalogPage.css';
 
 const RecoSystems = () => {
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
   const products = recosystemsData.products;
 
   const imageMap = {
@@ -29,7 +29,7 @@ const RecoSystems = () => {
             {products.map((product) => (
               <Link
                 key={product.id}
-                to={`/recosystems/${product.id}`}
+                to={`/${language}/cutting-systems/recosystems/${product.id}`}
                 className="office-equipment__card"
               >
                 <div className="office-equipment__card-image">

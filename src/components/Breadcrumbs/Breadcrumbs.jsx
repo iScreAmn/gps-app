@@ -151,6 +151,14 @@ const Breadcrumbs = ({ items, separator }) => {
         return;
       }
 
+      if (
+        cuttingSystemsIdx >= 0 &&
+        (segments[cuttingSystemsIdx + 1] === 'recosystems' || segments[cuttingSystemsIdx + 1] === 'vivid') &&
+        index > cuttingSystemsIdx
+      ) {
+        return;
+      }
+
       const idealIdx = segments.indexOf('ideal');
       if (idealIdx >= 0 && segments[idealIdx + 1] === 'products' && index > idealIdx) {
         return;
@@ -218,6 +226,54 @@ const Breadcrumbs = ({ items, separator }) => {
         return; // Прерываем цикл
       }
       
+      // cutting-systems/recosystems: Home - Catalog - Cutting Systems - RecoSystems [- model]
+      if (segment === 'cutting-systems' && nextSegment === 'recosystems') {
+        const catalogPath = currentLang ? `/${currentLang}/catalog` : '/catalog';
+        const cuttingPath = currentLang ? `/${currentLang}/cutting-systems` : '/cutting-systems';
+        const recosystemsPath = `${cuttingPath}/recosystems`;
+
+        crumbs.push(
+          { label: t('navigation.catalog'), path: catalogPath, isActive: false },
+          { label: t('categories.cutting'), path: cuttingPath, isActive: false },
+          { label: 'RecoSystems', path: recosystemsPath, isActive: !segments[index + 2] }
+        );
+
+        if (segments[index + 2]) {
+          const modelId = segments[index + 2];
+          const product = recosystemsData?.products?.find(p => p.id === modelId);
+          crumbs.push({
+            label: product?.name || modelId,
+            path: `${recosystemsPath}/${modelId}`,
+            isActive: true
+          });
+        }
+        return;
+      }
+
+      // cutting-systems/vivid: Home - Catalog - Cutting Systems - Vivid [- model]
+      if (segment === 'cutting-systems' && nextSegment === 'vivid') {
+        const catalogPath = currentLang ? `/${currentLang}/catalog` : '/catalog';
+        const cuttingPath = currentLang ? `/${currentLang}/cutting-systems` : '/cutting-systems';
+        const vividPath = `${cuttingPath}/vivid`;
+
+        crumbs.push(
+          { label: t('navigation.catalog'), path: catalogPath, isActive: false },
+          { label: t('categories.cutting'), path: cuttingPath, isActive: false },
+          { label: 'Vivid', path: vividPath, isActive: !segments[index + 2] }
+        );
+
+        if (segments[index + 2]) {
+          const modelId = segments[index + 2];
+          const product = vividData?.products?.find(p => p.id === modelId);
+          crumbs.push({
+            label: product?.name || modelId,
+            path: `${vividPath}/${modelId}`,
+            isActive: true
+          });
+        }
+        return;
+      }
+
       // cutting-systems/ideal/guillotine: Home - Catalog - Cutting Systems - Ideal - Guillotine [- model]
       if (segment === 'cutting-systems' && nextSegment === 'ideal' && segments[index + 2] === 'guillotine') {
         const catalogPath = currentLang ? `/${currentLang}/catalog` : '/catalog';
@@ -370,54 +426,10 @@ const Breadcrumbs = ({ items, separator }) => {
         return;
       }
 
-      // Специальная обработка для recosystems: Home - Catalog - Laminators - модель
-      if (segment === 'recosystems') {
-        const catalogPath = currentLang ? `/${currentLang}/catalog` : '/catalog';
-        const laminatorsCatalogPath = currentLang ? `/${currentLang}/catalog/laminators` : '/catalog/laminators';
-        const recosystemsPath = currentLang ? `/${currentLang}/recosystems` : '/recosystems';
-
-        crumbs.push(
-          { label: t('navigation.catalog'), path: catalogPath, isActive: false },
-          { label: t('categories.laminators'), path: laminatorsCatalogPath, isActive: false },
-          { label: 'RecoSystems', path: recosystemsPath, isActive: !segments[index + 1] }
-        );
-
-        if (segments[index + 1]) {
-          const modelId = segments[index + 1];
-          const product = recosystemsData?.products?.find(p => p.id === modelId);
-          crumbs.push({
-            label: product?.name || modelId,
-            path: `${recosystemsPath}/${modelId}`,
-            isActive: true
-          });
-        }
+      // Пропускаем modelId для recosystems — он уже добавлен в специальной обработке выше
+      if (segments[index - 1] === 'recosystems' && segments[index - 2] === 'cutting-systems') {
         return;
       }
-
-      // Специальная обработка для vivid: Home - Catalog - Laminators - модель
-      if (segment === 'vivid') {
-        const catalogPath = currentLang ? `/${currentLang}/catalog` : '/catalog';
-        const laminatorsCatalogPath = currentLang ? `/${currentLang}/catalog/laminators` : '/catalog/laminators';
-        const vividPath = currentLang ? `/${currentLang}/vivid` : '/vivid';
-
-        crumbs.push(
-          { label: t('navigation.catalog'), path: catalogPath, isActive: false },
-          { label: t('categories.laminators'), path: laminatorsCatalogPath, isActive: false },
-          { label: 'Vivid', path: vividPath, isActive: !segments[index + 1] }
-        );
-
-        if (segments[index + 1]) {
-          const modelId = segments[index + 1];
-          const product = vividData?.products?.find(p => p.id === modelId);
-          crumbs.push({
-            label: product?.name || modelId,
-            path: `${vividPath}/${modelId}`,
-            isActive: true
-          });
-        }
-        return;
-      }
-      
       // Пропускаем сегмент "develop", если следующий сегмент существует (это modelId)
       if (segment === 'develop' && nextSegment) {
         // Пропускаем "develop", модель будет обработана в следующей итерации
@@ -446,8 +458,6 @@ const Breadcrumbs = ({ items, separator }) => {
       if (segments[index - 1] === 'recosystems') {
         return;
       }
-
-      // Пропускаем modelId для shredder — он уже добавлен в специальной обработке выше
       if (segments[index - 1] === 'shredder') {
         return;
       }
