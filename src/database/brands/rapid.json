@@ -1,0 +1,122 @@
+{
+  "brand": "rapid",
+  "displayName": "Rapid",
+  "products": [
+    {
+      "id": "rapid-106e",
+      "name": "ელექტრო სტეპლერი Rapid 106e",
+      "nameEn": "Electric Stapler Rapid 106e",
+      "cardSpecs": [
+        {
+          "label": "აკინძვა",
+          "value": "50 ფურცელი"
+        },
+        {
+          "label": "ძაბვა",
+          "value": "220 ვოლტი"
+        }
+      ],
+      "cardSpecsEn": [
+        {
+          "label": "Stapling capacity",
+          "value": "50 sheets"
+        },
+        {
+          "label": "Voltage",
+          "value": "220 V"
+        }
+      ],
+      "specificationTitle": "მახასიათებლები",
+      "specificationTitleEn": "Characteristics",
+      "parametersTitle": "სპეციფიკაციები",
+      "parametersTitleEn": "Specifications",
+      "specification": [
+        "აკინძვა: 50 ფურცელი",
+        "ძაბვა: 220 ვოლტი",
+        "2 სტეპლერი 1 ში, შიდაშემცვლელი ჩასაყენებელი სტეპლერი",
+        "სტეპლერის ძალის რეგულირება",
+        "სტეპლერის სიღრმის რეგულირება",
+        "ცვლადი ჩასაყენებელი კავები",
+        "კოროზიისგან დაცვა",
+        "გააჩნია ფართო მაგიდა და პედალი",
+        "მონტაჟი ოპტიკური კაბელებით პროდუქტიულობის გაზრდისთვის",
+        "დამატებით ოფციაში შედის პედლებიანი, მაგიდაზე მისამაგრებელი დამჭერი, ოპტიკური კაბელები"
+      ],
+      "specificationEn": [
+        "Stapling capacity: 50 sheets",
+        "Voltage: 220 volts",
+        "2 staplers in 1, reloadable insert stapler",
+        "Stapling force adjustment",
+        "Stapling depth adjustment",
+        "Variable insert staples",
+        "Corrosion protection",
+        "Wide table and pedal included",
+        "Installation with optical cables to increase productivity",
+        "Optional extras include pedal, table-mounted clamp and optical cables"
+      ],
+      "parameters": [
+        { "label": "ფერი", "value": "თეთრი / შავი" },
+        { "label": "მასალა", "value": "პლასტმასი / მეტალი" },
+        { "label": "ზომა", "value": "300 x 130 x 490" },
+        { "label": "სამაგრი", "value": "ფართო სამუშაო მაგიდა" },
+        { "label": "ტევადობა", "value": "50 ფურცელი" },
+        { "label": "ელექტრო", "value": "კი" },
+        { "label": "კავების ზომა", "value": "66/6-8+" },
+        { "label": "დათვირთვა", "value": "წინა მხარე" },
+        { "label": "საყრდენი", "value": "კი" },
+        { "label": "სიღრმე", "value": "4\" (102 მმ)" },
+        { "label": "წონა", "value": "5.8" }
+      ],
+      "parametersEn": [
+        { "label": "Color", "value": "White / Black" },
+        { "label": "Material", "value": "Plastic / Metal" },
+        { "label": "Dimensions", "value": "300 x 130 x 490" },
+        { "label": "Holder", "value": "Wide work table" },
+        { "label": "Capacity", "value": "50 sheets" },
+        { "label": "Electric", "value": "Yes" },
+        { "label": "Staple size", "value": "66/6-8+" },
+        { "label": "Loading", "value": "Front side" },
+        { "label": "Support", "value": "Yes" },
+        { "label": "Depth", "value": "4\" (102 mm)" },
+        { "label": "Weight", "value": "5.8" }
+      ]
+    },
+    {
+      "id": "rapid-r2-106e",
+      "name": "Rapid R2/106E სტეპლერის თავაკი",
+      "nameEn": "Rapid R2/106E Stapler Head",
+      "cardSpecs": [
+        {
+          "label": "ფერი",
+          "value": "თეთრი"
+        },
+        {
+          "label": "ზომები",
+          "value": "110 x 60 x 180 მმ"
+        }
+      ],
+      "cardSpecsEn": [
+        {
+          "label": "Color",
+          "value": "White"
+        },
+        {
+          "label": "Dimensions",
+          "value": "110 x 60 x 180 mm"
+        }
+      ],
+      "parametersTitle": "სპეციფიკაციები",
+      "parametersTitleEn": "Specifications",
+      "parameters": [
+        { "label": "ფერი", "value": "თეთრი" },
+        { "label": "ზომები", "value": "110 x 60 x 180 მმ" },
+        { "label": "წონა", "value": "0.42 კგ" }
+      ],
+      "parametersEn": [
+        { "label": "Color", "value": "White" },
+        { "label": "Dimensions", "value": "110 x 60 x 180 mm" },
+        { "label": "Weight", "value": "0.42 kg" }
+      ]
+    }
+  ]
+}

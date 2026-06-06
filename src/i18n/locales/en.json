@@ -67,7 +67,7 @@
     "guillotine_cutter": "Guillotine Cutter",
     "shredder": "Shredder",
     "laminator": "Laminator",
-    "laminators": "Laminators",
+    "laminators": "LED Modules",
     "laminators_description": "Professional laminating equipment",
     "plotters": "Plotters",
     "plotters_description": "Wide-format plotters and printers",
@@ -618,6 +618,9 @@
     "image1Alt": "Plotter cutting catalog 1",
     "image2Alt": "Plotter cutting catalog 2",
     "image3Alt": "Plotter cutting catalog 3"
+  },
+  "cyklos": {
+    "title": "Cyklos"
   },
   "ideal": {
     "title": "Ideal",

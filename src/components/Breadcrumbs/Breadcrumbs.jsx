@@ -9,6 +9,8 @@ import recosystemsData from '../../database/brands/recosystems.json';
 import idealGuillotineData from '../../database/brands/ideal-guillotine.json';
 import idealShredderData from '../../database/brands/ideal-shredder.json';
 import vividData from '../../database/brands/vivid.json';
+import cyklosData from '../../database/brands/cyklos.json';
+import rapidData from '../../database/brands/rapid.json';
 import { professionalData } from '../../data/professionalData';
 import { nocaiData } from '../../data/nocaiData';
 import { inksProducts } from '../../data/inksData';
@@ -50,6 +52,8 @@ const Breadcrumbs = ({ items, separator }) => {
     'scanner': 'navigation.scanner',
     'recosystems': 'RecoSystems',
     'vivid': 'Vivid',
+    'cyklos': 'Cyklos',
+    'rapid': 'Rapid',
   };
 
   // Функция для получения перевода или исходного значения
@@ -153,7 +157,10 @@ const Breadcrumbs = ({ items, separator }) => {
 
       if (
         cuttingSystemsIdx >= 0 &&
-        (segments[cuttingSystemsIdx + 1] === 'recosystems' || segments[cuttingSystemsIdx + 1] === 'vivid') &&
+        (segments[cuttingSystemsIdx + 1] === 'recosystems'
+          || segments[cuttingSystemsIdx + 1] === 'vivid'
+          || segments[cuttingSystemsIdx + 1] === 'cyklos'
+          || segments[cuttingSystemsIdx + 1] === 'rapid') &&
         index > cuttingSystemsIdx
       ) {
         return;
@@ -244,6 +251,54 @@ const Breadcrumbs = ({ items, separator }) => {
           crumbs.push({
             label: product?.name || modelId,
             path: `${recosystemsPath}/${modelId}`,
+            isActive: true
+          });
+        }
+        return;
+      }
+
+      // cutting-systems/rapid: Home - Catalog - Cutting Systems - Rapid [- model]
+      if (segment === 'cutting-systems' && nextSegment === 'rapid') {
+        const catalogPath = currentLang ? `/${currentLang}/catalog` : '/catalog';
+        const cuttingPath = currentLang ? `/${currentLang}/cutting-systems` : '/cutting-systems';
+        const rapidPath = `${cuttingPath}/rapid`;
+
+        crumbs.push(
+          { label: t('navigation.catalog'), path: catalogPath, isActive: false },
+          { label: t('categories.cutting'), path: cuttingPath, isActive: false },
+          { label: 'Rapid', path: rapidPath, isActive: !segments[index + 2] }
+        );
+
+        if (segments[index + 2]) {
+          const modelId = segments[index + 2];
+          const product = rapidData?.products?.find(p => p.id === modelId);
+          crumbs.push({
+            label: product?.name || modelId,
+            path: `${rapidPath}/${modelId}`,
+            isActive: true
+          });
+        }
+        return;
+      }
+
+      // cutting-systems/cyklos: Home - Catalog - Cutting Systems - Cyklos [- model]
+      if (segment === 'cutting-systems' && nextSegment === 'cyklos') {
+        const catalogPath = currentLang ? `/${currentLang}/catalog` : '/catalog';
+        const cuttingPath = currentLang ? `/${currentLang}/cutting-systems` : '/cutting-systems';
+        const cyklosPath = `${cuttingPath}/cyklos`;
+
+        crumbs.push(
+          { label: t('navigation.catalog'), path: catalogPath, isActive: false },
+          { label: t('categories.cutting'), path: cuttingPath, isActive: false },
+          { label: 'Cyklos', path: cyklosPath, isActive: !segments[index + 2] }
+        );
+
+        if (segments[index + 2]) {
+          const modelId = segments[index + 2];
+          const product = cyklosData?.products?.find(p => p.id === modelId);
+          crumbs.push({
+            label: product?.name || modelId,
+            path: `${cyklosPath}/${modelId}`,
             isActive: true
           });
         }
@@ -464,6 +519,16 @@ const Breadcrumbs = ({ items, separator }) => {
 
       // Пропускаем modelId для vivid — он уже добавлен в специальной обработке выше
       if (segments[index - 1] === 'vivid') {
+        return;
+      }
+
+      // Пропускаем modelId для cyklos — он уже добавлен в специальной обработке выше
+      if (segments[index - 1] === 'cyklos') {
+        return;
+      }
+
+      // Пропускаем modelId для rapid — он уже добавлен в специальной обработке выше
+      if (segments[index - 1] === 'rapid') {
         return;
       }
       

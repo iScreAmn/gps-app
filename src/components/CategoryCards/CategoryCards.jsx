@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { useLanguage } from "../../hooks/useLanguage";
-import { categoryOffice, categoryPro, categoryIndustrial, cutters, supplies, laminator, plotter } from '../../assets/images';
+import { categoryOffice, categoryPro, sticker, cutters, supplies, tmtLed, plotter } from '../../assets/images';
 import './CategoryCards.css';
 
 const CategoryCards = () => {
@@ -27,7 +27,7 @@ const CategoryCards = () => {
     {
       id: 'industrial',
       title: t('categories.industrial'),
-      image: categoryIndustrial,
+      image: sticker,
       link: `/${language}/catalog/industrial`,
       description: t('categories.industrial_description'),
       wide: false
@@ -51,7 +51,7 @@ const CategoryCards = () => {
     {
       id: 'laminators',
       title: t('categories.laminators'),
-      image: laminator,
+      image: tmtLed,
       link: `/${language}/catalog/laminators`,
       description: t('categories.laminators_description'),
       wide: false

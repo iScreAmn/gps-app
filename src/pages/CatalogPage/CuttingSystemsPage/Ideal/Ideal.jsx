@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { useLanguage } from '../../../../hooks/useLanguage';
-import { guillotine, shredder, accessories } from '../../../../assets/images';
+import { guillotine, shredder } from '../../../../assets/images';
 import './Ideal.css';
 
 const Ideal = () => {
@@ -19,12 +19,6 @@ const Ideal = () => {
       titleKey: 'categories.shredder',
       image: shredder,
       link: `/${language}/shredder`
-    },
-    {
-      id: 'accessories',
-      titleKey: 'categories.accessories',
-      image: accessories,
-      link: `/${language}/cutting-systems/ideal/accessories`
     }
   ];
 

@@ -13,8 +13,11 @@ export { default as categoryOffice } from './printers/sections/develop-office.we
 export { default as categoryPro } from './printers/sections/developPro.webp';
 export { default as categoryIndustrial } from './printers/sections/develoopIndustrial.webp';
 export { default as binder } from './printers/sections/binder.jpg';
+export { default as tmtLed } from './printers/sections/tmt.webp';
 export { default as inks } from './other/inks.webp';
 export { default as supplies } from './other/supplies.webp';
+
+export { default as sticker } from './printers/sections/unifol.webp';
 export { default as plotterCutting } from './other/unifol.webp';
 export { default as plotterCutting2 } from './other/unifol1.jpg';
 export { default as plotterCutting3 } from './other/unifol2.jpg';
@@ -134,7 +137,6 @@ export { default as developPro2 } from './printers/pro/2010/2010.webp';
 export { default as developPro3 } from './printers/pro/4065/4065.webp';
 export { default as developPro4 } from './printers/pro/4070/4070.webp';
 
-
 // Nocai UV Printing
 export { default as nocai1 } from './products/nocai-UV0609XIII/nocai1.png';
 export { default as nocai2 } from './products/nocai-UV0609XIII/nocai2.png';
@@ -165,6 +167,18 @@ export { default as laminator8 } from './products/laminators/vivid/Matrix Omni-F
 export { default as laminator9 } from './products/laminators/vivid/Matrix Omni-Flow 460.webp';
 export { default as laminator10 } from './products/laminators/vivid/Matrix Take-Up Unit.webp';
 
+// Cyklos
+export { default as cyklos1 } from './products/cyklos/CYKLOS KSL 435.jpg';
+export { default as cyklos2 } from './products/cyklos/CYKLOS KSL 320.jpg';
+export { default as cyklos3 } from './products/cyklos/GPM 320.jpg';
+export { default as cyklos4 } from './products/cyklos/GPM 315.jpg';
+export { default as cyklos5 } from './products/cyklos/UCR 9.jpg';
+export { default as cyklos6 } from './products/cyklos/CCR 40.jpg';
+
+// Rapid
+export { default as rapid1 } from './products/rapid/Rapid 106e.jpg';
+export { default as rapid2 } from './products/rapid/Rapid R2:106E.jpg';
+
 // Guillotine
 export { default as guillotine } from './printers/sections/guillotine.webp';
 export { default as guillotine1 } from './products/guillotine/IDEAL 4300.jpg';
@@ -190,8 +204,6 @@ export { default as shredder3 } from './products/shredders/Shredder 2240.webp';
 export { default as shredder4 } from './products/shredders/Shredder 2240 CC.webp';
 export { default as shredder5 } from './products/shredders/Shredder 2260.webp';
 export { default as shredder6 } from './products/shredders/Shredder 2260 CC.webp';
-
-
 
 // Accessories
 export { default as accessories } from './printers/sections/accessories.webp';

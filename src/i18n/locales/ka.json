@@ -54,13 +54,13 @@
     "title": "პროდუქციის კატეგორიები",
     "office": "ოფისის მოწყობილობები",
     "professional": "პროფესიონალური",
-    "industrial": "ინდუსტრიული",
+    "industrial": "საბეჭდი მასალები",
     "cutting": "ბეჭდვისშემდგომი დამუშავება",
     "binder": "ამკინძავი",
     "supplies": "სახარჯი მასალები",
     "office_description": "ოფისისის იდეალური პარტნიორი ",
     "professional_description": "პროფესიონალური არჩევანი",
-    "industrial_description": "ეფექტური ინდუსტრიული სტანდარტი",
+    "industrial_description": "პოლიგრაფიის და გარე რეკლამის მასალები",
     "cutting_description": "პროფესიონალური საჭრელი სისტემები & დანადგარები",
     "binder_description": "ამკინძავი აღჭურვილობა",
     "supplies_description": "სახარჯი და სარეკლამო მასალები",
@@ -70,8 +70,8 @@
     "guillotine_cutter": "გილიოტინა",
     "shredder": "შრედერი",
     "laminator": "ლამინატორი",
-    "laminators": "ლამინატორები",
-    "laminators_description": "პროფესიონალური ლამინაცია",
+    "laminators": "LED მოდულები",
+    "laminators_description": "პროფესიონალური LED განათება",
     "plotters": "პლოტერები",
     "plotters_description": "ფართოფორმატიანი პლოტერები და პრინტერები",
     "accessories": "აქსესუარები"
@@ -589,6 +589,9 @@
     "image1Alt": "პლოტერის საჭრელი კატალოგი 1",
     "image2Alt": "პლოტერის საჭრელი კატალოგი 2",
     "image3Alt": "პლოტერის საჭრელი კატალოგი 3"
+  },
+  "cyklos": {
+    "title": "Cyklos"
   },
   "ideal": {
     "title": "Ideal",

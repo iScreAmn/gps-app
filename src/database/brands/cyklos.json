@@ -1,0 +1,308 @@
+{
+  "brand": "cyklos",
+  "displayName": "Cyklos",
+  "products": [
+    {
+      "id": "cyklos-ksl-435",
+      "name": "დასანარიმანებელი CYKLOS KSL 435",
+      "nameEn": "CYKLOS KSL 435 Creasing Machine",
+      "cardSpecs": [
+        {
+          "label": "სამუშაო სიგანე",
+          "value": "435 მმ"
+        },
+        {
+          "label": "ქაღალდის წონა",
+          "value": "80 - 400 g/m²"
+        }
+      ],
+      "cardSpecsEn": [
+        {
+          "label": "Working width",
+          "value": "435 mm"
+        },
+        {
+          "label": "Paper weight",
+          "value": "80 - 400 g/m²"
+        }
+      ],
+      "overview": "KSL 435 მოდელით დანარიმანებულ ქაღალდს (აგრეთვე ციფრულად დაბეჭდილის) აქვს მარტივი და ზუსტი ნაკეცი. აპარატის სამუშაო განია 435 მმ. აპარატს აქვს დანარიმანების 4 რეჟიმი. აპარტს აგრეთვე შეუძლია მუშაობა სპეციალურ ქაღალდებთან როგორიც არის მაგალითად ორმხვრივად ლამინირებული. ამ აპარატს შეუძლია მარტივად გაკეცოს მოსაწვევი ბარათები, მენიუები და სხვადასხვა სარეკლამო მასალები.",
+      "overviewEn": "With the KSL 435 model, creased paper (including digitally printed) folds simply and precisely. The machine has a working width of 435 mm and four creasing modes. It can also work with special papers such as double-sided laminated stock. This machine easily folds invitation cards, menus and various promotional materials.",
+      "specification": [
+        "ლითონის კონსტრუქცია",
+        "დანარიმანების ოთხი რეჟიმი",
+        "სამუშაო მაგიდა დიდი ფორმატებისთვის",
+        "ორი კორექტირების ხრახნი სიზუსტისათვის",
+        "45°-იანი კუთხის შესაძლებლობა",
+        "მარტივი გამოსაყენებელი"
+      ],
+      "specificationEn": [
+        "Metal construction",
+        "Four creasing modes",
+        "Work table for large formats",
+        "Two adjustment screws for precision",
+        "45° angle capability",
+        "Easy to use"
+      ],
+      "parameters": [
+        { "label": "სამუშაო სიგანე", "value": "435 მმ" },
+        { "label": "ქაღალდის წონა", "value": "80 - 400 g/m²" },
+        { "label": "კუთხე", "value": "0 - 90°-მდე" },
+        { "label": "დანარიმანების სიგანე", "value": "0,8 / 1,0 / 1,5 / 1,8 მმ" },
+        { "label": "ზომები", "value": "505 x 505 x 95 მმ" },
+        { "label": "წონა", "value": "13,5 კგ" }
+      ],
+      "parametersEn": [
+        { "label": "Working width", "value": "435 mm" },
+        { "label": "Paper weight", "value": "80 - 400 g/m²" },
+        { "label": "Angle", "value": "0 - 90°" },
+        { "label": "Crease width", "value": "0.8 / 1.0 / 1.5 / 1.8 mm" },
+        { "label": "Dimensions", "value": "505 x 505 x 95 mm" },
+        { "label": "Weight", "value": "13.5 kg" }
+      ]
+    },
+    {
+      "id": "cyklos-ksl-320",
+      "name": "დასანარიმანებელი CYKLOS KSL 320",
+      "nameEn": "CYKLOS KSL 320 Creasing Machine",
+      "cardSpecs": [
+        {
+          "label": "სამუშაო სიგანე",
+          "value": "320 მმ"
+        },
+        {
+          "label": "მაქსიმალური ზომა",
+          "value": "SRA3"
+        }
+      ],
+      "cardSpecsEn": [
+        {
+          "label": "Working width",
+          "value": "320 mm"
+        },
+        {
+          "label": "Maximum size",
+          "value": "SRA3"
+        }
+      ],
+      "overview": "KSL 320 მოდელით დანარიმანებულ ქაღალდს (აგრეთვე ციფრულად დაბეჭდილის) აქვს მარტივი და ზუსტი ნაკეცი. აპარატის სამუშაო განია 320 მმ. აპარტს აგრეთვე შეუძლია მუშაობა სპეციალურ ქაღალდებთან როგორიც არის მაგალითად ორმხვრივად ლამინირებული. ამ აპარატს შეუძლია მარტივად გაკეცოს მოსაწვევი ბარათები, მენიუები და სხვადასხვა სარეკლამო მასალები.",
+      "overviewEn": "With the KSL 320 model, creased paper (including digitally printed) folds simply and precisely. The machine has a working width of 320 mm. It can also work with special papers such as double-sided laminated stock. This machine easily folds invitation cards, menus and various promotional materials.",
+      "specification": [
+        "ლითონის კონსტრუქცია",
+        "გვერდითი რეგულირების ბორბლები ქაღალდის პოზიციის შესაცვლელად",
+        "დიდი სამუშაო მაგიდა SRA3 ფორმატისთვის",
+        "რეგულირებადი ბორბლების მარტივი რეგულირება"
+      ],
+      "specificationEn": [
+        "Metal construction",
+        "Side adjustment wheels for changing paper position",
+        "Large work table for SRA3 format",
+        "Easy adjustment of adjustable wheels"
+      ],
+      "parameters": [
+        { "label": "სამუშაო სიგანე", "value": "320 მმ" },
+        { "label": "ქაღალდის წონა", "value": "80 - 400 გრ" },
+        { "label": "მაქსიმალური ზომა", "value": "SRA3" },
+        { "label": "დანარიმანების სიგანე", "value": "1,0 / 1,5 მმ" },
+        { "label": "ზომები", "value": "525 x 375 x 120 მმ" },
+        { "label": "წონა", "value": "8 კგ" }
+      ],
+      "parametersEn": [
+        { "label": "Working width", "value": "320 mm" },
+        { "label": "Paper weight", "value": "80 - 400 gsm" },
+        { "label": "Maximum size", "value": "SRA3" },
+        { "label": "Crease width", "value": "1.0 / 1.5 mm" },
+        { "label": "Dimensions", "value": "525 x 375 x 120 mm" },
+        { "label": "Weight", "value": "8 kg" }
+      ]
+    },
+    {
+      "id": "cyklos-gpm-320",
+      "name": "დანარიმანება - პერფორაცია GPM 320",
+      "nameEn": "GPM 320 Creasing & Perforation",
+      "cardSpecs": [
+        {
+          "label": "სამუშაო სიგანე",
+          "value": "320 მმ (SRA3)"
+        },
+        {
+          "label": "დანარიმანების სიგანე",
+          "value": "0,8 / 1,1 / 1,5 მმ"
+        }
+      ],
+      "cardSpecsEn": [
+        {
+          "label": "Working width",
+          "value": "320 mm (SRA3)"
+        },
+        {
+          "label": "Crease width",
+          "value": "0.8 / 1.1 / 1.5 mm"
+        }
+      ],
+      "overview": "დანარმანების და პერფორაციის დანადგარი GPM 320 არის მოდელის GPM 315-ის წარმატებული წინამორბედი. ის იყო დამზადებული გრაფიკული მასალების საბოლოო დამუშავებისათვის SRA3 ქაღალდის ზომაზე. მარტივი ხელის აპარატი სამუშაო განით 320 მმ გაძლევს საშუალების დაკეცო ან დააპერფორირო ისეთივე ხარისხით როგორიც აქვს ელექტრო დანადგარებს. საოპერაციო მექანიზმის ეკსცენტრიკული ბორბალი მოითხოვს ქაღალდის დასამუშავებლად მინიმალური ძალის დატანას.",
+      "overviewEn": "The GPM 320 creasing and perforation machine is the successful successor to the GPM 315 model. It was designed for final processing of graphic materials on SRA3 paper size. This simple manual machine with a 320 mm working width lets you fold or perforate with the same quality as electric machines. The eccentric wheel of the operating mechanism requires minimal force to process paper.",
+      "specification": [
+        "ლითონის კონსტრუქცია",
+        "დიდი სამუშაო მაგიდა SRA3 ფორმატისთვის",
+        "სამი სხვადასხვა დანარიმანების სიგანე",
+        "გვერდითი რეგულირების ბორბლები, ქაღალდის პოზიციის შესაცვლელად",
+        "რეგულირებადი ბორბლების მარტივი რეგულირება"
+      ],
+      "specificationEn": [
+        "Metal construction",
+        "Large work table for SRA3 format",
+        "Three different crease widths",
+        "Side adjustment wheels for changing paper position",
+        "Easy adjustment of adjustable wheels"
+      ],
+      "parameters": [
+        { "label": "სამუშაო სიგანე", "value": "320 მმ (SRA3)" },
+        { "label": "ქაღალდის წონა", "value": "80 - 400 g/m² (დანარიმანება), 60 - 250 g/m² (პერფორირება)" },
+        { "label": "დანარიმანების სიგანე", "value": "0,8 / 1,1 / 1,5 მმ" },
+        { "label": "ზომები", "value": "470 x 370 x 360 მმ" },
+        { "label": "წონა", "value": "11 კგ" }
+      ],
+      "parametersEn": [
+        { "label": "Working width", "value": "320 mm (SRA3)" },
+        { "label": "Paper weight", "value": "80 - 400 g/m² (creasing), 60 - 250 g/m² (perforation)" },
+        { "label": "Crease width", "value": "0.8 / 1.1 / 1.5 mm" },
+        { "label": "Dimensions", "value": "470 x 370 x 360 mm" },
+        { "label": "Weight", "value": "11 kg" }
+      ]
+    },
+    {
+      "id": "cyklos-gpm-315",
+      "name": "დანარიმანება - პერფორაცია GPM 315",
+      "nameEn": "GPM 315 Creasing & Perforation",
+      "cardSpecs": [
+        {
+          "label": "სამუშაო სიგანე",
+          "value": "315 მმ"
+        },
+        {
+          "label": "დანარიმანების კუთხე",
+          "value": "0 - 90°"
+        }
+      ],
+      "cardSpecsEn": [
+        {
+          "label": "Working width",
+          "value": "315 mm"
+        },
+        {
+          "label": "Crease angle",
+          "value": "0 - 90°"
+        }
+      ],
+      "parameters": [
+        { "label": "სამუშაო სიგანე", "value": "315 მმ" },
+        { "label": "ქაღალდის წონა", "value": "80 - 400 g/m² (დანარიმანება), 60 - 250 g/m² (პერფორირება)" },
+        { "label": "დანარიმანების კუთხე", "value": "0 - 90°" },
+        { "label": "დანარიმანების სიგანე", "value": "1,2 / 1,8 მმ" },
+        { "label": "ზომა", "value": "500 x 380 x 95 მმ" },
+        { "label": "წონა", "value": "11,5 კგ" }
+      ],
+      "parametersEn": [
+        { "label": "Working width", "value": "315 mm" },
+        { "label": "Paper weight", "value": "80 - 400 g/m² (creasing), 60 - 250 g/m² (perforation)" },
+        { "label": "Crease angle", "value": "0 - 90°" },
+        { "label": "Crease width", "value": "1.2 / 1.8 mm" },
+        { "label": "Dimensions", "value": "500 x 380 x 95 mm" },
+        { "label": "Weight", "value": "11.5 kg" }
+      ]
+    },
+    {
+      "id": "cyklos-ucr-9",
+      "name": "კუთხეების მოსამრგვალებელი UCR 9",
+      "nameEn": "UCR 9 Corner Rounder",
+      "cardSpecs": [
+        {
+          "label": "რადიუსი",
+          "value": "6, 9, 12 მმ"
+        },
+        {
+          "label": "წონა",
+          "value": "3,2 კგ"
+        }
+      ],
+      "cardSpecsEn": [
+        {
+          "label": "Radius",
+          "value": "6, 9, 12 mm"
+        },
+        {
+          "label": "Weight",
+          "value": "3.2 kg"
+        }
+      ],
+      "overview": "კუთხეების მოსამრგვალებელი დანადგარი აღჭურვილია 3, 6, 9 და 12 მმ რადიუსის 3 შესაცვლელი საჭრელი დანით.",
+      "overviewEn": "The corner rounding machine is equipped with 3 interchangeable cutting knives with radii of 3, 6, 9 and 12 mm.",
+      "parameters": [
+        { "label": "რადიუსი", "value": "6, 9, 12 მმ" },
+        { "label": "ფეხის სიმაღლე", "value": "5 მმ" },
+        { "label": "მინ. ფურცლის ზომა", "value": "50 x 90 მმ" },
+        { "label": "ზომა", "value": "300 x 250 x 92 მმ" },
+        { "label": "შეფუთვის ზომა", "value": "310 x 260 x 100 მმ" },
+        { "label": "წონა", "value": "3,2 კგ" }
+      ],
+      "parametersEn": [
+        { "label": "Radius", "value": "6, 9, 12 mm" },
+        { "label": "Foot height", "value": "5 mm" },
+        { "label": "Min. paper size", "value": "50 x 90 mm" },
+        { "label": "Dimensions", "value": "300 x 250 x 92 mm" },
+        { "label": "Packaging dimensions", "value": "310 x 260 x 100 mm" },
+        { "label": "Weight", "value": "3.2 kg" }
+      ]
+    },
+    {
+      "id": "cyklos-ccr-40",
+      "name": "კუთხეების მოსამრგვალებელი CCR 40",
+      "nameEn": "CCR 40 Corner Rounder",
+      "cardSpecs": [
+        {
+          "label": "რადიუსი",
+          "value": "4, 6, 9, 12, 18 მმ"
+        },
+        {
+          "label": "ჭრის მაქს. სისქე",
+          "value": "40 მმ"
+        }
+      ],
+      "cardSpecsEn": [
+        {
+          "label": "Radius",
+          "value": "4, 6, 9, 12, 18 mm"
+        },
+        {
+          "label": "Max. cut thickness",
+          "value": "40 mm"
+        }
+      ],
+      "specification": [
+        "ლითონის კონსტრუქცია",
+        "სწრაფი რეგულირება მიმმართველების ზუსტი ჭრისთვის",
+        "დიდი სამუშაო მაგიდა",
+        "საჭრელი დანების მარტივი შეცვლა"
+      ],
+      "specificationEn": [
+        "Metal construction",
+        "Quick adjustment of guides for precise cutting",
+        "Large work table",
+        "Easy replacement of cutting knives"
+      ],
+      "parameters": [
+        { "label": "რადიუსი", "value": "4, 6, 9, 12, 18 მმ" },
+        { "label": "ჭრის მაქსიმალური სისქე", "value": "40 მმ" },
+        { "label": "ზომები", "value": "700 x 400 x 800 მმ" },
+        { "label": "წონა", "value": "16,5 კგ" }
+      ],
+      "parametersEn": [
+        { "label": "Radius", "value": "4, 6, 9, 12, 18 mm" },
+        { "label": "Maximum cut thickness", "value": "40 mm" },
+        { "label": "Dimensions", "value": "700 x 400 x 800 mm" },
+        { "label": "Weight", "value": "16.5 kg" }
+      ]
+    }
+  ]
+}
