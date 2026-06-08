@@ -38,6 +38,8 @@ import Cyklos from './pages/CatalogPage/CuttingSystemsPage/Cyklos/Cyklos';
 import CyklosModelPage from './pages/CatalogPage/CuttingSystemsPage/Cyklos/CyklosModelPage';
 import Rapid from './pages/CatalogPage/CuttingSystemsPage/Rapid/Rapid';
 import RapidModelPage from './pages/CatalogPage/CuttingSystemsPage/Rapid/RapidModelPage';
+import Duplo from './pages/CatalogPage/CuttingSystemsPage/Duplo/Duplo';
+import DuploModelPage from './pages/CatalogPage/CuttingSystemsPage/Duplo/DuploModelPage';
 import ScannerPage from './pages/ScannerPage/ScannerPage';
 import InfoPage from './pages/InfoPage/InfoPage';
 import './App.css';
@@ -74,6 +76,8 @@ function App() {
               <Route path="/ka/cutting-systems/cyklos/:modelId" element={<CyklosModelPage />} />
               <Route path="/ka/cutting-systems/rapid" element={<Rapid />} />
               <Route path="/ka/cutting-systems/rapid/:modelId" element={<RapidModelPage />} />
+              <Route path="/ka/cutting-systems/duplo" element={<Duplo />} />
+              <Route path="/ka/cutting-systems/duplo/:modelId" element={<DuploModelPage />} />
               <Route path="/ka/shredder" element={<IdealShredder />} />
               <Route path="/ka/shredder/:modelId" element={<IdealShredderModelPage />} />
               <Route path="/ka/cutting-systems/:brand" element={<CatalogPage />} />
@@ -117,6 +121,8 @@ function App() {
               <Route path="/en/cutting-systems/cyklos/:modelId" element={<CyklosModelPage />} />
               <Route path="/en/cutting-systems/rapid" element={<Rapid />} />
               <Route path="/en/cutting-systems/rapid/:modelId" element={<RapidModelPage />} />
+              <Route path="/en/cutting-systems/duplo" element={<Duplo />} />
+              <Route path="/en/cutting-systems/duplo/:modelId" element={<DuploModelPage />} />
               <Route path="/en/shredder" element={<IdealShredder />} />
               <Route path="/en/shredder/:modelId" element={<IdealShredderModelPage />} />
               <Route path="/en/cutting-systems/:brand" element={<CatalogPage />} />
@@ -158,6 +164,8 @@ function App() {
               <Route path="/cutting-systems/cyklos/:modelId" element={<CyklosModelPage />} />
               <Route path="/cutting-systems/rapid" element={<Rapid />} />
               <Route path="/cutting-systems/rapid/:modelId" element={<RapidModelPage />} />
+              <Route path="/cutting-systems/duplo" element={<Duplo />} />
+              <Route path="/cutting-systems/duplo/:modelId" element={<DuploModelPage />} />
               <Route path="/shredder" element={<IdealShredder />} />
               <Route path="/shredder/:modelId" element={<IdealShredderModelPage />} />
               <Route path="/cutting-systems/:brand" element={<CatalogPage />} />

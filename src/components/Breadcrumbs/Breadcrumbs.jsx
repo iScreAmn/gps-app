@@ -11,6 +11,7 @@ import idealShredderData from '../../database/brands/ideal-shredder.json';
 import vividData from '../../database/brands/vivid.json';
 import cyklosData from '../../database/brands/cyklos.json';
 import rapidData from '../../database/brands/rapid.json';
+import duploData from '../../database/brands/duplo.json';
 import { professionalData } from '../../data/professionalData';
 import { nocaiData } from '../../data/nocaiData';
 import { inksProducts } from '../../data/inksData';
@@ -160,7 +161,8 @@ const Breadcrumbs = ({ items, separator }) => {
         (segments[cuttingSystemsIdx + 1] === 'recosystems'
           || segments[cuttingSystemsIdx + 1] === 'vivid'
           || segments[cuttingSystemsIdx + 1] === 'cyklos'
-          || segments[cuttingSystemsIdx + 1] === 'rapid') &&
+          || segments[cuttingSystemsIdx + 1] === 'rapid'
+          || segments[cuttingSystemsIdx + 1] === 'duplo') &&
         index > cuttingSystemsIdx
       ) {
         return;
@@ -251,6 +253,30 @@ const Breadcrumbs = ({ items, separator }) => {
           crumbs.push({
             label: product?.name || modelId,
             path: `${recosystemsPath}/${modelId}`,
+            isActive: true
+          });
+        }
+        return;
+      }
+
+      // cutting-systems/duplo: Home - Catalog - Cutting Systems - Duplo [- model]
+      if (segment === 'cutting-systems' && nextSegment === 'duplo') {
+        const catalogPath = currentLang ? `/${currentLang}/catalog` : '/catalog';
+        const cuttingPath = currentLang ? `/${currentLang}/cutting-systems` : '/cutting-systems';
+        const duploPath = `${cuttingPath}/duplo`;
+
+        crumbs.push(
+          { label: t('navigation.catalog'), path: catalogPath, isActive: false },
+          { label: t('categories.cutting'), path: cuttingPath, isActive: false },
+          { label: 'Duplo', path: duploPath, isActive: !segments[index + 2] }
+        );
+
+        if (segments[index + 2]) {
+          const modelId = segments[index + 2];
+          const product = duploData?.products?.find(p => p.id === modelId);
+          crumbs.push({
+            label: product?.name || modelId,
+            path: `${duploPath}/${modelId}`,
             isActive: true
           });
         }
@@ -529,6 +555,11 @@ const Breadcrumbs = ({ items, separator }) => {
 
       // Пропускаем modelId для rapid — он уже добавлен в специальной обработке выше
       if (segments[index - 1] === 'rapid') {
+        return;
+      }
+
+      // Пропускаем modelId для duplo — он уже добавлен в специальной обработке выше
+      if (segments[index - 1] === 'duplo') {
         return;
       }
       

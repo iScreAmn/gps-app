@@ -205,5 +205,20 @@ export { default as shredder4 } from './products/shredders/Shredder 2240 CC.webp
 export { default as shredder5 } from './products/shredders/Shredder 2260.webp';
 export { default as shredder6 } from './products/shredders/Shredder 2260 CC.webp';
 
+// Duplo
+export { default as duplo1 } from './products/duplo/DF 1200.jpg';
+export { default as duplo2 } from './products/duplo/DF 980.jpg';
+export { default as duplo3 } from './products/duplo/DF 970.jpg';
+export { default as duplo4 } from './products/duplo/DC 646.jpg';
+export { default as duplo5 } from './products/duplo/DPB 500.jpg';
+export { default as duplo6 } from './products/duplo/KB 4000.jpg';
+export { default as duplo7 } from './products/duplo/DSC 10-60iL.jpg';
+export { default as duplo8 } from './products/duplo/DSC 10-20.jpg';
+export { default as duplo9 } from './products/duplo/DC 446.jpg';
+export { default as duplo10 } from './products/duplo/DFC 101.jpg';
+
+
+
 // Accessories
 export { default as accessories } from './printers/sections/accessories.webp';
+

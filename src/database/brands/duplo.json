@@ -1,0 +1,500 @@
+{
+  "brand": "duplo",
+  "displayName": "Duplo",
+  "products": [
+    {
+      "id": "duplo-df-1200",
+      "name": "DF 1200 საკეცი აპარატი",
+      "nameEn": "DF 1200 Folder",
+      "cardSpecs": [
+        { "label": "ქაღალდის ზომა", "value": "A3 - B6" },
+        { "label": "სიჩქარე", "value": "260 ქაღალდი წუთში (A4)" }
+      ],
+      "cardSpecsEn": [
+        { "label": "Paper size", "value": "A3 - B6" },
+        { "label": "Speed", "value": "260 sheets per minute (A4)" }
+      ],
+      "parametersTitle": "სპეციფიკაცია",
+      "parametersTitleEn": "Specifications",
+      "parameters": [
+        { "label": "მოდელი/ტიპი", "value": "DF-1200" },
+        { "label": "ქაღალდის მიმწოდებელი", "value": "ვაკუუმით შეწოვა" },
+        { "label": "ქაღალდის ზომა", "value": "A3 - B6" },
+        { "label": "ქაღალდის ზომების დიაპაზონი", "value": "მაქს. 311 x 457.2 მმ / მინ. 120 x 182 მმ" },
+        { "label": "ქაღალდის ტიპი", "value": "Art/Coated 52.3 - 157 გრ" },
+        { "label": "სიჩქარე", "value": "260 ქაღალდი წუთში (A4)" },
+        { "label": "ქაღალდის მიმწოდებლის ტევადობა", "value": "50 მმ" },
+        { "label": "კეცვის ტიპი", "value": "ერთჯერადი კეცვა, ორმაგი კეცვა, ორმაგი პარალელური" },
+        { "label": "ზომები", "value": "1,193 x 587 x 541 მმ" },
+        { "label": "წონა", "value": "66.5 კგ" }
+      ],
+      "parametersEn": [
+        { "label": "Model/Type", "value": "DF-1200" },
+        { "label": "Paper feed", "value": "Vacuum suction" },
+        { "label": "Paper size", "value": "A3 - B6" },
+        { "label": "Range of paper size", "value": "Max. 311 x 457.2 mm / Min. 120 x 182 mm" },
+        { "label": "Paper type", "value": "Art/Coated 52.3 - 157 gsm" },
+        { "label": "Speed", "value": "260 sheets per minute (A4)" },
+        { "label": "Paper feed capacity", "value": "50 mm" },
+        { "label": "Fold type", "value": "Single fold, double fold, double parallel" },
+        { "label": "Dimensions", "value": "1,193 x 587 x 541 mm" },
+        { "label": "Weight", "value": "66.5 kg" }
+      ]
+    },
+    {
+      "id": "duplo-df-980",
+      "name": "DF 980 საკეცი აპარატი",
+      "nameEn": "DF 980 Folder",
+      "cardSpecs": [
+        { "label": "ქაღალდის ზომა", "value": "A3 - A7" },
+        { "label": "სიჩქარე", "value": "242 ფურცელი წუთში" }
+      ],
+      "cardSpecsEn": [
+        { "label": "Paper size", "value": "A3 - A7" },
+        { "label": "Speed", "value": "242 sheets per minute" }
+      ],
+      "parametersTitle": "სპეციფიკაცია",
+      "parametersTitleEn": "Specifications",
+      "parameters": [
+        { "label": "მოდელი/ტიპი", "value": "DF-980" },
+        { "label": "ქაღალდის ზომა", "value": "A3 - A7" },
+        { "label": "ქაღალდის ზომების დიაპაზონი", "value": "მაქს. 311×457.2 მმ / მინ. 74×105 მმ (*ზოგიერთი გამონაკლისის შემთხვევაში)" },
+        { "label": "ქაღალდის ტიპი", "value": "მაღალი ხარისხის, Art/Coated (*ზოგიერთი გამონაკლისის შემთხვევაში)" },
+        { "label": "ქაღალდის წონა", "value": "52.3 – 157 გრ/მ²" },
+        { "label": "პროცესის მაქსიმალური სიჩქარე", "value": "242 ფურცელი წუთში (*64 გრ/მ², მაღალი ხარისხის, A4 ერთჯერადი კეცვა)" },
+        { "label": "ქაღალდის მიმწოდებლის ტევადობა", "value": "500 ფურცელი (*64 გრ/მ²)" },
+        { "label": "მთვლელი", "value": "4 ციფრი (ზევით/ქვემოთ)" },
+        { "label": "მორგებული კეცვა", "value": "20 ტიპი" },
+        { "label": "ქაღალდის მიწოდება", "value": "3 როლიკი, ავტომატური განცალკევება" },
+        { "label": "დახრის კორექტირება", "value": "მხარდაჭერილი" },
+        { "label": "ქაღალდის სენსორი", "value": "ორმაგი მიწოდების აღმოჩენა, არასწორი მიწოდების აღმოჩენა, ქაღალდის გაჭედვა" },
+        { "label": "სხვა ფუნქციები", "value": "ხელახალი კეცვა, ინტერვალი, იძულებითი გამოყარა, სტოპერის დაყენება, სქელი ქაღალდი, ენერგიის დაზოგვა" },
+        { "label": "ზომები", "value": "1,046 × 512 × 494 მმ / 665 × 512 × 494 მმ" },
+        { "label": "წონა", "value": "43 კგ" }
+      ],
+      "parametersEn": [
+        { "label": "Model/Type", "value": "DF-980" },
+        { "label": "Paper size", "value": "A3 to A7" },
+        { "label": "Range of paper size", "value": "Max. 311×457.2 mm / Min. 74×105 mm (*with some exceptions)" },
+        { "label": "Paper type", "value": "Fine quality, Art/Coated (*with some exceptions)" },
+        { "label": "Paper weight", "value": "52.3 to 157 g/m²" },
+        { "label": "Maximum process speed", "value": "242 sheets per minute (*64 g/m², fine quality, A4 single fold)" },
+        { "label": "Paper feed capacity", "value": "500 sheets (*64 g/m²)" },
+        { "label": "Counter", "value": "4 digits (count up/down)" },
+        { "label": "Custom fold", "value": "20 types" },
+        { "label": "Paper feed", "value": "3 rings, automatic separation" },
+        { "label": "Skew correction", "value": "Supported" },
+        { "label": "Paper sensor", "value": "Double feed detection, misfeed detection, paper jam" },
+        { "label": "Other functions", "value": "Refold, interval, forced ejection, stopper set, thick paper, energy save" },
+        { "label": "Dimensions", "value": "1,046 × 512 × 494 mm / 665 × 512 × 494 mm" },
+        { "label": "Weight", "value": "43 kg" }
+      ]
+    },
+    {
+      "id": "duplo-df-970",
+      "name": "DF 970 საკეცი აპარატი",
+      "nameEn": "DF 970 Folder",
+      "cardSpecs": [
+        { "label": "ქაღალდის ზომა", "value": "A3 - A7" },
+        { "label": "სიჩქარე", "value": "242 ფურცელი წუთში" }
+      ],
+      "cardSpecsEn": [
+        { "label": "Paper size", "value": "A3 - A7" },
+        { "label": "Speed", "value": "242 sheets per minute" }
+      ],
+      "parametersTitle": "სპეციფიკაცია",
+      "parametersTitleEn": "Specifications",
+      "parameters": [
+        { "label": "მოდელი/ტიპი", "value": "DF-970" },
+        { "label": "ქაღალდის ზომა", "value": "A3 - A7" },
+        { "label": "ქაღალდის ზომების დიაპაზონი", "value": "მაქს. 311×457.2 მმ / მინ. 74×105 მმ" },
+        { "label": "ქაღალდის ტიპი", "value": "Art/Coated" },
+        { "label": "ქაღალდის წონა", "value": "52.3 – 157 გრ" },
+        { "label": "პროცესის მაქსიმალური სიჩქარე", "value": "242 ფურცელი წუთში (A4)" },
+        { "label": "ქაღალდის მიმწოდებლის ტევადობა", "value": "500 ფურცელი" },
+        { "label": "კეცვის ტიპი", "value": "36 ტიპი" },
+        { "label": "ქაღალდის მიწოდება", "value": "3 როლიკი, ავტომატური განცალკევება" },
+        { "label": "დახრის კორექტირება", "value": "კი" },
+        { "label": "სენსორი", "value": "ორმაგი ქაღალდის აღმოჩენა, გაჭედილი ქაღალდის აღმოჩენა" },
+        { "label": "ზომა", "value": "1,046 × 512 × 494 მმ / 665 × 512 × 494 მმ" },
+        { "label": "წონა", "value": "41 კგ" }
+      ],
+      "parametersEn": [
+        { "label": "Model/Type", "value": "DF-970" },
+        { "label": "Paper size", "value": "A3 - A7" },
+        { "label": "Range of paper size", "value": "Max. 311×457.2 mm / Min. 74×105 mm" },
+        { "label": "Paper type", "value": "Art/Coated" },
+        { "label": "Paper weight", "value": "52.3 – 157 gsm" },
+        { "label": "Maximum process speed", "value": "242 sheets per minute (A4)" },
+        { "label": "Paper feed capacity", "value": "500 sheets" },
+        { "label": "Fold type", "value": "36 types" },
+        { "label": "Paper feed", "value": "3 rollers, automatic separation" },
+        { "label": "Skew correction", "value": "Yes" },
+        { "label": "Sensor", "value": "Double feed detection, paper jam detection" },
+        { "label": "Dimensions", "value": "1,046 × 512 × 494 mm / 665 × 512 × 494 mm" },
+        { "label": "Weight", "value": "41 kg" }
+      ]
+    },
+    {
+      "id": "duplo-dc-646",
+      "name": "DC 646 ჩამოსასუფთავებელი, ჭრა, პერფორაცია",
+      "nameEn": "DC 646 De-curling, Cutting & Perforation",
+      "cardSpecs": [
+        { "label": "სიჩქარე", "value": "30 ფურცელი წუთში" },
+        { "label": "ქაღალდის წონა", "value": "110 - 350 გრ" }
+      ],
+      "cardSpecsEn": [
+        { "label": "Speed", "value": "30 sheets per minute" },
+        { "label": "Paper weight", "value": "110 - 350 gsm" }
+      ],
+      "parametersTitle": "სპეციფიკაცია",
+      "parametersTitleEn": "Specifications",
+      "parameters": [
+        { "label": "მოდელი/ტიპი", "value": "საჭრელ-დასანარიმანებელი" },
+        { "label": "ქაღალდის ზომა", "value": "სიგანე 210–370 მმ / სიგრძე 210–670 მმ" },
+        { "label": "ქაღალდის ტიპი", "value": "დაუფონავი, დაფონილი, ლამინირებული" },
+        { "label": "ჭრის მინიმალური სიგრძე", "value": "3.0 მმ / 3.0 მმ / 5.0 მმ" },
+        { "label": "ქაღალდის წონა", "value": "110 - 350 გრ" },
+        { "label": "სიჩქარე", "value": "30 ფურცელი წუთში" },
+        { "label": "დედნის მიმწოდებლის ტევადობა", "value": "100 მმ" },
+        { "label": "გამომტანის ტევადობა", "value": "140 მმ" },
+        { "label": "კონტროლერი", "value": "USB" },
+        { "label": "დამატებითი მოდულები", "value": "RTM-03, CPM-03, OSM-02, OPK-02" },
+        { "label": "ენერგომოხმარება", "value": "AC100 - 230V 50/60Hz" },
+        { "label": "სიმძლავრე", "value": "4.7 - 1.9 A" },
+        { "label": "ზომები", "value": "2,310 x 765 x 1,110 მმ / 1,650 × 765 × 1,110 მმ" },
+        { "label": "წონა", "value": "270 კგ" }
+      ],
+      "parametersEn": [
+        { "label": "Model/Type", "value": "Cutting & creasing machine" },
+        { "label": "Paper size", "value": "Width 210–370 mm / Length 210–670 mm" },
+        { "label": "Paper type", "value": "Uncoated, coated, laminated" },
+        { "label": "Minimum cut length", "value": "3.0 mm / 3.0 mm / 5.0 mm" },
+        { "label": "Paper weight", "value": "110 - 350 gsm" },
+        { "label": "Speed", "value": "30 sheets per minute" },
+        { "label": "Mother roll feed capacity", "value": "100 mm" },
+        { "label": "Output capacity", "value": "140 mm" },
+        { "label": "Controller", "value": "USB" },
+        { "label": "Optional modules", "value": "RTM-03, CPM-03, OSM-02, OPK-02" },
+        { "label": "Power supply", "value": "AC100 - 230V 50/60Hz" },
+        { "label": "Current", "value": "4.7 - 1.9 A" },
+        { "label": "Dimensions", "value": "2,310 x 765 x 1,110 mm / 1,650 × 765 × 1,110 mm" },
+        { "label": "Weight", "value": "270 kg" }
+      ]
+    },
+    {
+      "id": "duplo-dpb-500",
+      "name": "DPB 500 თერმო ამკინძავი",
+      "nameEn": "DPB 500 Thermal Binder",
+      "cardSpecs": [
+        { "label": "აკინძვის სისქე", "value": "1 - 51 მმ" },
+        { "label": "სიჩქარე", "value": "525 ციკლი საათში" }
+      ],
+      "cardSpecsEn": [
+        { "label": "Binding thickness", "value": "1 - 51 mm" },
+        { "label": "Speed", "value": "525 cycles per hour" }
+      ],
+      "parametersTitle": "სპეციფიკაცია",
+      "parametersTitleEn": "Specifications",
+      "parameters": [
+        { "label": "მოდელი", "value": "DPB-500" },
+        { "label": "სახეობა", "value": "იატაკის მოდელი" },
+        { "label": "დამჭერების რაოდენობა", "value": "1" },
+        { "label": "აკინძვის სახეობა", "value": "მყარი ყდის აკინძვა, რბილი ყდის აკინძვა" },
+        { "label": "აკინძვის სისქე", "value": "1 - 51 მმ (0.04 to 2.01 ინჩი) + ყდის სისქე" },
+        { "label": "მაქსიმალური ზომა (ყდა)", "value": "360 (სიგრძე) x 320 (სიმაღლე) მმ / 14.17 x 12.6 ინჩი" },
+        { "label": "მინიმალური ზომა (ყდა)", "value": "120 (სიგრძე) x 120 (სიმაღლე) მმ / 4.72 x 4.72 ინჩი" },
+        { "label": "წიგნის ბლოკის ფორმა", "value": "ფურცელი, ერთი დაკეცვით, ორი დაკეცვით" },
+        { "label": "ქაღალდის სახეობა (ბლოკი)", "value": "მაღალი ხარისხის 52 to 157 გრ/მ² / არტ/ცარცის 79 to 157 გრ/მ²" },
+        { "label": "მიწოდების მეთოდი", "value": "ღვედის, შეწოვა (გაყოფა ჰაერით, გამყოფის მანუალური გაუჩერებელი რეგულირება)" },
+        { "label": "მაქსიმალური ზომა (ყდა გაშლილი)", "value": "360 (სიგრძე) x 696 (სიგანე) მმ / 14.17 x 27.4 ინჩი" },
+        { "label": "მინიმალური ზომა (ყდა გაშლილი)", "value": "120 (სიგრძე) x 250 (სიგანე) მმ / 4.72 x 9.84 ინჩი" },
+        { "label": "ქაღალდის ტალღა", "value": "5 მმ (0.2 ინჩი) ან ნაკლები R60 ან მეტი" },
+        { "label": "ქაღალდის სახეობა (ყდა)", "value": "მაღალი ხარისხის 81.4 to 302 გრ/მ² / არტ/ცარცის 104.7 to 302 გრ/მ²" },
+        { "label": "დასტის სიმაღლე", "value": "70 მმ/2.76 ინჩი (სიგრძე 170 მმ ან მოკლე — 40 მმ/1.57 ინჩი)" },
+        { "label": "მაქსიმალური აკინძვის სიჩქარე", "value": "525 ციკლი საათში" },
+        { "label": "ტორშირება", "value": "მაქსიმუმ 4 მმ/0.16 ინჩი (მანუალური 6 ბიჯის რეგულირება)" },
+        { "label": "გაუხეშება", "value": "2 ცალი" },
+        { "label": "წებოს სისქე", "value": "0.5 დან 2.25 მმ მდე / 0.02 დან 0.09 ინჩი მდე" },
+        { "label": "დოლურა", "value": "2 + ყუას საზომი როლერი" },
+        { "label": "გვერდითა წებო", "value": "როლერის მეთოდი" },
+        { "label": "წებოს ჭრა", "value": "სოლენოიდ მოძრავი" },
+        { "label": "გაცხელების დრო", "value": "დაახლოებით 30 წუთი" },
+        { "label": "სიღრმის რეგულირება", "value": "გაუჩერებელი მანუალური" },
+        { "label": "დასტის წონა", "value": "157 გრ/მ² ან მეტი" },
+        { "label": "სიმაღლის რეგულირება", "value": "გაუჩერებელი მანუალური" },
+        { "label": "დაწყობის მეთოდი", "value": "ვერტიკალური დაწყობა" },
+        { "label": "დაწყობის სიმაღლე", "value": "მაქსიმუმ 200 მმ/7.87 ინჩი" },
+        { "label": "ხმაურის დონე", "value": "90 dB ან ნაკლები" },
+        { "label": "დენის მოხმარება", "value": "3.2 kW 8A/ცალი ფაზა (აშშ, კანადა), 3.2 kW 5A/ცალი ფაზა (ევროპა)" },
+        { "label": "ზომები", "value": "2790 x 928 x 1343 მმ / 109.84 x 36.54 x 52.87 ინჩი" },
+        { "label": "შეფუთვის ზომები", "value": "2660 x 1120 x 1600 მმ" },
+        { "label": "წონა", "value": "695 კგ / 1529 ფუნტი" },
+        { "label": "შეფუთვის წონა", "value": "816 კგ" }
+      ],
+      "parametersEn": [
+        { "label": "Model", "value": "DPB-500" },
+        { "label": "Type", "value": "Floor-standing model" },
+        { "label": "Number of clamps", "value": "1" },
+        { "label": "Binding type", "value": "Hard cover binding, soft cover binding" },
+        { "label": "Binding thickness", "value": "1 - 51 mm (0.04 to 2.01 inch) + cover thickness" },
+        { "label": "Maximum size (cover)", "value": "360 (L) x 320 (H) mm / 14.17 x 12.6 inch" },
+        { "label": "Minimum size (cover)", "value": "120 (L) x 120 (H) mm / 4.72 x 4.72 inch" },
+        { "label": "Book block form", "value": "Sheet, single fold, double fold" },
+        { "label": "Paper type (block)", "value": "Fine quality 52 to 157 g/m² / Art/Coated 79 to 157 g/m²" },
+        { "label": "Feed method", "value": "Belt, suction (air separation, manual stepless separator adjustment)" },
+        { "label": "Maximum size (cover open)", "value": "360 (L) x 696 (W) mm / 14.17 x 27.4 inch" },
+        { "label": "Minimum size (cover open)", "value": "120 (L) x 250 (W) mm / 4.72 x 9.84 inch" },
+        { "label": "Paper curl", "value": "5 mm (0.2 inch) or less R60 or more" },
+        { "label": "Paper type (cover)", "value": "Fine quality 81.4 to 302 g/m² / Art/Coated 104.7 to 302 g/m²" },
+        { "label": "Stack height", "value": "70 mm/2.76 inch (if length 170 mm or shorter — 40 mm/1.57 inch)" },
+        { "label": "Maximum binding speed", "value": "525 cycles per hour" },
+        { "label": "Rounding", "value": "Maximum 4 mm/0.16 inch (manual 6-step adjustment)" },
+        { "label": "Creasing", "value": "2 units" },
+        { "label": "Glue thickness", "value": "0.5 to 2.25 mm / 0.02 to 0.09 inch" },
+        { "label": "Glue roller", "value": "2 + measuring roller" },
+        { "label": "Side glue", "value": "Roller method" },
+        { "label": "Glue cut-off", "value": "Solenoid driven" },
+        { "label": "Warm-up time", "value": "Approximately 30 minutes" },
+        { "label": "Depth adjustment", "value": "Manual stepless" },
+        { "label": "Stack weight", "value": "157 g/m² or more" },
+        { "label": "Height adjustment", "value": "Manual stepless" },
+        { "label": "Stacking method", "value": "Vertical stacking" },
+        { "label": "Stacking height", "value": "Maximum 200 mm/7.87 inch" },
+        { "label": "Noise level", "value": "90 dB or less" },
+        { "label": "Power consumption", "value": "3.2 kW 8A/single phase (USA, Canada), 3.2 kW 5A/single phase (Europe)" },
+        { "label": "Dimensions", "value": "2790 x 928 x 1343 mm / 109.84 x 36.54 x 52.87 inch" },
+        { "label": "Packaging dimensions", "value": "2660 x 1120 x 1600 mm" },
+        { "label": "Weight", "value": "695 kg / 1529 lb" },
+        { "label": "Packaging weight", "value": "816 kg" }
+      ]
+    },
+    {
+      "id": "duplo-kb-4000",
+      "name": "KB 4000 თერმო ამკინძავი",
+      "nameEn": "KB 4000 Thermal Binder",
+      "cardSpecs": [
+        { "label": "სიჩქარე", "value": "200 წიგნი საათში" },
+        { "label": "ყდის სისქე", "value": "2 - 50 მმ" }
+      ],
+      "cardSpecsEn": [
+        { "label": "Speed", "value": "200 books per hour" },
+        { "label": "Cover thickness", "value": "2 - 50 mm" }
+      ],
+      "parametersTitle": "სპეციფიკაცია",
+      "parametersTitleEn": "Specifications",
+      "parameters": [
+        { "label": "მოდელი", "value": "KB-4000" },
+        { "label": "წიგნის ზომა", "value": "მინ. 120 x 120 მმ / მაქს. 420 x 360 მმ" },
+        { "label": "ყდის სისქე", "value": "მინ. 2 მმ / მაქს. 50 მმ" },
+        { "label": "ყდის ზომა", "value": "მინ. 120 x 240 მმ / მაქს. 425 x 780 მმ" },
+        { "label": "ყდის წონა", "value": "მაქს. 400 გრ" },
+        { "label": "სიჩქარე", "value": "200 წიგნი საათში" },
+        { "label": "წებოს გათბობის დრო", "value": "მაქს. 30 წუთი" },
+        { "label": "წებო", "value": "დახურული სისტემა" },
+        { "label": "შეკუმშული ჰაერის მიწოდება", "value": "კომპრესორი ან ცენტრალური საჰაერო მიწოდება" },
+        { "label": "დამატებითი მოდულები", "value": "კომპრესორი" },
+        { "label": "ენერგომოხმარება", "value": "400 V, 50 Hz, 16 A, 4.6 kW (მაქს.)" },
+        { "label": "ზომა", "value": "2010 x 975 x 1300 მმ" },
+        { "label": "წონა", "value": "380 კგ" }
+      ],
+      "parametersEn": [
+        { "label": "Model", "value": "KB-4000" },
+        { "label": "Book size", "value": "Min. 120 x 120 mm / Max. 420 x 360 mm" },
+        { "label": "Cover thickness", "value": "Min. 2 mm / Max. 50 mm" },
+        { "label": "Cover size", "value": "Min. 120 x 240 mm / Max. 425 x 780 mm" },
+        { "label": "Cover weight", "value": "Max. 400 gsm" },
+        { "label": "Speed", "value": "200 books per hour" },
+        { "label": "Glue warm-up time", "value": "Max. 30 minutes" },
+        { "label": "Glue system", "value": "Closed system" },
+        { "label": "Compressed air supply", "value": "Compressor or central air supply" },
+        { "label": "Optional modules", "value": "Compressor" },
+        { "label": "Power supply", "value": "400 V, 50 Hz, 16 A, 4.6 kW (Max.)" },
+        { "label": "Dimensions", "value": "2010 x 975 x 1300 mm" },
+        { "label": "Weight", "value": "380 kg" }
+      ]
+    },
+    {
+      "id": "duplo-dsc-10-60il",
+      "name": "DSC 10/60iL კოლატორი",
+      "nameEn": "DSC 10/60iL Collator",
+      "cardSpecs": [
+        { "label": "ურნების რაოდენობა", "value": "10" },
+        { "label": "სიჩქარე", "value": "10,000 კომპლექტი საათში" }
+      ],
+      "cardSpecsEn": [
+        { "label": "Number of bins", "value": "10" },
+        { "label": "Speed", "value": "10,000 sets per hour" }
+      ],
+      "parametersTitle": "სპეციფიკაცია",
+      "parametersTitleEn": "Specifications",
+      "parameters": [
+        { "label": "სახეობა", "value": "იატაკის ვერტიკალური კოლექტორი" },
+        { "label": "ურნების რაოდენობა", "value": "10" },
+        { "label": "ქაღალდის წამღები სისტემა", "value": "ჰაერით ქაღალდის მიწოდება" },
+        { "label": "კონვეირის სისტემა", "value": "ქამრით გადაცემის სისტემა" },
+        { "label": "ქაღალდის მაქს. ტევადობა", "value": "65 მმ" },
+        { "label": "ქაღალდის ზომა", "value": "105 x 148 - 350 x 610 მმ" },
+        { "label": "ქაღალდის წონა (ყდა)", "value": "მაღალი ხარისხის: 52–300 გრ/მ² / არტ/ცარცი: 79–300 გრ/მ²" },
+        { "label": "ქაღალდის წონა (შიგთავსი)", "value": "მაღალი ხარისხის: 52–157 გრ/მ² / არტ/ცარცი: 79–157 გრ/მ²" },
+        { "label": "პროცესის სიჩქარე", "value": "10,000 კომპლექტი საათში" },
+        { "label": "შეცდომის აღმოჩენა", "value": "ორმაგი ფურცლის აღმოჩენა, გაჭედილი ფურცლის აღმოჩენა" },
+        { "label": "ენერგომოხმარება", "value": "220–240V, 50/60Hz, 5.3A, 980W" },
+        { "label": "ზომები", "value": "765 x 830 x 1,972 მმ" },
+        { "label": "წონა", "value": "307 კგ" }
+      ],
+      "parametersEn": [
+        { "label": "Type", "value": "Floor-standing vertical collator" },
+        { "label": "Number of bins", "value": "10" },
+        { "label": "Paper feed system", "value": "Air paper feed" },
+        { "label": "Conveyor system", "value": "Belt transfer system" },
+        { "label": "Maximum paper capacity", "value": "65 mm" },
+        { "label": "Paper size", "value": "105 x 148 - 350 x 610 mm" },
+        { "label": "Paper weight (cover)", "value": "Fine quality: 52–300 gsm / Art/Coated: 79–300 gsm" },
+        { "label": "Paper weight (contents)", "value": "Fine quality: 52–157 gsm / Art/Coated: 79–157 gsm" },
+        { "label": "Process speed", "value": "10,000 sets per hour" },
+        { "label": "Error detection", "value": "Double sheet detection, paper jam detection" },
+        { "label": "Power supply", "value": "220–240V, 50/60Hz, 5.3A, 980W" },
+        { "label": "Dimensions", "value": "765 x 830 x 1,972 mm" },
+        { "label": "Weight", "value": "307 kg" }
+      ]
+    },
+    {
+      "id": "duplo-dsc-10-20",
+      "name": "DSC 10/20 კოლატორი",
+      "nameEn": "DSC 10/20 Collator",
+      "cardSpecs": [
+        { "label": "ურნების რაოდენობა", "value": "10" },
+        { "label": "სიჩქარე", "value": "7,200 კომპლექტი საათში" }
+      ],
+      "cardSpecsEn": [
+        { "label": "Number of bins", "value": "10" },
+        { "label": "Speed", "value": "7,200 sets per hour" }
+      ],
+      "parametersTitle": "სპეციფიკაცია",
+      "parametersTitleEn": "Specifications",
+      "parameters": [
+        { "label": "სახეობა", "value": "იატაკის ვერტიკალური კოლექტორი" },
+        { "label": "ურნების რაოდენობა", "value": "10" },
+        { "label": "ქაღალდის წამღები სისტემა", "value": "ჰაერით ქაღალდის მიწოდება" },
+        { "label": "კონვეირის სისტემა", "value": "ქამრით გადაცემის სისტემა" },
+        { "label": "ქაღალდის მაქსიმალური ტევადობა", "value": "35 მმ" },
+        { "label": "ქაღალდის ზომა", "value": "მინ. 139.7 x 210 მმ / მაქს. 320 x 450 მმ" },
+        { "label": "ქაღალდის სახეობა", "value": "მაღალი ხარისხის, არტ/ცარცის" },
+        { "label": "ქაღალდის წონა", "value": "მაღალი ხარისხის: 52–157 გრ / არტ/ცარცის: 79–157 გრ" },
+        { "label": "პროცესის სიჩქარე", "value": "7,200 კომპლექტი საათში" },
+        { "label": "ენერგომოხმარება", "value": "AC100–240V, 50/60 Hz" },
+        { "label": "სიმძლავრე", "value": "8.1A – 4.2A" },
+        { "label": "ზომები", "value": "630 x 750 x 1,972 მმ" },
+        { "label": "წონა", "value": "227.5 კგ" }
+      ],
+      "parametersEn": [
+        { "label": "Type", "value": "Floor-standing vertical collator" },
+        { "label": "Number of bins", "value": "10" },
+        { "label": "Paper feed system", "value": "Air paper feed" },
+        { "label": "Conveyor system", "value": "Belt transfer system" },
+        { "label": "Maximum paper capacity", "value": "35 mm" },
+        { "label": "Paper size", "value": "Min. 139.7 x 210 mm / Max. 320 x 450 mm" },
+        { "label": "Paper type", "value": "Fine quality, Art/Coated" },
+        { "label": "Paper weight", "value": "Fine quality: 52–157 gsm / Art/Coated: 79–157 gsm" },
+        { "label": "Process speed", "value": "7,200 sets per hour" },
+        { "label": "Power supply", "value": "AC100–240V, 50/60 Hz" },
+        { "label": "Current", "value": "8.1A – 4.2A" },
+        { "label": "Dimensions", "value": "630 x 750 x 1,972 mm" },
+        { "label": "Weight", "value": "227.5 kg" }
+      ]
+    },
+    {
+      "id": "duplo-dc-446",
+      "name": "DC 446 ჩამოსასუფთავებელი, ჭრა, პერფორაცია",
+      "nameEn": "DC 446 De-curling, Cutting & Perforation",
+      "cardSpecs": [
+        { "label": "სიჩქარე", "value": "60 კომპლექტი წუთში" },
+        { "label": "ქაღალდის წონა", "value": "110 - 350 გრ" }
+      ],
+      "cardSpecsEn": [
+        { "label": "Speed", "value": "60 sets per minute" },
+        { "label": "Paper weight", "value": "110 - 350 gsm" }
+      ],
+      "parametersTitle": "სპეციფიკაცია",
+      "parametersTitleEn": "Specifications",
+      "parameters": [
+        { "label": "მიწოდების მეთოდი", "value": "ღვედის, შეწოვა" },
+        { "label": "მიმწოდებლის ტევადობა", "value": "100 მმ" },
+        { "label": "გამომსვლელის ტევადობა", "value": "110 მმ" },
+        { "label": "ქაღალდის ზომა", "value": "მინ. 140 x 150 მმ / მაქს. 330.5 x 670 მმ" },
+        { "label": "ქაღალდის წონა", "value": "110 - 350 გრ" },
+        { "label": "პროცესის სიჩქარე", "value": "60 კომპლექტი წუთში" },
+        { "label": "ენერგომოხმარება", "value": "115V 60Hz / 230V 50/60Hz" },
+        { "label": "სიმძლავრე", "value": "115V: 2.1A / 230V: 1.2A" },
+        { "label": "ზომები", "value": "1,265 x 625 x 575 მმ" },
+        { "label": "წონა", "value": "79 კგ" }
+      ],
+      "parametersEn": [
+        { "label": "Feed method", "value": "Belt, suction" },
+        { "label": "Feed capacity", "value": "100 mm" },
+        { "label": "Output capacity", "value": "110 mm" },
+        { "label": "Paper size", "value": "Min. 140 x 150 mm / Max. 330.5 x 670 mm" },
+        { "label": "Paper weight", "value": "110 - 350 gsm" },
+        { "label": "Process speed", "value": "60 sets per minute" },
+        { "label": "Power supply", "value": "115V 60Hz / 230V 50/60Hz" },
+        { "label": "Current", "value": "115V: 2.1A / 230V: 1.2A" },
+        { "label": "Dimensions", "value": "1,265 x 625 x 575 mm" },
+        { "label": "Weight", "value": "79 kg" }
+      ]
+    },
+    {
+      "id": "duplo-dfc-101",
+      "name": "DFC 101 კოლატორი",
+      "nameEn": "DFC 101 Collator",
+      "cardSpecs": [
+        { "label": "ურნების რაოდენობა", "value": "10" },
+        { "label": "სიჩქარე", "value": "120 ფურცელი/წთ" }
+      ],
+      "cardSpecsEn": [
+        { "label": "Number of bins", "value": "10" },
+        { "label": "Speed", "value": "120 sheets/min" }
+      ],
+      "parametersTitle": "სპეციფიკაცია",
+      "parametersTitleEn": "Specifications",
+      "parameters": [
+        { "label": "მოდელის ტიპი", "value": "ვერტიკალური კოლექტორი" },
+        { "label": "ურნების რაოდენობა", "value": "10" },
+        { "label": "ქაღალდის ზომა", "value": "მაქს. A3SR (320 x 450 მმ) / მინ. A5 (140 x 160 მმ) (*100 მმ სიგანე — 100 MM KIT ოფციით)" },
+        { "label": "ქაღალდის ტიპი", "value": "საშუალო ხარისხის, წვრილი ფოროვანი, მაღალი ხარისხის (52.3–128 გრ/მ²)" },
+        { "label": "ქაღალდის სათავსო", "value": "64 გრ, 350 ფურცელი" },
+        { "label": "პროცესის მაქსიმალური სიჩქარე", "value": "120 ფურცელი/წთ / 70 ფურცელი/წთ" },
+        { "label": "ქაღალდის დასტა", "value": "სტანდარტული / ოფსეტის" },
+        { "label": "ქაღალდის დასტის მოცულობა", "value": "მაქს. 80 მმ" },
+        { "label": "LCD", "value": "4-მიშნიანი მთვლელი" },
+        { "label": "ქაღალდის საკვების ყუთის აღმოჩენა", "value": "წინასწარი შეხსენება გამოყენებული ურნების" },
+        { "label": "ქაღალდის საკვების შეცდომის გამოვლენა", "value": "ცარიელი საქაღალდეს აღმოჩენა" },
+        { "label": "სხვა ფუნქციები", "value": "დათვლის ფუნქცია, ქაღალდის მიმღები მაგიდის გავსების აღმოჩენა, შეცდომების აღმოჩენა" },
+        { "label": "ძაბვა", "value": "AC 100–240V, 50/60 Hz" },
+        { "label": "ენერგომოხმარება", "value": "1.2–0.8 A, 120W" },
+        { "label": "ზომები", "value": "820 x 618 x 1000 მმ" },
+        { "label": "წონა", "value": "65 კგ" },
+        { "label": "ოფცია", "value": "DFC უჯრა, 100 MM KIT" }
+      ],
+      "parametersEn": [
+        { "label": "Model type", "value": "Vertical collator" },
+        { "label": "Number of bins", "value": "10" },
+        { "label": "Paper size", "value": "Max. A3SR (320 x 450 mm) / Min. A5 (140 x 160 mm) (*100 mm width with 100 MM KIT option)" },
+        { "label": "Paper type", "value": "Medium quality, fine porous, fine quality (52.3–128 gsm)" },
+        { "label": "Paper tray", "value": "64 gsm, 350 sheets" },
+        { "label": "Maximum process speed", "value": "120 sheets/min / 70 sheets/min" },
+        { "label": "Paper stack", "value": "Standard / Offset" },
+        { "label": "Paper stack capacity", "value": "Max. 80 mm" },
+        { "label": "LCD", "value": "4-digit counter" },
+        { "label": "Paper feed tray detection", "value": "Advance warning for used bins" },
+        { "label": "Paper feed error detection", "value": "Empty tray detection" },
+        { "label": "Other functions", "value": "Count function, receiving table fill detection, error detection" },
+        { "label": "Voltage", "value": "AC 100–240V, 50/60 Hz" },
+        { "label": "Power consumption", "value": "1.2–0.8 A, 120W" },
+        { "label": "Dimensions", "value": "820 x 618 x 1000 mm" },
+        { "label": "Weight", "value": "65 kg" },
+        { "label": "Options", "value": "DFC tray, 100 MM KIT" }
+      ]
+    }
+  ]
+}

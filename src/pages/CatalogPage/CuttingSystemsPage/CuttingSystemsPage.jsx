@@ -33,7 +33,7 @@ const CuttingSystemsPage = () => {
       id: 'duplo',
       name: 'Duplo',
       logo: duplo,
-      link: `/${language}/catalog/cutting/duplo`,
+      link: `/${language}/cutting-systems/duplo`,
       modifier: 'duplo'
     },
     {
@@ -58,18 +58,18 @@ const CuttingSystemsPage = () => {
       modifier: 'cyklos'
     },
     {
-      id: 'boway',
-      name: 'Boway',
-      logo: boway,
-      link: `/${language}/cutting-systems/boway`,
-      modifier: 'boway'
-    },
-    {
       id: 'vivid',
       name: 'Vivid',
       logo: vivid,
       link: `/${language}/cutting-systems/vivid`,
       modifier: 'vivid'
+    },
+    {
+      id: 'boway',
+      name: 'Boway',
+      logo: boway,
+      link: `/${language}/cutting-systems/boway`,
+      modifier: 'boway'
     }
   ];
 
