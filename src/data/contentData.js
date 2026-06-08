@@ -325,7 +325,7 @@ export const gpsContent = {
         name: 'categories.industrial.name',
         description: 'categories.industrial.description',
         icon: 'MdPrecisionManufacturing',
-        link: '/catalog/industrial',
+        link: '/catalog/materials',
         image: {
           src: '/api/placeholder/300/200',
           alt: 'Industrial GPS Solutions'

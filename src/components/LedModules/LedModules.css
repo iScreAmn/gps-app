@@ -43,7 +43,6 @@
 
 body[data-theme="dark"] .led-modules__wrapper {
   background: linear-gradient(135deg, rgba(17, 24, 39, 0.95), rgba(30, 41, 59, 0.85));
-  box-shadow: 0 24px 60px rgba(15, 23, 42, 0.45);
 }
 
 body[data-theme="dark"] .led-modules__wrapper::before {

@@ -18,6 +18,7 @@ import Nocai from './pages/PlotterCatalogPage/Nocai/Nocai';
 import NocaiModelPage from './pages/PlotterCatalogPage/Nocai/NocaiModelPage';
 import InksPage from './pages/InksPage/InksPage';
 import InkModelPage from './pages/InksPage/InkModelPage';
+import TonerPage from './pages/TonerPage/TonerPage';
 import Iecho from './pages/CatalogPage/CuttingSystemsPage/Iecho/Iecho';
 import IechoModelPage from './pages/CatalogPage/CuttingSystemsPage/Iecho/IechoModelPage';
 import Ideal from './pages/CatalogPage/CuttingSystemsPage/Ideal/Ideal';
@@ -101,6 +102,7 @@ function App() {
               <Route path="/ka/plotter-catalog/nocai/:modelId" element={<NocaiModelPage />} />
               <Route path="/ka/catalog/supplies/inks" element={<InksPage />} />
               <Route path="/ka/catalog/supplies/inks/:inkId" element={<InkModelPage />} />
+              <Route path="/ka/toner" element={<TonerPage />} />
               
               {/* English routes */}
               <Route path="/en" element={<HomePage />} />
@@ -146,6 +148,7 @@ function App() {
               <Route path="/en/plotter-catalog/nocai/:modelId" element={<NocaiModelPage />} />
               <Route path="/en/catalog/supplies/inks" element={<InksPage />} />
               <Route path="/en/catalog/supplies/inks/:inkId" element={<InkModelPage />} />
+              <Route path="/en/toner" element={<TonerPage />} />
 
               <Route path="/privacy-policy" element={<PrivacyPolicyPage />} />
               <Route path="/news/:id" element={<NewsDetailPage />} />

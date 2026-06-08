@@ -5,7 +5,7 @@ import { useLanguage } from "../../hooks/useLanguage";
 import ProductCard from '../../components/ProductCard/ProductCard';
 import CategoryCards from '../../components/CategoryCards/CategoryCards';
 import { searchProducts } from '../../utils/productSearch';
-import { developPrinter1, developPrinter3, developPrinter4, developPrinter5, developPrinter6, developPro1, developPro2, developPro3, developPro4, nocai, audley, teneth, PK0604, PK0604plus, PK0705, PK0705plus, PK1209, plotterCutting, inks } from '../../assets/images';
+import { developPrinter1, developPrinter3, developPrinter4, developPrinter5, developPrinter6, developPro1, developPro2, developPro3, developPro4, nocai, audley, teneth, PK0604, PK0604plus, PK0705, PK0705plus, PK1209, plotterCutting, inks, toner } from '../../assets/images';
 import developData from '../../database/brands/develop.json';
 import { professionalData } from '../../data/professionalData';
 import iechoData from '../../database/brands/iecho.json';
@@ -65,6 +65,10 @@ const CatalogPage = () => {
         link: `/${language}/cutting-systems/iecho/${product.id}`
       }))
     : [];
+
+  if (category === 'industrial') {
+    return <Navigate to={`/${language}/catalog/materials`} replace />;
+  }
 
   const brandSearchRoute = getBrandSearchRoute(searchQuery, language);
   if (brandSearchRoute) {
@@ -199,6 +203,27 @@ const CatalogPage = () => {
         </div>
       )}
       
+      {/* Materials Section */}
+      {category === 'materials' && !searchQuery && (
+        <div className="office-equipment supplies-section">
+          <div className="container">
+            <h1 className="office-equipment__title">{t('categories.materials')}</h1>
+            <p className="catalog-subtitle">
+              {t('categories.materials_description')}
+            </p>
+            <div className="supplies__grid">
+              <Link
+                to={`/${language}/plotter-catalog`}
+                className="supplies__card"
+              >
+                <img src={plotterCutting} alt={t('catalog.plotter_cutting_solutions')} className="supplies__card-img" />
+                <h3 className="supplies__card-title">{t('catalog.plotter_cutting_solutions')}</h3>
+              </Link>
+            </div>
+          </div>
+        </div>
+      )}
+
       {/* Supplies Section */}
       {category === 'supplies' && !searchQuery && (
         <div className="office-equipment supplies-section">
@@ -209,11 +234,11 @@ const CatalogPage = () => {
             </p>
             <div className="supplies__grid">
               <Link
-                to={`/${language}/plotter-catalog`}
+                to={`/${language}/toner`}
                 className="supplies__card"
               >
-                <img src={plotterCutting} alt={t('catalog.plotter_cutting_solutions')} className="supplies__card-img" />
-                <h3 className="supplies__card-title">{t('catalog.plotter_cutting_solutions')}</h3>
+                <img src={toner} alt={t('catalog.toner')} className="supplies__card-img" />
+                <h3 className="supplies__card-title">{t('catalog.toner')}</h3>
               </Link>
               <Link
                 to={`/${language}/catalog/supplies/inks`}

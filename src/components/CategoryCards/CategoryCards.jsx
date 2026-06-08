@@ -25,11 +25,11 @@ const CategoryCards = () => {
       wide: false
     },
     {
-      id: 'industrial',
-      title: t('categories.industrial'),
+      id: 'materials',
+      title: t('categories.materials'),
       image: sticker,
-      link: `/${language}/catalog/industrial`,
-      description: t('categories.industrial_description'),
+      link: `/${language}/catalog/materials`,
+      description: t('categories.materials_description'),
       wide: false
     },
     {

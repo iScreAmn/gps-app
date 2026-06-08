@@ -221,4 +221,5 @@ export { default as duplo10 } from './products/duplo/DFC 101.jpg';
 
 // Accessories
 export { default as accessories } from './printers/sections/accessories.webp';
+export { default as toner } from './other/toners.png';
 

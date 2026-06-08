@@ -19,9 +19,9 @@ const SidebarCategory = () => {
       link: `/${language}/catalog/professional`
     },
     {
-      id: 'industrial',
-      title: 'categories.industrial',
-      link: `/${language}/catalog/industrial`
+      id: 'materials',
+      title: 'categories.materials',
+      link: `/${language}/catalog/materials`
     },
     {
       id: 'cutting',

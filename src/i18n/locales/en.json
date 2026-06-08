@@ -52,12 +52,14 @@
     "office": "Office Equipment",
     "professional": "Professional",
     "industrial": "Industrial",
+    "materials": "Materials",
     "cutting": "Cutting Systems",
     "binder": "Binder",
     "supplies": "Supplies",
     "office_description": "Multifunction devices for office use",
     "professional_description": "Professional printing solutions",
     "industrial_description": "Industrial-grade equipment",
+    "materials_description": "Printing and outdoor advertising materials",
     "cutting_description": "Professional cutting systems and equipment",
     "binder_description": "Professional binding systems and equipment",
     "supplies_description": "Consumables and printing materials",
@@ -139,7 +141,8 @@
     "no_products": "No products found",
     "price_on_request": "Price on request",
     "plotter_cutting_solutions": "Plotter Cutting Solutions Unifol",
-    "inks": "Inks"
+    "inks": "Inks",
+    "toner": "Toner"
   },
   "inks": {
     "subtitle": "Professional printing inks for wide-format and industrial applications",

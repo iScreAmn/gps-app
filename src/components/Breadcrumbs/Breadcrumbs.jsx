@@ -44,12 +44,13 @@ const Breadcrumbs = ({ items, separator }) => {
     // Категории
     'office': 'categories.office',
     'professional': 'categories.professional',
-    'industrial': 'categories.industrial',
+    'materials': 'categories.materials',
     'cutting': 'categories.cutting',
     'supplies': 'categories.supplies',
     'plotters': 'categories.plotters',
     'plotter-catalog': 'plotterCatalog.title',
     'inks': 'catalog.inks',
+    'toner': 'catalog.toner',
     'scanner': 'navigation.scanner',
     'recosystems': 'RecoSystems',
     'vivid': 'Vivid',
@@ -131,6 +132,18 @@ const Breadcrumbs = ({ items, separator }) => {
           isActive: true
         });
       }
+      return crumbs;
+    }
+
+    if (segments[0] === 'toner' && segments.length === 1) {
+      const catalogPath = currentLang ? `/${currentLang}/catalog` : '/catalog';
+      const suppliesPath = currentLang ? `/${currentLang}/catalog/supplies` : '/catalog/supplies';
+      const tonerPath = currentLang ? `/${currentLang}/toner` : '/toner';
+      crumbs.push(
+        { label: t('navigation.catalog'), path: catalogPath, isActive: false },
+        { label: t('categories.supplies'), path: suppliesPath, isActive: false },
+        { label: t('catalog.toner'), path: tonerPath, isActive: true }
+      );
       return crumbs;
     }
 
