@@ -1,16 +1,49 @@
 import React, { useEffect, useMemo, useRef } from 'react';
 import { Link, useSearchParams } from 'react-router-dom';
+import { MdKeyboardArrowRight } from 'react-icons/md';
 import { useLanguage } from "../../hooks/useLanguage";
 import { getNewsItemsFromCarousel } from "../../data/contentData";
 import './NewsPage.css';
 
+const PAGE_SIZE = 5;
+
+const buildPageList = (totalPages, currentPage) => {
+  if (totalPages <= 5) {
+    return Array.from({ length: totalPages }, (_, i) => i + 1);
+  }
+
+  const pages = [1];
+  const start = Math.max(2, currentPage - 1);
+  const end = Math.min(totalPages - 1, currentPage + 1);
+
+  if (start > 2) pages.push('gap-start');
+  for (let i = start; i <= end; i += 1) pages.push(i);
+  if (end < totalPages - 1) pages.push('gap-end');
+  pages.push(totalPages);
+
+  return pages;
+};
+
 const NewsPage = () => {
   const { t, language } = useLanguage();
-  const [searchParams] = useSearchParams();
+  const [searchParams, setSearchParams] = useSearchParams();
   const highlightId = searchParams.get('highlight');
   const cardRefs = useRef({});
+  const sectionRef = useRef(null);
 
   const newsItems = useMemo(() => getNewsItemsFromCarousel(), []);
+
+  const totalPages = Math.max(1, Math.ceil(newsItems.length / PAGE_SIZE));
+
+  const requestedPage = parseInt(searchParams.get('page'), 10);
+  const currentPage = Number.isNaN(requestedPage)
+    ? 1
+    : Math.min(Math.max(requestedPage, 1), totalPages);
+
+  const pageItems = useMemo(
+    () => newsItems.slice((currentPage - 1) * PAGE_SIZE, currentPage * PAGE_SIZE),
+    [newsItems, currentPage]
+  );
 
   useEffect(() => {
     const cards = document.querySelectorAll('.news-card');
@@ -22,19 +55,59 @@ const NewsPage = () => {
       });
     }, { threshold: 0.2 });
 
-    cards.forEach(card => observer.observe(card));
+    cards.forEach(card => {
+      // Cards of a freshly switched page are usually already on screen —
+      // reveal those right away instead of waiting for the observer.
+      const rect = card.getBoundingClientRect();
+      if (rect.top < window.innerHeight && rect.bottom > 0) {
+        card.classList.add('is-visible');
+      }
+      observer.observe(card);
+    });
+
     return () => observer.disconnect();
-  }, [newsItems]);
+  }, [pageItems]);
 
   useEffect(() => {
-    if (highlightId && cardRefs.current[highlightId]) {
-      const el = cardRefs.current[highlightId];
-      el.classList.add('is-highlighted');
-      el.scrollIntoView({ behavior: 'smooth', block: 'center' });
-      const timeout = setTimeout(() => el.classList.remove('is-highlighted'), 2000);
-      return () => clearTimeout(timeout);
+    if (!highlightId) return;
+
+    const index = newsItems.findIndex(item => item.id === highlightId);
+    if (index === -1) return;
+
+    const targetPage = Math.floor(index / PAGE_SIZE) + 1;
+    if (targetPage !== currentPage) {
+      const next = new URLSearchParams(searchParams);
+      next.set('page', String(targetPage));
+      setSearchParams(next, { replace: true });
+      return;
     }
-  }, [highlightId, newsItems]);
+
+    const el = cardRefs.current[highlightId];
+    if (!el) return;
+
+    el.classList.add('is-highlighted');
+    el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    const timeout = setTimeout(() => el.classList.remove('is-highlighted'), 2000);
+    return () => clearTimeout(timeout);
+  }, [highlightId, newsItems, currentPage, searchParams, setSearchParams]);
+
+  const goToPage = (page) => {
+    if (page < 1 || page > totalPages || page === currentPage) return;
+
+    const next = new URLSearchParams(searchParams);
+    next.delete('highlight');
+    if (page === 1) {
+      next.delete('page');
+    } else {
+      next.set('page', String(page));
+    }
+    setSearchParams(next);
+
+    if (sectionRef.current) {
+      const top = sectionRef.current.getBoundingClientRect().top + window.scrollY - 120;
+      window.scrollTo({ top: Math.max(top, 0), behavior: 'smooth' });
+    }
+  };
 
   const formatDate = (dateString) => {
     const date = new Date(dateString);
@@ -52,7 +125,7 @@ const NewsPage = () => {
     );
   }
 
-  const [mainNews, ...smallNews] = newsItems;
+  const [mainNews, ...smallNews] = pageItems;
 
   const renderCard = (item, variant = 'small') => (
     <article
@@ -81,23 +154,28 @@ const NewsPage = () => {
             {t(item.excerptKey)}
           </p>
         )}
-        <Link 
-          className="news-card__link" 
+        <Link
+          className="news-card__link"
           to={`/${language}${item.newsLink}`}
         >
-          {`${t('hero.support.cta') || 'Read more'} ->`}
+          {t('news.readMore')}
+          <MdKeyboardArrowRight aria-hidden />
         </Link>
       </div>
     </article>
   );
 
+  const pageList = buildPageList(totalPages, currentPage);
+  const prevLabel = t('news.pagination.prev');
+  const nextLabel = t('news.pagination.next');
+
   return (
     <div className="news-page">
       <div className="container">
-        <section className="news-hero">
+        <section className="news-hero" ref={sectionRef}>
           <div className="news-hero__container">
             <div className="news-hero__main-card">
-              {renderCard(mainNews, 'main')}
+              {mainNews && renderCard(mainNews, 'main')}
             </div>
             <div className="news-hero__small-cards">
               {smallNews.map(item => (
@@ -107,6 +185,58 @@ const NewsPage = () => {
               ))}
             </div>
           </div>
+
+          {totalPages > 1 && (
+            <nav className="news-pagination" aria-label={t('news.pagination.label')}>
+              <button
+                type="button"
+                className="news-pagination__arrow"
+                onClick={() => goToPage(currentPage - 1)}
+                disabled={currentPage === 1}
+                aria-label={prevLabel}
+              >
+                <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                  <path d="M15 5l-7 7 7 7" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                </svg>
+                <span className="news-pagination__arrow-text">{prevLabel}</span>
+              </button>
+
+              <ul className="news-pagination__list">
+                {pageList.map((page) => (
+                  typeof page === 'number' ? (
+                    <li key={page}>
+                      <button
+                        type="button"
+                        className={`news-pagination__page ${page === currentPage ? 'is-active' : ''}`}
+                        onClick={() => goToPage(page)}
+                        aria-current={page === currentPage ? 'page' : undefined}
+                        aria-label={`${t('news.pagination.page')} ${page}`}
+                      >
+                        <span>{page}</span>
+                      </button>
+                    </li>
+                  ) : (
+                    <li key={page} className="news-pagination__ellipsis" aria-hidden="true">
+                      &#8230;
+                    </li>
+                  )
+                ))}
+              </ul>
+
+              <button
+                type="button"
+                className="news-pagination__arrow"
+                onClick={() => goToPage(currentPage + 1)}
+                disabled={currentPage === totalPages}
+                aria-label={nextLabel}
+              >
+                <span className="news-pagination__arrow-text">{nextLabel}</span>
+                <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                  <path d="M9 5l7 7-7 7" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                </svg>
+              </button>
+            </nav>
+          )}
         </section>
       </div>
     </div>

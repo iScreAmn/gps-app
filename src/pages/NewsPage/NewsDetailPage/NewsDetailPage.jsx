@@ -40,6 +40,18 @@ const NewsDetailPage = () => {
     return null;
   };
 
+  const renderSpecLine = (text) => {
+    const colonIndex = text.indexOf(':');
+    if (colonIndex === -1) return text;
+
+    return (
+      <>
+        <strong>{text.slice(0, colonIndex + 1)}</strong>
+        {text.slice(colonIndex + 1)}
+      </>
+    );
+  };
+
   if (!newsItem) {
     return (
       <div className="news-detail news-detail--empty">
@@ -93,15 +105,56 @@ const NewsDetailPage = () => {
               <p className="news-detail__lead">{t(newsItem.subtitleKey)}</p>
             )}
 
-            {newsItem.gallery && newsItem.gallery.length > 0 && (
-              <div className="news-detail__gallery">
-                {newsItem.gallery.map((img, idx) => (
-                  <div className="news-detail__gallery-item" key={idx}>
-                    <img src={img.src} alt={img.alt || `Gallery ${idx + 1}`} loading="lazy" />
+            {newsItem.id === 'support-services' && (
+              <>
+                <h3 className="news-detail__steps-intro">
+                  {t('news.supportServices.body3')}
+                </h3>
+                <div className="news-detail__steps">
+                  <div className="news-detail__step">
+                    <span className="news-detail__step-num">01</span>
+                    <div className="news-detail__step-body">
+                      <h4 className="news-detail__step-title">{t('news.supportServices.step1Title')}</h4>
+                      <p className="news-detail__step-text">{t('news.supportServices.step1Text')}</p>
+                    </div>
                   </div>
-                ))}
+                  <div className="news-detail__step">
+                    <span className="news-detail__step-num">02</span>
+                    <div className="news-detail__step-body">
+                      <h4 className="news-detail__step-title">{t('news.supportServices.step2Title')}</h4>
+                      <p className="news-detail__step-text">{t('news.supportServices.step2Text')}</p>
+                    </div>
+                  </div>
+                  <div className="news-detail__step">
+                    <span className="news-detail__step-num">03</span>
+                    <div className="news-detail__step-body">
+                      <h4 className="news-detail__step-title">{t('news.supportServices.step3Title')}</h4>
+                      <p className="news-detail__step-text">{t('news.supportServices.step3Text')}</p>
+                    </div>
+                  </div>
+                </div>
+              </>
+            )}
+
+            {newsItem.specs?.items?.length > 0 && (
+              <div className="news-detail__specs">
+                {newsItem.specs.title && (
+                  <h2 className="news-detail__specs-title">{t(newsItem.specs.title)}</h2>
+                )}
+                <ul className="news-detail__specs-list">
+                  {newsItem.specs.items.map((itemKey, idx) => (
+                    <li key={idx} className="news-detail__specs-item">
+                      {renderSpecLine(t(itemKey))}
+                    </li>
+                  ))}
+                </ul>
               </div>
             )}
+
+            {newsItem.closing && (
+              <p className="news-detail__paragraph">{t(newsItem.closing)}</p>
+            )}
+
 
             {newsItem.videoUrl && (() => {
               const embedUrl = getYouTubeEmbedUrl(newsItem.videoUrl);
@@ -127,4 +180,3 @@ const NewsDetailPage = () => {
 };
 
 export default NewsDetailPage;
-
