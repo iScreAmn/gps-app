@@ -3,10 +3,13 @@ import {
   productTrimble, 
   productLeica,
   iechoPrinter,
-  toners,
-  printer1,
-  printer4,
-  printer3,
+  supplies,
+  news1,
+  news2,
+  news3,
+  news4,
+  news5,
+  news6,
   nocai1,
   nocai2,
   nocai3,
@@ -53,6 +56,94 @@ export const gpsContent = {
   // Карусель на главной странице
   carousel: {
     slides: [
+      createContentSlide('accurio-print-c5065', {
+        title: 'hero.accurio.title',
+        subtitle: 'hero.accurio.subtitle',
+        cta: 'hero.accurio.cta',
+        ctaLink: '/news/accurio-print-c5065',
+        details: {
+          body: [
+            'hero.accurio.subtitle',
+            'hero.accurio.description1',
+            'hero.accurio.description2',
+          ],
+          specs: {
+            title: 'hero.accurio.specsTitle',
+            items: [
+              'hero.accurio.specs.year',
+              'hero.accurio.specs.standard',
+              'hero.accurio.specs.optional',
+              'hero.accurio.specs.format',
+              'hero.accurio.specs.speed',
+              'hero.accurio.specs.capacity',
+              'hero.accurio.specs.density',
+              'hero.accurio.specs.dimensions',
+            ],
+          },
+          gallery: [],
+          videoUrl: 'https://www.youtube.com/watch?v=mlk_MbrR9LI'
+        }
+      }, {
+        src: news2,
+        alt: 'Konica Minolta Accurio Print C5065'
+      }),
+
+      createContentSlide('ineo-plus-7090', {
+        title: 'hero.ineo7090.title',
+        subtitle: 'hero.ineo7090.subtitle',
+        cta: 'hero.ineo7090.cta',
+        ctaLink: '/news/ineo-plus-7090',
+        details: {
+          body: [
+            'hero.ineo7090.subtitle',
+            'hero.ineo7090.description',
+          ],
+          gallery: [],
+          videoUrl: 'https://www.youtube.com/watch?v=U-E8VGfPXCY'
+        }
+      }, {
+        src: news1,
+        alt: 'Develop Ineo+ 7090 Enhanced'
+      }),
+
+      createContentSlide('support-services', {
+        title: 'hero.support.title',
+        subtitle: 'hero.support.subtitle',
+        cta: 'hero.support.cta',
+        ctaLink: '/news/support-services',
+        details: {
+          body: [
+            'news.supportServices.body1',
+            'news.supportServices.body2'
+          ],
+          gallery: [
+            { src: news4, alt: 'Support services' }
+          ],
+          videoUrl: ''
+        }
+      }, {
+        src: news4,
+        alt: 'GPS Support Services Background'
+      }),
+
+      createContentSlide('unifol-cast-films', {
+        title: 'hero.unifol.title',
+        subtitle: 'hero.unifol.subtitle',
+        cta: 'hero.unifol.cta',
+        ctaLink: '/news/unifol-cast-films',
+        details: {
+          body: [
+            'hero.unifol.subtitle',
+            'hero.unifol.description',
+          ],
+          gallery: [],
+          videoUrl: 'https://www.youtube.com/watch?v=YDg4hNDxLpQ'
+        }
+      }, {
+        src: news3,
+        alt: 'Unifol cast films'
+      }),
+
       createContentSlide('office-hero-primary', {
         title: 'hero.iecho.title',
         subtitle: 'hero.iecho.subtitle',
@@ -80,23 +171,35 @@ export const gpsContent = {
         ctaLink: '/news/office-hero-secondary',
         details: {
           body: [
-            'news.officeHeroSecondary.body1',
-            'news.officeHeroSecondary.body2'
+            'hero.office.lead',
+            'hero.office.description',
           ],
+          specs: {
+            title: 'hero.office.specsTitle',
+            items: [
+              'hero.office.specs.screen',
+              'hero.office.specs.correction',
+              'hero.office.specs.energy',
+              'hero.office.specs.standalone',
+              'hero.office.specs.repeat',
+              'hero.office.specs.noise',
+            ],
+          },
+          closing: 'hero.office.contact',
           gallery: [
-            { src: printer3, alt: 'Office equipment showcase' }
+            { src: news5, alt: 'Teneth TN24 CCD cutting plotter' }
           ],
           videoUrl: ''
         }
       }, {
-        src: printer3,
-        alt: 'Office GPS Equipment Background'
+        src: news5,
+        alt: 'Teneth TN24 CCD cutting plotter'
       }),
       
       createImageSlide('professional-equipment', 
         {
-          src: printer1,
-          alt: 'Professional GPS Equipment'
+          src: news6,
+          alt: 'Electric Stapler Rapid 106e'
         },
         {
           title: 'hero.professional.title',
@@ -105,12 +208,23 @@ export const gpsContent = {
           ctaLink: '/news/professional-equipment',
           details: {
             body: [
-              'news.professionalEquipment.body1',
-              'news.professionalEquipment.body2',
-              'news.professionalEquipment.body3'
+              'hero.professional.lead',
+              'hero.professional.description',
             ],
+            specs: {
+              title: 'hero.professional.specsTitle',
+              items: [
+                'hero.professional.specs.material',
+                'hero.professional.specs.size',
+                'hero.professional.specs.holder',
+                'hero.professional.specs.stapleSize',
+                'hero.professional.specs.loading',
+                'hero.professional.specs.depth',
+                'hero.professional.specs.weight',
+              ],
+            },
             gallery: [
-              { src: printer1, alt: 'Professional equipment hero' }
+              { src: news6, alt: 'Electric Stapler Rapid 106e' }
             ],
             videoUrl: ''
           }
@@ -119,47 +233,16 @@ export const gpsContent = {
       
       createImageSlide('industrial-solutions',
         {
-          src: toners,
-          alt: 'Industrial GPS Solutions'
+          src: supplies,
+          alt: 'Supplies'
         },
         {
           title: 'hero.industrial.title',
           subtitle: 'hero.industrial.subtitle',
           cta: 'hero.industrial.cta',
-          ctaLink: '/news/industrial-solutions',
-          details: {
-            body: [
-              'news.industrialSolutions.body1',
-              'news.industrialSolutions.body2'
-            ],
-            gallery: [
-              { src: toners, alt: 'Industrial solutions materials' }
-            ],
-            videoUrl: ''
-          }
+          ctaLink: '/catalog/supplies',
         }
-      ),
-      
-      createContentSlide('support-services', {
-        title: 'hero.support.title',
-        subtitle: 'hero.support.subtitle',
-        cta: 'hero.support.cta',
-        ctaLink: '/news/support-services',
-        details: {
-          body: [
-            'news.supportServices.body1',
-            'news.supportServices.body2',
-            'news.supportServices.body3'
-          ],
-          gallery: [
-            { src: printer4, alt: 'Support services' }
-          ],
-          videoUrl: ''
-        }
-      }, {
-        src: printer4,
-        alt: 'GPS Support Services Background'
-      })
+      )
     ],
     autoPlay: true,
     autoPlayInterval: 5000,
@@ -790,13 +873,18 @@ export const getCarouselSlides = () => {
 };
 
 export const getNewsItemsFromCarousel = () => {
-  const slides = gpsContent.carousel.slides.slice(0, 5);
+  const slides = gpsContent.carousel.slides
+    .filter((slide) => slide.id !== 'industrial-solutions')
+    .slice(0, 8);
   const baseDates = [
+    '2026-07-31',
+    '2026-07-15',
+    '2026-06-03',
+    '2026-05-28',
     '2025-01-05',
-    '2025-01-12',
+    '2025-01-04',
     '2025-01-19',
-    '2025-01-26',
-    '2025-02-02'
+    '2025-01-26'
   ];
 
   return slides.map((slide, index) => {
@@ -839,7 +927,9 @@ export const getNewsItemsFromCarousel = () => {
       newsLink: `/news/${id}`,
       body: details.body || [],
       gallery: details.gallery || [],
-      videoUrl: details.videoUrl || ''
+      videoUrl: details.videoUrl || '',
+      specs: details.specs || null,
+      closing: details.closing || null,
     };
   });
 };

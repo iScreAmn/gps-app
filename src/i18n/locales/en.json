@@ -21,20 +21,75 @@
     "email": "info@geopolser.ge"
   },
   "hero": {
+    "unifol": {
+      "title": "Unifol",
+      "subtitle": "Plotter advertising cast films",
+      "description": "Unifol brand plotter advertising cast films are used both for decorating advertising surfaces and for interior design. European-quality films are easy to use, and the price will allow you to reduce costs incurred during advertising production",
+      "cta": "Learn More"
+    },
+    "ineo7090": {
+      "title": "Ineo+ 7090 Enhanced",
+      "subtitle": "Develop's professional printer",
+      "description": "At the Ministry of Education, Science and Youth of Georgia, we installed Develop's professional printer Ineo+ 7090 Enhanced",
+      "cta": "Learn More"
+    },
+    "accurio": {
+      "title": "Accurio Print C5065",
+      "subtitle": "Konica Minolta's latest professional printer",
+      "description1": "For the first time in Georgia, we installed Konica Minolta's latest professional printer Accurio Print C5065 at the \"Light Print\" advertising company.",
+      "description2": "Innovative technologies, maximum productivity and the highest print quality. Everything that a modern print shop and advertising production needs",
+      "specsTitle": "Specifications",
+      "specs": {
+        "year": "Release year: 2026",
+        "standard": "Standard functions: Print / Copy / Scan",
+        "optional": "Optional additional functions: Sorting, stapling, folding, perforation, booklet making",
+        "format": "Print format and type: A4 / A3 / SRA3 (330 × 487 mm), color, laser",
+        "speed": "Print speed: 66 / 81 ppm (color / B&W)",
+        "capacity": "Paper tray capacity: 1000 + 500 sheets (max. 4250 sheets)",
+        "density": "Paper density: 62–360 g/m²",
+        "dimensions": "Dimensions and weight: 800 × 903 × 1076 mm, approx. 312 kg"
+      },
+      "cta": "Learn More"
+    },
     "iecho": {
       "title": "IECHO Systems",
       "subtitle": "Unique cutting machine",
+      "description": "For the first time in Georgia, our technical team completed the installation of the large-format smart universal cutting system IECHO TK4S. Its working table size is 3.5 / 2.1 meters. It can process various materials — both rigid and soft. The machine was installed at AllPrint company",
       "cta": "Learn More"
     },
     "office": {
-      "title": "The Perfect Office Partner",
-      "subtitle": "Every great workday begins with technology you can trust",
+      "title": "Teneth TN24 CCD Series Cutting Plotter",
+      "subtitle": "The ideal choice for advertising companies",
+      "lead": "The ideal choice for advertising companies",
+      "description": "Work faster, more accurately, and more comfortably. Teneth TN24 CCD helps you increase production efficiency and get consistently high-quality results in your daily workflow",
+      "specsTitle": "Features",
+      "specs": {
+        "screen": "4.3-inch touchscreen",
+        "correction": "Automatic correction system",
+        "energy": "Energy-efficient model",
+        "standalone": "Operation without a computer",
+        "repeat": "Repeat function (1–500 times)",
+        "noise": "Low noise level, under 60 dB"
+      },
+      "contact": "For more information contact us at (322) 30 81 77",
       "cta": "Learn More"
     },
     "professional": {
-      "title": "Click service perfect delivery",
-      "subtitle": "High-precision tools for professional surveying",
-      "cta": "View Professional Tools"
+      "title": "Electric Stapler Rapid 106e",
+      "subtitle": "Simplify high-volume document processing",
+      "lead": "Simplify high-volume document processing",
+      "description": "The 2-in-1 electric stapler Rapid 106e can staple up to 50 sheets at once. It features a wide table and pedal, plus interchangeable staple cassettes. For higher productivity, it can be linked via optical cables.",
+      "specsTitle": "Features",
+      "specs": {
+        "material": "Material: Plastic / Metal",
+        "size": "Size: 300 x 130 x 490",
+        "holder": "Clamp: Wide work table",
+        "stapleSize": "Staple size: 66/6-8+",
+        "loading": "Loading: Front",
+        "depth": "Depth: 4\" (102 mm)",
+        "weight": "Weight: 5.8 kg"
+      },
+      "cta": "Learn More"
     },
     "industrial": {
       "title": "Best Deals on Supplies",
@@ -42,9 +97,9 @@
       "cta": "Discover Industrial Solutions"
     },
     "support": {
-      "title": "Expert Support",
-      "subtitle": "Professional maintenance and technical assistance",
-      "cta": "Get Support"
+      "title": "Pay Per Print",
+      "subtitle": "A unique offer for your business!",
+      "cta": "Learn More"
     }
   },
   "categories": {
@@ -181,8 +236,26 @@
     "consumables_desc": "Original toners and parts"
   },
   "news": {
+    "pagination": {
+      "label": "News pagination",
+      "prev": "Back",
+      "next": "Next",
+      "page": "Page"
+    },
     "title": "News",
-    "coming_soon": "News coming soon"
+    "coming_soon": "News coming soon",
+    "readMore": "Read More",
+    "supportServices": {
+      "body1": "Choose CLICK service and pay only for the pages you print",
+      "body2": "Forget extra costs for equipment, maintenance, and service. Our professional team fully covers every process related to your printers.",
+      "body3": "CLICK service works on a simple principle:",
+      "step1Title": "You no longer need to buy a printer",
+      "step1Text": "Get a modern printer on flexible terms",
+      "step2Title": "We handle technical maintenance",
+      "step2Text": "Our team provides full service and continuous support",
+      "step3Title": "Pay per print",
+      "step3Text": "Pay only for the pages actually printed and avoid unnecessary costs."
+    }
   },
   "contacts": {
     "title": "Contacts",

@@ -5,6 +5,15 @@ export { default as printer4 } from './printers/pr_04.jpg';
 export { default as iechoPrinter } from './printers/iecho.webp';
 export { default as toners } from './printers/toners.jpg';
 
+//News
+export { default as news1 } from './news/develop7090.webp';
+export { default as news2 } from './news/km5065.webp';
+export { default as news3 } from './news/unifol.webp';
+export { default as news4 } from './news/click.webp';
+export { default as news5 } from './news/teneth.webp';
+export { default as news6 } from './news/rapid.webp';
+
+
 //Sections
 export { default as laminator } from './printers/sections/laminator.webp';
 export { default as plotter } from './printers/sections/plotter.webp';
