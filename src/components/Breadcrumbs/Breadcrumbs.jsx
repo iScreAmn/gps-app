@@ -228,6 +228,12 @@ const Breadcrumbs = ({ items, separator }) => {
           return;
         }
       }
+
+      // id новости уже добавлен в блоке выше — не обрабатываем как catalog route
+      // (иначе /news/professional-equipment матчится на professional-equipment)
+      if (segments[index - 1] === 'news') {
+        return;
+      }
       
       // Специальная обработка для страницы продукта
       if (segment === 'product' && params.id) {
@@ -574,11 +580,6 @@ const Breadcrumbs = ({ items, separator }) => {
       // Пропускаем modelId для duplo — он уже добавлен в специальной обработке выше
       if (segments[index - 1] === 'duplo') {
         return;
-      }
-      
-      // Пропускаем id новости после "news" (он уже обработан выше)
-      if (segments[index - 1] === 'news') {
-        return; // Пропускаем стандартную обработку
       }
       
       // Проверяем, является ли сегмент значением параметра из URL
