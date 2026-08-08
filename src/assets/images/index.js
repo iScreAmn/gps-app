@@ -96,8 +96,6 @@ export { default as aboutOrder } from './about/ineo4065.png';
 // Art Printers
 export { default as artPrinter1 } from './printers/art/art_1.png';
 export { default as artPrinter2 } from './printers/art/thanku_art.webp';
-export { default as underConstruction } from './web-art/construction.webp';
-export { default as ConstructionModal } from './web-art/constructionModal.webp';
 export { default as proModel } from './web-art/flat-design.webp';
 export { default as nocaiArt } from './products/nocai-NC-UV9060MAX/nocai-plotter.png';
 export { default as whatsApp } from './web-art/printing-contact.png';
@@ -225,6 +223,13 @@ export { default as duplo7 } from './products/duplo/DSC 10-60iL.jpg';
 export { default as duplo8 } from './products/duplo/DSC 10-20.jpg';
 export { default as duplo9 } from './products/duplo/DC 446.jpg';
 export { default as duplo10 } from './products/duplo/DFC 101.jpg';
+
+// Led Modules
+export { default as leds1 } from './led-modules/products/mini2-game-changer.webp';
+export { default as leds2 } from './led-modules/products/midi-4-game changer.webp';
+export { default as leds3 } from './led-modules/products/midi-edge-lid.webp';
+export { default as leds4 } from './led-modules/products/slim-led-module.webp';
+export { default as leds5 } from './led-modules/products/tiny-led-module.webp';
 
 
 

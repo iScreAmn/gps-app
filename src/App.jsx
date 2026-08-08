@@ -19,6 +19,7 @@ import NocaiModelPage from './pages/PlotterCatalogPage/Nocai/NocaiModelPage';
 import InksPage from './pages/InksPage/InksPage';
 import InkModelPage from './pages/InksPage/InkModelPage';
 import TonerPage from './pages/TonerPage/TonerPage';
+import LedsPage from './pages/LedsPage/LedsPage';
 import Iecho from './pages/CatalogPage/CuttingSystemsPage/Iecho/Iecho';
 import IechoModelPage from './pages/CatalogPage/CuttingSystemsPage/Iecho/IechoModelPage';
 import Ideal from './pages/CatalogPage/CuttingSystemsPage/Ideal/Ideal';
@@ -103,7 +104,8 @@ function App() {
               <Route path="/ka/catalog/supplies/inks" element={<InksPage />} />
               <Route path="/ka/catalog/supplies/inks/:inkId" element={<InkModelPage />} />
               <Route path="/ka/toner" element={<TonerPage />} />
-              
+              <Route path="/ka/leds" element={<LedsPage />} />
+
               {/* English routes */}
               <Route path="/en" element={<HomePage />} />
               <Route path="/en/catalog" element={<CatalogPage />} />
@@ -149,6 +151,7 @@ function App() {
               <Route path="/en/catalog/supplies/inks" element={<InksPage />} />
               <Route path="/en/catalog/supplies/inks/:inkId" element={<InkModelPage />} />
               <Route path="/en/toner" element={<TonerPage />} />
+              <Route path="/en/leds" element={<LedsPage />} />
 
               <Route path="/privacy-policy" element={<PrivacyPolicyPage />} />
               <Route path="/news/:id" element={<NewsDetailPage />} />
@@ -180,6 +183,7 @@ function App() {
               <Route path="/recosystems/:modelId" element={<LegacyLaminatorRedirect brand="recosystems" />} />
               <Route path="/vivid" element={<LegacyLaminatorRedirect brand="vivid" />} />
               <Route path="/vivid/:modelId" element={<LegacyLaminatorRedirect brand="vivid" />} />
+              <Route path="/leds" element={<LedsPage />} />
               <Route path="/scanner" element={<ScannerPage />} />
               <Route path="/scaner" element={<Navigate to="/scanner" replace />} />
               <Route path="/info" element={<InfoPage />} />
