@@ -52,6 +52,7 @@ const Breadcrumbs = ({ items, separator }) => {
     'inks': 'catalog.inks',
     'toner': 'catalog.toner',
     'scanner': 'navigation.scanner',
+    'leds': 'navigation.leds',
     'recosystems': 'RecoSystems',
     'vivid': 'Vivid',
     'cyklos': 'Cyklos',
