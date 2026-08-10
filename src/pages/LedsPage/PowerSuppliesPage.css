@@ -108,7 +108,7 @@
   min-height: clamp(200px, 24vw, 300px);
   padding: clamp(1.25rem, 3vw, 2rem);
   border-radius: var(--leds-radius);
-  background: var(--leds-stage-bg);
+  background: var(--leds-category-bg);
   box-shadow: var(--leds-shadow);
   overflow: hidden;
 }

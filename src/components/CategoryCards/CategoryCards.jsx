@@ -52,7 +52,7 @@ const CategoryCards = () => {
       id: 'laminators',
       title: t('categories.laminators'),
       image: tmtLed,
-      link: `/${language}/catalog/laminators`,
+      link: `/${language}/leds`,
       description: t('categories.laminators_description'),
       wide: false
     },

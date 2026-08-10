@@ -54,7 +54,7 @@
   overflow: hidden;
   isolation: isolate;
   text-decoration: none;
-  background: var(--leds-stage-bg);
+  background: var(--leds-category-bg);
   border: 1px solid var(--leds-border);
   box-shadow: var(--leds-shadow);
   transition: transform var(--transition-normal), box-shadow var(--transition-normal),
