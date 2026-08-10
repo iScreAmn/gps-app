@@ -1009,10 +1009,38 @@
       "goTo": "Show {{name}}",
       "region": "LED modules slider"
     },
-    "range": {
+    "breadcrumb": "TMT LEDs",
+    "categories": {
       "eyebrow": "Product range",
-      "title": "LED modules for every sign",
+      "title": "Choose a category",
+      "subtitle": "TMT LED modules and the power supplies that drive them — one lighting system for the whole project.",
+      "cta": "View",
+      "modules": {
+        "title": "LED Modules",
+        "description": "High-efficiency modules for channel letters, light boxes and shop windows."
+      },
+      "power": {
+        "title": "Power Supplies",
+        "description": "Reliable, stable power supplies for TMT LED systems."
+      }
+    },
+    "modulesPage": {
+      "eyebrow": "TMT LEDs · Products",
+      "title": "LED Modules",
       "subtitle": "From ultra-compact modules for narrow channel letters to high-output modules for large sign cabinets — one lighting system for the whole project."
+    },
+    "powerPage": {
+      "eyebrow": "TMT LEDs · Products",
+      "title": "Power Supplies",
+      "subtitle": "Reliable, stable power supplies for TMT LED systems — from 100W to 400W."
+    },
+    "power": {
+      "specs": {
+        "current": "Nominal current",
+        "inputPower": "Input power",
+        "acCurrent": "AC current",
+        "dimensions": "Dimensions / Weight"
+      }
     },
     "stats": {
       "lumensPerModule": "lumens / module",

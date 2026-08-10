@@ -20,6 +20,8 @@ import InksPage from './pages/InksPage/InksPage';
 import InkModelPage from './pages/InksPage/InkModelPage';
 import TonerPage from './pages/TonerPage/TonerPage';
 import LedsPage from './pages/LedsPage/LedsPage';
+import LedModulesPage from './pages/LedsPage/LedModulesPage';
+import PowerSuppliesPage from './pages/LedsPage/PowerSuppliesPage';
 import Iecho from './pages/CatalogPage/CuttingSystemsPage/Iecho/Iecho';
 import IechoModelPage from './pages/CatalogPage/CuttingSystemsPage/Iecho/IechoModelPage';
 import Ideal from './pages/CatalogPage/CuttingSystemsPage/Ideal/Ideal';
@@ -105,6 +107,8 @@ function App() {
               <Route path="/ka/catalog/supplies/inks/:inkId" element={<InkModelPage />} />
               <Route path="/ka/toner" element={<TonerPage />} />
               <Route path="/ka/leds" element={<LedsPage />} />
+              <Route path="/ka/leds/modules" element={<LedModulesPage />} />
+              <Route path="/ka/leds/power" element={<PowerSuppliesPage />} />
 
               {/* English routes */}
               <Route path="/en" element={<HomePage />} />
@@ -152,6 +156,8 @@ function App() {
               <Route path="/en/catalog/supplies/inks/:inkId" element={<InkModelPage />} />
               <Route path="/en/toner" element={<TonerPage />} />
               <Route path="/en/leds" element={<LedsPage />} />
+              <Route path="/en/leds/modules" element={<LedModulesPage />} />
+              <Route path="/en/leds/power" element={<PowerSuppliesPage />} />
 
               <Route path="/privacy-policy" element={<PrivacyPolicyPage />} />
               <Route path="/news/:id" element={<NewsDetailPage />} />
@@ -184,6 +190,8 @@ function App() {
               <Route path="/vivid" element={<LegacyLaminatorRedirect brand="vivid" />} />
               <Route path="/vivid/:modelId" element={<LegacyLaminatorRedirect brand="vivid" />} />
               <Route path="/leds" element={<LedsPage />} />
+              <Route path="/leds/modules" element={<LedModulesPage />} />
+              <Route path="/leds/power" element={<PowerSuppliesPage />} />
               <Route path="/scanner" element={<ScannerPage />} />
               <Route path="/scaner" element={<Navigate to="/scanner" replace />} />
               <Route path="/info" element={<InfoPage />} />
