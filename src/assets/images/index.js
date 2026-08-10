@@ -230,8 +230,15 @@ export { default as leds2 } from './led-modules/products/midi-4-game changer.web
 export { default as leds3 } from './led-modules/products/midi-edge-lid.webp';
 export { default as leds4 } from './led-modules/products/slim-led-module.webp';
 export { default as leds5 } from './led-modules/products/tiny-led-module.webp';
+export { default as leds6 } from './led-modules/products/tmt4milky.webp';
+export { default as leds7 } from './led-modules/products/rigidbar-480.webp';
 
-
+// Power-Supplies
+export { default as power1 } from './led-modules/power-supplies/power.webp';
+export { default as power2 } from './led-modules/power-supplies/ps-100.webp';
+export { default as power3 } from './led-modules/power-supplies/ps-200.webp';
+export { default as power4 } from './led-modules/power-supplies/ps-300.webp';
+export { default as power5 } from './led-modules/power-supplies/ps-400.webp';
 
 // Accessories
 export { default as accessories } from './printers/sections/accessories.webp';

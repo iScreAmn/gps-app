@@ -1,5 +1,4 @@
 import React, { useCallback, useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
 import { FaChevronLeft, FaChevronRight } from 'react-icons/fa';
 import { MdOutlineDone } from 'react-icons/md';
 import { useReducedMotion } from 'motion/react';
@@ -7,18 +6,17 @@ import { useLanguage } from '../../hooks/useLanguage';
 import { ledProducts } from '../../data/ledsData';
 import './LedsHero.css';
 
-/** Slides advance on their own every 10s (paused on hover/focus). */
-const AUTO_SCROLL_INTERVAL = 10000;
+/** Slides advance on their own every 10s — hover and focus never interrupt it. */
+const AUTO_SCROLL_INTERVAL = 90000;
 const HERO_FEATURES_LIMIT = 5;
 
 const LedsHero = ({ onViewDetails }) => {
-  const { t, language } = useLanguage();
+  const { t } = useLanguage();
   const prefersReducedMotion = useReducedMotion();
   const [activeIndex, setActiveIndex] = useState(0);
-  const [isPaused, setIsPaused] = useState(false);
 
   const total = ledProducts.length;
-  const autoScroll = !isPaused && !prefersReducedMotion && total > 1;
+  const autoScroll = !prefersReducedMotion && total > 1;
 
   const goTo = useCallback(
     (index) => setActiveIndex(((index % total) + total) % total),
@@ -42,10 +40,6 @@ const LedsHero = ({ onViewDetails }) => {
       className="leds-hero"
       aria-roledescription="carousel"
       aria-label={t('leds.hero.region')}
-      onMouseEnter={() => setIsPaused(true)}
-      onMouseLeave={() => setIsPaused(false)}
-      onFocusCapture={() => setIsPaused(true)}
-      onBlurCapture={() => setIsPaused(false)}
     >
       <div className="container">
         <div className="leds-hero__layout">
@@ -72,12 +66,6 @@ const LedsHero = ({ onViewDetails }) => {
               >
                 {t('leds.hero.ctaDetails')}
               </button>
-              <Link
-                to={`/${language}/contacts`}
-                className="btn-secondary leds-hero__btn"
-              >
-                {t('leds.hero.ctaQuote')}
-              </Link>
             </div>
           </div>
 
@@ -148,7 +136,6 @@ const LedsHero = ({ onViewDetails }) => {
             <span
               key={activeIndex}
               className="leds-hero__progress-bar"
-              data-paused={isPaused ? '' : null}
               style={{ animationDuration: `${AUTO_SCROLL_INTERVAL}ms` }}
             />
           </div>
