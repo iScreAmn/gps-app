@@ -70,6 +70,10 @@ const CatalogPage = () => {
     return <Navigate to={`/${language}/catalog/materials`} replace />;
   }
 
+  if (category === 'laminators') {
+    return <Navigate to={`/${language}/leds`} replace />;
+  }
+
   const brandSearchRoute = getBrandSearchRoute(searchQuery, language);
   if (brandSearchRoute) {
     return <Navigate to={brandSearchRoute} replace />;

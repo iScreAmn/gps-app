@@ -36,7 +36,7 @@ const SidebarCategory = () => {
     {
       id: 'laminators',
       title: 'categories.laminators',
-      link: `/${language}/catalog/laminators`
+      link: `/${language}/leds`
     },
     {
       id: 'plotters',

@@ -416,6 +416,19 @@ const Breadcrumbs = ({ items, separator }) => {
         }
       }
 
+      // /leds: Home - Catalog - TMT LEDs [- modules|power]
+      if (segment === 'leds') {
+        const catalogPath = currentLang ? `/${currentLang}/catalog` : '/catalog';
+        const catalogExists = crumbs.some(crumb => crumb.path === catalogPath);
+        if (!catalogExists) {
+          crumbs.push({
+            label: t('navigation.catalog'),
+            path: catalogPath,
+            isActive: false
+          });
+        }
+      }
+
       // Специальная обработка для plotter-catalog/nocai: Home - Catalog - Nocai [- модель]
       if (segment === 'plotter-catalog' && nextSegment === 'nocai') {
         const catalogPath = currentLang ? `/${currentLang}/catalog` : '/catalog';
