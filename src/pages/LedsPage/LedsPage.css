@@ -36,9 +36,19 @@ body[data-theme="dark"] .leds-page {
                     0 10px 24px -8px rgba(0, 0, 0, 0.5);
 }
 
-/* The shared catalog CTA keeps its own spacing on this page */
+/* The shared catalog CTA sits at the very top of this page, full-bleed with no padding */
 .leds-page .led-modules {
   position: relative;
   z-index: 1;
-  padding-top: clamp(1rem, 3vw, 2rem);
+}
+
+.leds-page .led-modules .container {
+  max-width: none;
+  margin: 0;
+  padding: 0;
+}
+
+.leds-page .led-modules__wrapper {
+  padding: 0;
+  border-radius: 0;
 }

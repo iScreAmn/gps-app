@@ -23,11 +23,11 @@ const LedsPage = () => {
     <div className="leds-page page-ambient-shell">
       <PageAmbientBackground />
 
+      <LedModules />
+
       <LedsHero onViewDetails={handleViewDetails} />
 
       <LedsCategories />
-
-      <LedModules />
     </div>
   );
 };

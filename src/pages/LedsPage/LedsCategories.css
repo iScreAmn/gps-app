@@ -136,24 +136,6 @@
   color: rgba(255, 255, 255, 0.78);
 }
 
-.leds-category__cta {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  margin-top: 6px;
-  font-size: 0.85rem;
-  font-weight: var(--font-semibold, 600);
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  color: #ffffff;
-}
-
-.leds-category__cta svg {
-  width: 18px;
-  height: 18px;
-  transition: transform var(--transition-normal);
-}
-
 .leds-category:hover {
   transform: translateY(-4px);
   box-shadow: var(--leds-shadow-lg);
@@ -162,10 +144,6 @@
 
 .leds-category:hover .leds-category__glow {
   opacity: 1;
-}
-
-.leds-category:hover .leds-category__cta svg {
-  transform: translateX(4px);
 }
 
 .leds-category:focus-visible {
@@ -186,8 +164,7 @@
 
 @media (prefers-reduced-motion: reduce) {
   .leds-category,
-  .leds-category__image,
-  .leds-category__cta svg {
+  .leds-category__image {
     transition: none;
   }
 }

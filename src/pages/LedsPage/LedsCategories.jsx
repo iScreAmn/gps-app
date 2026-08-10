@@ -1,6 +1,5 @@
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { HiArrowSmRight } from 'react-icons/hi';
 import { useLanguage } from '../../hooks/useLanguage';
 import { leds1, power1 } from '../../assets/images';
 import './LedsCategories.css';
@@ -54,11 +53,6 @@ const LedsCategories = () => {
               <div className="leds-category__body">
                 <h3 className="leds-category__title">{category.title}</h3>
                 <p className="leds-category__description">{category.description}</p>
-
-                <span className="leds-category__cta">
-                  {t('leds.categories.cta')}
-                  <HiArrowSmRight aria-hidden />
-                </span>
               </div>
             </Link>
           ))}
