@@ -1,5 +1,3 @@
-/* /leds/modules — full product list. Design tokens are inherited from LedsPage.css (.leds-page) */
-
 .led-modules-page__intro {
   position: relative;
   z-index: 1;
@@ -18,7 +16,7 @@
 }
 
 .led-modules-page__title {
-  font-family: 'Archyedt', sans-serif;
+  font-family: "GPS Mt Medium";
   font-size: clamp(1.8rem, 4.5vw, 2.8rem);
   line-height: 1.2;
   margin: 0 0 12px;
@@ -69,7 +67,7 @@
 }
 
 .led-item__title {
-  font-family: 'Archyedt', sans-serif;
+  font-family: "GPS Mt Medium";
   font-size: clamp(1.35rem, 3vw, 1.9rem);
   line-height: 1.2;
   margin: 0;

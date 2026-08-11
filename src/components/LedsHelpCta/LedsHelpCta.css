@@ -1,6 +1,3 @@
-/* Closing CTA for the /leds section — mirrors .about-cta's structure and button animation,
-   restyled with the leds-page design tokens (--leds-*, defined in LedsPage.css). */
-
 .leds-help-cta {
   position: relative;
   z-index: 1;
@@ -20,7 +17,7 @@
 }
 
 .leds-help-cta__title {
-  font-family: 'Archyedt', sans-serif;
+  font-family: "GPS Mt Medium";
   font-size: clamp(1.8rem, 4.5vw, 2.6rem);
   line-height: 1.2;
   margin: 0;
@@ -49,7 +46,7 @@
   border-radius: 999px;
   overflow: hidden;
   isolation: isolate;
-  font-family: inherit;
+  font-family: "GPS Mt Medium";
   font-size: 0.85rem;
   font-weight: var(--font-semibold, 600);
   letter-spacing: 0.14em;

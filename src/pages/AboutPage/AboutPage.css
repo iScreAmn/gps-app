@@ -1,9 +1,5 @@
 @import '../../styles/pageAmbientBackground.css';
 
-/* =========================================================
-   ABOUT PAGE — Editorial / Cinematic Rebuild
-   ========================================================= */
-
 .about-page {
   --edge: clamp(1rem, 4vw, 3rem);
   --ink: var(--text-color);
@@ -803,7 +799,7 @@ body[data-theme="dark"] .about-parallax__row--1 .parallax .scroller {
   display: inline-flex;
   align-items: center;
   gap: 0.85rem;
-  font-family: inherit;
+  font-family: "GPS Mt Medium";
   font-size: 0.85rem;
   font-weight: 600;
   letter-spacing: 0.16em;
