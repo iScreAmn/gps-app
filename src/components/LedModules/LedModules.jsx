@@ -1,5 +1,6 @@
 import React from "react";
 import { Link, useLocation } from "react-router-dom";
+import { MdOutlineKeyboardDoubleArrowDown } from "react-icons/md";
 import "./LedModules.css";
 import { mainLogoWhite, tmtLogo, modulesArt } from "../../assets/images";
 import { useLanguage } from "../../hooks/useLanguage";
@@ -8,6 +9,10 @@ const LedModules = () => {
   const { t, language } = useLanguage();
   const { pathname } = useLocation();
   const isOnLedsPage = /\/leds(?:\/|$)/.test(pathname);
+
+  const handleScrollToCategories = () => {
+    document.querySelector(".leds-categories__head")?.scrollIntoView({ behavior: "smooth" });
+  };
 
   return (
     <div className="led-modules">
@@ -21,6 +26,17 @@ const LedModules = () => {
               <img src={tmtLogo} alt="TMT Logo" className="led-modules__logo" />
             </div>
             <h3 className="led-modules__title">{t("ledModules.title")}</h3>
+
+            {isOnLedsPage && (
+              <button
+                type="button"
+                className="led-modules__scroll-down"
+                onClick={handleScrollToCategories}
+                aria-label={t("ledModules.scrollDown")}
+              >
+                <MdOutlineKeyboardDoubleArrowDown className="led-modules__scroll-down-icon" />
+              </button>
+            )}
 
             {!isOnLedsPage && (
               <div className="led-modules__status">

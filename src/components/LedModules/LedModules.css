@@ -107,6 +107,42 @@ body[data-theme="dark"] .led-modules__wrapper::after {
   color: #fff;
 }
 
+.led-modules__scroll-down {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  background: rgba(255, 255, 255, 0.08);
+  color: #fff;
+  cursor: pointer;
+  z-index: 2;
+  transition: background 0.3s var(--transition-normal), border-color 0.3s var(--transition-normal), transform 0.3s var(--transition-normal);
+}
+
+.led-modules__scroll-down:hover {
+  background: rgba(255, 255, 255, 0.2);
+  border-color: rgba(255, 255, 255, 0.7);
+  transform: translateY(4px);
+}
+
+.led-modules__scroll-down-icon {
+  width: 26px;
+  height: 26px;
+  animation: led-modules-bounce 1.6s ease-in-out infinite;
+}
+
+@keyframes led-modules-bounce {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(6px);
+  }
+}
+
 .btn {
   display: inline-block;
   color: #ffffff;
