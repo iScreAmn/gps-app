@@ -162,7 +162,7 @@
   z-index: 1;
   aspect-ratio: 1;
   border-radius: 50%;
-  border: 1px solid rgba(255, 255, 255, 0.12);
+  border: 1px solid var(--leds-ring-border);
   pointer-events: none;
 }
 
@@ -172,8 +172,8 @@
 
 .leds-hero__ring--inner {
   height: 72%;
-  border-color: rgba(255, 255, 255, 0.18);
-  background: radial-gradient(circle, rgba(255, 255, 255, 0.07), transparent 70%);
+  border-color: var(--leds-ring-border-strong);
+  background: radial-gradient(circle, var(--leds-ring-glow), transparent 70%);
 }
 
 .leds-hero__chips {

@@ -14,6 +14,9 @@
   --leds-accent-soft: rgba(220, 38, 38, 0.1);
   --leds-stage-bg: linear-gradient(150deg, #10192e 0%, #182642 55%, #0e1728 100%);
   --leds-category-bg: linear-gradient(150deg, #932a2a 0%, #5c1b1b 55%, #650707 100%);
+  --leds-ring-border: rgba(15, 23, 42, 0.16);
+  --leds-ring-border-strong: rgba(15, 23, 42, 0.24);
+  --leds-ring-glow: rgba(15, 23, 42, 0.06);
   --leds-shadow: 0 10px 30px -12px rgba(15, 23, 42, 0.18),
                  0 4px 10px -4px rgba(15, 23, 42, 0.08);
   --leds-shadow-lg: 0 30px 60px -20px rgba(15, 23, 42, 0.28),
@@ -32,6 +35,9 @@ body[data-theme="dark"] .leds-page {
   --leds-border: rgba(255, 255, 255, 0.1);
   --leds-accent-soft: rgba(220, 38, 38, 0.18);
   --leds-category-bg: linear-gradient(150deg, #10192e 0%, #182642 55%, #0e1728 100%);
+  --leds-ring-border: rgba(255, 255, 255, 0.12);
+  --leds-ring-border-strong: rgba(255, 255, 255, 0.18);
+  --leds-ring-glow: rgba(255, 255, 255, 0.07);
   --leds-shadow: 0 10px 30px -12px rgba(0, 0, 0, 0.6),
                  0 4px 10px -4px rgba(0, 0, 0, 0.4);
   --leds-shadow-lg: 0 30px 60px -20px rgba(0, 0, 0, 0.7),
