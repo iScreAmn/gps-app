@@ -46,6 +46,7 @@ import Duplo from './pages/CatalogPage/CuttingSystemsPage/Duplo/Duplo';
 import DuploModelPage from './pages/CatalogPage/CuttingSystemsPage/Duplo/DuploModelPage';
 import ScannerPage from './pages/ScannerPage/ScannerPage';
 import InfoPage from './pages/InfoPage/InfoPage';
+import AnalyticsTracker from './components/Analytics/AnalyticsTracker';
 import './App.css';
 
 function LegacyLaminatorRedirect({ brand, langPrefix = '' }) {
@@ -59,6 +60,7 @@ function App() {
     <ThemeProvider>
       <Router basename={import.meta.env.BASE_URL}>
         <LanguageProvider>
+          <AnalyticsTracker />
           <Layout>
             <Routes>
               {/* Georgian routes */}
