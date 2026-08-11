@@ -6,8 +6,7 @@ import { useLanguage } from '../../hooks/useLanguage';
 import { ledProducts } from '../../data/ledsData';
 import './LedsHero.css';
 
-/** Slides advance on their own every 10s — hover and focus never interrupt it. */
-const AUTO_SCROLL_INTERVAL = 90000;
+const AUTO_SCROLL_INTERVAL = 10000;
 const HERO_FEATURES_LIMIT = 5;
 
 const LedsHero = ({ onViewDetails }) => {
@@ -25,10 +24,17 @@ const LedsHero = ({ onViewDetails }) => {
   );
 
   useEffect(() => {
-    thumbRefs.current[activeIndex]?.scrollIntoView({
+    const thumb = thumbRefs.current[activeIndex];
+    if (!thumb) return;
+
+    const container = thumb.closest('.leds-hero__thumbs');
+    if (!container) return;
+
+    const target =
+      thumb.offsetLeft + thumb.offsetWidth / 2 - container.clientWidth / 2;
+    container.scrollTo({
+      left: Math.max(0, target),
       behavior: 'smooth',
-      block: 'nearest',
-      inline: 'center',
     });
   }, [activeIndex]);
 

@@ -29,14 +29,14 @@ const SidebarCategory = () => {
       link: `/${language}/cutting-systems`
     },
     {
-      id: 'binder',
-      title: 'categories.binder',
-      link: `/${language}/catalog/binder`
-    },
-    {
       id: 'laminators',
       title: 'categories.laminators',
       link: `/${language}/leds`
+    },
+    {
+      id: 'guillotine',
+      title: 'categories.guillotine_cutter',
+      link: `/${language}/guillotine`
     },
     {
       id: 'plotters',

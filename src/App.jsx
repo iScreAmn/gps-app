@@ -86,6 +86,8 @@ function App() {
               <Route path="/ka/cutting-systems/duplo/:modelId" element={<DuploModelPage />} />
               <Route path="/ka/shredder" element={<IdealShredder />} />
               <Route path="/ka/shredder/:modelId" element={<IdealShredderModelPage />} />
+              <Route path="/ka/guillotine" element={<IdealGuillotine />} />
+              <Route path="/ka/guillotine/:modelId" element={<IdealGuillotineModelPage />} />
               <Route path="/ka/cutting-systems/:brand" element={<CatalogPage />} />
               <Route path="/ka/office-equipment/develop" element={<OfficeEquipment />} />
               <Route path="/ka/office-equipment/develop/:modelId" element={<DevelopModelPage />} />
@@ -135,6 +137,8 @@ function App() {
               <Route path="/en/cutting-systems/duplo/:modelId" element={<DuploModelPage />} />
               <Route path="/en/shredder" element={<IdealShredder />} />
               <Route path="/en/shredder/:modelId" element={<IdealShredderModelPage />} />
+              <Route path="/en/guillotine" element={<IdealGuillotine />} />
+              <Route path="/en/guillotine/:modelId" element={<IdealGuillotineModelPage />} />
               <Route path="/en/cutting-systems/:brand" element={<CatalogPage />} />
               <Route path="/en/office-equipment/develop" element={<OfficeEquipment />} />
               <Route path="/en/office-equipment/develop/:modelId" element={<DevelopModelPage />} />
@@ -182,6 +186,8 @@ function App() {
               <Route path="/cutting-systems/duplo/:modelId" element={<DuploModelPage />} />
               <Route path="/shredder" element={<IdealShredder />} />
               <Route path="/shredder/:modelId" element={<IdealShredderModelPage />} />
+              <Route path="/guillotine" element={<IdealGuillotine />} />
+              <Route path="/guillotine/:modelId" element={<IdealGuillotineModelPage />} />
               <Route path="/cutting-systems/:brand" element={<CatalogPage />} />
               <Route path="/office-equipment/develop" element={<OfficeEquipment />} />
               <Route path="/office-equipment/develop/:modelId" element={<DevelopModelPage />} />
