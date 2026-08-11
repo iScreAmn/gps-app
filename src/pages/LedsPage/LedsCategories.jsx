@@ -31,7 +31,6 @@ const LedsCategories = () => {
     <section className="leds-categories">
       <div className="container">
         <div className="leds-categories__head">
-          <span className="leds-categories__eyebrow">{t('leds.categories.eyebrow')}</span>
           <h2 className="leds-categories__title">{t('leds.categories.title')}</h2>
           <p className="leds-categories__subtitle">{t('leds.categories.subtitle')}</p>
         </div>

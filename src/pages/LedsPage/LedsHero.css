@@ -246,6 +246,7 @@
   margin: 0;
   padding: 4px;
   display: flex;
+  justify-content: center;
   gap: 12px;
   flex: 1;
   overflow-x: auto;

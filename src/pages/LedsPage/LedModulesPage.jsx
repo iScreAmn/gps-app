@@ -4,6 +4,7 @@ import { MdOutlineDone } from 'react-icons/md';
 import { useLanguage } from '../../hooks/useLanguage';
 import { ledProducts } from '../../data/ledsData';
 import PageAmbientBackground from '../../components/PageAmbientBackground/PageAmbientBackground';
+import LedsHelpCta from '../../components/LedsHelpCta/LedsHelpCta';
 import './LedsPage.css';
 import './LedModulesPage.css';
 
@@ -92,6 +93,8 @@ const LedModulesPage = () => {
           ))}
         </div>
       </section>
+
+      <LedsHelpCta />
     </div>
   );
 };

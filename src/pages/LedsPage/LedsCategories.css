@@ -12,16 +12,6 @@
   text-align: center;
 }
 
-.leds-categories__eyebrow {
-  display: inline-block;
-  font-size: 0.72rem;
-  font-weight: var(--font-semibold, 600);
-  text-transform: uppercase;
-  letter-spacing: 0.14em;
-  color: var(--leds-accent);
-  margin-bottom: 12px;
-}
-
 .leds-categories__title {
   font-family: 'Archyedt', sans-serif;
   font-size: clamp(1.6rem, 4vw, 2.4rem);

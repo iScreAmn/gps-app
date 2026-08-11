@@ -702,7 +702,7 @@
   },
   "ledModules": {
     "title": "Innovative LED Modules",
-    "downloadButton": "View Catalog",
+    "downloadButton": "Learn more",
     "downloading": "Downloading...",
     "successMessage": "File downloaded successfully",
     "alreadyDownloaded": "You have already downloaded the catalog"
@@ -1011,7 +1011,6 @@
     },
     "breadcrumb": "TMT LEDs",
     "categories": {
-      "eyebrow": "Product range",
       "title": "Choose a category",
       "subtitle": "TMT LED modules and the power supplies that drive them — one lighting system for the whole project.",
       "modules": {
@@ -1032,6 +1031,11 @@
       "eyebrow": "TMT LEDs · Products",
       "title": "Power Supplies",
       "subtitle": "Reliable, stable power supplies for TMT LED systems — from 100W to 400W."
+    },
+    "helpCta": {
+      "title": "Need help choosing a product?",
+      "description": "Get in touch and our specialists will help you with any question.",
+      "cta": "Contact Us"
     },
     "power": {
       "specs": {

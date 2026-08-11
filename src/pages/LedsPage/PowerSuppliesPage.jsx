@@ -2,6 +2,7 @@ import React from 'react';
 import { useLanguage } from '../../hooks/useLanguage';
 import { powerProducts } from '../../data/powerData';
 import PageAmbientBackground from '../../components/PageAmbientBackground/PageAmbientBackground';
+import LedsHelpCta from '../../components/LedsHelpCta/LedsHelpCta';
 import './LedsPage.css';
 import './PowerSuppliesPage.css';
 
@@ -50,6 +51,8 @@ const PowerSuppliesPage = () => {
           ))}
         </div>
       </section>
+
+      <LedsHelpCta />
     </div>
   );
 };

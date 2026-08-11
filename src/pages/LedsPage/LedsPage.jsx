@@ -2,6 +2,7 @@ import React, { useCallback } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import PageAmbientBackground from '../../components/PageAmbientBackground/PageAmbientBackground';
 import LedModules from '../../components/LedModules/LedModules';
+import LedsHelpCta from '../../components/LedsHelpCta/LedsHelpCta';
 import LedsCategories from './LedsCategories';
 import LedsHero from './LedsHero';
 import './LedsPage.css';
@@ -28,6 +29,8 @@ const LedsPage = () => {
       <LedsHero onViewDetails={handleViewDetails} />
 
       <LedsCategories />
+
+      <LedsHelpCta />
     </div>
   );
 };
