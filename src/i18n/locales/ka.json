@@ -671,6 +671,7 @@
   },
   "ledModules": {
     "title": "ინოვაცური LED-მოდულები",
+    "scrollDown": "გადახვედი კატეგორიებზე",
     "downloadButton": "გაიგე მეტი",
     "downloading": "იტვირთება...",
     "successMessage": "კატალოგი გაიგზავნა",

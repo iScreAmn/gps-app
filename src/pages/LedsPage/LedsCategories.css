@@ -10,6 +10,13 @@
   max-width: 680px;
   margin: 0 auto clamp(2rem, 4vw, 3rem);
   text-align: center;
+  scroll-margin-top: 100px;
+}
+
+@media (min-width: 1024px) {
+  .leds-categories__head {
+    scroll-margin-top: 160px;
+  }
 }
 
 .leds-categories__title {

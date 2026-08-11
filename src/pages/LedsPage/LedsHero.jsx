@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { FaChevronLeft, FaChevronRight } from 'react-icons/fa';
 import { MdOutlineDone } from 'react-icons/md';
 import { useReducedMotion } from 'motion/react';
@@ -14,6 +14,7 @@ const LedsHero = ({ onViewDetails }) => {
   const { t } = useLanguage();
   const prefersReducedMotion = useReducedMotion();
   const [activeIndex, setActiveIndex] = useState(0);
+  const thumbRefs = useRef([]);
 
   const total = ledProducts.length;
   const autoScroll = !prefersReducedMotion && total > 1;
@@ -22,6 +23,14 @@ const LedsHero = ({ onViewDetails }) => {
     (index) => setActiveIndex(((index % total) + total) % total),
     [total]
   );
+
+  useEffect(() => {
+    thumbRefs.current[activeIndex]?.scrollIntoView({
+      behavior: 'smooth',
+      block: 'nearest',
+      inline: 'center',
+    });
+  }, [activeIndex]);
 
   useEffect(() => {
     if (!autoScroll) return undefined;
@@ -110,6 +119,7 @@ const LedsHero = ({ onViewDetails }) => {
               <li key={item.id}>
                 <button
                   type="button"
+                  ref={(el) => { thumbRefs.current[index] = el; }}
                   className={`leds-hero__thumb ${index === activeIndex ? 'is-active' : ''}`}
                   onClick={() => goTo(index)}
                   aria-label={t('leds.hero.goTo', { name: item.name })}

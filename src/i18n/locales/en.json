@@ -702,6 +702,7 @@
   },
   "ledModules": {
     "title": "Innovative LED Modules",
+    "scrollDown": "Scroll to categories",
     "downloadButton": "Learn more",
     "downloading": "Downloading...",
     "successMessage": "File downloaded successfully",
