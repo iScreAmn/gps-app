@@ -14,7 +14,8 @@ export const ledProducts = [
       'leds.products.mini2.feature2',
       'leds.products.mini2.feature3',
       'leds.products.mini2.feature4',
-      'leds.products.mini2.feature5'
+      'leds.products.mini2.feature5',
+      'leds.products.mini2.feature6'
     ],
     stats: [
       { value: '178', label: 'leds.stats.lumensPerWatt' },
@@ -33,7 +34,9 @@ export const ledProducts = [
       'leds.products.midi4.feature4',
       'leds.products.midi4.feature5',
       'leds.products.midi4.feature6',
-      'leds.products.midi4.feature7'
+      'leds.products.midi4.feature7',
+      'leds.products.midi4.feature8',
+      'leds.products.midi4.feature9'
     ],
     stats: [
       { value: '240–320', label: 'leds.stats.lumensPerModule' },
@@ -52,7 +55,7 @@ export const ledProducts = [
       'leds.products.midiEdge.feature4'
     ],
     stats: [
-      { value: '12 / 24 V', label: 'leds.stats.voltage' },
+      { value: '12 V', label: 'leds.stats.voltage' },
       { value: 'Clean White', label: 'leds.stats.technology' }
     ]
   },
@@ -64,7 +67,9 @@ export const ledProducts = [
     features: [
       'leds.products.slim.feature1',
       'leds.products.slim.feature2',
-      'leds.products.slim.feature3'
+      'leds.products.slim.feature3',
+      'leds.products.slim.feature4',
+      'leds.products.slim.feature5'
     ],
     stats: [
       { value: '70–120', label: 'leds.stats.lumensPerModule' },
@@ -81,7 +86,8 @@ export const ledProducts = [
       'leds.products.tiny.feature2',
       'leds.products.tiny.feature3',
       'leds.products.tiny.feature4',
-      'leds.products.tiny.feature5'
+      'leds.products.tiny.feature5',
+      'leds.products.tiny.feature6'
     ],
     stats: [
       { value: '37–41', label: 'leds.stats.lumensPerModule' },
@@ -100,7 +106,8 @@ export const ledProducts = [
       'leds.products.tmt4Milky.feature4',
       'leds.products.tmt4Milky.feature5',
       'leds.products.tmt4Milky.feature6',
-      'leds.products.tmt4Milky.feature7'
+      'leds.products.tmt4Milky.feature7',
+      'leds.products.tmt4Milky.feature8'
     ],
     stats: [
       { value: '213', label: 'leds.stats.lumensPerWatt' },

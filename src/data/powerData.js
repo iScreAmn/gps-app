@@ -6,7 +6,7 @@ import { power2, power3, power4, power5 } from '../assets/images';
 export const powerProducts = [
   {
     id: 'led-driver-100w',
-    name: 'LED Driver - 100W',
+    name: 'LED Driver - 100W / IP 68',
     image: power2,
     specs: [
       { label: 'leds.power.specs.current', value: '8.3A' },
@@ -17,7 +17,7 @@ export const powerProducts = [
   },
   {
     id: 'led-driver-200w',
-    name: 'LED Driver - 200W',
+    name: 'LED Driver - 200W / IP 68',
     image: power3,
     specs: [
       { label: 'leds.power.specs.current', value: '16A' },
@@ -28,7 +28,7 @@ export const powerProducts = [
   },
   {
     id: 'led-driver-300w',
-    name: 'LED Driver - 300W',
+    name: 'LED Driver - 300W / IP 68',
     image: power4,
     specs: [
       { label: 'leds.power.specs.current', value: '25A' },
@@ -39,7 +39,7 @@ export const powerProducts = [
   },
   {
     id: 'led-driver-400w',
-    name: 'LED Driver - 400W',
+    name: 'LED Driver - 400W / IP 68',
     image: power5,
     specs: [
       { label: 'leds.power.specs.current', value: '33A' },
