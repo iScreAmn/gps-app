@@ -327,7 +327,51 @@
       "feature7": "Data Format: PLT, DXF, HP/GL",
       "feature8": "Power: 4kw",
       "cta": "Learn More",
-      "needHelp": "Need Help?"
+      "needHelp": "Need Help?",
+      "specsTitle": "Specifications",
+      "specLabels": {
+        "cuttingHeadType": "Cutting Head Type:",
+        "machineType": "Machine Type:",
+        "cuttingArea": "Cutting Area (L×W):",
+        "flooringArea": "Flooring Area (L×W×H):",
+        "tools": "Cutting Tools:",
+        "materials": "Cutting Materials:",
+        "cuttingThickness": "Cutting Thickness:",
+        "media": "Media:",
+        "maxCuttingSpeed": "Max Cutting Speed:",
+        "cuttingAccuracy": "Cutting Accuracy:",
+        "dataFormats": "Data Formats:",
+        "voltage": "Voltage:",
+        "power": "Power:"
+      },
+      "specUnits": {
+        "mm": "mm",
+        "mmPerS": "mm/s",
+        "kw": "kW"
+      },
+      "specValues": {
+        "Universal Cutting Tool": "Universal Cutting Tool",
+        "Creasing Wheel": "Creasing Wheel",
+        "Kiss Cut Tool": "Kiss Cut Tool",
+        "Oscillating Tool": "Oscillating Tool",
+        "Drag Knife": "Drag Knife",
+        "Car sticker / Sticker": "Car sticker / Sticker",
+        "Card Paper": "Card Paper",
+        "PP Paper": "PP Paper",
+        "Reflective material": "Reflective material",
+        "Reflective Material": "Reflective Material",
+        "KT Board": "KT Board",
+        "Foam Board": "Foam Board",
+        "Sticker": "Sticker",
+        "Card Board": "Card Board",
+        "Plastic Sheet": "Plastic Sheet",
+        "Corrugated Board": "Corrugated Board",
+        "Gray Board": "Gray Board",
+        "Corrugated Plastic": "Corrugated Plastic",
+        "ABS Board": "ABS Board",
+        "Magnetic Sticker": "Magnetic Sticker",
+        "Vacuum System": "Vacuum System"
+      }
     },
     "leica": {
       "title": "Leica Professional GPS",
@@ -1127,5 +1171,19 @@
         "feature13": "Input Voltage: 12 V DC"
       }
     }
+  },
+  "iechoSummerOffer": {
+    "badge": "Special Offer",
+    "title": "Summer Offer from IECHO!",
+    "subtitle": "Get a 20% discount on the <1>IECHO</1> <2>PK0705 Plus</2> universal cutting machine",
+    "features": {
+      "feature1": "Smart universal cutting system",
+      "feature2": "20% discount",
+      "feature3": "Only 2 units left!"
+    },
+    "closingText": "Don't miss the opportunity to purchase a professional cutting machine at a special price.",
+    "contactNote": "Contact us for details and order today!",
+    "callButton": "Contact Us",
+    "zoomImage": "Enlarge photo"
   }
 }

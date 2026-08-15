@@ -335,7 +335,51 @@
       "feature7": "მონაცემთა ფორმატი: PLT, DXF, HP/GL",
       "feature8": "ძაბვა: 4კვტ",
       "cta": "დაწვრილებით",
-      "needHelp": "დახმარება გჭირდება?"
+      "needHelp": "დახმარება გჭირდება?",
+      "specsTitle": "მახასიათებლები",
+      "specLabels": {
+        "cuttingHeadType": "ჭრის თავის ტიპი:",
+        "machineType": "მოდელი:",
+        "cuttingArea": "ჭრის ზონა (სიგრძე × სიგანე):",
+        "flooringArea": "დასაკავებელი ფართობი (სიგრძე × სიგანე × სიმაღლე):",
+        "tools": "ჭრის ხელსაწყოები:",
+        "materials": "ჭრის მასალები:",
+        "cuttingThickness": "ჭრის სისქე:",
+        "media": "ფიქსაციის სისტემა:",
+        "maxCuttingSpeed": "ჭრის მაქსიმალური სიჩქარე:",
+        "cuttingAccuracy": "ჭრის სიზუსტე:",
+        "dataFormats": "მონაცემთა ფორმატები:",
+        "voltage": "ძაბვა:",
+        "power": "სიმძლავრე:"
+      },
+      "specUnits": {
+        "mm": "მმ",
+        "mmPerS": "მმ/წმ",
+        "kw": "კვტ"
+      },
+      "specValues": {
+        "Universal Cutting Tool": "უნივერსალური ჭრის ხელსაწყო",
+        "Creasing Wheel": "ბიგოვკის როლიკი",
+        "Kiss Cut Tool": "ზედაპირული ჭრის ხელსაწყო (Kiss Cut)",
+        "Oscillating Tool": "ოსცილაციური ხელსაწყო",
+        "Drag Knife": "მოთრევადი დანა (Drag Knife)",
+        "Car sticker / Sticker": "საავტომობილო სტიკერი / სტიკერი",
+        "Card Paper": "მუყაოს ქაღალდი",
+        "PP Paper": "PP ქაღალდი",
+        "Reflective material": "ამრეკლი მასალა",
+        "Reflective Material": "ამრეკლი მასალა",
+        "KT Board": "KT ფილა",
+        "Foam Board": "ქაფპლასტის ფილა",
+        "Sticker": "სტიკერი",
+        "Card Board": "მუყაო",
+        "Plastic Sheet": "პლასტმასის ფურცელი",
+        "Corrugated Board": "გოფრირებული მუყაო",
+        "Gray Board": "ნაცრისფერი მუყაო",
+        "Corrugated Plastic": "გოფრირებული პლასტმასი",
+        "ABS Board": "ABS ფილა",
+        "Magnetic Sticker": "მაგნიტური სტიკერი",
+        "Vacuum System": "ვაკუუმური სისტემა"
+      }
     },
     "leica": {
       "title": "Leica Professional GPS",
@@ -1121,5 +1165,19 @@
         "feature13": "ძაბვა (Input Voltage): 12 V DC"
       }
     }
+  },
+  "iechoSummerOffer": {
+    "badge": "სპეციალური შეთავაზება",
+    "title": "საზაფხულო შეთავაზება IECHO-სგან!",
+    "subtitle": "მიიღეთ 20%-იანი ფასდაკლება <1>IECHO-ს</1> უნივერსალურ საჭრელ აპარატზე <2>PK0705 Plus</2>",
+    "features": {
+      "feature1": "ჭკვიანი უნივერსალური საჭრელი სისტემა",
+      "feature2": "20% ფასდაკლება",
+      "feature3": "დარჩენილია მხოლოდ 2 ერთეული!"
+    },
+    "closingText": "არ გაუშვათ შესაძლებლობა, შეიძინოთ პროფესიონალური საჭრელი აპარატი განსაკუთრებულ ფასად.",
+    "contactNote": "დაგვიკავშირდით დეტალებისთვის და შეუკვეთეთ დღესვე!",
+    "callButton": "დაგვიკავშირდით",
+    "zoomImage": "სურათის გადიდება"
   }
 }

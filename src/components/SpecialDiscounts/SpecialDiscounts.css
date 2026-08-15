@@ -32,11 +32,14 @@ body[data-theme="dark"] .special-discounts {
 }
 
 .discounts__description {
-  font-size: 1.2rem;
+  font-family: 'GPS Mt Medium';
+  font-size: 17px;
+  width: 700px;
   margin: 25px 0;
 }
 
 .discounts__button {
+  font-family: 'GPS Mt Medium';
   padding: 1rem 2rem;
   border: none;
   border-radius: 8px;

@@ -3,7 +3,21 @@ import { Link } from 'react-router-dom';
 import './CallbackForm.css';
 import { useLanguage } from '../../../../hooks/useLanguage';
 
-const CallbackForm = ({ onSuccess }) => {
+const API_URL = (() => {
+  const envUrl =
+    import.meta.env.VITE_API_URL && String(import.meta.env.VITE_API_URL).trim();
+  if (envUrl) return envUrl.replace(/\/$/, '');
+  if (typeof window !== 'undefined') {
+    const host = window.location.hostname;
+    if (host === 'localhost' || host === '127.0.0.1') {
+      return `http://${host}:3001`;
+    }
+    return 'https://gps-app-server.vercel.app';
+  }
+  return 'https://gps-app-server.vercel.app';
+})();
+
+const CallbackForm = ({ onSuccess, source }) => {
   const { t, language } = useLanguage();
   const [formData, setFormData] = useState({
     name: '',
@@ -52,17 +66,31 @@ const CallbackForm = ({ onSuccess }) => {
     if (!validateForm()) return;
     
     setIsSubmitting(true);
-    
+    setErrors({});
+
     try {
-      // Симуляция отправки (замените на реальный API запрос)
-      await new Promise(resolve => setTimeout(resolve, 1500));
-      
-      
-      console.log('Form submitted:', formData);
-      
+      // Отправка заявки в Telegram через бэкенд
+      const response = await fetch(`${API_URL}/api/callback/submit`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          name: formData.name.trim(),
+          phone: formData.phone.trim(),
+          agreed: formData.agreed,
+          page: source || (typeof document !== 'undefined' ? document.title : ''),
+          language
+        })
+      });
+
+      const data = await response.json().catch(() => ({}));
+
+      if (!response.ok || !data.success) {
+        throw new Error(data.message || 'Request failed');
+      }
+
       // Очистка формы
       setFormData({ name: '', phone: '', agreed: false });
-      
+
       // Вызов колбэка успеха
       if (onSuccess) {
         onSuccess();

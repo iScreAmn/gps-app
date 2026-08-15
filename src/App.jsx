@@ -46,6 +46,7 @@ import Duplo from './pages/CatalogPage/CuttingSystemsPage/Duplo/Duplo';
 import DuploModelPage from './pages/CatalogPage/CuttingSystemsPage/Duplo/DuploModelPage';
 import ScannerPage from './pages/ScannerPage/ScannerPage';
 import InfoPage from './pages/InfoPage/InfoPage';
+import IechoSummerOfferPage from './pages/SpecialOfferPage/IechoSummerOfferPage';
 import AnalyticsTracker from './components/Analytics/AnalyticsTracker';
 import './App.css';
 
@@ -113,6 +114,7 @@ function App() {
               <Route path="/ka/leds" element={<LedsPage />} />
               <Route path="/ka/leds/modules" element={<LedModulesPage />} />
               <Route path="/ka/leds/power" element={<PowerSuppliesPage />} />
+              <Route path="/ka/special-offer/iecho-pk0705-plus" element={<IechoSummerOfferPage />} />
 
               {/* English routes */}
               <Route path="/en" element={<HomePage />} />
@@ -164,6 +166,7 @@ function App() {
               <Route path="/en/leds" element={<LedsPage />} />
               <Route path="/en/leds/modules" element={<LedModulesPage />} />
               <Route path="/en/leds/power" element={<PowerSuppliesPage />} />
+              <Route path="/en/special-offer/iecho-pk0705-plus" element={<IechoSummerOfferPage />} />
 
               <Route path="/privacy-policy" element={<PrivacyPolicyPage />} />
               <Route path="/news/:id" element={<NewsDetailPage />} />
@@ -202,6 +205,7 @@ function App() {
               <Route path="/leds/power" element={<PowerSuppliesPage />} />
               <Route path="/scanner" element={<ScannerPage />} />
               <Route path="/scaner" element={<Navigate to="/scanner" replace />} />
+              <Route path="/special-offer/iecho-pk0705-plus" element={<IechoSummerOfferPage />} />
               <Route path="/info" element={<InfoPage />} />
               <Route path="/ka/info" element={<InfoPage />} />
               <Route path="/en/info" element={<InfoPage />} />

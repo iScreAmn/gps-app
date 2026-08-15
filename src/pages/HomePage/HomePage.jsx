@@ -20,10 +20,10 @@ const HomePage = () => {
       <Hero />
       <PartnersSection />
       <ClickService />
-      <OnlineOrder />
-      <TempContent />
-      <PlotterCuttingSection />
       <SpecialDiscounts />
+      <OnlineOrder />
+      <PlotterCuttingSection />
+      <TempContent />
       <LedModules />
       <ProductGallery />
       <NewsletterCTA />

@@ -59,7 +59,7 @@ const InkModelPage = () => {
       </div>
 
       <Modal isOpen={isModalOpen} onClose={handleCloseModal} title={t('callback.title')}>
-        <CallbackForm onSuccess={handleFormSuccess} />
+        <CallbackForm onSuccess={handleFormSuccess} source={t(product.titleKey)} />
       </Modal>
       <Modal isOpen={isSuccessModal} onClose={() => setIsSuccessModal(false)} title={t('callback.successTitle')}>
         <div className="success-message">

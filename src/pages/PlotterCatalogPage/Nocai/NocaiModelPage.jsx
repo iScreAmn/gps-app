@@ -105,7 +105,7 @@ const NocaiModelPage = () => {
         onClose={handleCloseModal}
         title={t('callback.title') || 'Request a callback'}
       >
-        <CallbackForm onSuccess={handleFormSuccess} />
+        <CallbackForm onSuccess={handleFormSuccess} source={product.name} />
       </Modal>
 
       <Modal
