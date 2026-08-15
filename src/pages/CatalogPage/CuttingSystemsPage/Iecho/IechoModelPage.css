@@ -22,21 +22,6 @@
   flex-direction: column;
 }
 
-.iecho-model__back {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  color: var(--color-primary);
-  text-decoration: none;
-  font-weight: 500;
-  margin-bottom: 1rem;
-  transition: color 0.3s ease;
-}
-
-.iecho-model__back:hover {
-  color: var(--color-primary-dark);
-}
-
 .iecho-model__title {
   font-size: 2.5rem;
   font-weight: 700;
@@ -51,6 +36,7 @@
   color: white;
   border: none;
   border-radius: 6px;
+  font-family: 'GPS Mt Medium';
   font-size: 1rem;
   font-weight: 500;
   cursor: pointer;

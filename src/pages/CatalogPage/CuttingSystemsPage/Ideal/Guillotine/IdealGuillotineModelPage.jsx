@@ -135,7 +135,7 @@ const IdealGuillotineModelPage = () => {
         onClose={handleCloseModal}
         title={t('callback.title') || 'Заказать обратный звонок'}
       >
-        <CallbackForm onSuccess={handleFormSuccess} />
+        <CallbackForm onSuccess={handleFormSuccess} source={product.name} />
       </Modal>
 
       <Modal

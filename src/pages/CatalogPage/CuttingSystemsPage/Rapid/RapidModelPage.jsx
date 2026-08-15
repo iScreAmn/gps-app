@@ -131,7 +131,7 @@ const RapidModelPage = () => {
         onClose={handleCloseModal}
         title={t('callback.title') || 'Заказать обратный звонок'}
       >
-        <CallbackForm onSuccess={handleFormSuccess} />
+        <CallbackForm onSuccess={handleFormSuccess} source={productName} />
       </Modal>
 
       <Modal

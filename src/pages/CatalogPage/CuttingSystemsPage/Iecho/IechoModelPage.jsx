@@ -40,6 +40,14 @@ const IechoModelPage = () => {
     }, 3000);
   };
 
+  // Переводы для блока характеристик
+  const label = (key, fallback) => t(`products.iecho.specLabels.${key}`, fallback);
+  const value = (item) => t(`products.iecho.specValues.${item}`, item);
+  const specsTitle = t('products.iecho.specsTitle', 'Specifications');
+  const mm = t('products.iecho.specUnits.mm', 'mm');
+  const mmPerS = t('products.iecho.specUnits.mmPerS', 'mm/s');
+  const kw = t('products.iecho.specUnits.kw', 'kW');
+
   if (!product) {
     return (
       <div className="iecho-model">
@@ -57,9 +65,6 @@ const IechoModelPage = () => {
         <div className="iecho-model__wrapper">
           <div className="iecho-model__header">
             <div className="iecho-model__header-info">
-              <Link to={`/${language}/cutting-systems/iecho`} className="iecho-model__back">
-                ← Back to IECHO
-              </Link>
               <h1 className="iecho-model__title">{product.name}</h1>
               <button 
                 className="iecho-model__help-btn"
@@ -81,79 +86,74 @@ const IechoModelPage = () => {
           </div>
 
           <div className="iecho-model__specs">
-            <h2 className="iecho-model__specs-title">Specifications</h2>
-            
-            <div className="iecho-model__spec-item">
-              <span className="iecho-model__spec-label">Cutting Head Type:</span>
-              <span className="iecho-model__spec-value">{product.cuttingHeadType}</span>
-            </div>
+            <h2 className="iecho-model__specs-title">{specsTitle}</h2>
 
             <div className="iecho-model__spec-item">
-              <span className="iecho-model__spec-label">Machine Type:</span>
+              <span className="iecho-model__spec-label">{label('machineType', 'Machine Type:')}</span>
               <span className="iecho-model__spec-value">{product.machineType}</span>
             </div>
 
             <div className="iecho-model__spec-item">
-              <span className="iecho-model__spec-label">Cutting Area (L×W):</span>
+              <span className="iecho-model__spec-label">{label('cuttingArea', 'Cutting Area (L×W):')}</span>
               <span className="iecho-model__spec-value">
-                {product.cuttingArea.lengthMm}mm × {product.cuttingArea.widthMm}mm
+                {product.cuttingArea.lengthMm}{mm} × {product.cuttingArea.widthMm}{mm}
               </span>
             </div>
 
             <div className="iecho-model__spec-item">
-              <span className="iecho-model__spec-label">Flooring Area (L×W×H):</span>
+              <span className="iecho-model__spec-label">{label('flooringArea', 'Flooring Area (L×W×H):')}</span>
               <span className="iecho-model__spec-value">
-                {product.flooringArea.lengthMm}mm × {product.flooringArea.widthMm}mm × {product.flooringArea.heightMm}mm
+                {product.flooringArea.lengthMm}{mm} × {product.flooringArea.widthMm}{mm} × {product.flooringArea.heightMm}{mm}
               </span>
             </div>
 
             <div className="iecho-model__spec-item">
-              <span className="iecho-model__spec-label">Cutting Tools:</span>
+              <span className="iecho-model__spec-label">{label('tools', 'Cutting Tools:')}</span>
               <span className="iecho-model__spec-value">
-                {product.tools.join(', ')}
+                {product.tools.map(value).join(', ')}
               </span>
             </div>
 
             <div className="iecho-model__spec-item">
-              <span className="iecho-model__spec-label">Cutting Materials:</span>
+              <span className="iecho-model__spec-label">{label('materials', 'Cutting Materials:')}</span>
               <span className="iecho-model__spec-value">
-                {product.materials.join(', ')}
+                {product.materials.map(value).join(', ')}
               </span>
             </div>
 
             <div className="iecho-model__spec-item">
-              <span className="iecho-model__spec-label">Cutting Thickness:</span>
-              <span className="iecho-model__spec-value">{product.cuttingThicknessMm}mm</span>
+              <span className="iecho-model__spec-label">{label('cuttingThickness', 'Cutting Thickness:')}</span>
+              <span className="iecho-model__spec-value">{product.cuttingThicknessMm}{mm}</span>
             </div>
 
             <div className="iecho-model__spec-item">
-              <span className="iecho-model__spec-label">Media:</span>
-              <span className="iecho-model__spec-value">{product.media}</span>
+              <span className="iecho-model__spec-label">{label('media', 'Media:')}</span>
+              <span className="iecho-model__spec-value">{value(product.media)}</span>
             </div>
 
             <div className="iecho-model__spec-item">
-              <span className="iecho-model__spec-label">Max Cutting Speed:</span>
-              <span className="iecho-model__spec-value">{product.maxCuttingSpeedMmPerS}mm/s</span>
+              <span className="iecho-model__spec-label">{label('maxCuttingSpeed', 'Max Cutting Speed:')}</span>
+              <span className="iecho-model__spec-value">{product.maxCuttingSpeedMmPerS}{mmPerS}</span>
             </div>
 
             <div className="iecho-model__spec-item">
-              <span className="iecho-model__spec-label">Cutting Accuracy:</span>
-              <span className="iecho-model__spec-value">±{product.cuttingAccuracyMm}mm</span>
+              <span className="iecho-model__spec-label">{label('cuttingAccuracy', 'Cutting Accuracy:')}</span>
+              <span className="iecho-model__spec-value">±{product.cuttingAccuracyMm}{mm}</span>
             </div>
 
             <div className="iecho-model__spec-item">
-              <span className="iecho-model__spec-label">Data Formats:</span>
+              <span className="iecho-model__spec-label">{label('dataFormats', 'Data Formats:')}</span>
               <span className="iecho-model__spec-value">{product.dataFormats.join(', ')}</span>
             </div>
 
             <div className="iecho-model__spec-item">
-              <span className="iecho-model__spec-label">Voltage:</span>
+              <span className="iecho-model__spec-label">{label('voltage', 'Voltage:')}</span>
               <span className="iecho-model__spec-value">{product.voltage}</span>
             </div>
 
             <div className="iecho-model__spec-item">
-              <span className="iecho-model__spec-label">Power:</span>
-              <span className="iecho-model__spec-value">{product.powerKw}kW</span>
+              <span className="iecho-model__spec-label">{label('power', 'Power:')}</span>
+              <span className="iecho-model__spec-value">{product.powerKw}{kw}</span>
             </div>
           </div>
         </div>
@@ -165,7 +165,7 @@ const IechoModelPage = () => {
         onClose={handleCloseModal}
         title={t('callback.title') || 'Заказать обратный звонок'}
       >
-        <CallbackForm onSuccess={handleFormSuccess} />
+        <CallbackForm onSuccess={handleFormSuccess} source={product.name} />
       </Modal>
 
       {/* Модальное окно успеха */}
