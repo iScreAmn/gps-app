@@ -34,7 +34,8 @@ body[data-theme="dark"] .special-discounts {
 .discounts__description {
   font-family: 'GPS Mt Medium';
   font-size: 17px;
-  width: 700px;
+  width: 100%;
+  max-width: 700px;
   margin: 25px 0;
 }
 
@@ -95,8 +96,11 @@ body[data-theme="dark"] .discounts__button:active {
 /* Tablet responsiveness */
 @media screen and (max-width: 768px) {
   .section-title {
-    font-size: 28px;
+    font-size: 22px;
     margin-bottom: 1.5rem;
+    text-align: center;
+    opacity: 0.65;
+    letter-spacing: 0.02em;
   }
 
   .special-discounts {
@@ -105,42 +109,54 @@ body[data-theme="dark"] .discounts__button:active {
 
   .discounts__wrapper {
     flex-direction: column;
-    gap: 2rem;
+    gap: 1.75rem;
   }
 
   .discounts__text {
     width: 100%;
+    max-width: 520px;
     text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 20px;
+    padding: 2rem 1.5rem;
+  }
+
+  body[data-theme="dark"] .discounts__text {
+    background: rgba(255, 255, 255, 0.04);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
   }
 
   .discounts__title {
-    font-size: 1.75rem;
+    font-size: 1.6rem;
   }
 
   .discounts__description {
-    font-size: 1.1rem;
-    margin: 20px 0;
+    font-size: 1.05rem;
+    max-width: 100%;
+    margin: 1rem 0 1.5rem;
   }
 
   .discounts__button {
-    padding: 0.9rem 1.8rem;
+    padding: 0.9rem 2.2rem;
     font-size: 0.95rem;
-    min-width: 160px;
+    min-width: 200px;
   }
 
   .discounts__image {
-    width: 80%;
-    max-width: 500px;
+    width: 85%;
+    max-width: 420px;
     height: auto;
+    border-radius: 18px;
   }
 }
 
 /* Mobile responsiveness */
 @media screen and (max-width: 480px) {
   .section-title {
-    font-size: 24px;
+    font-size: 18px;
     margin-bottom: 1.25rem;
-    text-align: center;
   }
 
   .special-discounts {
@@ -152,37 +168,39 @@ body[data-theme="dark"] .discounts__button:active {
   }
 
   .discounts__text {
-    padding: 0 10px;
+    padding: 1.75rem 1.25rem;
+    border-radius: 18px;
   }
 
   .discounts__title {
-    font-size: 1.4rem;
+    font-size: 1.35rem;
   }
 
   .discounts__description {
-    font-size: 1rem;
-    margin: 16px 0;
+    font-size: 0.98rem;
+    margin: 0.9rem 0 1.4rem;
     line-height: 1.6;
   }
 
   .discounts__button {
-    padding: 0.85rem 1.5rem;
+    padding: 0.9rem 1.5rem;
     font-size: 0.9rem;
-    min-width: 150px;
+    min-width: auto;
     width: 100%;
     max-width: 280px;
   }
 
   .discounts__image {
     width: 100%;
-    max-width: 100%;
+    max-width: 320px;
+    border-radius: 16px;
   }
 }
 
 /* Extra small devices */
 @media screen and (max-width: 360px) {
   .section-title {
-    font-size: 20px;
+    font-size: 16px;
     margin-bottom: 1rem;
   }
 
@@ -194,18 +212,21 @@ body[data-theme="dark"] .discounts__button:active {
     gap: 1.25rem;
   }
 
+  .discounts__text {
+    padding: 1.5rem 1rem;
+  }
+
   .discounts__title {
-    font-size: 1.25rem;
+    font-size: 1.15rem;
   }
 
   .discounts__description {
-    font-size: 0.95rem;
-    margin: 14px 0;
+    font-size: 0.9rem;
+    margin: 0.75rem 0 1.25rem;
   }
 
   .discounts__button {
-    padding: 0.75rem 1.25rem;
+    padding: 0.8rem 1.25rem;
     font-size: 0.85rem;
-    min-width: 140px;
   }
 }
