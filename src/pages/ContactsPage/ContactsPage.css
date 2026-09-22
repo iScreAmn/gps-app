@@ -72,3 +72,96 @@ body[data-theme="dark"] .overlay-socials a:hover {
     flex-wrap: unset;
   }
 }
+
+/* Placeholder shown while the "external media" cookie category is not granted */
+.map-consent {
+  height: 100%;
+  min-height: 320px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 28px 24px;
+  text-align: center;
+  background-color: var(--light-hover-bg);
+  color: var(--light-text);
+}
+
+body[data-theme="dark"] .map-consent {
+  background-color: var(--dark-hover-bg);
+  color: var(--dark-text);
+}
+
+.map-consent__icon {
+  display: inline-flex;
+  font-size: 2rem;
+  color: var(--primary-red);
+}
+
+.map-consent__title {
+  margin: 0;
+  font-size: 1.05rem;
+  font-weight: var(--font-semibold);
+}
+
+.map-consent__text {
+  margin: 0;
+  max-width: 44ch;
+  font-size: 0.85rem;
+  line-height: 1.5;
+  color: var(--light-text-secondary);
+}
+
+body[data-theme="dark"] .map-consent__text {
+  color: var(--dark-text-secondary);
+}
+
+.map-consent__actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 6px;
+}
+
+.map-consent__btn {
+  min-height: 42px;
+  padding: 9px 18px;
+  border-radius: 10px;
+  border: 2px solid var(--light-border);
+  background-color: transparent;
+  color: inherit;
+  font-family: inherit;
+  font-size: 0.85rem;
+  font-weight: var(--font-semibold);
+  cursor: pointer;
+  transition: background-color var(--transition-fast), border-color var(--transition-fast),
+    color var(--transition-fast);
+}
+
+body[data-theme="dark"] .map-consent__btn {
+  border-color: var(--dark-border);
+}
+
+.map-consent__btn:hover {
+  border-color: var(--primary-red);
+  color: var(--primary-red);
+}
+
+.map-consent__btn--primary,
+.map-consent__btn--primary:hover {
+  background-color: var(--primary-red);
+  border-color: var(--primary-red);
+  color: #fff;
+}
+
+.map-consent__btn--primary:hover {
+  background-color: var(--primary-red-hover);
+  border-color: var(--primary-red-hover);
+}
+
+.map-consent__btn:focus-visible {
+  outline: 3px solid var(--primary-red);
+  outline-offset: 2px;
+}

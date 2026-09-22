@@ -11,15 +11,18 @@ import {
   FaInstagram,
   FaLinkedinIn,
   FaYoutube,
+  FaMapMarkedAlt,
 } from 'react-icons/fa';
 import { AiFillTikTok } from 'react-icons/ai';
 import { useLanguage } from '../../hooks/useLanguage';
+import { useCookieConsent } from '../../hooks/useCookieConsent';
 import contactsData from '../../data/contactsData';
 import '../InfoPage/InfoPage.css';
 import './ContactsPage.css';
 
 const ContactsPage = () => {
   const { t, language } = useLanguage();
+  const { externalMediaAllowed, allowExternalMedia, openSettings } = useCookieConsent();
   const pageLang = language === 'en' ? 'en' : 'ka';
 
   const phoneHref = contactsData.phone.href;
@@ -83,14 +86,42 @@ const ContactsPage = () => {
 
               <div className="info-map-wrap">
                 <div className="info-map">
-                  <iframe
-                    title={t('infoPage.mapIframeTitle')}
-                    src="https://www.google.com/maps?q=41.724653,44.786316&z=15&output=embed"
-                    loading="lazy"
-                    referrerPolicy="no-referrer-when-downgrade"
-                    allowFullScreen=""
-                  />
-                  <div className="info-map-overlay" />
+                  {externalMediaAllowed ? (
+                    <>
+                      <iframe
+                        title={t('infoPage.mapIframeTitle')}
+                        src="https://www.google.com/maps?q=41.724653,44.786316&z=15&output=embed"
+                        loading="lazy"
+                        referrerPolicy="no-referrer-when-downgrade"
+                        allowFullScreen=""
+                      />
+                      <div className="info-map-overlay" />
+                    </>
+                  ) : (
+                    <div className="map-consent" role="note">
+                      <span className="map-consent__icon" aria-hidden="true">
+                        <FaMapMarkedAlt />
+                      </span>
+                      <h3 className="map-consent__title">{t('cookieConsent.map.title')}</h3>
+                      <p className="map-consent__text">{t('cookieConsent.map.description')}</p>
+                      <div className="map-consent__actions">
+                        <button
+                          type="button"
+                          className="map-consent__btn map-consent__btn--primary"
+                          onClick={allowExternalMedia}
+                        >
+                          {t('cookieConsent.map.allow')}
+                        </button>
+                        <button
+                          type="button"
+                          className="map-consent__btn"
+                          onClick={openSettings}
+                        >
+                          {t('cookieConsent.manage')}
+                        </button>
+                      </div>
+                    </div>
+                  )}
                 </div>
               </div>
             </div>
