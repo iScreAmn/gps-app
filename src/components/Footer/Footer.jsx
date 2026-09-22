@@ -2,6 +2,7 @@ import React, { useMemo } from "react";
 import { Link } from "react-router-dom";
 import { useLanguage } from "../../hooks/useLanguage";
 import { useTheme } from "../../contexts/ThemeContext";
+import { useCookieConsent } from "../../hooks/useCookieConsent";
 import { mainLogo, mainLogoWhite } from "../../assets/images";
 import contactsData from "../../data/contactsData";
 import { FaPhoneAlt, FaFacebookSquare, FaInstagram, FaLinkedinIn, FaYoutube, FaTelegram, FaWhatsapp } from "react-icons/fa";
@@ -12,6 +13,7 @@ import "./Footer.css";
 const Footer = () => {
   const { language, t } = useLanguage();
   const { theme } = useTheme();
+  const { openSettings } = useCookieConsent();
   const currentYear = new Date().getFullYear();
   const portfolioLink = useMemo(() => {
     const url = new URL("https://dj-myportfolio.vercel.app/");
@@ -113,6 +115,13 @@ const Footer = () => {
             >
               {t("footer.privacy_policy")}
             </Link>
+            <button
+              type="button"
+              className="footer-bottom-link footer-cookie-settings"
+              onClick={openSettings}
+            >
+              {t("cookieConsent.manage")}
+            </button>
           </div>
           <div className="copyright-socials">
             <a href={contactsData.socials.whatsapp} target="_blank" rel="noopener noreferrer" className="copyright-social-link">

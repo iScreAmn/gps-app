@@ -1,0 +1,408 @@
+.cookie-consent {
+  --cc-surface: var(--light-card-bg);
+  --cc-surface-muted: var(--light-hover-bg);
+  --cc-text: var(--light-text);
+  --cc-text-secondary: var(--light-text-secondary);
+  --cc-border: var(--light-border);
+  --cc-shadow: 0 18px 48px rgba(17, 24, 39, 0.18), var(--light-shadow);
+  --cc-switch-off: #CBD5E1;
+
+  font-family: inherit;
+  color: var(--cc-text);
+  line-height: 1.55;
+}
+
+body[data-theme="dark"] .cookie-consent {
+  --cc-surface: var(--dark-card-bg);
+  --cc-surface-muted: var(--dark-hover-bg);
+  --cc-text: var(--dark-text);
+  --cc-text-secondary: var(--dark-text-secondary);
+  --cc-border: var(--dark-border);
+  --cc-shadow: 0 18px 48px rgba(0, 0, 0, 0.55), var(--dark-shadow);
+  --cc-switch-off: #4B5563;
+}
+
+/* ---------- Shared buttons ---------- */
+
+.cookie-btn {
+  flex: 1 1 auto;
+  min-height: 44px;
+  padding: 10px 18px;
+  border-radius: 10px;
+  border: 2px solid transparent;
+  font-size: 0.9rem;
+  font-weight: var(--font-semibold);
+  font-family: inherit;
+  line-height: 1.25;
+  text-align: center;
+  white-space: normal;
+  cursor: pointer;
+  transition: background-color var(--transition-fast), color var(--transition-fast),
+    border-color var(--transition-fast);
+}
+
+.cookie-btn--primary {
+  font-family: 'GPS Mt Heavy';
+  background-color: var(--primary-red);
+  border-color: var(--primary-red);
+  color: #fff;
+}
+
+.cookie-btn--primary:hover {
+  background-color: var(--primary-red-hover);
+  border-color: var(--primary-red-hover);
+}
+
+.cookie-btn--ghost {
+  font-family: 'GPS Mt Heavy';
+  background-color: transparent;
+  border-color: var(--cc-border);
+  color: var(--cc-text);
+}
+
+.cookie-btn--ghost:hover {
+  background-color: var(--cc-surface-muted);
+  border-color: var(--cc-text-secondary);
+}
+
+.cookie-consent :focus-visible {
+  outline: 3px solid var(--primary-red);
+  outline-offset: 2px;
+  border-radius: 6px;
+}
+
+body[data-theme="dark"] .cookie-consent :focus-visible {
+  outline-color: #F87171;
+}
+
+body[data-theme="dark"] .cookie-banner__icon {
+  background-color: rgba(220, 38, 38, 0.2);
+}
+
+/* ---------- Banner ---------- */
+
+.cookie-banner {
+  position: fixed;
+  z-index: 100000;
+  left: 16px;
+  right: 16px;
+  bottom: max(16px, env(safe-area-inset-bottom));
+  /* Centred without a transform, so Framer Motion fully owns `transform` */
+  margin-inline: auto;
+  max-width: 760px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 20px 22px;
+  background-color: var(--cc-surface);
+  border: 1px solid var(--cc-border);
+  border-radius: 16px;
+  box-shadow: var(--cc-shadow);
+}
+
+.cookie-banner__head {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+}
+
+.cookie-banner__icon {
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  color: var(--primary-red);
+  font-size: 1.5rem;
+  transform-origin: 50% 65%;
+  animation: cookie-shake 5s ease-in-out 0.6s infinite;
+}
+
+@keyframes cookie-shake {
+  0%, 14%, 100% {
+    transform: rotate(0deg) scale(1);
+  }
+  2% {
+    transform: rotate(-12deg) scale(1.06);
+  }
+  4% {
+    transform: rotate(10deg) scale(1.06);
+  }
+  6% {
+    transform: rotate(-8deg) scale(1.04);
+  }
+  8% {
+    transform: rotate(6deg) scale(1.04);
+  }
+  10% {
+    transform: rotate(-4deg) scale(1.02);
+  }
+  12% {
+    transform: rotate(2deg) scale(1.01);
+  }
+}
+
+.cookie-banner__title {
+  margin: 0 0 6px;
+  font-family: 'GPS Mt Heavy';
+  font-size: 1.05rem;
+  font-weight: var(--font-bold);
+}
+
+.cookie-banner__description {
+  margin: 0;
+  font-family: 'GPS Nus Medium';
+  font-size: 0.875rem;
+  color: var(--cc-text-secondary);
+}
+
+.cookie-banner__link,
+.cookie-modal__link {
+  color: var(--primary-red);
+  font-family: 'GPS Mt Heavy';
+  font-weight: var(--font-medium);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.cookie-banner__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+/* ---------- Settings modal ---------- */
+
+.cookie-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 100010;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+.cookie-modal__overlay {
+  position: absolute;
+  inset: 0;
+  background-color: rgba(17, 24, 39, 0.6);
+  backdrop-filter: blur(3px);
+  -webkit-backdrop-filter: blur(3px);
+}
+
+.cookie-modal__dialog {
+  position: relative;
+  width: min(600px, 100%);
+  max-height: min(86vh, 760px);
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 24px;
+  background-color: var(--cc-surface);
+  border: 1px solid var(--cc-border);
+  border-radius: 18px;
+  box-shadow: var(--cc-shadow);
+}
+
+.cookie-modal__header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.cookie-modal__title {
+  margin: 0;
+  font-family: 'GPS Mt Heavy';
+  font-size: 1.25rem;
+  font-weight: var(--font-bold);
+}
+
+.cookie-modal__close {
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+  background-color: transparent;
+  color: var(--cc-text-secondary);
+  cursor: pointer;
+}
+
+.cookie-modal__close:hover {
+  background-color: var(--cc-surface-muted);
+  color: var(--cc-text);
+}
+
+.cookie-modal__description {
+  margin: 0;
+  font-family: 'GPS Nus Medium';
+  font-size: 0.875rem;
+  color: var(--cc-text-secondary);
+}
+
+.cookie-categories {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.cookie-category {
+  padding: 16px;
+  background-color: var(--cc-surface-muted);
+  border: 1px solid var(--cc-border);
+  border-radius: 12px;
+}
+
+.cookie-category__head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.cookie-category__title {
+  margin: 0;
+  font-family: 'GPS Mt Heavy';
+  font-size: 0.975rem;
+  font-weight: var(--font-semibold);
+}
+
+.cookie-category__description {
+  margin: 8px 0 0;
+  font-family: 'GPS Nus Medium';
+  font-size: 0.825rem;
+  color: var(--cc-text-secondary);
+}
+
+.cookie-category__badge {
+  font-family: 'GPS Nus Medium';
+  display: inline-block;
+  margin-top: 10px;
+  padding: 3px 10px;
+  border-radius: 999px;
+  border: 1px solid var(--cc-border);
+  background-color: var(--cc-surface);
+  font-size: 0.725rem;
+  font-weight: var(--font-medium);
+  color: var(--cc-text-secondary);
+}
+
+.cookie-modal__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.cookie-modal__link {
+  font-size: 0.825rem;
+}
+
+/* ---------- Switch ---------- */
+
+.cookie-switch {
+  position: relative;
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.cookie-switch--locked {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.cookie-switch__input {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  opacity: 0;
+  cursor: inherit;
+}
+
+.cookie-switch__track {
+  display: block;
+  width: 48px;
+  height: 28px;
+  padding: 3px;
+  border-radius: 999px;
+  background-color: var(--cc-switch-off);
+  transition: background-color var(--transition-fast);
+}
+
+.cookie-switch__thumb {
+  display: block;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background-color: #fff;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+  transition: transform var(--transition-fast);
+}
+
+.cookie-switch__input:checked + .cookie-switch__track {
+  background-color: var(--primary-red);
+}
+
+.cookie-switch__input:checked + .cookie-switch__track .cookie-switch__thumb {
+  transform: translateX(20px);
+}
+
+.cookie-switch__input:focus-visible + .cookie-switch__track {
+  outline: 3px solid var(--primary-red);
+  outline-offset: 2px;
+}
+
+/* ---------- Responsive ---------- */
+
+@media (max-width: 640px) {
+  .cookie-banner {
+    left: 8px;
+    right: 8px;
+    bottom: max(8px, env(safe-area-inset-bottom));
+    padding: 18px 16px;
+    border-radius: 14px;
+    max-height: 80vh;
+    overflow-y: auto;
+  }
+
+  .cookie-banner__actions,
+  .cookie-modal__actions {
+    flex-direction: column;
+  }
+
+  .cookie-btn {
+    width: 100%;
+  }
+
+  .cookie-modal {
+    padding: 12px;
+  }
+
+  .cookie-modal__dialog {
+    padding: 18px 16px;
+    max-height: 92vh;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cookie-consent *,
+  .cookie-consent *::before,
+  .cookie-consent *::after {
+    transition-duration: 0.01ms !important;
+    animation: none !important;
+  }
+}

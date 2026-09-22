@@ -15,7 +15,7 @@
     "system": "System",
     "tagline": "Fast. Reliable. Profitable.",
     "location": "Tbilisi",
-    "hours": "Mon-Sut 10:00 - 18:00",
+    "hours": "Mon-Sut 09:30 - 17:30",
     "searchPlaceholder": "Search...",
     "phone1": "+995 32 230 81 77",
     "phone2": "+995 577 77 88 99",
@@ -270,7 +270,7 @@
     "send": "Send",
     "tbilisi_georgia": "2 Archil Kurdiani St, Tbilisi",
     "company_name": "Georgian Polygraph Services",
-    "working_hours": "Mon–Fri 10:00 – 18:00",
+    "working_hours": "Mon–Fri 09:30 - 17:30",
     "working_hours_short": "Saturday 10:00 – 14:00",
     "plan_route": "Plan route"
   },
@@ -764,7 +764,7 @@
       "printerTagline": "We are ready to help",
       "printerOutsideHours": "Outside working hours",
       "printerHoursLabel": "Working hours:",
-      "printerHoursWeekdays": "Monday – Friday: 10:00–18:00",
+      "printerHoursWeekdays": "Monday – Friday: 09:30 - 17:30",
       "printerHoursSaturday": "Saturday: 10:00–14:00",
       "textUs": "Text us",
       "textUsOffline": "Available during working hours",
@@ -849,7 +849,7 @@
       "addressLabel": "Address",
       "addressValue": "Tbilisi, Georgia",
       "hoursLabel": "Hours",
-      "hoursValue": "Mon–Fri: 10:00 — 18:00, Sat: 10:00 — 14:00"
+      "hoursValue": "Mon–Fri: 09:30 - 17:30, Sat: 10:00 — 14:00"
     },
     "footerCta": {
       "title": "Have questions?",
@@ -1185,5 +1185,48 @@
     "contactNote": "Contact us for details and order today!",
     "callButton": "Contact Us",
     "zoomImage": "Enlarge photo"
+  },
+  "cookieConsent": {
+    "manage": "Cookie settings",
+    "banner": {
+      "ariaLabel": "Cookie consent",
+      "title": "We use cookies",
+      "description": "Necessary cookies keep the site working. Analytics and embedded content are used only with your consent.",
+      "privacyLink": "Privacy Policy"
+    },
+    "settings": {
+      "title": "Cookie settings",
+      "description": "Choose which cookie categories you allow. You can change this at any time via the “Cookie settings” link in the footer."
+    },
+    "categories": {
+      "necessary": {
+        "title": "Necessary",
+        "description": "Required for the core functionality of the site: language, theme and your cookie choice. These cookies cannot be turned off.",
+        "switchLabel": "Necessary cookies, always active",
+        "badge": "Always active"
+      },
+      "analytics": {
+        "title": "Analytics",
+        "description": "Google Analytics 4 helps us understand how visitors use the site so we can improve it. Google Analytics is not loaded until you allow this category.",
+        "switchLabel": "Allow analytics cookies"
+      },
+      "externalMedia": {
+        "title": "External media",
+        "description": "Allows the Google Maps embed on the contacts page to load. When it loads, your IP address is sent to Google.",
+        "switchLabel": "Allow external media"
+      }
+    },
+    "actions": {
+      "acceptAll": "Accept all",
+      "rejectOptional": "Reject optional",
+      "customize": "Customize",
+      "save": "Save choice",
+      "close": "Close cookie settings"
+    },
+    "map": {
+      "title": "Map is blocked",
+      "description": "Google Maps is an external service. Allow the “External media” category to load the map here.",
+      "allow": "Show map"
+    }
   }
 }
