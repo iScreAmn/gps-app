@@ -1,17 +1,34 @@
-import { useEffect } from 'react';
+import { useEffect, useRef } from 'react';
 import { useLocation } from 'react-router-dom';
+import { useCookieConsent } from '../../hooks/useCookieConsent';
+import { loadGoogleAnalytics, trackPageView } from '../../utils/analytics';
 
 export default function AnalyticsTracker() {
   const location = useLocation();
+  const { analyticsAllowed } = useCookieConsent();
+
+  // Survives the StrictMode effect replay, so one navigation is one page_view.
+  const lastPagePathRef = useRef(null);
 
   useEffect(() => {
-    if (typeof window.gtag !== 'function') return;
-    window.gtag('event', 'page_view', {
-      page_path: location.pathname + location.search,
-      page_location: window.location.href,
-      page_title: document.title,
+    if (!analyticsAllowed) {
+      lastPagePathRef.current = null;
+      return;
+    }
+
+    const pagePath = location.pathname + location.search;
+    if (lastPagePathRef.current === pagePath) return;
+    lastPagePathRef.current = pagePath;
+
+    loadGoogleAnalytics().then((ready) => {
+      if (!ready) return;
+      trackPageView({
+        pagePath,
+        pageLocation: window.location.href,
+        pageTitle: document.title,
+      });
     });
-  }, [location.pathname, location.search]);
+  }, [analyticsAllowed, location.pathname, location.search]);
 
   return null;
 }
