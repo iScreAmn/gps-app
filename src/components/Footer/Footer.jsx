@@ -16,7 +16,7 @@ const Footer = () => {
   const { openSettings } = useCookieConsent();
   const currentYear = new Date().getFullYear();
   const portfolioLink = useMemo(() => {
-    const url = new URL("https://dj-myportfolio.vercel.app/");
+    const url = new URL("https://djcode.ge/");
     const sourceHost =
       typeof window !== "undefined"
         ? window.location.hostname.replace(/^www\./, "")
