@@ -136,6 +136,7 @@ body[data-theme="dark"] .footer-contact-link:hover {
 
 .footer-social-link {
   display: inline-flex;
+  flex-shrink: 0;
   align-items: center;
   justify-content: center;
   width: 42px;
@@ -164,24 +165,39 @@ body[data-theme="dark"] .footer-contact-link:hover {
   font-size: 1.125rem;
 }
 
-.footer-social-link:hover {
-  color: white;
-  border-color: var(--primary-red);
-  transform: translateY(-3px) scale(1.08);
-  box-shadow: 0 8px 16px rgba(220, 38, 38, 0.2);
+/* Hover only on devices that actually support it — on touch screens :hover
+   sticks after a tap (the icon stays red until you tap elsewhere). */
+@media (hover: hover) {
+  .footer-social-link:hover {
+    color: white;
+    border-color: var(--primary-red);
+    transform: translateY(-3px) scale(1.08);
+    box-shadow: 0 8px 16px rgba(220, 38, 38, 0.2);
+  }
+
+  .footer-social-link:hover::before {
+    opacity: 1;
+  }
+
+  body[data-theme="dark"] .footer-social-link:hover {
+    color: white;
+    box-shadow: 0 8px 16px rgba(220, 38, 38, 0.3);
+  }
 }
 
-.footer-social-link:hover::before {
+/* Touch feedback instead of hover: fades back out immediately on release */
+.footer-social-link:active {
+  color: white;
+  border-color: var(--primary-red);
+  transform: scale(0.96);
+}
+
+.footer-social-link:active::before {
   opacity: 1;
 }
 
 body[data-theme="dark"] .footer-social-link {
   border-color: var(--dark-border);
-}
-
-body[data-theme="dark"] .footer-social-link:hover {
-  color: white;
-  box-shadow: 0 8px 16px rgba(220, 38, 38, 0.3);
 }
 
 .footer-bottom {
@@ -219,6 +235,7 @@ body[data-theme="dark"] .footer-bottom {
 
 .copyright-social-link {
   display: inline-flex;
+  flex-shrink: 0;
   align-items: center;
   justify-content: center;
   color: inherit;
@@ -247,24 +264,36 @@ body[data-theme="dark"] .footer-bottom {
   font-size: 1.125rem;
 }
 
-.copyright-social-link:hover {
-  color: white;
-  border-color: var(--primary-red);
-  transform: translateY(-3px) scale(1.08);
-  box-shadow: 0 8px 16px rgba(220, 38, 38, 0.2);
+@media (hover: hover) {
+  .copyright-social-link:hover {
+    color: white;
+    border-color: var(--primary-red);
+    transform: translateY(-3px) scale(1.08);
+    box-shadow: 0 8px 16px rgba(220, 38, 38, 0.2);
+  }
+
+  .copyright-social-link:hover::before {
+    opacity: 1;
+  }
+
+  body[data-theme="dark"] .copyright-social-link:hover {
+    color: white;
+    box-shadow: 0 8px 16px rgba(220, 38, 38, 0.3);
+  }
 }
 
-.copyright-social-link:hover::before {
+.copyright-social-link:active {
+  color: white;
+  border-color: var(--primary-red);
+  transform: scale(0.96);
+}
+
+.copyright-social-link:active::before {
   opacity: 1;
 }
 
 body[data-theme="dark"] .copyright-social-link {
   border-color: var(--dark-border);
-}
-
-body[data-theme="dark"] .copyright-social-link:hover {
-  color: white;
-  box-shadow: 0 8px 16px rgba(220, 38, 38, 0.3);
 }
 
 .footer-bottom-link {
@@ -434,14 +463,23 @@ body[data-theme="dark"] .footer-credit-link {
     font-size: 0.85rem;
   }
 
+  /* Иконки растягиваются по всей ширине, а не в фиксированные 300px:
+     6 × 48px не помещались, flex сжимал ссылки по ширине, и круглая
+     подложка при наведении превращалась в овал. */
   .copyright-socials {
-    gap: 0.875rem;
-    width: 300px;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+    gap: 0.25rem;
   }
 
+  /* Ширина сжимается вместе с контейнером, высота всегда равна ширине. */
   .copyright-social-link {
-    width: 48px;
-    height: 48px;
+    flex: 0 1 48px;
+    min-width: 0;
+    width: auto;
+    height: auto;
+    aspect-ratio: 1;
     border: none;
   }
 

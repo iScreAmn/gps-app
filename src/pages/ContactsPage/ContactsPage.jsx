@@ -6,7 +6,6 @@ import {
   FaClock,
   FaArrowRight,
   FaWhatsapp,
-  FaTelegramPlane,
   FaFacebookSquare,
   FaInstagram,
   FaLinkedinIn,
@@ -33,11 +32,10 @@ const ContactsPage = () => {
   const socials = [
     { icon: <FaFacebookSquare />, href: contactsData.socials?.facebook, label: 'Facebook' },
     { icon: <FaInstagram />, href: contactsData.socials?.instagram, label: 'Instagram' },
-    { icon: <FaLinkedinIn />, href: contactsData.socials?.linkedin, label: 'LinkedIn' },
     { icon: <AiFillTikTok />, href: contactsData.socials?.tiktok, label: 'TikTok' },
+    { icon: <FaLinkedinIn />, href: contactsData.socials?.linkedin, label: 'LinkedIn' },
     { icon: <FaYoutube />, href: contactsData.socials?.youtube, label: 'YouTube' },
     { icon: <FaWhatsapp />, href: contactsData.socials?.whatsapp, label: 'WhatsApp' },
-    { icon: <FaTelegramPlane />, href: contactsData.socials?.telegram, label: 'Telegram' },
   ].filter((item) => Boolean(item.href));
 
   return (

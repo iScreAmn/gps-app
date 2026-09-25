@@ -1,9 +1,7 @@
-/* Shell: reuse InfoPage tokens (import InfoPage.css) without sticky-bar bottom gap */
 .contacts-page .info-page {
   padding-bottom: 48px;
 }
 
-/* Align with site `.container` (1600px) — InfoPage `.info-container` is capped at 1180px */
 .contacts-page .info-container {
   max-width: 1600px;
   width: 100%;
@@ -23,7 +21,6 @@
   }
 }
 
-/* Social icons moved out of the old map overlay — centered under the contact grid */
 .contacts-socials-wrap {
   margin-top: 28px;
   display: flex;

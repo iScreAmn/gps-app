@@ -5,7 +5,7 @@ import { useTheme } from "../../contexts/ThemeContext";
 import { useCookieConsent } from "../../hooks/useCookieConsent";
 import { mainLogo, mainLogoWhite } from "../../assets/images";
 import contactsData from "../../data/contactsData";
-import { FaPhoneAlt, FaFacebookSquare, FaInstagram, FaLinkedinIn, FaYoutube, FaTelegram, FaWhatsapp } from "react-icons/fa";
+import { FaPhoneAlt, FaFacebookSquare, FaInstagram, FaLinkedinIn, FaYoutube, FaWhatsapp } from "react-icons/fa";
 import { MdOutlineMail, MdLocationPin } from "react-icons/md";
 import { AiFillTikTok } from "react-icons/ai";
 import "./Footer.css";
@@ -70,23 +70,20 @@ const Footer = () => {
 
             {/* Mobile-only socials under contacts */}
             <div className="footer-socials footer-socials--mobile">
-              <a href={contactsData.socials.whatsapp} target="_blank" rel="noopener noreferrer" className="footer-social-link">
-                <FaWhatsapp />
-              </a>
-              <a href={contactsData.socials.telegram} target="_blank" rel="noopener noreferrer" className="footer-social-link">
-                <FaTelegram />
+              <a href="https://instagram.com/geopolygraph" target="_blank" className="footer-social-link">
+                <FaInstagram />
               </a>
               <a href="https://facebook.com/GeorgianPolygraphServices" target="_blank" className="footer-social-link">
                 <FaFacebookSquare />
               </a>
-              <a href="https://instagram.com/geopolygraph" target="_blank" className="footer-social-link">
-                <FaInstagram />
+              <a href="https://tiktok.com/@georgian.polygrap" target="_blank" className="footer-social-link">
+                <AiFillTikTok />
+              </a>
+              <a href={contactsData.socials.whatsapp} target="_blank" rel="noopener noreferrer" className="footer-social-link">
+                <FaWhatsapp />
               </a>
               <a href="https://linkedin.com/company/georgian-polygraph-services" target="_blank" className="footer-social-link">
                 <FaLinkedinIn />
-              </a>
-              <a href="https://tiktok.com/@georgian.polygrap" target="_blank" className="footer-social-link">
-                <AiFillTikTok />
               </a>
               <a href="https://www.youtube.com/@geopolser" target="_blank" className="footer-social-link">
                 <FaYoutube />
@@ -107,7 +104,7 @@ const Footer = () => {
               rel="noopener noreferrer"
               className="footer-credit-link"
             >
-              Developed by: «DJ Studio»
+              Developed by studio: «DJ Code»
             </a>
             <Link
               to={`/${language}/privacy-policy`}
@@ -124,26 +121,23 @@ const Footer = () => {
             </button>
           </div>
           <div className="copyright-socials">
-            <a href={contactsData.socials.whatsapp} target="_blank" rel="noopener noreferrer" className="copyright-social-link">
-              <FaWhatsapp />
-            </a>
-            <a href={contactsData.socials.telegram} target="_blank" rel="noopener noreferrer" className="copyright-social-link">
-              <FaTelegram />
+            <a href="https://instagram.com/geopolygraph" target="_blank" className="copyright-social-link">
+              <FaInstagram />
             </a>
             <a href="https://facebook.com/GeorgianPolygraphServices" target="_blank" className="copyright-social-link">
               <FaFacebookSquare />
             </a>
-            <a href="https://instagram.com/geopolygraph" target="_blank" className="copyright-social-link">
-              <FaInstagram />
+            <a href="https://tiktok.com/@georgian.polygrap" target="_blank" className="copyright-social-link">
+              <AiFillTikTok />
             </a>
             <a href="https://linkedin.com/company/georgian-polygraph-services" target="_blank" className="copyright-social-link">
               <FaLinkedinIn />
             </a>
-            <a href="https://tiktok.com/@georgian.polygrap" target="_blank" className="copyright-social-link">
-              <AiFillTikTok />
-            </a>
             <a href="https://www.youtube.com/@geopolser" target="_blank" className="copyright-social-link">
               <FaYoutube />
+            </a>
+            <a href={contactsData.socials.whatsapp} target="_blank" rel="noopener noreferrer" className="copyright-social-link">
+              <FaWhatsapp />
             </a>
           </div>
         </div>
