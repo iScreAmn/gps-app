@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import { FaArrowUp } from "react-icons/fa";
 import './ScrollToTop.css';
@@ -17,7 +17,8 @@ const ScrollToTop = () => {
     );
   });
   const [isVisible, setIsVisible] = useState(false);
-  const buttonRef = useRef(null);
+  const [footerLift, setFooterLift] = useState(0);
+  const [progress, setProgress] = useState(0);
 
   useEffect(() => {
     const mq = window.matchMedia(INFO_PAGE_FLOATING_SCROLL_HIDE_MQ);
@@ -31,98 +32,43 @@ const ScrollToTop = () => {
     return () => mq.removeEventListener('change', sync);
   }, [location.pathname]);
 
+  // Кнопка прижата к низу экрана, поэтому на футере она легла бы поверх его
+  // содержимого — приподнимаем её ровно на ту высоту, на которую футер зашёл
+  // в кадр, и кнопка жёстко «останавливается» над ним.
   useEffect(() => {
-    const toggleVisibility = () => {
-      if (window.pageYOffset > 300) {
-        setIsVisible(true);
-      } else {
-        setIsVisible(false);
+    let frame = null;
+
+    const measure = () => {
+      frame = null;
+      setIsVisible(window.scrollY > 300);
+
+      const scrollable = document.documentElement.scrollHeight - window.innerHeight;
+      setProgress(scrollable > 0 ? Math.min(1, window.scrollY / scrollable) : 0);
+
+      // Ищем футер на каждом кадре: после смены маршрута он может смонтироваться заново.
+      const footer = document.querySelector('.footer');
+      if (!footer) {
+        setFooterLift(0);
+        return;
       }
+
+      const overlap = window.innerHeight - footer.getBoundingClientRect().top;
+      setFooterLift(Math.max(0, overlap));
     };
 
-    window.addEventListener('scroll', toggleVisibility);
+    const onScroll = () => {
+      if (frame === null) frame = requestAnimationFrame(measure);
+    };
 
+    measure();
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', onScroll);
     return () => {
-      window.removeEventListener('scroll', toggleVisibility);
+      if (frame !== null) cancelAnimationFrame(frame);
+      window.removeEventListener('scroll', onScroll);
+      window.removeEventListener('resize', onScroll);
     };
-  }, []);
-
-  useEffect(() => {
-    const footer = document.querySelector('.footer');
-    const buttonEl = buttonRef.current;
-
-    if (!footer || !buttonEl) {
-      return undefined;
-    }
-
-    const toPixels = (value) => {
-      if (!value) return null;
-      const trimmed = value.trim();
-      if (!trimmed) return null;
-
-      if (trimmed.endsWith('px')) {
-        const parsed = parseFloat(trimmed);
-        return Number.isNaN(parsed) ? null : parsed;
-      }
-
-      if (trimmed.endsWith('rem')) {
-        const base = parseFloat(trimmed);
-        if (Number.isNaN(base)) return null;
-        const rootFontSize = parseFloat(
-          window.getComputedStyle(document.documentElement).fontSize
-        ) || 16;
-        return base * rootFontSize;
-      }
-
-      const fallback = parseFloat(trimmed);
-      return Number.isNaN(fallback) ? null : fallback;
-    };
-
-    let lastAppliedOffset = null;
-    let footerCurrentlyVisible = false;
-
-    const updatePosition = () => {
-      const computed = window.getComputedStyle(buttonEl);
-      const baseOffset = toPixels(computed.getPropertyValue('--scroll-to-top-base'))
-        ?? toPixels(computed.bottom)
-        ?? 32;
-
-      const footerRect = footer.getBoundingClientRect();
-      const viewportHeight = window.innerHeight;
-      const overlap = viewportHeight - footerRect.top;
-      const shouldAdjust = overlap > 0;
-
-      if (shouldAdjust !== footerCurrentlyVisible) {
-        footerCurrentlyVisible = shouldAdjust;
-        buttonEl.classList.toggle('scroll-to-top--footer-visible', shouldAdjust);
-      }
-
-      if (shouldAdjust) {
-        const offset = Math.max(baseOffset, overlap);
-
-        if (lastAppliedOffset === null || Math.abs(offset - lastAppliedOffset) > 0.5) {
-          buttonEl.style.setProperty('--scroll-to-top-offset', `${offset}px`);
-          lastAppliedOffset = offset;
-        }
-      } else if (lastAppliedOffset !== null) {
-        buttonEl.style.removeProperty('--scroll-to-top-offset');
-        lastAppliedOffset = null;
-      }
-    };
-
-    updatePosition();
-
-    const opts = { passive: true };
-    window.addEventListener('scroll', updatePosition, opts);
-    window.addEventListener('resize', updatePosition);
-
-    return () => {
-      window.removeEventListener('scroll', updatePosition, opts);
-      window.removeEventListener('resize', updatePosition);
-      buttonEl.classList.remove('scroll-to-top--footer-visible');
-      buttonEl.style.removeProperty('--scroll-to-top-offset');
-    };
-  }, [hideFloatingOnInfoMobile]);
+  }, [hideFloatingOnInfoMobile, location.pathname]);
 
   const scrollToTop = () => {
     window.scrollTo({
@@ -137,13 +83,18 @@ const ScrollToTop = () => {
 
   return (
     <button
-      ref={buttonRef}
-      className={`scroll-to-top ${isVisible ? 'visible' : ''}`}
+      className={`scroll-to-top ${isVisible ? 'visible' : ''} ${footerLift > 0 ? 'scroll-to-top--footer-visible' : ''}`}
+      style={{ '--footer-lift': `${footerLift}px`, '--scroll-progress': progress }}
       onClick={scrollToTop}
       aria-label="Scroll to top"
       title="Scroll to top"
     >
-      <FaArrowUp />
+      {/* Кольцо заполняется по мере прокрутки страницы */}
+      <svg className="scroll-to-top__ring" viewBox="0 0 48 48" aria-hidden="true">
+        <circle className="scroll-to-top__ring-track" cx="24" cy="24" r="22" />
+        <circle className="scroll-to-top__ring-bar" cx="24" cy="24" r="22" />
+      </svg>
+      <FaArrowUp className="scroll-to-top__icon" />
     </button>
   );
 };
