@@ -922,6 +922,7 @@ body[data-theme="dark"] .info-service-shine {
   color: var(--info-text-soft);
 }
 .info-contact-row-text strong {
+  font-family: 'GPS Mt Medium';
   font-size: 0.98rem;
   font-weight: 600;
   letter-spacing: -0.01em;
