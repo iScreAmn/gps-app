@@ -1,0 +1,422 @@
+/* =========================================================
+   Home closing CTA — editorial headline, magnetic button,
+   scroll-linked marquee and line-art product rail
+   ========================================================= */
+.home-cta {
+  --ink: var(--text-color);
+  --ink-soft: color-mix(in srgb, var(--text-color) 62%, transparent);
+  --ink-faint: color-mix(in srgb, var(--text-color) 22%, transparent);
+  --hairline: color-mix(in srgb, var(--text-color) 14%, transparent);
+  --accent: var(--primary-red);
+  --serif: "GPS Nus Book", "GPS Mt", Georgia, "Times New Roman", serif;
+  --display: "GPS Mt Heavy", "GPS Mt Bold", system-ui, sans-serif;
+  --ease: cubic-bezier(.16, 1, .3, 1);
+
+  position: relative;
+  padding: clamp(4rem, 12vh, 9rem) 0 clamp(3rem, 8vh, 6rem);
+  color: var(--ink);
+  overflow-x: clip;
+}
+
+body[data-theme="dark"] .home-cta {
+  --hairline: color-mix(in srgb, var(--text-color) 18%, transparent);
+}
+
+/* ── Headline + aside ─────────────────────────────────── */
+.home-cta__head {
+  display: grid;
+  grid-template-columns: minmax(0, 1.45fr) minmax(0, 0.55fr);
+  gap: clamp(2rem, 5vw, 5rem);
+  align-items: end;
+  padding: 0 0 clamp(3rem, 8vh, 6rem);
+}
+
+.home-cta__title {
+  margin: 0;
+  font-family: var(--display);
+  font-weight: 800;
+  font-size: clamp(2.6rem, 7.4vw, 8.5rem);
+  line-height: 0.92;
+  letter-spacing: -0.04em;
+  overflow-wrap: anywhere;
+}
+
+.home-cta__line {
+  display: block;
+  overflow: hidden;
+  padding-bottom: 0.08em;
+}
+
+.home-cta__line-inner {
+  display: inline-block;
+  will-change: transform;
+}
+
+.home-cta__line--accent {
+  padding-left: 1.2em;
+  font-family: var(--serif);
+  font-style: italic;
+  font-weight: 400;
+  letter-spacing: -0.02em;
+  color: var(--accent);
+}
+
+.home-cta__aside {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 2rem;
+}
+
+/* ── Magnetic button ──────────────────────────────────── */
+.home-cta__magnet {
+  position: relative;
+  width: clamp(170px, 15vw, 210px);
+  aspect-ratio: 1;
+  display: grid;
+  place-items: center;
+}
+
+.home-cta__ring {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  animation: homeCtaSpin 22s linear infinite;
+  pointer-events: none;
+}
+
+.home-cta__ring text {
+  fill: var(--ink-soft);
+  font-size: 12.5px;
+  font-weight: 500;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+}
+
+@keyframes homeCtaSpin {
+  to { transform: rotate(360deg); }
+}
+
+.home-cta__magnet-body {
+  width: 64%;
+  aspect-ratio: 1;
+}
+
+.home-cta__button {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.45rem;
+  padding: 0.75rem;
+  border-radius: 50%;
+  overflow: hidden;
+  isolation: isolate;
+  background: var(--accent);
+  color: #fff;
+  text-align: center;
+  text-decoration: none;
+  font-family: "GPS Mt Medium", system-ui, sans-serif;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  line-height: 1.25;
+  text-transform: uppercase;
+  box-shadow: 0 18px 50px -18px color-mix(in srgb, var(--accent) 80%, transparent);
+  transition: box-shadow 0.5s ease;
+}
+
+.home-cta__button-fill {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  border-radius: 50%;
+  background: var(--ink);
+  transform: translateY(101%);
+  transition: transform 0.6s cubic-bezier(.7, 0, .2, 1);
+}
+
+body[data-theme="dark"] .home-cta__button:hover {
+  color: #111;
+}
+
+.home-cta__button-label,
+.home-cta__button-arrow {
+  display: inline-flex;
+  transition: transform 0.5s var(--ease);
+}
+
+.home-cta__button:hover .home-cta__button-fill {
+  transform: translateY(0);
+}
+
+.home-cta__button:hover .home-cta__button-arrow {
+  transform: translate(3px, -3px) rotate(0deg);
+}
+
+.home-cta__button:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 6px;
+}
+
+/* ── Marquee ──────────────────────────────────────────── */
+.home-cta__marquee {
+  overflow: hidden;
+  padding: clamp(0.8rem, 2vh, 1.4rem) 0;
+  border-top: 1px solid var(--hairline);
+  border-bottom: 1px solid var(--hairline);
+  user-select: none;
+}
+
+.home-cta__marquee-track {
+  display: flex;
+  width: max-content;
+  animation: homeCtaMarquee 45s linear infinite;
+}
+
+.home-cta__marquee:hover .home-cta__marquee-track {
+  animation-play-state: paused;
+}
+
+@keyframes homeCtaMarquee {
+  to { transform: translateX(-50%); }
+}
+
+.home-cta__marquee-group {
+  display: flex;
+  flex-shrink: 0;
+}
+
+.home-cta__marquee-item {
+  display: inline-flex;
+  align-items: center;
+  gap: clamp(1.2rem, 3vw, 2.6rem);
+  padding-right: clamp(1.2rem, 3vw, 2.6rem);
+  font-family: var(--display);
+  font-size: clamp(2.4rem, 6.5vw, 6rem);
+  line-height: 1.1;
+  letter-spacing: -0.03em;
+  white-space: nowrap;
+  color: transparent;
+  -webkit-text-stroke: 1px var(--ink-faint);
+  transition: color 0.5s ease, -webkit-text-stroke-color 0.5s ease;
+}
+
+.home-cta__marquee-item:nth-child(even) {
+  font-family: var(--serif);
+  font-style: italic;
+  font-weight: 400;
+}
+
+.home-cta__marquee-item:hover {
+  color: var(--ink);
+  -webkit-text-stroke-color: var(--ink);
+}
+
+.home-cta__marquee-star {
+  font-size: 0.35em;
+  color: var(--accent);
+  -webkit-text-stroke: 0;
+}
+
+/* ── Product rail ─────────────────────────────────────── */
+.home-cta__products {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.home-cta__product + .home-cta__product {
+  border-left: 1px solid var(--hairline);
+}
+
+.home-cta__product-link {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  height: 100%;
+  padding: clamp(1rem, 2vw, 1.6rem);
+  overflow: hidden;
+  isolation: isolate;
+  color: var(--ink);
+  text-decoration: none;
+}
+
+/* Wipe-up tint on hover */
+.home-cta__product-link::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: color-mix(in srgb, var(--accent) 7%, transparent);
+  transform: scaleY(0);
+  transform-origin: bottom;
+  transition: transform 0.7s var(--ease);
+}
+
+.home-cta__product-link:hover::before {
+  transform: scaleY(1);
+}
+
+.home-cta__product-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.72rem;
+  letter-spacing: 0.2em;
+  color: var(--ink-soft);
+}
+
+.home-cta__product-arrow {
+  display: inline-flex;
+  width: 34px;
+  height: 34px;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--hairline);
+  border-radius: 50%;
+  transform: rotate(45deg);
+  transition: transform 0.6s var(--ease), background 0.4s ease, color 0.4s ease, border-color 0.4s ease;
+}
+
+.home-cta__product-link:hover .home-cta__product-arrow {
+  transform: rotate(0deg);
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #fff;
+}
+
+.home-cta__product-stage {
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  height: clamp(160px, 17vw, 260px);
+  padding: 0 4%;
+}
+
+.home-cta__product-img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  object-position: center bottom;
+  opacity: 0.7;
+  transition: opacity 0.5s ease, scale 0.8s var(--ease);
+  will-change: transform;
+}
+
+body[data-theme="dark"] .home-cta__product-img {
+  filter: invert(1);
+  opacity: 0.6;
+}
+
+.home-cta__product-link:hover .home-cta__product-img {
+  opacity: 1;
+  scale: 1.05;
+}
+
+.home-cta__product-name {
+  font-family: "GPS Mt Medium", system-ui, sans-serif;
+  font-size: clamp(1rem, 1.3vw, 1.2rem);
+  line-height: 1.3;
+}
+
+.home-cta__product-explore {
+  margin-top: -0.6rem;
+  font-size: 0.72rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--accent);
+  opacity: 0;
+  transform: translateY(6px);
+  transition: opacity 0.4s ease, transform 0.5s var(--ease);
+}
+
+.home-cta__product-link:hover .home-cta__product-explore,
+.home-cta__product-link:focus-visible .home-cta__product-explore {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.home-cta__product-link:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: -2px;
+}
+
+/* ── Responsive ───────────────────────────────────────── */
+@media (max-width: 1024px) {
+  .home-cta__head {
+    grid-template-columns: 1fr;
+    align-items: start;
+  }
+
+  .home-cta__aside {
+    align-items: flex-end;
+  }
+
+  .home-cta__products {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .home-cta__product:nth-child(3) {
+    border-left: 0;
+  }
+
+  .home-cta__product:nth-child(n + 3) {
+    border-top: 1px solid var(--hairline);
+  }
+}
+
+@media (max-width: 600px) {
+  .home-cta__line--accent {
+    padding-left: 0.6em;
+  }
+
+  .home-cta__button {
+    font-size: 0.58rem;
+    letter-spacing: 0.08em;
+  }
+
+  .home-cta__aside {
+    align-items: center;
+  }
+
+  .home-cta__product-stage {
+    height: 120px;
+  }
+
+  .home-cta__product-arrow {
+    width: 28px;
+    height: 28px;
+  }
+
+  .home-cta__product-explore {
+    display: none;
+  }
+}
+
+@media (hover: none) {
+  .home-cta__product-arrow {
+    transform: rotate(0deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .home-cta__ring,
+  .home-cta__marquee-track {
+    animation: none;
+  }
+
+  .home-cta__button-fill,
+  .home-cta__product-link::before,
+  .home-cta__product-img,
+  .home-cta__product-arrow {
+    transition: none;
+  }
+}

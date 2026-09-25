@@ -7,7 +7,7 @@ import TempContent from "../../components/TempContent/TempContent";
 import PlotterCuttingSection from "../../components/PlotterCuttingSection/PlotterCuttingSection";
 import OnlineOrder from "../../components/OnlineOrder/OnlineOrder";
 import ClickService from "../../components/ClickService/ClickService";
-import NewsletterCTA from "../../components/NewsletterCTA/NewsletterCTA";
+import HomeCta from "../../components/HomeCta/HomeCta";
 import LedModules from "../../components/LedModules/LedModules";
 import SpecialDiscounts from "../../components/SpecialDiscounts/SpecialDiscounts";
 import PageAmbientBackground from "../../components/PageAmbientBackground/PageAmbientBackground";
@@ -20,13 +20,13 @@ const HomePage = () => {
       <Hero />
       <PartnersSection />
       <ClickService />
+      <LedModules />
       <SpecialDiscounts />
       <OnlineOrder />
       <PlotterCuttingSection />
       <TempContent />
-      <LedModules />
       <ProductGallery />
-      <NewsletterCTA />
+      <HomeCta />
     </div>
   );
 };
