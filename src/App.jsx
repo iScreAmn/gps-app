@@ -48,6 +48,7 @@ import DuploModelPage from './pages/CatalogPage/CuttingSystemsPage/Duplo/DuploMo
 import ScannerPage from './pages/ScannerPage/ScannerPage';
 import InfoPage from './pages/InfoPage/InfoPage';
 import IechoSummerOfferPage from './pages/SpecialOfferPage/IechoSummerOfferPage';
+import NotFoundPage from './pages/NotFoundPage/NotFoundPage';
 import AnalyticsTracker from './components/Analytics/AnalyticsTracker';
 import CookieConsent from './components/CookieConsent/CookieConsent';
 import './App.css';
@@ -215,7 +216,7 @@ function App() {
               
                 {/* Default route - show Georgian homepage */}
                 <Route path="/" element={<HomePage />} />
-                <Route path="*" element={<Navigate to="/" replace />} />
+                <Route path="*" element={<NotFoundPage />} />
               </Routes>
             </Layout>
             <CookieConsent />
