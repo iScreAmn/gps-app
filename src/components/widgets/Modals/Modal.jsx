@@ -1,4 +1,5 @@
 import React, { useEffect, useRef } from 'react';
+import { createPortal } from 'react-dom';
 import './Modal.css';
 
 const Modal = ({ 
@@ -89,7 +90,9 @@ const Modal = ({
     }
   };
 
-  return (
+  // Рендерим в body: секции страниц создают свой stacking context (z-index),
+  // и внутри них модалка оказывалась под шапкой сайта.
+  return createPortal(
     <div 
       className={`modal modal--open ${className}`}
       onMouseDown={handleOverlayClick}
@@ -138,7 +141,8 @@ const Modal = ({
           {children}
         </div>
       </div>
-    </div>
+    </div>,
+    document.body
   );
 };
 
