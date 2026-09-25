@@ -408,30 +408,40 @@
 }
 
 .carousel-dot {
-  width: 12px;
-  height: 12px;
-  border-radius: 50%;
-  border: 2px solid rgba(255, 255, 255, 0.6);
-  background: transparent;
+  /* Как пагинация в portfolio: заливные точки, активная вытягивается в пилюлю */
+  --dot-size: 8px;
+  --dot-active-width: 24px;
+  width: var(--dot-size);
+  height: var(--dot-size);
+  padding: 0;
+  border: none;
+  border-radius: calc(var(--dot-size) / 2);
+  background-color: #fff;
+  opacity: 0.6;
   cursor: pointer;
-  transition: all var(--transition-fast, 0.3s);
+  transition: width 0.3s linear, opacity 0.3s linear, background-color 0.3s linear;
   position: relative;
 }
 
-.carousel-dot:hover {
-  border-color: rgba(255, 255, 255, 0.9);
-  transform: scale(1.2);
+@media (hover: hover) {
+  .carousel-dot:hover {
+    opacity: 0.9;
+  }
 }
 
 .carousel-dot:focus {
+  outline: none;
+}
+
+.carousel-dot:focus-visible {
   outline: 2px solid var(--primary-red, #dc2626);
   outline-offset: 2px;
 }
 
 .carousel-dot.active {
-  background: var(--primary-red, #dc2626);
-  border-color: var(--primary-red, #dc2626);
-  box-shadow: 0 0 12px rgba(220, 38, 38, 0.6);
+  width: var(--dot-active-width);
+  background-color: var(--primary-red, #dc2626);
+  opacity: 1;
 }
 
 /* Empty State */
@@ -651,8 +661,8 @@
   }
   
   .carousel-dot {
-    width: 11px;
-    height: 11px;
+    --dot-size: 8px;
+    --dot-active-width: 24px;
   }
 }
 
@@ -728,8 +738,8 @@
   }
   
   .carousel-dot {
-    width: 10px;
-    height: 10px;
+    --dot-size: 8px;
+    --dot-active-width: 22px;
   }
 }
 
@@ -853,8 +863,8 @@
   }
   
   .carousel-dot {
-    width: 8px;
-    height: 8px;
+    --dot-size: 7px;
+    --dot-active-width: 20px;
   }
 }
 
@@ -921,8 +931,8 @@
   }
   
   .carousel-dot {
-    width: 7px;
-    height: 7px;
+    --dot-size: 6px;
+    --dot-active-width: 18px;
   }
 }
 
