@@ -1,14 +1,33 @@
-import React, { useMemo } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { useLanguage } from '../../../hooks/useLanguage';
 import { getNewsItemById } from '../../../data/contentData';
+import { Modal } from '../../../components/widgets/Modals';
 import './NewsDetailPage.css';
 
 const NewsDetailPage = () => {
   const { id } = useParams();
   const { t, language } = useLanguage();
+  const [lightboxIndex, setLightboxIndex] = useState(null);
 
   const newsItem = useMemo(() => getNewsItemById(id), [id]);
+  const gallery = newsItem?.gallery || [];
+
+  const closeLightbox = () => setLightboxIndex(null);
+  const showPrevImage = () => setLightboxIndex((idx) => (idx - 1 + gallery.length) % gallery.length);
+  const showNextImage = () => setLightboxIndex((idx) => (idx + 1) % gallery.length);
+
+  useEffect(() => {
+    if (lightboxIndex === null) return;
+
+    const handleKeyDown = (e) => {
+      if (e.key === 'ArrowLeft') showPrevImage();
+      if (e.key === 'ArrowRight') showNextImage();
+    };
+
+    document.addEventListener('keydown', handleKeyDown);
+    return () => document.removeEventListener('keydown', handleKeyDown);
+  }, [lightboxIndex, gallery.length]);
 
   const formatDate = (dateString) => {
     const date = new Date(dateString);
@@ -155,6 +174,21 @@ const NewsDetailPage = () => {
               <p className="news-detail__paragraph">{t(newsItem.closing)}</p>
             )}
 
+            {gallery.length > 1 && (
+              <div className="news-detail__gallery">
+                {gallery.map((image, idx) => (
+                  <button
+                    type="button"
+                    className="news-detail__gallery-item"
+                    key={idx}
+                    onClick={() => setLightboxIndex(idx)}
+                    aria-label={image.alt || t(newsItem.titleKey)}
+                  >
+                    <img src={image.src} alt={image.alt || t(newsItem.titleKey)} loading="lazy" />
+                  </button>
+                ))}
+              </div>
+            )}
 
             {newsItem.videoUrl && (() => {
               const embedUrl = getYouTubeEmbedUrl(newsItem.videoUrl);
@@ -175,6 +209,49 @@ const NewsDetailPage = () => {
           </div>
         </div>
       </section>
+
+      <Modal
+        isOpen={lightboxIndex !== null}
+        onClose={closeLightbox}
+        className="news-detail__lightbox"
+      >
+        {lightboxIndex !== null && (
+          <>
+            <img
+              className="news-detail__lightbox-image"
+              src={gallery[lightboxIndex].src}
+              alt={gallery[lightboxIndex].alt || t(newsItem.titleKey)}
+            />
+            {gallery.length > 1 && (
+              <>
+                <button
+                  type="button"
+                  className="news-detail__lightbox-nav news-detail__lightbox-nav--prev"
+                  onClick={showPrevImage}
+                  aria-label={t('news.pagination.prev')}
+                >
+                  <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true">
+                    <path d="M15 5l-7 7 7 7" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                  </svg>
+                </button>
+                <button
+                  type="button"
+                  className="news-detail__lightbox-nav news-detail__lightbox-nav--next"
+                  onClick={showNextImage}
+                  aria-label={t('news.pagination.next')}
+                >
+                  <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true">
+                    <path d="M9 5l7 7-7 7" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                  </svg>
+                </button>
+                <span className="news-detail__lightbox-counter">
+                  {lightboxIndex + 1} / {gallery.length}
+                </span>
+              </>
+            )}
+          </>
+        )}
+      </Modal>
     </div>
   );
 };
