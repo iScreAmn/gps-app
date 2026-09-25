@@ -101,6 +101,11 @@
       "title": "Pay Per Print",
       "subtitle": "A unique offer for your business!",
       "cta": "Learn More"
+    },
+    "signIstanbul": {
+      "title": "Our company in Istanbul",
+      "subtitle": "The international Sign Istanbul exhibition",
+      "cta": "Learn More"
     }
   },
   "categories": {
@@ -256,6 +261,10 @@
       "step2Text": "Our team provides full service and continuous support",
       "step3Title": "Pay per print",
       "step3Text": "Pay only for the pages actually printed and avoid unnecessary costs."
+    },
+    "signIstanbul": {
+      "body1": "The exhibition featured modern advertising and printing equipment, technological solutions, and the latest industry news.",
+      "body2": "We were especially interested in the presentation of professional LED lighting by our partner brand, TMT Leds."
     }
   },
   "contacts": {
@@ -701,14 +710,20 @@
       "submitError": "Error sending form. Please try again."
     }
   },
-  "newsletter": {
-    "title": "Subscribe to our newsletter",
-    "subtitle": "Get the latest news and updates delivered straight to your inbox",
-    "email": "Email",
-    "subscribe": "Subscribe",
-    "submitting": "Submitting...",
-    "success": "Thank you for subscribing!",
-    "error": "Error subscribing. Please try again."
+  "homeCta": {
+    "titleLine1": "Let's find",
+    "titleAccent": "the right",
+    "titleLine2": "machine.",
+    "cta": "Contact us",
+    "ring": "Get in touch • Get in touch • ",
+    "marquee": ["Office printing", "Production printing", "Cutting systems", "Plotters", "Service"],
+    "products": {
+      "office": "Office equipment",
+      "pro": "Professional printing",
+      "iecho": "iEcho cutting systems",
+      "nocai": "Nocai plotters"
+    },
+    "explore": "Explore"
   },
   "countdown": {
     "days": "Days",
@@ -1228,5 +1243,17 @@
       "description": "Google Maps is an external service. Allow the “External media” category to load the map here.",
       "allow": "Show map"
     }
+  },
+  "notFound": {
+    "docTitle": "404 Page not found",
+    "status": "Route not found",
+    "eyebrow": "Error 404 · Signal lost",
+    "title": "This page is off the map",
+    "text": "The address may have changed, the page may have been removed, or the link was mistyped",
+    "requested": "Requested",
+    "home": "Back to home",
+    "catalog": "Browse catalog",
+    "marquee": "Page not found",
+    "marquee2": "Recalculating route"
   }
 }

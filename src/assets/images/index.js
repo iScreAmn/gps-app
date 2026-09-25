@@ -13,6 +13,15 @@ export { default as news4 } from './news/click.webp';
 export { default as news5 } from './news/teneth.webp';
 export { default as news6 } from './news/rapid.webp';
 
+export { default as sign1 } from './news/sign-istanbul/sign-cover.webp';
+export { default as sign2 } from './news/sign-istanbul/sign-1.webp';
+export { default as sign3 } from './news/sign-istanbul/sign-2.webp';
+export { default as sign4 } from './news/sign-istanbul/sign-3.webp';
+export { default as sign5 } from './news/sign-istanbul/sign-4.webp';
+export { default as sign6 } from './news/sign-istanbul/sign-5.webp';
+export { default as sign7 } from './news/sign-istanbul/sign-6.webp';
+
+
 
 //Sections
 export { default as laminator } from './printers/sections/laminator.webp';

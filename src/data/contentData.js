@@ -10,6 +10,13 @@ import {
   news4,
   news5,
   news6,
+  sign1,
+  sign2,
+  sign3,
+  sign4,
+  sign5,
+  sign6,
+  sign7,
   nocai1,
   nocai2,
   nocai3,
@@ -56,6 +63,32 @@ export const gpsContent = {
   // Карусель на главной странице
   carousel: {
     slides: [
+      createContentSlide('sign-istanbul', {
+        title: 'hero.signIstanbul.title',
+        subtitle: 'hero.signIstanbul.subtitle',
+        cta: 'hero.signIstanbul.cta',
+        ctaLink: '/news/sign-istanbul',
+        details: {
+          body: [
+            'hero.signIstanbul.subtitle',
+            'news.signIstanbul.body1',
+            'news.signIstanbul.body2',
+          ],
+          gallery: [
+            { src: sign2, alt: 'Sign Istanbul 2026' },
+            { src: sign3, alt: 'Sign Istanbul 2026' },
+            { src: sign4, alt: 'Sign Istanbul 2026' },
+            { src: sign5, alt: 'Sign Istanbul 2026' },
+            { src: sign6, alt: 'Sign Istanbul 2026' },
+            { src: sign7, alt: 'Sign Istanbul 2026' },
+          ],
+          videoUrl: ''
+        }
+      }, {
+        src: sign1,
+        alt: 'Georgian Polygraph Services at Sign Istanbul'
+      }),
+
       createContentSlide('accurio-print-c5065', {
         title: 'hero.accurio.title',
         subtitle: 'hero.accurio.subtitle',
@@ -230,7 +263,7 @@ export const gpsContent = {
           }
         }
       ),
-      
+
       createImageSlide('industrial-solutions',
         {
           src: supplies,
@@ -877,14 +910,14 @@ export const getNewsItemsFromCarousel = () => {
     .filter((slide) => slide.id !== 'industrial-solutions')
     .slice(0, 8);
   const baseDates = [
+    '2026-09-25',
     '2026-07-31',
     '2026-07-15',
     '2026-06-03',
     '2026-05-28',
     '2025-01-05',
     '2025-01-04',
-    '2025-01-19',
-    '2025-01-26'
+    '2025-01-19'
   ];
 
   return slides.map((slide, index) => {
