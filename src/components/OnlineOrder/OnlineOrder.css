@@ -8,6 +8,8 @@
   gap: 2rem;
   background-color: var(--light-bg);
   transition: background-color var(--transition-normal);
+  /* Колонки въезжают сбоку — не даём им создать горизонтальный скролл. */
+  overflow-x: clip;
 }
 
 body[data-theme="dark"] .online-order-page {
