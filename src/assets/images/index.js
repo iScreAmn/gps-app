@@ -12,7 +12,6 @@ export { default as news3 } from './news/unifol.webp';
 export { default as news4 } from './news/click.webp';
 export { default as news5 } from './news/teneth.webp';
 export { default as news6 } from './news/rapid.webp';
-
 export { default as sign1 } from './news/sign-istanbul/sign-cover.webp';
 export { default as sign2 } from './news/sign-istanbul/sign-1.webp';
 export { default as sign3 } from './news/sign-istanbul/sign-2.webp';
@@ -102,7 +101,6 @@ export { default as aboutOrder } from './about/ineo4065.png';
 export { default as artPrinter1 } from './printers/art/art_1.png';
 export { default as artPrinter2 } from './printers/art/thanku_art.webp';
 export { default as proModel } from './web-art/flat-design.webp';
-export { default as nocaiArt } from './products/nocai-NC-UV9060MAX/nocai-plotter.png';
 export { default as whatsApp } from './web-art/printing-contact.png';
 export { default as iechoSummerOffer } from './web-art/iecho.webp';
 export { default as iechoSummerOffer2 } from './web-art/iecho-img.webp';
@@ -153,10 +151,20 @@ export { default as developPro3 } from './printers/pro/4065/4065.webp';
 export { default as developPro4 } from './printers/pro/4070/4070.webp';
 
 // Nocai UV Printing
-export { default as nocai1 } from './products/nocai-UV0609XIII/nocai1.png';
-export { default as nocai2 } from './products/nocai-UV0609XIII/nocai2.png';
-export { default as nocai3 } from './products/nocai-UV0609XIII/nocai3.png';
-export { default as nocai4 } from './products/nocai-UV0609XIII/nocai4.png';
+export { default as nocai1 } from './products/nocai-UV0609XIII/nocai1.webp';
+export { default as nocai2 } from './products/nocai-UV0609XIII/nocai2.webp';
+export { default as nocai3 } from './products/nocai-UV0609XIII/nocai3.webp';
+export { default as nocai4 } from './products/nocai-UV0609XIII/nocai4.webp';
+export { default as nocai5 } from './products/nocai-NC-UV9060MAX/nocai-plotter.webp';
+
+// Audley
+export { default as audleyEco1 } from './products/audley/audley-S3200.webp';
+export { default as audleyEco2 } from './products/audley/audley-2180.webp';
+
+// Teneth
+export { default as teneth1 } from './products/teneth/tn48ccd.webp';
+export { default as teneth2 } from './products/teneth/tn24ccd.webp';
+
 // Iecho Cutting System
 export { default as iechoProduct1 } from './products/iecho-PK0604/iecho1.webp';
 export { default as iecho2 } from './products/iecho-PK0604/iecho2.webp';
