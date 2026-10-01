@@ -1,4 +1,4 @@
-import { developPrinter1, developPro1, developPro2, developPro3, developPro4, nocai1, nocaiArt, PK0604, PK0604plus, PK0705, PK0705plus, PK1209, ink1, ink2, ink3, plotterCutting, laminator1, laminator2, laminator3, laminator4, laminator5, laminator6, laminator7, laminator8, laminator9, laminator10, laminator11, laminator12, guillotine1, guillotine2, guillotine3, guillotine4, guillotine5, guillotine6, guillotine7, guillotine8, guillotine9, guillotine10, guillotine11, guillotine12, guillotine13, guillotine14, shredder1, shredder2, shredder3, shredder4, shredder5, shredder6, cyklos1, cyklos2, cyklos3, cyklos4, cyklos5, cyklos6, rapid1, rapid2, duplo1, duplo2, duplo3, duplo4, duplo5, duplo6, duplo7, duplo8, duplo9, duplo10 } from '../assets/images';
+import { developPrinter1, developPro1, developPro2, developPro3, developPro4, nocai1, nocai5, audleyEco1, audleyEco2, teneth1, teneth2, PK0604, PK0604plus, PK0705, PK0705plus, PK1209, ink1, ink2, ink3, plotterCutting, laminator1, laminator2, laminator3, laminator4, laminator5, laminator6, laminator7, laminator8, laminator9, laminator10, laminator11, laminator12, guillotine1, guillotine2, guillotine3, guillotine4, guillotine5, guillotine6, guillotine7, guillotine8, guillotine9, guillotine10, guillotine11, guillotine12, guillotine13, guillotine14, shredder1, shredder2, shredder3, shredder4, shredder5, shredder6, cyklos1, cyklos2, cyklos3, cyklos4, cyklos5, cyklos6, rapid1, rapid2, duplo1, duplo2, duplo3, duplo4, duplo5, duplo6, duplo7, duplo8, duplo9, duplo10 } from '../assets/images';
 import developData from '../database/brands/develop.json';
 import iechoData from '../database/brands/iecho.json';
 import vividData from '../database/brands/vivid.json';
@@ -10,6 +10,9 @@ import rapidData from '../database/brands/rapid.json';
 import duploData from '../database/brands/duplo.json';
 import { professionalData } from './professionalData';
 import { nocaiData } from './nocaiData';
+import { audleyData } from './audleyData';
+import { tenethData } from './tenethData';
+import { suppliesProducts } from './suppliesData';
 
 const iechoImageMap = { pk0604: PK0604, 'pk0604-plus': PK0604plus, pk0705: PK0705, 'pk0705-plus': PK0705plus, 'pk1209-pro-max': PK1209 };
 
@@ -304,7 +307,16 @@ export function getSearchableProducts(language, t) {
     },
   ];
 
-  const nocaiImageByKey = { nocai1, nocaiArt };
+  const supplySearchProducts = suppliesProducts.map((p) => ({
+    id: `supplies-${p.id}`,
+    name: t(p.titleKey),
+    brand: p.brand,
+    category: 'supplies',
+    image: p.image,
+    link: `/${language}/catalog/supplies/${p.id}`,
+  }));
+
+  const nocaiImageByKey = { nocai1, nocai5 };
   const nocaiPlotterProducts = nocaiData?.products?.length > 0
     ? nocaiData.products.map((p) => ({
         id: `nocai-${p.id}`,
@@ -316,6 +328,28 @@ export function getSearchableProducts(language, t) {
         link: `/${language}/plotter-catalog/nocai/${p.id}`
       }))
     : [];
+
+  const audleyImageByKey = { audleyEco1, audleyEco2 };
+  const audleyPlotterProducts = (audleyData?.products || []).map((p) => ({
+    id: `audley-${p.id}`,
+    name: p.name,
+    brand: 'Audley',
+    category: 'plotter',
+    image: audleyImageByKey[p.imageKey] || audleyEco1,
+    price: t('catalog.price_on_request'),
+    link: `/${language}/plotter-catalog/audley/${p.id}`
+  }));
+
+  const tenethImageByKey = { teneth1, teneth2 };
+  const tenethPlotterProducts = (tenethData?.products || []).map((p) => ({
+    id: `teneth-${p.id}`,
+    name: p.name,
+    brand: 'Teneth',
+    category: 'plotter',
+    image: tenethImageByKey[p.imageKey] || teneth1,
+    price: t('catalog.price_on_request'),
+    link: `/${language}/plotter-catalog/teneth/${p.id}`
+  }));
 
   const vividProducts = vividData?.products?.length > 0
     ? vividData.products.map((p) => ({
@@ -358,7 +392,7 @@ export function getSearchableProducts(language, t) {
   const rapidProducts = mapRapidProducts(language, t);
   const duploProducts = mapDuploProducts(language, t);
 
-  return [...developProducts, ...professionalProducts, ...iechoProducts, ...vividProducts, ...recosystemsProducts, ...nocaiPlotterProducts, ...inksProducts, ...idealGuillotineProducts, ...idealShredderProducts, ...cyklosProducts, ...rapidProducts, ...duploProducts, plotterCuttingProduct].map((p) => ({
+  return [...developProducts, ...professionalProducts, ...iechoProducts, ...vividProducts, ...recosystemsProducts, ...nocaiPlotterProducts, ...audleyPlotterProducts, ...tenethPlotterProducts, ...inksProducts, ...idealGuillotineProducts, ...idealShredderProducts, ...cyklosProducts, ...rapidProducts, ...duploProducts, plotterCuttingProduct, ...supplySearchProducts].map((p) => ({
     ...p,
     link: p.link || `/${language}/product/${p.id}`
   }));

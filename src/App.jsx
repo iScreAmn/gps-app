@@ -17,8 +17,13 @@ import CuttingSystemsPage from './pages/CatalogPage/CuttingSystemsPage/CuttingSy
 import PlotterCatalogPage from './pages/PlotterCatalogPage/PlotterCatalogPage';
 import Nocai from './pages/PlotterCatalogPage/Nocai/Nocai';
 import NocaiModelPage from './pages/PlotterCatalogPage/Nocai/NocaiModelPage';
+import Audley from './pages/PlotterCatalogPage/Audley/Audley';
+import AudleyModelPage from './pages/PlotterCatalogPage/Audley/AudleyModelPage';
+import Teneth from './pages/PlotterCatalogPage/Teneth/Teneth';
+import TenethModelPage from './pages/PlotterCatalogPage/Teneth/TenethModelPage';
 import InksPage from './pages/InksPage/InksPage';
 import InkModelPage from './pages/InksPage/InkModelPage';
+import { suppliesProducts } from './data/suppliesData';
 import TonerPage from './pages/TonerPage/TonerPage';
 import LedsPage from './pages/LedsPage/LedsPage';
 import LedModulesPage from './pages/LedsPage/LedModulesPage';
@@ -112,8 +117,13 @@ function App() {
                 <Route path="/ka/plotter-catalog" element={<PlotterCatalogPage />} />
                 <Route path="/ka/plotter-catalog/nocai" element={<Nocai />} />
                 <Route path="/ka/plotter-catalog/nocai/:modelId" element={<NocaiModelPage />} />
+                <Route path="/ka/plotter-catalog/audley" element={<Audley />} />
+                <Route path="/ka/plotter-catalog/audley/:modelId" element={<AudleyModelPage />} />
+                <Route path="/ka/plotter-catalog/teneth" element={<Teneth />} />
+                <Route path="/ka/plotter-catalog/teneth/:modelId" element={<TenethModelPage />} />
                 <Route path="/ka/catalog/supplies/inks" element={<InksPage />} />
                 <Route path="/ka/catalog/supplies/inks/:inkId" element={<InkModelPage />} />
+                <Route path="/ka/catalog/supplies/:supplyId" element={<InkModelPage products={suppliesProducts} />} />
                 <Route path="/ka/toner" element={<TonerPage />} />
                 <Route path="/ka/leds" element={<LedsPage />} />
                 <Route path="/ka/leds/modules" element={<LedModulesPage />} />
@@ -164,8 +174,13 @@ function App() {
                 <Route path="/en/plotter-catalog" element={<PlotterCatalogPage />} />
                 <Route path="/en/plotter-catalog/nocai" element={<Nocai />} />
                 <Route path="/en/plotter-catalog/nocai/:modelId" element={<NocaiModelPage />} />
+                <Route path="/en/plotter-catalog/audley" element={<Audley />} />
+                <Route path="/en/plotter-catalog/audley/:modelId" element={<AudleyModelPage />} />
+                <Route path="/en/plotter-catalog/teneth" element={<Teneth />} />
+                <Route path="/en/plotter-catalog/teneth/:modelId" element={<TenethModelPage />} />
                 <Route path="/en/catalog/supplies/inks" element={<InksPage />} />
                 <Route path="/en/catalog/supplies/inks/:inkId" element={<InkModelPage />} />
+                <Route path="/en/catalog/supplies/:supplyId" element={<InkModelPage products={suppliesProducts} />} />
                 <Route path="/en/toner" element={<TonerPage />} />
                 <Route path="/en/leds" element={<LedsPage />} />
                 <Route path="/en/leds/modules" element={<LedModulesPage />} />
