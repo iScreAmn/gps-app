@@ -14,7 +14,10 @@ import rapidData from '../../database/brands/rapid.json';
 import duploData from '../../database/brands/duplo.json';
 import { professionalData } from '../../data/professionalData';
 import { nocaiData } from '../../data/nocaiData';
+import { audleyData } from '../../data/audleyData';
+import { tenethData } from '../../data/tenethData';
 import { inksProducts } from '../../data/inksData';
+import { suppliesProducts } from '../../data/suppliesData';
 import './Breadcrumbs.css';
 
 const Breadcrumbs = ({ items, separator }) => {
@@ -138,6 +141,19 @@ const Breadcrumbs = ({ items, separator }) => {
       return crumbs;
     }
 
+    const supply = segments[0] === 'catalog' && segments[1] === 'supplies'
+      && suppliesProducts.find((p) => p.id === segments[2]);
+    if (supply) {
+      const catalogPath = currentLang ? `/${currentLang}/catalog` : '/catalog';
+      const suppliesPath = currentLang ? `/${currentLang}/catalog/supplies` : '/catalog/supplies';
+      crumbs.push(
+        { label: t('navigation.catalog'), path: catalogPath, isActive: false },
+        { label: t('categories.supplies'), path: suppliesPath, isActive: false },
+        { label: t(supply.titleKey), path: `${suppliesPath}/${supply.id}`, isActive: true }
+      );
+      return crumbs;
+    }
+
     if (segments[0] === 'toner' && segments.length === 1) {
       const catalogPath = currentLang ? `/${currentLang}/catalog` : '/catalog';
       const suppliesPath = currentLang ? `/${currentLang}/catalog/supplies` : '/catalog/supplies';
@@ -158,7 +174,7 @@ const Breadcrumbs = ({ items, separator }) => {
       const nextSegment = segments[index + 1];
 
       // Пропускаем nocai и modelId — уже обработаны в plotter-catalog блоке
-      if (segments[0] === 'plotter-catalog' && segments[1] === 'nocai' && index >= 1) {
+      if (segments[0] === 'plotter-catalog' && (segments[1] === 'nocai' || segments[1] === 'audley' || segments[1] === 'teneth') && index >= 1) {
         return;
       }
 
@@ -435,6 +451,7 @@ const Breadcrumbs = ({ items, separator }) => {
         const nocaiPath = currentLang ? `/${currentLang}/plotter-catalog/nocai` : '/plotter-catalog/nocai';
         crumbs.push(
           { label: t('navigation.catalog'), path: catalogPath, isActive: false },
+          { label: t('categories.plotters'), path: `${catalogPath}/plotters`, isActive: false },
           { label: 'Nocai', path: nocaiPath, isActive: !segments[index + 2] }
         );
         if (segments[index + 2]) {
@@ -443,6 +460,46 @@ const Breadcrumbs = ({ items, separator }) => {
           crumbs.push({
             label: product?.name || modelId,
             path: `${nocaiPath}/${modelId}`,
+            isActive: true
+          });
+        }
+        return;
+      }
+
+      if (segment === 'plotter-catalog' && nextSegment === 'audley') {
+        const catalogPath = currentLang ? `/${currentLang}/catalog` : '/catalog';
+        const audleyPath = currentLang ? `/${currentLang}/plotter-catalog/audley` : '/plotter-catalog/audley';
+        crumbs.push(
+          { label: t('navigation.catalog'), path: catalogPath, isActive: false },
+          { label: t('categories.plotters'), path: `${catalogPath}/plotters`, isActive: false },
+          { label: 'Audley', path: audleyPath, isActive: !segments[index + 2] }
+        );
+        if (segments[index + 2]) {
+          const modelId = segments[index + 2];
+          const product = audleyData?.products?.find(p => p.id === modelId);
+          crumbs.push({
+            label: product?.name || modelId,
+            path: `${audleyPath}/${modelId}`,
+            isActive: true
+          });
+        }
+        return;
+      }
+
+      if (segment === 'plotter-catalog' && nextSegment === 'teneth') {
+        const catalogPath = currentLang ? `/${currentLang}/catalog` : '/catalog';
+        const tenethPath = currentLang ? `/${currentLang}/plotter-catalog/teneth` : '/plotter-catalog/teneth';
+        crumbs.push(
+          { label: t('navigation.catalog'), path: catalogPath, isActive: false },
+          { label: t('categories.plotters'), path: `${catalogPath}/plotters`, isActive: false },
+          { label: 'Teneth', path: tenethPath, isActive: !segments[index + 2] }
+        );
+        if (segments[index + 2]) {
+          const modelId = segments[index + 2];
+          const product = tenethData?.products?.find(p => p.id === modelId);
+          crumbs.push({
+            label: product?.name || modelId,
+            path: `${tenethPath}/${modelId}`,
             isActive: true
           });
         }

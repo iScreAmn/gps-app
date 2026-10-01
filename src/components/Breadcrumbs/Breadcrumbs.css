@@ -1,4 +1,5 @@
 .breadcrumbs {
+  font-family: 'GPS Mt Medium';
   padding: 1rem 0;
   margin-top: 140px;
   background-color: var(--light-bg);
@@ -73,7 +74,8 @@ body[data-theme="dark"] .breadcrumbs__separator {
 
 .breadcrumbs__item--active {
   color: var(--light-text);
-  font-weight: var(--font-semibold);
+  /* GPS Mt Medium ships a single weight — a bolder value would be synthesized */
+  font-weight: 400;
   pointer-events: none;
 }
 
