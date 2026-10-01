@@ -119,6 +119,26 @@ body[data-theme="dark"] .breadcrumbs__item--active {
   .breadcrumbs__separator {
     margin: 0 0.125rem;
   }
+
+  /* One line: parent crumbs keep their width, the current page truncates with an ellipsis */
+  .breadcrumbs__list {
+    flex-wrap: nowrap;
+  }
+
+  .breadcrumbs__item {
+    flex-shrink: 0;
+    white-space: nowrap;
+  }
+
+  .breadcrumbs__item:last-child {
+    flex-shrink: 1;
+    min-width: 0;
+  }
+
+  .breadcrumbs__item--active {
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
 }
 
 @media (max-width: 480px) {
