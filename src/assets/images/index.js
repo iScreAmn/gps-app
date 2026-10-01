@@ -36,19 +36,22 @@ export { default as supplies } from './other/supplies.webp';
 
 export { default as sticker } from './printers/sections/unifol.webp';
 export { default as plotterCutting } from './other/unifol.webp';
-export { default as plotterCutting2 } from './other/unifol1.jpg';
-export { default as plotterCutting3 } from './other/unifol2.jpg';
-export { default as plotterCutting4 } from './other/unifol3.jpg';
 
 //Logos
 export { default as mainLogo } from './gps_logo.png';
 export { default as mainLogoWhite } from './gps_logo-white.webp';
 export { default as tmtLogo } from './partners/logos/tmt.png';
 
-// Products
+// Supplies
 export { default as ink1 } from './products/supplies/ink1.webp';
 export { default as ink2 } from './products/supplies/ink2.webp';
 export { default as ink3 } from './products/supplies/ink3.webp';
+export { default as toner } from './other/toners.webp';
+export { default as laminationFilm } from './products/supplies/laminationFilm.webp';
+export { default as wireComb } from './products/supplies/reco-wirecomb.webp';
+export { default as cuttingKnives } from './products/supplies/cutting-knives.webp';
+export { default as cuttingSticks } from './products/supplies/cutting-sticks.webp';
+
 
 //Partners logos
 export { default as duplo } from './partners/duplo.webp';
@@ -261,5 +264,4 @@ export { default as power5 } from './led-modules/power-supplies/ps-400.webp';
 
 // Accessories
 export { default as accessories } from './printers/sections/accessories.webp';
-export { default as toner } from './other/toners.png';
 
