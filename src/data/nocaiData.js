@@ -21,7 +21,7 @@ export const nocaiData = {
     {
       id: 'nc-uv9060max',
       name: 'NC-UV9060MAX',
-      imageKey: 'nocaiArt',
+      imageKey: 'nocai5',
       specs: {
         'Print head': 'Epson I3200-U1*1 White, Epson I3200-U1HD*1 Color, Epson I1600-U1*1 Varnish, Epson I1600-U1*1 Primer',
         'Nozzle spray force range': '2-8mm',

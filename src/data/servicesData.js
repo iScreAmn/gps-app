@@ -7,7 +7,7 @@ import {
   develop1,
   iecho1,
   iechoPrinter,
-  nocaiArt,
+  nocai5,
 } from '../assets/images';
 
 /** Hero / opener */
@@ -74,7 +74,7 @@ export const servicesSegments = [
     descriptionKey: 'servicesV2.segments.wideformat.description',
     bigType: 'Wide',
     cover: audley1,
-    accentMedia: nocaiArt,
+    accentMedia: nocai5,
     services: [
       { key: 'heads', icon: '◆' },
       { key: 'profile', icon: '◉' },

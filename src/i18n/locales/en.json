@@ -203,7 +203,19 @@
     "price_on_request": "Price on request",
     "plotter_cutting_solutions": "Plotter Cutting Solutions Unifol",
     "inks": "Inks",
-    "toner": "Toner"
+    "toner": "Toners",
+    "wire_comb": "Wire Comb",
+    "wire_comb_desc": "A quality choice for professional binding. **RECO SYSTEMS** wire combs are a durable and practical solution for professional printing. Ideal for binding notepads, calendars, catalogs, presentations and other products.",
+    "available_sizes": "Available sizes",
+    "mm": "mm",
+    "lamination_film": "Laminating Films",
+    "lamination_film_desc": "Gloss, matte and velvet laminating films manufactured by **Vivid** are the ideal choice for offset and digital prints — for exhibition graphics, banners, information boards, greeting cards, menus, business cards, book covers and other products.",
+    "guillotine_knife": "Guillotine Knife",
+    "guillotine_sticks": "Guillotine Sticks",
+    "compatible": "Compatible with",
+    "models": "models",
+    "sizes": "sizes",
+    "options": "options"
   },
   "inks": {
     "subtitle": "Professional printing inks for wide-format and industrial applications",
@@ -741,13 +753,18 @@
   },
   "plotterCutting": {
     "viewCatalog": "View Catalog",
-    "imageAlt": "Plotter cutting"
+    "colors": "colors"
   },
   "plotterCatalog": {
     "title": "Plotter Cutting Catalog",
-    "image1Alt": "Plotter cutting catalog 1",
-    "image2Alt": "Plotter cutting catalog 2",
-    "image3Alt": "Plotter cutting catalog 3"
+    "cm": "cm",
+    "widthLabel": "Width cm",
+    "sections": {
+      "glossy": "Glossy plastic film",
+      "metallic": "Glossy plastic film [ Metallic series ]",
+      "matte": "Matte plastic film",
+      "ecoSolvent": "Eco-solvent printing films"
+    }
   },
   "cyklos": {
     "title": "Cyklos"
