@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { useLanguage } from '../../../hooks/useLanguage';
-import { iecho, teneth, duplo, ideal, rapid, cyklos, boway, recoSystems, vivid } from '../../../assets/images';
+import { iecho, duplo, ideal, rapid, cyklos, boway, recoSystems, vivid } from '../../../assets/images';
 import './CuttingSystemsPage.css';
 
 const CuttingSystemsPage = () => {
@@ -14,13 +14,6 @@ const CuttingSystemsPage = () => {
       logo: iecho,
       link: `/${language}/cutting-systems/iecho`,
       modifier: 'iecho'
-    },
-    {
-      id: 'teneth',
-      name: 'Teneth',
-      logo: teneth,
-      link: `/${language}/catalog/cutting/teneth`,
-      modifier: 'teneth'
     },
     {
       id: 'ideal',

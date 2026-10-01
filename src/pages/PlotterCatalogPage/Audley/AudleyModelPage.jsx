@@ -1,24 +1,24 @@
 import React, { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { useLanguage } from '../../../hooks/useLanguage';
-import { nocai1, nocai5 } from '../../../assets/images';
-import { nocaiData } from '../../../data/nocaiData';
+import { audleyEco1, audleyEco2 } from '../../../assets/images';
+import { audleyData } from '../../../data/audleyData';
 import { Modal, CallbackForm } from '../../../components/widgets/Modals';
-import './NocaiModelPage.css';
+import '../Nocai/NocaiModelPage.css';
 
 const imageMap = {
-  nocai1,
-  nocai5
+  audleyEco1,
+  audleyEco2
 };
 
-const NocaiModelPage = () => {
+const AudleyModelPage = () => {
   const { modelId } = useParams();
   const { t } = useLanguage();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isSuccessModal, setIsSuccessModal] = useState(false);
   const [activeImageIndex, setActiveImageIndex] = useState(0);
 
-  const product = nocaiData.products.find((p) => p.id === modelId);
+  const product = audleyData.products.find((p) => p.id === modelId);
   const images = product
     ? (Array.isArray(imageMap[product.imageKey])
       ? imageMap[product.imageKey]
@@ -139,4 +139,4 @@ const NocaiModelPage = () => {
   );
 };
 
-export default NocaiModelPage;
+export default AudleyModelPage;

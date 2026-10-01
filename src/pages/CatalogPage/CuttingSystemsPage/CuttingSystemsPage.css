@@ -37,6 +37,11 @@ body[data-theme="dark"] .cutting-systems-page {
   grid-row: span 2;
 }
 
+/* Takes the slot freed by Teneth so the 4×2 block next to IECHO stays full */
+.brand-card__logo-wrapper--ideal {
+  grid-column: span 2;
+}
+
 body[data-theme="dark"] .brand-card__logo-wrapper {
   box-shadow: 0 4px 20px rgb(0 0 0 / 25%);
 }
@@ -84,6 +89,11 @@ body[data-theme="dark"] .brand-card__logo-wrapper {
     grid-column: 1 / -1;
     grid-row: span 1;
     min-height: 180px;
+  }
+
+  /* Full row on 3 columns: 1 + 6 cards fill the grid evenly */
+  .brand-card__logo-wrapper--ideal {
+    grid-column: 1 / -1;
   }
 }
 

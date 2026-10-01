@@ -30,6 +30,7 @@
 }
 
 .iecho-model__help-btn {
+  font-family: 'GPS Mt Medium';
   width: fit-content;
   padding: 0.75rem 2rem;
   background: #DC2626;

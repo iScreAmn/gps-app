@@ -1,18 +1,6 @@
 .ideal {
-  padding: 0 0 4rem 0;
+  padding: 3rem 0 4rem;
   min-height: 60vh;
-}
-
-.ideal__header {
-  text-align: center;
-  margin-bottom: 3rem;
-}
-
-.ideal__title {
-  font-size: 2.5rem;
-  font-weight: 700;
-  color: var(--color-text);
-  margin: 0;
 }
 
 .ideal__grid {
@@ -94,10 +82,6 @@ body[data-theme="dark"] .ideal__card-title {
 }
 
 @media (max-width: 1024px) {
-  .ideal__title {
-    font-size: 2rem;
-  }
-
   .ideal__grid {
     grid-template-columns: repeat(2, 1fr);
   }
@@ -106,10 +90,6 @@ body[data-theme="dark"] .ideal__card-title {
 @media (max-width: 768px) {
   .ideal {
     padding: 2rem 0;
-  }
-
-  .ideal__title {
-    font-size: 1.75rem;
   }
 
   .ideal__grid {

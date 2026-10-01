@@ -1,26 +1,26 @@
 import React from 'react';
 import { useLanguage } from '../../../hooks/useLanguage';
 import CatalogCard from '../../../components/CatalogCard/CatalogCard';
-import { nocai1, nocai5 } from '../../../assets/images';
-import { nocaiData } from '../../../data/nocaiData';
-import './Nocai.css';
+import { teneth1, teneth2 } from '../../../assets/images';
+import { tenethData } from '../../../data/tenethData';
+import '../Nocai/Nocai.css';
 
 const imageMap = {
-  nocai1,
-  nocai5
+  teneth1,
+  teneth2
 };
 
-const Nocai = () => {
+const Teneth = () => {
   const { language, t } = useLanguage();
 
   return (
     <div className="office-equipment">
       <div className="container">
         <div className="catalog-cards">
-          {nocaiData.products.map((product, index) => (
+          {tenethData.products.map((product, index) => (
             <CatalogCard
               key={product.id}
-              to={`/${language}/plotter-catalog/nocai/${product.id}`}
+              to={`/${language}/plotter-catalog/teneth/${product.id}`}
               index={index}
               image={imageMap[product.imageKey]}
               name={product.name}
@@ -33,4 +33,4 @@ const Nocai = () => {
   );
 };
 
-export default Nocai;
+export default Teneth;

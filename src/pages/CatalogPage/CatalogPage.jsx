@@ -1,14 +1,17 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useParams, useSearchParams, Link, Navigate } from 'react-router-dom';
 import { getBrandSearchRoute } from '../../data/searchableProducts';
 import { useLanguage } from "../../hooks/useLanguage";
 import ProductCard from '../../components/ProductCard/ProductCard';
 import CategoryCards from '../../components/CategoryCards/CategoryCards';
+import CatalogHero from '../../components/CatalogHero/CatalogHero';
+import CatalogCard from '../../components/CatalogCard/CatalogCard';
 import { searchProducts } from '../../utils/productSearch';
 import { developPrinter1, developPrinter3, developPrinter4, developPrinter5, developPrinter6, developPro1, developPro2, developPro3, developPro4, nocai, audley, teneth, PK0604, PK0604plus, PK0705, PK0705plus, PK1209, plotterCutting, inks, toner } from '../../assets/images';
 import developData from '../../database/brands/develop.json';
 import { professionalData } from '../../data/professionalData';
 import iechoData from '../../database/brands/iecho.json';
+import { suppliesProducts } from '../../data/suppliesData';
 import './CatalogPage.css';
 
 const CatalogPage = () => {
@@ -16,11 +19,6 @@ const CatalogPage = () => {
   const [searchParams] = useSearchParams();
   const searchQuery = searchParams.get('q') || '';
   const { language, t } = useLanguage();
-  const [filters, setFilters] = useState({
-    speed: '',
-    tonerLifetime: ''
-  });
-
   // Add Develop products
   const developProducts = developData?.products?.length > 0
     ? developData.products.map((product) => ({
@@ -91,49 +89,6 @@ const CatalogPage = () => {
     'ineo-4020i': developPrinter6
   };
 
-  const speedOptions = Array.from(new Set(products.map(p => p.speed).filter(Boolean)));
-  const tonerOptions = Array.from(new Set(products.map(p => p.tonerLifetime).filter(Boolean)));
-
-  const developMeta = developProducts.reduce((acc, product) => {
-    const key = product.id.replace('develop-', '');
-    acc[key] = product;
-    return acc;
-  }, {});
-
-  const filtersContent = (
-    <aside className="catalog-filters">
-      <div className="filters-header">
-        <h3>{t('catalog.filters')}</h3>
-      </div>
-      
-      <div className="filter-group">
-        <label>{t('catalog.speed')}</label>
-        <select 
-          value={filters.speed}
-          onChange={(e) => setFilters({...filters, speed: e.target.value})}
-        >
-          <option value="">{language === 'ka' ? 'ყველა' : 'All'}</option>
-          {speedOptions.map((speed) => (
-            <option key={speed} value={speed}>{speed}</option>
-          ))}
-        </select>
-      </div>
-
-      <div className="filter-group">
-        <label>Toner lifetime</label>
-        <select 
-          value={filters.tonerLifetime}
-          onChange={(e) => setFilters({...filters, tonerLifetime: e.target.value})}
-        >
-          <option value="">{language === 'ka' ? 'ყველა' : 'All'}</option>
-          {tonerOptions.map((option) => (
-            <option key={option} value={option}>{option}</option>
-          ))}
-        </select>
-      </div>
-    </aside>
-  );
-
   return (
     <div className="catalog-page">
       {/* Search results */}
@@ -179,10 +134,11 @@ const CatalogPage = () => {
       {category === 'plotters' && !searchQuery && (
         <div className="office-equipment">
           <div className="container">
-            <h1 className="office-equipment__title">{t('categories.plotters')}</h1>
-            <p className="catalog-subtitle">
-              {t('categories.plotters_description')}
-            </p>
+            <CatalogHero
+              title={t('categories.plotters')}
+              description={t('categories.plotters_description')}
+              wide
+            />
             <div className="catalog-page__plotters-brands">
               <Link
                 to={`/${language}/plotter-catalog/nocai`}
@@ -209,20 +165,23 @@ const CatalogPage = () => {
       
       {/* Materials Section */}
       {category === 'materials' && !searchQuery && (
-        <div className="office-equipment supplies-section">
+        <div className="office-equipment">
           <div className="container">
-            <h1 className="office-equipment__title">{t('categories.materials')}</h1>
-            <p className="catalog-subtitle">
-              {t('categories.materials_description')}
-            </p>
-            <div className="supplies__grid">
-              <Link
+            <CatalogHero
+              title={t('categories.materials')}
+              description={t('categories.materials_description')}
+              wide
+            />
+            <div className="catalog-cards">
+              <CatalogCard
                 to={`/${language}/plotter-catalog`}
-                className="supplies__card"
-              >
-                <img src={plotterCutting} alt={t('catalog.plotter_cutting_solutions')} className="supplies__card-img" />
-                <h3 className="supplies__card-title">{t('catalog.plotter_cutting_solutions')}</h3>
-              </Link>
+                index={0}
+                image={plotterCutting}
+                name={t('catalog.plotter_cutting_solutions')}
+                moreLabel={t('common.more')}
+                showIndex={false}
+                cover
+              />
             </div>
           </div>
         </div>
@@ -230,27 +189,44 @@ const CatalogPage = () => {
 
       {/* Supplies Section */}
       {category === 'supplies' && !searchQuery && (
-        <div className="office-equipment supplies-section">
+        <div className="office-equipment">
           <div className="container">
-            <h1 className="office-equipment__title">{t('categories.supplies')}</h1>
-            <p className="catalog-subtitle">
-              {t('categories.supplies_description')}
-            </p>
-            <div className="supplies__grid">
-              <Link
+            <CatalogHero
+              title={t('categories.supplies')}
+              description={t('categories.supplies_description')}
+              wide
+            />
+            <div className="catalog-cards">
+              <CatalogCard
                 to={`/${language}/toner`}
-                className="supplies__card"
-              >
-                <img src={toner} alt={t('catalog.toner')} className="supplies__card-img" />
-                <h3 className="supplies__card-title">{t('catalog.toner')}</h3>
-              </Link>
-              <Link
+                index={0}
+                image={toner}
+                name={t('catalog.toner')}
+                moreLabel={t('common.more')}
+                showIndex={false}
+                cover
+              />
+              <CatalogCard
                 to={`/${language}/catalog/supplies/inks`}
-                className="supplies__card"
-              >
-                <img src={inks} alt={t('catalog.inks')} className="supplies__card-img" />
-                <h3 className="supplies__card-title">{t('catalog.inks')}</h3>
-              </Link>
+                index={1}
+                image={inks}
+                name={t('catalog.inks')}
+                moreLabel={t('common.more')}
+                showIndex={false}
+                cover
+              />
+              {suppliesProducts.map((product, index) => (
+                <CatalogCard
+                  key={product.id}
+                  to={`/${language}/catalog/supplies/${product.id}`}
+                  index={index + 2}
+                  image={product.image}
+                  name={t(product.titleKey)}
+                  moreLabel={t('common.more')}
+                  showIndex={false}
+                  cover
+                />
+              ))}
             </div>
           </div>
         </div>
@@ -260,30 +236,21 @@ const CatalogPage = () => {
       {category === 'professional' && !searchQuery && professionalData?.products && (
         <div className="office-equipment">
           <div className="container">
-            <h1 className="office-equipment__title">{t('categories.professional')}</h1>
-            <p className="catalog-subtitle">
-              {t('categories.professional_description')}
-            </p>
-            <div className="office-equipment__grid">
-              {professionalData.products.map((product) => (
-                <Link
+            <CatalogHero
+              title={t('categories.professional')}
+              description={t('categories.professional_description')}
+              wide
+            />
+            <div className="catalog-cards">
+              {professionalData.products.map((product, index) => (
+                <CatalogCard
                   key={product.id}
                   to={`/${language}/professional-equipment/develop/${product.id}`}
-                  className="office-equipment__card"
-                >
-                  <div className="office-equipment__card-image">
-                    <img
-                      src={professionalImageByKey[product.imageKey] || developPro1}
-                      alt={product.name}
-                    />
-                    <div className="office-equipment__overlay">
-                      <span className="office-equipment__more">{t('common.more')}</span>
-                    </div>
-                  </div>
-                  <div className="office-equipment__card-content">
-                    <h3 className="office-equipment__card-title">{product.name}</h3>
-                  </div>
-                </Link>
+                  index={index}
+                  image={professionalImageByKey[product.imageKey] || developPro1}
+                  name={product.name}
+                  moreLabel={t('common.more')}
+                />
               ))}
             </div>
           </div>
@@ -294,48 +261,22 @@ const CatalogPage = () => {
       {category === 'office' && !searchQuery && developData?.products && (
         <div className="office-equipment">
           <div className="container">
-            <h1 className="office-equipment__title">{t('products.develop.displayName')}</h1>
-            <p className="catalog-subtitle">
-              {t('catalog.subtitle')}
-            </p>
-            <div className="office-equipment__header">
-              {filtersContent}
-              <div className="office-equipment__grid">
-                {developData.products.map((product) => {
-                  const meta = developMeta[product.id] || {};
-                  const speed = meta.speed || '55';
-                  const tonerLifetime = meta.tonerLifetime || product.systemSpecs?.tonerLifetime;
-
-                  return (
-                    <Link
-                      key={product.id}
-                      to={`/${language}/office-equipment/develop/${product.id}`}
-                      className="office-equipment__card"
-                    >
-                      <div className="office-equipment__card-image">
-                        <img 
-                          src={imageMap[product.id]} 
-                          alt={product.name}
-                        />
-                        <div className="office-equipment__overlay">
-                          <span className="office-equipment__more">{t('common.more')}</span>
-                        </div>
-                      </div>
-                      <div className="office-equipment__card-content">
-                        <h3 className="office-equipment__card-title">{product.name}</h3>
-                        <div className="office-equipment__specs">
-                          <span className="spec">
-                            <strong>{t('product.speed')}</strong> {speed} {t('common.ppm')}
-                          </span>
-                          <span className="spec">
-                            <strong>Toner lifetime</strong> {tonerLifetime || t('common.not_available')}
-                          </span>
-                        </div>
-                      </div>
-                    </Link>
-                  );
-                })}
-              </div>
+            <CatalogHero
+              title={t('products.develop.displayName')}
+              description={t('catalog.subtitle')}
+              wide
+            />
+            <div className="catalog-cards">
+              {developData.products.map((product, index) => (
+                <CatalogCard
+                  key={product.id}
+                  to={`/${language}/office-equipment/develop/${product.id}`}
+                  index={index}
+                  image={imageMap[product.id]}
+                  name={product.name}
+                  moreLabel={t('common.more')}
+                />
+              ))}
             </div>
           </div>
         </div>

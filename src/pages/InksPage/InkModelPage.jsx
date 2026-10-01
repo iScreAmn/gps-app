@@ -5,13 +5,31 @@ import { Modal, CallbackForm } from '../../components/widgets/Modals';
 import { inksProducts } from '../../data/inksData';
 import './InkModelPage.css';
 
-const InkModelPage = () => {
-  const { inkId } = useParams();
+// Cutting-mat panel with a dashed knife line; children are the <li> chips
+const SpecPanel = ({ icon, title, badge, count, countLabel, wide = false, children }) => (
+  <section className="ink-model__compat">
+    <header className="ink-model__compat-head">
+      <span className="ink-model__compat-icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24">{icon}</svg>
+      </span>
+      <h2 className="ink-model__compat-title">{title}</h2>
+      {badge && <span className="ink-model__compat-brand">{badge}</span>}
+      <span className="ink-model__compat-count">
+        <strong>{count}</strong> {countLabel}
+      </span>
+    </header>
+    <ul className={`ink-model__compat-list${wide ? ' ink-model__compat-list--wide' : ''}`}>{children}</ul>
+  </section>
+);
+
+// Also serves standalone supplies: pass `products={suppliesProducts}` on the :supplyId route
+const InkModelPage = ({ products = inksProducts }) => {
+  const { inkId, supplyId } = useParams();
   const { language: lang, t } = useLanguage();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isSuccessModal, setIsSuccessModal] = useState(false);
 
-  const product = inksProducts.find((p) => p.id === inkId);
+  const product = products.find((p) => p.id === (inkId ?? supplyId));
 
   const handleOpenModal = () => setIsModalOpen(true);
   const handleCloseModal = () => setIsModalOpen(false);
@@ -52,8 +70,57 @@ const InkModelPage = () => {
           </div>
 
           <div className="ink-model__content">
-            <h2 className="ink-model__section-title">{t('product.product_description')}</h2>
-            <p className="ink-model__description">{t(product.descKey)}</p>
+            {product.descKey && (
+              <>
+                <h2 className="ink-model__section-title">{t('product.product_description')}</h2>
+                <p className="ink-model__description">
+                  {/* **text** in the translation renders as bold */}
+                  {t(product.descKey).split('**').map((part, i) =>
+                    i % 2 ? <strong key={i}>{part}</strong> : part
+                  )}
+                </p>
+              </>
+            )}
+
+            {product.compatible && (
+              <SpecPanel
+                icon={<path d="M20 6 9 17l-5-5" />}
+                title={t('catalog.compatible')}
+                badge={product.compatible.brand}
+                count={product.compatible.models.length}
+                countLabel={t('catalog.models')}
+              >
+                {product.compatible.models.map((model, i) => (
+                  <li key={model} className="ink-model__compat-model" style={{ '--i': i }}>
+                    <span className="ink-model__compat-model-label">{product.compatible.brand}</span>
+                    {model}
+                  </li>
+                ))}
+              </SpecPanel>
+            )}
+
+            {product.sizes && (
+              <SpecPanel
+                icon={<path d="M3 17 17 3l4 4L7 21zM7 13l2 2M10 10l2 2M13 7l2 2" />}
+                title={t(product.sizesTitleKey)}
+                count={product.sizes.length}
+                countLabel={t(Array.isArray(product.sizes[0]) ? 'catalog.sizes' : 'catalog.options')}
+                wide={!Array.isArray(product.sizes[0])}
+              >
+                {/* [inch, mm] pairs or { main, sub } variants */}
+                {product.sizes.map((size, i) => {
+                  const [main, sub] = Array.isArray(size)
+                    ? [`${size[0]}"`, `${size[1]} ${t('catalog.mm')}`]
+                    : [size.main, size.sub];
+                  return (
+                    <li key={`${main}-${sub}`} className="ink-model__compat-model" style={{ '--i': i }}>
+                      {main}
+                      <span className="ink-model__compat-model-label ink-model__compat-model-label--below">{sub}</span>
+                    </li>
+                  );
+                })}
+              </SpecPanel>
+            )}
           </div>
         </div>
       </div>

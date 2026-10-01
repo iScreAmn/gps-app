@@ -25,10 +25,6 @@ const Ideal = () => {
   return (
     <div className="ideal">
       <div className="container">
-        <div className="ideal__header">
-          <h1 className="ideal__title">{t('ideal.title')}</h1>
-        </div>
-
         <div className="ideal__grid">
           {categories.map((category) => (
             <Link

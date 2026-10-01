@@ -1,6 +1,6 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import { useLanguage } from '../../../../../hooks/useLanguage';
+import CatalogCard from '../../../../../components/CatalogCard/CatalogCard';
 import {
   guillotine1,
   guillotine2,
@@ -44,40 +44,17 @@ const IdealGuillotine = () => {
     <div className="catalog-page">
       <div className="office-equipment">
         <div className="container">
-          <div className="office-equipment__grid">
-            {idealGuillotineData.products.map((product) => {
-              const cardSpecs = language === 'en' && product.cardSpecsEn
-                ? product.cardSpecsEn
-                : product.cardSpecs;
-
-              return (
-                <Link
-                  key={product.id}
-                  to={`/${language}/cutting-systems/ideal/guillotine/${product.id}`}
-                  className="office-equipment__card"
-                >
-                  <div className="office-equipment__card-image">
-                    <img
-                      src={imageMap[product.id]}
-                      alt={product.name}
-                    />
-                    <div className="office-equipment__overlay">
-                      <span className="office-equipment__more">{t('common.more')}</span>
-                    </div>
-                  </div>
-                  <div className="office-equipment__card-content">
-                    <h3 className="office-equipment__card-title">{product.name}</h3>
-                    <div className="office-equipment__specs">
-                      {cardSpecs?.map((spec) => (
-                        <span key={`${product.id}-${spec.label}`} className="spec">
-                          <strong>{spec.label}:</strong> <span className="spec__value">{spec.value}</span>
-                        </span>
-                      ))}
-                    </div>
-                  </div>
-                </Link>
-              );
-            })}
+          <div className="catalog-cards">
+            {idealGuillotineData.products.map((product, index) => (
+              <CatalogCard
+                key={product.id}
+                to={`/${language}/cutting-systems/ideal/guillotine/${product.id}`}
+                index={index}
+                image={imageMap[product.id]}
+                name={product.name}
+                moreLabel={t('common.more')}
+              />
+            ))}
           </div>
         </div>
       </div>
