@@ -1,5 +1,5 @@
 .news-page {
-  padding: 50px 0 80px;
+  padding: 10px 0 80px;
   background: var(--page-bg, #f6f8fb);
   color: var(--text-primary, #0f172a);
   transition: background 0.3s ease, color 0.3s ease;
@@ -454,7 +454,7 @@ body[data-theme="dark"] .news-pagination__ellipsis {
 
 @media (max-width: 640px) {
   .news-page {
-    padding: 90px 0 60px;
+    padding: 10px 0 60px;
   }
 
   .news-hero__small-cards {
