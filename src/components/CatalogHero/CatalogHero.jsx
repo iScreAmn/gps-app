@@ -1,7 +1,7 @@
 import React from 'react';
 import './CatalogHero.css';
 
-const CatalogHero = ({ title, description, wide = false }) => (
+const CatalogHero = ({ title, description, wide = false, children }) => (
   <header className={`catalog-hero${wide ? ' catalog-hero--wide' : ''}`}>
     <span className="catalog-hero__crop catalog-hero__crop--tl" aria-hidden="true" />
     <span className="catalog-hero__crop catalog-hero__crop--tr" aria-hidden="true" />
@@ -32,6 +32,8 @@ const CatalogHero = ({ title, description, wide = false }) => (
         <p className="catalog-hero__desc">{description}</p>
       </div>
     )}
+
+    {children && <div className="catalog-hero__aside">{children}</div>}
   </header>
 );
 

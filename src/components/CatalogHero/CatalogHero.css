@@ -4,7 +4,7 @@
   --ch-muted: var(--light-text-secondary);
   --ch-line: rgba(31, 41, 55, 0.16);
   --ch-c: #00AEEF;
-  --ch-m: #EC008C;
+  --ch-m: var(--primary-red);
   --ch-y: #FFD400;
   --ch-blend: multiply;
   position: relative;
@@ -35,7 +35,7 @@ body[data-theme="dark"] .catalog-hero {
   --ch-muted: var(--dark-text-secondary);
   --ch-line: rgba(249, 250, 251, 0.18);
   --ch-c: #22C3FF;
-  --ch-m: #FF3DB1;
+  --ch-m: #EF4444;
   --ch-y: #FFE14D;
   --ch-blend: screen;
 }
@@ -199,6 +199,15 @@ body[data-theme="dark"] .catalog-hero {
   animation: ch-rise 0.7s cubic-bezier(0.22, 1, 0.36, 1) 0.7s forwards;
 }
 
+/* Extra content in place of the description (e.g. a related link) */
+.catalog-hero__aside {
+  grid-area: desc;
+  padding-bottom: 0.6rem;
+  opacity: 0;
+  transform: translateY(8px);
+  animation: ch-rise 0.7s cubic-bezier(0.22, 1, 0.36, 1) 0.6s forwards;
+}
+
 /* Hover: the proof gets inspected — marks close in on the trim, the colour bar reads out, the title opens up */
 @media (hover: hover) {
   .catalog-hero:hover .catalog-hero__crop {
@@ -290,6 +299,10 @@ body[data-theme="dark"] .catalog-hero {
 
   .catalog-hero__desc {
     text-align: left;
+  }
+
+  .catalog-hero__aside {
+    padding-bottom: 0;
   }
 }
 

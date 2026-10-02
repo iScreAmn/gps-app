@@ -1,0 +1,184 @@
+/* Print-proof link button: crop marks spread, ink rolls in, label misregisters.
+   Inside a CatalogHero it picks up the hero's --ch-* colours; elsewhere it falls back to its own. */
+.proof-link {
+  --pl-ease: cubic-bezier(0.22, 1, 0.36, 1);
+  --pl-paper: var(--light-bg);
+  --pl-ink: var(--ch-ink, var(--light-text));
+  --pl-line: var(--ch-line, rgba(31, 41, 55, 0.16));
+  --pl-c: var(--ch-c, #00AEEF);
+  --pl-m: var(--ch-m, var(--primary-red));
+  /* Misregistration of the cyan/red label plates on hover */
+  --pl-plate-opacity: 0.9;
+  --pl-plate-shift: 2px;
+  position: relative;
+  isolation: isolate;
+  display: inline-flex;
+  align-items: center;
+  gap: 1.1rem;
+  padding: 1rem 1rem 1rem 1.5rem;
+  border: 1px solid var(--pl-line);
+  color: var(--pl-ink);
+  text-decoration: none;
+  outline: none;
+  overflow: visible;
+  transition: color 0.45s var(--pl-ease), border-color 0.45s ease;
+}
+
+body[data-theme="dark"] .proof-link {
+  --pl-paper: var(--dark-bg);
+  --pl-ink: var(--ch-ink, var(--dark-text));
+  --pl-line: var(--ch-line, rgba(249, 250, 251, 0.18));
+  --pl-c: var(--ch-c, #22C3FF);
+  --pl-m: var(--ch-m, #EF4444);
+  /* Bright plates on the light ink fill shimmer — keep them subtle */
+  --pl-plate-opacity: 0.45;
+  --pl-plate-shift: 1px;
+}
+
+/* Ink fill that rolls in from the left */
+.proof-link::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: var(--pl-ink);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.55s var(--pl-ease);
+}
+
+/* Crop marks just outside each corner */
+.proof-link__crop {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  pointer-events: none;
+  transition: translate 0.5s var(--pl-ease);
+}
+
+.proof-link__crop::before,
+.proof-link__crop::after {
+  content: '';
+  position: absolute;
+  background: var(--pl-ink);
+  transition: background-color 0.4s ease;
+}
+
+.proof-link__crop::before { width: 100%; height: 1px; }
+.proof-link__crop::after { width: 1px; height: 100%; }
+
+.proof-link__crop--tl { top: -6px; left: -6px; }
+.proof-link__crop--tr { top: -6px; right: -6px; }
+.proof-link__crop--bl { bottom: -6px; left: -6px; }
+.proof-link__crop--br { bottom: -6px; right: -6px; }
+
+.proof-link__crop--tl::before, .proof-link__crop--tl::after { top: 0; left: 0; }
+.proof-link__crop--tr::before, .proof-link__crop--tr::after { top: 0; right: 0; }
+.proof-link__crop--bl::before, .proof-link__crop--bl::after { bottom: 0; left: 0; }
+.proof-link__crop--br::before, .proof-link__crop--br::after { bottom: 0; right: 0; }
+
+/* Label with cyan/red plates sitting in register until hover */
+.proof-link__label {
+  position: relative;
+  isolation: isolate;
+  font-family: 'GPS Mt Medium';
+  font-size: 1.15rem;
+  line-height: 1.3;
+  white-space: nowrap;
+}
+
+.proof-link__label::before,
+.proof-link__label::after {
+  content: attr(data-text);
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  opacity: 0;
+  pointer-events: none;
+  transition: translate 0.5s var(--pl-ease), opacity 0.3s ease;
+}
+
+.proof-link__label::before { color: var(--pl-c); }
+.proof-link__label::after { color: var(--pl-m); }
+
+/* Arrow in a solid key-colour tile */
+.proof-link__arrow {
+  display: grid;
+  place-items: center;
+  border-radius: 8px;
+  width: 38px;
+  height: 38px;
+  flex-shrink: 0;
+  background: var(--pl-m);
+  color: #fff;
+  transition: background-color 0.4s ease;
+}
+
+.proof-link__arrow svg {
+  width: 20px;
+  height: 20px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  transition: rotate 0.5s var(--pl-ease);
+}
+
+.proof-link:hover,
+.proof-link:focus-visible {
+  color: var(--pl-paper);
+  border-color: var(--pl-ink);
+}
+
+.proof-link:hover::before,
+.proof-link:focus-visible::before {
+  transform: scaleX(1);
+}
+
+.proof-link:hover .proof-link__crop::before,
+.proof-link:hover .proof-link__crop::after,
+.proof-link:focus-visible .proof-link__crop::before,
+.proof-link:focus-visible .proof-link__crop::after {
+  background-color: var(--pl-m);
+}
+
+.proof-link:hover .proof-link__crop--tl, .proof-link:focus-visible .proof-link__crop--tl { translate: -5px -5px; }
+.proof-link:hover .proof-link__crop--tr, .proof-link:focus-visible .proof-link__crop--tr { translate: 5px -5px; }
+.proof-link:hover .proof-link__crop--bl, .proof-link:focus-visible .proof-link__crop--bl { translate: -5px 5px; }
+.proof-link:hover .proof-link__crop--br, .proof-link:focus-visible .proof-link__crop--br { translate: 5px 5px; }
+
+.proof-link:hover .proof-link__label::before,
+.proof-link:hover .proof-link__label::after,
+.proof-link:focus-visible .proof-link__label::before,
+.proof-link:focus-visible .proof-link__label::after {
+  opacity: var(--pl-plate-opacity);
+}
+
+.proof-link:hover .proof-link__label::before,
+.proof-link:focus-visible .proof-link__label::before { translate: calc(-1 * var(--pl-plate-shift)) -1px; }
+
+.proof-link:hover .proof-link__label::after,
+.proof-link:focus-visible .proof-link__label::after { translate: var(--pl-plate-shift) 1px; }
+
+.proof-link:hover .proof-link__arrow svg,
+.proof-link:focus-visible .proof-link__arrow svg {
+  rotate: -45deg;
+}
+
+@media (max-width: 768px) {
+  .proof-link__label {
+    font-size: 1.05rem;
+    white-space: normal;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .proof-link,
+  .proof-link *,
+  .proof-link::before,
+  .proof-link *::before,
+  .proof-link *::after {
+    transition: none !important;
+  }
+}
