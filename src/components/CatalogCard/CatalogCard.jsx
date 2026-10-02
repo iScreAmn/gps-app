@@ -4,7 +4,8 @@ import './CatalogCard.css';
 
 // Without `to` the card renders as a static block (no link, no "more" button).
 // `cover` fills the stage with the photo — for lifestyle shots rather than cut-out product images.
-const CatalogCard = ({ to, index, image, name, moreLabel, showIndex = true, cover = false, children }) => {
+// `imagePosition` sets object-position, e.g. to lift a cover photo whose subject sits low in the frame.
+const CatalogCard = ({ to, index, image, name, moreLabel, showIndex = true, cover = false, imagePosition, children }) => {
   const content = (
     <>
       <div className={`catalog-card__media${cover ? ' catalog-card__media--cover' : ''}`}>
@@ -13,7 +14,13 @@ const CatalogCard = ({ to, index, image, name, moreLabel, showIndex = true, cove
             {String(index + 1).padStart(2, '0')}
           </span>
         )}
-        <img src={image} alt={name} className="catalog-card__img" loading="lazy" />
+        <img
+          src={image}
+          alt={name}
+          className="catalog-card__img"
+          style={imagePosition ? { objectPosition: imagePosition } : undefined}
+          loading="lazy"
+        />
         {to && moreLabel && (
           <span className="catalog-card__more">
             {moreLabel}

@@ -125,6 +125,7 @@ body[data-theme="dark"] .catalog-card {
   position: absolute;
   right: 1rem;
   bottom: 1rem;
+  z-index: 3;
   display: inline-flex;
   align-items: center;
   gap: 0.4rem;
@@ -132,6 +133,7 @@ body[data-theme="dark"] .catalog-card {
   border-radius: 999px;
   background: var(--cc-ink);
   color: var(--cc-surface);
+  font-family: 'GPS Mt Medium';
   font-size: 0.8rem;
   font-weight: var(--font-semibold);
   opacity: 0;
