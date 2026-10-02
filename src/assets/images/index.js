@@ -46,11 +46,20 @@ export { default as tmtLogo } from './partners/logos/tmt.png';
 export { default as ink1 } from './products/supplies/ink1.webp';
 export { default as ink2 } from './products/supplies/ink2.webp';
 export { default as ink3 } from './products/supplies/ink3.webp';
+export { default as ink4 } from './products/supplies/ink4.webp';
+export { default as ink5 } from './products/supplies/ink5.webp';
+export { default as rakel } from './products/supplies/rakel.webp';
+export { default as rigel } from './products/supplies/rigel.webp';
 export { default as toner } from './other/toners.webp';
+export { default as stepler } from './products/supplies/stepler.webp';
+export { default as wireComb } from './products/supplies/wirecomb-reco.webp';
+export { default as wireComb2 } from './products/supplies/wirecomb-renz.webp';
+export { default as wirecombCover } from './products/supplies/wirecomb-cover.webp';
 export { default as laminationFilm } from './products/supplies/laminationFilm.webp';
-export { default as wireComb } from './products/supplies/reco-wirecomb.webp';
 export { default as cuttingKnives } from './products/supplies/cutting-knives.webp';
 export { default as cuttingSticks } from './products/supplies/cutting-sticks.webp';
+export { default as guillotineCover } from './products/supplies/guillotineCover.webp';
+export { default as polipropilenSticker } from './products/supplies/polipropilenSticker.webp';
 
 
 //Partners logos

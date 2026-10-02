@@ -4,7 +4,6 @@ import { HiArrowSmRight } from "react-icons/hi";
 import { useLanguage } from '../../hooks/useLanguage';
 import { getCurrentLanguageFromPath } from '../../i18n';
 import { getNewsItemById } from '../../data/contentData';
-import developData from '../../database/brands/develop.json';
 import recosystemsData from '../../database/brands/recosystems.json';
 import idealGuillotineData from '../../database/brands/ideal-guillotine.json';
 import idealShredderData from '../../database/brands/ideal-shredder.json';
@@ -12,12 +11,21 @@ import vividData from '../../database/brands/vivid.json';
 import cyklosData from '../../database/brands/cyklos.json';
 import rapidData from '../../database/brands/rapid.json';
 import duploData from '../../database/brands/duplo.json';
-import { professionalData } from '../../data/professionalData';
 import { nocaiData } from '../../data/nocaiData';
 import { audleyData } from '../../data/audleyData';
 import { tenethData } from '../../data/tenethData';
 import { inksProducts } from '../../data/inksData';
 import { suppliesProducts } from '../../data/suppliesData';
+import { wirecombsProducts } from '../../data/wirecombsData';
+import { guillotineAccessProducts } from '../../data/guillotineAccessData';
+import { materialsProducts } from '../../data/materialsData';
+
+// Supplies sub-listings: /catalog/supplies/<key> and /catalog/supplies/<key>/:id
+const supplyListings = {
+  inks: { labelKey: 'catalog.inks', products: inksProducts },
+  wirecombs: { labelKey: 'catalog.wirecombs', products: wirecombsProducts },
+  guillotineaccess: { labelKey: 'catalog.guillotine_access', products: guillotineAccessProducts },
+};
 import './Breadcrumbs.css';
 
 const Breadcrumbs = ({ items, separator }) => {
@@ -120,21 +128,22 @@ const Breadcrumbs = ({ items, separator }) => {
       isActive: segments.length === 0
     });
 
-    // Специальная обработка для catalog/supplies/inks и catalog/supplies/inks/:inkId
-    if (segments[0] === 'catalog' && segments[1] === 'supplies' && segments[2] === 'inks') {
+    // Специальная обработка для catalog/supplies/{inks,wirecombs} и их страниц товаров
+    const listing = segments[0] === 'catalog' && segments[1] === 'supplies' && supplyListings[segments[2]];
+    if (listing) {
       const catalogPath = currentLang ? `/${currentLang}/catalog` : '/catalog';
       const suppliesPath = currentLang ? `/${currentLang}/catalog/supplies` : '/catalog/supplies';
-      const inksPath = currentLang ? `/${currentLang}/catalog/supplies/inks` : '/catalog/supplies/inks';
+      const listingPath = `${suppliesPath}/${segments[2]}`;
       crumbs.push(
         { label: t('navigation.catalog'), path: catalogPath, isActive: false },
         { label: t('categories.supplies'), path: suppliesPath, isActive: false },
-        { label: t('catalog.inks'), path: inksPath, isActive: !segments[3] }
+        { label: t(listing.labelKey), path: listingPath, isActive: !segments[3] }
       );
       if (segments[3]) {
-        const ink = inksProducts.find((p) => p.id === segments[3]);
+        const item = listing.products.find((p) => p.id === segments[3]);
         crumbs.push({
-          label: ink ? t(ink.titleKey) : segments[3],
-          path: inksPath + '/' + segments[3],
+          label: item ? t(item.titleKey) : segments[3],
+          path: listingPath + '/' + segments[3],
           isActive: true
         });
       }
@@ -150,6 +159,19 @@ const Breadcrumbs = ({ items, separator }) => {
         { label: t('navigation.catalog'), path: catalogPath, isActive: false },
         { label: t('categories.supplies'), path: suppliesPath, isActive: false },
         { label: t(supply.titleKey), path: `${suppliesPath}/${supply.id}`, isActive: true }
+      );
+      return crumbs;
+    }
+
+    const material = segments[0] === 'catalog' && segments[1] === 'materials'
+      && materialsProducts.find((p) => p.id === segments[2]);
+    if (material) {
+      const catalogPath = currentLang ? `/${currentLang}/catalog` : '/catalog';
+      const materialsPath = `${catalogPath}/materials`;
+      crumbs.push(
+        { label: t('navigation.catalog'), path: catalogPath, isActive: false },
+        { label: t('categories.materials'), path: materialsPath, isActive: false },
+        { label: t(material.titleKey), path: `${materialsPath}/${material.id}`, isActive: true }
       );
       return crumbs;
     }
@@ -249,7 +271,6 @@ const Breadcrumbs = ({ items, separator }) => {
       }
 
       // id новости уже добавлен в блоке выше — не обрабатываем как catalog route
-      // (иначе /news/professional-equipment матчится на professional-equipment)
       if (segments[index - 1] === 'news') {
         return;
       }
@@ -517,46 +538,6 @@ const Breadcrumbs = ({ items, separator }) => {
         return;
       }
       
-      // Специальная обработка для office-equipment: Home - Catalog - Office - модель
-      if (segment === 'office-equipment') {
-        const catalogPath = currentLang ? `/${currentLang}/catalog` : '/catalog';
-        const officeCatalogPath = currentLang ? `/${currentLang}/catalog/office` : '/catalog/office';
-        crumbs.push(
-          { label: t('navigation.catalog'), path: catalogPath, isActive: false },
-          { label: t('categories.office'), path: officeCatalogPath, isActive: !segments[index + 2] }
-        );
-        if (nextSegment === 'develop' && segments[index + 2]) {
-          const modelId = segments[index + 2];
-          const product = developData?.products?.find(p => p.id === modelId);
-          crumbs.push({
-            label: product?.name || modelId,
-            path: `${currentLang ? `/${currentLang}` : ''}/office-equipment/develop/${modelId}`,
-            isActive: true
-          });
-        }
-        return;
-      }
-
-      // Специальная обработка для professional-equipment: Home - Catalog - Professional - модель
-      if (segment === 'professional-equipment') {
-        const catalogPath = currentLang ? `/${currentLang}/catalog` : '/catalog';
-        const professionalCatalogPath = currentLang ? `/${currentLang}/catalog/professional` : '/catalog/professional';
-        crumbs.push(
-          { label: t('navigation.catalog'), path: catalogPath, isActive: false },
-          { label: t('categories.professional'), path: professionalCatalogPath, isActive: !segments[index + 2] }
-        );
-        if (nextSegment === 'develop' && segments[index + 2]) {
-          const modelId = segments[index + 2];
-          const product = professionalData?.products?.find(p => p.id === modelId);
-          crumbs.push({
-            label: product?.name || modelId,
-            path: `${currentLang ? `/${currentLang}` : ''}/professional-equipment/develop/${modelId}`,
-            isActive: true
-          });
-        }
-        return;
-      }
-
       // ideal/products: Home - Catalog - Cutting Systems - Ideal - Products
       if (segment === 'ideal' && nextSegment === 'products') {
         const catalogPath = currentLang ? `/${currentLang}/catalog` : '/catalog';
@@ -603,30 +584,6 @@ const Breadcrumbs = ({ items, separator }) => {
       if (segments[index - 1] === 'recosystems' && segments[index - 2] === 'cutting-systems') {
         return;
       }
-      // Пропускаем сегмент "develop", если следующий сегмент существует (это modelId)
-      if (segment === 'develop' && nextSegment) {
-        // Пропускаем "develop", модель будет обработана в следующей итерации
-        return;
-      }
-      
-      // Пропускаем modelId для professional-equipment — уже добавлен выше
-      if (segments[index - 1] === 'develop' && segments[0] === 'professional-equipment') {
-        return;
-      }
-
-      // Специальная обработка для modelId после "develop" (office-equipment)
-      if (segments[index - 1] === 'develop') {
-        currentPath = `${currentLang ? `/${currentLang}` : ''}/office-equipment/develop/${segment}`;
-        const product = developData?.products?.find(p => p.id === segment);
-        const modelLabel = product?.name || segment || 'Model';
-        crumbs.push({
-          label: modelLabel,
-          path: currentPath,
-          isActive: true
-        });
-        return; // Пропускаем стандартную обработку
-      }
-
       // Пропускаем modelId для recosystems — он уже добавлен в специальной обработке выше
       if (segments[index - 1] === 'recosystems') {
         return;

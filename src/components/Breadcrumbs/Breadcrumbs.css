@@ -6,8 +6,11 @@
   min-height: 40px;
   display: block !important;
   width: 100%;
-  position: relative;
-  z-index: 10;
+  /* Pinned right under the fixed headers (TopHeader + Header end at 140px) */
+  position: sticky;
+  top: 140px;
+  /* Above page content, below the fixed headers and modal overlays */
+  z-index: 990;
   visibility: visible;
   opacity: 1;
 }
@@ -100,10 +103,19 @@ body[data-theme="dark"] .breadcrumbs__item--active {
 }
 
 /* Адаптивность */
+/* Below 1024px the second Header is hidden — only TopHeader (84px) stays fixed */
+@media (max-width: 1023px) {
+  .breadcrumbs {
+    margin-top: 84px;
+    top: 84px;
+  }
+}
+
 @media (max-width: 768px) {
   .breadcrumbs {
     padding: 0.75rem 0;
-    margin-top: 70px;
+    margin-top: 66px;
+    top: 66px;
   }
 
   .breadcrumbs__list {
