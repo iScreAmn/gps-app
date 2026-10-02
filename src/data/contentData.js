@@ -583,7 +583,7 @@ export const gpsContent = {
             'products.develop.feature6'
           ],
           cta: 'products.develop.cta',
-          ctaLink: '/office-equipment/develop/ineo-550i',
+          ctaLink: '/catalog/office/ineo-550i',
           price: 'products.develop.price',
           discount: 'products.discount',
           code: 'products.code'
@@ -623,7 +623,7 @@ export const gpsContent = {
             'products.develop.feature6'
           ],
           cta: 'products.develop.cta',
-          ctaLink: '/office-equipment/develop/ineo-550i',
+          ctaLink: '/catalog/office/ineo-550i',
           price: 'products.develop.price',
           discount: 'products.discount',
           code: 'products.code'
@@ -663,7 +663,7 @@ export const gpsContent = {
             'products.develop.feature6'
           ],
           cta: 'products.develop.cta',
-          ctaLink: '/office-equipment/develop/ineo-550i',
+          ctaLink: '/catalog/office/ineo-550i',
           price: 'products.develop.price',
           discount: 'products.discount',
           code: 'products.code'

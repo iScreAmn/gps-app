@@ -1,0 +1,8 @@
+/* Portrait photos are cropped top/bottom — show more of the lower part so the product sits higher */
+.wirecombs-page .catalog-card__img {
+  object-position: center 70%;
+}
+
+.wirecombs-page .catalog-card[href$="/renz"] .catalog-card__img {
+  object-position: center 95%;
+}

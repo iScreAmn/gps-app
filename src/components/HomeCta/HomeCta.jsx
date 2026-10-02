@@ -10,8 +10,8 @@ import "./HomeCta.css";
 const EASE = [0.16, 1, 0.3, 1];
 
 const products = [
-  { key: "office", image: cutLine1, path: "office-equipment/develop", speed: 60 },
-  { key: "pro", image: cutLine2, path: "professional-equipment/develop", speed: 120 },
+  { key: "office", image: cutLine1, path: "catalog/office", speed: 60 },
+  { key: "pro", image: cutLine2, path: "catalog/professional", speed: 120 },
   { key: "iecho", image: cutLine3, path: "cutting-systems/iecho", speed: 40 },
   { key: "nocai", image: cutLine4, path: "plotter-catalog/nocai", speed: 100 },
 ];
