@@ -7,11 +7,13 @@ import CategoryCards from '../../components/CategoryCards/CategoryCards';
 import CatalogHero from '../../components/CatalogHero/CatalogHero';
 import CatalogCard from '../../components/CatalogCard/CatalogCard';
 import { searchProducts } from '../../utils/productSearch';
-import { developPrinter1, developPrinter3, developPrinter4, developPrinter5, developPrinter6, developPro1, developPro2, developPro3, developPro4, nocai, audley, teneth, PK0604, PK0604plus, PK0705, PK0705plus, PK1209, plotterCutting, inks, toner } from '../../assets/images';
+import { developPrinter1, developPrinter3, developPrinter4, developPrinter5, developPrinter6, developPro1, developPro2, developPro3, developPro4, nocai, audley, teneth, PK0604, PK0604plus, PK0705, PK0705plus, PK1209, plotterCutting, inks, toner, wirecombCover, guillotineCover } from '../../assets/images';
 import developData from '../../database/brands/develop.json';
 import { professionalData } from '../../data/professionalData';
 import iechoData from '../../database/brands/iecho.json';
 import { suppliesProducts } from '../../data/suppliesData';
+import { materialsProducts } from '../../data/materialsData';
+import './BrandListing.css';
 import './CatalogPage.css';
 
 const CatalogPage = () => {
@@ -32,7 +34,7 @@ const CatalogPage = () => {
         tonerLifetime: product.systemSpecs?.tonerLifetime,
         image: developPrinter1,
         price: t('catalog.price_on_request'),
-        link: `/${language}/office-equipment/develop/${product.id}`
+        link: `/${language}/catalog/office/${product.id}`
       }))
     : [];
 
@@ -45,7 +47,7 @@ const CatalogPage = () => {
         category: 'professional',
         image: professionalImageByKey[product.imageKey] || developPro1,
         price: t('catalog.price_on_request'),
-        link: `/${language}/professional-equipment/develop/${product.id}`
+        link: `/${language}/catalog/professional/${product.id}`
       }))
     : [];
 
@@ -182,6 +184,18 @@ const CatalogPage = () => {
                 showIndex={false}
                 cover
               />
+              {materialsProducts.map((product, index) => (
+                <CatalogCard
+                  key={product.id}
+                  to={`/${language}/catalog/materials/${product.id}`}
+                  index={index + 1}
+                  image={product.image}
+                  name={t(product.titleKey)}
+                  moreLabel={t('common.more')}
+                  showIndex={false}
+                  cover
+                />
+              ))}
             </div>
           </div>
         </div>
@@ -215,12 +229,31 @@ const CatalogPage = () => {
                 showIndex={false}
                 cover
               />
+              <CatalogCard
+                to={`/${language}/catalog/supplies/wirecombs`}
+                index={2}
+                image={wirecombCover}
+                name={t('catalog.wirecombs')}
+                moreLabel={t('common.more')}
+                showIndex={false}
+                cover
+              />
+              <CatalogCard
+                to={`/${language}/catalog/supplies/guillotineaccess`}
+                index={3}
+                image={guillotineCover}
+                name={t('catalog.guillotine_access')}
+                moreLabel={t('common.more')}
+                showIndex={false}
+                cover
+              />
               {suppliesProducts.map((product, index) => (
                 <CatalogCard
                   key={product.id}
                   to={`/${language}/catalog/supplies/${product.id}`}
-                  index={index + 2}
+                  index={index + 4}
                   image={product.image}
+                  imagePosition={product.imagePosition}
                   name={t(product.titleKey)}
                   moreLabel={t('common.more')}
                   showIndex={false}
@@ -245,7 +278,7 @@ const CatalogPage = () => {
               {professionalData.products.map((product, index) => (
                 <CatalogCard
                   key={product.id}
-                  to={`/${language}/professional-equipment/develop/${product.id}`}
+                  to={`/${language}/catalog/professional/${product.id}`}
                   index={index}
                   image={professionalImageByKey[product.imageKey] || developPro1}
                   name={product.name}
@@ -270,7 +303,7 @@ const CatalogPage = () => {
               {developData.products.map((product, index) => (
                 <CatalogCard
                   key={product.id}
-                  to={`/${language}/office-equipment/develop/${product.id}`}
+                  to={`/${language}/catalog/office/${product.id}`}
                   index={index}
                   image={imageMap[product.id]}
                   name={product.name}

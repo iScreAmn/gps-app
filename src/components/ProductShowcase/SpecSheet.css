@@ -1,0 +1,243 @@
+/* Spec sheet — headline tiles for short measurements, numbered ruled rows for the rest,
+   plus a ticked list for feature lines. Colour tokens (--im-*) come from .showcase. */
+.spec-sheet {
+  animation: im-fade 0.9s var(--im-ease) 0.45s both;
+}
+
+.spec-sheet__count {
+  order: 2;
+  color: var(--im-accent);
+  font-variant-numeric: tabular-nums;
+}
+
+/* Headline tiles */
+.spec-sheet__keys {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.75rem;
+  margin: 0 0 2.5rem;
+  padding: 0;
+  list-style: none;
+}
+
+.spec-sheet__key {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 1.5rem;
+  min-height: 150px;
+  padding: 1.4rem 1.5rem;
+  border: 1px solid var(--im-line);
+  border-radius: 22px;
+  background:
+    radial-gradient(120% 90% at 100% 0%, var(--im-glow), transparent 55%),
+    var(--im-stage);
+  overflow: hidden;
+  opacity: 0;
+  animation: im-fade 0.7s var(--im-ease) forwards;
+  animation-delay: calc(0.55s + var(--i, 0) * 0.08s);
+  transition: border-color 0.35s var(--im-ease), transform 0.35s var(--im-ease);
+}
+
+/* An odd tile out stretches across the row */
+.spec-sheet__key:last-child:nth-child(odd) {
+  grid-column: 1 / -1;
+}
+
+/* Corner tick, echoing the stage's crop marks */
+.spec-sheet__key::after {
+  content: '';
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  width: 12px;
+  height: 12px;
+  border-top: 1.5px solid var(--im-ink);
+  border-right: 1.5px solid var(--im-ink);
+  opacity: 0.35;
+  transition: opacity 0.35s var(--im-ease), border-color 0.35s var(--im-ease);
+}
+
+.spec-sheet__key-value {
+  font-size: clamp(1.35rem, 2.1vw, 1.9rem);
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: -0.01em;
+  color: var(--im-ink);
+  font-variant-numeric: tabular-nums;
+  overflow-wrap: anywhere;
+}
+
+.spec-sheet__key-label {
+  font-size: 0.78rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--im-muted);
+}
+
+@media (hover: hover) {
+  .spec-sheet__key:hover {
+    border-color: var(--im-accent);
+    transform: translateY(-3px);
+  }
+
+  .spec-sheet__key:hover::after {
+    opacity: 1;
+    border-color: var(--im-accent);
+  }
+}
+
+/* Ruled spec sheet */
+.spec-sheet__sheet {
+  margin: 0;
+  border-top: 1px solid var(--im-line);
+}
+
+.spec-sheet__row {
+  position: relative;
+  display: grid;
+  grid-template-columns: 2.5rem minmax(0, 0.85fr) minmax(0, 1.3fr);
+  gap: 1.25rem;
+  align-items: baseline;
+  padding: 1.1rem 0.75rem 1.1rem 0;
+  border-bottom: 1px solid var(--im-line);
+  transition: padding-left 0.45s var(--im-ease);
+}
+
+/* Red bar that grows in from the left on hover */
+.spec-sheet__row::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: -1px;
+  bottom: -1px;
+  width: 3px;
+  background: var(--im-accent);
+  transform: scaleY(0);
+  transform-origin: top;
+  transition: transform 0.45s var(--im-ease);
+}
+
+.spec-sheet__index {
+  font-size: 0.75rem;
+  letter-spacing: 0.06em;
+  color: var(--im-muted);
+  font-variant-numeric: tabular-nums;
+  transition: color 0.3s var(--im-ease);
+}
+
+.spec-sheet__label {
+  font-size: 0.82rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--im-muted);
+}
+
+.spec-sheet__value {
+  margin: 0;
+  font-size: 1.02rem;
+  line-height: 1.55;
+  color: var(--im-ink);
+  overflow-wrap: anywhere;
+}
+
+@media (hover: hover) {
+  .spec-sheet__row:hover {
+    padding-left: 1rem;
+  }
+
+  .spec-sheet__row:hover::before {
+    transform: scaleY(1);
+  }
+
+  .spec-sheet__row:hover .spec-sheet__index {
+    color: var(--im-accent);
+  }
+}
+
+/* Rows slide in as they scroll into view, where the browser supports scroll-driven animations */
+/* Feature list — lines without a label/value split */
+.spec-sheet__features {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.6rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.spec-sheet__feature {
+  position: relative;
+  padding: 0.95rem 1rem 0.95rem 2.75rem;
+  border: 1px solid var(--im-line);
+  border-radius: 14px;
+  font-size: 0.98rem;
+  line-height: 1.5;
+  color: var(--im-ink);
+  transition: border-color 0.3s var(--im-ease), background-color 0.3s var(--im-ease);
+}
+
+/* Tick drawn like a knife cut */
+.spec-sheet__feature::before {
+  content: '';
+  position: absolute;
+  left: 1rem;
+  top: 1.2rem;
+  width: 12px;
+  height: 7px;
+  border-left: 2px solid var(--im-accent);
+  border-bottom: 2px solid var(--im-accent);
+  transform: rotate(-45deg);
+}
+
+@media (hover: hover) {
+  .spec-sheet__feature:hover {
+    border-color: var(--im-accent);
+    background-color: var(--im-glow);
+  }
+}
+
+@supports (animation-timeline: view()) {
+  .spec-sheet__row {
+    animation: im-fade linear both;
+    animation-timeline: view();
+    animation-range: entry 0% entry 60%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .spec-sheet,
+  .spec-sheet__key,
+  .spec-sheet__row {
+    animation: none;
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@media (max-width: 768px) {
+  .spec-sheet__keys {
+    gap: 0.6rem;
+    margin-bottom: 2rem;
+  }
+
+  .spec-sheet__key {
+    min-height: 120px;
+    padding: 1.1rem 1.1rem;
+    border-radius: 18px;
+  }
+
+  .spec-sheet__row {
+    grid-template-columns: 2rem minmax(0, 1fr);
+    gap: 0.35rem 0.75rem;
+  }
+
+  .spec-sheet__value {
+    grid-column: 2;
+  }
+
+  .spec-sheet__features {
+    grid-template-columns: 1fr;
+  }
+}

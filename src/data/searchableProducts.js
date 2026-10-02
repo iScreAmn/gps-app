@@ -1,4 +1,4 @@
-import { developPrinter1, developPro1, developPro2, developPro3, developPro4, nocai1, nocai5, audleyEco1, audleyEco2, teneth1, teneth2, PK0604, PK0604plus, PK0705, PK0705plus, PK1209, ink1, ink2, ink3, plotterCutting, laminator1, laminator2, laminator3, laminator4, laminator5, laminator6, laminator7, laminator8, laminator9, laminator10, laminator11, laminator12, guillotine1, guillotine2, guillotine3, guillotine4, guillotine5, guillotine6, guillotine7, guillotine8, guillotine9, guillotine10, guillotine11, guillotine12, guillotine13, guillotine14, shredder1, shredder2, shredder3, shredder4, shredder5, shredder6, cyklos1, cyklos2, cyklos3, cyklos4, cyklos5, cyklos6, rapid1, rapid2, duplo1, duplo2, duplo3, duplo4, duplo5, duplo6, duplo7, duplo8, duplo9, duplo10 } from '../assets/images';
+import { developPrinter1, developPro1, developPro2, developPro3, developPro4, nocai1, nocai5, audleyEco1, audleyEco2, teneth1, teneth2, PK0604, PK0604plus, PK0705, PK0705plus, PK1209, ink1, ink2, ink3, ink4, ink5, plotterCutting, laminator1, laminator2, laminator3, laminator4, laminator5, laminator6, laminator7, laminator8, laminator9, laminator10, laminator11, laminator12, guillotine1, guillotine2, guillotine3, guillotine4, guillotine5, guillotine6, guillotine7, guillotine8, guillotine9, guillotine10, guillotine11, guillotine12, guillotine13, guillotine14, shredder1, shredder2, shredder3, shredder4, shredder5, shredder6, cyklos1, cyklos2, cyklos3, cyklos4, cyklos5, cyklos6, rapid1, rapid2, duplo1, duplo2, duplo3, duplo4, duplo5, duplo6, duplo7, duplo8, duplo9, duplo10 } from '../assets/images';
 import developData from '../database/brands/develop.json';
 import iechoData from '../database/brands/iecho.json';
 import vividData from '../database/brands/vivid.json';
@@ -13,6 +13,9 @@ import { nocaiData } from './nocaiData';
 import { audleyData } from './audleyData';
 import { tenethData } from './tenethData';
 import { suppliesProducts } from './suppliesData';
+import { wirecombsProducts } from './wirecombsData';
+import { guillotineAccessProducts } from './guillotineAccessData';
+import { materialsProducts } from './materialsData';
 
 const iechoImageMap = { pk0604: PK0604, 'pk0604-plus': PK0604plus, pk0705: PK0705, 'pk0705-plus': PK0705plus, 'pk1209-pro-max': PK1209 };
 
@@ -250,7 +253,7 @@ export function getSearchableProducts(language, t) {
         category: 'office',
         image: developPrinter1,
         price: t('catalog.price_on_request'),
-        link: `/${language}/office-equipment/develop/${p.id}`
+        link: `/${language}/catalog/office/${p.id}`
       }))
     : [];
 
@@ -276,7 +279,7 @@ export function getSearchableProducts(language, t) {
         category: 'professional',
         image: professionalImageByKey[p.imageKey] || developPro1,
         price: t('catalog.price_on_request'),
-        link: `/${language}/professional-equipment/develop/${p.id}`
+        link: `/${language}/catalog/professional/${p.id}`
       }))
     : [];
 
@@ -305,6 +308,20 @@ export function getSearchableProducts(language, t) {
       image: ink1,
       link: `/${language}/catalog/supplies/inks/nocai-uv`,
     },
+    {
+      id: 'inks-roll-uv',
+      name: t('inks.roll_uv'),
+      category: 'inks',
+      image: ink4,
+      link: `/${language}/catalog/supplies/inks/roll-uv`,
+    },
+    {
+      id: 'inks-eco-solvent-cleaner',
+      name: t('inks.eco_cleaner'),
+      category: 'inks',
+      image: ink5,
+      link: `/${language}/catalog/supplies/inks/eco-solvent-cleaner`,
+    },
   ];
 
   const supplySearchProducts = suppliesProducts.map((p) => ({
@@ -314,6 +331,32 @@ export function getSearchableProducts(language, t) {
     category: 'supplies',
     image: p.image,
     link: `/${language}/catalog/supplies/${p.id}`,
+  }));
+
+  const wirecombSearchProducts = wirecombsProducts.map((p) => ({
+    id: `wirecombs-${p.id}`,
+    name: t(p.titleKey),
+    brand: p.brand,
+    category: 'supplies',
+    image: p.image,
+    link: `/${language}/catalog/supplies/wirecombs/${p.id}`,
+  }));
+
+  const guillotineAccessSearchProducts = guillotineAccessProducts.map((p) => ({
+    id: `guillotineaccess-${p.id}`,
+    name: t(p.titleKey),
+    brand: p.brand,
+    category: 'supplies',
+    image: p.image,
+    link: `/${language}/catalog/supplies/guillotineaccess/${p.id}`,
+  }));
+
+  const materialSearchProducts = materialsProducts.map((p) => ({
+    id: `materials-${p.id}`,
+    name: t(p.titleKey),
+    category: 'materials',
+    image: p.image,
+    link: `/${language}/catalog/materials/${p.id}`,
   }));
 
   const nocaiImageByKey = { nocai1, nocai5 };
@@ -392,7 +435,7 @@ export function getSearchableProducts(language, t) {
   const rapidProducts = mapRapidProducts(language, t);
   const duploProducts = mapDuploProducts(language, t);
 
-  return [...developProducts, ...professionalProducts, ...iechoProducts, ...vividProducts, ...recosystemsProducts, ...nocaiPlotterProducts, ...audleyPlotterProducts, ...tenethPlotterProducts, ...inksProducts, ...idealGuillotineProducts, ...idealShredderProducts, ...cyklosProducts, ...rapidProducts, ...duploProducts, plotterCuttingProduct, ...supplySearchProducts].map((p) => ({
+  return [...developProducts, ...professionalProducts, ...iechoProducts, ...vividProducts, ...recosystemsProducts, ...nocaiPlotterProducts, ...audleyPlotterProducts, ...tenethPlotterProducts, ...inksProducts, ...idealGuillotineProducts, ...idealShredderProducts, ...cyklosProducts, ...rapidProducts, ...duploProducts, plotterCuttingProduct, ...supplySearchProducts, ...wirecombSearchProducts, ...guillotineAccessSearchProducts, ...materialSearchProducts].map((p) => ({
     ...p,
     link: p.link || `/${language}/product/${p.id}`
   }));

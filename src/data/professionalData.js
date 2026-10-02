@@ -3,7 +3,7 @@
  * To add a new product:
  * 1. Add image to assets/images/index.js (export as developProN)
  * 2. Add entry to products array with id, name, imageKey, specs
- * 3. Add imageKey to imageMap in ProfessionalEquipment and ProfessionalModelPage
+ * 3. Add imageKey to professionalImageByKey in CatalogPage and searchableProducts
  */
 export const professionalData = {
   brand: 'develop',

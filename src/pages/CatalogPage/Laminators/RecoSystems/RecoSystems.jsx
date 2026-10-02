@@ -22,9 +22,6 @@ const RecoSystems = () => {
     <div className="catalog-page">
       <div className="office-equipment">
         <div className="container">
-          <h1 className="catalog-page__found-count">
-            {products.length} {t('catalog.products_found')}
-          </h1>
           <div className="catalog-cards">
             {products.map((product, index) => (
               <CatalogCard

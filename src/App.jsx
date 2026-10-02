@@ -6,6 +6,8 @@ import { CookieConsentProvider } from './contexts/CookieConsentContext';
 import Layout from './layouts/Layout/Layout';
 import HomePage from './pages/HomePage/HomePage';
 import CatalogPage from './pages/CatalogPage/CatalogPage';
+import DevelopModelPage from './pages/CatalogPage/Develop/DevelopModelPage';
+import ProfessionalModelPage from './pages/CatalogPage/Develop/ProfessionalModelPage';
 import ProductPage from './pages/ProductPage/ProductPage';
 import AboutPage from './pages/AboutPage/AboutPage';
 import ServicesPage from './pages/ServicesPage/ServicesPage';
@@ -24,6 +26,11 @@ import TenethModelPage from './pages/PlotterCatalogPage/Teneth/TenethModelPage';
 import InksPage from './pages/InksPage/InksPage';
 import InkModelPage from './pages/InksPage/InkModelPage';
 import { suppliesProducts } from './data/suppliesData';
+import { wirecombsProducts } from './data/wirecombsData';
+import { guillotineAccessProducts } from './data/guillotineAccessData';
+import { materialsProducts } from './data/materialsData';
+import WireCombsPage from './pages/WireCombsPage/WireCombsPage';
+import GuillotineAccessPage from './pages/GuillotineAccessPage/GuillotineAccessPage';
 import TonerPage from './pages/TonerPage/TonerPage';
 import LedsPage from './pages/LedsPage/LedsPage';
 import LedModulesPage from './pages/LedsPage/LedModulesPage';
@@ -36,10 +43,6 @@ import IdealGuillotineModelPage from './pages/CatalogPage/CuttingSystemsPage/Ide
 import IdealShredder from './pages/CatalogPage/CuttingSystemsPage/Ideal/Shredder/IdealShredder';
 import IdealShredderModelPage from './pages/CatalogPage/CuttingSystemsPage/Ideal/Shredder/IdealShredderModelPage';
 import IdealProductsPage from './pages/CatalogPage/CuttingSystemsPage/Ideal/IdealProductsPage';
-import OfficeEquipment from './pages/CatalogPage/OfficeEquipment/OfficeEquipment';
-import DevelopModelPage from './pages/CatalogPage/OfficeEquipment/DevelopModelPage';
-import ProfessionalEquipment from './pages/CatalogPage/ProfessionalEquipment/ProfessionalEquipment';
-import ProfessionalModelPage from './pages/CatalogPage/ProfessionalEquipment/ProfessionalModelPage';
 import RecoSystems from './pages/CatalogPage/Laminators/RecoSystems/RecoSystems';
 import RecoSystemsModelPage from './pages/CatalogPage/Laminators/RecoSystems/RecoSystemsModelPage';
 import Vivid from './pages/CatalogPage/Laminators/Vivid/Vivid';
@@ -77,6 +80,9 @@ function App() {
                 <Route path="/ka" element={<HomePage />} />
                 <Route path="/ka/catalog" element={<CatalogPage />} />
                 <Route path="/ka/catalog/:category" element={<CatalogPage />} />
+                <Route path="/ka/catalog/materials/:supplyId" element={<InkModelPage products={materialsProducts} />} />
+                <Route path="/ka/catalog/office/:modelId" element={<DevelopModelPage />} />
+                <Route path="/ka/catalog/professional/:modelId" element={<ProfessionalModelPage />} />
                 <Route path="/ka/cutting-systems" element={<CuttingSystemsPage />} />
                 <Route path="/ka/cutting-systems/iecho" element={<Iecho />} />
                 <Route path="/ka/cutting-systems/iecho/:modelId" element={<IechoModelPage />} />
@@ -99,10 +105,6 @@ function App() {
                 <Route path="/ka/guillotine" element={<IdealGuillotine />} />
                 <Route path="/ka/guillotine/:modelId" element={<IdealGuillotineModelPage />} />
                 <Route path="/ka/cutting-systems/:brand" element={<CatalogPage />} />
-                <Route path="/ka/office-equipment/develop" element={<OfficeEquipment />} />
-                <Route path="/ka/office-equipment/develop/:modelId" element={<DevelopModelPage />} />
-                <Route path="/ka/professional-equipment/develop" element={<ProfessionalEquipment />} />
-                <Route path="/ka/professional-equipment/develop/:modelId" element={<ProfessionalModelPage />} />
                 <Route path="/ka/recosystems" element={<LegacyLaminatorRedirect brand="recosystems" langPrefix="/ka" />} />
                 <Route path="/ka/recosystems/:modelId" element={<LegacyLaminatorRedirect brand="recosystems" langPrefix="/ka" />} />
                 <Route path="/ka/vivid" element={<LegacyLaminatorRedirect brand="vivid" langPrefix="/ka" />} />
@@ -123,6 +125,14 @@ function App() {
                 <Route path="/ka/plotter-catalog/teneth/:modelId" element={<TenethModelPage />} />
                 <Route path="/ka/catalog/supplies/inks" element={<InksPage />} />
                 <Route path="/ka/catalog/supplies/inks/:inkId" element={<InkModelPage />} />
+                <Route path="/ka/catalog/supplies/wirecombs" element={<WireCombsPage />} />
+                <Route path="/ka/catalog/supplies/wirecombs/:supplyId" element={<InkModelPage products={wirecombsProducts} />} />
+                <Route path="/ka/catalog/supplies/wire-comb" element={<Navigate to="/ka/catalog/supplies/wirecombs/recosystems" replace />} />
+                <Route path="/ka/catalog/supplies/guillotineaccess" element={<GuillotineAccessPage />} />
+                <Route path="/ka/catalog/supplies/guillotineaccess/:supplyId" element={<InkModelPage products={guillotineAccessProducts} />} />
+                <Route path="/ka/catalog/supplies/guillotine-knife" element={<Navigate to="/ka/catalog/supplies/guillotineaccess/guillotine-knife" replace />} />
+                <Route path="/ka/catalog/supplies/guillotine-sticks" element={<Navigate to="/ka/catalog/supplies/guillotineaccess/guillotine-sticks" replace />} />
+                <Route path="/ka/guillotineaccess" element={<Navigate to="/ka/catalog/supplies/guillotineaccess" replace />} />
                 <Route path="/ka/catalog/supplies/:supplyId" element={<InkModelPage products={suppliesProducts} />} />
                 <Route path="/ka/toner" element={<TonerPage />} />
                 <Route path="/ka/leds" element={<LedsPage />} />
@@ -134,6 +144,9 @@ function App() {
                 <Route path="/en" element={<HomePage />} />
                 <Route path="/en/catalog" element={<CatalogPage />} />
                 <Route path="/en/catalog/:category" element={<CatalogPage />} />
+                <Route path="/en/catalog/materials/:supplyId" element={<InkModelPage products={materialsProducts} />} />
+                <Route path="/en/catalog/office/:modelId" element={<DevelopModelPage />} />
+                <Route path="/en/catalog/professional/:modelId" element={<ProfessionalModelPage />} />
                 <Route path="/en/cutting-systems" element={<CuttingSystemsPage />} />
                 <Route path="/en/cutting-systems/iecho" element={<Iecho />} />
                 <Route path="/en/cutting-systems/iecho/:modelId" element={<IechoModelPage />} />
@@ -156,10 +169,6 @@ function App() {
                 <Route path="/en/guillotine" element={<IdealGuillotine />} />
                 <Route path="/en/guillotine/:modelId" element={<IdealGuillotineModelPage />} />
                 <Route path="/en/cutting-systems/:brand" element={<CatalogPage />} />
-                <Route path="/en/office-equipment/develop" element={<OfficeEquipment />} />
-                <Route path="/en/office-equipment/develop/:modelId" element={<DevelopModelPage />} />
-                <Route path="/en/professional-equipment/develop" element={<ProfessionalEquipment />} />
-                <Route path="/en/professional-equipment/develop/:modelId" element={<ProfessionalModelPage />} />
                 <Route path="/en/recosystems" element={<LegacyLaminatorRedirect brand="recosystems" langPrefix="/en" />} />
                 <Route path="/en/recosystems/:modelId" element={<LegacyLaminatorRedirect brand="recosystems" langPrefix="/en" />} />
                 <Route path="/en/vivid" element={<LegacyLaminatorRedirect brand="vivid" langPrefix="/en" />} />
@@ -180,6 +189,14 @@ function App() {
                 <Route path="/en/plotter-catalog/teneth/:modelId" element={<TenethModelPage />} />
                 <Route path="/en/catalog/supplies/inks" element={<InksPage />} />
                 <Route path="/en/catalog/supplies/inks/:inkId" element={<InkModelPage />} />
+                <Route path="/en/catalog/supplies/wirecombs" element={<WireCombsPage />} />
+                <Route path="/en/catalog/supplies/wirecombs/:supplyId" element={<InkModelPage products={wirecombsProducts} />} />
+                <Route path="/en/catalog/supplies/wire-comb" element={<Navigate to="/en/catalog/supplies/wirecombs/recosystems" replace />} />
+                <Route path="/en/catalog/supplies/guillotineaccess" element={<GuillotineAccessPage />} />
+                <Route path="/en/catalog/supplies/guillotineaccess/:supplyId" element={<InkModelPage products={guillotineAccessProducts} />} />
+                <Route path="/en/catalog/supplies/guillotine-knife" element={<Navigate to="/en/catalog/supplies/guillotineaccess/guillotine-knife" replace />} />
+                <Route path="/en/catalog/supplies/guillotine-sticks" element={<Navigate to="/en/catalog/supplies/guillotineaccess/guillotine-sticks" replace />} />
+                <Route path="/en/guillotineaccess" element={<Navigate to="/en/catalog/supplies/guillotineaccess" replace />} />
                 <Route path="/en/catalog/supplies/:supplyId" element={<InkModelPage products={suppliesProducts} />} />
                 <Route path="/en/toner" element={<TonerPage />} />
                 <Route path="/en/leds" element={<LedsPage />} />
@@ -211,10 +228,6 @@ function App() {
                 <Route path="/guillotine" element={<IdealGuillotine />} />
                 <Route path="/guillotine/:modelId" element={<IdealGuillotineModelPage />} />
                 <Route path="/cutting-systems/:brand" element={<CatalogPage />} />
-                <Route path="/office-equipment/develop" element={<OfficeEquipment />} />
-                <Route path="/office-equipment/develop/:modelId" element={<DevelopModelPage />} />
-                <Route path="/professional-equipment/develop" element={<ProfessionalEquipment />} />
-                <Route path="/professional-equipment/develop/:modelId" element={<ProfessionalModelPage />} />
                 <Route path="/recosystems" element={<LegacyLaminatorRedirect brand="recosystems" />} />
                 <Route path="/recosystems/:modelId" element={<LegacyLaminatorRedirect brand="recosystems" />} />
                 <Route path="/vivid" element={<LegacyLaminatorRedirect brand="vivid" />} />
@@ -222,6 +235,7 @@ function App() {
                 <Route path="/leds" element={<LedsPage />} />
                 <Route path="/leds/modules" element={<LedModulesPage />} />
                 <Route path="/leds/power" element={<PowerSuppliesPage />} />
+                <Route path="/guillotineaccess" element={<Navigate to="/ka/catalog/supplies/guillotineaccess" replace />} />
                 <Route path="/scanner" element={<ScannerPage />} />
                 <Route path="/scaner" element={<Navigate to="/scanner" replace />} />
                 <Route path="/special-offer/iecho-pk0705-plus" element={<IechoSummerOfferPage />} />
