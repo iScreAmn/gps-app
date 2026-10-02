@@ -6,6 +6,7 @@ import { MdOutlineEmail } from "react-icons/md";
 import { FiRefreshCw } from "react-icons/fi";
 import { artPrinter2 } from '../../../assets/images';
 import './Calculator.css';
+import { PHONE_PREFIX, formatPhone, isPhoneEmpty, isPhoneValid } from '../../../utils/phone';
 import {
   calculatorQuestions,
   deviceTypes,
@@ -24,10 +25,10 @@ const API_URL = (() => {
       return `http://${host}:3001`;
     }
     // Production fallback to Vercel server when env is not set
-    return 'https://gps-app-server.vercel.app';
+    return 'https://geopolser-server.vercel.app';
   }
   // Non-browser safety fallback
-  return 'https://gps-app-server.vercel.app';
+  return 'https://geopolser-server.vercel.app';
 })();
 
 const Calculator = () => {
@@ -50,7 +51,7 @@ const Calculator = () => {
   const [contactMethod, setContactMethod] = useState('whatsapp');
   const [contactData, setContactData] = useState({
     name: '',
-    phone: '',
+    phone: PHONE_PREFIX,
     email: ''
   });
   const [consent, setConsent] = useState(false);
@@ -140,14 +141,10 @@ const Calculator = () => {
       }
       
       // Validate phone
-      if (!contactData.phone.trim()) {
+      if (isPhoneEmpty(contactData.phone)) {
         newErrors.phone = t('calculator.validation.required');
-      } else {
-        const phoneRegex = /^\+995\s?\d{3}\s?\d{3}\s?\d{3}$/;
-        const cleanPhone = contactData.phone.replace(/\s/g, '');
-        if (!phoneRegex.test(cleanPhone) && !/^\+995\d{9}$/.test(cleanPhone)) {
-          newErrors.phone = t('calculator.validation.invalidPhone');
-        }
+      } else if (!isPhoneValid(contactData.phone)) {
+        newErrors.phone = t('calculator.validation.invalidPhone');
       }
       
       // Validate email
@@ -184,28 +181,8 @@ const Calculator = () => {
 
   // Handle contact field changes
   const handleContactFieldChange = (field, value) => {
-    // Auto-format phone number
     if (field === 'phone') {
-      value = value.replace(/[^\d+]/g, '');
-      if (!value.startsWith('+995')) {
-        if (value.startsWith('995')) {
-          value = '+' + value;
-        } else if (value.startsWith('5')) {
-          value = '+995' + value;
-        } else if (value) {
-          value = '+995' + value.replace(/^\+/, '');
-        }
-      }
-      // Format: +995 XXX XXX XXX
-      if (value.length > 4) {
-        value = value.slice(0, 4) + ' ' + value.slice(4);
-      }
-      if (value.length > 8) {
-        value = value.slice(0, 8) + ' ' + value.slice(8);
-      }
-      if (value.length > 12) {
-        value = value.slice(0, 12) + ' ' + value.slice(12, 15);
-      }
+      value = formatPhone(value);
     }
     
     setContactData(prev => ({ ...prev, [field]: value }));
@@ -276,7 +253,7 @@ const Calculator = () => {
     setCurrentStep(1);
     setAnswers({ deviceType: '', brand: '', jobType: '' });
     setContactMethod('whatsapp');
-    setContactData({ name: '', phone: '', email: '' });
+    setContactData({ name: '', phone: PHONE_PREFIX, email: '' });
     setConsent(false);
     setSubmitStatus(null);
     setErrors({});

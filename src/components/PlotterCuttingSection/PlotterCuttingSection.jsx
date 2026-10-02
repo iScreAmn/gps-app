@@ -61,7 +61,6 @@ const PlotterCuttingSection = () => {
                 <span className="pc-teaser__blade-name">{color.name}</span>
               </span>
             ))}
-            <span className="pc-teaser__pivot" />
           </div>
 
           <div className="pc-teaser__marquee" aria-hidden="true">

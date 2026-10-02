@@ -600,7 +600,7 @@
     "error": "Error sending. Please try again.",
     "validation": {
       "required": "This field is required",
-      "invalidPhone": "Invalid phone number format",
+      "invalidPhone": "Enter 9 digits after +995",
       "invalidEmail": "Invalid email address"
     },
     "progress": "Step {{current}} of {{total}}",
@@ -740,7 +740,7 @@
     "errors": {
       "nameRequired": "Please enter your name",
       "phoneRequired": "Please enter your phone number",
-      "phoneInvalid": "Invalid phone number",
+      "phoneInvalid": "Enter 9 digits after +995",
       "agreementRequired": "Please accept the agreement",
       "submitError": "Error sending form. Please try again."
     }
@@ -956,6 +956,7 @@
       "phonePlaceholder": "+995 577 77 88 99",
       "errCompanyName": "Please enter the company name",
       "errPhone": "Please enter a phone number",
+      "errPhoneInvalid": "Enter 9 digits after +995",
       "deviceLabel": "Device type",
       "devicePlaceholder": "Select a device type",
       "modelLabel": "Model",

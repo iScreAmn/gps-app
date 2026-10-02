@@ -20,6 +20,7 @@ import {
   FiLayers,
 } from 'react-icons/fi';
 import './ProblemReportModal.css';
+import { PHONE_PREFIX, formatPhone, isPhoneEmpty, isPhoneValid as isValidPhone } from '../../utils/phone';
 
 const PR_NS = 'infoPage.problemReport';
 
@@ -32,9 +33,9 @@ const API_URL = (() => {
     if (host === 'localhost' || host === '127.0.0.1') {
       return `http://${host}:3001`;
     }
-    return 'https://gps-app-server.vercel.app';
+    return 'https://geopolser-server.vercel.app';
   }
-  return 'https://gps-app-server.vercel.app';
+  return 'https://geopolser-server.vercel.app';
 })();
 
 const DEVICE_LABELS_RU = {
@@ -182,7 +183,7 @@ const ProblemReportModal = ({ open, onClose }) => {
   const reportIdRef = useRef(makeReportId());
 
   const [companyName, setCompanyName] = useState('');
-  const [phone, setPhone] = useState('');
+  const [phone, setPhone] = useState(PHONE_PREFIX);
   const [deviceType, setDeviceType] = useState('');
   const [deviceModel, setDeviceModel] = useState('');
   const [problemSelect, setProblemSelect] = useState('');
@@ -213,7 +214,7 @@ const ProblemReportModal = ({ open, onClose }) => {
 
   const resetForm = useCallback(() => {
     setCompanyName('');
-    setPhone('');
+    setPhone(PHONE_PREFIX);
     setDeviceType('');
     setDeviceModel('');
     setProblemSelect('');
@@ -288,7 +289,7 @@ const ProblemReportModal = ({ open, onClose }) => {
 
   /* Validation */
   const isCompanyValid = companyName.trim().length > 0;
-  const isPhoneValid = phone.trim().length > 0;
+  const isPhoneValid = isValidPhone(phone);
   const isDeviceValid = deviceType !== '';
   const hasPresetModels = currentDevice?.models != null;
   const showModelField = deviceType !== '';
@@ -532,14 +533,14 @@ const ProblemReportModal = ({ open, onClose }) => {
                     className="prm-input"
                     placeholder={tr('phonePlaceholder')}
                     value={phone}
-                    onChange={(e) => setPhone(e.target.value)}
+                    onChange={(e) => setPhone(formatPhone(e.target.value))}
                     onBlur={() => setTouched((p) => ({ ...p, phone: true }))}
                     autoComplete="tel"
                   />
                 </div>
                 {touched.phone && !isPhoneValid && (
                   <span className="prm-error">
-                    <FiAlertCircle /> {tr('errPhone')}
+                    <FiAlertCircle /> {tr(isPhoneEmpty(phone) ? 'errPhone' : 'errPhoneInvalid')}
                   </span>
                 )}
               </div>

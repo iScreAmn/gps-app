@@ -263,18 +263,6 @@ body[data-theme='dark'] .pc-teaser::before {
   text-overflow: ellipsis;
 }
 
-.pc-teaser__pivot {
-  position: absolute;
-  left: calc(50% - 7px);
-  bottom: calc(12% + 15px);
-  width: 14px;
-  height: 14px;
-  border-radius: 50%;
-  background: radial-gradient(circle at 35% 35%, #F3F4F6, #9CA3AF);
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.35);
-  z-index: 20;
-}
-
 /* ---------- Color marquee ---------- */
 .pc-teaser__marquee {
   position: absolute;

@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import './CallbackForm.css';
 import { useLanguage } from '../../../../hooks/useLanguage';
+import { PHONE_PREFIX, formatPhone, isPhoneEmpty, isPhoneValid } from '../../../../utils/phone';
 
 const API_URL = (() => {
   const envUrl =
@@ -12,16 +13,16 @@ const API_URL = (() => {
     if (host === 'localhost' || host === '127.0.0.1') {
       return `http://${host}:3001`;
     }
-    return 'https://gps-app-server.vercel.app';
+    return 'https://geopolser-server.vercel.app';
   }
-  return 'https://gps-app-server.vercel.app';
+  return 'https://geopolser-server.vercel.app';
 })();
 
 const CallbackForm = ({ onSuccess, source }) => {
   const { t, language } = useLanguage();
   const [formData, setFormData] = useState({
     name: '',
-    phone: '',
+    phone: PHONE_PREFIX,
     agreed: false
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -31,7 +32,7 @@ const CallbackForm = ({ onSuccess, source }) => {
     const { name, value, type, checked } = e.target;
     setFormData(prev => ({
       ...prev,
-      [name]: type === 'checkbox' ? checked : value
+      [name]: type === 'checkbox' ? checked : name === 'phone' ? formatPhone(value) : value
     }));
     // Clear error when user starts typing
     if (errors[name]) {
@@ -46,9 +47,9 @@ const CallbackForm = ({ onSuccess, source }) => {
       newErrors.name = t('callback.errors.nameRequired') || 'Введите имя';
     }
     
-    if (!formData.phone.trim()) {
+    if (isPhoneEmpty(formData.phone)) {
       newErrors.phone = t('callback.errors.phoneRequired') || 'Введите номер телефона';
-    } else if (!/^[\d\s+()-]+$/.test(formData.phone)) {
+    } else if (!isPhoneValid(formData.phone)) {
       newErrors.phone = t('callback.errors.phoneInvalid') || 'Некорректный номер';
     }
     
@@ -89,7 +90,7 @@ const CallbackForm = ({ onSuccess, source }) => {
       }
 
       // Очистка формы
-      setFormData({ name: '', phone: '', agreed: false });
+      setFormData({ name: '', phone: PHONE_PREFIX, agreed: false });
 
       // Вызов колбэка успеха
       if (onSuccess) {
@@ -125,7 +126,10 @@ const CallbackForm = ({ onSuccess, source }) => {
           type="tel"
           name="phone"
           className={`callback-form__input ${errors.phone ? 'callback-form__input--error' : ''}`}
+          inputMode="tel"
+          autoComplete="tel"
           placeholder={t('callback.phonePlaceholder') || 'Ваш номер телефона *'}
+          aria-label={t('callback.phonePlaceholder') || 'Ваш номер телефона *'}
           value={formData.phone}
           onChange={handleChange}
           disabled={isSubmitting}

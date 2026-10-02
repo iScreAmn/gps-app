@@ -63,9 +63,9 @@ const API_URL = (() => {
     if (host === "localhost" || host === "127.0.0.1") {
       return `http://${host}:3001`;
     }
-    return "https://gps-app-server.vercel.app";
+    return "https://geopolser-server.vercel.app";
   }
-  return "https://gps-app-server.vercel.app";
+  return "https://geopolser-server.vercel.app";
 })();
 
 const STORAGE_KEY = "scanner_scans_v1";
